@@ -38,6 +38,6 @@ jobs:
             echo "No grid change."
           else
             git add rainbow-grid.json
-            git commit -m "chore: refresh rainbow grid [skip ci]"
+            git commit -m "chore: refresh rainbow grid"
             git push
           fi
