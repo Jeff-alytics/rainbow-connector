@@ -1073,14 +1073,20 @@ async function computeAndPaintGrid(){
 }
 function clearCandMarkers(){ candMarkers.forEach(m => m.remove()); candMarkers = []; }
 function addCandMarker(c){
+  // MapLibre writes its positioning transform onto the marker's root element. If that root is
+  // the styled pin (which has its own transform/transition for the hover scale), the two fight:
+  // every pan re-applies a transform the CSS transition then animates, so pins lag and drift off
+  // their true point. So the root is a plain wrapper MapLibre owns; the styled pin sits inside it.
+  const wrap = document.createElement("div");
   const el = document.createElement("div");
   el.className = "cand-pin " + (c.go ? "go" : "cloudy");
   const cloudTxt = c.cloud == null ? "cloud cover unknown" : `${Math.round(c.cloud)}% cloud`;
   el.title = c.go ? `Likely now · skies clear (${cloudTxt})`
                   : `Rain + sun aligned, but cloudy · ${cloudTxt}`;
   el.addEventListener("click", ev => { ev.stopPropagation(); trackCell(c.lat, c.lon); });
+  wrap.appendChild(el);
   c._el = el;                                        // keep ref so we can number it at the end
-  candMarkers.push(new maplibregl.Marker({ element: el, anchor: "center" })
+  candMarkers.push(new maplibregl.Marker({ element: wrap, anchor: "center" })
     .setLngLat([c.lon, c.lat]).addTo(gridMap));
 }
 function finalizeCandidates(top){
