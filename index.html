@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Rainbow Connector · Live Rainbow Forecast</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -137,7 +138,7 @@
   .theme-toggle:hover { transform: translateY(-2px) rotate(-8deg); }
 
   .hero h1 { font-family: "Fredoka", sans-serif; font-weight: 700; letter-spacing: -.02em;
-    font-size: clamp(32px, 6vw, 64px); line-height: 1; margin: 46px 0 4px; }
+    font-size: clamp(30px, 6vw, 64px); line-height: 1.02; margin: 46px 0 4px; max-width: 100%; overflow-wrap: break-word; }
   .hero h1 .rainbow-text { background-image: linear-gradient(100deg, var(--rb-red), var(--rb-orange), var(--rb-yellow), var(--rb-green), var(--rb-blue), var(--rb-violet));
     -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero .kicker { font-size: clamp(15px, 1.9vw, 20px); color: var(--muted-fg); margin-top: 14px; max-width: 48ch; line-height: 1.5; font-weight: 500; }
@@ -191,15 +192,13 @@
   .alert-body { display: grid; grid-template-columns: 172px 1fr; gap: 26px; align-items: center; }
   @media (max-width: 520px){ .alert-body { grid-template-columns: 1fr; gap: 22px; justify-items: center; } }
 
-  /* verdict ring */
+  /* verdict status badge (categorical — no score) */
   .emblem { position: relative; width: 172px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .ring-wrap { position: relative; width: 150px; height: 150px; }
-  .ring-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-  .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .ring-center .rc-num { font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 38px; line-height: 1; }
-  .ring-center .rc-den { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--faint-fg); margin-top: 2px; }
-  .emblem-label { font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 23px; line-height: 1.08; margin-top: 14px; }
-  .emblem-sub { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint-fg); margin-top: 7px; }
+  .vbadge { width: 124px; height: 124px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 58px; line-height: 1; background: var(--secondary); }
+  .vbadge.go { background: color-mix(in oklab, var(--good) 20%, transparent); box-shadow: 0 0 0 7px color-mix(in oklab, var(--good) 12%, transparent); }
+  .vbadge.watch { background: color-mix(in oklab, var(--mod) 20%, transparent); }
+  .emblem-label { font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 22px; line-height: 1.12; margin-top: 16px; text-wrap: balance; }
 
   /* condition checklist */
   .checklist { display: flex; flex-direction: column; gap: 13px; }
@@ -242,6 +241,11 @@
   @media (max-width: 860px){ .lower { grid-template-columns: 1fr; } }
   .map-card, .board-card { margin: 0; }
   #map, #usmap { height: 380px; width: 100%; border-radius: 1.25rem; border: 1px solid var(--border-c); background: var(--secondary); overflow: hidden; }
+  .map-shell { position: relative; }
+  .map-loading { position: absolute; inset: 0; z-index: 2; border-radius: 1.25rem; display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--secondary); color: var(--muted-fg); font-family: "Fredoka", sans-serif; font-weight: 500; font-size: 15px; transition: opacity .4s; }
+  .map-loading.gone { opacity: 0; pointer-events: none; }
+  .map-loading .ml-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--primary); animation: twinkle 1.2s ease-in-out infinite; }
   .grid-foot, .map-foot { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-c); min-height: 16px; font-size: 11px; color: var(--faint-fg); }
   .grid-foot { display: flex; flex-wrap: nowrap; align-items: center; gap: 14px; overflow: hidden; }
   .map-foot { font-family: "IBM Plex Mono", monospace; letter-spacing: .04em; color: var(--muted-fg); line-height: 16px; }
@@ -268,8 +272,8 @@
   .me-pin { background: var(--rb-red); color: oklch(0.99 0.01 25); border: 1px solid var(--rb-red); }
 
   .muted-card { opacity: .6; }
-  .empty { grid-column: 1 / -1; text-align: center; padding: 66px 20px; border: 1px dashed var(--border-c); border-radius: 2rem; color: var(--faint-fg); background: color-mix(in oklab, var(--card-bg) 70%, transparent); }
-  .empty .big { font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 26px; color: var(--muted-fg); margin-bottom: 10px; }
+  .empty { grid-column: 1 / -1; text-align: center; padding: 66px 20px; border: 1px dashed var(--border-c); border-radius: 2rem; color: var(--faint-fg); background: color-mix(in oklab, var(--card-bg) 70%, transparent); overflow-wrap: break-word; }
+  .empty .big { font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 26px; color: var(--muted-fg); margin-bottom: 10px; text-wrap: balance; }
   .empty div:last-child { font-weight: 500; }
   .loading { font-family: "Fredoka", sans-serif; color: var(--muted-fg); font-size: 16px; font-weight: 500; }
 
@@ -304,7 +308,16 @@
   .reveal { animation: pop-in .5s cubic-bezier(.22,1,.36,1) both; }
   .reveal.d2 { animation-delay: .08s; }
   @media (prefers-reduced-motion: reduce) {
-    .sky-arc, .cloud, .badge .spark, .card::before, .reveal { animation: none; }
+    .sky-arc, .cloud, .card::before, .reveal, .map-loading .ml-dot { animation: none; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 22px 16px 64px; }
+    .hero { padding-top: 4px; }
+    .controls { position: static; justify-content: flex-end; margin-bottom: 6px; }
+    .dateline { text-align: right; }
+    .hero h1 { font-size: clamp(28px, 9vw, 40px); margin: 10px 0 4px; }
+    .empty { padding: 44px 16px; }
+    .empty .big { font-size: 21px; }
   }
 </style>
 </head>
@@ -362,7 +375,10 @@
         <span class="tag">Rainbow Map</span>
         <span class="meta" id="grid-meta">scanning…</span>
       </div>
-      <div id="usmap"></div>
+      <div class="map-shell">
+        <div id="usmap"></div>
+        <div class="map-loading" id="usmap-loading"><span class="ml-dot"></span>Loading radar…</div>
+      </div>
       <div class="grid-foot" id="grid-foot">
         <span class="gl"><i class="gdot go"></i>Go look now</span>
         <span class="gl"><i class="gdot watch"></i>Worth a glance</span>
@@ -454,9 +470,9 @@ function verdictOf(elev, directRad, rainInt){
   let key, tier, label;
   // rain in the anti-solar sky is the non-negotiable ingredient — no droplets, no bow, ever.
   if (!geo){ key = "none"; tier = 0; label = (elev == null || elev <= 0.5) ? "Sun's down" : "Sun's too high"; }
-  else if (!rain){ key = "low"; tier = 1; label = "No rain out there"; }
+  else if (!rain){ key = "low"; tier = 1; label = "No rain opposite the sun"; }
   else if (sun){ key = "go"; tier = 3; label = "Go look now"; }
-  else { key = "watch"; tier = 2; label = "Worth a glance"; }
+  else { key = "watch"; tier = 2; label = "Too cloudy"; }
   return { geo, sun, rain, key, tier, label, elev, directRad, rainInt };
 }
 const VCOLOR = { go: "var(--good)", watch: "var(--mod)", low: "var(--ink-faint)", none: "var(--ink-faint)" };
@@ -726,16 +742,12 @@ function compassSVG(bearing){
       <circle cx="${cx}" cy="${cy}" r="5" fill="var(--card-bg)" stroke="var(--faint-fg)" stroke-width="1.5"/>
     </svg>`;
 }
-/* probability-style ring: how many of the 3 ingredients are present (tier/3) */
-function ringSVG(tier, color){
-  const R = 62, C = 2 * Math.PI * R, frac = Math.max(tier, 0) / 3;
-  return `
-    <svg viewBox="0 0 150 150">
-      <circle cx="75" cy="75" r="${R}" fill="none" stroke="var(--secondary)" stroke-width="13"/>
-      <circle cx="75" cy="75" r="${R}" fill="none" stroke="${color}" stroke-width="13" stroke-linecap="round"
-        stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-frac)).toFixed(1)}"
-        style="transition:stroke-dashoffset .9s cubic-bezier(.22,1,.36,1)"/>
-    </svg>`;
+/* emoji that reflects the current sky status (categorical, not a score) */
+function statusGlyph(v, elev){
+  if (v.key === "go")    return "🌈";
+  if (v.key === "watch") return "🌥️";
+  if (v.key === "low")   return "☀️";                 // geometry ok, but no rain
+  return (elev == null || elev <= 0.5) ? "🌙" : "🌞";  // sun down / sun too high
 }
 function bowGlyph(){
   const cols = ["--sp1","--sp2","--sp3","--sp4","--sp5","--sp6","--sp7"];
@@ -761,7 +773,7 @@ function checkRow(ok, name, val, note){
 
 function renderStation(data){
   const { st, sun, verdict: v, factors, antiBearing, rainbowElev } = data;
-  const hasView = v.tier >= 2;
+  const actionable = v.key === "go";   // only a confirmed bow earns an active "look now"
   const dir = compassLabel(antiBearing);
   const color = VCOLOR[v.key];
 
@@ -789,12 +801,8 @@ function renderStation(data){
       <div class="card-head"><span class="tag">Rainbow Watch</span><span class="meta">${st.name}${/^\d{5}$/.test(st.zip) ? " · " + st.zip : ""}</span></div>
       <div class="alert-body">
         <div class="emblem">
-          <div class="ring-wrap">
-            ${ringSVG(v.tier, color)}
-            <div class="ring-center"><div class="rc-num" style="color:${color}">${v.tier}</div><div class="rc-den">of 3</div></div>
-          </div>
+          <div class="vbadge ${v.key}">${statusGlyph(v, sun.elev)}</div>
           <div class="emblem-label" style="color:${color}">${v.label}</div>
-          <div class="emblem-sub">conditions met</div>
         </div>
         <div class="checklist">
           ${checkRow(v.geo, "Sun low enough", elevTxt, elevNote)}
@@ -805,15 +813,15 @@ function renderStation(data){
       <div class="verdict">${sentence}</div>
     </section>
 
-    <section class="card reveal d2 ${hasView ? "" : "muted-card"}">
-      <div class="card-head"><span class="tag">Where to Look</span><span class="meta">${hasView ? "Opposite the sun" : "Standby"}</span></div>
-      ${hasView ? rainbowArcSVG() + `<div class="bow-cap">A rainbow always appears in the sky opposite the sun</div>` : ""}
+    <section class="card reveal d2 ${actionable ? "" : "muted-card"}">
+      <div class="card-head"><span class="tag">Where to Look</span><span class="meta">${actionable ? "Look now" : "If it lines up"}</span></div>
+      ${actionable ? rainbowArcSVG() + `<div class="bow-cap">A rainbow always appears in the sky opposite the sun</div>` : ""}
       <div class="compass-wrap">
         <div class="compass">${compassSVG(antiBearing)}
           <div class="center-el"><div class="bearing-num">${Math.round(antiBearing)}°</div><div class="bearing-card">${dir}</div></div></div>
         <div class="look-info">
-          <div class="info-block"><div class="il">Direction</div><div class="iv">Face ${dir} <small>(${Math.round(antiBearing)}° from N)</small></div></div>
-          <div class="info-block"><div class="il">How high it'll arc</div><div class="iv">${rainbowElev.toFixed(0)}° <small>above the horizon</small></div></div>
+          <div class="info-block"><div class="il">${actionable ? "Look toward" : "Rainbow side"}</div><div class="iv">${actionable ? "Face " : ""}${dir} <small>(${Math.round(antiBearing)}° from N)</small></div></div>
+          <div class="info-block"><div class="il">${actionable ? "How high it'll arc" : "How high it could arc"}</div><div class="iv">${rainbowElev.toFixed(0)}° <small>above the horizon</small></div></div>
         </div>
       </div>
     </section>`;
@@ -940,7 +948,7 @@ async function computeAndPaintGrid(){
   $("#grid-meta").textContent = "reading live radar…";
   let rv;
   try { rv = await ensureRadar(); await prefetchRadarTiles(rv); }
-  catch { $("#grid-meta").textContent = "radar offline"; return; }
+  catch { $("#grid-meta").textContent = "radar offline"; $("#usmap-loading").textContent = "Radar offline"; return; }
   const now = new Date(), pts = [];
   for (const [lat, lon] of buildGridMesh()){
     const sun = solarReadout(now, lat, lon);
@@ -964,6 +972,7 @@ function paintGridPoints(pts){
   const go = pts.filter(p => p[2] === 3).length, watch = pts.length - go;
   const meta = $("#grid-meta");
   meta.textContent = pts.length ? `${go} go · ${watch} worth a glance` : "no bows nationwide right now";
+  $("#usmap-loading").classList.add("gone");
   markUpdated();
 }
 // nearest US city for a friendly station name when a cell is tapped
@@ -1084,6 +1093,7 @@ async function loadGrid(){
       skyMap = new Map((grid.sky || []).map(([lat, lon, cc]) => [lat + "," + lon, cc]));
     } catch (e) {
       $("#grid-meta").textContent = "cloud grid offline";
+      $("#usmap-loading").textContent = "Sky data offline";
       return;
     }
   }

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="sky"><rect width="64" height="64" rx="14"/></clipPath>
+  </defs>
+  <g clip-path="url(#sky)">
+    <rect width="64" height="64" rx="14" fill="#dff0ff"/>
+    <g fill="none" stroke-linecap="round" stroke-width="5">
+      <path d="M6 50 A26 26 0 0 1 58 50" stroke="#f4453a"/>
+      <path d="M11 50 A21 21 0 0 1 53 50" stroke="#ff9f1c"/>
+      <path d="M16 50 A16 16 0 0 1 48 50" stroke="#ffd23f"/>
+      <path d="M21 50 A11 11 0 0 1 43 50" stroke="#4cb944"/>
+      <path d="M26 50 A6 6 0 0 1 38 50" stroke="#3a86ff"/>
+    </g>
+    <g fill="#ffffff">
+      <circle cx="10" cy="52" r="9"/>
+      <circle cx="54" cy="52" r="9"/>
+      <rect x="0" y="52" width="64" height="14"/>
+    </g>
+  </g>
+</svg>
