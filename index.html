@@ -111,7 +111,9 @@
     background: linear-gradient(to bottom, var(--sky-top), var(--background) 42%, var(--background)); }
   .sky-glow { position: absolute; top: -12%; right: -6%; width: 60rem; height: 60rem; border-radius: 50%;
     background: radial-gradient(circle, var(--sky-glow), transparent 62%); opacity: .7; }
-  .sky-arc { position: absolute; top: -34rem; left: 50%; width: 60rem; height: 60rem; transform: translateX(-50%); animation: drift 9s ease-in-out infinite alternate; }
+  /* Big ring centered near the viewport fold so only its TOP curve shows — a proper arch
+     (∩). The lower half falls below .sky-backdrop's clip and is hidden. */
+  .sky-arc { position: absolute; top: 0; left: 50%; width: 90rem; height: 90rem; transform: translateX(-50%); animation: drift 9s ease-in-out infinite alternate; }
   .sky-arc i { position: absolute; border-radius: 50%; border-style: solid; }
   .sky-arc i:nth-child(1){ inset: 0;       border-width: 18px; border-color: color-mix(in oklab, var(--rb-red) 25%, transparent); }
   .sky-arc i:nth-child(2){ inset: 18px;    border-width: 18px; border-color: color-mix(in oklab, var(--rb-orange) 25%, transparent); }
@@ -257,8 +259,8 @@
   /* verified candidate pins on the national map */
   .cand-pin { display: grid; place-items: center; border-radius: 50%; font: 700 11px/1 "Fredoka", sans-serif; color: #fff; border: 2px solid #fff; box-shadow: 0 2px 7px -1px rgb(var(--shadow) / .55); cursor: pointer; transition: transform .12s ease; }
   .cand-pin:hover { transform: scale(1.18); z-index: 5; }
-  .cand-pin.go { width: 23px; height: 23px; background: var(--good); }
-  .cand-pin.cloudy { width: 13px; height: 13px; background: var(--mod); opacity: .82; }
+  .cand-pin.go { width: 23px; height: 23px; background: var(--good); z-index: 2; }
+  .cand-pin.cloudy { width: 13px; height: 13px; background: var(--mod); opacity: .82; z-index: 1; }
   .maplibregl-popup-content { background: var(--card-bg); border: 1px solid var(--border-c); border-radius: 14px; padding: 8px 12px; box-shadow: 0 8px 22px -10px rgb(var(--shadow) / .6); }
   .maplibregl-popup-tip { display: none; }
   .maplibregl-popup-anchor-top .maplibregl-popup-content, .maplibregl-popup-anchor-bottom .maplibregl-popup-content { margin-top: 0; }
@@ -388,7 +390,7 @@
       <div class="grid-foot" id="grid-foot">
         <span class="gl"><i class="gdot go"></i>Likely now</span>
         <span class="gl"><i class="gdot watch"></i>Rain + sun, but cloudy</span>
-        <span class="gl-note">Tap a pin or the map to track</span>
+        <span class="gl-note">Tap a numbered pin to track</span>
       </div>
     </section>
   </div>
@@ -596,17 +598,52 @@ async function fetchWeatherOM(lat, lon){
    rest of the app already expects ({ current, hourly:{time,direct_radiation,precipitation,
    cloud_cover} }), converting sky cover -> a synthetic direct_radiation the unchanged
    verdictOf can read. Open-Meteo stays as a fallback for points outside NWS coverage. */
-const _nwsGrid = new Map();
-async function nwsGridUrl(lat, lon){
+// One /points lookup per coarse location, cached. It hands back BOTH the gridpoint forecast
+// URL (model sky cover, our rural fallback) and the observationStations URL (live METAR).
+const _nwsPoints = new Map();
+async function nwsPoint(lat, lon){
   const key = lat.toFixed(3) + "," + lon.toFixed(3);
-  if (_nwsGrid.has(key)) return _nwsGrid.get(key);
+  if (_nwsPoints.has(key)) return _nwsPoints.get(key);
   const r = await fetch(`https://api.weather.gov/points/${lat.toFixed(4)},${lon.toFixed(4)}`);
   if (!r.ok) throw new Error("nws points " + r.status);
   const j = await r.json();
-  const u = j.properties && j.properties.forecastGridData;
-  if (!u) throw new Error("nws no grid");
-  _nwsGrid.set(key, u);
-  return u;
+  const p = (j && j.properties) || {};
+  if (!p.forecastGridData) throw new Error("nws no grid");
+  _nwsPoints.set(key, p);
+  return p;
+}
+async function nwsGridUrl(lat, lon){ return (await nwsPoint(lat, lon)).forecastGridData; }
+
+/* ---------- live cloud from METAR observations (api.weather.gov) ----------
+   The gridpoint sky cover is a MODEL forecast for the current hour, so it lags reality (e.g.
+   "67% cloud" over a sunny New Orleans). Real airport observations report actual cloud layers
+   right now. We pull the nearest station's latest report and turn its layers into a sky-cover %
+   (the densest layer wins). Falls back to the forecast sky cover when no fresh obs exist —
+   typically rural points far from any reporting station. */
+const _METAR_PCT = { CLR: 0, SKC: 0, NCD: 0, NSC: 0, CAVOK: 0, FEW: 19, SCT: 44, BKN: 75, OVC: 100, VV: 100 };
+const _nwsObsStation = new Map();   // observationStations URL -> nearest station id
+async function cloudNow(lat, lon){
+  const p = await nwsPoint(lat, lon);
+  const su = p.observationStations;
+  if (!su) throw new Error("no obs stations");
+  let stid = _nwsObsStation.get(su);
+  if (!stid){
+    const sj = await fetch(su).then(r => { if (!r.ok) throw new Error("obs stations " + r.status); return r.json(); });
+    const feats = sj.features || [];
+    if (!feats.length) throw new Error("no obs station");
+    stid = feats[0].properties.stationIdentifier;     // first = nearest
+    _nwsObsStation.set(su, stid);
+  }
+  const oj = await fetch(`https://api.weather.gov/stations/${stid}/observations/latest`)
+    .then(r => { if (!r.ok) throw new Error("obs " + r.status); return r.json(); });
+  const props = (oj && oj.properties) || {};
+  // ignore a stale report (station offline) so we don't trust hours-old skies
+  if (props.timestamp && Date.now() - new Date(props.timestamp).getTime() > 3 * 3600000) throw new Error("obs stale");
+  const layers = props.cloudLayers || [];
+  if (!layers.length) return 0;                        // a report with no layers = clear sky
+  let max = 0;
+  for (const L of layers){ const v = _METAR_PCT[L.amount]; if (v != null && v > max) max = v; }
+  return max;
 }
 function isoDurHours(d){                         // "PT6H" / "P1DT3H" / "PT1H" -> hours
   const m = (d || "").match(/P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?)?/);
@@ -712,8 +749,18 @@ async function computeStation(st){
     hereW = await weatherPoint(st.lat, st.lon);
   }
 
-  const directRad = hereW.current.direct_radiation;
-  const cloudCover = hereW.current.cloud_cover;
+  // Cloud: prefer a live METAR observation (actual current sky), fall back to the forecast
+  // sky cover already in hereW. Sun "is out" is derived from the same number we display, so the
+  // card can't say "sunny" while showing 67% cloud. directRad is synthetic in the NWS path
+  // (999/0 via skyToRad); re-derive it from whichever cloud value we end up trusting.
+  let cloudCover = hereW.current.cloud_cover;
+  let directRad = hereW.current.direct_radiation;
+  if (!SIM_INSTANT){
+    try {
+      const obs = await cloudNow(st.lat, st.lon);
+      if (obs != null){ cloudCover = obs; directRad = obs < CLOUD_CLEAR_MAX ? 999 : 0; }
+    } catch (e){ /* no fresh obs here — keep the forecast sky cover */ }
+  }
   let antiPrecip = null;
 
   // RAIN, right now: live radar in the anti-solar direction (forecast precip smooths out the
@@ -1009,38 +1056,48 @@ async function computeAndPaintGrid(){
 
   // Pass 2 — verify clouds on the most promising spots, using the SAME source as the live
   // card (NWS → Open-Meteo). Green here therefore agrees with what a click would show.
-  $("#grid-meta").textContent = `checking ${Math.min(TOP_N, cands.length)} likely spots…`;
   const top = cands.slice(0, TOP_N);
-  await pool(top, 4, async c => {
-    try { c.cloud = (await weatherPoint(c.lat, c.lon)).current.cloud_cover; }
-    catch { c.cloud = null; }                        // unknown → not promoted to green
+  $("#grid-meta").textContent = `checking ${top.length} likely spots…`;
+  $("#usmap-loading").classList.add("gone");
+  clearCandMarkers();
+  // Drop each pin the instant its own cloud check returns (concurrency 6), so the
+  // map fills in progressively instead of staying empty until all checks finish.
+  await pool(top, 6, async c => {
+    // same live-obs source as the ZIP card, so a map pin can't disagree with the card
+    try { c.cloud = await cloudNow(c.lat, c.lon); }
+    catch { try { c.cloud = (await weatherPoint(c.lat, c.lon)).current.cloud_cover; } catch { c.cloud = null; } }
     c.go = c.cloud != null && c.cloud < CLOUD_CLEAR_MAX;
+    addCandMarker(c);
   });
-  paintCandidates(top, cands.length);
+  finalizeCandidates(top);
 }
 function clearCandMarkers(){ candMarkers.forEach(m => m.remove()); candMarkers = []; }
-function paintCandidates(top, ripeCount){
-  clearCandMarkers();
-  // draw cloudy dots first so the bright green "go" pins sit on top
-  const ordered = [...top].sort((a, b) => (a.go === b.go) ? 0 : a.go ? 1 : -1);
+function addCandMarker(c){
+  const el = document.createElement("div");
+  el.className = "cand-pin " + (c.go ? "go" : "cloudy");
+  const cloudTxt = c.cloud == null ? "cloud cover unknown" : `${Math.round(c.cloud)}% cloud`;
+  el.title = c.go ? `Likely now · skies clear (${cloudTxt})`
+                  : `Rain + sun aligned, but cloudy · ${cloudTxt}`;
+  el.addEventListener("click", ev => { ev.stopPropagation(); trackCell(c.lat, c.lon); });
+  c._el = el;                                        // keep ref so we can number it at the end
+  candMarkers.push(new maplibregl.Marker({ element: el, anchor: "center" })
+    .setLngLat([c.lon, c.lat]).addTo(gridMap));
+}
+function finalizeCandidates(top){
+  // number the confirmed-clear pins by likelihood (top is already score-sorted)
   let rank = 0;
-  ordered.forEach(c => {
-    const el = document.createElement("div");
-    el.className = "cand-pin " + (c.go ? "go" : "cloudy");
-    if (c.go){ el.textContent = String(++rank); }   // only confirmed-clear spots get a number
-    const cloudTxt = c.cloud == null ? "cloud cover unknown" : `${Math.round(c.cloud)}% cloud`;
-    el.title = c.go ? `#${rank} likely now · skies clear (${cloudTxt})`
-                    : `Rain + sun aligned, but cloudy · ${cloudTxt}`;
-    el.addEventListener("click", ev => { ev.stopPropagation(); trackCell(c.lat, c.lon); });
-    candMarkers.push(new maplibregl.Marker({ element: el, anchor: "center" })
-      .setLngLat([c.lon, c.lat]).addTo(gridMap));
-  });
-  const go = top.filter(c => c.go).length, cloudy = top.length - go;
+  for (const c of top){
+    if (c.go && c._el){
+      const r = ++rank, cloudTxt = c.cloud == null ? "cloud cover unknown" : `${Math.round(c.cloud)}% cloud`;
+      c._el.textContent = String(r);
+      c._el.title = `#${r} likely now · skies clear (${cloudTxt})`;
+    }
+  }
+  const go = rank, cloudy = top.length - go;
   $("#grid-meta").textContent = go
     ? `${go} likely now · ${cloudy} rain+sun but cloudy`
     : cloudy ? `${cloudy} rain+sun spot${cloudy === 1 ? "" : "s"} — all cloudy`
              : "no bows nationwide right now";
-  $("#usmap-loading").classList.add("gone");
   markUpdated();
 }
 // nearest US city for a friendly station name when a cell is tapped
@@ -1069,10 +1126,8 @@ async function ensureGridMap(){
       gridMap.addLayer({ id:"rv-layer", type:"raster", source:"rv", paint:{ "raster-opacity":0.4 } });
     } catch {}
 
-    // Click anywhere on the map to track that spot (the "click a ZIP you're interested in"
-    // path). The verified candidate pins have their own click handlers on top of this.
-    gridMap.on("click", e => trackCell(e.lngLat.lat, e.lngLat.lng));
-    gridMap.on("mousemove", () => { gridMap.getCanvas().style.cursor = "crosshair"; });
+    // The numbered candidate pins are the clickable targets (each has its own handler);
+    // the map itself stays a normal pan/zoom surface. Use the ZIP box to track any spot.
     computeAndPaintGrid();
   });
 }
@@ -1096,7 +1151,7 @@ async function trackCell(lat, lon){
   if (zip){
     try {
       const st = await geocodeZip(zip);   // canonical "City, ST" + centroid
-      if (!stations.some(s => s.zip === st.zip)) stations.push(st);
+      addStation(st);
       activeZip = st.zip; save(); renderChips(); refreshActive();
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
@@ -1105,7 +1160,7 @@ async function trackCell(lat, lon){
   // fallback: keep the coordinate-keyed station if no ZIP could be found
   const name = nearestCity(lat, lon) || `${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
   const key = "geo:" + lat.toFixed(3) + "," + lon.toFixed(3);
-  if (!stations.some(s => s.zip === key)) stations.push({ zip: key, name, lat, lon });
+  addStation({ zip: key, name, lat, lon });
   activeZip = key; save(); renderChips(); refreshActive();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -1123,18 +1178,38 @@ async function loadGrid(){
 let stations = [], activeZip = null, cache = {};
 function load(){
   try { stations = JSON.parse(localStorage.getItem("prism.stations") || "[]"); } catch { stations = []; }
+  if (stations.length > MAX_STATIONS) stations = stations.slice(-MAX_STATIONS);  // honor the cap for older saves
   activeZip = localStorage.getItem("prism.active");
 }
 function save(){
   localStorage.setItem("prism.stations", JSON.stringify(stations));
   if (activeZip) localStorage.setItem("prism.active", activeZip);
 }
+// Keep the watchlist to the 3 most recent ZIPs. Adding a 4th rolls off the oldest so tapping
+// map pins / adding ZIPs never piles up an unmanageable list. Returns the (possibly existing) station.
+const MAX_STATIONS = 3;
+function addStation(st){
+  const existing = stations.find(s => s.zip === st.zip);
+  if (existing) return existing;
+  stations.push(st);
+  while (stations.length > MAX_STATIONS){
+    const dropped = stations.shift();
+    delete cache[dropped.zip];
+    if (activeZip === dropped.zip) activeZip = null;
+    toast(`Watching your 3 most recent ZIPs — dropped ${dropped.name.split(",")[0]}.`);
+  }
+  return st;
+}
 function renderChips(){
   chipsEl.innerHTML = stations.map(s => {
     const d = cache[s.zip], v = d ? d.verdict : null;
     const lvl = v ? VCLASS[v.key] : "", glyph = v ? (v.key === "go" ? "GO" : v.tier === 2 ? "~" : "·") : "··";
-    return `<div class="chip ${s.zip === activeZip ? "active" : ""} ${lvl ? "lvl-"+lvl : ""}" data-zip="${s.zip}">
-      <span class="sq"></span><span class="cname">${s.name.split(",")[0]}</span><span class="cidx">${glyph}</span><span class="cx" data-del="${s.zip}">×</span></div>`;
+    const isActive = s.zip === activeZip;
+    // the selected chip spells out the state (City, ST); others stay compact (City only)
+    const parts = s.name.split(","), city = parts[0], st2 = (parts[1] || "").trim();
+    const label = isActive && st2 ? `${city}, ${st2}` : city;
+    return `<div class="chip ${isActive ? "active" : ""} ${lvl ? "lvl-"+lvl : ""}" data-zip="${s.zip}">
+      <span class="sq"></span><span class="cname">${label}</span><span class="cidx">${glyph}</span><span class="cx" data-del="${s.zip}">×</span></div>`;
   }).join("");
   $("#barhint").style.display = stations.length ? "none" : "";
 }
@@ -1189,7 +1264,7 @@ $("#addform").addEventListener("submit", async e => {
   const btn = $("#addbtn"); btn.disabled = true; btn.textContent = "…";
   try {
     const st = await geocodeZip(zip);
-    stations.push(st); activeZip = zip; save(); renderChips(); $("#zip").value = "";
+    addStation(st); activeZip = zip; save(); renderChips(); $("#zip").value = "";
     await refreshActive(); refreshAllChips();
   } catch { toast("ZIP not found. Check the code and try again."); }
   finally { btn.disabled = false; btn.textContent = "Watch it"; }
