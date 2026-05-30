@@ -276,6 +276,7 @@
   .empty .big { font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 26px; color: var(--muted-fg); margin-bottom: 10px; text-wrap: balance; }
   .empty div:last-child { font-weight: 500; }
   .loading { font-family: "Fredoka", sans-serif; color: var(--muted-fg); font-size: 16px; font-weight: 500; }
+  .stale-note { grid-column: 1 / -1; margin: 0 0 12px; padding: 10px 18px; border-radius: 999px; background: var(--secondary); color: var(--muted-fg); font-family: "Fredoka", sans-serif; font-weight: 500; font-size: 13px; text-align: center; }
 
   .toast { position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(20px);
     background: var(--foreground); color: var(--background); padding: 12px 20px; border-radius: 999px;
@@ -533,7 +534,23 @@ async function radarRainScore(lat, lon, antiBearing){
 }
 
 /* ---------- data ---------- */
+// Offline ZIP centroids (GeoNames, ~41k US ZIPs) — lazy-loaded once on first geocode, so
+// resolving a ZIP never depends on a live network call. Zippopotam stays as a fallback for
+// anything missing from the table.
+let _zipTable = null, _zipTableP = null;
+function loadZipTable(){
+  if (_zipTable) return Promise.resolve(_zipTable);
+  if (!_zipTableP) _zipTableP = fetch("zip-centroids.json")
+    .then(r => r.ok ? r.json() : {})
+    .then(t => (_zipTable = t))
+    .catch(() => (_zipTable = {}));
+  return _zipTableP;
+}
 async function geocodeZip(zip){
+  const table = await loadZipTable();
+  const hit = table[zip];
+  if (hit) return { zip, name: `${hit[0]}, ${hit[1]}`, lat: hit[2], lon: hit[3] };
+  // fallback: Zippopotam covers anything not in the offline table
   const r = await fetch(`https://api.zippopotam.us/us/${zip}`);
   if (!r.ok) throw new Error("ZIP not found");
   const j = await r.json();
@@ -558,12 +575,12 @@ async function fetchJSON(url, tries = 3){
   }
   throw new Error(lastStatus === 429 ? "weather service busy" : "weather unavailable");
 }
-async function fetchWeather(lat, lon, antiLat, antiLon){
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat},${antiLat}&longitude=${lon},${antiLon}`
+// single-point Open-Meteo — used only as a fallback when NWS has no coverage (e.g. outside CONUS)
+async function fetchWeatherOM(lat, lon){
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}`
     + `&current=precipitation,cloud_cover,direct_radiation`
     + `&hourly=precipitation,direct_radiation,cloud_cover&forecast_days=1&timezone=auto`;
-  const j = await fetchJSON(url);
-  return Array.isArray(j) ? j : [j];
+  return fetchJSON(url);
 }
 
 /* ---------- NWS (api.weather.gov): CORS-friendly, CONUS, no per-IP daily cap ----------
@@ -625,19 +642,19 @@ function nwsLoc(grid){
   const current = { cloud_cover: ccNow, direct_radiation: skyToRad(ccNow), precipitation: seriesAt(qpf, h0) || 0 };
   return { current, hourly: { time, direct_radiation, precipitation, cloud_cover } };
 }
-async function fetchWeatherNWS(lat, lon, antiLat, antiLon){
-  const [hereUrl, antiUrl] = await Promise.all([nwsGridUrl(lat, lon), nwsGridUrl(antiLat, antiLon)]);
-  const [hg, ag] = await Promise.all([
-    fetch(hereUrl).then(r => { if (!r.ok) throw new Error("nws grid " + r.status); return r.json(); }),
-    fetch(antiUrl).then(r => { if (!r.ok) throw new Error("nws grid " + r.status); return r.json(); }),
-  ]);
-  return [nwsLoc(hg), nwsLoc(ag)];
+// one point from NWS (CONUS sky cover + QPF), reshaped into the app's weather object
+async function fetchWeatherNWSPoint(lat, lon){
+  const url = await nwsGridUrl(lat, lon);
+  const g = await fetch(url).then(r => { if (!r.ok) throw new Error("nws grid " + r.status); return r.json(); });
+  return nwsLoc(g);
 }
-// live (non-sim) weather: prefer NWS (CONUS, no daily cap); fall back to Open-Meteo elsewhere.
-async function fetchWeatherLive(lat, lon, antiLat, antiLon){
-  try { return await fetchWeatherNWS(lat, lon, antiLat, antiLon); }
-  catch (e){ console.warn("NWS unavailable, falling back to Open-Meteo:", e.message);
-    return fetchWeather(lat, lon, antiLat, antiLon); }
+// live weather for ONE point: prefer NWS (CONUS, no daily cap, very reliable); fall back to
+// Open-Meteo only when NWS has no coverage. Fetching points independently means an ocean /
+// out-of-CONUS anti-solar point can never drag the main read onto the rate-limited fallback.
+async function weatherPoint(lat, lon){
+  try { return await fetchWeatherNWSPoint(lat, lon); }
+  catch (e){ console.warn("NWS point unavailable, Open-Meteo fallback:", e.message);
+    return await fetchWeatherOM(lat, lon); }
 }
 
 /* ---------- time machine: backtest a known instant ----------
@@ -680,30 +697,40 @@ async function computeStation(st){
   const sun = solarReadout(now, st.lat, st.lon);
   const antiBearing = (sun.bearing + 180) % 360;
   const anti = offset(st.lat, st.lon, ANTISOLAR_KM, antiBearing);
-  const [hereW, antiW] = await (SIM_INSTANT
-    ? fetchWeatherSim(st.lat, st.lon, anti.lat, anti.lon)
-    : fetchWeatherLive(st.lat, st.lon, anti.lat, anti.lon));
+
+  // Only the HERE point is needed up front (cloud + sun). Rain comes from radar, so we don't
+  // fetch anti-solar weather eagerly — it's just a fallback for the rare moment radar is down.
+  let hereW, antiWSim = null;
+  if (SIM_INSTANT){
+    [hereW, antiWSim] = await fetchWeatherSim(st.lat, st.lon, anti.lat, anti.lon);
+  } else {
+    hereW = await weatherPoint(st.lat, st.lon);
+  }
 
   const directRad = hereW.current.direct_radiation;
   const cloudCover = hereW.current.cloud_cover;
-  const antiPrecip = antiW.current.precipitation;
+  let antiPrecip = null;
 
-  // RAIN, right now: live radar in the anti-solar direction (Open-Meteo's forecast smooths out
-  // the small showers that make bows). In sim/backtest mode we replay the baked 6:30 PM radar
-  // for the confirmed ZIP; any other point falls back to that hour's forecast precip.
+  // RAIN, right now: live radar in the anti-solar direction (forecast precip smooths out the
+  // small showers that make bows). In sim/backtest mode we replay the baked 6:30 PM radar for
+  // the confirmed ZIP; otherwise that hour's forecast precip. Live: if radar is unavailable we
+  // fetch forecast precip at the anti-solar point as a last resort (never blocks the main read).
   let rainInt, radar = null, rainSource = "radar";
   if (SIM_INSTANT){
     const baked = (typeof SIM_RADAR !== "undefined") ? SIM_RADAR[st.zip] : undefined;
     if (baked != null){ rainInt = baked; }
-    else { rainInt = precipToInt(antiPrecip); rainSource = "forecast"; }
+    else { antiPrecip = antiWSim.current.precipitation; rainInt = precipToInt(antiPrecip); rainSource = "forecast"; }
   } else {
     try { radar = await radarRainScore(st.lat, st.lon, antiBearing); rainInt = radar.intensity; }
-    catch (e) { rainInt = precipToInt(antiPrecip); rainSource = "forecast"; }
+    catch (e) {
+      try { const aw = await weatherPoint(anti.lat, anti.lon); antiPrecip = aw.current.precipitation; rainInt = precipToInt(antiPrecip); rainSource = "forecast"; }
+      catch { rainInt = 0; rainSource = "none"; }
+    }
   }
 
   const verdict = verdictOf(sun.elev, directRad, rainInt);
 
-  return { st, sun, verdict,
+  return { st, sun, verdict, fetchedAt: Date.now(),
            factors: { directRad, cloudCover, antiPrecip, rainInt, radar, rainSource },
            antiBearing, anti, rainbowElev: Math.max(0, 42 - sun.elev) };
 }
@@ -794,7 +821,9 @@ function renderStation(data){
   const radTxt = factors.cloudCover != null ? Math.round(factors.cloudCover) + "% sky cover"
                : (factors.directRad != null ? Math.round(factors.directRad) + " W/m²" : "—");
   const rainTxt = factors.rainInt > 0 ? `${rainWord(factors.rainInt)}, ${dir}` : `none, ${dir}`;
-  const rainNote = factors.rainSource === "forecast" ? "from forecast precip" : "live radar 4–20 km out";
+  const rainNote = factors.rainSource === "none" ? "rain data unavailable"
+                 : factors.rainSource === "forecast" ? "from forecast precip"
+                 : "live radar 4–20 km out";
 
   consoleEl.innerHTML = `
     <section class="card reveal">
@@ -1140,7 +1169,18 @@ async function refreshActive(){
     updateMap(data);
     markUpdated();
   } catch (e) {
-    consoleEl.innerHTML = `<div class="empty"><div class="big">Couldn't reach the weather service</div><div>${e.message}. Try again in a moment.</div></div>`;
+    // a transient provider blip shouldn't wipe the card — fall back to the last good reading
+    const last = cache[st.zip];
+    if (last){
+      renderStation(last);
+      renderChips();
+      updateMap(last);
+      const t = last.fetchedAt ? new Date(last.fetchedAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : null;
+      consoleEl.insertAdjacentHTML("afterbegin",
+        `<div class="stale-note">Couldn't refresh just now — showing the last reading${t ? " from " + t : ""}.</div>`);
+    } else {
+      consoleEl.innerHTML = `<div class="empty"><div class="big">Couldn't reach the weather service</div><div>${e.message}. Try again in a moment.</div></div>`;
+    }
   }
 }
 async function refreshAllChips(){
