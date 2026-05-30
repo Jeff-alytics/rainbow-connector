@@ -135,6 +135,7 @@
   .dateline .lbl { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint-fg); font-weight: 700; }
   .dateline b { font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 15px; color: var(--foreground); display: block; }
   .dateline span { font-size: 12px; color: var(--muted-fg); }
+  .dateline .cadence { display: block; font-size: 10px; letter-spacing: .04em; color: var(--faint-fg); }
   .theme-toggle { width: 42px; height: 42px; border-radius: 999px; border: 1px solid var(--border-c); background: var(--card-bg);
     color: var(--foreground); cursor: pointer; display: grid; place-items: center; font-size: 18px; transition: transform .15s, background .2s; }
   .theme-toggle:hover { transform: translateY(-2px) rotate(-8deg); }
@@ -352,6 +353,7 @@
         <div class="lbl">Last Updated</div>
         <b id="clock-time">—</b>
         <span id="clock-date">—</span>
+        <span class="cadence" id="clock-cadence">Updates every 5 min</span>
       </div>
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">☾</button>
     </div>
@@ -1364,6 +1366,7 @@ function markUpdated(){
   $("#clock-time").textContent = n.toLocaleTimeString([], opts) + (SIM_INSTANT ? " CT" : "");
   const dopts = SIM_INSTANT ? { weekday:"long", month:"long", day:"numeric", timeZone:"America/Chicago" } : { weekday:"long", month:"long", day:"numeric" };
   $("#clock-date").textContent = n.toLocaleDateString([], dopts);
+  $("#clock-cadence").textContent = `Updates every ${REFRESH_MIN} min`;
 }
 
 /* backtest banner */
