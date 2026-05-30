@@ -1011,6 +1011,31 @@ function buildGridMesh(){
   }
   return pts;
 }
+
+/* ---- land mask: keep candidate pins on land, not out over the ocean -------------------
+   The CONUS bounding box covers a lot of water, so radar rain over the Gulf/Atlantic/Pacific
+   was spawning offshore pins. We reuse the bundled ZIP centroids (~41k populated US points) as
+   a cheap land test: bucket every ZIP into ~0.5° cells, then a mesh point is "on land" when its
+   own cell or an adjacent one holds a ZIP. That's generous enough to keep sparse rural land
+   while dropping anything well out to sea. The rain a pin is LOOKING at can still be offshore —
+   only the observer's spot has to be on land. Built once, lazily, from the same file geocoding uses. */
+const LANDCELL = 0.5;
+let _landMask = null;
+function cellIdx(lat, lon){ return [Math.round(lat / LANDCELL), Math.round(lon / LANDCELL)]; }
+async function ensureLandMask(){
+  if (_landMask) return _landMask;
+  const table = await loadZipTable();
+  const m = new Set();
+  for (const z in table){ const v = table[z]; const [iy, ix] = cellIdx(v[2], v[3]); m.add(iy + "," + ix); }
+  return (_landMask = m);
+}
+function onLand(lat, lon){
+  if (!_landMask) return true;                       // mask not ready yet → don't over-filter
+  const [iy, ix] = cellIdx(lat, lon);
+  for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++)
+    if (_landMask.has((iy + dy) + "," + (ix + dx))) return true;
+  return false;
+}
 // sync radar fan read (tiles must be prefetched into rv.tiles first)
 function gridRainSync(rv, lat, lon, antiBearing){
   const z = 6, bearings = [antiBearing-18, antiBearing, antiBearing+18], dists = [6, 12, 20];
@@ -1040,10 +1065,12 @@ async function computeAndPaintGrid(){
   let rv;
   try { rv = await ensureRadar(); await prefetchRadarTiles(rv); }
   catch { $("#grid-meta").textContent = "radar offline"; $("#usmap-loading").textContent = "Radar offline"; return; }
+  await ensureLandMask();                            // so offshore mesh points can be dropped
 
-  // Pass 1 — find every "ripe" spot: sun geometry good AND rain in the anti-solar sky.
+  // Pass 1 — find every "ripe" spot: on land AND sun geometry good AND rain in the anti-solar sky.
   const now = new Date(), cands = [];
   for (const [lat, lon] of buildGridMesh()){
+    if (!onLand(lat, lon)) continue;                 // observer must be on land, not out at sea
     const sun = solarReadout(now, lat, lon);
     if (!bowPossible(sun.elev)) continue;
     const antiBearing = (sun.bearing + 180) % 360;
