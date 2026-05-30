@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Rainbow Connector · Live Rainbow Forecast</title>
+<title>The Rainbow Connector · Rainbow Forecast</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -383,7 +383,7 @@
         <span class="tag">Look This Way</span>
         <span class="meta" id="map-meta">—</span>
       </div>
-      <div class="map-empty" id="map-empty">The map will point you toward the bow once a station is live.</div>
+      <div class="map-empty" id="map-empty">The map will point you toward the bow once you're tracking a spot.</div>
       <div id="map" class="hidden"></div>
       <div class="map-foot" id="map-foot">Add a ZIP or tap a glowing cell to begin your watch.</div>
     </section>
@@ -885,7 +885,7 @@ function renderStation(data){
   const rainTxt = factors.rainInt > 0 ? `${rainWord(factors.rainInt)}, ${dir}` : `none, ${dir}`;
   const rainNote = factors.rainSource === "none" ? "rain data unavailable"
                  : factors.rainSource === "forecast" ? "from forecast precip"
-                 : "live radar 4–20 km out";
+                 : "radar, 4–20 km out";
 
   consoleEl.innerHTML = `
     <section class="card reveal">
@@ -1087,7 +1087,7 @@ async function prefetchRadarTiles(rv){
 }
 async function computeAndPaintGrid(){
   if (!gridMapLoaded) return;
-  $("#grid-meta").textContent = "reading live radar…";
+  $("#grid-meta").textContent = "reading radar…";
   let rv;
   try { rv = await ensureRadar(); await prefetchRadarTiles(rv); }
   catch { $("#grid-meta").textContent = "radar offline"; $("#usmap-loading").textContent = "Radar offline"; return; }
@@ -1373,7 +1373,7 @@ function markUpdated(){
 if (SIM_INSTANT){
   const b = document.createElement("div");
   b.style.cssText = "background:#3a3326;color:#f3ede0;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;text-align:center;padding:7px 14px;position:sticky;top:0;z-index:50;";
-  b.innerHTML = "⏪ BACKTEST MODE — replaying 6:30 PM CT, May 29 (confirmed-rainbow time). Rain from Open-Meteo history, not live radar.";
+  b.innerHTML = "⏪ BACKTEST MODE — replaying 6:30 PM CT, May 29 (confirmed-rainbow time). Rain from Open-Meteo history, not current radar.";
   document.body.prepend(b);
 }
 
