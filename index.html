@@ -173,6 +173,12 @@
   .chip .cidx { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted-fg); font-weight: 500; }
   .chip .cx { color: var(--faint-fg); font-size: 18px; line-height: 1; padding: 0 6px; border-radius: 999px; }
   .chip .cx:hover { color: var(--rb-red); }
+  /* empty slot: portrays an open "of 3" spot the user can fill */
+  .chip.slot-empty { border-style: dashed; background: transparent; box-shadow: none; color: var(--faint-fg);
+    font: inherit; padding: 0 18px; gap: 7px; }
+  .chip.slot-empty:hover { border-color: var(--primary); color: var(--muted-fg); transform: translateY(-2px); box-shadow: none; }
+  .chip.slot-empty .slot-plus { font-family: "Fredoka", sans-serif; font-size: 19px; font-weight: 600; line-height: 1; }
+  .chip.slot-empty .cname { font-family: "Fredoka", sans-serif; font-weight: 500; font-size: 15px; }
   .hint { color: var(--faint-fg); font-size: 13px; align-self: center; font-weight: 500; }
 
   /* ---------- layout ---------- */
@@ -249,12 +255,13 @@
   .map-loading.gone { opacity: 0; pointer-events: none; }
   .map-loading .ml-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--primary); animation: twinkle 1.2s ease-in-out infinite; }
   .grid-foot, .map-foot { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-c); min-height: 16px; font-size: 11px; color: var(--faint-fg); }
-  .grid-foot { display: flex; flex-wrap: nowrap; align-items: center; gap: 14px; overflow: hidden; }
+  .grid-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
   .map-foot { font-family: "IBM Plex Mono", monospace; letter-spacing: .04em; color: var(--muted-fg); line-height: 16px; }
   .grid-foot .gl { display: inline-flex; align-items: center; gap: 6px; font-family: "Fredoka", sans-serif; font-weight: 500; color: var(--muted-fg); }
   .grid-foot .gdot { width: 11px; height: 11px; border-radius: 50%; box-shadow: 0 0 0 2px var(--card-bg); }
   .grid-foot .gdot.go { background: var(--good); }
   .grid-foot .gdot.watch { background: var(--mod); }
+  .grid-foot .gl-tip { font-family: "Fredoka", sans-serif; font-weight: 500; color: var(--faint-fg); }
   .grid-foot .gl-note { margin-left: auto; }
   /* verified candidate pins on the national map */
   .cand-pin { display: grid; place-items: center; border-radius: 50%; font: 700 11px/1 "Fredoka", sans-serif; color: #fff; border: 2px solid #fff; box-shadow: 0 2px 7px -1px rgb(var(--shadow) / .55); cursor: pointer; transition: transform .12s ease; }
@@ -358,7 +365,7 @@
       <button type="submit" id="addbtn">Watch it</button>
     </form>
     <div class="chips" id="chips"></div>
-    <span class="hint" id="barhint">Drop in a ZIP to begin your watch.</span>
+    <span class="hint" id="barhint">Track up to 3 spots — drop in a ZIP to begin.</span>
   </div>
 
   <div class="console" id="console">
@@ -390,6 +397,7 @@
       <div class="grid-foot" id="grid-foot">
         <span class="gl"><i class="gdot go"></i>Likely now</span>
         <span class="gl"><i class="gdot watch"></i>Rain + sun, but cloudy</span>
+        <span class="gl-tip">Tap a pin to track</span>
         <span class="gl-note" id="grid-stamp">Auto-updates every 5 min</span>
       </div>
     </section>
@@ -1019,21 +1027,37 @@ function buildGridMesh(){
    own cell or an adjacent one holds a ZIP. That's generous enough to keep sparse rural land
    while dropping anything well out to sea. The rain a pin is LOOKING at can still be offshore —
    only the observer's spot has to be on land. Built once, lazily, from the same file geocoding uses. */
-const LANDCELL = 0.5;
-let _landMask = null;
+// LAND_KM is the max distance a real-land mesh point sat from a populated ZIP in testing (rural
+// Nevada ~33km), so 35 keeps genuine inland land while dropping anything clearly at sea (the
+// nearest ZIP to mid-Gulf/open-ocean points is 50–360km). LANDCELL must stay >= LAND_KM in km even
+// at CONUS's top latitude (0.6° lon ≈ 43km at 49°N) so the ±1-cell neighbor scan can't miss a ZIP.
+const LANDCELL = 0.6;
+const LAND_KM = 35;
+let _landCells = null;          // Map "iy,ix" -> [[lat,lon],…] of ZIP centroids in that cell
 function cellIdx(lat, lon){ return [Math.round(lat / LANDCELL), Math.round(lon / LANDCELL)]; }
+function distKm(la1, lo1, la2, lo2){
+  const R = 6371, dLa = (la2 - la1) * RAD, dLo = (lo2 - lo1) * RAD;
+  const a = Math.sin(dLa/2)**2 + Math.cos(la1*RAD) * Math.cos(la2*RAD) * Math.sin(dLo/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
 async function ensureLandMask(){
-  if (_landMask) return _landMask;
+  if (_landCells) return _landCells;
   const table = await loadZipTable();
-  const m = new Set();
-  for (const z in table){ const v = table[z]; const [iy, ix] = cellIdx(v[2], v[3]); m.add(iy + "," + ix); }
-  return (_landMask = m);
+  const m = new Map();
+  for (const z in table){
+    const v = table[z], [iy, ix] = cellIdx(v[2], v[3]), k = iy + "," + ix;
+    let a = m.get(k); if (!a){ a = []; m.set(k, a); } a.push([v[2], v[3]]);
+  }
+  return (_landCells = m);
 }
 function onLand(lat, lon){
-  if (!_landMask) return true;                       // mask not ready yet → don't over-filter
+  if (!_landCells) return true;                      // mask not ready yet → don't over-filter
   const [iy, ix] = cellIdx(lat, lon);
-  for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++)
-    if (_landMask.has((iy + dy) + "," + (ix + dx))) return true;
+  for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
+    const a = _landCells.get((iy + dy) + "," + (ix + dx));
+    if (!a) continue;
+    for (const [la, lo] of a) if (distKm(lat, lon, la, lo) <= LAND_KM) return true;
+  }
   return false;
 }
 // sync radar fan read (tiles must be prefetched into rv.tiles first)
@@ -1242,16 +1266,26 @@ function addStation(st){
   return st;
 }
 function renderChips(){
-  chipsEl.innerHTML = stations.map(s => {
+  // Always render MAX_STATIONS slots so the 3-ZIP limit is visible: filled slots are the
+  // tracked stations; empty slots are dashed "Add a ZIP" affordances that focus the input.
+  let html = "";
+  for (let i = 0; i < MAX_STATIONS; i++){
+    const s = stations[i];
+    if (!s){
+      html += `<button type="button" class="chip slot-empty" data-addslot="1">
+        <span class="slot-plus">+</span><span class="cname">Add a ZIP</span></button>`;
+      continue;
+    }
     const d = cache[s.zip], v = d ? d.verdict : null;
     const lvl = v ? VCLASS[v.key] : "", glyph = v ? (v.key === "go" ? "GO" : v.tier === 2 ? "~" : "·") : "··";
     const isActive = s.zip === activeZip;
     // the selected chip spells out the state (City, ST); others stay compact (City only)
     const parts = s.name.split(","), city = parts[0], st2 = (parts[1] || "").trim();
     const label = isActive && st2 ? `${city}, ${st2}` : city;
-    return `<div class="chip ${isActive ? "active" : ""} ${lvl ? "lvl-"+lvl : ""}" data-zip="${s.zip}">
+    html += `<div class="chip ${isActive ? "active" : ""} ${lvl ? "lvl-"+lvl : ""}" data-zip="${s.zip}">
       <span class="sq"></span><span class="cname">${label}</span><span class="cidx">${glyph}</span><span class="cx" data-del="${s.zip}">×</span></div>`;
-  }).join("");
+  }
+  chipsEl.innerHTML = html;
   $("#barhint").style.display = stations.length ? "none" : "";
 }
 async function refreshActive(){
@@ -1311,12 +1345,14 @@ $("#addform").addEventListener("submit", async e => {
   finally { btn.disabled = false; btn.textContent = "Watch it"; }
 });
 chipsEl.addEventListener("click", e => {
+  const addslot = e.target.closest("[data-addslot]");
+  if (addslot){ const z = $("#zip"); z.focus(); z.scrollIntoView({ block: "nearest" }); return; }
   const del = e.target.closest("[data-del]");
   if (del){ e.stopPropagation(); const z = del.dataset.del;
     stations = stations.filter(s => s.zip !== z); delete cache[z];
     if (activeZip === z) activeZip = stations[0] ? stations[0].zip : null;
     save(); renderChips(); refreshActive(); return; }
-  const chip = e.target.closest(".chip");
+  const chip = e.target.closest(".chip[data-zip]");
   if (chip){ activeZip = chip.dataset.zip; save(); renderChips(); refreshActive(); }
 });
 
