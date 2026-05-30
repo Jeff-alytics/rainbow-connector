@@ -390,7 +390,7 @@
       <div class="grid-foot" id="grid-foot">
         <span class="gl"><i class="gdot go"></i>Likely now</span>
         <span class="gl"><i class="gdot watch"></i>Rain + sun, but cloudy</span>
-        <span class="gl-note">Tap a numbered pin to track</span>
+        <span class="gl-note" id="grid-stamp">Auto-updates every 5 min</span>
       </div>
     </section>
   </div>
@@ -977,7 +977,15 @@ function updateMap(data){
 let gridMap = null, gridMapLoaded = false;
 let candMarkers = [];              // HTML markers for the verified candidates
 const TOP_N = 20;                  // how many ripe spots get a live cloud check each pass
+const REFRESH_MIN = 5;             // both the card and the national map auto-refresh this often
 const CONUS = { latMin: 24.5, latMax: 49.4, lonMin: -124.8, lonMax: -66.9 };
+
+// portray the map's freshness + cadence in the footer note, e.g. "Auto-updates every 5 min · checked 2:14 PM"
+function stampGrid(){
+  const el = $("#grid-stamp"); if (!el) return;
+  const t = nowInstant().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  el.textContent = `Auto-updates every ${REFRESH_MIN} min · checked ${t}`;
+}
 const _zipCache = new Map();   // "lat,lon" -> ZIP string | null (looked up, none) — shared by hover + click
 
 // run async jobs with bounded concurrency (keeps the NWS cloud checks polite)
@@ -1050,7 +1058,7 @@ async function computeAndPaintGrid(){
   if (!cands.length){
     clearCandMarkers();
     $("#grid-meta").textContent = "no bows nationwide right now";
-    $("#usmap-loading").classList.add("gone"); markUpdated();
+    $("#usmap-loading").classList.add("gone"); markUpdated(); stampGrid();
     return;
   }
 
@@ -1104,7 +1112,7 @@ function finalizeCandidates(top){
     ? `${go} likely now · ${cloudy} rain+sun but cloudy`
     : cloudy ? `${cloudy} rain+sun spot${cloudy === 1 ? "" : "s"} — all cloudy`
              : "no bows nationwide right now";
-  markUpdated();
+  markUpdated(); stampGrid();
 }
 // nearest US city for a friendly station name when a cell is tapped
 function nearestCity(lat, lon){
@@ -1324,8 +1332,8 @@ function applyTheme(t){
 load(); renderChips(); refreshActive(); refreshAllChips();
 loadGrid();
 if (!SIM_INSTANT){
-  setInterval(refreshActive, 5 * 60 * 1000);
-  setInterval(loadGrid, 5 * 60 * 1000);
+  setInterval(refreshActive, REFRESH_MIN * 60 * 1000);
+  setInterval(loadGrid, REFRESH_MIN * 60 * 1000);
 }
 </script>
 </body>
