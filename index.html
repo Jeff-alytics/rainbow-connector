@@ -254,6 +254,11 @@
   .grid-foot .gdot.go { background: var(--good); }
   .grid-foot .gdot.watch { background: var(--mod); }
   .grid-foot .gl-note { margin-left: auto; }
+  /* verified candidate pins on the national map */
+  .cand-pin { display: grid; place-items: center; border-radius: 50%; font: 700 11px/1 "Fredoka", sans-serif; color: #fff; border: 2px solid #fff; box-shadow: 0 2px 7px -1px rgb(var(--shadow) / .55); cursor: pointer; transition: transform .12s ease; }
+  .cand-pin:hover { transform: scale(1.18); z-index: 5; }
+  .cand-pin.go { width: 23px; height: 23px; background: var(--good); }
+  .cand-pin.cloudy { width: 13px; height: 13px; background: var(--mod); opacity: .82; }
   .maplibregl-popup-content { background: var(--card-bg); border: 1px solid var(--border-c); border-radius: 14px; padding: 8px 12px; box-shadow: 0 8px 22px -10px rgb(var(--shadow) / .6); }
   .maplibregl-popup-tip { display: none; }
   .maplibregl-popup-anchor-top .maplibregl-popup-content, .maplibregl-popup-anchor-bottom .maplibregl-popup-content { margin-top: 0; }
@@ -381,9 +386,9 @@
         <div class="map-loading" id="usmap-loading"><span class="ml-dot"></span>Loading radar…</div>
       </div>
       <div class="grid-foot" id="grid-foot">
-        <span class="gl"><i class="gdot go"></i>Go look now</span>
-        <span class="gl"><i class="gdot watch"></i>Worth a glance</span>
-        <span class="gl-note">Tap a cell to track it</span>
+        <span class="gl"><i class="gdot go"></i>Likely now</span>
+        <span class="gl"><i class="gdot watch"></i>Rain + sun, but cloudy</span>
+        <span class="gl-note">Tap a pin or the map to track</span>
       </div>
     </section>
   </div>
@@ -912,35 +917,37 @@ function updateMap(data){
 }
 
 /* ============================================================
-   nationwide rainbow map — discrete colored cells from the
-   precomputed grid (rainbow-grid.json), RainViewer radar beneath.
+   nationwide rainbow map — fully-verified "candidate" model.
+   Every dot on this map has passed the SAME three-condition test as the
+   live card, so the map can never contradict a click. We compute sun
+   geometry + rain in the anti-solar sky live in the browser everywhere,
+   rank those "ripe" spots, then check the cloud cover of the most
+   promising ones with the card's own source (weatherPoint: NWS →
+   Open-Meteo). Confirmed-clear spots become bright numbered green pins
+   ("Likely now"); spots where rain + sun line up but it's cloudy show as
+   small muted amber dots. Nothing un-verified is ever drawn.
    ============================================================ */
 let gridMap = null, gridMapLoaded = false;
-let skyMap = null;                 // Map "lat,lon" -> cloud% (slow-changing, from JSON)
-const GRID_URL = "rainbow-grid.json";
+let candMarkers = [];              // HTML markers for the verified candidates
+const TOP_N = 20;                  // how many ripe spots get a live cloud check each pass
 const CONUS = { latMin: 24.5, latMax: 49.4, lonMin: -124.8, lonMax: -66.9 };
-// The map uses the SAME "sun is out" rule as the live card (cloud < CLOUD_CLEAR_MAX) so a
-// cell's GO/watch tier means the same thing in both places. Residual map↔card disagreements
-// come from snapshot staleness (mitigated by frequent regen) and the map's cloud provider
-// (MET Norway) differing from the card's (NWS) right at the threshold.
-const GRID_GO_CLEAR = CLOUD_CLEAR_MAX;
 const _zipCache = new Map();   // "lat,lon" -> ZIP string | null (looked up, none) — shared by hover + click
 
-function gridGeoJSON(points){
-  return { type:"FeatureCollection", features: points.map(([lat, lon, tier, rainInt]) => ({
-    type:"Feature", properties:{ tier, rainInt }, geometry:{ type:"Point", coordinates:[lon, lat] } })) };
+// run async jobs with bounded concurrency (keeps the NWS cloud checks polite)
+async function pool(items, limit, fn){
+  const out = new Array(items.length); let i = 0;
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (i < items.length){ const idx = i++; out[idx] = await fn(items[idx], idx); }
+  }));
+  return out;
 }
 
 /* ---- live in-browser grid compute -------------------------------------
-   The JSON ships only the slow-changing cloud term on a 1° mesh. Geometry
-   (sun) and rain (radar) are computed here against the SAME live RainViewer
-   frame drawn on the map, so every dot agrees with the radar underlay and
-   moves with it (cells appear AND clear as storms drift). ----------------*/
-function cloudAt(lat, lon){
-  if (!skyMap) return null;
-  return skyMap.get(Math.round(lat) + "," + Math.round(lon)) ?? null;
-}
-// ~25 km mesh across CONUS (denser than the 1° cloud grid so dots feel continuous)
+   Geometry (sun) and rain (radar) are computed against the SAME live
+   RainViewer frame drawn on the map, so the shade agrees with the radar
+   underlay and moves with it (areas appear AND clear as storms drift).
+   Clouds are verified per-candidate against the live card's source. ----*/
+// ~25 km mesh across CONUS so the ripe shade reads as continuous coverage
 function buildGridMesh(){
   const pts = [];
   for (let lat = CONUS.latMin; lat <= CONUS.latMax; lat += 25/111){
@@ -973,34 +980,66 @@ async function prefetchRadarTiles(rv){
   await Promise.all(jobs);
 }
 async function computeAndPaintGrid(){
-  if (!gridMapLoaded || !skyMap) return;
+  if (!gridMapLoaded) return;
   $("#grid-meta").textContent = "reading live radar…";
   let rv;
   try { rv = await ensureRadar(); await prefetchRadarTiles(rv); }
   catch { $("#grid-meta").textContent = "radar offline"; $("#usmap-loading").textContent = "Radar offline"; return; }
-  const now = new Date(), pts = [];
+
+  // Pass 1 — find every "ripe" spot: sun geometry good AND rain in the anti-solar sky.
+  const now = new Date(), cands = [];
   for (const [lat, lon] of buildGridMesh()){
     const sun = solarReadout(now, lat, lon);
     if (!bowPossible(sun.elev)) continue;
     const antiBearing = (sun.bearing + 180) % 360;
     const rain = gridRainSync(rv, lat, lon, antiBearing);
-    if (rain <= 0) continue;                         // no rain in the bow direction → no dot
-    const cc = cloudAt(lat, lon);
-    // The map's "sun is out" term comes from a periodic cloud snapshot (MET Norway) — a
-    // different provider and timestamp than the live per-location card (NWS). Near the 55%
-    // threshold the two can disagree, so the map only promises GO when skies are CONFIDENTLY
-    // clear (< GRID_GO_CLEAR). Borderline cloud stays "worth a glance"; the live card decides.
-    const sunOK = cc != null && cc < GRID_GO_CLEAR ? 999 : 0;
-    const v = verdictOf(sun.elev, sunOK, rain);
-    if (v.tier >= 2) pts.push([lat, lon, v.tier, Math.round(rain*100)/100]);
+    if (rain <= 0) continue;                         // no rain opposite the sun → not ripe
+    // rank: heavier rain wins; a lower sun (bigger, higher arc) breaks ties
+    const score = rain + (42 - sun.elev) / 100;
+    cands.push({ lat, lon, rain, elev: sun.elev, score });
   }
-  paintGridPoints(pts);
+  cands.sort((a, b) => b.score - a.score);
+
+  if (!cands.length){
+    clearCandMarkers();
+    $("#grid-meta").textContent = "no bows nationwide right now";
+    $("#usmap-loading").classList.add("gone"); markUpdated();
+    return;
+  }
+
+  // Pass 2 — verify clouds on the most promising spots, using the SAME source as the live
+  // card (NWS → Open-Meteo). Green here therefore agrees with what a click would show.
+  $("#grid-meta").textContent = `checking ${Math.min(TOP_N, cands.length)} likely spots…`;
+  const top = cands.slice(0, TOP_N);
+  await pool(top, 4, async c => {
+    try { c.cloud = (await weatherPoint(c.lat, c.lon)).current.cloud_cover; }
+    catch { c.cloud = null; }                        // unknown → not promoted to green
+    c.go = c.cloud != null && c.cloud < CLOUD_CLEAR_MAX;
+  });
+  paintCandidates(top, cands.length);
 }
-function paintGridPoints(pts){
-  gridMap.getSource("grid").setData(gridGeoJSON(pts));
-  const go = pts.filter(p => p[2] === 3).length, watch = pts.length - go;
-  const meta = $("#grid-meta");
-  meta.textContent = pts.length ? `${go} go · ${watch} worth a glance` : "no bows nationwide right now";
+function clearCandMarkers(){ candMarkers.forEach(m => m.remove()); candMarkers = []; }
+function paintCandidates(top, ripeCount){
+  clearCandMarkers();
+  // draw cloudy dots first so the bright green "go" pins sit on top
+  const ordered = [...top].sort((a, b) => (a.go === b.go) ? 0 : a.go ? 1 : -1);
+  let rank = 0;
+  ordered.forEach(c => {
+    const el = document.createElement("div");
+    el.className = "cand-pin " + (c.go ? "go" : "cloudy");
+    if (c.go){ el.textContent = String(++rank); }   // only confirmed-clear spots get a number
+    const cloudTxt = c.cloud == null ? "cloud cover unknown" : `${Math.round(c.cloud)}% cloud`;
+    el.title = c.go ? `#${rank} likely now · skies clear (${cloudTxt})`
+                    : `Rain + sun aligned, but cloudy · ${cloudTxt}`;
+    el.addEventListener("click", ev => { ev.stopPropagation(); trackCell(c.lat, c.lon); });
+    candMarkers.push(new maplibregl.Marker({ element: el, anchor: "center" })
+      .setLngLat([c.lon, c.lat]).addTo(gridMap));
+  });
+  const go = top.filter(c => c.go).length, cloudy = top.length - go;
+  $("#grid-meta").textContent = go
+    ? `${go} likely now · ${cloudy} rain+sun but cloudy`
+    : cloudy ? `${cloudy} rain+sun spot${cloudy === 1 ? "" : "s"} — all cloudy`
+             : "no bows nationwide right now";
   $("#usmap-loading").classList.add("gone");
   markUpdated();
 }
@@ -1030,54 +1069,11 @@ async function ensureGridMap(){
       gridMap.addLayer({ id:"rv-layer", type:"raster", source:"rv", paint:{ "raster-opacity":0.4 } });
     } catch {}
 
-    gridMap.addSource("grid", { type:"geojson", data: EMPTY });
-    gridMap.addLayer({ id:"grid-cells", type:"circle", source:"grid",
-      layout:{ "circle-sort-key": ["get","tier"] },   // draw GO on top of "worth a glance"
-      paint:{
-        // GO cells are rare, so make them POP — big, bright, and ringed with a glowing halo.
-        // "worth a glance" recedes far behind them: small + faded.
-        "circle-radius": ["interpolate", ["linear"], ["zoom"],
-          3, ["match", ["get","tier"], 3, 7, 2.5],
-          6, ["match", ["get","tier"], 3, 11, 4],
-          9, ["match", ["get","tier"], 3, 16, 6]],
-        "circle-color": ["match", ["get","tier"], 3, "#22c55e", "#b9772a"],
-        "circle-opacity": ["match", ["get","tier"], 3, 1, 0.35],
-        "circle-stroke-width": ["match", ["get","tier"], 3, 3, 0],
-        "circle-stroke-color": "#ffffff",
-        "circle-stroke-opacity": ["match", ["get","tier"], 3, 1, 0]
-      } });
-    gridMap.on("click", "grid-cells", e => {
-      const f = e.features && e.features[0];
-      const c = f ? f.geometry.coordinates : [e.lngLat.lng, e.lngLat.lat];
-      trackCell(c[1], c[0]);
-    });
-    const gpop = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 9 });
-    const popHTML = (name, zip, go) =>
-      `<div class="hex-pop"><b>${name}${zip ? " · " + zip : ""}</b><span class="lvl-${go ? "go" : "watch"}">${go ? "Go look now" : "Worth a glance"}</span></div>`;
-    let hoverKey = null, hoverTimer = null;
-    gridMap.on("mousemove", "grid-cells", e => {
-      gridMap.getCanvas().style.cursor = "pointer";
-      const f = e.features[0], c = f.geometry.coordinates, lat = c[1], lon = c[0];
-      const key = lat.toFixed(3) + "," + lon.toFixed(3);
-      const name = nearestCity(lat, lon) || `${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
-      const go = f.properties.tier === 3;
-      const zip = _zipCache.get(key);   // string=known · null=no zip · undefined=not looked up
-      gpop.setLngLat(c).setHTML(popHTML(name, zip || null, go)).addTo(gridMap);
-      if (key !== hoverKey){
-        hoverKey = key;
-        clearTimeout(hoverTimer);
-        if (zip === undefined){
-          // look the ZIP up only once the cursor settles on a cell (Nominatim is rate-limited)
-          hoverTimer = setTimeout(async () => {
-            const z = await reverseZip(lat, lon);
-            _zipCache.set(key, z || null);
-            if (hoverKey === key && gpop.isOpen()) gpop.setHTML(popHTML(name, z || null, go));
-          }, 350);
-        }
-      }
-    });
-    gridMap.on("mouseleave", "grid-cells", () => { gridMap.getCanvas().style.cursor = ""; gpop.remove(); hoverKey = null; clearTimeout(hoverTimer); });
-    if (skyMap) computeAndPaintGrid();
+    // Click anywhere on the map to track that spot (the "click a ZIP you're interested in"
+    // path). The verified candidate pins have their own click handlers on top of this.
+    gridMap.on("click", e => trackCell(e.lngLat.lat, e.lngLat.lng));
+    gridMap.on("mousemove", () => { gridMap.getCanvas().style.cursor = "crosshair"; });
+    computeAndPaintGrid();
   });
 }
 
@@ -1116,17 +1112,9 @@ async function trackCell(lat, lon){
 
 async function loadGrid(){
   await ensureGridMap();
-  if (!skyMap){
-    try {
-      const grid = await (await fetch(GRID_URL + "?t=" + Date.now())).json();
-      skyMap = new Map((grid.sky || []).map(([lat, lon, cc]) => [lat + "," + lon, cc]));
-    } catch (e) {
-      $("#grid-meta").textContent = "cloud grid offline";
-      $("#usmap-loading").textContent = "Sky data offline";
-      return;
-    }
-  }
-  computeAndPaintGrid();
+  // clouds are now checked live per-candidate (no precomputed snapshot to fetch).
+  // ensureGridMap kicks off the first compute on map load; this covers later refreshes.
+  if (gridMapLoaded) computeAndPaintGrid();
 }
 
 /* ============================================================
