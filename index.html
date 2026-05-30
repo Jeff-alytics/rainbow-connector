@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Rainbow Connector · Live Rainbow Forecast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="cities.js"></script>
+<script src="sim_radar.js"></script>
+<style>
+  :root {
+    --paper:   #f3ede0;
+    --paper-2: #ece4d2;
+    --card:    #faf6ec;
+    --ink:     #26221b;
+    --ink-dim: #6f6657;
+    --ink-faint:#a89e88;
+    --rule:    #ddd3bf;
+    --rule-2:  #c8bca1;
+    --accent:  #2b6a86;   /* denim ink */
+    --hot:     #d0492f;   /* vermilion */
+    /* risograph spectrum — muted, printed, not neon */
+    --sp1: #d6492f;
+    --sp2: #e08a2e;
+    --sp3: #d9b13e;
+    --sp4: #5a9e63;
+    --sp5: #3f86a8;
+    --sp6: #3f5aa0;
+    --sp7: #7e5198;
+    --good: #2f8f5a;
+    --mod:  #b9772a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(1200px 700px at 90% -10%, rgba(214,73,47,.05), transparent 60%),
+      radial-gradient(900px 600px at -5% 110%, rgba(43,106,134,.06), transparent 60%);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+  }
+  /* faint paper grain */
+  body::after {
+    content:""; position: fixed; inset: 0; pointer-events: none; z-index: 999;
+    opacity: .035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 40px 30px 90px; position: relative; z-index: 1; }
+
+  /* ---------- masthead ---------- */
+  header.masthead { border-bottom: 3px double var(--rule-2); padding-bottom: 18px; }
+  .top-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .brand h1 {
+    font-family: "Fraunces", serif; font-weight: 500; font-size: clamp(26px, 4.6vw, 54px);
+    line-height: .9; letter-spacing: -.02em; margin: 0; font-optical-sizing: auto; white-space: nowrap;
+  }
+  .brand h1 .amp {
+    background: linear-gradient(95deg, #e8402f 0%, #ef7d27 18%, #f2c12e 36%, #4fae4a 56%, #2f8fd0 76%, #6f4bc6 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .brand .kicker {
+    font-family: "Fraunces", serif; font-style: italic; font-weight: 400;
+    font-size: clamp(14px, 1.7vw, 19px); color: var(--ink-dim); margin-top: 8px;
+  }
+  .dateline { text-align: right; font-size: 11px; color: var(--ink-dim); line-height: 1.7; }
+  .dateline .lbl { font-size: 9.5px; letter-spacing: .26em; text-transform: uppercase; color: var(--ink-faint); }
+  .dateline b { font-weight: 500; color: var(--ink); }
+  .spectrum-bar {
+    height: 7px; width: 100%; margin-top: 16px;
+    background: linear-gradient(90deg,
+      var(--sp1) 0 14.28%, var(--sp2) 0 28.56%, var(--sp3) 0 42.84%,
+      var(--sp4) 0 57.12%, var(--sp5) 0 71.4%, var(--sp6) 0 85.68%, var(--sp7) 0 100%);
+    border: 1px solid rgba(38,34,27,.18);
+  }
+
+  /* ---------- station bar ---------- */
+  .stationbar { margin-top: 24px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .addbox { display: flex; align-items: stretch; border: 1.5px solid var(--ink); background: var(--card); height: 44px; }
+  .addbox label {
+    font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-dim);
+    display: flex; align-items: center; padding: 0 13px; border-right: 1px solid var(--rule-2); white-space: nowrap;
+  }
+  .addbox input {
+    border: 0; outline: none; background: transparent; font-family: inherit; font-size: 15px;
+    color: var(--ink); padding: 0 12px; width: 120px; letter-spacing: .12em;
+  }
+  .addbox input::placeholder { color: var(--ink-faint); }
+  .addbox button {
+    border: 0; background: var(--ink); color: var(--paper); font-family: inherit; cursor: pointer;
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase; padding: 0 18px; font-weight: 500;
+  }
+  .addbox button:hover { background: var(--accent); }
+  .addbox button:disabled { opacity: .45; cursor: default; }
+
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 9px; cursor: pointer;
+    border: 1px solid var(--rule-2); background: var(--card); padding: 8px 10px 8px 11px; height: 44px;
+    transition: border-color .15s, background .15s, transform .12s;
+  }
+  .chip:hover { transform: translateY(-1px); border-color: var(--ink-faint); }
+  .chip.active { border-color: var(--ink); background: var(--paper-2); }
+  .chip .sq { width: 9px; height: 9px; background: var(--ink-faint); }
+  .chip.lvl-high .sq { background: var(--good); }
+  .chip.lvl-mod .sq  { background: var(--mod); }
+  .chip .cname { font-size: 13px; }
+  .chip .cidx { font-size: 12px; color: var(--ink-dim); font-weight: 500; }
+  .chip .cx { color: var(--ink-faint); font-size: 16px; line-height: 1; padding: 0 1px 3px; }
+  .chip .cx:hover { color: var(--hot); }
+  .hint { color: var(--ink-faint); font-size: 12px; align-self: center; }
+
+  /* ---------- layout ---------- */
+  .console { margin-top: 28px; display: grid; grid-template-columns: 1.02fr .98fr; gap: 20px; }
+  @media (max-width: 860px){ .console { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--card); border: 1px solid var(--rule-2); border-radius: 7px;
+    padding: 22px 24px 24px; position: relative; overflow: hidden;
+    box-shadow: 0 14px 30px -22px rgba(60,45,20,.5);
+  }
+  .card::before {
+    content:""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg,
+      var(--sp1) 0 14.28%, var(--sp2) 0 28.56%, var(--sp3) 0 42.84%,
+      var(--sp4) 0 57.12%, var(--sp5) 0 71.4%, var(--sp6) 0 85.68%, var(--sp7) 0 100%);
+    opacity: .9;
+  }
+  .card-head { display: flex; align-items: center; justify-content: space-between; margin: 6px 0 18px; }
+  .card-head .tag {
+    font-size: 10.5px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-dim);
+    display: flex; align-items: center; gap: 9px; font-weight: 500;
+  }
+  .card-head .tag::before { content:""; width: 7px; height: 7px; background: var(--hot); }
+  .card-head .meta { font-size: 11px; color: var(--ink-faint); }
+
+  /* alert card */
+  .alert-body { display: grid; grid-template-columns: 196px 1fr; gap: 26px; align-items: center; }
+  @media (max-width: 520px){ .alert-body { grid-template-columns: 1fr; gap: 20px; } }
+
+  /* verdict emblem */
+  .emblem {
+    position: relative; width: 196px; min-height: 168px; margin: 0 auto; padding: 22px 14px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    border: 1.5px solid var(--rule); border-radius: 3px; background: var(--paper-2);
+  }
+  .emblem.lvl-high { border-color: var(--good); box-shadow: 0 0 0 4px color-mix(in srgb, var(--good) 12%, transparent); }
+  .emblem.lvl-mod  { border-color: var(--mod); }
+  .emblem-arc { height: 48px; display: flex; align-items: flex-end; }
+  .emblem-label { font-family: "Fraunces", serif; font-weight: 500; font-size: 27px; line-height: 1.05; letter-spacing: -.01em; margin-top: 6px; }
+  .emblem-sub { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 9px; }
+
+  /* condition checklist */
+  .checklist { display: flex; flex-direction: column; gap: 13px; }
+  .check { display: grid; grid-template-columns: 26px 1fr; gap: 11px; align-items: start; }
+  .check .cmark {
+    width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; line-height: 1;
+  }
+  .check.yes .cmark { background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); }
+  .check.no .cmark  { background: var(--paper-2); color: var(--ink-faint); border: 1px solid var(--rule); }
+  .check .cbody { display: flex; flex-direction: column; }
+  .check .cname { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+  .check.no .cname { color: var(--ink-dim); font-weight: 500; }
+  .check .cval { font-size: 12px; font-family: "IBM Plex Mono", monospace; color: var(--ink-dim); margin-top: 1px; }
+  .check .cnote { font-size: 10.5px; color: var(--ink-faint); margin-top: 2px; }
+
+  .verdict {
+    margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--rule-2);
+    font-family: "Fraunces", serif; font-size: 15px; line-height: 1.5; color: var(--ink-dim);
+  }
+
+  /* drawn rainbow */
+  .bow { width: 100%; height: 86px; display: block; margin: -4px 0 6px; }
+  .bow path { fill: none; stroke-width: 6; stroke-linecap: round; }
+  .bow.draw path { animation: drawbow 1.3s cubic-bezier(.22,1,.36,1) forwards; }
+  @keyframes drawbow { to { stroke-dashoffset: 0; } }
+  .bow-cap { text-align: center; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+
+  /* where-to-look */
+  .compass-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: center; }
+  @media (max-width: 520px){ .compass-wrap { grid-template-columns: 1fr; } }
+  .compass { position: relative; width: 220px; height: 220px; margin: 0 auto; }
+  .compass svg { width: 100%; height: 100%; }
+  .compass .center-el { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
+  .compass .bearing-num { font-family: "Fraunces", serif; font-size: 28px; line-height: 1; }
+  .compass .bearing-card { font-size: 12px; letter-spacing: .18em; color: var(--hot); margin-top: 3px; font-weight: 600; }
+  .look-info { display: flex; flex-direction: column; gap: 14px; }
+  .info-block .il { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px; }
+  .info-block .iv { font-size: 18px; font-family: "Fraunces", serif; font-weight: 500; }
+  .info-block .iv small { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--ink-dim); font-weight: 400; }
+  .window-strip .wl { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
+  .hours { display: flex; gap: 4px; align-items: flex-end; }
+  .hours .h { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .hours .h .hdot { width: 13px; height: 13px; border-radius: 50%; background: var(--rule-2); }
+  .hours .h .hdot.lvl-high { background: var(--good); }
+  .hours .h .hdot.lvl-mod  { background: var(--mod); }
+  .hours .h .ht { font-size: 8.5px; color: var(--ink-faint); }
+  .hours .h.peak .hdot { box-shadow: 0 0 0 3px color-mix(in srgb, var(--good) 22%, transparent); }
+  .hours .h.peak .ht { color: var(--good); font-weight: 600; }
+
+  /* lower row: map + nationwide grid */
+  .lower { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  @media (max-width: 860px){ .lower { grid-template-columns: 1fr; } }
+  .map-card { margin: 0; }
+  #map { height: 380px; width: 100%; border: 1px solid var(--rule-2); background: var(--paper-2); }
+
+  /* nationwide grid map */
+  .board-card { margin: 0; }
+  #usmap { height: 380px; width: 100%; border: 1px solid var(--rule-2); background: var(--paper-2); }
+  .grid-foot, .map-foot { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--rule-2); min-height: 16px; font-size: 10px; letter-spacing: .04em; color: var(--ink-faint); }
+  .grid-foot { display: flex; flex-wrap: nowrap; align-items: center; gap: 14px; overflow: hidden; }
+  .map-foot { font-family: "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-dim); line-height: 16px; }
+  .grid-foot .gl { display: inline-flex; align-items: center; gap: 6px; font-family: "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-dim); }
+  .grid-foot .gdot { width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 0 2px var(--card); }
+  .grid-foot .gdot.go { background: var(--good); }
+  .grid-foot .gdot.watch { background: var(--mod); }
+  .grid-foot .gl-note { margin-left: auto; }
+  .maplibregl-popup-content { background: var(--card); border: 1px solid var(--ink); border-radius: 0; padding: 6px 10px; box-shadow: 0 2px 9px rgba(0,0,0,.14); }
+  .maplibregl-popup-tip { display: none; }
+  .maplibregl-popup-anchor-top .maplibregl-popup-content, .maplibregl-popup-anchor-bottom .maplibregl-popup-content { margin-top: 0; }
+  .hex-pop b { display: block; font-family: "Fraunces", serif; font-size: 13px; color: var(--ink); line-height: 1.2; }
+  .hex-pop span { font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+  .hex-pop span.lvl-go { color: var(--good); }
+  .hex-pop span.lvl-watch { color: var(--mod); }
+  #map.hidden { display: none; }
+  .map-empty { height: 380px; display: flex; align-items: center; justify-content: center; color: var(--ink-faint); font-size: 12px; letter-spacing: .04em; border: 1px dashed var(--rule-2); }
+  .maplibregl-marker .look-pin, .rain-pin, .me-pin {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    padding: 4px 7px; border: 1px solid var(--ink); white-space: nowrap; font-weight: 500;
+  }
+  .look-pin { background: var(--card); color: var(--hot); }
+  .rain-pin { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+  .me-pin { background: #d0492f; color: var(--paper); border-color: #d0492f; }
+
+  .muted-card { opacity: .58; }
+  .empty { grid-column: 1 / -1; text-align: center; padding: 64px 20px; border: 1px dashed var(--rule-2); border-radius: 7px; color: var(--ink-faint); background: var(--card); }
+  .empty .big { font-family: "Fraunces", serif; font-size: 24px; color: var(--ink-dim); margin-bottom: 8px; }
+  .empty .big::after { content:""; }
+  .loading { color: var(--ink-dim); font-size: 12px; letter-spacing: .1em; }
+
+  .toast { position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ink); color: var(--paper); padding: 11px 18px; border-radius: 4px; font-size: 13px; opacity: 0; transition: all .3s; z-index: 1000; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--rule); text-align: center; color: var(--ink-faint); font-size: 11px; }
+  footer a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid var(--rule-2); }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { animation: rise .5s cubic-bezier(.22,1,.36,1) both; }
+  .reveal.d2 { animation-delay: .08s; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="top-row">
+      <div class="brand">
+        <h1>The Rainbow Connector<span class="amp">.</span></h1>
+        <div class="kicker">Live radar &amp; sun geometry — know when to look up.</div>
+      </div>
+      <div class="dateline">
+        <div class="lbl">Last Updated</div>
+        <b id="clock-time">—</b><br/>
+        <span id="clock-date">—</span>
+      </div>
+    </div>
+    <div class="spectrum-bar"></div>
+  </header>
+
+  <div class="stationbar">
+    <form class="addbox" id="addform" autocomplete="off">
+      <label for="zip">Track ZIP</label>
+      <input id="zip" name="zip" inputmode="numeric" maxlength="5" placeholder="e.g. 97005" />
+      <button type="submit" id="addbtn">Add</button>
+    </form>
+    <div class="chips" id="chips"></div>
+    <span class="hint" id="barhint">Note down a ZIP to begin your watch.</span>
+  </div>
+
+  <div class="console" id="console">
+    <div class="empty">
+      <div class="big">Nothing on the horizon — yet</div>
+      <div>Enter a US ZIP code above and we'll start reading the sky for you.</div>
+    </div>
+  </div>
+
+  <div class="lower" id="lower">
+    <section class="card map-card" id="mappanel">
+      <div class="card-head">
+        <span class="tag">Look This Way</span>
+        <span class="meta" id="map-meta">—</span>
+      </div>
+      <div class="map-empty" id="map-empty">The map will point you toward the bow once a station is live.</div>
+      <div id="map" class="hidden"></div>
+      <div class="map-foot" id="map-foot">Add a ZIP or tap a glowing cell to begin your watch.</div>
+    </section>
+    <section class="card board-card" id="boardpanel">
+      <div class="card-head">
+        <span class="tag">Rainbow Map</span>
+        <span class="meta" id="grid-meta">scanning…</span>
+      </div>
+      <div id="usmap"></div>
+      <div class="grid-foot" id="grid-foot">
+        <span class="gl"><i class="gdot go"></i>Go look now</span>
+        <span class="gl"><i class="gdot watch"></i>Worth a glance</span>
+        <span class="gl-note">Tap a cell to track it</span>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    Sun geometry computed locally · sky via <a href="https://www.weather.gov" target="_blank" rel="noopener">NWS</a> &amp; <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> · radar <a href="https://www.rainviewer.com" target="_blank" rel="noopener">RainViewer</a> ·
+    ZIP via <a href="https://zippopotam.us" target="_blank" rel="noopener">Zippopotam.us</a> ·
+    basemap <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   Sun position (inlined from SunCalc, MIT — Vladimir Agafonkin)
+   azimuth measured from SOUTH, clockwise toward west (radians)
+   ============================================================ */
+const RAD = Math.PI / 180;
+const DAY_MS = 86400000, J1970 = 2440588, J2000 = 2451545;
+const OBLIQ = RAD * 23.4397;
+const toJulian = d => d.valueOf() / DAY_MS - 0.5 + J1970;
+const toDays   = d => toJulian(d) - J2000;
+const rightAsc = (l, b) => Math.atan2(Math.sin(l) * Math.cos(OBLIQ) - Math.tan(b) * Math.sin(OBLIQ), Math.cos(l));
+const decl     = (l, b) => Math.asin(Math.sin(b) * Math.cos(OBLIQ) + Math.cos(b) * Math.sin(OBLIQ) * Math.sin(l));
+const azC      = (H, phi, dec) => Math.atan2(Math.sin(H), Math.cos(H) * Math.sin(phi) - Math.tan(dec) * Math.cos(phi));
+const altC     = (H, phi, dec) => Math.asin(Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.cos(H));
+const sidereal = (d, lw) => RAD * (280.16 + 360.9856235 * d) - lw;
+const solarAnom= d => RAD * (357.5291 + 0.98560028 * d);
+function eclLon(M){
+  const C = RAD * (1.9148 * Math.sin(M) + 0.02 * Math.sin(2*M) + 0.0003 * Math.sin(3*M));
+  return M + C + RAD * 102.9372 + Math.PI;
+}
+function sunPosition(date, lat, lng){
+  const lw = RAD * -lng, phi = RAD * lat, d = toDays(date);
+  const M = solarAnom(d), L = eclLon(M);
+  const dec = decl(L, 0), ra = rightAsc(L, 0);
+  const H = sidereal(d, lw) - ra;
+  return { azimuth: azC(H, phi, dec), altitude: altC(H, phi, dec) };
+}
+function solarReadout(date, lat, lng){
+  const p = sunPosition(date, lat, lng);
+  const elev = p.altitude / RAD;
+  let bearing = (p.azimuth / RAD + 180) % 360;
+  if (bearing < 0) bearing += 360;
+  return { elev, bearing };
+}
+
+/* ---------- geometry helpers ---------- */
+const COMPASS16 = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+const compassLabel = deg => COMPASS16[Math.round(((deg % 360) / 22.5)) % 16];
+function offset(lat, lon, km, bearingDeg){
+  const b = bearingDeg * RAD;
+  const dLat = (km / 111) * Math.cos(b);
+  const dLon = (km / (111 * Math.cos(lat * RAD))) * Math.sin(b);
+  return { lat: lat + dLat, lon: lon + dLon };
+}
+const ANTISOLAR_KM = 10;
+
+/* ---------- the model: three conditions, not a score ----------
+   A rainbow needs three things to be TRUE, not a magic number:
+     1. the sun is low enough (0–42° elevation) for the bow to clear the horizon,
+     2. the sun is actually out (direct beam reaching the ground), and
+     3. there's rain in the anti-solar direction (where the bow would hang).
+   When all three hold, it's a GO. Missing one drops it to a watch; missing the
+   geometry means a bow is physically impossible right now. */
+const LIGHT_MIN = 120;                          // W/m² — sun meaningfully reaching the ground
+const CLOUD_CLEAR_MAX = 55;                     // sky cover % below which direct beam is likely present
+const bowPossible = e => e > 0.5 && e < 42;
+const precipToInt = p => (p == null || p <= 0) ? 0 : Math.min(1, 0.5 + p / 2);  // forecast mm → 0..1 stand-in
+
+function verdictOf(elev, directRad, rainInt){
+  const geo  = bowPossible(elev);
+  const sun  = (directRad ?? 0) >= LIGHT_MIN;
+  const rain = (rainInt ?? 0) > 0;
+  let key, tier, label;
+  // rain in the anti-solar sky is the non-negotiable ingredient — no droplets, no bow, ever.
+  if (!geo){ key = "none"; tier = 0; label = (elev == null || elev <= 0.5) ? "Sun's down" : "Sun's too high"; }
+  else if (!rain){ key = "low"; tier = 1; label = "No rain out there"; }
+  else if (sun){ key = "go"; tier = 3; label = "Go look now"; }
+  else { key = "watch"; tier = 2; label = "Worth a glance"; }
+  return { geo, sun, rain, key, tier, label, elev, directRad, rainInt };
+}
+const VCOLOR = { go: "var(--good)", watch: "var(--mod)", low: "var(--ink-faint)", none: "var(--ink-faint)" };
+const VCLASS = { go: "high", watch: "mod", low: "low", none: "low" };  // reuse chip level styles
+
+/* ---------- live radar (RainViewer) — the rain term for "right now" ---------- */
+let _radar = null;
+async function ensureRadar(){
+  if (_radar && Date.now() - _radar.fetched < 5*60000) return _radar;
+  const j = await (await fetch("https://api.rainviewer.com/public/weather-maps.json")).json();
+  const past = j.radar && j.radar.past;
+  if (!past || !past.length) throw new Error("no radar");
+  const frame = past[past.length - 1];
+  _radar = { host: j.host, path: frame.path, time: frame.time, fetched: Date.now(), tiles: new Map() };
+  return _radar;
+}
+function lonLatToPixel(lat, lon, z){
+  const n = 2 ** z, xf = (lon + 180) / 360 * n, lr = lat * RAD;
+  const yf = (1 - Math.log(Math.tan(lr) + 1/Math.cos(lr)) / Math.PI) / 2 * n;
+  return { xt: Math.floor(xf), yt: Math.floor(yf),
+           px: Math.round((xf - Math.floor(xf)) * 256), py: Math.round((yf - Math.floor(yf)) * 256) };
+}
+async function radarTile(rv, z, xt, yt){
+  const key = z + "/" + xt + "/" + yt;
+  if (rv.tiles.has(key)) return rv.tiles.get(key);
+  const url = `${rv.host}${rv.path}/256/${z}/${xt}/${yt}/4/1_1.png`;
+  const bmp = await createImageBitmap(await (await fetch(url)).blob());
+  const cv = new OffscreenCanvas(256, 256), cx = cv.getContext("2d");
+  cx.drawImage(bmp, 0, 0);
+  const data = cx.getImageData(0, 0, 256, 256).data;
+  rv.tiles.set(key, data);
+  return data;
+}
+function radarIntensity(data, px, py){
+  const i = (py * 256 + px) * 4, a = data[i+3];
+  if (a < 50) return 0;                              // faint smoothing/edge halo — not real rain
+  const r = data[i], g = data[i+1], b = data[i+2];
+  if (Math.max(r,g,b) - Math.min(r,g,b) < 25) return 0;  // gray/desaturated pixel — not a rain return
+  if (r > 180 && g < 120) return 1.0;   // heavy (red)
+  if (r > 180)            return 0.85;  // moderate (orange/yellow)
+  if (g > 140 && r < 160) return 0.6;   // light (green)
+  if (b > 140)            return 0.5;   // very light (blue)
+  return 0;                             // unrecognized colour — don't assume rain
+}
+// strongest rain across a fan in the anti-solar direction (where the bow lives)
+async function radarRainScore(lat, lon, antiBearing){
+  const rv = await ensureRadar(), z = 7;
+  const bearings = [antiBearing-22, antiBearing-11, antiBearing, antiBearing+11, antiBearing+22];
+  const dists = [4, 8, 12, 16, 20];
+  let mx = 0;
+  for (const d of dists) for (const bb of bearings){
+    const o = offset(lat, lon, d, ((bb % 360) + 360) % 360);
+    const p = lonLatToPixel(o.lat, o.lon, z);
+    const data = await radarTile(rv, z, p.xt, p.yt);
+    mx = Math.max(mx, radarIntensity(data, p.px, p.py));
+  }
+  return { score: mx > 0 ? Math.max(0.5, mx) : 0, intensity: mx, time: rv.time };
+}
+
+/* ---------- data ---------- */
+async function geocodeZip(zip){
+  const r = await fetch(`https://api.zippopotam.us/us/${zip}`);
+  if (!r.ok) throw new Error("ZIP not found");
+  const j = await r.json();
+  const place = j.places && j.places[0];
+  if (!place) throw new Error("ZIP not found");
+  return { zip, name: `${place["place name"]}, ${place["state abbreviation"]}`,
+           lat: parseFloat(place.latitude), lon: parseFloat(place.longitude) };
+}
+// Open-Meteo throttles in short bursts (esp. the leaderboard's many-location calls);
+// retry a couple times with backoff so a transient 429 self-heals instead of erroring out.
+async function fetchJSON(url, tries = 3){
+  let lastStatus = 0;
+  for (let i = 0; i < tries; i++){
+    const r = await fetch(url);
+    if (r.ok) return r.json();
+    lastStatus = r.status;
+    if (r.status === 429 && i < tries - 1){
+      await new Promise(s => setTimeout(s, 700 * (i + 1)));
+      continue;
+    }
+    break;
+  }
+  throw new Error(lastStatus === 429 ? "weather service busy" : "weather unavailable");
+}
+async function fetchWeather(lat, lon, antiLat, antiLon){
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat},${antiLat}&longitude=${lon},${antiLon}`
+    + `&current=precipitation,cloud_cover,direct_radiation`
+    + `&hourly=precipitation,direct_radiation,cloud_cover&forecast_days=1&timezone=auto`;
+  const j = await fetchJSON(url);
+  return Array.isArray(j) ? j : [j];
+}
+
+/* ---------- NWS (api.weather.gov): CORS-friendly, CONUS, no per-IP daily cap ----------
+   The free Open-Meteo tier has a daily request cap; the National Weather Service has none
+   and allows browser requests. NWS gives sky cover (%) and quantitative precipitation, not
+   solar radiation — so, exactly like the nationwide grid, we treat a mostly-clear sky as
+   "direct sun reaching the ground." We reshape its grid forecast into the same object the
+   rest of the app already expects ({ current, hourly:{time,direct_radiation,precipitation,
+   cloud_cover} }), converting sky cover -> a synthetic direct_radiation the unchanged
+   verdictOf can read. Open-Meteo stays as a fallback for points outside NWS coverage. */
+const _nwsGrid = new Map();
+async function nwsGridUrl(lat, lon){
+  const key = lat.toFixed(3) + "," + lon.toFixed(3);
+  if (_nwsGrid.has(key)) return _nwsGrid.get(key);
+  const r = await fetch(`https://api.weather.gov/points/${lat.toFixed(4)},${lon.toFixed(4)}`);
+  if (!r.ok) throw new Error("nws points " + r.status);
+  const j = await r.json();
+  const u = j.properties && j.properties.forecastGridData;
+  if (!u) throw new Error("nws no grid");
+  _nwsGrid.set(key, u);
+  return u;
+}
+function isoDurHours(d){                         // "PT6H" / "P1DT3H" / "PT1H" -> hours
+  const m = (d || "").match(/P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?)?/);
+  if (!m) return 1;
+  return (+(m[1] || 0)) * 24 + (+(m[2] || 0)) || 1;
+}
+function expandSeries(values){                   // [{validTime:"START/PTnH", value}] -> Map(hourEpoch -> value)
+  const m = new Map();
+  for (const v of (values || [])){
+    const [start, dur] = v.validTime.split("/");
+    const t0 = new Date(start).getTime();
+    const hrs = isoDurHours(dur);
+    for (let h = 0; h < hrs; h++) m.set(t0 + h * 3600000, v.value);
+  }
+  return m;
+}
+function seriesAt(map, t){                        // exact hour, else nearest available
+  if (map.has(t)) return map.get(t);
+  let best = null, bd = Infinity;
+  for (const [k, val] of map){ const d = Math.abs(k - t); if (d < bd){ bd = d; best = val; } }
+  return best;
+}
+function nwsLoc(grid){
+  const sky = expandSeries(grid.properties.skyCover && grid.properties.skyCover.values);
+  const qpf = expandSeries(grid.properties.quantitativePrecipitation && grid.properties.quantitativePrecipitation.values);
+  const skyToRad = cc => (cc != null && cc < CLOUD_CLEAR_MAX) ? 999 : 0;   // clear -> direct beam present
+  const h0 = Math.floor(nowInstant().getTime() / 3600000) * 3600000;
+  const time = [], direct_radiation = [], precipitation = [], cloud_cover = [];
+  for (let i = 0; i < 24; i++){
+    const t = h0 + i * 3600000;
+    const cc = seriesAt(sky, t);
+    time.push(new Date(t).toISOString());
+    cloud_cover.push(cc);
+    direct_radiation.push(skyToRad(cc));
+    precipitation.push(seriesAt(qpf, t) || 0);
+  }
+  const ccNow = seriesAt(sky, h0);
+  const current = { cloud_cover: ccNow, direct_radiation: skyToRad(ccNow), precipitation: seriesAt(qpf, h0) || 0 };
+  return { current, hourly: { time, direct_radiation, precipitation, cloud_cover } };
+}
+async function fetchWeatherNWS(lat, lon, antiLat, antiLon){
+  const [hereUrl, antiUrl] = await Promise.all([nwsGridUrl(lat, lon), nwsGridUrl(antiLat, antiLon)]);
+  const [hg, ag] = await Promise.all([
+    fetch(hereUrl).then(r => { if (!r.ok) throw new Error("nws grid " + r.status); return r.json(); }),
+    fetch(antiUrl).then(r => { if (!r.ok) throw new Error("nws grid " + r.status); return r.json(); }),
+  ]);
+  return [nwsLoc(hg), nwsLoc(ag)];
+}
+// live (non-sim) weather: prefer NWS (CONUS, no daily cap); fall back to Open-Meteo elsewhere.
+async function fetchWeatherLive(lat, lon, antiLat, antiLon){
+  try { return await fetchWeatherNWS(lat, lon, antiLat, antiLon); }
+  catch (e){ console.warn("NWS unavailable, falling back to Open-Meteo:", e.message);
+    return fetchWeather(lat, lon, antiLat, antiLon); }
+}
+
+/* ---------- time machine: backtest a known instant ----------
+   ?sim=1 runs the whole app as if it were 6:30 PM CDT on 2026-05-29 — the confirmed-
+   rainbow time at ZIP 70124. Sun geometry is exact for that instant; rain uses Open-Meteo's
+   past_days hourly data (radar can't rewind that far, so the small-cell caveat applies). */
+const SIM = new URLSearchParams(location.search).get("sim");
+const SIM_INSTANT = SIM ? new Date("2026-05-29T23:30:00Z") : null;  // 6:30 PM CDT
+const SIM_HOUR = "2026-05-29T23:00";                                // Open-Meteo GMT hourly key
+function nowInstant(){ return SIM_INSTANT || new Date(); }
+function parseTime(s){ return new Date(SIM_INSTANT ? s + "Z" : s); }
+function simHourIndex(times){ const i = times.indexOf(SIM_HOUR); return i < 0 ? 0 : i; }
+
+// same shape as fetchWeather, but .current is synthesized from the sim hour of past_days data
+async function fetchWeatherSim(lat, lon, antiLat, antiLon){
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat},${antiLat}&longitude=${lon},${antiLon}`
+    + `&hourly=precipitation,direct_radiation,cloud_cover&past_days=2&forecast_days=1&timezone=GMT`;
+  const arr = await fetchJSON(url).then(j => Array.isArray(j) ? j : [j]);
+  return arr.map(loc => {
+    const i = simHourIndex(loc.hourly.time);
+    loc.current = { precipitation: loc.hourly.precipitation[i],
+                    direct_radiation: loc.hourly.direct_radiation[i],
+                    cloud_cover: loc.hourly.cloud_cover[i] };
+    return loc;
+  });
+}
+// leaderboard backtest: one radiation+precip reading per city at the sim hour
+async function fetchHourlyBatchSim(coords){
+  const lats = coords.map(c => c.lat.toFixed(3)).join(",");
+  const lons = coords.map(c => c.lon.toFixed(3)).join(",");
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lons}`
+    + `&hourly=precipitation,direct_radiation&past_days=2&forecast_days=1&timezone=GMT`;
+  const arr = await fetchJSON(url).then(j => Array.isArray(j) ? j : [j]);
+  return arr.map(loc => { const i = simHourIndex(loc.hourly.time);
+    return { rad: loc.hourly.direct_radiation[i], precip: loc.hourly.precipitation[i] }; });
+}
+
+async function computeStation(st){
+  const now = nowInstant();
+  const sun = solarReadout(now, st.lat, st.lon);
+  const antiBearing = (sun.bearing + 180) % 360;
+  const anti = offset(st.lat, st.lon, ANTISOLAR_KM, antiBearing);
+  const [hereW, antiW] = await (SIM_INSTANT
+    ? fetchWeatherSim(st.lat, st.lon, anti.lat, anti.lon)
+    : fetchWeatherLive(st.lat, st.lon, anti.lat, anti.lon));
+
+  const directRad = hereW.current.direct_radiation;
+  const cloudCover = hereW.current.cloud_cover;
+  const antiPrecip = antiW.current.precipitation;
+
+  // RAIN, right now: live radar in the anti-solar direction (Open-Meteo's forecast smooths out
+  // the small showers that make bows). In sim/backtest mode we replay the baked 6:30 PM radar
+  // for the confirmed ZIP; any other point falls back to that hour's forecast precip.
+  let rainInt, radar = null, rainSource = "radar";
+  if (SIM_INSTANT){
+    const baked = (typeof SIM_RADAR !== "undefined") ? SIM_RADAR[st.zip] : undefined;
+    if (baked != null){ rainInt = baked; }
+    else { rainInt = precipToInt(antiPrecip); rainSource = "forecast"; }
+  } else {
+    try { radar = await radarRainScore(st.lat, st.lon, antiBearing); rainInt = radar.intensity; }
+    catch (e) { rainInt = precipToInt(antiPrecip); rainSource = "forecast"; }
+  }
+
+  const verdict = verdictOf(sun.elev, directRad, rainInt);
+
+  return { st, sun, verdict,
+           factors: { directRad, cloudCover, antiPrecip, rainInt, radar, rainSource },
+           antiBearing, anti, rainbowElev: Math.max(0, 42 - sun.elev) };
+}
+
+/* ============================================================
+   rendering
+   ============================================================ */
+const $ = s => document.querySelector(s);
+const consoleEl = $("#console");
+const chipsEl = $("#chips");
+
+function compassSVG(bearing){
+  const cx = 110, cy = 110, R = 92;
+  let ticks = "";
+  for (let d = 0; d < 360; d += 22.5){
+    const a = (d - 90) * RAD, inner = d % 90 === 0 ? R - 15 : R - 8;
+    ticks += `<line x1="${cx+Math.cos(a)*R}" y1="${cy+Math.sin(a)*R}" x2="${cx+Math.cos(a)*inner}" y2="${cy+Math.sin(a)*inner}" stroke="${d%90===0?'#9b9483':'#c8bca1'}" stroke-width="${d%90===0?2:1}"/>`;
+  }
+  const labels = [["N",0],["E",90],["S",180],["W",270]].map(([t,d])=>{
+    const a=(d-90)*RAD, rr=R-28; return `<text x="${cx+Math.cos(a)*rr}" y="${cy+Math.sin(a)*rr+4}" fill="#a89e88" font-size="11" font-family="IBM Plex Mono" text-anchor="middle">${t}</text>`;
+  }).join("");
+  const na = (bearing - 90) * RAD;
+  const nx = cx + Math.cos(na) * (R - 20), ny = cy + Math.sin(na) * (R - 20);
+  const tx = cx - Math.cos(na) * 24, ty = cy - Math.sin(na) * 24;
+  return `
+    <svg viewBox="0 0 220 220">
+      <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="var(--rule-2)" stroke-width="1"/>
+      ${ticks}${labels}
+      <line x1="${tx}" y1="${ty}" x2="${nx}" y2="${ny}" stroke="var(--hot)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="${nx}" cy="${ny}" r="5" fill="var(--hot)"/>
+      <circle cx="${cx}" cy="${cy}" r="3" fill="#a89e88"/>
+    </svg>`;
+}
+function bowGlyph(){
+  const cols = ["--sp1","--sp2","--sp3","--sp4","--sp5","--sp6","--sp7"];
+  let p = ""; cols.forEach((c, i) => { const r = 34 - i * 3.6;
+    p += `<path d="M${(40-r).toFixed(1)} 44 A ${r} ${r} 0 0 1 ${(40+r).toFixed(1)} 44" fill="none" stroke="var(${c})" stroke-width="2.4"/>`; });
+  return `<svg viewBox="0 0 80 48" width="76" aria-hidden="true">${p}</svg>`;
+}
+function rainbowArcSVG(){
+  const cols = ["--sp1","--sp2","--sp3","--sp4","--sp5","--sp6","--sp7"];
+  const cx = 160, base = 84; let p = "";
+  cols.forEach((c, i) => {
+    const r = 78 - i * 8.5, len = Math.PI * r;
+    p += `<path d="M${(cx-r).toFixed(1)} ${base} A ${r} ${r} 0 0 1 ${(cx+r).toFixed(1)} ${base}" stroke="var(${c})" stroke-dasharray="${len.toFixed(1)}" stroke-dashoffset="${len.toFixed(1)}" style="animation-delay:${i*70}ms"/>`;
+  });
+  return `<svg class="bow draw" viewBox="0 0 320 92" aria-hidden="true">${p}</svg>`;
+}
+function rainWord(i){ return i >= 1 ? "heavy" : i >= 0.85 ? "moderate" : i > 0 ? "light" : "none"; }
+function checkRow(ok, name, val, note){
+  return `<div class="check ${ok ? "yes" : "no"}">
+    <span class="cmark">${ok ? "✓" : "✕"}</span>
+    <span class="cbody"><span class="cname">${name}</span><span class="cval">${val}</span><span class="cnote">${note}</span></span></div>`;
+}
+
+function renderStation(data){
+  const { st, sun, verdict: v, factors, antiBearing, rainbowElev } = data;
+  const hasView = v.tier >= 2;
+  const dir = compassLabel(antiBearing);
+  const color = VCOLOR[v.key];
+
+  const sentence = (() => {
+    if (!v.geo) return sun.elev <= 0.5
+      ? "The sun has clocked off for the day. Rainbows need daylight — we'll keep watch for the next dawn."
+      : `The sun sits high, at ${sun.elev.toFixed(0)}°. Bows only appear once it drops below 42° — keep checking toward golden hour.`;
+    if (v.key === "go")    return `Every ingredient has lined up — low sun, a clear beam, and rain to your ${dir}. Turn ${dir} and look up.`;
+    if (!v.sun && v.rain)  return `Rain's out there to your ${dir}, but the sun needs to break through the cloud before it can paint a bow.`;
+    if (v.sun && !v.rain)  return `Sun's low and bright, but the skies to your ${dir} are dry. Nothing out there to catch the light yet.`;
+    return `The geometry's right, but the sun's hidden and there's no rain to your ${dir}. Not happening this moment.`;
+  })();
+
+  const elevTxt = sun.elev <= 0.5 ? "below horizon" : sun.elev.toFixed(0) + "° up";
+  const elevNote = !v.geo ? (sun.elev > 0.5 ? "needs to drop under 42°" : "needs daylight") : "low enough for a bow";
+  // sky cover % is meaningful for both sources (NWS gives no W/m²); fall back to W/m² only
+  // if cloud cover is somehow missing.
+  const radTxt = factors.cloudCover != null ? Math.round(factors.cloudCover) + "% sky cover"
+               : (factors.directRad != null ? Math.round(factors.directRad) + " W/m²" : "—");
+  const rainTxt = factors.rainInt > 0 ? `${rainWord(factors.rainInt)}, ${dir}` : `none, ${dir}`;
+  const rainNote = factors.rainSource === "forecast" ? "from forecast precip" : "live radar 4–20 km out";
+
+  consoleEl.innerHTML = `
+    <section class="card reveal">
+      <div class="card-head"><span class="tag">Rainbow Watch</span><span class="meta">${st.name}${/^\d{5}$/.test(st.zip) ? " · " + st.zip : ""}</span></div>
+      <div class="alert-body">
+        <div class="emblem lvl-${VCLASS[v.key]}">
+          <div class="emblem-arc">${v.key === "go" ? bowGlyph() : ""}</div>
+          <div class="emblem-label" style="color:${color}">${v.label}</div>
+          <div class="emblem-sub">${v.tier}/3 conditions met</div>
+        </div>
+        <div class="checklist">
+          ${checkRow(v.geo, "Sun low enough", elevTxt, elevNote)}
+          ${checkRow(v.sun, "Sun is out", radTxt, v.sun ? "skies clear enough for direct sun" : "too cloudy — over " + CLOUD_CLEAR_MAX + "% sky cover")}
+          ${checkRow(v.rain, "Rain in the bow direction", rainTxt, rainNote)}
+        </div>
+      </div>
+      <div class="verdict">${sentence}</div>
+    </section>
+
+    <section class="card reveal d2 ${hasView ? "" : "muted-card"}">
+      <div class="card-head"><span class="tag">Where to Look</span><span class="meta">${hasView ? "Opposite the sun" : "Standby"}</span></div>
+      ${hasView ? rainbowArcSVG() + `<div class="bow-cap">A rainbow always appears in the sky opposite the sun</div>` : ""}
+      <div class="compass-wrap">
+        <div class="compass">${compassSVG(antiBearing)}
+          <div class="center-el"><div class="bearing-num">${Math.round(antiBearing)}°</div><div class="bearing-card">${dir}</div></div></div>
+        <div class="look-info">
+          <div class="info-block"><div class="il">Direction</div><div class="iv">Face ${dir} <small>(${Math.round(antiBearing)}° from N)</small></div></div>
+          <div class="info-block"><div class="il">Bow apex height</div><div class="iv">${rainbowElev.toFixed(0)}° <small>above horizon</small></div></div>
+        </div>
+      </div>
+    </section>`;
+}
+
+/* ============================================================
+   map (direction view)
+   ============================================================ */
+const EMPTY = { type:"FeatureCollection", features:[] };
+const MAP_STYLE = "https://tiles.openfreemap.org/styles/positron";
+let map, mapLoaded = false, pendingMap = null, meMarker = null, lookMarker = null, rainMarker = null;
+
+function ensureMap(){
+  if (map) return;
+  $("#map").classList.remove("hidden");
+  $("#map-empty").style.display = "none";
+  map = new maplibregl.Map({ container: "map", style: MAP_STYLE, center: [-98, 39], zoom: 3 });
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+  map.on("load", () => {
+    mapLoaded = true;
+    map.addSource("ray", { type: "geojson", data: EMPTY });
+    map.addLayer({ id: "ray-line", type: "line", source: "ray",
+      paint: { "line-color": "#d0492f", "line-width": 2.6, "line-dasharray": [2, 1.6] } });
+    if (pendingMap) { updateMap(pendingMap); pendingMap = null; }
+  });
+}
+function updateMap(data){
+  ensureMap();
+  if (!mapLoaded) { pendingMap = data; return; }
+  const st = data.st;
+  const sunUp = data.sun.elev > 0.5;
+  const end = offset(st.lat, st.lon, 40, data.antiBearing);
+
+  map.getSource("ray").setData(sunUp ? {
+    type:"Feature", geometry:{ type:"LineString", coordinates:[[st.lon, st.lat],[end.lon, end.lat]] }
+  } : EMPTY);
+
+  if (meMarker) meMarker.remove();
+  // label the spot with its ZIP (fall back to the place name if it's a coordinate-keyed cell)
+  const meEl = document.createElement("div"); meEl.className = "me-pin";
+  meEl.textContent = /^\d{5}$/.test(st.zip) ? st.zip : st.name.split(",")[0];
+  meMarker = new maplibregl.Marker({ element: meEl, anchor: "top" }).setLngLat([st.lon, st.lat]).addTo(map);
+
+  if (lookMarker) { lookMarker.remove(); lookMarker = null; }
+  if (sunUp) {
+    const el = document.createElement("div"); el.className = "look-pin";
+    el.textContent = "Look " + compassLabel(data.antiBearing);
+    lookMarker = new maplibregl.Marker({ element: el, anchor: "bottom" }).setLngLat([end.lon, end.lat]).addTo(map);
+  }
+
+  if (rainMarker) { rainMarker.remove(); rainMarker = null; }
+  if (data.factors.rainInt > 0) {
+    const el = document.createElement("div"); el.className = "rain-pin"; el.textContent = "rain here";
+    rainMarker = new maplibregl.Marker({ element: el, anchor: "center" }).setLngLat([data.anti.lon, data.anti.lat]).addTo(map);
+  }
+
+  map.easeTo({ center: [st.lon, st.lat], zoom: 8.8, duration: 800 });
+  $("#map-meta").textContent = sunUp ? `Face ${compassLabel(data.antiBearing)} · ${Math.round(data.antiBearing)}° from N` : "Sun below horizon";
+}
+
+/* ============================================================
+   nationwide rainbow map — discrete colored cells from the
+   precomputed grid (rainbow-grid.json), RainViewer radar beneath.
+   ============================================================ */
+let gridMap = null, gridMapLoaded = false;
+let skyMap = null;                 // Map "lat,lon" -> cloud% (slow-changing, from JSON)
+const GRID_URL = "rainbow-grid.json";
+const CONUS = { latMin: 24.5, latMax: 49.4, lonMin: -124.8, lonMax: -66.9 };
+// The map uses the SAME "sun is out" rule as the live card (cloud < CLOUD_CLEAR_MAX) so a
+// cell's GO/watch tier means the same thing in both places. Residual map↔card disagreements
+// come from snapshot staleness (mitigated by frequent regen) and the map's cloud provider
+// (MET Norway) differing from the card's (NWS) right at the threshold.
+const GRID_GO_CLEAR = CLOUD_CLEAR_MAX;
+const _zipCache = new Map();   // "lat,lon" -> ZIP string | null (looked up, none) — shared by hover + click
+
+function gridGeoJSON(points){
+  return { type:"FeatureCollection", features: points.map(([lat, lon, tier, rainInt]) => ({
+    type:"Feature", properties:{ tier, rainInt }, geometry:{ type:"Point", coordinates:[lon, lat] } })) };
+}
+
+/* ---- live in-browser grid compute -------------------------------------
+   The JSON ships only the slow-changing cloud term on a 1° mesh. Geometry
+   (sun) and rain (radar) are computed here against the SAME live RainViewer
+   frame drawn on the map, so every dot agrees with the radar underlay and
+   moves with it (cells appear AND clear as storms drift). ----------------*/
+function cloudAt(lat, lon){
+  if (!skyMap) return null;
+  return skyMap.get(Math.round(lat) + "," + Math.round(lon)) ?? null;
+}
+// ~25 km mesh across CONUS (denser than the 1° cloud grid so dots feel continuous)
+function buildGridMesh(){
+  const pts = [];
+  for (let lat = CONUS.latMin; lat <= CONUS.latMax; lat += 25/111){
+    const dLon = 25 / (111 * Math.cos(lat * RAD));
+    for (let lon = CONUS.lonMin; lon <= CONUS.lonMax; lon += dLon) pts.push([lat, lon]);
+  }
+  return pts;
+}
+// sync radar fan read (tiles must be prefetched into rv.tiles first)
+function gridRainSync(rv, lat, lon, antiBearing){
+  const z = 6, bearings = [antiBearing-18, antiBearing, antiBearing+18], dists = [6, 12, 20];
+  let mx = 0;
+  for (const d of dists) for (const bb of bearings){
+    const o = offset(lat, lon, d, ((bb % 360) + 360) % 360);
+    const p = lonLatToPixel(o.lat, o.lon, z);
+    const data = rv.tiles.get(z + "/" + p.xt + "/" + p.yt);
+    if (data) mx = Math.max(mx, radarIntensity(data, p.px, p.py));
+  }
+  return mx > 0 ? Math.max(0.5, mx) : 0;
+}
+// fetch every z6 tile covering CONUS (+margin) once, in parallel
+async function prefetchRadarTiles(rv){
+  const z = 6;
+  const tl = lonLatToPixel(CONUS.latMax + 1, CONUS.lonMin - 1, z);
+  const br = lonLatToPixel(CONUS.latMin - 1, CONUS.lonMax + 1, z);
+  const jobs = [];
+  for (let xt = tl.xt; xt <= br.xt; xt++)
+    for (let yt = tl.yt; yt <= br.yt; yt++)
+      jobs.push(radarTile(rv, z, xt, yt).catch(() => null));
+  await Promise.all(jobs);
+}
+async function computeAndPaintGrid(){
+  if (!gridMapLoaded || !skyMap) return;
+  $("#grid-meta").textContent = "reading live radar…";
+  let rv;
+  try { rv = await ensureRadar(); await prefetchRadarTiles(rv); }
+  catch { $("#grid-meta").textContent = "radar offline"; return; }
+  const now = new Date(), pts = [];
+  for (const [lat, lon] of buildGridMesh()){
+    const sun = solarReadout(now, lat, lon);
+    if (!bowPossible(sun.elev)) continue;
+    const antiBearing = (sun.bearing + 180) % 360;
+    const rain = gridRainSync(rv, lat, lon, antiBearing);
+    if (rain <= 0) continue;                         // no rain in the bow direction → no dot
+    const cc = cloudAt(lat, lon);
+    // The map's "sun is out" term comes from a periodic cloud snapshot (MET Norway) — a
+    // different provider and timestamp than the live per-location card (NWS). Near the 55%
+    // threshold the two can disagree, so the map only promises GO when skies are CONFIDENTLY
+    // clear (< GRID_GO_CLEAR). Borderline cloud stays "worth a glance"; the live card decides.
+    const sunOK = cc != null && cc < GRID_GO_CLEAR ? 999 : 0;
+    const v = verdictOf(sun.elev, sunOK, rain);
+    if (v.tier >= 2) pts.push([lat, lon, v.tier, Math.round(rain*100)/100]);
+  }
+  paintGridPoints(pts);
+}
+function paintGridPoints(pts){
+  gridMap.getSource("grid").setData(gridGeoJSON(pts));
+  const go = pts.filter(p => p[2] === 3).length, watch = pts.length - go;
+  const meta = $("#grid-meta");
+  meta.textContent = pts.length ? `${go} go · ${watch} worth a glance` : "no bows nationwide right now";
+  markUpdated();
+}
+// nearest US city for a friendly station name when a cell is tapped
+function nearestCity(lat, lon){
+  if (typeof US_CITIES === "undefined") return null;
+  let best = null, bd = Infinity;
+  for (const [name, state, cl, cn] of US_CITIES){
+    const d = (cl - lat) ** 2 + (cn - lon) ** 2;
+    if (d < bd){ bd = d; best = name + ", " + state; }
+  }
+  return best;
+}
+
+async function ensureGridMap(){
+  if (gridMap) return;
+  gridMap = new maplibregl.Map({ container: "usmap", style: MAP_STYLE, center: [-96, 38.5], zoom: 3, attributionControl: false });
+  gridMap.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+  gridMap.on("load", async () => {
+    gridMapLoaded = true;
+    // RainViewer radar underlay (latest frame), kept subtle beneath the cells
+    try {
+      const rv = await ensureRadar();
+      // maxzoom:7 — RainViewer serves real radar tiles up to z7; z8+ returns a
+      // "Zoom Level Not Supported" placeholder, so cap here and let MapLibre overzoom.
+      gridMap.addSource("rv", { type:"raster", tiles:[`${rv.host}${rv.path}/256/{z}/{x}/{y}/4/1_1.png`], tileSize:256, maxzoom:7 });
+      gridMap.addLayer({ id:"rv-layer", type:"raster", source:"rv", paint:{ "raster-opacity":0.4 } });
+    } catch {}
+
+    gridMap.addSource("grid", { type:"geojson", data: EMPTY });
+    gridMap.addLayer({ id:"grid-cells", type:"circle", source:"grid",
+      layout:{ "circle-sort-key": ["get","tier"] },   // draw GO on top of "worth a glance"
+      paint:{
+        // GO cells are rare, so make them POP — big, bright, and ringed with a glowing halo.
+        // "worth a glance" recedes far behind them: small + faded.
+        "circle-radius": ["interpolate", ["linear"], ["zoom"],
+          3, ["match", ["get","tier"], 3, 7, 2.5],
+          6, ["match", ["get","tier"], 3, 11, 4],
+          9, ["match", ["get","tier"], 3, 16, 6]],
+        "circle-color": ["match", ["get","tier"], 3, "#22c55e", "#b9772a"],
+        "circle-opacity": ["match", ["get","tier"], 3, 1, 0.35],
+        "circle-stroke-width": ["match", ["get","tier"], 3, 3, 0],
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-opacity": ["match", ["get","tier"], 3, 1, 0]
+      } });
+    gridMap.on("click", "grid-cells", e => {
+      const f = e.features && e.features[0];
+      const c = f ? f.geometry.coordinates : [e.lngLat.lng, e.lngLat.lat];
+      trackCell(c[1], c[0]);
+    });
+    const gpop = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 9 });
+    const popHTML = (name, zip, go) =>
+      `<div class="hex-pop"><b>${name}${zip ? " · " + zip : ""}</b><span class="lvl-${go ? "go" : "watch"}">${go ? "Go look now" : "Worth a glance"}</span></div>`;
+    let hoverKey = null, hoverTimer = null;
+    gridMap.on("mousemove", "grid-cells", e => {
+      gridMap.getCanvas().style.cursor = "pointer";
+      const f = e.features[0], c = f.geometry.coordinates, lat = c[1], lon = c[0];
+      const key = lat.toFixed(3) + "," + lon.toFixed(3);
+      const name = nearestCity(lat, lon) || `${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
+      const go = f.properties.tier === 3;
+      const zip = _zipCache.get(key);   // string=known · null=no zip · undefined=not looked up
+      gpop.setLngLat(c).setHTML(popHTML(name, zip || null, go)).addTo(gridMap);
+      if (key !== hoverKey){
+        hoverKey = key;
+        clearTimeout(hoverTimer);
+        if (zip === undefined){
+          // look the ZIP up only once the cursor settles on a cell (Nominatim is rate-limited)
+          hoverTimer = setTimeout(async () => {
+            const z = await reverseZip(lat, lon);
+            _zipCache.set(key, z || null);
+            if (hoverKey === key && gpop.isOpen()) gpop.setHTML(popHTML(name, z || null, go));
+          }, 350);
+        }
+      }
+    });
+    gridMap.on("mouseleave", "grid-cells", () => { gridMap.getCanvas().style.cursor = ""; gpop.remove(); hoverKey = null; clearTimeout(hoverTimer); });
+    if (skyMap) computeAndPaintGrid();
+  });
+}
+
+// reverse-geocode a lat/lon to its 5-digit US ZIP (OpenStreetMap Nominatim, keyless + CORS)
+async function reverseZip(lat, lon){
+  try {
+    const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&lat=${lat}&lon=${lon}`);
+    if (!r.ok) return null;
+    const pc = ((await r.json()).address || {}).postcode;
+    const m = pc && String(pc).match(/\d{5}/);
+    return m ? m[0] : null;
+  } catch { return null; }
+}
+async function trackCell(lat, lon){
+  // resolve the real ZIP for the tapped spot so the cell becomes a proper ZIP station
+  // (reuse the hover cache if this cell was already looked up)
+  const ck = lat.toFixed(3) + "," + lon.toFixed(3);
+  let zip = _zipCache.get(ck);
+  if (zip === undefined){ zip = await reverseZip(lat, lon); _zipCache.set(ck, zip || null); }
+  if (zip){
+    try {
+      const st = await geocodeZip(zip);   // canonical "City, ST" + centroid
+      if (!stations.some(s => s.zip === st.zip)) stations.push(st);
+      activeZip = st.zip; save(); renderChips(); refreshActive();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    } catch {}
+  }
+  // fallback: keep the coordinate-keyed station if no ZIP could be found
+  const name = nearestCity(lat, lon) || `${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
+  const key = "geo:" + lat.toFixed(3) + "," + lon.toFixed(3);
+  if (!stations.some(s => s.zip === key)) stations.push({ zip: key, name, lat, lon });
+  activeZip = key; save(); renderChips(); refreshActive();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+async function loadGrid(){
+  await ensureGridMap();
+  if (!skyMap){
+    try {
+      const grid = await (await fetch(GRID_URL + "?t=" + Date.now())).json();
+      skyMap = new Map((grid.sky || []).map(([lat, lon, cc]) => [lat + "," + lon, cc]));
+    } catch (e) {
+      $("#grid-meta").textContent = "cloud grid offline";
+      return;
+    }
+  }
+  computeAndPaintGrid();
+}
+
+/* ============================================================
+   state + chips
+   ============================================================ */
+let stations = [], activeZip = null, cache = {};
+function load(){
+  try { stations = JSON.parse(localStorage.getItem("prism.stations") || "[]"); } catch { stations = []; }
+  activeZip = localStorage.getItem("prism.active");
+}
+function save(){
+  localStorage.setItem("prism.stations", JSON.stringify(stations));
+  if (activeZip) localStorage.setItem("prism.active", activeZip);
+}
+function renderChips(){
+  chipsEl.innerHTML = stations.map(s => {
+    const d = cache[s.zip], v = d ? d.verdict : null;
+    const lvl = v ? VCLASS[v.key] : "", glyph = v ? (v.key === "go" ? "GO" : v.tier === 2 ? "~" : "·") : "··";
+    return `<div class="chip ${s.zip === activeZip ? "active" : ""} ${lvl ? "lvl-"+lvl : ""}" data-zip="${s.zip}">
+      <span class="sq"></span><span class="cname">${s.name.split(",")[0]}</span><span class="cidx">${glyph}</span><span class="cx" data-del="${s.zip}">×</span></div>`;
+  }).join("");
+  $("#barhint").style.display = stations.length ? "none" : "";
+}
+async function refreshActive(){
+  if (!activeZip) {
+    consoleEl.innerHTML = `<div class="empty"><div class="big">Nothing on the horizon — yet</div><div>Enter a US ZIP code above, or tap a glowing cell on the rainbow map.</div></div>`;
+    $("#map").classList.add("hidden");
+    $("#map-empty").style.display = "";
+    $("#map-meta").textContent = "—";
+    return;
+  }
+  const st = stations.find(s => s.zip === activeZip);
+  if (!st) return;
+  consoleEl.innerHTML = `<div class="empty"><div class="loading">Reading the sky over ${st.name} …</div></div>`;
+  try {
+    const data = await computeStation(st);
+    cache[st.zip] = data;
+    renderStation(data);
+    renderChips();
+    updateMap(data);
+    markUpdated();
+  } catch (e) {
+    consoleEl.innerHTML = `<div class="empty"><div class="big">Couldn't reach the weather service</div><div>${e.message}. Try again in a moment.</div></div>`;
+  }
+}
+async function refreshAllChips(){
+  for (const s of stations){
+    if (s.zip === activeZip || cache[s.zip]) continue;
+    try { cache[s.zip] = await computeStation(s); } catch {}
+  }
+  renderChips();
+}
+function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2600); }
+
+/* events */
+$("#addform").addEventListener("submit", async e => {
+  e.preventDefault();
+  const zip = $("#zip").value.trim();
+  if (!/^\d{5}$/.test(zip)) { toast("Enter a valid 5-digit US ZIP."); return; }
+  if (stations.some(s => s.zip === zip)) { activeZip = zip; save(); renderChips(); refreshActive(); $("#zip").value=""; return; }
+  const btn = $("#addbtn"); btn.disabled = true; btn.textContent = "…";
+  try {
+    const st = await geocodeZip(zip);
+    stations.push(st); activeZip = zip; save(); renderChips(); $("#zip").value = "";
+    await refreshActive(); refreshAllChips();
+  } catch { toast("ZIP not found. Check the code and try again."); }
+  finally { btn.disabled = false; btn.textContent = "Add"; }
+});
+chipsEl.addEventListener("click", e => {
+  const del = e.target.closest("[data-del]");
+  if (del){ e.stopPropagation(); const z = del.dataset.del;
+    stations = stations.filter(s => s.zip !== z); delete cache[z];
+    if (activeZip === z) activeZip = stations[0] ? stations[0].zip : null;
+    save(); renderChips(); refreshActive(); return; }
+  const chip = e.target.closest(".chip");
+  if (chip){ activeZip = chip.dataset.zip; save(); renderChips(); refreshActive(); }
+});
+
+/* "last updated" stamp — set whenever we refresh live data (a station read or a grid repaint),
+   so the dateline reflects how fresh the readout is rather than ticking wall-clock time. */
+function markUpdated(){
+  const n = nowInstant();
+  const opts = SIM_INSTANT ? { hour:"2-digit", minute:"2-digit", timeZone:"America/Chicago" } : { hour:"2-digit", minute:"2-digit" };
+  $("#clock-time").textContent = n.toLocaleTimeString([], opts) + (SIM_INSTANT ? " CT" : "");
+  const dopts = SIM_INSTANT ? { weekday:"long", month:"long", day:"numeric", timeZone:"America/Chicago" } : { weekday:"long", month:"long", day:"numeric" };
+  $("#clock-date").textContent = n.toLocaleDateString([], dopts);
+}
+
+/* backtest banner */
+if (SIM_INSTANT){
+  const b = document.createElement("div");
+  b.style.cssText = "background:#3a3326;color:#f3ede0;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;text-align:center;padding:7px 14px;position:sticky;top:0;z-index:50;";
+  b.innerHTML = "⏪ BACKTEST MODE — replaying 6:30 PM CT, May 29 (confirmed-rainbow time). Rain from Open-Meteo history, not live radar.";
+  document.body.prepend(b);
+}
+
+/* boot */
+load(); renderChips(); refreshActive(); refreshAllChips();
+loadGrid();
+if (!SIM_INSTANT){
+  setInterval(refreshActive, 5 * 60 * 1000);
+  setInterval(loadGrid, 5 * 60 * 1000);
+}
+</script>
+</body>
+</html>

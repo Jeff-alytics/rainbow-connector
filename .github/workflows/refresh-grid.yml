@@ -1,0 +1,43 @@
+name: Refresh rainbow grid
+
+# Regenerates rainbow-grid.json (nationwide cloud-cover snapshot) on a schedule.
+# Only slow-drifting cloud cover is precomputed here — the browser still computes
+# sun geometry and live radar rain itself — so a 30-min cadence keeps the grid
+# effectively never stale. A commit here triggers Vercel's git auto-deploy.
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes (UTC; GitHub may delay under load)
+  workflow_dispatch: {}        # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-grid
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Regenerate grid
+        run: node compute_grid.js
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "rainbow-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet -- rainbow-grid.json; then
+            echo "No grid change."
+          else
+            git add rainbow-grid.json
+            git commit -m "chore: refresh rainbow grid [skip ci]"
+            git push
+          fi
