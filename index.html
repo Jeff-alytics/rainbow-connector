@@ -222,7 +222,10 @@
   .check .cval { font-size: 12.5px; font-family: "IBM Plex Mono", monospace; color: var(--muted-fg); margin-top: 1px; }
   .check .cnote { font-size: 11px; color: var(--faint-fg); margin-top: 2px; }
 
-  .verdict { margin-top: 22px; padding-top: 18px; border-top: 1px dashed var(--border-c);
+  .src-stamp { margin-top: 14px; font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    letter-spacing: .02em; color: var(--faint-fg); opacity: .85; }
+
+  .verdict { margin-top: 18px; padding-top: 18px; border-top: 1px dashed var(--border-c);
     font-size: 15.5px; line-height: 1.55; color: var(--muted-fg); font-weight: 500; }
 
   /* drawn rainbow */
@@ -312,6 +315,7 @@
   .colophon { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--border-c); text-align: center; }
   .colophon .mark { display: inline-flex; align-items: center; gap: 8px; font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 18px; }
   .colophon p { max-width: 40rem; margin: 10px auto 0; font-size: 13px; line-height: 1.6; color: var(--faint-fg); font-weight: 500; }
+  .colophon .trust-line { color: var(--muted-fg); }
   .colophon a { color: var(--muted-fg); font-weight: 700; text-decoration: none; }
   .colophon a:hover { text-decoration: underline; text-underline-offset: 2px; }
 
@@ -414,8 +418,10 @@
     </div>
     <div class="colophon">
       <span class="mark">✦ The Rainbow Connector</span>
+      <p class="trust-line">Rainbow chances are guidance only — your local view, low clouds, and terrain all matter. Always trust your own eyes on the sky.</p>
+      <p class="trust-line">Uses the ZIP codes you enter, not your device's GPS or location.</p>
       <p>
-        Sun geometry computed locally · sky via <a href="https://www.weather.gov" target="_blank" rel="noopener">NWS</a> &amp; <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> · radar <a href="https://www.rainviewer.com" target="_blank" rel="noopener">RainViewer</a> · ZIP via <a href="https://zippopotam.us" target="_blank" rel="noopener">Zippopotam.us</a> · basemap <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a>. Always trust your own eyes on the sky.
+        Sun geometry computed locally · sky via <a href="https://www.weather.gov" target="_blank" rel="noopener">NWS</a> &amp; <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> · radar <a href="https://www.rainviewer.com" target="_blank" rel="noopener">RainViewer</a> · ZIP via <a href="https://zippopotam.us" target="_blank" rel="noopener">Zippopotam.us</a> · basemap <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a>.
       </p>
     </div>
   </footer>
@@ -869,7 +875,9 @@ function renderStation(data){
   const sentence = (() => {
     if (!v.geo) return sun.elev <= 0.5
       ? "The sun has clocked off for the day. Rainbows need daylight — we'll keep watch for the next dawn."
-      : `The sun sits high, at ${sun.elev.toFixed(0)}°. Bows usually only show up once it drops below about 42° — keep checking toward golden hour.`;
+      : sun.elev < 45
+        ? `The sun's at ${sun.elev.toFixed(0)}° — right at the edge of bow range. A little lower (under 42°) and the geometry opens up. Keep watching.`
+        : `The sun sits high, at ${sun.elev.toFixed(0)}°. Bows usually only show up once it drops below about 42° — keep checking toward golden hour.`;
     if (v.key === "go")    return `Every ingredient has lined up — low sun, a clear beam, and rain to your ${dir}. Turn ${dir} and look up.`;
     if (!v.sun && v.rain)  return `Rain's out there to your ${dir}, but the sun needs to break through the cloud before it can paint a bow.`;
     if (v.sun && !v.rain)  return `Sun's low and bright, but the skies to your ${dir} are dry. Nothing out there to catch the light yet.`;
@@ -877,7 +885,11 @@ function renderStation(data){
   })();
 
   const elevTxt = sun.elev <= 0.5 ? "below horizon" : sun.elev.toFixed(0) + "° up";
-  const elevNote = !v.geo ? (sun.elev > 0.5 ? "needs to drop under 42°" : "needs daylight") : "low enough for a bow";
+  const elevNote = !v.geo
+    ? (sun.elev > 0.5
+        ? (sun.elev < 45 ? "right at the upper limit — lower is better" : "needs to drop under 42°")
+        : "needs daylight")
+    : "low enough for a bow";
   // sky cover % is meaningful for both sources (NWS gives no W/m²); fall back to W/m² only
   // if cloud cover is somehow missing.
   const radTxt = factors.cloudCover != null ? Math.round(factors.cloudCover) + "% sky cover"
@@ -886,6 +898,15 @@ function renderStation(data){
   const rainNote = factors.rainSource === "none" ? "rain data unavailable"
                  : factors.rainSource === "forecast" ? "from forecast precip"
                  : "radar, 4–20 km out";
+
+  // per-source freshness stamp (both reads happen in the same pass, so they share fetchedAt)
+  const stampT = data.fetchedAt ? new Date(data.fetchedAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : null;
+  const rainSrcLabel = factors.rainSource === "none" ? "Radar unavailable"
+                     : factors.rainSource === "forecast" ? "Forecast checked"
+                     : "Radar checked";
+  const srcStamp = stampT
+    ? `<div class="src-stamp">${factors.rainSource === "none" ? "Radar unavailable" : `${rainSrcLabel} ${stampT}`} · Sky checked ${stampT}</div>`
+    : "";
 
   consoleEl.innerHTML = `
     <section class="card reveal">
@@ -901,6 +922,7 @@ function renderStation(data){
           ${checkRow(v.rain, "Rain opposite the sun", rainTxt, rainNote)}
         </div>
       </div>
+      ${srcStamp}
       <div class="verdict">${sentence}</div>
     </section>
 
@@ -1090,7 +1112,17 @@ async function computeAndPaintGrid(){
   $("#grid-meta").textContent = "reading radar…";
   let rv;
   try { rv = await ensureRadar(); await prefetchRadarTiles(rv); }
-  catch { $("#grid-meta").textContent = "radar offline"; $("#usmap-loading").textContent = "Radar offline"; return; }
+  catch { $("#grid-meta").textContent = "Radar delayed — retrying soon"; $("#usmap-loading").textContent = "Radar delayed"; return; }
+  try {
+    await paintGridFromRadar(rv);
+  } catch (e) {
+    // an unexpected blip in the mesh/cloud passes shouldn't blank the panel — leave the last
+    // good pins up and flag the hiccup; the next 5-minute cycle (or a manual reload) retries.
+    $("#grid-meta").textContent = "Map update failed — retrying soon";
+    $("#usmap-loading").classList.add("gone");
+  }
+}
+async function paintGridFromRadar(rv){
   await ensureLandMask();                            // so offshore mesh points can be dropped
 
   // Pass 1 — find every "ripe" spot: on land AND sun geometry good AND rain in the anti-solar sky.
@@ -1123,14 +1155,16 @@ async function computeAndPaintGrid(){
   clearCandMarkers();
   // Drop each pin the instant its own cloud check returns (concurrency 6), so the
   // map fills in progressively instead of staying empty until all checks finish.
+  let cloudFails = 0;
   await pool(top, 6, async c => {
     // same live-obs source as the ZIP card, so a map pin can't disagree with the card
     try { c.cloud = await cloudNow(c.lat, c.lon); }
     catch { try { c.cloud = (await weatherPoint(c.lat, c.lon)).current.cloud_cover; } catch { c.cloud = null; } }
+    if (c.cloud == null) cloudFails++;
     c.go = c.cloud != null && c.cloud < CLOUD_CLEAR_MAX;
     addCandMarker(c);
   });
-  finalizeCandidates(top);
+  finalizeCandidates(top, cloudFails);
 }
 function clearCandMarkers(){ candMarkers.forEach(m => m.remove()); candMarkers = []; }
 function addCandMarker(c){
@@ -1150,7 +1184,7 @@ function addCandMarker(c){
   candMarkers.push(new maplibregl.Marker({ element: wrap, anchor: "center" })
     .setLngLat([c.lon, c.lat]).addTo(gridMap));
 }
-function finalizeCandidates(top){
+function finalizeCandidates(top, cloudFails = 0){
   // number the confirmed-clear pins by likelihood (top is already score-sorted)
   let rank = 0;
   for (const c of top){
@@ -1161,10 +1195,16 @@ function finalizeCandidates(top){
     }
   }
   const go = rank, cloudy = top.length - go;
-  $("#grid-meta").textContent = go
-    ? `${go} likely now · ${cloudy} rain+sun but cloudy`
-    : cloudy ? `${cloudy} rain+sun spot${cloudy === 1 ? "" : "s"} — all cloudy`
-             : "no bows nationwide right now";
+  // if every cloud check came back empty, the sky source is delayed — say so rather than
+  // implying we confidently checked clouds at these spots.
+  if (top.length && cloudFails === top.length){
+    $("#grid-meta").textContent = "Weather delayed — sky check incomplete";
+  } else {
+    $("#grid-meta").textContent = go
+      ? `${go} likely now · ${cloudy} rain+sun but cloudy`
+      : cloudy ? `${cloudy} rain+sun spot${cloudy === 1 ? "" : "s"} — all cloudy`
+               : "no bows nationwide right now";
+  }
   markUpdated(); stampGrid();
 }
 // nearest US city for a friendly station name when a cell is tapped
