@@ -345,11 +345,15 @@
   @media (prefers-reduced-motion: reduce) {
     .sky-arc, .cloud, .card::before, .reveal, .map-loading .ml-dot { animation: none; }
   }
+  /* Tablet & down: take the meta cluster out of absolute positioning so it can't overlap the
+     centered title (the title text gets wide enough to collide on iPad-width screens). */
+  @media (max-width: 860px) {
+    .controls { position: static; justify-content: flex-end; margin-bottom: 8px; }
+    .dateline { text-align: right; }
+  }
   @media (max-width: 520px) {
     .wrap { padding: 22px 16px 64px; }
     .hero { padding-top: 4px; }
-    .controls { position: static; justify-content: flex-end; margin-bottom: 6px; }
-    .dateline { text-align: right; }
     .hero h1 { font-size: clamp(28px, 9vw, 40px); margin: 10px 0 4px; }
     .empty { padding: 44px 16px; }
     .empty .big { font-size: 21px; }
