@@ -1220,8 +1220,12 @@ async function paintGridFromRadar(rv){
   // map fills in progressively instead of staying empty until all checks finish.
   let cloudFails = 0;
   await pool(top, 6, async c => {
-    // Open-Meteo satellite+model cloud cover — same source as the card
-    try { c.cloud = await cloudOM(c.lat, c.lon); } catch { c.cloud = null; }
+    // Max of Open-Meteo + NWS — same approach as the card, avoids false clears
+    let om = null, nws = null;
+    try { om = await cloudOM(c.lat, c.lon); } catch {}
+    try { nws = (await weatherPoint(c.lat, c.lon)).current.cloud_cover; } catch {}
+    c.cloud = om != null && nws != null ? Math.max(om, nws)
+            : om ?? nws;
     if (c.cloud == null) cloudFails++;
     c.go = c.cloud != null && c.cloud < CLOUD_CLEAR_MAX;
     addCandMarker(c);
