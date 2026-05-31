@@ -422,7 +422,6 @@
       </div>
       <div class="grid-foot" id="grid-foot">
         <span class="gl"><i class="gdot go"></i>Candidates now</span>
-        <span class="gl"><i class="gdot watch"></i>Rain + sun, but cloudy</span>
         <span class="gl-tip">Tap a pin to track</span>
         <span class="gl-note" id="grid-stamp">Auto-updates every 5 min</span>
       </div>
@@ -504,11 +503,22 @@ const ANTISOLAR_KM = 10;
    geometry means a bow is physically impossible right now. */
 const LIGHT_MIN = 120;                          // W/m² — sun meaningfully reaching the ground
 const CLOUD_CLEAR_MAX = 55;                     // sky cover % below which direct beam is likely present
+function skyLabel(cc){ return cc <= 25 ? "Clear" : cc <= 50 ? "Partly cloudy" : cc <= 75 ? "Mostly cloudy" : "Overcast"; }
 // Bows can linger ~10 min past sunset: atmospheric refraction keeps the sun optically up after it's
 // geometrically set, and our SunCalc elevation omits that ~0.8° lift — so treat the sun as "up
 // enough" down to 3° below the horizon (≈10 min after sunset) before it counts as night.
 const NIGHT_BELOW = -3;
 const bowPossible = e => e > NIGHT_BELOW && e < 42;
+// scan forward in 1-min steps to find the next time the sun drops below 42°
+function nextBowTime(lat, lon){
+  const now = nowInstant(), end = new Date(now.getTime() + 12 * 3600000);
+  for (let t = new Date(now.getTime() + 60000); t <= end; t = new Date(t.getTime() + 60000)){
+    const e = solarReadout(t, lat, lon).elev;
+    if (e < 42 && e > NIGHT_BELOW) return t;
+    if (e <= NIGHT_BELOW) return null;                // sun sets before reaching 42° — won't happen today
+  }
+  return null;
+}
 const precipToInt = p => (p == null || p <= 0) ? 0 : Math.min(1, 0.5 + p / 2);  // forecast mm → 0..1 stand-in
 
 function verdictOf(elev, directRad, rainInt){
@@ -642,7 +652,7 @@ async function fetchWeatherOM(lat, lon){
 // URL (model sky cover, our rural fallback) and the observationStations URL (live METAR).
 const _nwsPoints = new Map();
 async function nwsPoint(lat, lon){
-  const key = lat.toFixed(3) + "," + lon.toFixed(3);
+  const key = lat.toFixed(2) + "," + lon.toFixed(2);   // coarse cache — nearby points share the same NWS grid cell
   if (_nwsPoints.has(key)) return _nwsPoints.get(key);
   const r = await fetch(`https://api.weather.gov/points/${lat.toFixed(4)},${lon.toFixed(4)}`);
   if (!r.ok) throw new Error("nws points " + r.status);
@@ -662,6 +672,7 @@ async function nwsGridUrl(lat, lon){ return (await nwsPoint(lat, lon)).forecastG
    typically rural points far from any reporting station. */
 const _METAR_PCT = { CLR: 0, SKC: 0, NCD: 0, NSC: 0, CAVOK: 0, FEW: 19, SCT: 44, BKN: 75, OVC: 100, VV: 100 };
 const _nwsObsStation = new Map();   // observationStations URL -> nearest station id
+const _metarCache = new Map();      // station id -> { value, ts } — 2-min TTL so card + grid agree
 async function cloudNow(lat, lon){
   const p = await nwsPoint(lat, lon);
   const su = p.observationStations;
@@ -674,15 +685,18 @@ async function cloudNow(lat, lon){
     stid = feats[0].properties.stationIdentifier;     // first = nearest
     _nwsObsStation.set(su, stid);
   }
+  const cached = _metarCache.get(stid);
+  if (cached && Date.now() - cached.ts < 2 * 60000) return cached.value;
   const oj = await fetch(`https://api.weather.gov/stations/${stid}/observations/latest`)
     .then(r => { if (!r.ok) throw new Error("obs " + r.status); return r.json(); });
   const props = (oj && oj.properties) || {};
   // ignore a stale report (station offline) so we don't trust hours-old skies
   if (props.timestamp && Date.now() - new Date(props.timestamp).getTime() > 3 * 3600000) throw new Error("obs stale");
   const layers = props.cloudLayers || [];
-  if (!layers.length) return 0;                        // a report with no layers = clear sky
   let max = 0;
-  for (const L of layers){ const v = _METAR_PCT[L.amount]; if (v != null && v > max) max = v; }
+  if (!layers.length) max = 0;                         // no layers = clear sky
+  else for (const L of layers){ const v = _METAR_PCT[L.amount]; if (v != null && v > max) max = v; }
+  _metarCache.set(stid, { value: max, ts: Date.now() });
   return max;
 }
 function isoDurHours(d){                         // "PT6H" / "P1DT3H" / "PT1H" -> hours
@@ -789,18 +803,10 @@ async function computeStation(st){
     hereW = await weatherPoint(st.lat, st.lon);
   }
 
-  // Cloud: prefer a live METAR observation (actual current sky), fall back to the forecast
-  // sky cover already in hereW. Sun "is out" is derived from the same number we display, so the
-  // card can't say "sunny" while showing 67% cloud. directRad is synthetic in the NWS path
-  // (999/0 via skyToRad); re-derive it from whichever cloud value we end up trusting.
+  // Cloud: NWS gridpoint sky cover — available at every coordinate (~2.5 km grid), same source
+  // the national map uses so the card and map always agree.
   let cloudCover = hereW.current.cloud_cover;
   let directRad = hereW.current.direct_radiation;
-  if (!SIM_INSTANT){
-    try {
-      const obs = await cloudNow(st.lat, st.lon);
-      if (obs != null){ cloudCover = obs; directRad = obs < CLOUD_CLEAR_MAX ? 999 : 0; }
-    } catch (e){ /* no fresh obs here — keep the forecast sky cover */ }
-  }
   let antiPrecip = null;
 
   // RAIN, right now: live radar in the anti-solar direction (forecast precip smooths out the
@@ -913,12 +919,16 @@ function renderStation(data){
                 : "below horizon";
   const elevNote = !v.geo
     ? (sun.elev > 0.5
-        ? (sun.elev < 45 ? "right at the upper limit — lower is better" : "needs to drop under 42°")
+        ? (() => {
+            const bt = nextBowTime(st.lat, st.lon);
+            const timeStr = bt ? bt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : null;
+            return timeStr ? `drops below 42° around ${timeStr}` : "needs to drop under 42°";
+          })()
         : "needs daylight")
     : "low enough for a bow";
   // sky cover % is meaningful for both sources (NWS gives no W/m²); fall back to W/m² only
   // if cloud cover is somehow missing.
-  const radTxt = factors.cloudCover != null ? Math.round(factors.cloudCover) + "% sky cover"
+  const radTxt = factors.cloudCover != null ? skyLabel(Math.round(factors.cloudCover))
                : (factors.directRad != null ? Math.round(factors.directRad) + " W/m²" : "—");
   // "Sun is out" is derived from cloud cover alone, so on a clear night it would read ✓.
   // Below the horizon there's no beam to refract, so relabel the row "It's night".
@@ -928,7 +938,7 @@ function renderStation(data){
   const sunRowVal  = isNight ? "sun below horizon" : radTxt;
   const sunRowNote = isNight ? "no sunlight to refract"
                    : v.sun ? "skies clear enough for direct sun"
-                           : "too cloudy — over " + CLOUD_CLEAR_MAX + "% sky cover";
+                           : "too cloudy for direct sunlight";
   const rainTxt = factors.rainInt > 0 ? `${rainWord(factors.rainInt)}, ${dir}` : `none, ${dir}`;
   const rainNote = factors.rainSource === "none" ? "rain data unavailable"
                  : factors.rainSource === "forecast" ? "from forecast precip"
@@ -940,7 +950,7 @@ function renderStation(data){
                      : factors.rainSource === "forecast" ? "Forecast checked"
                      : "Radar checked";
   const srcStamp = stampT
-    ? `<div class="src-stamp">${factors.rainSource === "none" ? "Radar unavailable" : `${rainSrcLabel} ${stampT}`} · Sky checked ${stampT}</div>`
+    ? `<div class="src-stamp">${factors.rainSource === "none" ? "Radar unavailable" : `${rainSrcLabel} ${stampT}`} · NWS sky ${stampT}</div>`
     : "";
 
   consoleEl.innerHTML = `
@@ -1043,7 +1053,7 @@ function updateMap(data){
    ============================================================ */
 let gridMap = null, gridMapLoaded = false;
 let candMarkers = [];              // HTML markers for the verified candidates
-const TOP_N = 20;                  // how many ripe spots get a live cloud check each pass
+const TOP_N = 80;                  // how many ripe spots get a live cloud check each pass
 const REFRESH_MIN = 5;             // both the card and the national map auto-refresh this often
 const CONUS = { latMin: 24.5, latMax: 49.4, lonMin: -124.8, lonMax: -66.9 };
 
@@ -1069,11 +1079,12 @@ async function pool(items, limit, fn){
    RainViewer frame drawn on the map, so the shade agrees with the radar
    underlay and moves with it (areas appear AND clear as storms drift).
    Clouds are verified per-candidate against the live card's source. ----*/
-// ~25 km mesh across CONUS so the ripe shade reads as continuous coverage
+// ~12 km mesh across CONUS — tight enough that the 20 km rain fan from any grid point
+// covers the same area the per-ZIP card would scan, so the map can't miss what a card finds
 function buildGridMesh(){
   const pts = [];
-  for (let lat = CONUS.latMin; lat <= CONUS.latMax; lat += 25/111){
-    const dLon = 25 / (111 * Math.cos(lat * RAD));
+  for (let lat = CONUS.latMin; lat <= CONUS.latMax; lat += 12/111){
+    const dLon = 12 / (111 * Math.cos(lat * RAD));
     for (let lon = CONUS.lonMin; lon <= CONUS.lonMax; lon += dLon) pts.push([lat, lon]);
   }
   return pts;
@@ -1104,7 +1115,9 @@ async function ensureLandMask(){
   const table = await loadZipTable();
   const m = new Map();
   for (const z in table){
-    const v = table[z], [iy, ix] = cellIdx(v[2], v[3]), k = iy + "," + ix;
+    const v = table[z];
+    if (!v[1]) continue;                              // skip APO/FPO military ZIPs (no state)
+    const [iy, ix] = cellIdx(v[2], v[3]), k = iy + "," + ix;
     let a = m.get(k); if (!a){ a = []; m.set(k, a); } a.push([v[2], v[3]]);
   }
   return (_landCells = m);
@@ -1121,7 +1134,7 @@ function onLand(lat, lon){
 }
 // sync radar fan read (tiles must be prefetched into rv.tiles first)
 function gridRainSync(rv, lat, lon, antiBearing){
-  const z = 6, bearings = [antiBearing-18, antiBearing, antiBearing+18], dists = [6, 12, 20];
+  const z = 7, bearings = [antiBearing-22, antiBearing-11, antiBearing, antiBearing+11, antiBearing+22], dists = [4, 8, 12, 16, 20];
   let mx = 0;
   for (const d of dists) for (const bb of bearings){
     const o = offset(lat, lon, d, ((bb % 360) + 360) % 360);
@@ -1131,9 +1144,9 @@ function gridRainSync(rv, lat, lon, antiBearing){
   }
   return mx > 0 ? Math.max(0.5, mx) : 0;
 }
-// fetch every z6 tile covering CONUS (+margin) once, in parallel
+// fetch every z7 tile covering CONUS (+margin) once, in parallel
 async function prefetchRadarTiles(rv){
-  const z = 6;
+  const z = 7;
   const tl = lonLatToPixel(CONUS.latMax + 1, CONUS.lonMin - 1, z);
   const br = lonLatToPixel(CONUS.latMin - 1, CONUS.lonMax + 1, z);
   const jobs = [];
@@ -1192,9 +1205,8 @@ async function paintGridFromRadar(rv){
   // map fills in progressively instead of staying empty until all checks finish.
   let cloudFails = 0;
   await pool(top, 6, async c => {
-    // same live-obs source as the ZIP card, so a map pin can't disagree with the card
-    try { c.cloud = await cloudNow(c.lat, c.lon); }
-    catch { try { c.cloud = (await weatherPoint(c.lat, c.lon)).current.cloud_cover; } catch { c.cloud = null; } }
+    // NWS gridpoint sky cover — same source as the card, so they always agree
+    try { c.cloud = (await weatherPoint(c.lat, c.lon)).current.cloud_cover; } catch { c.cloud = null; }
     if (c.cloud == null) cloudFails++;
     c.go = c.cloud != null && c.cloud < CLOUD_CLEAR_MAX;
     addCandMarker(c);
@@ -1203,19 +1215,15 @@ async function paintGridFromRadar(rv){
 }
 function clearCandMarkers(){ candMarkers.forEach(m => m.remove()); candMarkers = []; }
 function addCandMarker(c){
-  // MapLibre writes its positioning transform onto the marker's root element. If that root is
-  // the styled pin (which has its own transform/transition for the hover scale), the two fight:
-  // every pan re-applies a transform the CSS transition then animates, so pins lag and drift off
-  // their true point. So the root is a plain wrapper MapLibre owns; the styled pin sits inside it.
+  if (!c.go) return;                                  // only show confirmed-clear candidates
   const wrap = document.createElement("div");
   const el = document.createElement("div");
-  el.className = "cand-pin " + (c.go ? "go" : "cloudy");
-  const cloudTxt = c.cloud == null ? "cloud cover unknown" : `${Math.round(c.cloud)}% cloud`;
-  el.title = c.go ? `Candidate now · skies clear (${cloudTxt})`
-                  : `Rain + sun aligned, but cloudy · ${cloudTxt}`;
+  el.className = "cand-pin go";
+  const cloudTxt = c.cloud == null ? "sky unknown" : skyLabel(Math.round(c.cloud));
+  el.title = `Candidate now · ${cloudTxt.toLowerCase()}`;
   el.addEventListener("click", ev => { ev.stopPropagation(); trackCell(c.lat, c.lon); });
   wrap.appendChild(el);
-  c._el = el;                                        // keep ref so we can number it at the end
+  c._el = el;
   candMarkers.push(new maplibregl.Marker({ element: wrap, anchor: "center" })
     .setLngLat([c.lon, c.lat]).addTo(gridMap));
 }
@@ -1224,9 +1232,9 @@ function finalizeCandidates(top, cloudFails = 0){
   let rank = 0;
   for (const c of top){
     if (c.go && c._el){
-      const r = ++rank, cloudTxt = c.cloud == null ? "cloud cover unknown" : `${Math.round(c.cloud)}% cloud`;
+      const r = ++rank, cloudTxt = c.cloud == null ? "sky unknown" : skyLabel(Math.round(c.cloud));
       c._el.textContent = String(r);
-      c._el.title = `#${r} candidate now · skies clear (${cloudTxt})`;
+      c._el.title = `#${r} candidate now · ${cloudTxt.toLowerCase()}`;
     }
   }
   const go = rank, cloudy = top.length - go;
@@ -1236,9 +1244,8 @@ function finalizeCandidates(top, cloudFails = 0){
     $("#grid-meta").textContent = "Weather delayed — sky check incomplete";
   } else {
     $("#grid-meta").textContent = go
-      ? `${go} candidate${go === 1 ? "" : "s"} now · ${cloudy} rain+sun but cloudy`
-      : cloudy ? `${cloudy} rain+sun spot${cloudy === 1 ? "" : "s"} — all cloudy`
-               : "no bows nationwide right now";
+      ? `${go} candidate${go === 1 ? "" : "s"} now`
+      : "no bows nationwide right now";
   }
   markUpdated(); stampGrid();
 }
