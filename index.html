@@ -504,7 +504,11 @@ const ANTISOLAR_KM = 10;
    geometry means a bow is physically impossible right now. */
 const LIGHT_MIN = 120;                          // W/m² — sun meaningfully reaching the ground
 const CLOUD_CLEAR_MAX = 55;                     // sky cover % below which direct beam is likely present
-const bowPossible = e => e > 0.5 && e < 42;
+// Bows can linger ~10 min past sunset: atmospheric refraction keeps the sun optically up after it's
+// geometrically set, and our SunCalc elevation omits that ~0.8° lift — so treat the sun as "up
+// enough" down to 3° below the horizon (≈10 min after sunset) before it counts as night.
+const NIGHT_BELOW = -3;
+const bowPossible = e => e > NIGHT_BELOW && e < 42;
 const precipToInt = p => (p == null || p <= 0) ? 0 : Math.min(1, 0.5 + p / 2);  // forecast mm → 0..1 stand-in
 
 function verdictOf(elev, directRad, rainInt){
@@ -513,7 +517,7 @@ function verdictOf(elev, directRad, rainInt){
   const rain = (rainInt ?? 0) > 0;
   let key, tier, label;
   // rain in the anti-solar sky is the non-negotiable ingredient — no droplets, no bow, ever.
-  if (!geo){ key = "none"; tier = 0; label = (elev == null || elev <= 0.5) ? "It's night" : "Sun's too high"; }
+  if (!geo){ key = "none"; tier = 0; label = (elev == null || elev <= NIGHT_BELOW) ? "It's night" : "Sun's too high"; }
   else if (!rain){ key = "low"; tier = 1; label = "No rain opposite the sun"; }
   else if (sun){ key = "go"; tier = 3; label = "Go look now"; }
   else { key = "watch"; tier = 2; label = "Too cloudy"; }
@@ -862,7 +866,7 @@ function statusGlyph(v, elev){
   if (v.key === "go")    return "🌈";
   if (v.key === "watch") return "🌥️";
   if (v.key === "low")   return "☀️";                 // geometry ok, but no rain
-  return (elev == null || elev <= 0.5) ? "🌙" : "🌞";  // sun down / sun too high
+  return (elev == null || elev <= NIGHT_BELOW) ? "🌙" : "🌞";  // sun down / sun too high
 }
 function bowGlyph(){
   const cols = ["--sp1","--sp2","--sp3","--sp4","--sp5","--sp6","--sp7"];
@@ -893,7 +897,7 @@ function renderStation(data){
   const color = VCOLOR[v.key];
 
   const sentence = (() => {
-    if (!v.geo) return sun.elev <= 0.5
+    if (!v.geo) return sun.elev <= NIGHT_BELOW
       ? "It's night — rainbows need daylight."
       : sun.elev < 45
         ? `Sun at ${sun.elev.toFixed(0)}°, just above the ~42° limit for bows.`
@@ -904,7 +908,9 @@ function renderStation(data){
     return `No direct sun and no rain to the ${dir}.`;
   })();
 
-  const elevTxt = sun.elev <= 0.5 ? "below horizon" : sun.elev.toFixed(0) + "° up";
+  const elevTxt = sun.elev > 0.5 ? sun.elev.toFixed(0) + "° up"
+                : sun.elev > NIGHT_BELOW ? "just at the horizon"
+                : "below horizon";
   const elevNote = !v.geo
     ? (sun.elev > 0.5
         ? (sun.elev < 45 ? "right at the upper limit — lower is better" : "needs to drop under 42°")
@@ -916,7 +922,7 @@ function renderStation(data){
                : (factors.directRad != null ? Math.round(factors.directRad) + " W/m²" : "—");
   // "Sun is out" is derived from cloud cover alone, so on a clear night it would read ✓.
   // Below the horizon there's no beam to refract, so relabel the row "It's night".
-  const isNight = sun.elev <= 0.5;
+  const isNight = sun.elev <= NIGHT_BELOW;
   const sunRowOk   = isNight ? false : v.sun;
   const sunRowName = isNight ? "It's night" : "Sun is out";
   const sunRowVal  = isNight ? "sun below horizon" : radTxt;
@@ -994,7 +1000,7 @@ function updateMap(data){
   ensureMap();
   if (!mapLoaded) { pendingMap = data; return; }
   const st = data.st;
-  const sunUp = data.sun.elev > 0.5;
+  const sunUp = data.sun.elev > NIGHT_BELOW;
   const end = offset(st.lat, st.lon, 40, data.antiBearing);
 
   map.getSource("ray").setData(sunUp ? {
