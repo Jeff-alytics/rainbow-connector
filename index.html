@@ -371,13 +371,13 @@
       <button type="submit" id="addbtn">Watch it</button>
     </form>
     <div class="chips" id="chips"></div>
-    <span class="hint" id="barhint">Track up to 3 spots — drop in a ZIP to begin.</span>
+    <span class="hint" id="barhint">Track up to 3 spots — enter a ZIP to begin.</span>
   </div>
 
   <div class="console" id="console">
     <div class="empty">
-      <div class="big">Nothing on the horizon — yet</div>
-      <div>Enter a US ZIP code above and we'll start reading the sky for you.</div>
+      <div class="big">No ZIP tracked yet</div>
+      <div>Enter a US ZIP code above to check rainbow conditions.</div>
     </div>
   </div>
 
@@ -387,9 +387,9 @@
         <span class="tag">Look This Way</span>
         <span class="meta" id="map-meta">—</span>
       </div>
-      <div class="map-empty" id="map-empty">The map will point you toward the bow once you're tracking a spot.</div>
+      <div class="map-empty" id="map-empty">Track a ZIP to see which way to look.</div>
       <div id="map" class="hidden"></div>
-      <div class="map-foot" id="map-foot">Add a ZIP or tap a glowing cell to begin your watch.</div>
+      <div class="map-foot" id="map-foot">Add a ZIP, or tap a marked spot on the map.</div>
     </section>
     <section class="card board-card" id="boardpanel">
       <div class="card-head">
@@ -874,14 +874,14 @@ function renderStation(data){
 
   const sentence = (() => {
     if (!v.geo) return sun.elev <= 0.5
-      ? "The sun has clocked off for the day. Rainbows need daylight — we'll keep watch for the next dawn."
+      ? "Sun below the horizon — rainbows need daylight."
       : sun.elev < 45
-        ? `The sun's at ${sun.elev.toFixed(0)}° — right at the edge of bow range. A little lower (under 42°) and the geometry opens up. Keep watching.`
-        : `The sun sits high, at ${sun.elev.toFixed(0)}°. Bows usually only show up once it drops below about 42° — keep checking toward golden hour.`;
-    if (v.key === "go")    return `Every ingredient has lined up — low sun, a clear beam, and rain to your ${dir}. Turn ${dir} and look up.`;
-    if (!v.sun && v.rain)  return `Rain's out there to your ${dir}, but the sun needs to break through the cloud before it can paint a bow.`;
-    if (v.sun && !v.rain)  return `Sun's low and bright, but the skies to your ${dir} are dry. Nothing out there to catch the light yet.`;
-    return `The geometry's right, but the sun's hidden and there's no rain to your ${dir}. Not happening this moment.`;
+        ? `Sun at ${sun.elev.toFixed(0)}°, just above the ~42° limit for bows.`
+        : `Sun at ${sun.elev.toFixed(0)}° — too high; bows form below ~42°.`;
+    if (v.key === "go")    return `Sun low, skies clear, rain to the ${dir}. Look ${dir}.`;
+    if (!v.sun && v.rain)  return `Rain to the ${dir}, but too much cloud for direct sun.`;
+    if (v.sun && !v.rain)  return `Sun low and clear, but no rain to the ${dir}.`;
+    return `No direct sun and no rain to the ${dir}.`;
   })();
 
   const elevTxt = sun.elev <= 0.5 ? "below horizon" : sun.elev.toFixed(0) + "° up";
@@ -1332,7 +1332,7 @@ function renderChips(){
 }
 async function refreshActive(){
   if (!activeZip) {
-    consoleEl.innerHTML = `<div class="empty"><div class="big">Nothing on the horizon — yet</div><div>Enter a US ZIP code above, or tap a glowing cell on the rainbow map.</div></div>`;
+    consoleEl.innerHTML = `<div class="empty"><div class="big">No ZIP tracked yet</div><div>Enter a US ZIP code above, or tap a marked spot on the rainbow map.</div></div>`;
     $("#map").classList.add("hidden");
     $("#map-empty").style.display = "";
     $("#map-meta").textContent = "—";
@@ -1340,7 +1340,7 @@ async function refreshActive(){
   }
   const st = stations.find(s => s.zip === activeZip);
   if (!st) return;
-  consoleEl.innerHTML = `<div class="empty"><div class="loading">Reading the sky over ${st.name} …</div></div>`;
+  consoleEl.innerHTML = `<div class="empty"><div class="loading">Checking conditions over ${st.name}…</div></div>`;
   try {
     const data = await computeStation(st);
     cache[st.zip] = data;
@@ -1357,7 +1357,7 @@ async function refreshActive(){
       updateMap(last);
       const t = last.fetchedAt ? new Date(last.fetchedAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : null;
       consoleEl.insertAdjacentHTML("afterbegin",
-        `<div class="stale-note">Couldn't refresh just now — showing the last reading${t ? " from " + t : ""}.</div>`);
+        `<div class="stale-note">Couldn't refresh — showing the last reading${t ? " from " + t : ""}.</div>`);
     } else {
       consoleEl.innerHTML = `<div class="empty"><div class="big">Couldn't reach the weather service</div><div>${e.message}. Try again in a moment.</div></div>`;
     }
