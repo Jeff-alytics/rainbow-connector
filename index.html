@@ -416,7 +416,7 @@
         <div class="map-loading" id="usmap-loading"><span class="ml-dot"></span>Loading radar…</div>
       </div>
       <div class="grid-foot" id="grid-foot">
-        <span class="gl"><i class="gdot go"></i>Likely now</span>
+        <span class="gl"><i class="gdot go"></i>Candidates now</span>
         <span class="gl"><i class="gdot watch"></i>Rain + sun, but cloudy</span>
         <span class="gl-tip">Tap a pin to track</span>
         <span class="gl-note" id="grid-stamp">Auto-updates every 5 min</span>
@@ -1165,7 +1165,7 @@ async function paintGridFromRadar(rv){
   // Pass 2 — verify clouds on the most promising spots, using the SAME source as the live
   // card (NWS → Open-Meteo). Green here therefore agrees with what a click would show.
   const top = cands.slice(0, TOP_N);
-  $("#grid-meta").textContent = `checking ${top.length} likely spots…`;
+  $("#grid-meta").textContent = `checking ${top.length} candidate spots…`;
   $("#usmap-loading").classList.add("gone");
   clearCandMarkers();
   // Drop each pin the instant its own cloud check returns (concurrency 6), so the
@@ -1191,7 +1191,7 @@ function addCandMarker(c){
   const el = document.createElement("div");
   el.className = "cand-pin " + (c.go ? "go" : "cloudy");
   const cloudTxt = c.cloud == null ? "cloud cover unknown" : `${Math.round(c.cloud)}% cloud`;
-  el.title = c.go ? `Likely now · skies clear (${cloudTxt})`
+  el.title = c.go ? `Candidate now · skies clear (${cloudTxt})`
                   : `Rain + sun aligned, but cloudy · ${cloudTxt}`;
   el.addEventListener("click", ev => { ev.stopPropagation(); trackCell(c.lat, c.lon); });
   wrap.appendChild(el);
@@ -1206,7 +1206,7 @@ function finalizeCandidates(top, cloudFails = 0){
     if (c.go && c._el){
       const r = ++rank, cloudTxt = c.cloud == null ? "cloud cover unknown" : `${Math.round(c.cloud)}% cloud`;
       c._el.textContent = String(r);
-      c._el.title = `#${r} likely now · skies clear (${cloudTxt})`;
+      c._el.title = `#${r} candidate now · skies clear (${cloudTxt})`;
     }
   }
   const go = rank, cloudy = top.length - go;
@@ -1216,7 +1216,7 @@ function finalizeCandidates(top, cloudFails = 0){
     $("#grid-meta").textContent = "Weather delayed — sky check incomplete";
   } else {
     $("#grid-meta").textContent = go
-      ? `${go} likely now · ${cloudy} rain+sun but cloudy`
+      ? `${go} candidate${go === 1 ? "" : "s"} now · ${cloudy} rain+sun but cloudy`
       : cloudy ? `${cloudy} rain+sun spot${cloudy === 1 ? "" : "s"} — all cloudy`
                : "no bows nationwide right now";
   }
