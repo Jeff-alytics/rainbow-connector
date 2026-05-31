@@ -913,6 +913,15 @@ function renderStation(data){
   // if cloud cover is somehow missing.
   const radTxt = factors.cloudCover != null ? Math.round(factors.cloudCover) + "% sky cover"
                : (factors.directRad != null ? Math.round(factors.directRad) + " W/m²" : "—");
+  // "Sun is out" is derived from cloud cover alone, so on a clear night it would read ✓.
+  // Below the horizon there's no beam to refract, so relabel the row "It's night".
+  const isNight = sun.elev <= 0.5;
+  const sunRowOk   = isNight ? false : v.sun;
+  const sunRowName = isNight ? "It's night" : "Sun is out";
+  const sunRowVal  = isNight ? "sun below horizon" : radTxt;
+  const sunRowNote = isNight ? "no sunlight to refract"
+                   : v.sun ? "skies clear enough for direct sun"
+                           : "too cloudy — over " + CLOUD_CLEAR_MAX + "% sky cover";
   const rainTxt = factors.rainInt > 0 ? `${rainWord(factors.rainInt)}, ${dir}` : `none, ${dir}`;
   const rainNote = factors.rainSource === "none" ? "rain data unavailable"
                  : factors.rainSource === "forecast" ? "from forecast precip"
@@ -937,7 +946,7 @@ function renderStation(data){
         </div>
         <div class="checklist">
           ${checkRow(v.geo, "Sun low enough", elevTxt, elevNote)}
-          ${checkRow(v.sun, "Sun is out", radTxt, v.sun ? "skies clear enough for direct sun" : "too cloudy — over " + CLOUD_CLEAR_MAX + "% sky cover")}
+          ${checkRow(sunRowOk, sunRowName, sunRowVal, sunRowNote)}
           ${checkRow(v.rain, "Rain opposite the sun", rainTxt, rainNote)}
         </div>
       </div>
