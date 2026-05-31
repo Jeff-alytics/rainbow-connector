@@ -1436,10 +1436,29 @@ function applyTheme(t){
 
 /* boot */
 load(); renderChips(); refreshActive(); refreshAllChips();
-loadGrid();
+
+// Lazy-load the nationwide map: its radar-tile prefetch + ~20 live NWS cloud calls are deferred
+// until the panel scrolls into view, so visitors who just check their ZIP never pay that cost.
+// Once it has loaded the first time, the 5-min refresh interval takes over. On a tall screen the
+// panel may already be visible, in which case it loads right away — which is correct.
+(function startGridWhenVisible(){
+  const panel = $("#boardpanel");
+  let started = false;
+  const begin = () => {
+    if (started) return;
+    started = true;
+    loadGrid();
+    if (!SIM_INSTANT) setInterval(loadGrid, REFRESH_MIN * 60 * 1000);
+  };
+  if (!panel || !("IntersectionObserver" in window)){ begin(); return; }
+  const io = new IntersectionObserver(entries => {
+    if (entries.some(e => e.isIntersecting)){ io.disconnect(); begin(); }
+  }, { rootMargin: "200px" });   // kick off a touch before it's fully on screen
+  io.observe(panel);
+})();
+
 if (!SIM_INSTANT){
   setInterval(refreshActive, REFRESH_MIN * 60 * 1000);
-  setInterval(loadGrid, REFRESH_MIN * 60 * 1000);
 }
 </script>
 </body>
