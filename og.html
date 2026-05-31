@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  .card {
+    position: relative; width: 1200px; height: 630px;
+    background: linear-gradient(to bottom, #bfe3ff 0%, #ddf1ff 44%, #eaf7ff 100%);
+    font-family: "Nunito", sans-serif; overflow: hidden;
+  }
+  /* soft sun glow upper-left */
+  .glow { position: absolute; top: -170px; left: -130px; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,224,148,.8), rgba(255,224,148,0) 64%); }
+
+  /* main rainbow — kept to the top third so text sits cleanly below it */
+  .rainbow { position: absolute; top: 26px; left: 50%; transform: translateX(-50%); }
+
+  /* clouds tucked at the rainbow's feet */
+  .cloud { position: absolute; fill: #ffffff; filter: drop-shadow(0 9px 16px rgba(60,110,170,.16)); }
+  .c-left  { left: 268px;  top: 214px; width: 196px; }
+  .c-right { right: 250px; top: 202px; width: 220px; }
+  .c-bot   { left: 50%; transform: translateX(-50%); bottom: -30px; width: 320px; opacity: .85; }
+
+  .stack { position: absolute; left: 0; right: 0; bottom: 104px; text-align: center; padding: 0 60px; }
+  .kicker { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 21px;
+    letter-spacing: .36em; text-transform: uppercase; color: #5184b3; margin-bottom: 20px; }
+  h1 { font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 80px; line-height: .98;
+    letter-spacing: -.02em; color: #1f3a52; }
+  h1 .rb { background-image: linear-gradient(95deg, #f4453a 4%, #ff9f1c 24%, #ffce2e 42%, #4cb944 60%, #3a86ff 80%, #8b5cf6 98%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .tag { margin-top: 24px; font-family: "Nunito", sans-serif; font-weight: 700; font-size: 32px;
+    color: #2f5071; }
+  .domain { margin-top: 28px; font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 24px;
+    color: #6b91b6; letter-spacing: .02em; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="glow"></div>
+
+    <!-- main rainbow (arc base ~ y=276 absolute) -->
+    <svg class="rainbow" width="640" height="280" viewBox="0 0 640 280" aria-hidden="true">
+      <g fill="none" stroke-linecap="round">
+        <path d="M58 256 A262 262 0 0 1 582 256" stroke="#f4453a" stroke-width="26"/>
+        <path d="M88 256 A232 232 0 0 1 552 256" stroke="#ff9f1c" stroke-width="26"/>
+        <path d="M118 256 A202 202 0 0 1 522 256" stroke="#ffce2e" stroke-width="26"/>
+        <path d="M148 256 A172 172 0 0 1 492 256" stroke="#4cb944" stroke-width="26"/>
+        <path d="M178 256 A142 142 0 0 1 462 256" stroke="#3a86ff" stroke-width="26"/>
+        <path d="M208 256 A112 112 0 0 1 432 256" stroke="#8b5cf6" stroke-width="26"/>
+      </g>
+    </svg>
+
+    <!-- clouds at the rainbow's feet + a soft one peeking from the bottom -->
+    <svg class="cloud c-left" viewBox="0 0 120 70"><circle cx="38" cy="42" r="22"/><circle cx="64" cy="32" r="26"/><circle cx="90" cy="44" r="20"/><rect x="34" y="44" width="60" height="22" rx="11"/></svg>
+    <svg class="cloud c-right" viewBox="0 0 120 70"><circle cx="38" cy="42" r="22"/><circle cx="64" cy="32" r="26"/><circle cx="90" cy="44" r="20"/><rect x="34" y="44" width="60" height="22" rx="11"/></svg>
+    <svg class="cloud c-bot" viewBox="0 0 120 70"><circle cx="38" cy="42" r="22"/><circle cx="64" cy="32" r="26"/><circle cx="90" cy="44" r="20"/><rect x="34" y="44" width="60" height="22" rx="11"/></svg>
+
+    <div class="stack">
+      <h1>The Rainbow <span class="rb">Connector</span></h1>
+      <div class="domain">therainbowconnector.com</div>
+    </div>
+  </div>
+</body>
+</html>
