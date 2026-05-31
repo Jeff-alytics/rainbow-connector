@@ -231,6 +231,7 @@
     font-size: 14px; font-weight: 800; line-height: 1; }
   .check.yes .cmark { background: color-mix(in oklab, var(--good) 20%, transparent); color: var(--good); }
   .check.no .cmark  { background: var(--secondary); color: var(--faint-fg); }
+  .check.glyph .cmark { background: none; font-size: 18px; }
   .check .cbody { display: flex; flex-direction: column; }
   .check .cname { font-family: "Fredoka", sans-serif; font-size: 15px; font-weight: 600; color: var(--foreground); }
   .check.no .cname { color: var(--muted-fg); font-weight: 500; }
@@ -512,7 +513,7 @@ function verdictOf(elev, directRad, rainInt){
   const rain = (rainInt ?? 0) > 0;
   let key, tier, label;
   // rain in the anti-solar sky is the non-negotiable ingredient — no droplets, no bow, ever.
-  if (!geo){ key = "none"; tier = 0; label = (elev == null || elev <= 0.5) ? "Sun's down" : "Sun's too high"; }
+  if (!geo){ key = "none"; tier = 0; label = (elev == null || elev <= 0.5) ? "It's night" : "Sun's too high"; }
   else if (!rain){ key = "low"; tier = 1; label = "No rain opposite the sun"; }
   else if (sun){ key = "go"; tier = 3; label = "Go look now"; }
   else { key = "watch"; tier = 2; label = "Too cloudy"; }
@@ -879,9 +880,9 @@ function rainbowArcSVG(){
   return `<svg class="bow draw" viewBox="0 0 320 92" aria-hidden="true">${p}</svg>`;
 }
 function rainWord(i){ return i >= 1 ? "heavy" : i >= 0.85 ? "moderate" : i > 0 ? "light" : "none"; }
-function checkRow(ok, name, val, note){
-  return `<div class="check ${ok ? "yes" : "no"}">
-    <span class="cmark">${ok ? "✓" : "✕"}</span>
+function checkRow(ok, name, val, note, glyph){
+  return `<div class="check ${ok ? "yes" : "no"}${glyph ? " glyph" : ""}">
+    <span class="cmark">${glyph || (ok ? "✓" : "✕")}</span>
     <span class="cbody"><span class="cname">${name}</span><span class="cval">${val}</span><span class="cnote">${note}</span></span></div>`;
 }
 
@@ -893,7 +894,7 @@ function renderStation(data){
 
   const sentence = (() => {
     if (!v.geo) return sun.elev <= 0.5
-      ? "Sun below the horizon — rainbows need daylight."
+      ? "It's night — rainbows need daylight."
       : sun.elev < 45
         ? `Sun at ${sun.elev.toFixed(0)}°, just above the ~42° limit for bows.`
         : `Sun at ${sun.elev.toFixed(0)}° — too high; bows form below ~42°.`;
@@ -946,7 +947,7 @@ function renderStation(data){
         </div>
         <div class="checklist">
           ${checkRow(v.geo, "Sun low enough", elevTxt, elevNote)}
-          ${checkRow(sunRowOk, sunRowName, sunRowVal, sunRowNote)}
+          ${checkRow(sunRowOk, sunRowName, sunRowVal, sunRowNote, isNight ? "🌙" : "")}
           ${checkRow(v.rain, "Rain opposite the sun", rainTxt, rainNote)}
         </div>
       </div>
@@ -1020,7 +1021,7 @@ function updateMap(data){
   }
 
   map.easeTo({ center: [st.lon, st.lat], zoom: 8.8, duration: 800 });
-  $("#map-meta").textContent = sunUp ? `Face ${compassLabel(data.antiBearing)} · ${Math.round(data.antiBearing)}° from N` : "Sun below horizon";
+  $("#map-meta").textContent = sunUp ? `Face ${compassLabel(data.antiBearing)} · ${Math.round(data.antiBearing)}° from N` : "🌙 It's night";
 }
 
 /* ============================================================
