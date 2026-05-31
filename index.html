@@ -639,6 +639,19 @@ async function fetchWeatherOM(lat, lon){
     + `&hourly=precipitation,direct_radiation,cloud_cover&forecast_days=1&timezone=auto`;
   return fetchJSON(url);
 }
+// lightweight Open-Meteo cloud-only fetch (satellite + model blend, more real-time than NWS forecast)
+// Cached by ~0.1° cell (≈11 km) with 3-min TTL so a grid pin and subsequent card click agree.
+const _omCloudCache = new Map();
+async function cloudOM(lat, lon){
+  const key = lat.toFixed(1) + "," + lon.toFixed(1);
+  const cached = _omCloudCache.get(key);
+  if (cached && Date.now() - cached.ts < 3 * 60000) return cached.value;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=cloud_cover`;
+  const j = await fetchJSON(url);
+  const v = j.current.cloud_cover;
+  _omCloudCache.set(key, { value: v, ts: Date.now() });
+  return v;
+}
 
 /* ---------- NWS (api.weather.gov): CORS-friendly, CONUS, no per-IP daily cap ----------
    The free Open-Meteo tier has a daily request cap; the National Weather Service has none
@@ -803,10 +816,16 @@ async function computeStation(st){
     hereW = await weatherPoint(st.lat, st.lon);
   }
 
-  // Cloud: NWS gridpoint sky cover — available at every coordinate (~2.5 km grid), same source
-  // the national map uses so the card and map always agree.
+  // Cloud: Open-Meteo satellite+model blend (same source as the map's cloud check).
+  // Falls back to NWS gridpoint sky cover if Open-Meteo is unavailable.
   let cloudCover = hereW.current.cloud_cover;
   let directRad = hereW.current.direct_radiation;
+  if (!SIM_INSTANT){
+    try {
+      const om = await cloudOM(st.lat, st.lon);
+      if (om != null){ cloudCover = om; directRad = om < CLOUD_CLEAR_MAX ? 999 : 0; }
+    } catch (e){ /* Open-Meteo unavailable — keep NWS forecast sky cover */ }
+  }
   let antiPrecip = null;
 
   // RAIN, right now: live radar in the anti-solar direction (forecast precip smooths out the
@@ -1053,7 +1072,7 @@ function updateMap(data){
    ============================================================ */
 let gridMap = null, gridMapLoaded = false;
 let candMarkers = [];              // HTML markers for the verified candidates
-const TOP_N = 80;                  // how many ripe spots get a live cloud check each pass
+const TOP_N = 20;                  // how many ripe spots get an Open-Meteo cloud check each pass
 const REFRESH_MIN = 5;             // both the card and the national map auto-refresh this often
 const CONUS = { latMin: 24.5, latMax: 49.4, lonMin: -124.8, lonMax: -66.9 };
 
@@ -1205,8 +1224,8 @@ async function paintGridFromRadar(rv){
   // map fills in progressively instead of staying empty until all checks finish.
   let cloudFails = 0;
   await pool(top, 6, async c => {
-    // NWS gridpoint sky cover — same source as the card, so they always agree
-    try { c.cloud = (await weatherPoint(c.lat, c.lon)).current.cloud_cover; } catch { c.cloud = null; }
+    // Open-Meteo satellite+model cloud cover — same source as the card
+    try { c.cloud = await cloudOM(c.lat, c.lon); } catch { c.cloud = null; }
     if (c.cloud == null) cloudFails++;
     c.go = c.cloud != null && c.cloud < CLOUD_CLEAR_MAX;
     addCandMarker(c);
