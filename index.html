@@ -816,16 +816,16 @@ async function computeStation(st){
     hereW = await weatherPoint(st.lat, st.lon);
   }
 
-  // Cloud: Open-Meteo satellite+model blend (same source as the map's cloud check).
-  // Falls back to NWS gridpoint sky cover if Open-Meteo is unavailable.
+  // Cloud: take the HIGHER of NWS gridpoint forecast and Open-Meteo satellite+model blend.
+  // Either source alone can underreport — using the max avoids false "clear" readings.
   let cloudCover = hereW.current.cloud_cover;
-  let directRad = hereW.current.direct_radiation;
   if (!SIM_INSTANT){
     try {
       const om = await cloudOM(st.lat, st.lon);
-      if (om != null){ cloudCover = om; directRad = om < CLOUD_CLEAR_MAX ? 999 : 0; }
+      if (om != null) cloudCover = Math.max(cloudCover ?? 0, om);
     } catch (e){ /* Open-Meteo unavailable — keep NWS forecast sky cover */ }
   }
+  let directRad = (cloudCover != null && cloudCover < CLOUD_CLEAR_MAX) ? 999 : 0;
   let antiPrecip = null;
 
   // RAIN, right now: live radar in the anti-solar direction (forecast precip smooths out the
@@ -1151,9 +1151,9 @@ function onLand(lat, lon){
   }
   return false;
 }
-// sync radar fan read (tiles must be prefetched into rv.tiles first)
-function gridRainSync(rv, lat, lon, antiBearing){
-  const z = 7, bearings = [antiBearing-22, antiBearing-11, antiBearing, antiBearing+11, antiBearing+22], dists = [4, 8, 12, 16, 20];
+// radar fan read — uses prefetched z6 tiles (84 tiles, gentle on RainViewer CDN)
+function gridRain(rv, lat, lon, antiBearing){
+  const z = 6, bearings = [antiBearing-22, antiBearing-11, antiBearing, antiBearing+11, antiBearing+22], dists = [4, 8, 12, 16, 20];
   let mx = 0;
   for (const d of dists) for (const bb of bearings){
     const o = offset(lat, lon, d, ((bb % 360) + 360) % 360);
@@ -1163,16 +1163,16 @@ function gridRainSync(rv, lat, lon, antiBearing){
   }
   return mx > 0 ? Math.max(0.5, mx) : 0;
 }
-// fetch every z7 tile covering CONUS (+margin) once, in parallel
+// fetch every z6 tile covering CONUS (+margin) — only 84 tiles, gentle on RainViewer CDN
 async function prefetchRadarTiles(rv){
-  const z = 7;
+  const z = 6;
   const tl = lonLatToPixel(CONUS.latMax + 1, CONUS.lonMin - 1, z);
   const br = lonLatToPixel(CONUS.latMin - 1, CONUS.lonMax + 1, z);
-  const jobs = [];
+  const tiles = [];
   for (let xt = tl.xt; xt <= br.xt; xt++)
     for (let yt = tl.yt; yt <= br.yt; yt++)
-      jobs.push(radarTile(rv, z, xt, yt).catch(() => null));
-  await Promise.all(jobs);
+      tiles.push({ xt, yt });
+  await pool(tiles, 12, t => radarTile(rv, z, t.xt, t.yt).catch(() => null));
 }
 async function computeAndPaintGrid(){
   if (!gridMapLoaded) return;
@@ -1183,8 +1183,6 @@ async function computeAndPaintGrid(){
   try {
     await paintGridFromRadar(rv);
   } catch (e) {
-    // an unexpected blip in the mesh/cloud passes shouldn't blank the panel — leave the last
-    // good pins up and flag the hiccup; the next 5-minute cycle (or a manual reload) retries.
     $("#grid-meta").textContent = "Map update failed — retrying soon";
     $("#usmap-loading").classList.add("gone");
   }
@@ -1192,21 +1190,19 @@ async function computeAndPaintGrid(){
 async function paintGridFromRadar(rv){
   await ensureLandMask();                            // so offshore mesh points can be dropped
 
-  // Pass 1 — find every "ripe" spot: on land AND sun geometry good AND rain in the anti-solar sky.
+  // Pass 1 — find every "ripe" spot: on land, sun geometry good, rain in the anti-solar sky.
   const now = new Date(), cands = [];
   for (const [lat, lon] of buildGridMesh()){
-    if (!onLand(lat, lon)) continue;                 // observer must be on land, not out at sea
+    if (!onLand(lat, lon)) continue;
     const sun = solarReadout(now, lat, lon);
     if (!bowPossible(sun.elev)) continue;
     const antiBearing = (sun.bearing + 180) % 360;
-    const rain = gridRainSync(rv, lat, lon, antiBearing);
-    if (rain <= 0) continue;                         // no rain opposite the sun → not ripe
-    // rank: heavier rain wins; a lower sun (bigger, higher arc) breaks ties
+    const rain = gridRain(rv, lat, lon, antiBearing);
+    if (rain <= 0) continue;
     const score = rain + (42 - sun.elev) / 100;
     cands.push({ lat, lon, rain, elev: sun.elev, score });
   }
   cands.sort((a, b) => b.score - a.score);
-
   if (!cands.length){
     clearCandMarkers();
     $("#grid-meta").textContent = "no bows nationwide right now";
