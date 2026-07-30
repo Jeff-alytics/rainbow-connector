@@ -177,9 +177,9 @@ test("review queue provides a refracted bow-top search height", () => {
 test("review page explains low-sun red bows and expected bow height", async () => {
   const page = await readFile(new URL("../review.html", import.meta.url), "utf8");
   assert.match(page, /Expected bow top:/);
-  assert.match(page, /one closed fist/);
-  assert.match(page, /held at arm's length/);
-  assert.match(page, /of the way from the horizon to directly overhead/);
+  assert.match(page, /Height guide showing the predicted bow top/);
+  assert.match(page, /camera tilt and lens shape/);
+  assert.match(page, /\[10,20,30,40\]/);
   assert.match(page, /faint red or orange arc/);
 });
 

@@ -15,7 +15,7 @@
     button{background:#263249;color:var(--text);padding:11px 16px;cursor:pointer;font-weight:650}button:hover{filter:brightness(1.13)}button:disabled{opacity:.5;cursor:wait}
     .top{display:flex;align-items:center;justify-content:space-between;gap:16px}.review-refresh{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:10px}.small{font-size:13px;color:var(--muted)}
     .strip{display:flex;gap:12px;overflow-x:auto;padding:4px 0 14px}.frame{flex:0 0 min(720px,86vw);margin:0}.frame img{display:block;width:100%;height:min(470px,56vw);object-fit:contain;background:#05070b;border-radius:12px}.frame figcaption{color:var(--muted);font-size:12px;margin-top:6px}.frame-picker{display:flex;align-items:center;gap:8px;margin-top:8px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;color:var(--text);cursor:pointer}.frame-picker:has(input:checked){border-color:var(--green);background:#173625}.frame-picker input{min-width:0;margin:0;accent-color:var(--green)}
-    .bow-guidance{margin:12px 0;padding:10px 12px;border:1px solid #66542d;border-radius:10px;background:#2a2418;color:#f7d98c;line-height:1.45}.bow-guidance strong{color:#fff1c5}
+    .bow-guidance{margin:12px 0;padding:10px 12px;border:1px solid #66542d;border-radius:10px;background:#2a2418;color:#f7d98c;line-height:1.45}.bow-guidance strong{color:#fff1c5}.bow-height-layout{display:grid;grid-template-columns:minmax(210px,1fr) 310px;align-items:center;gap:14px}.bow-height-chart{display:block;width:100%;max-width:310px;height:auto}.bow-height-note{display:block;margin-top:7px;color:#d9c99c;font-size:12px}
     .grades{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:10px;margin-top:15px}.sunlight-grade{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}.sunlight-grade button{padding:8px 11px;font-size:13px}.sunlight-grade button.selected{outline:2px solid var(--blue);background:#344d7a}.yes{background:#17683d}.no{background:#7f2635}.possible{background:#765415}.secondary{background:#374055}
     .reveal{border-left:4px solid var(--green);padding:12px 15px;background:#131a25;margin-top:16px;color:var(--muted);line-height:1.55}.status{min-height:24px;color:var(--amber)}
     .results-copy{margin:4px 0 16px}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
@@ -25,7 +25,7 @@
     .grade.rainbow{background:#17683d}.grade.no_rainbow{background:#7f2635}.grade.possible{background:#765415}.grade.other{background:#374055}
     .strength{font-weight:700}.strength.strong{color:var(--green)}.strength.usable{color:var(--amber)}.strength.limited{color:var(--red)}
     .result-note{display:block;max-width:260px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px;margin-top:4px}
-    @media(max-width:760px){.grades{grid-template-columns:1fr 1fr}.grades button:last-child{grid-column:1/-1}.top{align-items:flex-start;flex-direction:column}}
+    @media(max-width:760px){.grades{grid-template-columns:1fr 1fr}.grades button:last-child{grid-column:1/-1}.top{align-items:flex-start;flex-direction:column}.bow-height-layout{grid-template-columns:1fr}.bow-height-chart{max-width:360px}}
   </style>
 </head>
 <body><main>
@@ -102,19 +102,25 @@ function showWorkspace(){
   $("#workspace").classList.remove("hidden");
 }
 
-function bowHeightLandmark(degrees){
-  const height = Number(degrees);
-  if (!Number.isFinite(height) || height < 0) return "";
-  const skyFraction = Math.max(1, Math.round(height / 90 * 100));
-  let handGuide;
-  if (height < 2.5) handGuide = "about one finger-width";
-  else if (height < 7.5) handGuide = "about three fingers";
-  else {
-    const fists = Math.max(1, Math.round(height / 5) / 2);
-    const fistLabel = fists === 1 ? "one closed fist" : `${fists} stacked fists`;
-    handGuide = `about ${fistLabel}`;
-  }
-  return `${handGuide} held at arm's length, starting at the true horizon (roughly ${skyFraction}% of the way from the horizon to directly overhead)`;
+function bowHeightChart(degrees){
+  const height = Math.max(0, Math.min(45, Number(degrees)));
+  const y = 132 - height / 45 * 108;
+  const ticks = [10,20,30,40].map(value => {
+    const tickY = 132 - value / 45 * 108;
+    return `<line x1="42" y1="${tickY}" x2="288" y2="${tickY}" stroke="#aec5df" stroke-opacity=".38" stroke-dasharray="4 5"/><text x="35" y="${tickY + 4}" text-anchor="end" fill="#d8e5f2" font-size="11">${value}°</text>`;
+  }).join("");
+  const labelY = Math.max(16, y - 7);
+  return `<svg class="bow-height-chart" viewBox="0 0 300 150" role="img" aria-label="Height guide showing the predicted bow top at ${height.toFixed(1)} degrees above the horizon">
+    <defs><linearGradient id="bow-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17345d"/><stop offset="1" stop-color="#7395b0"/></linearGradient></defs>
+    <rect x="42" y="12" width="246" height="120" rx="8" fill="url(#bow-sky)"/>
+    ${ticks}
+    <line x1="42" y1="132" x2="288" y2="132" stroke="#e6d8b8" stroke-width="3"/>
+    <text x="35" y="136" text-anchor="end" fill="#fff1c5" font-size="11">0°</text>
+    <text x="286" y="146" text-anchor="end" fill="#fff1c5" font-size="11">horizon</text>
+    <line x1="42" y1="${y}" x2="288" y2="${y}" stroke="#ffd45c" stroke-width="3" stroke-dasharray="8 5"/>
+    <circle cx="260" cy="${y}" r="5" fill="#ffd45c"/>
+    <text x="282" y="${labelY}" text-anchor="end" fill="#fff4bf" font-size="12" font-weight="700">predicted top ${height.toFixed(1)}°</text>
+  </svg>`;
 }
 
 function render(){
@@ -138,14 +144,13 @@ function render(){
   $("#reveal").classList.add("hidden");
   const bowGuidance = $("#bow-guidance");
   if (Number.isFinite(current.expectedBowTopDeg)) {
-    const guidance = ['<strong>Expected bow top:</strong> ' + bowHeightLandmark(current.expectedBowTopDeg)
-      + ' <small>(' + current.expectedBowTopDeg.toFixed(1) + '° above the horizon)</small>.'];
+    const guidance = ['<strong>Expected bow top:</strong> about ' + current.expectedBowTopDeg.toFixed(1) + '° above the horizon.'];
     if (Number.isFinite(current.apparentSunElevationDeg) && current.apparentSunElevationDeg < 5) {
       guidance.push("The sun was extremely low, so look for a faint red or orange arc; a full spectrum may not be visible.");
     } else if (current.expectedBowTopDeg <= 15) {
       guidance.push("Any bow should remain low in the sky and may be partly hidden by terrain or trees.");
     }
-    bowGuidance.innerHTML = guidance.join(" ");
+    bowGuidance.innerHTML = `<div class="bow-height-layout"><div>${guidance.join(" ")}<span class="bow-height-note">Height guide only — camera tilt and lens shape can change where this falls within an image.</span></div>${bowHeightChart(current.expectedBowTopDeg)}</div>`;
     bowGuidance.classList.remove("hidden");
   } else {
     bowGuidance.textContent = "";
