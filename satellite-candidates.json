@@ -1,0 +1,3175 @@
+{
+  "cadenceMinutes": 5,
+  "candidateGeneratedAt": "2026-06-13T22:34:36.074Z",
+  "candidates": [
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 284,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 55,
+        "directRadiationWm2": 114,
+        "observerRainIntensity": 0,
+        "rainIntensity": 1,
+        "rainPoint": {
+          "bearing": 268,
+          "distanceKm": 28,
+          "lat": 31.9521,
+          "lon": -81.3913
+        },
+        "rainPointCloudCoverPct": 100,
+        "rainPointDirectRadiationWm2": 9,
+        "rainbowArcDeg": 19.8,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 22,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 154.94430541992188 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 154.94430541992188,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.498,
+        "sunElevationDeg": 22.2,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": false
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-1",
+      "label": "Savannah, GA",
+      "lat": 31.9595,
+      "lon": -81.0941,
+      "nearestZip": {
+        "distanceKm": 2.5,
+        "name": "Savannah, GA",
+        "zip": "31403"
+      },
+      "rank": 1,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 286,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 100,
+        "directRadiationWm2": 257,
+        "observerRainIntensity": 0,
+        "rainIntensity": 1,
+        "rainPoint": {
+          "bearing": 294,
+          "distanceKm": 15,
+          "lat": 27.0415,
+          "lon": -81.7493
+        },
+        "rainPointCloudCoverPct": 0,
+        "rainPointDirectRadiationWm2": 258,
+        "rainbowArcDeg": 20.7,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 318.3351135253906 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 318.3351135253906,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.497,
+        "sunElevationDeg": 21.3,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-2",
+      "label": "Venus, FL",
+      "lat": 26.9865,
+      "lon": -81.6108,
+      "nearestZip": {
+        "distanceKm": 26.4,
+        "name": "Venus, FL",
+        "zip": "33960"
+      },
+      "rank": 2,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 284,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 100,
+        "directRadiationWm2": 187,
+        "observerRainIntensity": 0,
+        "rainIntensity": 1,
+        "rainPoint": {
+          "bearing": 256,
+          "distanceKm": 5,
+          "lat": 31.9486,
+          "lon": -81.6553
+        },
+        "rainPointCloudCoverPct": 96,
+        "rainPointDirectRadiationWm2": 254,
+        "rainbowArcDeg": 19.4,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 195.2769775390625 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 195.2769775390625,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.484,
+        "sunElevationDeg": 22.6,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-3",
+      "label": "Fort Stewart, GA",
+      "lat": 31.9595,
+      "lon": -81.6038,
+      "nearestZip": {
+        "distanceKm": 7.4,
+        "name": "Fort Stewart, GA",
+        "zip": "31315"
+      },
+      "rank": 3,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 281,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 86,
+        "directRadiationWm2": 121,
+        "observerRainIntensity": 0,
+        "rainIntensity": 1,
+        "rainPoint": {
+          "bearing": 265,
+          "distanceKm": 28,
+          "lat": 31.939,
+          "lon": -88.1438
+        },
+        "rainPointCloudCoverPct": 87,
+        "rainPointDirectRadiationWm2": 0,
+        "rainbowArcDeg": 14.2,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 147.8940887451172 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 147.8940887451172,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.442,
+        "sunElevationDeg": 27.8,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-5",
+      "label": "Thomasville, AL",
+      "lat": 31.9595,
+      "lon": -87.8475,
+      "nearestZip": {
+        "distanceKm": 10.1,
+        "name": "Thomasville, AL",
+        "zip": "36784"
+      },
+      "rank": 5,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 281,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 47,
+        "directRadiationWm2": 299,
+        "observerRainIntensity": 0,
+        "rainIntensity": 1,
+        "rainPoint": {
+          "bearing": 265,
+          "distanceKm": 20,
+          "lat": 31.9434,
+          "lon": -89.0784
+        },
+        "rainPointCloudCoverPct": 100,
+        "rainPointDirectRadiationWm2": 362,
+        "rainbowArcDeg": 13.4,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 193.23973083496094 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 193.23973083496094,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.414,
+        "sunElevationDeg": 28.6,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-6",
+      "label": "Pachuta, MS",
+      "lat": 31.9595,
+      "lon": -88.8669,
+      "nearestZip": {
+        "distanceKm": 7.1,
+        "name": "Pachuta, MS",
+        "zip": "39347"
+      },
+      "rank": 6,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 275,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 41,
+        "directRadiationWm2": 94,
+        "observerRainIntensity": 0,
+        "rainIntensity": 1,
+        "rainPoint": {
+          "bearing": 267,
+          "distanceKm": 48,
+          "lat": 36.5878,
+          "lon": -95.0362
+        },
+        "rainPointCloudCoverPct": 76,
+        "rainPointDirectRadiationWm2": 144,
+        "rainbowArcDeg": 8.1,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 239.89012145996094 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 239.89012145996094,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.391,
+        "sunElevationDeg": 33.9,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": false
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-7",
+      "label": "Lanagan, MO",
+      "lat": 36.6081,
+      "lon": -94.4981,
+      "nearestZip": {
+        "distanceKm": 3.8,
+        "name": "Lanagan, MO",
+        "zip": "64847"
+      },
+      "rank": 7,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 275,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 73,
+        "directRadiationWm2": 130,
+        "observerRainIntensity": 0,
+        "rainIntensity": 1,
+        "rainPoint": {
+          "bearing": 259,
+          "distanceKm": 15,
+          "lat": 36.5825,
+          "lon": -95.0674
+        },
+        "rainPointCloudCoverPct": 77,
+        "rainPointDirectRadiationWm2": 90,
+        "rainbowArcDeg": 7.8,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 138.64642333984375 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 138.64642333984375,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.368,
+        "sunElevationDeg": 34.2,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-8",
+      "label": "Afton, OK",
+      "lat": 36.6081,
+      "lon": -94.9021,
+      "nearestZip": {
+        "distanceKm": 4.4,
+        "name": "Afton, OK",
+        "zip": "74331"
+      },
+      "rank": 8,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 286,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 71,
+        "directRadiationWm2": 256,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 286,
+          "distanceKm": 28,
+          "lat": 27.0567,
+          "lon": -81.5187
+        },
+        "rainPointCloudCoverPct": 90,
+        "rainPointDirectRadiationWm2": 252,
+        "rainbowArcDeg": 21,
+        "satelliteSunlight": {
+          "confidence": "strong",
+          "conflictSources": [],
+          "decision": "go",
+          "goSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "negativeSources": [],
+          "positiveSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": false,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": true,
+              "product": "ABI-L2-ACMC",
+              "reason": "clear/probably clear",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "clear-mask",
+              "units": "1",
+              "value": 0,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 340.9964904785156 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 340.9964904785156,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.33,
+        "sunElevationDeg": 21,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-10",
+      "label": "Palmdale, FL",
+      "lat": 26.9865,
+      "lon": -81.2468,
+      "nearestZip": {
+        "distanceKm": 7.6,
+        "name": "Palmdale, FL",
+        "zip": "33944"
+      },
+      "rank": 10,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "strong",
+      "sunlightDecision": "go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 283,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 75,
+        "directRadiationWm2": 229,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 255,
+          "distanceKm": 5,
+          "lat": 31.9479,
+          "lon": -83.9487
+        },
+        "rainPointCloudCoverPct": 76,
+        "rainPointDirectRadiationWm2": 136,
+        "rainbowArcDeg": 17.5,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 182.98489379882812 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 182.98489379882812,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.315,
+        "sunElevationDeg": 24.5,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-11",
+      "label": "Cobb, GA",
+      "lat": 31.9595,
+      "lon": -83.8974,
+      "nearestZip": {
+        "distanceKm": 5.7,
+        "name": "Cobb, GA",
+        "zip": "31735"
+      },
+      "rank": 11,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 283,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 28,
+        "directRadiationWm2": 282,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 267,
+          "distanceKm": 48,
+          "lat": 31.9391,
+          "lon": -83.8968
+        },
+        "rainPointCloudCoverPct": 87,
+        "rainPointDirectRadiationWm2": 249,
+        "rainbowArcDeg": 17.9,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 363.26873779296875 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 363.26873779296875,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.309,
+        "sunElevationDeg": 24.1,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-12",
+      "label": "Rochelle, GA",
+      "lat": 31.9595,
+      "lon": -83.3877,
+      "nearestZip": {
+        "distanceKm": 5.5,
+        "name": "Rochelle, GA",
+        "zip": "31079"
+      },
+      "rank": 12,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 284,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 2,
+        "directRadiationWm2": 266,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 300,
+          "distanceKm": 20,
+          "lat": 31.9407,
+          "lon": -82.7296
+        },
+        "rainPointCloudCoverPct": 0,
+        "rainPointDirectRadiationWm2": 266,
+        "rainbowArcDeg": 18.6,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 198.32138061523438 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 198.32138061523438,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.306,
+        "sunElevationDeg": 23.4,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-13",
+      "label": "Hazlehurst, GA",
+      "lat": 31.8514,
+      "lon": -82.5454,
+      "nearestZip": {
+        "distanceKm": 4.4,
+        "name": "Hazlehurst, GA",
+        "zip": "31539"
+      },
+      "rank": 13,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 282,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 18,
+        "directRadiationWm2": 302,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 266,
+          "distanceKm": 20,
+          "lat": 31.9476,
+          "lon": -86.0206
+        },
+        "rainPointCloudCoverPct": 0,
+        "rainPointDirectRadiationWm2": 160,
+        "rainbowArcDeg": 15.9,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 397.0547790527344 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 397.0547790527344,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.289,
+        "sunElevationDeg": 26.1,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-14",
+      "label": "Banks, AL",
+      "lat": 31.9595,
+      "lon": -85.8087,
+      "nearestZip": {
+        "distanceKm": 13.7,
+        "name": "Banks, AL",
+        "zip": "36005"
+      },
+      "rank": 14,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 283,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 64,
+        "directRadiationWm2": 208,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 267,
+          "distanceKm": 28,
+          "lat": 31.9444,
+          "lon": -85.341
+        },
+        "rainPointCloudCoverPct": 70,
+        "rainPointDirectRadiationWm2": 270,
+        "rainbowArcDeg": 16.5,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 312.68121337890625 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 312.68121337890625,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.285,
+        "sunElevationDeg": 25.5,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-15",
+      "label": "Georgetown, GA",
+      "lat": 31.9595,
+      "lon": -85.0442,
+      "nearestZip": {
+        "distanceKm": 10.1,
+        "name": "Georgetown, GA",
+        "zip": "39854"
+      },
+      "rank": 15,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 282,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 44,
+        "directRadiationWm2": 307,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 266,
+          "distanceKm": 28,
+          "lat": 31.9397,
+          "lon": -87.7616
+        },
+        "rainPointCloudCoverPct": 53,
+        "rainPointDirectRadiationWm2": 33,
+        "rainbowArcDeg": 14.5,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 291.87396240234375 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 291.87396240234375,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.275,
+        "sunElevationDeg": 27.5,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-16",
+      "label": "Coy, AL",
+      "lat": 31.9595,
+      "lon": -87.4652,
+      "nearestZip": {
+        "distanceKm": 10.4,
+        "name": "Coy, AL",
+        "zip": "36435"
+      },
+      "rank": 16,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 279,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 100,
+        "directRadiationWm2": 307,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 307,
+          "distanceKm": 36,
+          "lat": 36.5886,
+          "lon": -87.5165
+        },
+        "rainPointCloudCoverPct": 84,
+        "rainPointDirectRadiationWm2": 1,
+        "rainbowArcDeg": 13.9,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 161.4909210205078 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 161.4909210205078,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.249,
+        "sunElevationDeg": 28.1,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-17",
+      "label": "Chapmansboro, TN",
+      "lat": 36.3919,
+      "lon": -87.1961,
+      "nearestZip": {
+        "distanceKm": 7.7,
+        "name": "Chapmansboro, TN",
+        "zip": "37035"
+      },
+      "rank": 17,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 281,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 2,
+        "directRadiationWm2": 344,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 297,
+          "distanceKm": 48,
+          "lat": 31.9405,
+          "lon": -89.0222
+        },
+        "rainPointCloudCoverPct": 79,
+        "rainPointDirectRadiationWm2": 356,
+        "rainbowArcDeg": 13.6,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 407.5385437011719 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 407.5385437011719,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.246,
+        "sunElevationDeg": 28.4,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-18",
+      "label": "Waynesboro, MS",
+      "lat": 31.7432,
+      "lon": -88.5696,
+      "nearestZip": {
+        "distanceKm": 12.7,
+        "name": "Waynesboro, MS",
+        "zip": "39367"
+      },
+      "rank": 18,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 276,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 100,
+        "directRadiationWm2": 303,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 268,
+          "distanceKm": 36,
+          "lat": 36.5962,
+          "lon": -93.8245
+        },
+        "rainPointCloudCoverPct": 100,
+        "rainPointDirectRadiationWm2": 0,
+        "rainbowArcDeg": 9,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 128.89515686035156 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 128.89515686035156,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.24,
+        "sunElevationDeg": 33,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-19",
+      "label": "Kimberling City, MO",
+      "lat": 36.6081,
+      "lon": -93.4207,
+      "nearestZip": {
+        "distanceKm": 3.8,
+        "name": "Kimberling City, MO",
+        "zip": "65686"
+      },
+      "rank": 19,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 276,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 0,
+        "directRadiationWm2": 541,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 248,
+          "distanceKm": 5,
+          "lat": 31.9423,
+          "lon": -100.6388
+        },
+        "rainPointCloudCoverPct": 0,
+        "rainPointDirectRadiationWm2": 540,
+        "rainbowArcDeg": 3.5,
+        "satelliteSunlight": {
+          "confidence": "strong",
+          "conflictSources": [],
+          "decision": "go",
+          "goSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "negativeSources": [],
+          "positiveSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": false,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": true,
+              "product": "ABI-L2-ACMC",
+              "reason": "clear/probably clear",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "clear-mask",
+              "units": "1",
+              "value": 0,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 611.0101928710938 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 611.0101928710938,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.215,
+        "sunElevationDeg": 38.5,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-20",
+      "label": "Robert Lee, TX",
+      "lat": 31.9595,
+      "lon": -100.5897,
+      "nearestZip": {
+        "distanceKm": 10.4,
+        "name": "Robert Lee, TX",
+        "zip": "76945"
+      },
+      "rank": 20,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "strong",
+      "sunlightDecision": "go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 274,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 66,
+        "directRadiationWm2": 369,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 246,
+          "distanceKm": 5,
+          "lat": 36.5899,
+          "lon": -96.7042
+        },
+        "rainPointCloudCoverPct": 61,
+        "rainPointDirectRadiationWm2": 404,
+        "rainbowArcDeg": 6.4,
+        "satelliteSunlight": {
+          "confidence": "strong",
+          "conflictSources": [],
+          "decision": "go",
+          "goSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "negativeSources": [],
+          "positiveSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": false,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": true,
+              "product": "ABI-L2-ACMC",
+              "reason": "clear/probably clear",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "clear-mask",
+              "units": "1",
+              "value": 0,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 582.3286743164062 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 582.3286743164062,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.204,
+        "sunElevationDeg": 35.6,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-21",
+      "label": "Fairfax, OK",
+      "lat": 36.6081,
+      "lon": -96.6529,
+      "nearestZip": {
+        "distanceKm": 7,
+        "name": "Fairfax, OK",
+        "zip": "74637"
+      },
+      "rank": 21,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "strong",
+      "sunlightDecision": "go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 275,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 61,
+        "directRadiationWm2": 551,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 267,
+          "distanceKm": 36,
+          "lat": 31.945,
+          "lon": -101.3539
+        },
+        "rainPointCloudCoverPct": 42,
+        "rainPointDirectRadiationWm2": 563,
+        "rainbowArcDeg": 3.2,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 642.8505859375 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 642.8505859375,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.202,
+        "sunElevationDeg": 38.8,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-22",
+      "label": "Sterling City, TX",
+      "lat": 31.9595,
+      "lon": -100.972,
+      "nearestZip": {
+        "distanceKm": 14.1,
+        "name": "Sterling City, TX",
+        "zip": "76951"
+      },
+      "rank": 22,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 271,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 98,
+        "directRadiationWm2": 302,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 243,
+          "distanceKm": 15,
+          "lat": 40.9798,
+          "lon": -96.2935
+        },
+        "rainPointCloudCoverPct": 77,
+        "rainPointDirectRadiationWm2": 280,
+        "rainbowArcDeg": 6.6,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 268.8921203613281 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 268.8921203613281,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.176,
+        "sunElevationDeg": 35.4,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-24",
+      "label": "Cedar Creek, NE",
+      "lat": 41.0405,
+      "lon": -96.1334,
+      "nearestZip": {
+        "distanceKm": 2.4,
+        "name": "Cedar Creek, NE",
+        "zip": "68016"
+      },
+      "rank": 24,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 270,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 96,
+        "directRadiationWm2": 420,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 262,
+          "distanceKm": 15,
+          "lat": 36.589,
+          "lon": -104.2267
+        },
+        "rainPointCloudCoverPct": 100,
+        "rainPointDirectRadiationWm2": 231,
+        "rainbowArcDeg": 0.4,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 301.0758361816406 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 301.0758361816406,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.164,
+        "sunElevationDeg": 41.6,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-25",
+      "label": "Capulin, NM",
+      "lat": 36.6081,
+      "lon": -104.06,
+      "nearestZip": {
+        "distanceKm": 19.7,
+        "name": "Capulin, NM",
+        "zip": "88414"
+      },
+      "rank": 25,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 276,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 0,
+        "directRadiationWm2": 543,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 260,
+          "distanceKm": 15,
+          "lat": 31.9355,
+          "lon": -100.3642
+        },
+        "rainPointCloudCoverPct": 0,
+        "rainPointDirectRadiationWm2": 543,
+        "rainbowArcDeg": 3.8,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 511.918212890625 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 511.918212890625,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.158,
+        "sunElevationDeg": 38.2,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-26",
+      "label": "Norton, TX",
+      "lat": 31.9595,
+      "lon": -100.2075,
+      "nearestZip": {
+        "distanceKm": 11.4,
+        "name": "Norton, TX",
+        "zip": "76865"
+      },
+      "rank": 26,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 275,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 100,
+        "directRadiationWm2": 493,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 247,
+          "distanceKm": 5,
+          "lat": 31.9419,
+          "lon": -101.9128
+        },
+        "rainPointCloudCoverPct": 100,
+        "rainPointDirectRadiationWm2": 533,
+        "rainbowArcDeg": 2.4,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 553.830322265625 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 553.830322265625,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.154,
+        "sunElevationDeg": 39.6,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-27",
+      "label": "Midland, TX",
+      "lat": 31.9595,
+      "lon": -101.864,
+      "nearestZip": {
+        "distanceKm": 16.5,
+        "name": "Midland, TX",
+        "zip": "79706"
+      },
+      "rank": 27,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 275,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 36,
+        "directRadiationWm2": 554,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.85,
+        "rainPoint": {
+          "bearing": 267,
+          "distanceKm": 48,
+          "lat": 31.9383,
+          "lon": -101.9908
+        },
+        "rainPointCloudCoverPct": 100,
+        "rainPointDirectRadiationWm2": 573,
+        "rainbowArcDeg": 2.8,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 496.71905517578125 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 496.71905517578125,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 1.138,
+        "sunElevationDeg": 39.2,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-28",
+      "label": "Garden City, TX",
+      "lat": 31.9595,
+      "lon": -101.4817,
+      "nearestZip": {
+        "distanceKm": 13,
+        "name": "Garden City, TX",
+        "zip": "79739"
+      },
+      "rank": 28,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 284,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 59,
+        "directRadiationWm2": 178,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.5,
+        "rainPoint": {
+          "bearing": 268,
+          "distanceKm": 36,
+          "lat": 31.9509,
+          "lon": -81.094
+        },
+        "rainPointCloudCoverPct": 55,
+        "rainPointDirectRadiationWm2": 114,
+        "rainbowArcDeg": 20.1,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 307.1875305175781 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 307.1875305175781,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 0.971,
+        "sunElevationDeg": 21.9,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-30",
+      "label": "Tybee Island, GA",
+      "lat": 31.9595,
+      "lon": -80.7118,
+      "nearestZip": {
+        "distanceKm": 14.1,
+        "name": "Tybee Island, GA",
+        "zip": "31328"
+      },
+      "rank": 30,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 282,
+        "compass": "WNW"
+      },
+      "evidence": {
+        "cloudCoverPct": 5,
+        "directRadiationWm2": 314,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.5,
+        "rainPoint": {
+          "bearing": 254,
+          "distanceKm": 10,
+          "lat": 31.9347,
+          "lon": -86.2931
+        },
+        "rainPointCloudCoverPct": 49,
+        "rainPointDirectRadiationWm2": 246,
+        "rainbowArcDeg": 15.6,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 164.16908264160156 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "moderate",
+              "units": "W m-2",
+              "value": 164.16908264160156,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 0.916,
+        "sunElevationDeg": 26.4,
+        "sunlightDecision": "go",
+        "sunlightSources": {
+          "openMeteoCloud": true,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-31",
+      "label": "Lapine, AL",
+      "lat": 31.9595,
+      "lon": -86.191,
+      "nearestZip": {
+        "distanceKm": 8.8,
+        "name": "Lapine, AL",
+        "zip": "36046"
+      },
+      "rank": 31,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 270,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 100,
+        "directRadiationWm2": 456,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.6,
+        "rainPoint": {
+          "bearing": 242,
+          "distanceKm": 5,
+          "lat": 36.5867,
+          "lon": -104.5134
+        },
+        "rainPointCloudCoverPct": 100,
+        "rainPointDirectRadiationWm2": 468,
+        "rainbowArcDeg": 0.1,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 294.66656494140625 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 294.66656494140625,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 0.911,
+        "sunElevationDeg": 41.9,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-32",
+      "label": "Maxwell, NM",
+      "lat": 36.6081,
+      "lon": -104.4641,
+      "nearestZip": {
+        "distanceKm": 11.5,
+        "name": "Maxwell, NM",
+        "zip": "87728"
+      },
+      "rank": 32,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    },
+    {
+      "criteria": {
+        "directSun": true,
+        "rainOppositeSun": true,
+        "sunLowEnough": true
+      },
+      "direction": {
+        "bearing": 270,
+        "compass": "W"
+      },
+      "evidence": {
+        "cloudCoverPct": 100,
+        "directRadiationWm2": 394,
+        "observerRainIntensity": 0,
+        "rainIntensity": 0.6,
+        "rainPoint": {
+          "bearing": 254,
+          "distanceKm": 48,
+          "lat": 36.5979,
+          "lon": -104.0103
+        },
+        "rainPointCloudCoverPct": 100,
+        "rainPointDirectRadiationWm2": 0,
+        "rainbowArcDeg": 0.9,
+        "satelliteSunlight": {
+          "confidence": "mixed",
+          "conflictSources": [
+            "goesAcmc"
+          ],
+          "decision": "mixed-go",
+          "goSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ],
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "sources": {
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 20,
+              "negative": true,
+              "observedAgeMinutes": 7,
+              "observedAt": "2026-06-13T22:36:18Z",
+              "positive": false,
+              "product": "ABI-L2-ACMC",
+              "reason": "cloudy/probably cloudy",
+              "s3Key": "ABI-L2-ACMC/2026/164/22/OR_ABI-L2-ACMC-M6_G19_s20261642236189_e20261642238562_c20261642240153.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "cloudy-mask",
+              "units": "1",
+              "value": 1,
+              "variable": "BCM"
+            },
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "maxAgeMinutes": 45,
+              "negative": false,
+              "observedAgeMinutes": 23,
+              "observedAt": "2026-06-13T22:20:22Z",
+              "positive": true,
+              "product": "ABI-L2-DSRF",
+              "reason": "DSR 489.2110290527344 W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/164/22/OR_ABI-L2-DSRF-M6_G19_s20261642220221_e20261642229529_c20261642237422.nc",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "strength": "strong",
+              "units": "W m-2",
+              "value": 489.2110290527344,
+              "variable": "DSR"
+            }
+          },
+          "sunlit": true
+        },
+        "score": 0.869,
+        "sunElevationDeg": 41.1,
+        "sunlightDecision": "mixed-go",
+        "sunlightSources": {
+          "openMeteoCloud": false,
+          "openMeteoDirectRadiation": true
+        }
+      },
+      "id": "2026-06-13T22:34:36.074Z-33",
+      "label": "Des Moines, NM",
+      "lat": 36.7162,
+      "lon": -103.4914,
+      "nearestZip": {
+        "distanceKm": 34.1,
+        "name": "Des Moines, NM",
+        "zip": "88418"
+      },
+      "rank": 33,
+      "satelliteSunlit": true,
+      "sunlightConfidence": "mixed",
+      "sunlightDecision": "mixed-go",
+      "verdict": "go"
+    }
+  ],
+  "criteria": {
+    "directSun": "observer sunlight passes if any source indicates sunlit sky",
+    "observerDirectRadiation": "Open-Meteo direct_radiation >= 120 W/m2 is one observer sunlight source",
+    "observerSunlight": "GO if either Open-Meteo cloud or direct radiation passes; cloud threshold < 60%",
+    "rainOppositeSun": "radar return in anti-solar fan 5-48 km from observer",
+    "rainPointSunlight": "reported for diagnosis only; old gate was direct_radiation >= 80 W/m2 and cloud_cover < 75%",
+    "sunElevation": ">-3 and <42 degrees"
+  },
+  "diagnostics": {
+    "clusteredForVerification": 49,
+    "gateDiagnostics": {
+      "counts": {
+        "checked": 49,
+        "legacyGoCandidates": 6,
+        "lowSunAndRain": 49,
+        "mixedSourceGoCandidates": 22,
+        "observerSunBlocked": 16,
+        "openMeteoCloudWouldHaveBlocked": 19,
+        "openMeteoRadiationWouldHaveBlocked": 3,
+        "openMeteoSunCandidates": 33,
+        "rainPointCloudWouldHaveBlocked": 21,
+        "rainPointRadiationWouldHaveBlocked": 6,
+        "sourceBlendGoCandidates": 33
+      },
+      "nearMisses": [
+        {
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ],
+          "cloudCoverPct": 98,
+          "directRadiationWm2": 0,
+          "lat": 36.6081,
+          "lon": -90.7272,
+          "rainIntensity": 1,
+          "score": 1.401,
+          "sunElevationDeg": 30.9
+        },
+        {
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ],
+          "cloudCoverPct": 95,
+          "directRadiationWm2": 0,
+          "lat": 36.6081,
+          "lon": -91.1312,
+          "rainIntensity": 1,
+          "score": 1.398,
+          "sunElevationDeg": 31.2
+        },
+        {
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ],
+          "cloudCoverPct": 100,
+          "directRadiationWm2": 0,
+          "lat": 36.6081,
+          "lon": -91.8046,
+          "rainIntensity": 1,
+          "score": 1.382,
+          "sunElevationDeg": 31.8
+        },
+        {
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud"
+          ],
+          "cloudCoverPct": 100,
+          "directRadiationWm2": 0,
+          "lat": 36.6081,
+          "lon": -92.882,
+          "rainIntensity": 1,
+          "score": 1.374,
+          "sunElevationDeg": 32.6
+        },
+        {
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ],
+          "cloudCoverPct": 100,
+          "directRadiationWm2": -2,
+          "lat": 36.6081,
+          "lon": -88.5724,
+          "rainIntensity": 0.85,
+          "score": 1.268,
+          "sunElevationDeg": 29.2
+        },
+        {
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ],
+          "cloudCoverPct": 100,
+          "directRadiationWm2": 2,
+          "lat": 36.6081,
+          "lon": -88.1684,
+          "rainIntensity": 0.85,
+          "score": 1.261,
+          "sunElevationDeg": 28.9
+        },
+        {
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ],
+          "cloudCoverPct": 100,
+          "directRadiationWm2": -1,
+          "lat": 36.6081,
+          "lon": -88.9764,
+          "rainIntensity": 0.85,
+          "score": 1.255,
+          "sunElevationDeg": 29.5
+        },
+        {
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ],
+          "cloudCoverPct": 100,
+          "directRadiationWm2": 37,
+          "lat": 36.6081,
+          "lon": -89.9192,
+          "rainIntensity": 0.85,
+          "score": 1.247,
+          "sunElevationDeg": 30.3
+        },
+        {
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ],
+          "cloudCoverPct": 96,
+          "directRadiationWm2": 3,
+          "lat": 36.3919,
+          "lon": -87.7333,
+          "rainIntensity": 0.85,
+          "score": 1.245,
+          "sunElevationDeg": 28.5
+        },
+        {
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ],
+          "cloudCoverPct": 100,
+          "directRadiationWm2": 7,
+          "lat": 36.3919,
+          "lon": -90.285,
+          "rainIntensity": 0.85,
+          "score": 1.225,
+          "sunElevationDeg": 30.5
+        }
+      ]
+    },
+    "geometryMatches": 37140,
+    "goCandidates": 33,
+    "landPoints": 55124,
+    "meshPoints": 98227,
+    "options": {
+      "clusterKm": 35,
+      "gridKm": 12,
+      "maxGo": 50,
+      "maxVerify": 80,
+      "tileZoom": 6
+    },
+    "radarMatches": 355,
+    "rainViewerTileRequests": 85,
+    "weatherApiCalls": 10
+  },
+  "expiresAt": "2026-06-13T22:48:33.024158Z",
+  "generatedAt": "2026-06-13T22:43:33.024158Z",
+  "satelliteDiagnostics": {
+    "decisions": {
+      "go": 3,
+      "mixed-go": 26
+    },
+    "enrichedCandidates": 29,
+    "errors": [],
+    "includedNonSunlit": false,
+    "inputCandidates": 33,
+    "negativeSources": {
+      "goesAcmc": 26
+    },
+    "positiveSources": {
+      "goesAcmc": 3,
+      "goesDsrf": 29
+    },
+    "processedCandidates": 33
+  },
+  "source": {
+    "radar": "RainViewer",
+    "radarFrameTime": "2026-06-13T22:30:00.000Z",
+    "satelliteSunlight": "GOES DSRF + GOES ACMC hierarchy prototype",
+    "sunlight": "Open-Meteo cloud_cover/direct_radiation fallback; satellite artifact overrides this when fresh"
+  }
+}

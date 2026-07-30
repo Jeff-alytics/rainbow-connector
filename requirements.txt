@@ -1,0 +1,5 @@
+numpy
+requests
+xarray
+netCDF4
+Pillow

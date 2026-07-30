@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Rainbow Connector Review</title>
+  <style>
+    :root{color-scheme:dark;--bg:#10131b;--card:#1b2130;--line:#30394c;--text:#f5f7fb;--muted:#aab3c5;--blue:#7aa2ff;--green:#55d68b;--red:#ff7187;--amber:#f5bd5b}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px system-ui,-apple-system,Segoe UI,sans-serif}
+    main{max-width:1280px;margin:auto;padding:30px 20px 70px}h1{margin:0 0 6px;font-size:clamp(28px,5vw,48px)}p{color:var(--muted);line-height:1.5}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:24px}.hidden{display:none!important}
+    form{display:flex;gap:10px;flex-wrap:wrap}input,textarea,button{font:inherit;border-radius:10px;border:1px solid var(--line)}
+    input,textarea{background:#111722;color:var(--text);padding:12px}input{min-width:250px}textarea{width:100%;min-height:70px;resize:vertical}
+    button{background:#263249;color:var(--text);padding:11px 16px;cursor:pointer;font-weight:650}button:hover{filter:brightness(1.13)}button:disabled{opacity:.5;cursor:wait}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:16px}.review-refresh{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:10px}.small{font-size:13px;color:var(--muted)}
+    .strip{display:flex;gap:12px;overflow-x:auto;padding:4px 0 14px}.frame{flex:0 0 min(720px,86vw);margin:0}.frame img{display:block;width:100%;height:min(470px,56vw);object-fit:contain;background:#05070b;border-radius:12px}.frame figcaption{color:var(--muted);font-size:12px;margin-top:6px}.frame-picker{display:flex;align-items:center;gap:8px;margin-top:8px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;color:var(--text);cursor:pointer}.frame-picker:has(input:checked){border-color:var(--green);background:#173625}.frame-picker input{min-width:0;margin:0;accent-color:var(--green)}
+    .grades{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:10px;margin-top:15px}.sunlight-grade{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}.sunlight-grade button{padding:8px 11px;font-size:13px}.sunlight-grade button.selected{outline:2px solid var(--blue);background:#344d7a}.yes{background:#17683d}.no{background:#7f2635}.possible{background:#765415}.secondary{background:#374055}
+    .reveal{border-left:4px solid var(--green);padding:12px 15px;background:#131a25;margin-top:16px;color:var(--muted);line-height:1.55}.status{min-height:24px;color:var(--amber)}
+    .results-copy{margin:4px 0 16px}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+    table{width:100%;border-collapse:collapse;min-width:1180px;font-size:13px}th,td{padding:11px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+    th{position:sticky;top:0;background:#20283a;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+    tbody tr:last-child td{border-bottom:0}.grade{display:inline-block;border-radius:999px;padding:4px 8px;font-weight:700}
+    .grade.rainbow{background:#17683d}.grade.no_rainbow{background:#7f2635}.grade.possible{background:#765415}.grade.other{background:#374055}
+    .strength{font-weight:700}.strength.strong{color:var(--green)}.strength.usable{color:var(--amber)}.strength.limited{color:var(--red)}
+    .result-note{display:block;max-width:260px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px;margin-top:4px}
+    @media(max-width:760px){.grades{grid-template-columns:1fr 1fr}.grades button:last-child{grid-column:1/-1}.top{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body><main>
+  <h1>Rainbow candidate review</h1>
+  <p>Live Connector GO events, the strongest POSSIBLE events, and explicitly labeled historical archive candidates with usable camera evidence appear here. Grade what the imagery shows; model details are revealed after grading.</p>
+
+  <section id="login" class="card hidden">
+    <h2>Private access</h2>
+    <form id="login-form"><input id="password" type="password" autocomplete="current-password" placeholder="Review password" required><button>Sign in</button></form>
+    <div id="login-status" class="status"></div>
+  </section>
+
+  <section id="workspace" class="hidden">
+    <div class="top"><div><strong id="queue-count">Loading…</strong><div class="small">GO evidence first, followed by the strongest POSSIBLE evidence</div></div><button id="logout" class="secondary">Sign out</button></div>
+    <div class="review-refresh"><span id="refresh-status" class="small" role="status" aria-live="polite"></span><button id="refresh" class="secondary" type="button">Refresh</button></div>
+    <article id="review-card" class="card hidden">
+      <div class="top"><h2 id="event-id">Candidate</h2><span id="progress" class="small"></span></div>
+      <div id="frames" class="strip"></div>
+      <textarea id="notes" placeholder="Optional note"></textarea>
+      <div class="sunlight-grade"><strong>Does the camera scene show direct sunlight?</strong><button type="button" data-sunlight="sunlit">Yes</button><button type="button" data-sunlight="not_sunlit">No</button><button type="button" data-sunlight="uncertain">Can't tell</button></div>
+      <div class="grades">
+        <button data-label="rainbow" class="yes">Rainbow</button>
+        <button data-label="no_rainbow" class="no">No rainbow</button>
+        <button data-label="possible" class="possible">Possible</button>
+        <button data-label="obscured" class="secondary">Obscured</button>
+        <button data-label="no_camera" class="secondary">Bad view</button>
+      </div>
+      <div id="grade-status" class="status"></div>
+      <div id="reveal" class="reveal hidden"></div>
+    </article>
+    <section id="empty" class="card hidden"><h2>Nothing awaiting review</h2><p>New events will appear after the Connector records a GO or strong POSSIBLE and finds usable camera imagery.</p></section>
+    <section class="card">
+      <div class="top"><div><h2>Review results</h2><p class="results-copy">Human grades compared with the evidence that produced each candidate.</p></div><span id="results-count" class="small"></span></div>
+      <p class="small">Model score is a 0–100 ranking score, not a percent probability. Review strength accounts for camera distance, direction error, view quality, and frame timing; negative grades are conclusive only with strong evidence.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Grade</th><th>Scene sunlit?</th><th>v2 sunlight</th><th>GO / Possible</th><th>Type</th><th>Model score</th><th>Review strength</th><th>Scans</th><th>Sun</th><th>Bow top</th><th>Direct sun</th><th>Rain at bow</th><th>Rain here</th><th>Source / camera</th><th>View</th><th>Distance</th><th>Direction error</th><th>Frame timing</th><th>Detected</th></tr></thead>
+          <tbody id="results-body"><tr><td colspan="19">Loading results…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="card">
+      <div class="top"><div><h2>Email subscribers</h2><p class="results-copy">Confirmed, active rainbow alerts. Private tokens and coordinates are never shown.</p></div><span id="subscribers-count" class="small"></span></div>
+      <div class="table-wrap">
+        <table style="min-width:760px">
+          <thead><tr><th>Email</th><th>ZIP</th><th>Place</th><th>Confirmed</th><th>Last alert</th></tr></thead>
+          <tbody id="subscribers-body"><tr><td colspan="5">Loading subscribers…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+
+<script>
+const $ = selector => document.querySelector(selector);
+let queue = [], current = null, completed = 0, refreshInFlight = false, sceneSunlight = null;
+const REVIEW_REFRESH_MS = 2 * 60 * 1000;
+
+async function api(url, options = {}){
+  const response = await fetch(url, { credentials:"same-origin", cache:"no-store", ...options });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.error || "Request failed.");
+  return data;
+}
+
+function showLogin(){
+  $("#login").classList.remove("hidden");
+  $("#workspace").classList.add("hidden");
+}
+
+function showWorkspace(){
+  $("#login").classList.add("hidden");
+  $("#workspace").classList.remove("hidden");
+}
+
+function render(){
+  current = queue[0] || null;
+  $("#queue-count").textContent = `${queue.length} candidate${queue.length === 1 ? "" : "s"} awaiting review`;
+  $("#review-card").classList.toggle("hidden", !current);
+  $("#empty").classList.toggle("hidden", !!current);
+  if (!current) return;
+  const candidateLabel = current.candidateType === "historical_webcoos"
+    ? "WebCOOS archive"
+    : current.candidateClass === "POSSIBLE" ? "Live POSSIBLE" : "Live GO";
+  $("#event-id").textContent = `${candidateLabel} candidate ${current.id.slice(-10)}`;
+  $("#progress").textContent = completed ? `${completed} graded this session` : "";
+  $("#notes").value = "";
+  sceneSunlight = null;
+  document.querySelectorAll("[data-sunlight]").forEach(button => button.classList.remove("selected"));
+  $("#grade-status").textContent = "";
+  $("#reveal").classList.add("hidden");
+  $("#frames").innerHTML = current.frames.map((frame, index) => `
+    <figure class="frame"><a href="${frame.url}" target="_blank" rel="noopener"><img src="${frame.url}" alt="Candidate frame ${index + 1}"></a>
+    <figcaption>${frame.observedAt ? new Date(frame.observedAt).toLocaleString() : `Frame ${index + 1}`}${frame.cameraName ? ` · ${esc(frame.cameraName)}${Number.isFinite(frame.distanceKm) ? ` · ${frame.distanceKm.toFixed(1)} km` : ""}` : ""}${frame.viewQuality ? ` · ${esc(frame.viewQuality)} view` : ""}${Number.isFinite(frame.timeOffsetMinutes) ? ` · ${Math.abs(frame.timeOffsetMinutes).toFixed(1)} min ${frame.timeOffsetMinutes < 0 ? "before" : "after"} GO` : ""}</figcaption>
+    <label class="frame-picker"><input type="checkbox" name="confirmed-frame" value="${index}"> Keep this image if it shows a rainbow</label></figure>`).join("");
+}
+
+async function loadQueue({ preserveCurrent = false } = {}){
+  const data = await api("/api/go-events?queue=1&limit=250");
+  const incoming = data.items || [];
+  if (preserveCurrent && current) {
+    queue = [current, ...incoming.filter(item => item.id !== current.id)];
+    $("#queue-count").textContent = `${queue.length} candidate${queue.length === 1 ? "" : "s"} awaiting review`;
+  } else {
+    queue = incoming;
+    render();
+  }
+  showWorkspace();
+  await Promise.allSettled([loadResults(), loadSubscribers()]);
+}
+
+async function refreshReviewPage({ announce = true } = {}){
+  if (refreshInFlight) return;
+  refreshInFlight = true;
+  const button = $("#refresh");
+  button.disabled = true;
+  button.textContent = "Refreshing...";
+  if (announce) $("#refresh-status").textContent = "Checking for new candidates...";
+  try {
+    await loadQueue({ preserveCurrent: true });
+    const refreshedAt = new Date().toLocaleTimeString([], { hour:"numeric", minute:"2-digit" });
+    $("#refresh-status").textContent = `Updated ${refreshedAt}`;
+  } catch (error) {
+    if (announce) $("#refresh-status").textContent = `Refresh failed: ${error.message}`;
+  } finally {
+    refreshInFlight = false;
+    button.disabled = false;
+    button.textContent = "Refresh";
+  }
+}
+
+const gradeNames = { rainbow:"Rainbow", no_rainbow:"No rainbow", possible:"Possible", obscured:"Obscured", no_camera:"Bad view", invalid_location:"Invalid location" };
+const sunlightNames = { sunlit:"Yes", not_sunlit:"No", uncertain:"Can't tell" };
+const assessmentNames = { sunlit_supported:"Sunlight supported", sunlight_plausible:"Sunlight plausible", unresolved:"Unresolved", overcast_supported:"Overcast supported" };
+const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[char]);
+const number = (value, digits = 0) => Number.isFinite(value) ? Number(value).toFixed(digits) : "—";
+
+async function loadResults(){
+  const data = await api("/api/go-events?results=1&limit=250");
+  const items = data.items || [];
+  $("#results-count").textContent = `${items.length} graded`;
+  $("#results-body").innerHTML = items.length ? items.map(item => {
+    const grade = gradeNames[item.grade] || item.grade;
+    const gradeClass = ["rainbow","no_rainbow","possible"].includes(item.grade) ? item.grade : "other";
+    const note = item.notes ? `<span class="result-note" title="${esc(item.notes)}">${esc(item.notes)}</span>` : "";
+    return `<tr>
+      <td><span class="grade ${gradeClass}">${esc(grade)}</span>${note}</td>
+      <td>${esc(sunlightNames[item.sceneSunlight] || "—")}</td><td>${esc(assessmentNames[item.sunlightAssessment?.sunlightState] || "Not assessed")}</td>
+      <td>${esc(item.candidateClass || "GO")}</td>
+      <td>${item.candidateType === "historical_webcoos" ? "Archive screen" : item.candidateType === "live_possible" ? "Live POSSIBLE" : "Live GO"}</td>
+      <td>${number(item.score, 1)}</td><td><span class="strength ${esc(item.reviewStrength)}">${esc(item.reviewStrength)}</span></td><td>${number(item.scanCount)}</td>
+      <td>${number(item.sunElevationDeg, 1)}°</td><td>${number(item.rainbowArcDeg, 1)}°</td>
+      <td>${number(item.directNormalIrradianceWm2)} W/m²</td>
+      <td>${number(item.rainIntensity, 2)} mm/h</td><td>${number(item.observerRainIntensity, 2)} mm/h</td>
+      <td>${esc([item.camera?.source,item.camera?.name].filter(Boolean).join(" · ") || "—")}</td><td>${esc(item.camera?.viewQuality || "—")}</td><td>${number(item.camera?.distanceKm, 1)} km</td>
+      <td>${number(item.camera?.bearingDifference, 1)}°</td><td>${number(item.camera?.nearestFrameOffsetMinutes, 1)} min</td>
+      <td>${item.detectedAt ? esc(new Date(item.detectedAt).toLocaleString()) : "—"}</td>
+    </tr>`;
+  }).join("") : '<tr><td colspan="19">No candidates have been graded yet.</td></tr>';
+}
+
+document.querySelectorAll("[data-sunlight]").forEach(button => button.addEventListener("click", () => {
+  sceneSunlight = button.dataset.sunlight;
+  document.querySelectorAll("[data-sunlight]").forEach(item => item.classList.toggle("selected", item === button));
+}));
+
+async function loadSubscribers(){
+  const data = await api("/api/review-subscribers");
+  const items = data.items || [];
+  $("#subscribers-count").textContent = `${items.length} active`;
+  $("#subscribers-body").innerHTML = items.length ? items.map(item => `<tr>
+    <td>${esc(item.email)}</td><td>${esc(item.zip)}</td><td>${esc(item.place || "—")}</td>
+    <td>${item.confirmedAt ? esc(new Date(item.confirmedAt).toLocaleString()) : "—"}</td>
+    <td>${item.lastAlertAt ? esc(new Date(item.lastAlertAt).toLocaleString()) : "Never"}</td>
+  </tr>`).join("") : '<tr><td colspan="5">No confirmed subscribers yet.</td></tr>';
+}
+
+$("#login-form").addEventListener("submit", async event => {
+  event.preventDefault();
+  const button = event.submitter;
+  button.disabled = true;
+  $("#login-status").textContent = "";
+  try {
+    await api("/api/review-session", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({password:$("#password").value}) });
+    $("#password").value = "";
+    await loadQueue();
+  } catch (error) {
+    $("#login-status").textContent = error.message;
+  } finally { button.disabled = false; }
+});
+
+document.querySelectorAll("[data-label]").forEach(button => button.addEventListener("click", async () => {
+  if (!current) return;
+  const selectedFrames = [...document.querySelectorAll('input[name="confirmed-frame"]:checked')];
+  if (button.dataset.label === "rainbow" && !selectedFrames.length) {
+    $("#grade-status").textContent = "Choose every image that actually shows a rainbow first.";
+    return;
+  }
+  if (!sceneSunlight) {
+    $("#grade-status").textContent = "First say whether the scene visibly shows direct sunlight.";
+    return;
+  }
+  document.querySelectorAll("[data-label]").forEach(item => item.disabled = true);
+  $("#grade-status").textContent = "Saving…";
+  try {
+    const data = await api("/api/go-events", { method:"POST", headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({id:current.id,label:button.dataset.label,notes:$("#notes").value,sceneSunlight,
+        sunlightAssessmentExpandedBeforeGrade:false,
+        confirmedFrameUrls:selectedFrames.map(input => current.frames[Number(input.value)]?.url).filter(Boolean)}) });
+    const event = data.event, rep = event.representative || {};
+    const assessment = (event.researchAssessments || []).at(-1);
+    const assessmentText = assessment ? `<br><strong>Research sunlight-v2:</strong> ${esc(assessmentNames[assessment.sunlightState] || assessment.sunlightState || "unresolved")}. ${esc((assessment.sunlightStateReasons || []).join(", ").replaceAll("_", " "))}<details><summary>Assessment details</summary>Band-2 frames used: ${assessment.sources?.band2?.framesUsed ?? "—"}; corroborating frames: ${assessment.sources?.band2?.corroboratingFrames ?? "—"}; METAR support: ${number(assessment.sources?.metar?.supportScore, 2)}; anti-solar rain span: ${number(assessment.rain?.antiSolarRainArcSpanDeg, 0)}°; processing latency: ${number(assessment.enrichmentLatencySeconds, 0)} seconds.</details>` : "<br><strong>Research sunlight-v2:</strong> not available for this candidate yet.";
+    $("#reveal").innerHTML = `Saved <strong>${button.textContent}</strong>. Connector score ${event.peakScore ?? "—"}; ${rep.persistence?.scanCount ?? event.scanCount ?? "—"} confirming scans; camera distance ${event.evidence?.camera?.distanceKm ?? "—"} km; predicted direction difference ${event.evidence?.camera?.bearingDifference ?? "—"}°.${assessmentText}`;
+    $("#reveal").classList.remove("hidden");
+    $("#grade-status").textContent = "";
+    completed++;
+    queue.shift();
+    loadResults().catch(() => {});
+    setTimeout(render, 1300);
+  } catch (error) {
+    $("#grade-status").textContent = error.message;
+  } finally { document.querySelectorAll("[data-label]").forEach(item => item.disabled = false); }
+}));
+
+$("#logout").addEventListener("click", async () => {
+  await api("/api/review-session", {method:"DELETE"});
+  queue = [];
+  showLogin();
+});
+
+$("#refresh").addEventListener("click", () => refreshReviewPage());
+
+(async () => {
+  try {
+    const session = await api("/api/review-session");
+    if (session.authenticated) await loadQueue(); else showLogin();
+  } catch { showLogin(); }
+})();
+
+setInterval(() => {
+  if (document.hidden || $("#workspace").classList.contains("hidden")) return;
+  refreshReviewPage({ announce: false });
+}, REVIEW_REFRESH_MS);
+</script>
+</main></body></html>

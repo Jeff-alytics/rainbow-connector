@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "site_owner",
+  "reviewedAt": "2026-07-25",
+  "source": "clip-review-batch-01",
+  "labels": [
+    {
+      "candidateId": "semantic-01",
+      "centerTime": "2025-04-04T19:42:00Z",
+      "label": "uncertain_possible_artifact",
+      "notes": "Possible bow, but reviewer believes it may be a sun or camera artifact."
+    },
+    {
+      "candidateId": "semantic-02",
+      "centerTime": "2025-04-01T19:22:00Z",
+      "label": "uncertain_possible_rainbow_near_sun_or_artifact",
+      "notes": "Rainbow-like feature near the sun; reviewer cannot distinguish a real bow from a camera artifact."
+    },
+    {
+      "candidateId": "semantic-03",
+      "centerTime": "2025-12-31T16:52:00Z",
+      "label": "rainbow",
+      "notes": "Human-confirmed visible rainbow."
+    },
+    {
+      "candidateId": "semantic-04",
+      "centerTime": "2024-06-03T19:18:00Z",
+      "label": "rainbow",
+      "notes": "Human-confirmed visible rainbow."
+    },
+    {
+      "candidateId": "semantic-05",
+      "centerTime": "2026-03-18T19:44:00Z",
+      "label": "rainbow",
+      "notes": "Human-confirmed small visible rainbow in one frame."
+    },
+    {
+      "candidateId": "semantic-06",
+      "centerTime": "2026-05-08T08:22:00Z",
+      "label": "no_rainbow",
+      "notes": "Human-confirmed no visible rainbow."
+    },
+    {
+      "candidateId": "semantic-07",
+      "centerTime": "2025-03-06T19:00:00Z",
+      "label": "rainbow",
+      "notes": "Human-confirmed visible rainbow."
+    },
+    {
+      "candidateId": "semantic-08",
+      "centerTime": "2026-01-26T18:12:00Z",
+      "label": "no_rainbow",
+      "notes": "Human-confirmed no visible rainbow."
+    },
+    {
+      "candidateId": "semantic-09",
+      "centerTime": "2025-11-13T17:22:00Z",
+      "label": "rainbow",
+      "notes": "Human-confirmed visible rainbow, partially obscured."
+    },
+    {
+      "candidateId": "semantic-10",
+      "centerTime": "2024-12-18T16:54:00Z",
+      "label": "no_rainbow",
+      "notes": "Human-confirmed no visible rainbow."
+    },
+    {
+      "candidateId": "calibrated-01",
+      "centerTime": "2025-02-14T18:40:00Z",
+      "label": "no_rainbow",
+      "notes": "Human-confirmed no visible rainbow."
+    },
+    {
+      "candidateId": "calibrated-02",
+      "centerTime": "2026-02-05T11:00:00Z",
+      "label": "no_rainbow",
+      "notes": "Human-confirmed no visible rainbow."
+    },
+    {
+      "candidateId": "calibrated-03",
+      "centerTime": "2025-07-15T08:44:00Z",
+      "label": "no_rainbow",
+      "notes": "Human-confirmed no visible rainbow."
+    },
+    {
+      "candidateId": "calibrated-04",
+      "centerTime": "2025-06-30T07:40:00Z",
+      "label": "no_rainbow",
+      "notes": "Human-confirmed no visible rainbow."
+    },
+    {
+      "candidateId": "calibrated-05",
+      "centerTime": "2026-02-12T10:54:00Z",
+      "label": "no_rainbow",
+      "notes": "Human-confirmed no visible rainbow."
+    }
+  ]
+}

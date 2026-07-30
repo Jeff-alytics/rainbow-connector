@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Rainbow Connector · Rainbow Forecast</title>
-<meta name="description" content="See when &amp; where to catch a rainbow near you — a rainbow forecast by US ZIP, plus a nationwide map." />
+<meta name="description" content="See when &amp; where to catch a rainbow near you — a rainbow forecast by US ZIP with a 24-hour window dial." />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
 <!-- social share card -->
@@ -26,6 +26,8 @@
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="cities.js"></script>
+<script src="us-nation.js"></script>
+<script src="us-states.js"></script>
 <script src="sim_radar.js"></script>
 <style>
   /* ============================================================
@@ -176,6 +178,34 @@
   .addbox button:hover { transform: translateY(-1px); filter: brightness(1.06); }
   .addbox button:disabled { opacity: .5; cursor: default; transform: none; }
 
+  .email-alert { margin-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding: 17px 20px; border: 1px solid var(--border-c); border-radius: 1.5rem; background: var(--card-bg);
+    box-shadow: 0 18px 38px -30px rgb(var(--shadow) / .55); }
+  .email-alert-copy { min-width: 190px; }
+  .email-alert-copy strong { display: block; font-family: "Fredoka", sans-serif; font-size: 17px; }
+  .email-alert-copy span { display: block; color: var(--muted-fg); font-size: 12.5px; margin-top: 3px; line-height: 1.45; }
+  .email-form { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+  .email-form input { height: 42px; box-sizing: border-box; border: 1px solid var(--border-c); border-radius: 999px;
+    background: var(--background); color: var(--foreground); padding: 0 15px; outline: none; font: 14px "IBM Plex Mono", monospace; }
+  .email-form input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 15%, transparent); }
+  .email-form input[type="email"] { width: min(250px, 48vw); }
+  .email-form input[name="zip"] { width: 105px; letter-spacing: .08em; }
+  .email-form button { height: 42px; border: 0; border-radius: 999px; padding: 0 18px; cursor: pointer;
+    background: linear-gradient(100deg, var(--rb-blue), var(--rb-violet)); color: var(--primary-fg);
+    font: 600 14px "Fredoka", sans-serif; }
+  .email-form button:disabled { opacity: .5; cursor: default; }
+  .turnstile-slot { flex-basis: 100%; display: flex; justify-content: flex-end; min-height: 0; }
+  .email-status { flex-basis: 100%; text-align: right; min-height: 17px; color: var(--muted-fg); font-size: 12px; }
+  .email-status.success { color: var(--good); }
+  .email-status.error { color: var(--rb-red); }
+  @media (max-width: 760px) {
+    .email-alert { align-items: stretch; flex-direction: column; }
+    .email-form { justify-content: flex-start; }
+    .email-form input[type="email"] { flex: 1 1 210px; width: auto; }
+    .email-status { text-align: left; }
+    .turnstile-slot { justify-content: flex-start; }
+  }
+
   .chips { display: flex; gap: 8px; flex-wrap: wrap; }
   .chip { display: inline-flex; align-items: center; gap: 9px; cursor: pointer; height: 50px;
     border: 1px solid var(--border-c); background: var(--card-bg); padding: 0 8px 0 14px; border-radius: 999px;
@@ -196,7 +226,6 @@
   .chip.slot-empty .slot-plus { font-family: "Fredoka", sans-serif; font-size: 19px; font-weight: 600; line-height: 1; }
   .chip.slot-empty .cname { font-family: "Fredoka", sans-serif; font-weight: 500; font-size: 15px; }
   .hint { color: var(--faint-fg); font-size: 13px; align-self: center; font-weight: 500; }
-
   /* ---------- layout ---------- */
   .console { margin-top: 26px; display: grid; grid-template-columns: 1.02fr .98fr; gap: 18px; }
   @media (max-width: 860px){ .console { grid-template-columns: 1fr; } }
@@ -231,6 +260,7 @@
     font-size: 14px; font-weight: 800; line-height: 1; }
   .check.yes .cmark { background: color-mix(in oklab, var(--good) 20%, transparent); color: var(--good); }
   .check.no .cmark  { background: var(--secondary); color: var(--faint-fg); }
+  .check.unknown .cmark { background: color-mix(in oklab, var(--mod) 18%, transparent); color: var(--mod); }
   .check.glyph .cmark { background: none; font-size: 18px; }
   .check .cbody { display: flex; flex-direction: column; }
   .check .cname { font-family: "Fredoka", sans-serif; font-size: 15px; font-weight: 600; color: var(--foreground); }
@@ -265,39 +295,77 @@
   .info-block .iv small { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted-fg); font-weight: 400; }
 
   /* lower row: map + nationwide grid */
-  .lower { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .lower { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: stretch; }
   @media (max-width: 860px){ .lower { grid-template-columns: 1fr; } }
   .map-card, .board-card { margin: 0; }
-  #map, #usmap { height: 380px; width: 100%; border-radius: 1.25rem; border: 1px solid var(--border-c); background: var(--secondary); overflow: hidden; }
+  #map { height: 380px; width: 100%; border-radius: 1.25rem; border: 1px solid var(--border-c); background: var(--secondary); overflow: hidden; }
   .map-shell { position: relative; }
   .map-loading { position: absolute; inset: 0; z-index: 2; border-radius: 1.25rem; display: flex; align-items: center; justify-content: center; gap: 10px;
     background: var(--secondary); color: var(--muted-fg); font-family: "Fredoka", sans-serif; font-weight: 500; font-size: 15px; transition: opacity .4s; }
   .map-loading.gone { opacity: 0; pointer-events: none; }
   .map-loading .ml-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--primary); animation: twinkle 1.2s ease-in-out infinite; }
-  .grid-foot, .map-foot { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-c); min-height: 16px; font-size: 11px; color: var(--faint-fg); }
-  .grid-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
-  .map-foot { font-family: "IBM Plex Mono", monospace; letter-spacing: .04em; color: var(--muted-fg); line-height: 16px; }
-  .grid-foot .gl { display: inline-flex; align-items: center; gap: 6px; font-family: "Fredoka", sans-serif; font-weight: 500; color: var(--muted-fg); }
-  .grid-foot .gdot { width: 11px; height: 11px; border-radius: 50%; box-shadow: 0 0 0 2px var(--card-bg); }
-  .grid-foot .gdot.go { background: var(--good); }
-  .grid-foot .gdot.watch { background: var(--mod); }
-  .grid-foot .gl-tip { font-family: "Fredoka", sans-serif; font-weight: 500; color: var(--faint-fg); }
-  .grid-foot .gl-note { margin-left: auto; }
-  /* verified candidate pins on the national map */
-  .cand-pin { display: grid; place-items: center; border-radius: 50%; font: 700 11px/1 "Fredoka", sans-serif; color: #fff; border: 2px solid #fff; box-shadow: 0 2px 7px -1px rgb(var(--shadow) / .55); cursor: pointer; transition: transform .12s ease; }
-  .cand-pin:hover { transform: scale(1.18); z-index: 5; }
-  .cand-pin.go { width: 23px; height: 23px; background: var(--good); z-index: 2; }
-  .cand-pin.cloudy { width: 13px; height: 13px; background: var(--mod); opacity: .82; z-index: 1; }
-  .maplibregl-popup-content { background: var(--card-bg); border: 1px solid var(--border-c); border-radius: 14px; padding: 8px 12px; box-shadow: 0 8px 22px -10px rgb(var(--shadow) / .6); }
-  .maplibregl-popup-tip { display: none; }
-  .maplibregl-popup-anchor-top .maplibregl-popup-content, .maplibregl-popup-anchor-bottom .maplibregl-popup-content { margin-top: 0; }
-  .hex-pop b { display: block; font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 14px; color: var(--foreground); line-height: 1.2; }
-  .hex-pop span { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; }
-  .hex-pop span.lvl-go { color: var(--good); }
-  .hex-pop span.lvl-watch { color: var(--mod); }
+  .map-foot { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-c); min-height: 16px; font-size: 11px; color: var(--faint-fg);
+    font-family: "IBM Plex Mono", monospace; letter-spacing: .04em; color: var(--muted-fg); line-height: 16px; }
+  /* 24-hour rainbow window dial */
+  .dial-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; min-height: 380px; justify-content: center; }
+  .dial-svg { width: 100%; max-width: 320px; }
+  .dial-legend { display: flex; flex-wrap: wrap; gap: 10px 18px; justify-content: center; }
+  .dial-legend .dl { display: inline-flex; align-items: center; gap: 6px; font-family: "Fredoka", sans-serif; font-weight: 500; font-size: 12px; color: var(--muted-fg); }
+  .dial-legend .dl i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .dial-legend .dl i.dl-bow { background: linear-gradient(135deg, var(--rb-green), var(--rb-blue)); }
+  .dial-legend .dl i.dl-rain { background: var(--primary); opacity: .55; }
+  .dial-legend .dl i.dl-sun { background: var(--rb-yellow); opacity: .5; }
+  .dial-summary { text-align: center; font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 15px; color: var(--foreground); line-height: 1.4; }
+  .dial-summary small { display: block; font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 400; color: var(--muted-fg); margin-top: 4px; }
+  .dial-empty { text-align: center; padding: 40px 20px; color: var(--faint-fg); font-family: "Fredoka", sans-serif; font-weight: 500; font-size: 14px; line-height: 1.5; min-height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .dial-empty .de-big { font-size: 18px; color: var(--muted-fg); font-weight: 600; margin-bottom: 8px; }
+  .candidate-card { margin-top: 18px; }
+  .ingredient-legend { display:flex; flex-wrap:wrap; gap:10px 22px; padding:2px 2px 14px; justify-content:center; color:var(--muted-fg); font:500 12.5px/1.25 "Fredoka",sans-serif; }
+  .ingredient-legend span { display:inline-flex; align-items:center; gap:6px; }
+  .ingredient-legend i { width:15px; height:15px; border-radius:5px; display:inline-block; border:1px solid transparent; }
+  .ingredient-legend .sun i { background:linear-gradient(135deg,#e89b2e,#f0d060); }
+  .ingredient-legend .sunset i { width:20px; height:2px; border:none; border-radius:0;
+    background:repeating-linear-gradient(90deg,#4a5080 0 4px,transparent 4px 7px); }
+  .ingredient-legend .rain i { background:rgb(91 143 217 / .5); border:1.5px solid #3b6ebe; }
+  .ingredient-legend .aligned i { background:rgb(31 176 102 / .55); border:1.5px solid #0d7a41; }
+  .ingredient-legend .possible i,.ingredient-legend .go i { width:20px;height:20px;background:#fff;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 2px #d99a20; }
+  .ingredient-legend .go i { box-shadow:0 0 0 2px #7551c9; }
+  .ingredient-legend .possible i::before { content:"\26C5"; font-style:normal; font-size:11px; }
+  .ingredient-legend .go i::before { content:"\1F308"; font-style:normal; font-size:11px; }
+  .ingredient-note { display:none; position:absolute; left:10px; bottom:10px; z-index:3; padding:6px 9px; border-radius:999px; background:rgb(255 255 255 / .9); color:#5d6474; font:600 10px/1 "Fredoka",sans-serif; }
+  .ingredient-note.visible { display:block; }
+  #candmap { height: 560px; width: 100%; border-radius: 1.25rem; border: 1px solid var(--border-c); background: var(--secondary); overflow: hidden; }
+  .cand-empty { height: 430px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--faint-fg);
+    font-size: 13px; padding: 0 28px; border-radius: 1.25rem; border: 1px dashed var(--border-c); font-weight: 500; line-height: 1.5; }
+  .cand-foot { display: none; }
+  .cand-foot.has-status { display: block; margin-top: 10px; color: var(--muted-fg); font-size: 12px; }
+  .cand-pin { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 50%; border: 2px solid var(--card-bg);
+    background: var(--good); color: var(--card-bg); font: 700 11px/1 "Fredoka", sans-serif; box-shadow: 0 8px 16px -8px rgb(var(--shadow) / .75); cursor: pointer; transition: transform .12s ease; }
+  .cand-pin:hover { transform: scale(1.18); }
+  .cand-pin.active { background: var(--rb-red); transform: scale(1.14); }
+  .cand-foot b { color: var(--foreground); font-weight: 600; }
+  .cand-head-actions { display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+  .candidate-toggle { border: 1px solid var(--border-c); border-radius: 999px; background: var(--secondary);
+    color: var(--muted-fg); padding: 7px 12px; cursor: pointer; font: 600 12px/1 "Fredoka", sans-serif; }
+  .candidate-toggle[aria-pressed="true"] { border-color: var(--mod); color: var(--foreground);
+    background: color-mix(in oklab, var(--mod) 15%, var(--secondary)); }
+  .candidate-toggle:disabled { opacity: .45; cursor: default; }
+  @media (max-width: 560px) {
+    .candidate-card .card-head { align-items: flex-start; }
+    .cand-head-actions { flex-direction: column-reverse; align-items: flex-end; }
+    .ingredient-legend { display:grid; grid-template-columns:1fr 1fr; gap:8px 12px; }
+    #candmap { height:460px; }
+  }
   #map.hidden { display: none; }
+  #candmap.hidden { display: none; }
   .map-empty { height: 380px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--faint-fg);
     font-size: 13px; padding: 0 28px; border-radius: 1.25rem; border: 1px dashed var(--border-c); font-weight: 500; line-height: 1.5; }
+  .bow-pin { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; border: 2px solid #fff;
+    background: #fff; font-size: 14px; cursor: pointer;
+    box-shadow: 0 0 0 2.5px oklch(0.55 0.21 305 / .85), 0 8px 16px -8px rgb(28 35 80 / .8); }
+  .bow-pin.maybe { font-size: 13px;
+    box-shadow: 0 0 0 2.5px oklch(0.68 0.15 70 / .85), 0 6px 12px -6px rgb(28 35 80 / .6); }
+  .bow-pin.active { transform: scale(1.18); }
   .maplibregl-marker .look-pin, .rain-pin, .me-pin {
     font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 11px; letter-spacing: .02em;
     padding: 5px 9px; border-radius: 999px; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(20,30,70,.5); }
@@ -394,6 +462,20 @@
     <span class="hint" id="barhint">Track up to 3 spots — enter a ZIP to begin.</span>
   </div>
 
+  <section class="email-alert" aria-labelledby="email-alert-title">
+    <div class="email-alert-copy">
+      <strong id="email-alert-title">Email me when it’s a GO</strong>
+      <span>Choose a ZIP. We’ll email for a fresh strict GO within 15 km so you can look before it fades. Confirm by email; unsubscribe anytime.</span>
+    </div>
+    <form class="email-form" id="email-alert-form">
+      <input type="email" id="alert-email" name="email" autocomplete="email" maxlength="254" placeholder="you@example.com" aria-label="Email address" required />
+      <input type="text" id="alert-zip" name="zip" autocomplete="postal-code" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" placeholder="ZIP" aria-label="ZIP code" required />
+      <button type="submit" id="alert-submit" disabled>Get alerts</button>
+      <div class="turnstile-slot" id="alert-turnstile"></div>
+      <div class="email-status" id="email-alert-status" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
   <div class="console" id="console">
     <div class="empty">
       <div class="big">No ZIP tracked yet</div>
@@ -401,29 +483,51 @@
     </div>
   </div>
 
+  <section class="card candidate-card" id="candidatepanel">
+    <div class="card-head">
+      <span class="tag">Rainbow Ingredients Right Now</span>
+      <div class="cand-head-actions">
+        <button class="candidate-toggle" id="candidate-toggle" type="button" aria-pressed="false">Show possibilities</button>
+        <span class="meta" id="cand-meta">loading...</span>
+      </div>
+    </div>
+    <div class="ingredient-legend" aria-label="Map ingredients">
+      <span class="sun"><i></i>The sun is low enough</span>
+      <span class="sunset"><i></i>Sunset line &mdash; dark past here</span>
+      <span class="rain"><i></i>The rain exists</span>
+      <span class="aligned"><i></i>You're positioned right</span>
+      <span class="possible" id="possible-legend" hidden><i></i>Possible &mdash; check your sky</span>
+      <span class="go"><i></i>GO &mdash; look now</span>
+    </div>
+    <div class="map-shell">
+      <div class="cand-empty" id="cand-empty">Loading rainbow candidates.</div>
+      <div id="candmap" class="hidden"></div>
+      <div class="map-loading" id="cand-loading"><span class="ml-dot"></span>Loading candidates...</div>
+      <div class="ingredient-note" id="ingredient-note" role="status"></div>
+    </div>
+    <div class="cand-foot has-status" id="cand-foot">Pins are spots the Connector is actively tracking for signs of sunlight needed to make the rainbow.</div>
+  </section>
+
   <div class="lower" id="lower">
     <section class="card map-card" id="mappanel">
       <div class="card-head">
-        <span class="tag">Look This Way</span>
+        <span class="tag" id="map-tag">Look This Way</span>
         <span class="meta" id="map-meta">—</span>
       </div>
-      <div class="map-empty" id="map-empty">Track a ZIP to see which way to look.</div>
+      <div class="map-empty" id="map-empty">Track a ZIP, or choose a candidate, to see which way to look.</div>
       <div id="map" class="hidden"></div>
-      <div class="map-foot" id="map-foot">Add a ZIP, or tap a marked spot on the map.</div>
+      <div class="map-foot" id="map-foot">Add a ZIP, or tap a candidate on the map.</div>
     </section>
-    <section class="card board-card" id="boardpanel">
+    <section class="card board-card" id="dialpanel">
       <div class="card-head">
-        <span class="tag">Rainbow Map</span>
-        <span class="meta" id="grid-meta">scanning…</span>
+        <span class="tag" id="dial-tag">Next 24 Hours</span>
+        <span class="meta" id="dial-meta">—</span>
       </div>
-      <div class="map-shell">
-        <div id="usmap"></div>
-        <div class="map-loading" id="usmap-loading"><span class="ml-dot"></span>Loading radar…</div>
-      </div>
-      <div class="grid-foot" id="grid-foot">
-        <span class="gl"><i class="gdot go"></i>Candidates now</span>
-        <span class="gl-tip">Tap a pin to track</span>
-        <span class="gl-note" id="grid-stamp">Auto-updates every 5 min</span>
+      <div id="dial-body">
+        <div class="dial-empty">
+          <div class="de-big">Track a ZIP to see your forecast</div>
+          Enter a US ZIP code above to see when conditions may line up.
+        </div>
       </div>
     </section>
   </div>
@@ -493,6 +597,18 @@ function offset(lat, lon, km, bearingDeg){
   return { lat: lat + dLat, lon: lon + dLon };
 }
 const ANTISOLAR_KM = 10;
+const ZIP_GO_RADIUS_KM = 15;
+const ZIP_NEARBY_RADIUS_KM = 15;
+const ZIP_POSSIBLE_MIN_DNI = 180;
+const ZIP_POSSIBLE_MIN_SCORE = 60;
+const ZIP_POSSIBLE_MIN_RAIN = 0.4;
+
+function distanceKm(lat1, lon1, lat2, lon2){
+  const dLat = (lat2 - lat1) * RAD, dLon = (lon2 - lon1) * RAD;
+  const a = Math.sin(dLat / 2) ** 2
+    + Math.cos(lat1 * RAD) * Math.cos(lat2 * RAD) * Math.sin(dLon / 2) ** 2;
+  return 6371 * 2 * Math.asin(Math.sqrt(a));
+}
 
 /* ---------- the model: three conditions, not a score ----------
    A rainbow needs three things to be TRUE, not a magic number:
@@ -501,13 +617,15 @@ const ANTISOLAR_KM = 10;
      3. there's rain in the anti-solar direction (where the bow would hang).
    When all three hold, it's a GO. Missing one drops it to a watch; missing the
    geometry means a bow is physically impossible right now. */
-const LIGHT_MIN = 120;                          // W/m² — sun meaningfully reaching the ground
-const CLOUD_CLEAR_MAX = 55;                     // sky cover % below which direct beam is likely present
+const DIRECT_GO_MIN = 200;                      // W/m² direct-normal irradiance; measured ARM positives were about 267+
+const DIRECT_WATCH_MIN = 120;                   // weaker direct-beam evidence; not enough for GO by itself
+const OPTIMAL_SUN_MIN = 5, OPTIMAL_SUN_MAX = 22; // confirmed FAA positives were 7.7-18.4 degrees
+const CLOUD_CLEAR_MAX = 55;                     // display/fallback only; cloud cover is not proof of direct sun
 function skyLabel(cc){ return cc <= 25 ? "Clear" : cc <= 50 ? "Partly cloudy" : cc <= 75 ? "Mostly cloudy" : "Overcast"; }
-// Bows can linger ~10 min past sunset: atmospheric refraction keeps the sun optically up after it's
-// geometrically set, and our SunCalc elevation omits that ~0.8° lift — so treat the sun as "up
-// enough" down to 3° below the horizon (≈10 min after sunset) before it counts as night.
-const NIGHT_BELOW = -3;
+// Apparent sunrise/sunset occurs with the Sun's geometric center near -0.833 degrees:
+// about 0.57 degrees of refraction plus the Sun's 0.27-degree apparent radius.
+// Below this, a ground-level observer no longer has the direct sunlight a primary bow needs.
+const NIGHT_BELOW = -0.833;
 const bowPossible = e => e > NIGHT_BELOW && e < 42;
 // scan forward in 1-min steps to find the next time the sun drops below 42°
 function nextBowTime(lat, lon){
@@ -523,18 +641,23 @@ const precipToInt = p => (p == null || p <= 0) ? 0 : Math.min(1, 0.5 + p / 2);  
 
 function verdictOf(elev, directRad, rainInt){
   const geo  = bowPossible(elev);
-  const sun  = (directRad ?? 0) >= LIGHT_MIN;
-  const rain = (rainInt ?? 0) > 0;
+  const optimal = elev != null && elev >= OPTIMAL_SUN_MIN && elev <= OPTIMAL_SUN_MAX;
+  const sun  = directRad == null ? null : directRad >= DIRECT_GO_MIN;
+  const weakSun = directRad == null ? null : directRad >= DIRECT_WATCH_MIN;
+  const rain = rainInt == null ? null : rainInt > 0;
   let key, tier, label;
   // rain in the anti-solar sky is the non-negotiable ingredient — no droplets, no bow, ever.
   if (!geo){ key = "none"; tier = 0; label = (elev == null || elev <= NIGHT_BELOW) ? "It's night" : "Sun's too high"; }
-  else if (!rain){ key = "low"; tier = 1; label = "No rain opposite the sun"; }
-  else if (sun){ key = "go"; tier = 3; label = "Go look now"; }
-  else { key = "watch"; tier = 2; label = "Too cloudy"; }
-  return { geo, sun, rain, key, tier, label, elev, directRad, rainInt };
+  else if (rain === false){ key = "low"; tier = 1; label = "No precipitation opposite the sun"; }
+  else if (sun === true && optimal){ key = "go"; tier = 3; label = "Go look now"; }
+  else if (weakSun === true){ key = "watch"; tier = 2; label = optimal ? "Possible - weaker sunlight" : "Possible - sun angle less favorable"; }
+  else if (sun === false){ key = "low"; tier = 1; label = "Sunlight too weak"; }
+  else if (sun == null || rain == null){ key = "unknown"; tier = 1; label = "Data unavailable"; }
+  else { key = "watch"; tier = 2; label = "Possible - conditions marginal"; }
+  return { geo, optimal, sun, weakSun, rain, key, tier, label, elev, directRad, rainInt };
 }
-const VCOLOR = { go: "var(--good)", watch: "var(--mod)", low: "var(--ink-faint)", none: "var(--ink-faint)" };
-const VCLASS = { go: "high", watch: "mod", low: "low", none: "low" };  // reuse chip level styles
+const VCOLOR = { go: "var(--good)", watch: "var(--mod)", unknown: "var(--mod)", low: "var(--ink-faint)", none: "var(--ink-faint)" };
+const VCLASS = { go: "high", watch: "mod", unknown: "mod", low: "low", none: "low" };  // reuse chip level styles
 
 /* ---------- live radar (RainViewer) — the rain term for "right now" ---------- */
 let _radar = null;
@@ -639,18 +762,15 @@ async function fetchWeatherOM(lat, lon){
     + `&hourly=precipitation,direct_radiation,cloud_cover&forecast_days=1&timezone=auto`;
   return fetchJSON(url);
 }
-// lightweight Open-Meteo cloud-only fetch (satellite + model blend, more real-time than NWS forecast)
-// Cached by ~0.1° cell (≈11 km) with 3-min TTL so a grid pin and subsequent card click agree.
-const _omCloudCache = new Map();
-async function cloudOM(lat, lon){
-  const key = lat.toFixed(1) + "," + lon.toFixed(1);
-  const cached = _omCloudCache.get(key);
-  if (cached && Date.now() - cached.ts < 3 * 60000) return cached.value;
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=cloud_cover`;
+// Open-Meteo sunlight snapshot. Direct radiation is the decision signal; cloud cover is
+// useful context but cannot by itself establish that the solar disc is unobscured.
+async function sunlightOM(lat, lon){
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=cloud_cover,direct_normal_irradiance`;
   const j = await fetchJSON(url);
-  const v = j.current.cloud_cover;
-  _omCloudCache.set(key, { value: v, ts: Date.now() });
-  return v;
+  return {
+    cloudCover: j.current.cloud_cover,
+    directRadiation: j.current.direct_normal_irradiance,
+  };
 }
 
 /* ---------- NWS (api.weather.gov): CORS-friendly, CONUS, no per-IP daily cap ----------
@@ -736,7 +856,7 @@ function seriesAt(map, t){                        // exact hour, else nearest av
 function nwsLoc(grid){
   const sky = expandSeries(grid.properties.skyCover && grid.properties.skyCover.values);
   const qpf = expandSeries(grid.properties.quantitativePrecipitation && grid.properties.quantitativePrecipitation.values);
-  const skyToRad = cc => (cc != null && cc < CLOUD_CLEAR_MAX) ? 999 : 0;   // clear -> direct beam present
+  const skyToRad = () => null;   // NWS sky cover is context, not proof of a direct solar beam
   const h0 = Math.floor(nowInstant().getTime() / 3600000) * 3600000;
   const time = [], direct_radiation = [], precipitation = [], cloud_cover = [];
   for (let i = 0; i < 24; i++){
@@ -816,16 +936,21 @@ async function computeStation(st){
     hereW = await weatherPoint(st.lat, st.lon);
   }
 
-  // Cloud: take the HIGHER of NWS gridpoint forecast and Open-Meteo satellite+model blend.
-  // Either source alone can underreport — using the max avoids false "clear" readings.
+  // Direct radiation is the best available proxy for an unobscured solar beam. Cloud-cover
+  // percentage remains display context and is used only if radiation is unavailable.
   let cloudCover = hereW.current.cloud_cover;
+  let directRad = SIM_INSTANT ? hereW.current.direct_radiation : null;
+  let sunSource = SIM_INSTANT ? "simulation history" : "unavailable";
   if (!SIM_INSTANT){
     try {
-      const om = await cloudOM(st.lat, st.lon);
-      if (om != null) cloudCover = Math.max(cloudCover ?? 0, om);
-    } catch (e){ /* Open-Meteo unavailable — keep NWS forecast sky cover */ }
+      const om = await sunlightOM(st.lat, st.lon);
+      if (om.cloudCover != null) cloudCover = om.cloudCover;
+      if (om.directRadiation != null) {
+        directRad = om.directRadiation;
+        sunSource = "Open-Meteo direct normal irradiance";
+      }
+    } catch (e){ /* Open-Meteo unavailable — retain the weather-point fallback */ }
   }
-  let directRad = (cloudCover != null && cloudCover < CLOUD_CLEAR_MAX) ? 999 : 0;
   let antiPrecip = null;
 
   // RAIN, right now: live radar in the anti-solar direction (forecast precip smooths out the
@@ -841,15 +966,15 @@ async function computeStation(st){
     try { radar = await radarRainScore(st.lat, st.lon, antiBearing); rainInt = radar.intensity; }
     catch (e) {
       try { const aw = await weatherPoint(anti.lat, anti.lon); antiPrecip = aw.current.precipitation; rainInt = precipToInt(antiPrecip); rainSource = "forecast"; }
-      catch { rainInt = 0; rainSource = "none"; }
+      catch { rainInt = null; rainSource = "none"; }
     }
   }
 
   const verdict = verdictOf(sun.elev, directRad, rainInt);
 
-  return { st, sun, verdict, fetchedAt: Date.now(),
-           factors: { directRad, cloudCover, antiPrecip, rainInt, radar, rainSource },
-           antiBearing, anti, rainbowElev: Math.max(0, 42 - sun.elev) };
+  return applyFinalizedZipPolicy({ st, sun, verdict, fetchedAt: Date.now(),
+           factors: { directRad, cloudCover, sunSource, antiPrecip, rainInt, radar, rainSource },
+           antiBearing, anti, rainbowElev: Math.max(0, 42 - sun.elev) }, candidateArtifact);
 }
 
 /* ============================================================
@@ -891,6 +1016,7 @@ function statusGlyph(v, elev){
   if (v.key === "go")    return "🌈";
   if (v.key === "watch") return "🌥️";
   if (v.key === "low")   return "☀️";                 // geometry ok, but no rain
+  if (v.key === "unknown") return "❔";
   return (elev == null || elev <= NIGHT_BELOW) ? "🌙" : "🌞";  // sun down / sun too high
 }
 function bowGlyph(){
@@ -910,8 +1036,9 @@ function rainbowArcSVG(){
 }
 function rainWord(i){ return i >= 1 ? "heavy" : i >= 0.85 ? "moderate" : i > 0 ? "light" : "none"; }
 function checkRow(ok, name, val, note, glyph){
-  return `<div class="check ${ok ? "yes" : "no"}${glyph ? " glyph" : ""}">
-    <span class="cmark">${glyph || (ok ? "✓" : "✕")}</span>
+  const state = ok === true ? "yes" : ok == null ? "unknown" : "no";
+  return `<div class="check ${state}${glyph ? " glyph" : ""}">
+    <span class="cmark">${glyph || (ok === true ? "✓" : ok == null ? "?" : "✕")}</span>
     <span class="cbody"><span class="cname">${name}</span><span class="cval">${val}</span><span class="cnote">${note}</span></span></div>`;
 }
 
@@ -927,7 +1054,10 @@ function renderStation(data){
       : sun.elev < 45
         ? `Sun at ${sun.elev.toFixed(0)}°, just above the ~42° limit for bows.`
         : `Sun at ${sun.elev.toFixed(0)}° — too high; bows form below ~42°.`;
+    if (v.localOnly) return "Local conditions look right — the nationwide scan hasn't confirmed a candidate near you yet.";
     if (v.key === "go")    return `Sun low, skies clear, rain to the ${dir}. Look ${dir}.`;
+    if (v.key === "watch" && v.rain) return `${v.label}. Rain is present to the ${dir}.`;
+    if (v.key === "unknown") return "Some live data is unavailable — no call right now.";
     if (!v.sun && v.rain)  return `Rain to the ${dir}, but too much cloud for direct sun.`;
     if (v.sun && !v.rain)  return `Sun low and clear, but no rain to the ${dir}.`;
     return `No direct sun and no rain to the ${dir}.`;
@@ -945,31 +1075,42 @@ function renderStation(data){
           })()
         : "needs daylight")
     : "low enough for a bow";
-  // sky cover % is meaningful for both sources (NWS gives no W/m²); fall back to W/m² only
-  // if cloud cover is somehow missing.
-  const radTxt = factors.cloudCover != null ? skyLabel(Math.round(factors.cloudCover))
-               : (factors.directRad != null ? Math.round(factors.directRad) + " W/m²" : "—");
-  // "Sun is out" is derived from cloud cover alone, so on a clear night it would read ✓.
-  // Below the horizon there's no beam to refract, so relabel the row "It's night".
+  const sunlightStrength = factors.directRad == null ? null
+    : factors.directRad >= DIRECT_GO_MIN ? "Direct sunlight meets GO threshold"
+    : factors.directRad >= DIRECT_WATCH_MIN ? "Some direct sunlight"
+    : "Little direct sunlight";
+  const radTxt = factors.directRad != null
+    ? `${sunlightStrength} · ${Math.round(factors.directRad)} W/m²${factors.cloudCover != null ? " · " + skyLabel(Math.round(factors.cloudCover)) : ""}`
+    : (factors.cloudCover != null ? skyLabel(Math.round(factors.cloudCover)) : "—");
+  // Below the horizon there is no direct solar beam to refract.
   const isNight = sun.elev <= NIGHT_BELOW;
   const sunRowOk   = isNight ? false : v.sun;
-  const sunRowName = isNight ? "It's night" : "Sun is out";
-  const sunRowVal  = isNight ? "sun below horizon" : radTxt;
+  const sunRowName = isNight ? "It's night" : "Direct sun signal";
+  const sunRowVal  = isNight ? "sun below horizon" : factors.directRad == null ? "unavailable" : radTxt;
   const sunRowNote = isNight ? "no sunlight to refract"
-                   : v.sun ? "skies clear enough for direct sun"
-                           : "too cloudy for direct sunlight";
-  const rainTxt = factors.rainInt > 0 ? `${rainWord(factors.rainInt)}, ${dir}` : `none, ${dir}`;
+                   : v.sun === true ? `meets the Connector's ${DIRECT_GO_MIN} W/m² GO screening threshold`
+                   : v.weakSun === true ? `below the ${DIRECT_GO_MIN} W/m² GO screening threshold; W/m² measures sunlight strength`
+                   : v.sun === false ? "too little direct sunlight for GO"
+                                     : "sunlight data unavailable";
+  const rainTxt = factors.rainInt == null
+    ? "unavailable"
+    : factors.rainInt > 0 ? `${rainWord(factors.rainInt)}, ${dir}` : `none, ${dir}`;
   const rainNote = factors.rainSource === "none" ? "rain data unavailable"
                  : factors.rainSource === "forecast" ? "from forecast precip"
+                 : factors.rainSource === "candidate" ? "live radar + rain-point sun"
                  : "radar, 4–20 km out";
 
   // per-source freshness stamp (both reads happen in the same pass, so they share fetchedAt)
   const stampT = data.fetchedAt ? new Date(data.fetchedAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : null;
   const rainSrcLabel = factors.rainSource === "none" ? "Radar unavailable"
                      : factors.rainSource === "forecast" ? "Forecast checked"
+                     : factors.rainSource === "candidate" ? "Live scan checked"
                      : "Radar checked";
+  const sunSrcStamp = factors.directRad == null
+    ? "Sunlight unavailable"
+    : `${factors.rainSource === "candidate" ? "Observed/forecast sunlight" : (factors.sunSource || "sunlight model")} ${stampT}`;
   const srcStamp = stampT
-    ? `<div class="src-stamp">${factors.rainSource === "none" ? "Radar unavailable" : `${rainSrcLabel} ${stampT}`} · NWS sky ${stampT}</div>`
+    ? `<div class="src-stamp">${factors.rainSource === "none" ? "Radar unavailable" : `${rainSrcLabel} ${stampT}`} · ${sunSrcStamp}</div>`
     : "";
 
   consoleEl.innerHTML = `
@@ -983,7 +1124,7 @@ function renderStation(data){
         <div class="checklist">
           ${checkRow(v.geo, "Sun low enough", elevTxt, elevNote)}
           ${checkRow(sunRowOk, sunRowName, sunRowVal, sunRowNote, isNight ? "🌙" : "")}
-          ${checkRow(v.rain, "Rain opposite the sun", rainTxt, rainNote)}
+          ${checkRow(v.rain, "Precipitation opposite the sun", rainTxt, rainNote)}
         </div>
       </div>
       ${srcStamp}
@@ -998,7 +1139,7 @@ function renderStation(data){
           <div class="center-el"><div class="bearing-num">${Math.round(antiBearing)}°</div><div class="bearing-card">${dir}</div></div></div>
         <div class="look-info">
           <div class="info-block"><div class="il">${actionable ? "Look toward" : "Rainbow side"}</div><div class="iv">${actionable ? "Face " : ""}${dir} <small>(${Math.round(antiBearing)}° from N)</small></div></div>
-          <div class="info-block"><div class="il">${actionable ? "How high it'll arc" : "How high it could arc"}</div><div class="iv">${rainbowElev.toFixed(0)}° <small>above the horizon</small></div></div>
+          <div class="info-block"><div class="il">${actionable ? "How high it'll arc" : "Bow height"}</div><div class="iv">${v.geo ? rainbowElev.toFixed(0) + "° <small>above the horizon</small>" : "— <small>not possible now</small>"}</div></div>
         </div>
       </div>
     </section>`;
@@ -1025,250 +1166,583 @@ function ensureMap(){
     if (pendingMap) { updateMap(pendingMap); pendingMap = null; }
   });
 }
+function clearDirectionMap(){
+  pendingMap = null;
+  if (mapLoaded && map.getSource("ray")) map.getSource("ray").setData(EMPTY);
+  if (meMarker) { meMarker.remove(); meMarker = null; }
+  if (lookMarker) { lookMarker.remove(); lookMarker = null; }
+  if (rainMarker) { rainMarker.remove(); rainMarker = null; }
+  $("#map").classList.add("hidden");
+  $("#map-empty").style.display = "";
+  $("#map-tag").textContent = "Look This Way";
+  $("#map-meta").textContent = "—";
+  $("#map-foot").textContent = "Add a ZIP, or tap a GO candidate on the map.";
+}
 function updateMap(data){
   ensureMap();
   if (!mapLoaded) { pendingMap = data; return; }
   const st = data.st;
   const sunUp = data.sun.elev > NIGHT_BELOW;
   const end = offset(st.lat, st.lon, 40, data.antiBearing);
+  const hasStation = isFiniteCoord(st.lat, st.lon);
+  const hasEnd = isFiniteCoord(end.lat, end.lon);
+  const hasRain = data.anti && isFiniteCoord(data.anti.lat, data.anti.lon);
 
   map.getSource("ray").setData(sunUp ? {
-    type:"Feature", geometry:{ type:"LineString", coordinates:[[st.lon, st.lat],[end.lon, end.lat]] }
+    type:"FeatureCollection",
+    features: (hasStation && hasEnd) ? [{ type:"Feature", geometry:{ type:"LineString", coordinates:[[st.lon, st.lat],[end.lon, end.lat]] } }] : []
   } : EMPTY);
 
   if (meMarker) meMarker.remove();
   // label the spot with its ZIP (fall back to the place name if it's a coordinate-keyed cell)
-  const meEl = document.createElement("div"); meEl.className = "me-pin";
-  meEl.textContent = /^\d{5}$/.test(st.zip) ? st.zip : st.name.split(",")[0];
-  meMarker = new maplibregl.Marker({ element: meEl, anchor: "top" }).setLngLat([st.lon, st.lat]).addTo(map);
+  if (hasStation) {
+    const meEl = document.createElement("div"); meEl.className = "me-pin";
+    meEl.textContent = /^\d{5}$/.test(st.zip) ? st.zip : st.name.split(",")[0];
+    meMarker = new maplibregl.Marker({ element: meEl, anchor: "top" }).setLngLat([st.lon, st.lat]).addTo(map);
+  }
 
   if (lookMarker) { lookMarker.remove(); lookMarker = null; }
-  if (sunUp) {
+  if (sunUp && hasEnd) {
     const el = document.createElement("div"); el.className = "look-pin";
     el.textContent = "Look " + compassLabel(data.antiBearing);
     lookMarker = new maplibregl.Marker({ element: el, anchor: "bottom" }).setLngLat([end.lon, end.lat]).addTo(map);
   }
 
   if (rainMarker) { rainMarker.remove(); rainMarker = null; }
-  if (data.factors.rainInt > 0) {
-    const el = document.createElement("div"); el.className = "rain-pin"; el.textContent = "rain here";
+  if (data.factors.rainInt > 0 && hasRain) {
+    const el = document.createElement("div"); el.className = "rain-pin"; el.textContent = "radar return";
     rainMarker = new maplibregl.Marker({ element: el, anchor: "center" }).setLngLat([data.anti.lon, data.anti.lat]).addTo(map);
   }
 
-  map.easeTo({ center: [st.lon, st.lat], zoom: 8.8, duration: 800 });
+  if (hasStation) map.easeTo({ center: [st.lon, st.lat], zoom: 8.8, duration: 800 });
+  $("#map-tag").textContent = data.source === "candidate" ? "Candidate View" : "Look This Way";
   $("#map-meta").textContent = sunUp ? `Face ${compassLabel(data.antiBearing)} · ${Math.round(data.antiBearing)}° from N` : "🌙 It's night";
+  $("#map-foot").textContent = data.source === "candidate"
+    ? `Showing GO candidate near ${st.name}.`
+    : `Showing look direction for ${st.name}.`;
 }
 
 /* ============================================================
-   nationwide rainbow map — fully-verified "candidate" model.
-   Every dot on this map has passed the SAME three-condition test as the
-   live card, so the map can never contradict a click. We compute sun
-   geometry + rain in the anti-solar sky live in the browser everywhere,
-   rank those "ripe" spots, then check the cloud cover of the most
-   promising ones with the card's own source (weatherPoint: NWS →
-   Open-Meteo). Confirmed-clear spots become bright numbered green pins
-   ("Likely now"); spots where rain + sun line up but it's cloudy show as
-   small muted amber dots. Nothing un-verified is ever drawn.
+   GO candidates map
    ============================================================ */
-let gridMap = null, gridMapLoaded = false;
-let candMarkers = [];              // HTML markers for the verified candidates
-const TOP_N = 20;                  // how many ripe spots get an Open-Meteo cloud check each pass
-const REFRESH_MIN = 5;             // both the card and the national map auto-refresh this often
-const CONUS = { latMin: 24.5, latMax: 49.4, lonMin: -124.8, lonMax: -66.9 };
+const ingredientFixtureMode=new URLSearchParams(location.search).get("mapFixture")==="baltimore";
+let candMap = null, candMapLoaded = false, candPending = null, candidateArtifact = null, activeCandidateId = null, mapTierArtifact = null, pendingMapTierArtifact = null;
+let showPossibleCandidates = false;
+try { showPossibleCandidates = sessionStorage.getItem("rainbow.showPossible") === "1"; } catch {}
 
-// portray the map's freshness + cadence in the footer note, e.g. "Auto-updates every 5 min · checked 2:14 PM"
-function stampGrid(){
-  const el = $("#grid-stamp"); if (!el) return;
-  const t = nowInstant().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-  el.textContent = `Auto-updates every ${REFRESH_MIN} min · checked ${t}`;
-}
-const _zipCache = new Map();   // "lat,lon" -> ZIP string | null (looked up, none) — shared by hover + click
-
-// run async jobs with bounded concurrency (keeps the NWS cloud checks polite)
-async function pool(items, limit, fn){
-  const out = new Array(items.length); let i = 0;
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, async () => {
-    while (i < items.length){ const idx = i++; out[idx] = await fn(items[idx], idx); }
-  }));
-  return out;
+function isFiniteCoord(lat, lon){
+  return Number.isFinite(lat) && Number.isFinite(lon) && lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
 }
 
-/* ---- live in-browser grid compute -------------------------------------
-   Geometry (sun) and rain (radar) are computed against the SAME live
-   RainViewer frame drawn on the map, so the shade agrees with the radar
-   underlay and moves with it (areas appear AND clear as storms drift).
-   Clouds are verified per-candidate against the live card's source. ----*/
-// ~12 km mesh across CONUS — tight enough that the 20 km rain fan from any grid point
-// covers the same area the per-ZIP card would scan, so the map can't miss what a card finds
-function buildGridMesh(){
-  const pts = [];
-  for (let lat = CONUS.latMin; lat <= CONUS.latMax; lat += 12/111){
-    const dLon = 12 / (111 * Math.cos(lat * RAD));
-    for (let lon = CONUS.lonMin; lon <= CONUS.lonMax; lon += dLon) pts.push([lat, lon]);
-  }
-  return pts;
+function finalizedGoCandidates(artifact){
+  return (artifact?.candidates || []).filter(candidate =>
+    candidate?.verdict === "go" && candidate?.persistence?.confirmed === true);
 }
 
-/* ---- land mask: keep candidate pins on land, not out over the ocean -------------------
-   The CONUS bounding box covers a lot of water, so radar rain over the Gulf/Atlantic/Pacific
-   was spawning offshore pins. We reuse the bundled ZIP centroids (~41k populated US points) as
-   a cheap land test: bucket every ZIP into ~0.5° cells, then a mesh point is "on land" when its
-   own cell or an adjacent one holds a ZIP. That's generous enough to keep sparse rural land
-   while dropping anything well out to sea. The rain a pin is LOOKING at can still be offshore —
-   only the observer's spot has to be on land. Built once, lazily, from the same file geocoding uses. */
-// LAND_KM is the max distance a real-land mesh point sat from a populated ZIP in testing (rural
-// Nevada ~33km), so 35 keeps genuine inland land while dropping anything clearly at sea (the
-// nearest ZIP to mid-Gulf/open-ocean points is 50–360km). LANDCELL must stay >= LAND_KM in km even
-// at CONUS's top latitude (0.6° lon ≈ 43km at 49°N) so the ±1-cell neighbor scan can't miss a ZIP.
-const LANDCELL = 0.6;
-const LAND_KM = 35;
-let _landCells = null;          // Map "iy,ix" -> [[lat,lon],…] of ZIP centroids in that cell
-function cellIdx(lat, lon){ return [Math.round(lat / LANDCELL), Math.round(lon / LANDCELL)]; }
-function distKm(la1, lo1, la2, lo2){
-  const R = 6371, dLa = (la2 - la1) * RAD, dLo = (lo2 - lo1) * RAD;
-  const a = Math.sin(dLa/2)**2 + Math.cos(la1*RAD) * Math.cos(la2*RAD) * Math.sin(dLo/2)**2;
-  return 2 * R * Math.asin(Math.sqrt(a));
+function newGoCandidates(artifact){
+  const seen = new Set();
+  return [...(artifact?.candidates || []), ...(artifact?.possibleCandidates || [])]
+    .filter(candidate => candidate?.verdict === "go" && candidate?.persistence?.confirmed !== true)
+    .filter(candidate => {
+      const key = candidate.id || `${candidate.lat},${candidate.lon}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
 }
-async function ensureLandMask(){
-  if (_landCells) return _landCells;
-  const table = await loadZipTable();
-  const m = new Map();
-  for (const z in table){
-    const v = table[z];
-    if (!v[1]) continue;                              // skip APO/FPO military ZIPs (no state)
-    const [iy, ix] = cellIdx(v[2], v[3]), k = iy + "," + ix;
-    let a = m.get(k); if (!a){ a = []; m.set(k, a); } a.push([v[2], v[3]]);
-  }
-  return (_landCells = m);
-}
-function onLand(lat, lon){
-  if (!_landCells) return true;                      // mask not ready yet → don't over-filter
-  const [iy, ix] = cellIdx(lat, lon);
-  for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
-    const a = _landCells.get((iy + dy) + "," + (ix + dx));
-    if (!a) continue;
-    for (const [la, lo] of a) if (distKm(lat, lon, la, lo) <= LAND_KM) return true;
-  }
-  return false;
-}
-// radar fan read — uses prefetched z6 tiles (84 tiles, gentle on RainViewer CDN)
-function gridRain(rv, lat, lon, antiBearing){
-  const z = 6, bearings = [antiBearing-22, antiBearing-11, antiBearing, antiBearing+11, antiBearing+22], dists = [4, 8, 12, 16, 20];
-  let mx = 0;
-  for (const d of dists) for (const bb of bearings){
-    const o = offset(lat, lon, d, ((bb % 360) + 360) % 360);
-    const p = lonLatToPixel(o.lat, o.lon, z);
-    const data = rv.tiles.get(z + "/" + p.xt + "/" + p.yt);
-    if (data) mx = Math.max(mx, radarIntensity(data, p.px, p.py));
-  }
-  return mx > 0 ? Math.max(0.5, mx) : 0;
-}
-// fetch every z6 tile covering CONUS (+margin) — only 84 tiles, gentle on RainViewer CDN
-async function prefetchRadarTiles(rv){
-  const z = 6;
-  const tl = lonLatToPixel(CONUS.latMax + 1, CONUS.lonMin - 1, z);
-  const br = lonLatToPixel(CONUS.latMin - 1, CONUS.lonMax + 1, z);
-  const tiles = [];
-  for (let xt = tl.xt; xt <= br.xt; xt++)
-    for (let yt = tl.yt; yt <= br.yt; yt++)
-      tiles.push({ xt, yt });
-  await pool(tiles, 12, t => radarTile(rv, z, t.xt, t.yt).catch(() => null));
-}
-async function computeAndPaintGrid(){
-  if (!gridMapLoaded) return;
-  $("#grid-meta").textContent = "reading radar…";
-  let rv;
-  try { rv = await ensureRadar(); await prefetchRadarTiles(rv); }
-  catch { $("#grid-meta").textContent = "Radar delayed — retrying soon"; $("#usmap-loading").textContent = "Radar delayed"; return; }
-  try {
-    await paintGridFromRadar(rv);
-  } catch (e) {
-    $("#grid-meta").textContent = "Map update failed — retrying soon";
-    $("#usmap-loading").classList.add("gone");
-  }
-}
-async function paintGridFromRadar(rv){
-  await ensureLandMask();                            // so offshore mesh points can be dropped
 
-  // Pass 1 — find every "ripe" spot: on land, sun geometry good, rain in the anti-solar sky.
-  const now = new Date(), cands = [];
-  for (const [lat, lon] of buildGridMesh()){
-    if (!onLand(lat, lon)) continue;
-    const sun = solarReadout(now, lat, lon);
-    if (!bowPossible(sun.elev)) continue;
-    const antiBearing = (sun.bearing + 180) % 360;
-    const rain = gridRain(rv, lat, lon, antiBearing);
-    if (rain <= 0) continue;
-    const score = rain + (42 - sun.elev) / 100;
-    cands.push({ lat, lon, rain, elev: sun.elev, score });
-  }
-  cands.sort((a, b) => b.score - a.score);
-  if (!cands.length){
-    clearCandMarkers();
-    $("#grid-meta").textContent = "no bows nationwide right now";
-    $("#usmap-loading").classList.add("gone"); markUpdated(); stampGrid();
-    return;
-  }
+function mapPossibleCandidates(artifact){
+  const demoted = (artifact?.candidates || [])
+    .filter(candidate => candidate?.verdict !== "go")
+    .map(candidate => ({ ...candidate, verdict: "watch", confidence: "possible" }));
+  const possible = (artifact?.possibleCandidates || [])
+    .filter(candidate => candidate?.verdict !== "go")
+    .map(candidate => ({ ...candidate, verdict: "watch", confidence: "possible" }));
+  return [...possible, ...demoted];
+}
 
-  // Pass 2 — verify clouds on the most promising spots, using the SAME source as the live
-  // card (NWS → Open-Meteo). Green here therefore agrees with what a click would show.
-  const top = cands.slice(0, TOP_N);
-  $("#grid-meta").textContent = `checking ${top.length} candidate spots…`;
-  $("#usmap-loading").classList.add("gone");
-  clearCandMarkers();
-  // Drop each pin the instant its own cloud check returns (concurrency 6), so the
-  // map fills in progressively instead of staying empty until all checks finish.
-  let cloudFails = 0;
-  await pool(top, 6, async c => {
-    // Max of Open-Meteo + NWS — same approach as the card, avoids false clears
-    let om = null, nws = null;
-    try { om = await cloudOM(c.lat, c.lon); } catch {}
-    try { nws = (await weatherPoint(c.lat, c.lon)).current.cloud_cover; } catch {}
-    c.cloud = om != null && nws != null ? Math.max(om, nws)
-            : om ?? nws;
-    if (c.cloud == null) cloudFails++;
-    c.go = c.cloud != null && c.cloud < CLOUD_CLEAR_MAX;
-    addCandMarker(c);
+function qualifiedZipPossibleCandidates(artifact){
+  return mapPossibleCandidates(artifact).filter(candidate => {
+    const evidence = candidate.evidence || {};
+    return Number(evidence.directNormalIrradianceWm2) >= ZIP_POSSIBLE_MIN_DNI
+      && Number(evidence.score) >= ZIP_POSSIBLE_MIN_SCORE
+      && Number(evidence.rainIntensity) >= ZIP_POSSIBLE_MIN_RAIN;
   });
-  finalizeCandidates(top, cloudFails);
 }
-function clearCandMarkers(){ candMarkers.forEach(m => m.remove()); candMarkers = []; }
-function addCandMarker(c){
-  if (!c.go) return;                                  // only show confirmed-clear candidates
-  const wrap = document.createElement("div");
-  const el = document.createElement("div");
-  el.className = "cand-pin go";
-  const cloudTxt = c.cloud == null ? "sky unknown" : skyLabel(Math.round(c.cloud));
-  el.title = `Candidate now · ${cloudTxt.toLowerCase()}`;
-  el.addEventListener("click", ev => { ev.stopPropagation(); trackCell(c.lat, c.lon); });
-  wrap.appendChild(el);
-  c._el = el;
-  candMarkers.push(new maplibregl.Marker({ element: wrap, anchor: "center" })
-    .setLngLat([c.lon, c.lat]).addTo(gridMap));
+
+function allMapCandidates(artifact){
+  return [...finalizedGoCandidates(artifact), ...newGoCandidates(artifact), ...mapPossibleCandidates(artifact)];
 }
-function finalizeCandidates(top, cloudFails = 0){
-  // number the confirmed-clear pins by likelihood (top is already score-sorted)
-  let rank = 0;
-  for (const c of top){
-    if (c.go && c._el){
-      const r = ++rank, cloudTxt = c.cloud == null ? "sky unknown" : skyLabel(Math.round(c.cloud));
-      c._el.textContent = String(r);
-      c._el.title = `#${r} candidate now · ${cloudTxt.toLowerCase()}`;
+
+function visibleMapCandidates(artifact){
+  const base = [...finalizedGoCandidates(artifact), ...newGoCandidates(artifact)];
+  const possible = showPossibleCandidates ? mapPossibleCandidates(artifact) : [];
+  return [...base, ...possible];
+}
+
+function candidateFeatureCollection(artifact){
+  const candidates = visibleMapCandidates(artifact);
+  return {
+    type: "FeatureCollection",
+    features: candidates
+      .filter(c => isFiniteCoord(c.lat, c.lon))
+      .map(c => ({
+        type: "Feature",
+        id: c.id,
+        properties: {
+          id: c.id,
+          marker: c.verdict === "watch" ? "\u26C5" : "\uD83C\uDF08",
+          verdict: c.verdict || "go",
+          label: c.label || (c.verdict === "watch" ? "Possible rainbow" : "GO candidate"),
+          active: c.id === activeCandidateId,
+          bearing: c.direction?.bearing ?? null,
+          compass: c.direction?.compass || "",
+        },
+        geometry: { type: "Point", coordinates: [c.lon, c.lat] },
+      })),
+  };
+}
+
+function ensureCandidateMap(){
+  if (candMap) return;
+  $("#candmap").classList.remove("hidden");
+  $("#cand-empty").style.display = "none";
+  candMap = new maplibregl.Map({ container: "candmap", style: MAP_STYLE, center: [-95.5, 37.6], zoom: 3.9, attributionControl: false });
+  candMap.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+  candMap.on("load", () => {
+    candMapLoaded = true;
+    for (const id of ["sun-band","night-shade","sun-isoline","sunset-line","ingredient-rain","ingredient-aligned"]) candMap.addSource(id,{type:"geojson",data:EMPTY});
+    candMap.addLayer({id:"sun-band",type:"fill",source:"sun-band",paint:{"fill-antialias":false,"fill-color":["interpolate",["linear"],["get","elevation"],0,"#e89b2e",10,"#eab63a",26,"#f0d060",42,"#f5e88f"],"fill-opacity":["get","opacity"]}});
+    candMap.addLayer({id:"night-shade",type:"fill",source:"night-shade",paint:{"fill-antialias":false,"fill-color":"#3d4470","fill-opacity":["get","opacity"]}});
+    if(window.US_STATES){
+      candMap.addSource("state-lines",{type:"geojson",data:window.US_STATES});
+      candMap.addLayer({id:"state-lines",type:"line",source:"state-lines",paint:{"line-color":"#9aa2b8","line-width":.7,"line-opacity":.55}});
+    }
+    candMap.addLayer({id:"sun-42-isoline",type:"line",source:"sun-isoline",paint:{"line-color":"#c8871f","line-width":1.8,"line-dasharray":[3,2.2],"line-opacity":.85}});
+    candMap.addLayer({id:"sunset-line",type:"line",source:"sunset-line",paint:{"line-color":"#4a5080","line-width":1.6,"line-dasharray":[2.5,2.2],"line-opacity":.6}});
+    candMap.addLayer({id:"ingredient-rain",type:"fill",source:"ingredient-rain",paint:{"fill-color":"#5b8fd9","fill-opacity":.42}});
+    candMap.addLayer({id:"ingredient-rain-line",type:"line",source:"ingredient-rain",paint:{"line-color":"#3b6ebe","line-width":1.1,"line-opacity":.6}});
+    candMap.addLayer({id:"ingredient-aligned",type:"fill",source:"ingredient-aligned",paint:{"fill-color":"#1fb066","fill-opacity":.52}});
+    candMap.addLayer({id:"ingredient-aligned-line",type:"line",source:"ingredient-aligned",paint:{"line-color":"#0d7a41","line-width":1.2,"line-opacity":.7}});
+    candMap.addSource("candidates", {
+      type: "geojson",
+      data: EMPTY,
+      cluster: true,
+      clusterRadius: 34,
+      clusterMaxZoom: 7,
+    });
+    candMap.addLayer({
+      id: "candidate-clusters",
+      type: "circle",
+      source: "candidates",
+      filter: ["has", "point_count"],
+      paint: {
+        "circle-radius": ["step", ["get", "point_count"], 12, 4, 14, 8, 16],
+        "circle-color": "#ffffff",
+        "circle-stroke-color": "#19a85b",
+        "circle-stroke-width": 3,
+        "circle-opacity": 0.96,
+      },
+    });
+    candMap.addLayer({
+      id: "candidate-cluster-count",
+      type: "symbol",
+      source: "candidates",
+      filter: ["has", "point_count"],
+      layout: {
+        "text-field": ["concat", ["get", "point_count_abbreviated"], " sites"],
+        "text-size": 10.5,
+        "text-font": ["Noto Sans Bold"],
+      },
+      paint: {
+        "text-color": "#11683a",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1,
+      },
+    });
+    /* Unclustered pins are DOM markers (like the approved mockup) — MapLibre symbol
+       layers can't render color emoji, which left the pins as plain circles. */
+    candMap.on("data", e => { if (e.sourceId === "candidates") updateCandidatePinMarkers(); });
+    candMap.on("moveend", updateCandidatePinMarkers);
+    candMap.on("click", "candidate-clusters", e => {
+      const feature = e.features?.[0];
+      const clusterId = feature?.properties?.cluster_id;
+      if (clusterId == null) return;
+      const source = candMap.getSource("candidates");
+      const zoomToCluster = (err, zoom) => {
+        if (err) return;
+        candMap.easeTo({ center: feature.geometry.coordinates, zoom, duration: 500 });
+      };
+      const result = source.getClusterExpansionZoom(clusterId, zoomToCluster);
+      if (result && typeof result.then === "function") result.then(zoom => zoomToCluster(null, zoom)).catch(zoomToCluster);
+    });
+    candMap.on("mouseenter", "candidate-clusters", () => { candMap.getCanvas().style.cursor = "zoom-in"; });
+    candMap.on("mouseleave", "candidate-clusters", () => { candMap.getCanvas().style.cursor = ""; });
+    if (candPending) { renderCandidatePins(candPending); candPending = null; }
+    if (candidateArtifact) {
+      renderIngredients(pendingMapTierArtifact, candidateArtifact);
+      if (!pendingMapTierArtifact) fetchExactMapTiers(candidateArtifact);
+    }
+  });
+}
+
+function insideDisplayLand(lon,lat){
+  const geometry=window.US_NATION?.geometry;if(!geometry)return true;
+  const polygons=geometry.type==="MultiPolygon"?geometry.coordinates:[geometry.coordinates];
+  const inRing=ring=>{let inside=false,j=ring.length-1;for(let i=0;i<ring.length;j=i++){
+    const a=ring[i],b=ring[j];if((a[1]>lat)!==(b[1]>lat)&&lon<(b[0]-a[0])*(lat-a[1])/(b[1]-a[1])+a[0])inside=!inside;}return inside;};
+  return polygons.some(p=>inRing(p[0])&&!p.slice(1).some(inRing));
+}
+
+const solarIngredientCache=new Map();
+function subsolarPoint(at){
+  const d=toDays(at),M=solarAnom(d),L=eclLon(M);
+  const lat=decl(L,0)/RAD,ra=rightAsc(L,0)/RAD;
+  let lon=ra-(280.16+360.9856235*d);
+  lon=((lon%360)+540)%360-180;
+  return {lat,lon};
+}
+/* Points where solar elevation === elevDeg form a circle of angular radius (90 − elevDeg)°
+   around the subsolar point — sample it analytically instead of scanning a grid. */
+function solarIsoCircle(at,elevDeg){
+  const c=subsolarPoint(at),radius=(90-elevDeg)*RAD;
+  const phi0=c.lat*RAD,lam0=c.lon*RAD,segments=[];
+  let seg=[];
+  for(let b=0;b<=360;b+=.25){
+    const beta=b*RAD;
+    const phi=Math.asin(Math.sin(phi0)*Math.cos(radius)+Math.cos(phi0)*Math.sin(radius)*Math.cos(beta));
+    let lam=lam0+Math.atan2(Math.sin(beta)*Math.sin(radius)*Math.cos(phi0),Math.cos(radius)-Math.sin(phi0)*Math.sin(phi));
+    const lat=phi/RAD;let lon=((lam/RAD%360)+540)%360-180;
+    if(lon>=-140&&lon<=-50&&lat>=10&&lat<=62&&insideDisplayLand(lon,lat)){
+      if(seg.length&&Math.abs(lon-seg[seg.length-1][0])>3){if(seg.length>1)segments.push(seg);seg=[];}
+      seg.push([lon,lat]);
+    } else if(seg.length){if(seg.length>1)segments.push(seg);seg=[];}
+  }
+  if(seg.length>1)segments.push(seg);
+  return {type:"FeatureCollection",features:segments.map(coordinates=>({type:"Feature",properties:{},geometry:{type:"LineString",coordinates}}))};
+}
+function solarIngredientLayers(scanTime){
+  const cacheKey=new Date(scanTime).toISOString();
+  if(solarIngredientCache.has(cacheKey))return solarIngredientCache.get(cacheKey);
+  const at=new Date(scanTime),features=[],night=[],step=.35,half=step/2;
+  for(let lat=24.5+half;lat<49.5;lat+=step)for(let lon=-125+half;lon<-66.5;lon+=step){
+    if(!insideDisplayLand(lon,lat))continue;
+    const elevation=solarReadout(at,lat,lon).elev;
+    const cell=()=>({type:"Polygon",coordinates:[[[lon-half,lat-half],[lon+half,lat-half],[lon+half,lat+half],[lon-half,lat+half],[lon-half,lat-half]]]});
+    if(elevation>=0&&elevation<=42){
+      // fade toward the 42° limit AND down to zero AT the sunset line — no gold past dark
+      const opacity=.3*Math.min(1,(42-elevation)/14)*Math.min(1,elevation/5);
+      if(opacity>0)features.push({type:"Feature",properties:{elevation,opacity},geometry:cell()});
+    } else if(elevation<0){
+      // dusk tint east of the sunset line, deepening through twilight (full by −8°)
+      const opacity=.12*Math.min(1,-elevation/8);
+      if(opacity>.005)night.push({type:"Feature",properties:{opacity},geometry:cell()});
     }
   }
-  const go = rank, cloudy = top.length - go;
-  // if every cloud check came back empty, the sky source is delayed — say so rather than
-  // implying we confidently checked clouds at these spots.
-  if (top.length && cloudFails === top.length){
-    $("#grid-meta").textContent = "Weather delayed — sky check incomplete";
-  } else {
-    $("#grid-meta").textContent = go
-      ? `${go} candidate${go === 1 ? "" : "s"} now`
-      : "no bows nationwide right now";
-  }
-  markUpdated(); stampGrid();
+  const result={band:{type:"FeatureCollection",features},night:{type:"FeatureCollection",features:night},isoline:solarIsoCircle(at,42),sunset:solarIsoCircle(at,0)};
+  solarIngredientCache.set(cacheKey,result);
+  if(solarIngredientCache.size>8)solarIngredientCache.delete(solarIngredientCache.keys().next().value);
+  return result;
 }
-// nearest US city for a friendly station name when a cell is tapped
+
+function candidateScanTime(artifact){return ingredientFixtureMode?"2026-07-28T23:34:00Z":artifact?.sourceHealth?.radar?.observedAt||artifact?.source?.radarFrameTime||null;}
+function sameScan(a,b){return !!a&&!!b&&Math.abs(new Date(a)-new Date(b))<1000;}
+function setIngredientNote(text){const el=$("#ingredient-note");el.textContent=text||"";el.classList.toggle("visible",!!text);}
+function clearServerTiers(){if(!candMapLoaded)return;candMap.getSource("ingredient-rain").setData(EMPTY);candMap.getSource("ingredient-aligned").setData(EMPTY);}
+function renderIngredients(tiers,artifact){
+  pendingMapTierArtifact=tiers;
+  if(!candMapLoaded)return;
+  const scan=candidateScanTime(artifact);if(!scan)return;
+  const solar=solarIngredientLayers(scan);candMap.getSource("sun-band").setData(solar.band);candMap.getSource("night-shade").setData(solar.night);candMap.getSource("sun-isoline").setData(solar.isoline);candMap.getSource("sunset-line").setData(solar.sunset);
+  if(!tiers||!sameScan(tiers.scanTime,scan)||tiers.stale){clearServerTiers();if(tiers?.stale)setIngredientNote("ingredients layer unavailable");return;}
+  candMap.getSource("ingredient-rain").setData(tiers.rain);candMap.getSource("ingredient-aligned").setData(tiers.aligned);
+  mapTierArtifact=tiers;$("#candmap").dataset.tierRuleVersion=tiers.tierRuleVersion;
+  setIngredientNote(tiers.quietSky?"quiet sky \u2014 no rain in the golden window right now":"");
+}
+async function fetchExactMapTiers(artifact){
+  const scan=candidateScanTime(artifact);if(!scan)return;
+  if(ingredientFixtureMode){
+    try{
+      const raw=await fetch("/docs/mockups/baltimore-scan-data.json",{cache:"no-store"}).then(r=>r.text());
+      const fixture=JSON.parse(raw.replace(/^\s*window\.SCAN_DATA\s*=\s*/,"").replace(/;\s*$/,"").trim());
+      renderIngredients({scanTime:fixture.scanTime,generatedAt:fixture.scanTime,tierRuleVersion:"fixture-baltimore",quietSky:false,stale:false,rain:fixture.rain,aligned:fixture.aligned},artifact);
+      return;
+    }catch{}
+  }
+  for(let attempt=0;attempt<3;attempt++){
+    try{const r=await fetch("/api/map-tiers",{cache:"no-store"});if(r.ok){const tiers=await r.json();if(sameScan(tiers.scanTime,scan)){renderIngredients(tiers,artifact);return;}}}catch{}
+    await new Promise(resolve=>setTimeout(resolve,[800,1600,3200][attempt]));
+  }
+  clearServerTiers();setIngredientNote("ingredients layer unavailable");
+}
+
+function candidateUrl(){
+  return location.protocol === "file:" ? "candidates.json" : "/api/candidates";
+}
+
+async function fetchCandidates(){
+  try {
+    const r = await fetch(candidateUrl());
+    if (!r.ok) throw new Error("candidate endpoint unavailable");
+    return await r.json();
+  } catch (e) {
+    const r = await fetch("candidates.json");
+    if (!r.ok) throw e;
+    const j = await r.json();
+    j.stale = true;
+    return j;
+  }
+}
+
+const candPinMarkers = new Map();
+function updateCandidatePinMarkers(){
+  if (!candMapLoaded) return;
+  const seen = new Set();
+  for (const f of candMap.querySourceFeatures("candidates")) {
+    if (f.properties.point_count) continue;
+    const p = f.properties, id = p.id;
+    if (id == null || seen.has(id)) continue;
+    seen.add(id);
+    const cls = "bow-pin" + (p.verdict === "watch" ? " maybe" : "") + (p.active ? " active" : "");
+    let m = candPinMarkers.get(id);
+    if (!m) {
+      const el = document.createElement("div");
+      el.textContent = p.marker;
+      el.title = p.label || "";
+      el.addEventListener("click", ev => {
+        ev.stopPropagation();
+        const candidate = visibleMapCandidates(candidateArtifact).find(c => c.id === id);
+        if (candidate) selectCandidate(candidate, candidateArtifact);
+      });
+      m = new maplibregl.Marker({ element: el }).setLngLat(f.geometry.coordinates).addTo(candMap);
+      candPinMarkers.set(id, m);
+    } else {
+      m.setLngLat(f.geometry.coordinates);
+    }
+    if (m.getElement().className !== cls) m.getElement().className = cls;
+  }
+  for (const [id, m] of candPinMarkers) if (!seen.has(id)) { m.remove(); candPinMarkers.delete(id); }
+}
+function renderCandidatePins(artifact){
+  ensureCandidateMap();
+  if (!candMapLoaded) { candPending = artifact; return; }
+  if(ingredientFixtureMode){candMap.getSource("candidates").setData(EMPTY);return;}
+  const candidates = visibleMapCandidates(artifact);
+  candMap.getSource("candidates").setData(candidateFeatureCollection(artifact));
+  const validCandidates = candidates.filter(c => isFiniteCoord(c.lat, c.lon));
+  if (validCandidates.length && !activeCandidateId) {
+    const bounds = new maplibregl.LngLatBounds();
+    validCandidates.forEach(c => bounds.extend([c.lon, c.lat]));
+    candMap.fitBounds(bounds, { padding: 54, maxZoom: 5.5, duration: 700 });
+  } else if (!validCandidates.length && !activeCandidateId) {
+    candMap.easeTo({ center: [-95.5, 37.6], zoom: 3.9, duration: 500 });
+  }
+}
+
+function candidateToStationData(c, artifact){
+  const bearing = c.direction?.bearing ?? 0;
+  const rainPoint = c.evidence?.rainPoint || offset(c.lat, c.lon, ANTISOLAR_KM, bearing);
+  const zip = c.nearestZip?.zip || c.id || "candidate";
+  const name = c.label || c.nearestZip?.name || nearestCity(c.lat, c.lon) || `${c.lat.toFixed(2)}°, ${c.lon.toFixed(2)}°`;
+  const elev = c.evidence?.sunElevationDeg ?? 0;
+  const rainInt = c.evidence?.rainIntensity ?? 1;
+  const sat = c.evidence?.satelliteSunlight;
+  const acmc = sat?.sources?.goesAcmc;
+  const satelliteCloud = acmc?.value === 0 ? 0 : acmc?.value === 1 ? 100 : null;
+  const observedCloud = c.evidence?.nwsCloudCoverPct;
+  const modeledCloud = c.evidence?.cloudCoverPct;
+  const displayCloud = satelliteCloud ?? observedCloud ?? modeledCloud;
+  // GOES DSRF is total downwelling shortwave radiation, not direct-normal
+  // irradiance. Keep it out of this number so the UI describes direct sun.
+  const displayRad = c.evidence?.directNormalIrradianceWm2 ?? c.evidence?.directRadiationWm2 ?? null;
+  return {
+    source: "candidate",
+    st: { zip, name, lat: c.lat, lon: c.lon },
+    sun: { elev, bearing: (bearing + 180) % 360 },
+    verdict: { geo: true, optimal: elev >= OPTIMAL_SUN_MIN && elev <= OPTIMAL_SUN_MAX, sun: c.verdict !== "watch", rain: true,
+      key: c.verdict === "watch" ? "watch" : "go", tier: c.verdict === "watch" ? 2 : 3,
+      label: c.verdict === "watch" ? "Possible rainbow" : "Go look now", elev, directRad: displayRad, rainInt },
+    fetchedAt: artifact?.generatedAt ? new Date(artifact.generatedAt).getTime() : Date.now(),
+    factors: {
+      directRad: displayRad,
+      cloudCover: displayCloud,
+      rainDirectRad: c.evidence?.rainPointDirectNormalIrradianceWm2 ?? c.evidence?.rainPointDirectRadiationWm2,
+      rainCloudCover: c.evidence?.rainPointCloudCoverPct,
+      satelliteSunlight: sat,
+      rainInt,
+      rainSource: "candidate",
+      radar: { time: artifact?.source?.radarFrameTime ? Math.floor(new Date(artifact.source.radarFrameTime).getTime() / 1000) : null },
+    },
+    antiBearing: bearing,
+    anti: { lat: rainPoint.lat, lon: rainPoint.lon },
+    rainbowElev: c.evidence?.rainbowArcDeg ?? Math.max(0, 42 - elev),
+  };
+}
+
+function selectCandidate(c, artifact = candidateArtifact){
+  activeCandidateId = c.id;
+  renderCandidatePins(artifact);
+  const data = candidateToStationData(c, artifact);
+  cache[data.st.zip] = data;
+  renderStation(data);
+  updateMap(data);
+  $("#dial-meta").textContent = c.verdict === "watch" ? "Possible candidate selected" : "GO candidate selected";
+  $("#dial-tag").textContent = "Next 24 Hours";
+  $("#dial-body").innerHTML = `<div class="dial-empty"><div class="de-big">${c.verdict === "watch" ? "Possible rainbow" : "GO candidate"}</div>This card is using the exact observer point and evidence from the live map.</div>`;
+  markUpdated(artifact?.generatedAt ? new Date(artifact.generatedAt) : null);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+async function loadCandidateMap(){
+  const loading = $("#cand-loading");
+  try {
+    const artifact = await fetchCandidates();
+    candidateArtifact = artifact;
+    const candidates = finalizedGoCandidates(artifact);
+    const newCandidates = newGoCandidates(artifact);
+    const possibleCandidates = mapPossibleCandidates(artifact);
+    const expired = artifact.expiresAt && new Date(artifact.expiresAt).getTime() <= Date.now();
+    const stale = !!artifact.stale || artifact.dataStatus === "stale" || artifact.dataStatus === "unavailable" || !!expired;
+    const foot = $("#cand-foot");
+    foot.classList.add("has-status");
+    const mapCandidates = visibleMapCandidates(artifact);
+    if (activeCandidateId && !mapCandidates.some(c => c.id === activeCandidateId)) activeCandidateId = null;
+    const generated = artifact.generatedAt ? new Date(artifact.generatedAt) : null;
+    const satGoCount = candidates.reduce((acc, c) => {
+      const d = c.sunlightDecision || c.evidence?.satelliteSunlight?.decision;
+      if (d === "go" || d === "mixed-go" || d === "tracked-go") acc += 1;
+      return acc;
+    }, 0);
+    const satText = satGoCount ? ` · sat ${satGoCount} GO` : "";
+    $("#cand-meta").textContent = candidates.length || newCandidates.length || possibleCandidates.length
+      ? `${candidates.length} confirmed GO${newCandidates.length ? ` · ${newCandidates.length} new GO` : ""}${satText}${stale ? " · STALE" : ""}`
+      : "no GO candidates";
+    if (possibleCandidates.length) $("#cand-meta").textContent += showPossibleCandidates
+      ? ` · ${possibleCandidates.length} possible shown`
+      : ` · ${possibleCandidates.length} possible hidden`;
+    updateCandidateToggle(possibleCandidates.length);
+    foot.textContent = stale
+      ? `Live candidate refresh unavailable — showing fallback data${generated ? " from " + generated.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : ""}.`
+      : "Pins are spots the Connector is actively tracking for signs of sunlight needed to make the rainbow.";
+    if (!candidates.length && !possibleCandidates.length) {
+      activeCandidateId = null;
+      $("#cand-empty").style.display = "none";
+    }
+    renderCandidatePins(artifact);
+    renderIngredients(null,artifact);
+    fetchExactMapTiers(artifact);
+    const radarTime=candidateScanTime(artifact)?new Date(candidateScanTime(artifact)):null;
+    if(radarTime) $("#cand-meta").textContent += ` \u00b7 ${radarTime.toLocaleTimeString([],{hour:"numeric",minute:"2-digit"})} \u00b7 MRMS ${radarTime.toISOString().slice(11,16)}Z`;
+    if (generated) markUpdated(generated);
+  } catch (e) {
+    $("#cand-meta").textContent = "unavailable";
+    $("#candmap").classList.add("hidden");
+    $("#cand-empty").style.display = "";
+    $("#cand-empty").textContent = "Couldn't load rainbow candidates. Try again in a moment.";
+  } finally {
+    if (loading) loading.classList.add("gone");
+  }
+}
+
+function nearestZipCandidate(st, candidates, radiusKm){
+  let best = null;
+  for (const candidate of candidates || []){
+    if (!isFiniteCoord(candidate.lat, candidate.lon)) continue;
+    const km = distanceKm(st.lat, st.lon, candidate.lat, candidate.lon);
+    if (km <= radiusKm && (!best || km < best.distanceKm)) best = { candidate, distanceKm: km };
+  }
+  return best;
+}
+
+function freshCandidateArtifact(artifact){
+  if (!artifact || artifact.stale || artifact.dataStatus === "stale" || artifact.dataStatus === "unavailable") return false;
+  return !artifact.expiresAt || new Date(artifact.expiresAt).getTime() > Date.now();
+}
+
+function applyFinalizedZipPolicy(localData, artifact){
+  const st = localData.st;
+  if (freshCandidateArtifact(artifact)){
+    const go = nearestZipCandidate(st, finalizedGoCandidates(artifact), ZIP_GO_RADIUS_KM);
+    if (go){
+      const data = candidateToStationData(go.candidate, artifact);
+      data.st = st;
+      data.candidateDistanceKm = go.distanceKm;
+      data.verdict.label = "Go look now";
+      return data;
+    }
+    const freshGo = nearestZipCandidate(st, newGoCandidates(artifact), ZIP_GO_RADIUS_KM);
+    if (freshGo){
+      const data = candidateToStationData(freshGo.candidate, artifact);
+      data.st = st;
+      data.candidateDistanceKm = freshGo.distanceKm;
+      data.verdict.label = "New GO — look now";
+      return data;
+    }
+    const nearby = nearestZipCandidate(st, qualifiedZipPossibleCandidates(artifact), ZIP_NEARBY_RADIUS_KM);
+    if (nearby){
+      const data = candidateToStationData({ ...nearby.candidate, verdict: "watch" }, artifact);
+      data.st = st;
+      data.candidateDistanceKm = nearby.distanceKm;
+      data.verdict.key = "watch";
+      data.verdict.tier = 2;
+      data.verdict.label = `Possible — candidate ${Math.round(nearby.distanceKm)} km away`;
+      return data;
+    }
+  }
+  if (freshCandidateArtifact(artifact) && localData.verdict?.key === "go"){
+    localData.verdict = {
+      ...localData.verdict,
+      key: "watch",
+      tier: 2,
+      label: "Possible — local conditions only",
+      localOnly: true,
+    };
+  } else if (localData.verdict?.key === "go"){
+    localData.verdict = {
+      ...localData.verdict,
+      key: "watch",
+      tier: 2,
+      label: "Possible — awaiting a fresh nationwide scan",
+    };
+  }
+  return localData;
+}
+
+function updateCandidateToggle(possibleCount = mapPossibleCandidates(candidateArtifact).length){
+  const button = $("#candidate-toggle");
+  if (!button) return;
+  button.setAttribute("aria-pressed", String(showPossibleCandidates));
+  button.textContent = possibleCount === 0
+    ? "No possibilities"
+    : showPossibleCandidates
+      ? "Hide possibilities"
+      : `Show ${possibleCount} possibilit${possibleCount === 1 ? "y" : "ies"}`;
+  button.disabled = possibleCount === 0;
+  $("#possible-legend").hidden=!showPossibleCandidates;
+}
+
+$("#candidate-toggle").addEventListener("click", () => {
+  showPossibleCandidates = !showPossibleCandidates;
+  try { sessionStorage.setItem("rainbow.showPossible", showPossibleCandidates ? "1" : "0"); } catch {}
+  if (!showPossibleCandidates) {
+    const selected = allMapCandidates(candidateArtifact).find(candidate => candidate.id === activeCandidateId);
+    if (selected?.verdict === "watch") activeCandidateId = null;
+  }
+  const possibleCount = mapPossibleCandidates(candidateArtifact).length;
+  updateCandidateToggle(possibleCount);
+  const meta = $("#cand-meta");
+  if (possibleCount && meta) {
+    meta.textContent = meta.textContent.replace(
+      /\d+ possible (?:shown|hidden)/,
+      `${possibleCount} possible ${showPossibleCandidates ? "shown" : "hidden"}`,
+    );
+  }
+  if (candidateArtifact) renderCandidatePins(candidateArtifact);
+});
+
+const REFRESH_MIN = 5;
+
+// nearest US city for a friendly station name
 function nearestCity(lat, lon){
   if (typeof US_CITIES === "undefined") return null;
   let best = null, bd = Infinity;
@@ -1279,65 +1753,238 @@ function nearestCity(lat, lon){
   return best;
 }
 
-async function ensureGridMap(){
-  if (gridMap) return;
-  gridMap = new maplibregl.Map({ container: "usmap", style: MAP_STYLE, center: [-96, 38.5], zoom: 3, attributionControl: false });
-  gridMap.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
-  gridMap.on("load", async () => {
-    gridMapLoaded = true;
-    // RainViewer radar underlay (latest frame), kept subtle beneath the cells
-    try {
-      const rv = await ensureRadar();
-      // maxzoom:7 — RainViewer serves real radar tiles up to z7; z8+ returns a
-      // "Zoom Level Not Supported" placeholder, so cap here and let MapLibre overzoom.
-      gridMap.addSource("rv", { type:"raster", tiles:[`${rv.host}${rv.path}/256/{z}/{x}/{y}/4/1_1.png`], tileSize:256, maxzoom:7 });
-      gridMap.addLayer({ id:"rv-layer", type:"raster", source:"rv", paint:{ "raster-opacity":0.4 } });
-    } catch {}
-
-    // The numbered candidate pins are the clickable targets (each has its own handler);
-    // the map itself stays a normal pan/zoom surface. Use the ZIP box to track any spot.
-    computeAndPaintGrid();
-  });
+/* ============================================================
+   24-hour rainbow window dial — replaces the nationwide map.
+   Scans forward through Open-Meteo hourly forecast for the active
+   ZIP and finds hours where sun geometry + rain overlap. Renders
+   a circular 24-hour clock with colored arcs.
+   ============================================================ */
+async function fetchForecast24(lat, lon){
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}`
+    + `&hourly=precipitation,cloud_cover,direct_normal_irradiance&forecast_hours=24&timezone=GMT`;
+  return fetchJSON(url);
 }
 
-// reverse-geocode a lat/lon to its 5-digit US ZIP (OpenStreetMap Nominatim, keyless + CORS)
-async function reverseZip(lat, lon){
-  try {
-    const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&lat=${lat}&lon=${lon}`);
-    if (!r.ok) return null;
-    const pc = ((await r.json()).address || {}).postcode;
-    const m = pc && String(pc).match(/\d{5}/);
-    return m ? m[0] : null;
-  } catch { return null; }
+function parseForecastTimeUtc(value){
+  if (typeof value === "number") return new Date(value * 1000);
+  const text = String(value || "");
+  return new Date(/[zZ]$|[+-]\d\d:\d\d$/.test(text) ? text : `${text}Z`);
 }
-async function trackCell(lat, lon){
-  // resolve the real ZIP for the tapped spot so the cell becomes a proper ZIP station
-  // (reuse the hover cache if this cell was already looked up)
-  const ck = lat.toFixed(3) + "," + lon.toFixed(3);
-  let zip = _zipCache.get(ck);
-  if (zip === undefined){ zip = await reverseZip(lat, lon); _zipCache.set(ck, zip || null); }
-  if (zip){
-    try {
-      const st = await geocodeZip(zip);   // canonical "City, ST" + centroid
-      addStation(st);
-      activeZip = st.zip; save(); renderChips(); refreshActive();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    } catch {}
+
+function buildDialData(lat, lon, hourly){
+  const hours = [];
+  for (let i = 0; i < hourly.time.length; i++){
+    const t = parseForecastTimeUtc(hourly.time[i]);
+    const sun = solarReadout(t, lat, lon);
+    const geo = bowPossible(sun.elev);
+    const isDay = sun.elev > NIGHT_BELOW;
+    const rain = (hourly.precipitation[i] || 0) > 0;
+    const direct = (hourly.direct_normal_irradiance?.[i] ?? 0) >= DIRECT_WATCH_MIN;
+    const window = geo && rain && direct;
+    hours.push({ time: t, hour: t.getHours(), geo, isDay, rain, clear: direct, window, elev: sun.elev, precip: hourly.precipitation[i], cloud: hourly.cloud_cover[i], directRadiation: hourly.direct_normal_irradiance?.[i] ?? null });
   }
-  // fallback: keep the coordinate-keyed station if no ZIP could be found
-  const name = nearestCity(lat, lon) || `${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
-  const key = "geo:" + lat.toFixed(3) + "," + lon.toFixed(3);
-  addStation({ zip: key, name, lat, lon });
-  activeZip = key; save(); renderChips(); refreshActive();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  return hours;
 }
 
-async function loadGrid(){
-  await ensureGridMap();
-  // clouds are now checked live per-candidate (no precomputed snapshot to fetch).
-  // ensureGridMap kicks off the first compute on map load; this covers later refreshes.
-  if (gridMapLoaded) computeAndPaintGrid();
+function dialSVG(hours){
+  const cx = 150, cy = 150, R = 130, r2 = 112, r3 = 94;
+  const now = nowInstant();
+  const nowH = now.getHours() + now.getMinutes() / 60;
+  // the dial starts at the current hour and goes 24h forward
+  const startH = hours.length ? hours[0].time.getHours() : Math.floor(nowH);
+
+  function hourToAngle(h){
+    // map 24 hours to 360°, starting at top (12 o'clock = start hour)
+    const offset = ((h - startH + 24) % 24) / 24;
+    return offset * 360 - 90; // -90 so 0 offset = top
+  }
+  function arc(r, fromH, toH, cls, extra = ""){
+    const a1 = hourToAngle(fromH) * (Math.PI / 180);
+    const a2 = hourToAngle(toH) * (Math.PI / 180);
+    const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+    const x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
+    const sweep = ((toH - fromH + 24) % 24) > 12 ? 1 : 0;
+    return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 ${sweep} 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" class="${cls}" ${extra}/>`;
+  }
+  function arcSeg(r, idx){
+    const h = hours[idx].time.getHours();
+    return arc(r, h, h + 1, "");
+  }
+
+  let paths = "";
+
+  // background ring
+  paths += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="var(--border-c)" stroke-width="1" opacity=".5"/>`;
+  paths += `<circle cx="${cx}" cy="${cy}" r="${r3 - 8}" fill="none" stroke="var(--border-c)" stroke-width="1" opacity=".3"/>`;
+
+  // outer ring: bow-zone hours (sun < 42°, above horizon) — golden
+  for (let i = 0; i < hours.length; i++){
+    if (!hours[i].geo) continue;
+    const h = hours[i].time.getHours();
+    const a1 = hourToAngle(h) * (Math.PI / 180);
+    const a2 = hourToAngle(h + 1) * (Math.PI / 180);
+    const x1 = cx + R * Math.cos(a1), y1 = cy + R * Math.sin(a1);
+    const x2 = cx + R * Math.cos(a2), y2 = cy + R * Math.sin(a2);
+    const ix1 = cx + (R - 18) * Math.cos(a1), iy1 = cy + (R - 18) * Math.sin(a1);
+    const ix2 = cx + (R - 18) * Math.cos(a2), iy2 = cy + (R - 18) * Math.sin(a2);
+    paths += `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${R} ${R} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)} L${ix2.toFixed(1)} ${iy2.toFixed(1)} A${R-18} ${R-18} 0 0 0 ${ix1.toFixed(1)} ${iy1.toFixed(1)} Z" fill="var(--rb-yellow)" opacity=".18"/>`;
+  }
+
+  // middle ring: rain forecast hours — blue
+  for (let i = 0; i < hours.length; i++){
+    if (!hours[i].rain) continue;
+    const h = hours[i].time.getHours();
+    const a1 = hourToAngle(h) * (Math.PI / 180);
+    const a2 = hourToAngle(h + 1) * (Math.PI / 180);
+    const x1 = cx + r2 * Math.cos(a1), y1 = cy + r2 * Math.sin(a1);
+    const x2 = cx + r2 * Math.cos(a2), y2 = cy + r2 * Math.sin(a2);
+    const ix1 = cx + (r2 - 18) * Math.cos(a1), iy1 = cy + (r2 - 18) * Math.sin(a1);
+    const ix2 = cx + (r2 - 18) * Math.cos(a2), iy2 = cy + (r2 - 18) * Math.sin(a2);
+    paths += `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${r2} ${r2} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)} L${ix2.toFixed(1)} ${iy2.toFixed(1)} A${r2-18} ${r2-18} 0 0 0 ${ix1.toFixed(1)} ${iy1.toFixed(1)} Z" fill="var(--primary)" opacity=".35"/>`;
+  }
+
+  // inner highlight: rainbow window hours (all three conditions) — rainbow gradient
+  for (let i = 0; i < hours.length; i++){
+    if (!hours[i].window) continue;
+    const h = hours[i].time.getHours();
+    const a1 = hourToAngle(h) * (Math.PI / 180);
+    const a2 = hourToAngle(h + 1) * (Math.PI / 180);
+    const mid = (a1 + a2) / 2;
+    // bright segment spanning all three rings
+    const x1 = cx + R * Math.cos(a1), y1 = cy + R * Math.sin(a1);
+    const x2 = cx + R * Math.cos(a2), y2 = cy + R * Math.sin(a2);
+    const ix1 = cx + (r3 - 8) * Math.cos(a1), iy1 = cy + (r3 - 8) * Math.sin(a1);
+    const ix2 = cx + (r3 - 8) * Math.cos(a2), iy2 = cy + (r3 - 8) * Math.sin(a2);
+    // use a unique gradient per segment so the rainbow follows the arc
+    const gid = `rg${i}`;
+    const gx1 = 0.5 + 0.5 * Math.cos(mid - 0.5), gy1 = 0.5 + 0.5 * Math.sin(mid - 0.5);
+    const gx2 = 0.5 + 0.5 * Math.cos(mid + 0.5), gy2 = 0.5 + 0.5 * Math.sin(mid + 0.5);
+    paths += `<defs><linearGradient id="${gid}" x1="${gx1.toFixed(2)}" y1="${gy1.toFixed(2)}" x2="${gx2.toFixed(2)}" y2="${gy2.toFixed(2)}">
+      <stop offset="0" stop-color="var(--rb-green)"/><stop offset="1" stop-color="var(--rb-blue)"/>
+    </linearGradient></defs>`;
+    paths += `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${R} ${R} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)} L${ix2.toFixed(1)} ${iy2.toFixed(1)} A${r3-8} ${r3-8} 0 0 0 ${ix1.toFixed(1)} ${iy1.toFixed(1)} Z" fill="url(#${gid})" opacity=".55"/>`;
+  }
+
+  // hour labels at fixed clock positions: 12, 3, 6, 9 (×2 for AM/PM)
+  for (const h of [0, 3, 6, 9, 12, 15, 18, 21]){
+    const a = hourToAngle(h) * (Math.PI / 180);
+    const lx = cx + (R + 14) * Math.cos(a), ly = cy + (R + 14) * Math.sin(a);
+    const h12 = h % 12 || 12;
+    const suffix = h < 12 ? "a" : "p";
+    paths += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="500" fill="var(--muted-fg)">${h12}<tspan font-size="7" fill="var(--faint-fg)">${suffix}</tspan></text>`;
+  }
+
+  // tick marks every hour
+  for (let i = 0; i < 24; i++){
+    const h = (startH + i) % 24;
+    const a = hourToAngle(h) * (Math.PI / 180);
+    const isMajor = h % 3 === 0;
+    const t1 = R + 2, t2 = R + (isMajor ? 6 : 3);
+    paths += `<line x1="${(cx + t1 * Math.cos(a)).toFixed(1)}" y1="${(cy + t1 * Math.sin(a)).toFixed(1)}" x2="${(cx + t2 * Math.cos(a)).toFixed(1)}" y2="${(cy + t2 * Math.sin(a)).toFixed(1)}" stroke="var(--faint-fg)" stroke-width="${isMajor?1.5:0.8}" opacity=".5"/>`;
+  }
+
+  // "now" hand
+  const nowAngle = hourToAngle(nowH) * (Math.PI / 180);
+  const nx = cx + (r3 - 14) * Math.cos(nowAngle), ny = cy + (r3 - 14) * Math.sin(nowAngle);
+  paths += `<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="var(--rb-red)" stroke-width="2.5" stroke-linecap="round"/>`;
+  paths += `<circle cx="${cx}" cy="${cy}" r="4" fill="var(--rb-red)"/>`;
+  paths += `<circle cx="${cx}" cy="${cy}" r="2" fill="var(--card-bg)"/>`;
+
+  // center label
+  const windows = hours.filter(h => h.window);
+  const rainHours = hours.filter(h => h.rain).length;
+  const bowHours = hours.filter(h => h.geo).length;
+  let centerText;
+  if (windows.length) {
+    centerText = `<text x="${cx}" y="${cy - 8}" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="22" fill="var(--foreground)">${windows.length}h</text>
+       <text x="${cx}" y="${cy + 12}" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="500" font-size="11" fill="var(--muted-fg)">possible</text>
+       <text x="${cx}" y="${cy + 24}" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="500" font-size="11" fill="var(--muted-fg)">chances</text>`;
+  } else if (rainHours) {
+    centerText = `<text x="${cx}" y="${cy - 8}" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="600" font-size="14" fill="var(--muted-fg)">${rainHours}h rain</text>
+       <text x="${cx}" y="${cy + 10}" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="500" font-size="11" fill="var(--faint-fg)">but no direct</text>
+       <text x="${cx}" y="${cy + 22}" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="500" font-size="11" fill="var(--faint-fg)">sun signal</text>`;
+  } else {
+    centerText = `<text x="${cx}" y="${cy - 8}" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="600" font-size="14" fill="var(--muted-fg)">Dry skies</text>
+       <text x="${cx}" y="${cy + 10}" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="500" font-size="11" fill="var(--faint-fg)">ahead — needs</text>
+       <text x="${cx}" y="${cy + 22}" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="500" font-size="11" fill="var(--faint-fg)">rain to align</text>`;
+  }
+
+  return `<svg class="dial-svg" viewBox="0 0 300 300">${paths}${centerText}</svg>`;
+}
+
+function dialSummary(hours){
+  const windows = hours.filter(h => h.window);
+  if (!windows.length){
+    const hasRain = hours.some(h => h.rain);
+    const hasBow = hours.some(h => h.geo);
+    if (!hasRain) return `No rain in the forecast — check back tomorrow.`;
+    if (!hasBow) return `Sun too high for bows right now. Conditions may improve later.`;
+    return `Rain is forecast near the ZIP, but there is no direct-sun signal. Keep watching.`;
+  }
+  // describe the windows
+  const first = windows[0];
+  const tFmt = t => t.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  // group contiguous windows
+  const groups = [];
+  let start = 0;
+  for (let i = 1; i <= windows.length; i++){
+    if (i === windows.length || windows[i].time - windows[i-1].time > 3600000){
+      groups.push({ from: windows[start].time, to: new Date(windows[i-1].time.getTime() + 3600000), count: i - start });
+      start = i;
+    }
+  }
+  if (groups.length === 1){
+    const g = groups[0];
+    return `Coarse chance: <b>${tFmt(g.from)} – ${tFmt(g.to)}</b><small>Forecast-cell rain + low sun + direct light overlap for ${g.count} hour${g.count > 1 ? "s" : ""}. Rain must actually be opposite the sun.</small>`;
+  }
+  const parts = groups.map(g => `${tFmt(g.from)}–${tFmt(g.to)}`).join(", ");
+  return `Coarse windows: <b>${parts}</b><small>${windows.length} hour${windows.length > 1 ? "s" : ""} with nearby forecast rain, low sun, and direct light. Rain must actually be opposite the sun.</small>`;
+}
+
+let _dialCache = {};
+async function updateDial(st){
+  if (!st) {
+    $("#dial-body").innerHTML = `<div class="dial-empty"><div class="de-big">Track a ZIP to see your forecast</div>Enter a US ZIP code above to see when conditions may line up.</div>`;
+    $("#dial-tag").textContent = "Next 24 Hours";
+    $("#dial-meta").textContent = "—";
+    return;
+  }
+  try {
+    const fc = await fetchForecast24(st.lat, st.lon);
+    const hours = buildDialData(st.lat, st.lon, fc.hourly);
+    _dialCache[st.zip] = hours;
+    const windows = hours.filter(h => h.window);
+    $("#dial-tag").textContent = "Next 24 Hours";
+    $("#dial-meta").textContent = windows.length
+      ? `${windows.length} hour${windows.length > 1 ? "s" : ""} possible`
+      : "no windows ahead";
+    $("#dial-body").innerHTML = `
+      <div class="dial-wrap">
+        ${dialSVG(hours)}
+        <div class="dial-legend">
+          <span class="dl"><i class="dl-bow"></i>Coarse chance</span>
+          <span class="dl"><i class="dl-rain"></i>Rain near ZIP</span>
+          <span class="dl"><i class="dl-sun"></i>Sun low enough</span>
+        </div>
+        <div class="dial-summary">${dialSummary(hours)}</div>
+      </div>`;
+  } catch (e) {
+    const cached = _dialCache[st.zip];
+    if (cached){
+      $("#dial-body").innerHTML = `
+        <div class="dial-wrap">
+          ${dialSVG(cached)}
+          <div class="dial-legend">
+            <span class="dl"><i class="dl-bow"></i>Coarse chance</span>
+            <span class="dl"><i class="dl-rain"></i>Rain near ZIP</span>
+            <span class="dl"><i class="dl-sun"></i>Sun low enough</span>
+          </div>
+          <div class="dial-summary">${dialSummary(cached)}</div>
+        </div>`;
+    } else {
+      $("#dial-body").innerHTML = `<div class="dial-empty"><div class="de-big">Forecast unavailable</div>${e.message}. Try again in a moment.</div>`;
+    }
+  }
 }
 
 /* ============================================================
@@ -1393,10 +2040,9 @@ function renderChips(){
 }
 async function refreshActive(){
   if (!activeZip) {
-    consoleEl.innerHTML = `<div class="empty"><div class="big">No ZIP tracked yet</div><div>Enter a US ZIP code above, or tap a marked spot on the rainbow map.</div></div>`;
-    $("#map").classList.add("hidden");
-    $("#map-empty").style.display = "";
-    $("#map-meta").textContent = "—";
+    consoleEl.innerHTML = `<div class="empty"><div class="big">No ZIP tracked yet</div><div>Enter a US ZIP code above to check rainbow conditions.</div></div>`;
+    clearDirectionMap();
+    updateDial(null);
     return;
   }
   const st = stations.find(s => s.zip === activeZip);
@@ -1408,6 +2054,8 @@ async function refreshActive(){
     renderStation(data);
     renderChips();
     updateMap(data);
+    if (candidateArtifact) renderCandidatePins(candidateArtifact);
+    updateDial(st);
     markUpdated();
   } catch (e) {
     // a transient provider blip shouldn't wipe the card — fall back to the last good reading
@@ -1416,6 +2064,8 @@ async function refreshActive(){
       renderStation(last);
       renderChips();
       updateMap(last);
+      if (candidateArtifact) renderCandidatePins(candidateArtifact);
+      updateDial(st);
       const t = last.fetchedAt ? new Date(last.fetchedAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : null;
       consoleEl.insertAdjacentHTML("afterbegin",
         `<div class="stale-note">Couldn't refresh — showing the last reading${t ? " from " + t : ""}.</div>`);
@@ -1427,12 +2077,108 @@ async function refreshActive(){
 async function refreshAllChips(){
   for (const s of stations){
     if (s.zip === activeZip || cache[s.zip]) continue;
-    try { cache[s.zip] = await computeStation(s); } catch {}
+    try {
+      cache[s.zip] = await computeStation(s);
+    } catch {}
   }
   renderChips();
+  if (candidateArtifact) renderCandidatePins(candidateArtifact);
 }
 function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2600); }
 
+function loadTurnstileScript(){
+  if (window.turnstile) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector("script[data-rainbow-turnstile]");
+    if (existing) {
+      existing.addEventListener("load", resolve, { once: true });
+      existing.addEventListener("error", reject, { once: true });
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    script.async = true;
+    script.defer = true;
+    script.dataset.rainbowTurnstile = "1";
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+}
+
+async function initializeEmailAlerts(){
+  const form = $("#email-alert-form"), button = $("#alert-submit"), status = $("#email-alert-status");
+  const zipInput = $("#alert-zip");
+  let turnstileToken = "", turnstileWidget = null;
+  if (activeZip && /^\d{5}$/.test(activeZip)) zipInput.value = activeZip;
+  try {
+    const response = await fetch("/api/alerts?status=1", { cache: "no-store" });
+    const data = await response.json();
+    if (!data.configured) {
+      button.disabled = true;
+      status.textContent = "Email alerts are being connected. ZIP tracking still works normally.";
+      return;
+    }
+    await loadTurnstileScript();
+    turnstileWidget = window.turnstile.render("#alert-turnstile", {
+      sitekey: data.turnstileSiteKey,
+      action: "alert-signup",
+      theme: "auto",
+      appearance: "interaction-only",
+      callback: token => {
+        turnstileToken = token;
+        button.disabled = false;
+        status.textContent = "";
+      },
+      "expired-callback": () => {
+        turnstileToken = "";
+        button.disabled = true;
+        status.textContent = "Verification expired; please try again.";
+      },
+      "error-callback": () => {
+        turnstileToken = "";
+        button.disabled = true;
+        status.textContent = "Bot verification could not load. Please refresh and try again.";
+      },
+    });
+  } catch {
+    button.disabled = true;
+    status.textContent = "Email signup is temporarily unavailable.";
+    return;
+  }
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
+    status.className = "email-status";
+    const email = $("#alert-email").value.trim();
+    const zip = zipInput.value.trim();
+    if (!/^\d{5}$/.test(zip)) {
+      status.classList.add("error");
+      status.textContent = "Enter a valid 5-digit US ZIP.";
+      return;
+    }
+    button.disabled = true;
+    button.textContent = "Sending…";
+    try {
+      const response = await fetch("/api/alerts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, zip, turnstileToken }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "Could not start email alerts.");
+      status.classList.add("success");
+      status.textContent = data.message || "Check your email to confirm.";
+    } catch (error) {
+      status.classList.add("error");
+      status.textContent = error.message || "Could not start email alerts.";
+    } finally {
+      turnstileToken = "";
+      button.disabled = true;
+      button.textContent = "Get alerts";
+      if (turnstileWidget != null && window.turnstile) window.turnstile.reset(turnstileWidget);
+    }
+  });
+}
 /* events */
 $("#addform").addEventListener("submit", async e => {
   e.preventDefault();
@@ -1454,15 +2200,16 @@ chipsEl.addEventListener("click", e => {
   if (del){ e.stopPropagation(); const z = del.dataset.del;
     stations = stations.filter(s => s.zip !== z); delete cache[z];
     if (activeZip === z) activeZip = stations[0] ? stations[0].zip : null;
-    save(); renderChips(); refreshActive(); return; }
+    save(); renderChips(); refreshActive(); if (candidateArtifact) renderCandidatePins(candidateArtifact); return; }
   const chip = e.target.closest(".chip[data-zip]");
   if (chip){ activeZip = chip.dataset.zip; save(); renderChips(); refreshActive(); }
 });
 
 /* "last updated" stamp — set whenever we refresh live data (a station read or a grid repaint),
    so the dateline reflects how fresh the readout is rather than ticking wall-clock time. */
-function markUpdated(){
-  const n = nowInstant();
+function markUpdated(at){
+  const artifactTime = candidateArtifact?.generatedAt ? new Date(candidateArtifact.generatedAt) : null;
+  const n = at || artifactTime || nowInstant();
   const opts = SIM_INSTANT ? { hour:"2-digit", minute:"2-digit", timeZone:"America/Chicago" } : { hour:"2-digit", minute:"2-digit" };
   $("#clock-time").textContent = n.toLocaleTimeString([], opts) + (SIM_INSTANT ? " CT" : "");
   const dopts = SIM_INSTANT ? { weekday:"long", month:"long", day:"numeric", timeZone:"America/Chicago" } : { weekday:"long", month:"long", day:"numeric" };
@@ -1496,30 +2243,22 @@ function applyTheme(t){
 })();
 
 /* boot */
-load(); renderChips(); refreshActive(); refreshAllChips();
-
-// Lazy-load the nationwide map: its radar-tile prefetch + ~20 live NWS cloud calls are deferred
-// until the panel scrolls into view, so visitors who just check their ZIP never pay that cost.
-// Once it has loaded the first time, the 5-min refresh interval takes over. On a tall screen the
-// panel may already be visible, in which case it loads right away — which is correct.
-(function startGridWhenVisible(){
-  const panel = $("#boardpanel");
-  let started = false;
-  const begin = () => {
-    if (started) return;
-    started = true;
-    loadGrid();
-    if (!SIM_INSTANT) setInterval(loadGrid, REFRESH_MIN * 60 * 1000);
-  };
-  if (!panel || !("IntersectionObserver" in window)){ begin(); return; }
-  const io = new IntersectionObserver(entries => {
-    if (entries.some(e => e.isIntersecting)){ io.disconnect(); begin(); }
-  }, { rootMargin: "200px" });   // kick off a touch before it's fully on screen
-  io.observe(panel);
-})();
+async function boot(){
+  load();
+  renderChips();
+  await loadCandidateMap();
+  await refreshActive();
+  refreshAllChips();
+  initializeEmailAlerts();
+}
+boot();
 
 if (!SIM_INSTANT){
-  setInterval(refreshActive, REFRESH_MIN * 60 * 1000);
+  setInterval(async () => {
+    await loadCandidateMap();
+    await refreshActive();
+    refreshAllChips();
+  }, REFRESH_MIN * 60 * 1000);
 }
 </script>
 </body>

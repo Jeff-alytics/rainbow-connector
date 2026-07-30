@@ -3,3 +3,13 @@
 .wet-cache.json
 README.md
 og.html
+
+# The production detector now runs in the AWS Lambda container. Keep its
+# Python/research assets out of Vercel's Node-only API deployment.
+api/*.py
+worker/
+validation/
+scripts/
+docs/
+.venv/
+.worker-cache/

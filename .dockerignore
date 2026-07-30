@@ -1,0 +1,9 @@
+.git
+.venv
+.vercel
+.worker-cache
+node_modules
+validation
+*.jsonl
+*.grib2
+*.nc

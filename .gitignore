@@ -1,7 +1,22 @@
 .claude/
 .wet-cache.json
+.candidate-history.jsonl
 node_modules/
 .vercel/
+.worker-cache/
 .DS_Store
 
 .vercel
+.env*.local
+validation/arm-lamont/downloads/
+validation/arm-lamont/frames/
+validation/arm-lamont/movies/
+validation/arm-lamont/movie-frames/
+validation/arm-lamont/qcrad/
+validation/arm-lamont/vdis/
+validation/arm-lamont/extracted.json
+validation/webcoos/cache/
+.env*.local
+__pycache__/
+*.pyc
+validation/

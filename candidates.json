@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-07-26T15:58:06.556Z",
+  "schemaVersion": 3,
+  "dataStatus": "live",
+  "expiresAt": "2026-07-26T16:03:06.556Z",
+  "source": {
+    "radar": "RainViewer",
+    "radarFrameTime": "2026-07-26T15:50:00.000Z",
+    "sunlight": "Open-Meteo direct_normal_irradiance; GOES DSRF plus clear-sky mask corroboration when fresh"
+  },
+  "cadenceMinutes": 5,
+  "criteria": {
+    "physicalSunElevation": ">-0.833 and <42 degrees",
+    "highConfidenceSunElevation": "5-22 degrees (validated positives 7.7-19.1 degrees)",
+    "possibleSunElevation": "0-30 degrees",
+    "directSun": "GO requires direct_normal_irradiance >= 200 W/m2",
+    "observerSunlight": "possible tier requires direct_normal_irradiance >= 120 W/m2",
+    "uniformOvercast": "reject cloud cover >= 90% when direct-normal irradiance is below the possible threshold",
+    "rainOppositeSun": "radar return in anti-solar fan 5-48 km from observer",
+    "rainPointSunlight": "reported for diagnosis only; old gate was direct_radiation >= 80 W/m2 and cloud_cover < 75%"
+  },
+  "candidates": [],
+  "possibleCandidates": [],
+  "diagnostics": {
+    "meshPoints": 98227,
+    "landPoints": 55124,
+    "geometryMatches": 14371,
+    "radarMatches": 28,
+    "clusteredForVerification": 7,
+    "weatherApiCalls": 2,
+    "anchorPoints": 33,
+    "anchorMatches": 0,
+    "rainViewerTileRequests": 85,
+    "goCandidates": 0,
+    "possibleCandidates": 0,
+    "gateDiagnostics": {
+      "counts": {
+        "checked": 7,
+        "lowSunAndRain": 7,
+        "observerSunBlocked": 3,
+        "mixedSourceGoCandidates": 2,
+        "openMeteoSunCandidates": 4,
+        "openMeteoCloudWouldHaveBlocked": 2,
+        "openMeteoRadiationWouldHaveBlocked": 0,
+        "rainPointCloudWouldHaveBlocked": 1,
+        "rainPointRadiationWouldHaveBlocked": 0,
+        "legacyGoCandidates": 2,
+        "sourceBlendGoCandidates": 0
+      },
+      "nearMisses": [
+        {
+          "lat": 48.9324,
+          "lon": -122.8253,
+          "sunElevationDeg": 30.8,
+          "cloudCoverPct": 100,
+          "directNormalIrradianceWm2": 0,
+          "rainIntensity": 0.85,
+          "score": 1.169,
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ]
+        },
+        {
+          "lat": 36.6081,
+          "lon": -112.5446,
+          "sunElevationDeg": 39.5,
+          "cloudCoverPct": 100,
+          "directNormalIrradianceWm2": 227,
+          "rainIntensity": 0.85,
+          "score": 1.13,
+          "blocks": [
+            "open-meteo-cloud",
+            "rain-point-cloud"
+          ]
+        },
+        {
+          "lat": 45.1486,
+          "lon": -112.0772,
+          "sunElevationDeg": 38.6,
+          "cloudCoverPct": 23,
+          "directNormalIrradianceWm2": 808,
+          "rainIntensity": 0.85,
+          "score": 1.12,
+          "blocks": []
+        },
+        {
+          "lat": 36.6081,
+          "lon": -112.1405,
+          "sunElevationDeg": 39.8,
+          "cloudCoverPct": 21,
+          "directNormalIrradianceWm2": 585,
+          "rainIntensity": 0.85,
+          "score": 1.12,
+          "blocks": []
+        },
+        {
+          "lat": 45.0405,
+          "lon": -112.5603,
+          "sunElevationDeg": 38.3,
+          "cloudCoverPct": 86,
+          "directNormalIrradianceWm2": 720,
+          "rainIntensity": 0.85,
+          "score": 1.11,
+          "blocks": [
+            "open-meteo-cloud"
+          ]
+        },
+        {
+          "lat": 36.8243,
+          "lon": -113.1853,
+          "sunElevationDeg": 38.9,
+          "cloudCoverPct": 86,
+          "directNormalIrradianceWm2": 0,
+          "rainIntensity": 0.6,
+          "score": 0.86,
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud"
+          ]
+        },
+        {
+          "lat": 48.9324,
+          "lon": -123.4835,
+          "sunElevationDeg": 30.4,
+          "cloudCoverPct": 100,
+          "directNormalIrradianceWm2": 0,
+          "rainIntensity": 0.5,
+          "score": 0.811,
+          "blocks": [
+            "open-meteo-cloud",
+            "open-meteo-direct-radiation",
+            "rain-point-cloud",
+            "rain-point-direct-radiation"
+          ]
+        }
+      ]
+    },
+    "options": {
+      "gridKm": 12,
+      "clusterKm": 35,
+      "maxVerify": 250,
+      "maxGo": 50,
+      "tileZoom": 6
+    }
+  }
+}

@@ -1,0 +1,206 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: NOAA-first backend worker for The Rainbow Connector
+
+Parameters:
+  ImageUri:
+    Type: String
+  PublishUrl:
+    Type: String
+    Default: https://therainbowconnector.com/api/satellite-candidates
+  PublishSecret:
+    Type: String
+    NoEcho: true
+  NotificationUrl:
+    Type: String
+    Default: https://therainbowconnector.com/api/notify-alerts
+  DotEvidenceUrl:
+    Type: String
+    Default: https://therainbowconnector.com/api/dot-evidence
+  AlertNotifySecret:
+    Type: String
+    Default: ""
+    NoEcho: true
+  ReviewEnrichUrl:
+    Type: String
+    Default: https://therainbowconnector.com/api/review-assessment
+  MapTierPublishUrl:
+    Type: String
+    Default: https://therainbowconnector.com/api/map-tiers-publish
+
+Resources:
+  RainbowResearchBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireRollingDecisionLogs
+            Status: Enabled
+            Prefix: decision-log/rolling/
+            ExpirationInDays: 14
+          - Id: ExpireRollingRainFootprints
+            Status: Enabled
+            Prefix: rain-footprint/rolling/
+            ExpirationInDays: 14
+
+  RainbowWorker:
+    Type: AWS::Serverless::Function
+    Metadata:
+      Dockerfile: Dockerfile.worker
+      DockerContext: .
+      DockerTag: python3.12-v1
+    Properties:
+      PackageType: Image
+      ImageUri: !Ref ImageUri
+      Architectures:
+        - arm64
+      MemorySize: 2048
+      Timeout: 180
+      EphemeralStorage:
+        Size: 1024
+      Environment:
+        Variables:
+          RAINBOW_PUBLISH_URL: !Ref PublishUrl
+          SATELLITE_PUBLISH_SECRET: !Ref PublishSecret
+          RAINBOW_NOTIFY_URL: !Ref NotificationUrl
+          RAINBOW_DOT_EVIDENCE_URL: !Ref DotEvidenceUrl
+          ALERT_NOTIFY_SECRET: !Ref AlertNotifySecret
+          RAINBOW_MAX_CANDIDATES: "250"
+          RAINBOW_MRMS_STRIDE: "10"
+          RAINBOW_CACHE_DIR: /tmp/rainbow-worker
+          RAINBOW_RESEARCH_BUCKET: !Ref RainbowResearchBucket
+          RAINBOW_SHADOW_FUNCTION: !Ref SunlightShadowWorker
+          RAINBOW_MAP_TIER_FUNCTION: !Ref MapTierWorker
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            - Sid: WriteRollingDecisionLogs
+              Effect: Allow
+              Action: s3:PutObject
+              Resource: !Sub ${RainbowResearchBucket.Arn}/decision-log/rolling/*
+            - Sid: WriteRollingRainFootprints
+              Effect: Allow
+              Action: s3:PutObject
+              Resource: !Sub ${RainbowResearchBucket.Arn}/rain-footprint/rolling/*
+            - Sid: InvokeSunlightShadowWorker
+              Effect: Allow
+              Action: lambda:InvokeFunction
+              Resource: !GetAtt SunlightShadowWorker.Arn
+            - Sid: InvokeMapTierWorker
+              Effect: Allow
+              Action: lambda:InvokeFunction
+              Resource: !GetAtt MapTierWorker.Arn
+      Events:
+        FiveMinuteSchedule:
+          Type: ScheduleV2
+          Properties:
+            ScheduleExpression: rate(5 minutes)
+            State: ENABLED
+            FlexibleTimeWindow:
+              Mode: 'OFF'
+            RetryPolicy:
+              MaximumEventAgeInSeconds: 300
+              MaximumRetryAttempts: 1
+
+  SunlightShadowWorker:
+    Type: AWS::Serverless::Function
+    Metadata:
+      Dockerfile: Dockerfile.worker
+      DockerContext: .
+      DockerTag: python3.12-shadow-v1
+    Properties:
+      PackageType: Image
+      ImageUri: !Ref ImageUri
+      ImageConfig:
+        Command:
+          - worker.shadow_lambda.handler
+      Architectures:
+        - arm64
+      MemorySize: 2048
+      Timeout: 300
+      EphemeralStorage:
+        Size: 3072
+      Environment:
+        Variables:
+          RAINBOW_CACHE_DIR: /tmp/rainbow-shadow
+          RAINBOW_RESEARCH_BUCKET: !Ref RainbowResearchBucket
+          RAINBOW_REVIEW_ENRICH_URL: !Ref ReviewEnrichUrl
+          REVIEW_ENRICH_SECRET_PARAMETER: /rainbow-connector/review-enrich-secret
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            - Sid: ReadWriteRollingDecisionLogsForShadowEnrichment
+              Effect: Allow
+              Action:
+                - s3:GetObject
+                - s3:PutObject
+              Resource: !Sub ${RainbowResearchBucket.Arn}/decision-log/rolling/*
+            - Sid: ReadReviewEnrichmentSecret
+              Effect: Allow
+              Action: ssm:GetParameter
+              Resource: !Sub arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/rainbow-connector/review-enrich-secret
+
+  SunlightShadowWorkerLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${SunlightShadowWorker}
+      RetentionInDays: 14
+
+  MapTierWorker:
+    Type: AWS::Serverless::Function
+    Metadata:
+      Dockerfile: Dockerfile.worker
+      DockerContext: .
+      DockerTag: python3.12-map-tiers-v1
+    Properties:
+      PackageType: Image
+      ImageUri: !Ref ImageUri
+      ImageConfig:
+        Command:
+          - worker.map_tier_lambda.handler
+      Architectures:
+        - arm64
+      MemorySize: 2048
+      Timeout: 300
+      EphemeralStorage:
+        Size: 2048
+      Environment:
+        Variables:
+          RAINBOW_MAP_TIER_PUBLISH_URL: !Ref MapTierPublishUrl
+          SATELLITE_PUBLISH_SECRET: !Ref PublishSecret
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            - Sid: ReadRollingRainFootprintsForMapTiers
+              Effect: Allow
+              Action: s3:GetObject
+              Resource: !Sub ${RainbowResearchBucket.Arn}/rain-footprint/rolling/*
+
+  MapTierWorkerLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${MapTierWorker}
+      RetentionInDays: 14
+
+  RainbowWorkerLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${RainbowWorker}
+      RetentionInDays: 14
+
+Outputs:
+  WorkerFunctionArn:
+    Value: !GetAtt RainbowWorker.Arn
+  ResearchBucketName:
+    Value: !Ref RainbowResearchBucket

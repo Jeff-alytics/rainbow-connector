@@ -1,0 +1,8 @@
+requests
+imageio-ffmpeg
+numpy
+xarray
+netCDF4
+cfgrib
+eccodes
+shapely==2.1.1

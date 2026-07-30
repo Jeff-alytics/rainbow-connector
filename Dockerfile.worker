@@ -1,0 +1,12 @@
+FROM public.ecr.aws/lambda/python:3.12
+
+COPY worker/requirements.txt ${LAMBDA_TASK_ROOT}/worker-requirements.txt
+RUN pip install --no-cache-dir -r ${LAMBDA_TASK_ROOT}/worker-requirements.txt
+
+COPY worker ${LAMBDA_TASK_ROOT}/worker
+COPY docs/mockups/us-nation.geojson ${LAMBDA_TASK_ROOT}/worker/assets/us-nation.geojson
+COPY api/goes_sample.py api/sunlight_decision.py ${LAMBDA_TASK_ROOT}/api/
+
+ENV PYTHONPATH=${LAMBDA_TASK_ROOT}/worker:${LAMBDA_TASK_ROOT}/api
+
+CMD [ "worker.lambda_function.handler" ]

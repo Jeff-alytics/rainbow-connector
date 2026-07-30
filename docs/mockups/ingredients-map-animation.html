@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Animated Replay · Ingredients Map · The Rainbow Connector</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="animation-frames.js"></script>
+<style>
+  :root {
+    --background: oklch(0.97 0.018 230); --foreground: oklch(0.27 0.06 275);
+    --card-bg: oklch(0.99 0.008 230); --secondary: oklch(0.93 0.03 230);
+    --muted-fg: oklch(0.5 0.05 270); --faint-fg: oklch(0.62 0.045 268);
+    --border-c: oklch(0.88 0.03 240);
+    --rb-red: oklch(0.64 0.23 25); --rb-orange: oklch(0.74 0.18 60); --rb-yellow: oklch(0.86 0.17 95);
+    --rb-green: oklch(0.78 0.18 145); --rb-blue: oklch(0.62 0.17 240); --rb-violet: oklch(0.55 0.21 305);
+    --shadow: 28 35 80;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Nunito", ui-sans-serif, system-ui, sans-serif; color: var(--foreground);
+    background: var(--background); padding: 26px; }
+  .card { max-width: 1080px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border-c);
+    border-radius: 2rem; padding: 26px 26px 24px; position: relative; overflow: hidden;
+    box-shadow: 0 24px 50px -34px rgb(var(--shadow) / .6); }
+  .card::before { content:""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+    background: linear-gradient(90deg, var(--rb-red), var(--rb-orange), var(--rb-yellow), var(--rb-green), var(--rb-blue), var(--rb-violet)); }
+  .card-head { display: flex; align-items: center; justify-content: space-between; margin: 6px 0 12px; }
+  .card-head .tag { font-family: "Fredoka", sans-serif; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--muted-fg); display: flex; align-items: center; gap: 9px; font-weight: 600; }
+  .card-head .tag::before { content:""; width: 9px; height: 9px; border-radius: 50%; background: var(--rb-orange); }
+  .card-head .meta { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--foreground); font-weight: 600; }
+  .legend { margin: 2px 0 14px; display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; justify-content: center; }
+  .lg { display: inline-flex; align-items: center; gap: 8px; font: 500 12.5px "Fredoka", sans-serif; color: var(--muted-fg); }
+  .lg i { width: 15px; height: 15px; border-radius: 5px; display: inline-block; }
+  .lg i.t1 { background: linear-gradient(135deg, #e89b2e, #f0d060); }
+  .lg i.t2 { background: rgba(91,143,217,.5); border: 1.5px solid #3b6ebe; }
+  .lg i.t3 { background: rgba(31,176,102,.55); border: 1.5px solid #0d7a41; }
+  .lg .pin-demo { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #fff; background: #fff;
+    font-size: 11px; line-height: 17px; text-align: center;
+    box-shadow: 0 0 0 2px oklch(0.55 0.21 305 / .8), 0 3px 8px -3px rgb(var(--shadow) / .7); }
+  #map { height: 560px; width: 100%; border-radius: 1.25rem; border: 1px solid var(--border-c); background: var(--secondary); overflow: hidden; }
+  .foot { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-c); text-align: center;
+    font-size: 12px; color: var(--faint-fg); line-height: 1.55; }
+  .bow-pin { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; border: 2px solid #fff;
+    background: #fff; font-size: 14px; box-shadow: 0 0 0 2.5px oklch(0.55 0.21 305 / .85), 0 8px 16px -8px rgb(var(--shadow) / .8);
+    transition: opacity .4s; }
+</style>
+</head>
+<body>
+<section class="card">
+  <div class="card-head">
+    <span class="tag">Rainbow Ingredients — Evening Replay, Mon Jul 28</span>
+    <span class="meta" id="stamp">—</span>
+  </div>
+  <div class="legend">
+    <span class="lg"><i class="t1"></i>The sun is low enough</span>
+    <span class="lg"><i class="t2"></i>The rain exists (real radar)</span>
+    <span class="lg"><i class="t3"></i>You're positioned right</span>
+    <span class="lg"><span class="pin-demo">🌈</span>GO — look now</span>
+  </div>
+  <div id="map"></div>
+  <div class="foot">
+    Pins are spots the Connector is actively tracking for signs of sunlight needed to make the rainbow.
+  </div>
+</section>
+
+<script>
+const FRAMES = window.ANIM_FRAMES;
+const BOW_WINDOW = ["2026-07-28T23:25:00Z", "2026-07-28T23:45:00Z"];
+const BOWS = [
+  { lat: 39.2904, lon: -76.6122 },
+  { lat: 39.2507, lon: -76.5205 },
+];
+const EMPTY = { type: "Feature", properties: {}, geometry: { type: "MultiPolygon", coordinates: [] } };
+
+function fmtEastern(iso){
+  return new Date(iso).toLocaleTimeString([], { hour: "numeric", minute: "2-digit", timeZone: "America/New_York" }) + " EDT";
+}
+
+const map = new maplibregl.Map({
+  container: "map",
+  style: "https://tiles.openfreemap.org/styles/positron",
+  center: [-88.0, 37.2], zoom: 4.6, attributionControl: false,
+});
+let bowMarkers = [];
+map.on("load", () => {
+  map.addSource("band", { type: "geojson", data: FRAMES[0].band });
+  map.addLayer({ id: "golden-band", type: "fill", source: "band",
+    paint: { "fill-antialias": false,
+      "fill-color": ["interpolate", ["linear"], ["get", "e"], 0, "#e89b2e", 10, "#eab63a", 26, "#f0d060", 42, "#f5e88f"],
+      "fill-opacity": ["get", "op"] } });
+  map.addSource("iso42", { type: "geojson", data: FRAMES[0].iso ? { type: "Feature", properties: {}, geometry: FRAMES[0].iso } : EMPTY });
+  map.addLayer({ id: "iso42-line", type: "line", source: "iso42",
+    paint: { "line-color": "#c8871f", "line-width": 1.8, "line-dasharray": [3, 2.2], "line-opacity": 0.85 } });
+  map.addSource("rain", { type: "geojson", data: FRAMES[0].rain });
+  map.addLayer({ id: "rain-fill", type: "fill", source: "rain", paint: { "fill-color": "#5b8fd9", "fill-opacity": 0.42 } });
+  map.addLayer({ id: "rain-line", type: "line", source: "rain", paint: { "line-color": "#3b6ebe", "line-width": 1.1, "line-opacity": 0.6 } });
+  map.addSource("aligned", { type: "geojson", data: FRAMES[0].aligned });
+  map.addLayer({ id: "aligned-fill", type: "fill", source: "aligned", paint: { "fill-color": "#1fb066", "fill-opacity": 0.52 } });
+  map.addLayer({ id: "aligned-line", type: "line", source: "aligned", paint: { "line-color": "#0d7a41", "line-width": 1.2, "line-opacity": 0.7 } });
+  for (const b of BOWS){
+    const el = document.createElement("div");
+    el.className = "bow-pin";
+    el.textContent = "🌈";
+    el.style.opacity = "0";
+    bowMarkers.push(new maplibregl.Marker({ element: el }).setLngLat([b.lon, b.lat]).addTo(map));
+  }
+  window.__MAP_READY__ = false;
+  map.once("idle", () => { window.__MAP_READY__ = true; setFrame(0); if (!window.__paused) setTimeout(tick, 1200); });
+});
+
+let frameIndex = 0;
+function setFrame(i){
+  frameIndex = i % FRAMES.length;
+  const f = FRAMES[frameIndex];
+  map.getSource("band").setData(f.band);
+  map.getSource("iso42").setData(f.iso ? { type: "Feature", properties: {}, geometry: f.iso } : EMPTY);
+  map.getSource("rain").setData(f.rain);
+  map.getSource("aligned").setData(f.aligned);
+  const inWindow = f.time >= BOW_WINDOW[0] && f.time <= BOW_WINDOW[1];
+  for (const m of bowMarkers) m.getElement().style.opacity = inWindow ? "1" : "0";
+  document.getElementById("stamp").textContent = fmtEastern(f.time) + "  ·  MRMS " + f.time.slice(11, 16) + "Z";
+}
+function tick(){
+  if (window.__paused) return;
+  setFrame(frameIndex + 1);
+  setTimeout(tick, 1200);
+}
+/* capture hook: pause autoplay, set a frame, resolve when rendered */
+window.__showFrame = i => new Promise(resolve => {
+  window.__paused = true;
+  map.once("idle", () => setTimeout(resolve, 250));
+  setFrame(i);
+});
+window.__frameCount = () => FRAMES.length;
+window.__map = map;
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mockup · Ingredients Map · The Rainbow Connector</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="concept-scan-data.js"></script>
+<style>
+  :root {
+    --background: oklch(0.97 0.018 230);
+    --foreground: oklch(0.27 0.06 275);
+    --card-bg:    oklch(0.99 0.008 230);
+    --secondary:  oklch(0.93 0.03 230);
+    --muted-fg:   oklch(0.5 0.05 270);
+    --faint-fg:   oklch(0.62 0.045 268);
+    --border-c:   oklch(0.88 0.03 240);
+    --rb-red:    oklch(0.64 0.23 25);
+    --rb-orange: oklch(0.74 0.18 60);
+    --rb-yellow: oklch(0.86 0.17 95);
+    --rb-green:  oklch(0.78 0.18 145);
+    --rb-blue:   oklch(0.62 0.17 240);
+    --rb-violet: oklch(0.55 0.21 305);
+    --good: oklch(0.62 0.16 150);
+    --shadow: 28 35 80;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Nunito", ui-sans-serif, system-ui, sans-serif; color: var(--foreground);
+    background: var(--background); padding: 26px; }
+  .mock-banner { max-width: 1080px; margin: 0 auto 14px; text-align: center; font: 600 12px "IBM Plex Mono", monospace;
+    letter-spacing: .08em; color: var(--rb-red); border: 1px dashed var(--rb-red); border-radius: 999px; padding: 7px 14px;
+    background: color-mix(in oklab, var(--rb-red) 6%, transparent); }
+  .card { max-width: 1080px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border-c);
+    border-radius: 2rem; padding: 26px 26px 24px; position: relative; overflow: hidden;
+    box-shadow: 0 24px 50px -34px rgb(var(--shadow) / .6); }
+  .card::before { content:""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+    background: linear-gradient(90deg, var(--rb-red), var(--rb-orange), var(--rb-yellow), var(--rb-green), var(--rb-blue), var(--rb-violet)); }
+  .card-head { display: flex; align-items: center; justify-content: space-between; margin: 6px 0 16px; }
+  .card-head .tag { font-family: "Fredoka", sans-serif; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--muted-fg); display: flex; align-items: center; gap: 9px; font-weight: 600; }
+  .card-head .tag::before { content:""; width: 9px; height: 9px; border-radius: 50%; background: var(--rb-orange); }
+  .card-head .meta { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint-fg); }
+  #map { height: 560px; width: 100%; border-radius: 1.25rem; border: 1px solid var(--border-c); background: var(--secondary); overflow: hidden; }
+  .legend { margin: 2px 0 14px; display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; justify-content: center; }
+  .lg { display: inline-flex; align-items: center; gap: 8px; font: 500 12.5px "Fredoka", sans-serif; color: var(--muted-fg); }
+  .lg i { width: 15px; height: 15px; border-radius: 5px; display: inline-block; }
+  .lg i.t1 { background: linear-gradient(135deg, #e89b2e, #f0d060); }
+  .lg i.t2 { background: rgba(91,143,217,.5); border: 1.5px solid #3b6ebe; }
+  .lg i.t3 { background: rgba(31,176,102,.55); border: 1.5px solid #0d7a41; }
+  .lg .pin-demo { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #fff; background: #fff;
+    font-size: 11px; line-height: 17px; text-align: center;
+    box-shadow: 0 0 0 2px oklch(0.55 0.21 305 / .8), 0 3px 8px -3px rgb(var(--shadow) / .7); }
+  .lg .pin-demo.q { box-shadow: 0 0 0 2px oklch(0.68 0.15 70 / .85), 0 3px 8px -3px rgb(var(--shadow) / .5); }
+  .foot { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-c); text-align: center;
+    font-size: 12px; color: var(--faint-fg); line-height: 1.55; }
+  .foot b { color: var(--muted-fg); font-weight: 700; }
+  .cand-pin { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; border: 2px solid #fff;
+    background: #fff; font-size: 14px; cursor: pointer;
+    box-shadow: 0 0 0 2.5px oklch(0.55 0.21 305 / .85), 0 8px 16px -8px rgb(var(--shadow) / .8); }
+  .cand-pin.watch { font-size: 13px;
+    box-shadow: 0 0 0 2.5px oklch(0.68 0.15 70 / .85), 0 6px 12px -6px rgb(var(--shadow) / .6); }
+</style>
+</head>
+<body>
+<div class="mock-banner">DESIGN MOCKUP — SIMULATED RADAR · REAL SUN GEOMETRY FOR 2026-07-29 22:40 UTC · NOT LIVE DATA</div>
+<section class="card">
+  <div class="card-head">
+    <span class="tag">Rainbow Ingredients Right Now</span>
+    <span class="meta" id="stamp">5:40 PM CDT · updates every 5 min</span>
+  </div>
+  <div class="legend">
+    <span class="lg"><i class="t1"></i>The sun is low enough</span>
+    <span class="lg"><i class="t2"></i>The rain exists</span>
+    <span class="lg"><i class="t3"></i>You&#39;re positioned right</span>
+    <span class="lg"><span class="pin-demo">🌈</span>GO — look now</span>
+    <span class="lg"><span class="pin-demo q">⛅</span>Possible — check your sky</span>
+  </div>
+  <div id="map"></div>
+  <div class="foot">
+    Pins are spots the Connector is actively tracking for signs of sunlight needed to make the rainbow.
+  </div>
+</section>
+
+<script>
+/* Layers are baked by gen-concept-data.py: simulated radar + real sun geometry
+   for 2026-07-29 22:40 UTC, all clipped to the Census 1:5M CONUS coastline. */
+const PINS = [
+  { lat: 29.98, lon: -90.35, kind: "go",    label: "GO" },
+  { lat: 30.45, lon: -89.05, kind: "watch", label: "?" },
+  { lat: 28.9,  lon: -82.1,  kind: "watch", label: "?" },
+  { lat: 35.9,  lon: -79.9,  kind: "watch", label: "?" },
+  { lat: 41.0,  lon: -94.4,  kind: "watch", label: "?" },
+];
+
+const map = new maplibregl.Map({
+  container: "map",
+  style: "https://tiles.openfreemap.org/styles/positron",
+  center: [-95.5, 37.6], zoom: 3.9, attributionControl: false,
+});
+map.on("load", () => {
+  map.addSource("band", { type: "geojson", data: CONCEPT_DATA.band });
+  map.addLayer({
+    id: "golden-band", type: "fill", source: "band",
+    paint: {
+      "fill-antialias": false,
+      "fill-color": ["interpolate", ["linear"], ["get", "e"],
+        0, "#e89b2e", 10, "#eab63a", 26, "#f0d060", 42, "#f5e88f"],
+      "fill-opacity": ["get", "op"],
+    },
+  });
+  if (CONCEPT_DATA.iso){
+    map.addSource("iso42", { type: "geojson", data: { type: "Feature", properties: {}, geometry: CONCEPT_DATA.iso } });
+    map.addLayer({ id: "iso42-line", type: "line", source: "iso42",
+      paint: { "line-color": "#c8871f", "line-width": 1.8, "line-dasharray": [3, 2.2], "line-opacity": 0.85 } });
+  }
+  map.addSource("rain", { type: "geojson", data: CONCEPT_DATA.rain });
+  map.addLayer({ id: "rain-fill", type: "fill", source: "rain",
+    paint: { "fill-color": "#5b8fd9", "fill-opacity": 0.4 } });
+  map.addLayer({ id: "rain-line", type: "line", source: "rain",
+    paint: { "line-color": "#3b6ebe", "line-width": 1.4, "line-opacity": 0.75 } });
+  map.addSource("aligned", { type: "geojson", data: CONCEPT_DATA.aligned });
+  map.addLayer({ id: "aligned-fill", type: "fill", source: "aligned",
+    paint: { "fill-color": "#1fb066", "fill-opacity": 0.5 } });
+  map.addLayer({ id: "aligned-line", type: "line", source: "aligned",
+    paint: { "line-color": "#0d7a41", "line-width": 1.6, "line-opacity": 0.85 } });
+  for (const p of PINS){
+    const el = document.createElement("div");
+    el.className = "cand-pin" + (p.kind === "watch" ? " watch" : "");
+    el.textContent = p.kind === "watch" ? "⛅" : "🌈";
+    new maplibregl.Marker({ element: el }).setLngLat([p.lon, p.lat]).addTo(map);
+  }
+  window.__MAP_READY__ = false;
+  map.once("idle", () => { window.__MAP_READY__ = true; });
+});
+window.__map = map;
+</script>
+</body>
+</html>
