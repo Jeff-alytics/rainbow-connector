@@ -102,6 +102,21 @@ function showWorkspace(){
   $("#workspace").classList.remove("hidden");
 }
 
+function bowHeightLandmark(degrees){
+  const height = Number(degrees);
+  if (!Number.isFinite(height) || height < 0) return "";
+  const skyFraction = Math.max(1, Math.round(height / 90 * 100));
+  let handGuide;
+  if (height < 2.5) handGuide = "about one finger-width";
+  else if (height < 7.5) handGuide = "about three fingers";
+  else {
+    const fists = Math.max(1, Math.round(height / 5) / 2);
+    const fistLabel = fists === 1 ? "one closed fist" : `${fists} stacked fists`;
+    handGuide = `about ${fistLabel}`;
+  }
+  return `${handGuide} held at arm's length, starting at the true horizon (roughly ${skyFraction}% of the way from the horizon to directly overhead)`;
+}
+
 function render(){
   current = queue[0] || null;
   $("#queue-count").textContent = `${queue.length} candidate${queue.length === 1 ? "" : "s"} awaiting review`;
@@ -123,7 +138,8 @@ function render(){
   $("#reveal").classList.add("hidden");
   const bowGuidance = $("#bow-guidance");
   if (Number.isFinite(current.expectedBowTopDeg)) {
-    const guidance = ['<strong>Expected bow top:</strong> about ' + current.expectedBowTopDeg.toFixed(1) + '° above the horizon.'];
+    const guidance = ['<strong>Expected bow top:</strong> ' + bowHeightLandmark(current.expectedBowTopDeg)
+      + ' <small>(' + current.expectedBowTopDeg.toFixed(1) + '° above the horizon)</small>.'];
     if (Number.isFinite(current.apparentSunElevationDeg) && current.apparentSunElevationDeg < 5) {
       guidance.push("The sun was extremely low, so look for a faint red or orange arc; a full spectrum may not be visible.");
     } else if (current.expectedBowTopDeg <= 15) {
