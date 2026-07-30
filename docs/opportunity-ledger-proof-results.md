@@ -44,9 +44,12 @@ and produced:
 - 522,641 observer-swath cells
 - 17,742 derived representative candidates
 
-The opportunity Lambda timeout is now 120 seconds, with alarms at 90 seconds
-and on any Lambda error. Final safety evidence requires the same scan to run in
-the deployed arm64 Lambda; the local number alone is not the release gate.
+The same scan then ran through the deployed arm64 Lambda in 17.92 seconds
+(17.86 seconds measured inside the handler), using 858 MB at the current
+3,008 MB allocation. It stored 1.03 MB compressed / 6.08 MB raw, selected no
+camera review items, and reported the Review callback skipped. The opportunity
+Lambda timeout is now 120 seconds, with alarms at 90 seconds and on any Lambda
+error. Both alarms remained OK after the replay.
 
 ## Safety boundary
 
