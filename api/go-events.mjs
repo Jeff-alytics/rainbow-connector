@@ -145,12 +145,14 @@ function queueItem(event, group = null) {
 
 export function reviewQueueItems(events) {
   const items = reviewQueue(events).flatMap(event => {
-    const possible = eventClass(event) === "POSSIBLE";
     const allGroups = evidenceFrameReviewGroups(event);
-    if (!allGroups.length) return [queueItem(event)];
+    if (!allGroups.length) {
+      const item = queueItem(event);
+      return Number.isFinite(item.camera?.distanceKm) && item.camera.distanceKm > 40 ? [] : [item];
+    }
     const groups = allGroups.filter(group => {
       const distance = Number(group.frames?.[0]?.distanceKm);
-      return !possible || !Number.isFinite(distance) || distance <= 40;
+      return !Number.isFinite(distance) || distance <= 40;
     });
     return groups
       .filter(group => (event.viewReviews?.[group.key]?.label || "pending") === "pending")

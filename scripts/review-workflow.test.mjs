@@ -144,14 +144,14 @@ test("FAA reviews stay hidden until at least two post-event frames exist", () =>
   assert.equal(reviewQueue([event([-15, -6, 4, 14])]).length, 1);
 });
 
-test("POSSIBLE reviews omit FAA cameras beyond 40 km while retaining nearby views", () => {
+test("all reviews omit FAA cameras beyond 40 km while retaining nearby views", () => {
   const frame = (cameraId, distanceKm, timeOffsetMinutes) => ({
     url: `${cameraId}-${timeOffsetMinutes}`, source: "FAA WeatherCam",
     siteId: cameraId, cameraId, cameraName: `Airport ${cameraId}`,
     distanceKm, timeOffsetMinutes,
   });
   const event = {
-    id: "possible-distance", candidateClass: "POSSIBLE", review: { label: "pending" },
+    id: "go-distance", candidateClass: "GO", review: { label: "pending" },
     evidence: { source: "FAA WeatherCam", frames: [
       frame("near", 38, 5), frame("near", 38, 15),
       frame("far", 62, 5), frame("far", 62, 15),
@@ -160,6 +160,17 @@ test("POSSIBLE reviews omit FAA cameras beyond 40 km while retaining nearby view
   const items = reviewQueueItems([event]);
   assert.equal(items.length, 1);
   assert.equal(items[0].camera.name, "Airport near");
+});
+
+test("a GO with only a camera beyond 40 km never reaches Review", () => {
+  const event = {
+    id: "far-go", candidateClass: "GO", review: { label: "pending" },
+    evidence: { source: "FAA WeatherCam", frames: [
+      { url: "far-1", siteId: "far", cameraId: 1, cameraName: "Far Airport", distanceKm: 52, timeOffsetMinutes: 4 },
+      { url: "far-2", siteId: "far", cameraId: 1, cameraName: "Far Airport", distanceKm: 52, timeOffsetMinutes: 14 },
+    ] },
+  };
+  assert.deepEqual(reviewQueueItems([event]), []);
 });
 
 test("review queue provides a refracted bow-top search height", () => {
