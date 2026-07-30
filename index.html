@@ -365,7 +365,7 @@
     box-shadow: 0 0 0 2.5px oklch(0.55 0.21 305 / .85), 0 8px 16px -8px rgb(28 35 80 / .8); }
   .bow-pin.maybe { font-size: 13px;
     box-shadow: 0 0 0 2.5px oklch(0.68 0.15 70 / .85), 0 6px 12px -6px rgb(28 35 80 / .6); }
-  .bow-pin.active { transform: scale(1.18); }
+  .bow-pin.active { width: 32px; height: 32px; font-size: 17px; }
   .maplibregl-marker .look-pin, .rain-pin, .me-pin {
     font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 11px; letter-spacing: .02em;
     padding: 5px 9px; border-radius: 999px; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(20,30,70,.5); }
@@ -1448,6 +1448,34 @@ function solarIngredientLayers(scanTime){
 function candidateScanTime(artifact){return ingredientFixtureMode?"2026-07-28T23:34:00Z":artifact?.sourceHealth?.radar?.observedAt||artifact?.source?.radarFrameTime||null;}
 function sameScan(a,b){return !!a&&!!b&&Math.abs(new Date(a)-new Date(b))<1000;}
 function setIngredientNote(text){const el=$("#ingredient-note");el.textContent=text||"";el.classList.toggle("visible",!!text);}
+/* Chaikin corner-cutting: rounds the radar-pixel staircase off rain/aligned footprints.
+   Two passes turn each right-angle step into a gentle curve; geometry stays within
+   half a cell (~0.005°) of the source outline. */
+function chaikinRing(ring,iterations){
+  let pts=ring.slice(0,ring.length-1);
+  for(let it=0;it<iterations;it++){
+    if(pts.length<3)break;
+    const out=[];
+    for(let i=0;i<pts.length;i++){
+      const a=pts[i],b=pts[(i+1)%pts.length];
+      out.push([a[0]*.75+b[0]*.25,a[1]*.75+b[1]*.25],[a[0]*.25+b[0]*.75,a[1]*.25+b[1]*.75]);
+    }
+    pts=out;
+  }
+  pts.push(pts[0]);
+  return pts;
+}
+function smoothShapes(geo){
+  if(!geo)return geo;
+  const smoothPoly=coords=>coords.map(ring=>ring.length>=5?chaikinRing(ring,2):ring);
+  const smoothGeom=g=>!g?g
+    :g.type==="Polygon"?{...g,coordinates:smoothPoly(g.coordinates)}
+    :g.type==="MultiPolygon"?{...g,coordinates:g.coordinates.map(smoothPoly)}
+    :g;
+  if(geo.type==="FeatureCollection")return {...geo,features:geo.features.map(f=>({...f,geometry:smoothGeom(f.geometry)}))};
+  if(geo.type==="Feature")return {...geo,geometry:smoothGeom(geo.geometry)};
+  return smoothGeom(geo);
+}
 function clearServerTiers(){if(!candMapLoaded)return;candMap.getSource("ingredient-rain").setData(EMPTY);candMap.getSource("ingredient-aligned").setData(EMPTY);}
 function renderIngredients(tiers,artifact){
   pendingMapTierArtifact=tiers;
@@ -1455,7 +1483,7 @@ function renderIngredients(tiers,artifact){
   const scan=candidateScanTime(artifact);if(!scan)return;
   const solar=solarIngredientLayers(scan);candMap.getSource("sun-band").setData(solar.band);candMap.getSource("night-shade").setData(solar.night);candMap.getSource("sun-isoline").setData(solar.isoline);candMap.getSource("sunset-line").setData(solar.sunset);
   if(!tiers||!sameScan(tiers.scanTime,scan)||tiers.stale){clearServerTiers();if(tiers?.stale)setIngredientNote("ingredients layer unavailable");return;}
-  candMap.getSource("ingredient-rain").setData(tiers.rain);candMap.getSource("ingredient-aligned").setData(tiers.aligned);
+  candMap.getSource("ingredient-rain").setData(smoothShapes(tiers.rain));candMap.getSource("ingredient-aligned").setData(smoothShapes(tiers.aligned));
   mapTierArtifact=tiers;$("#candmap").dataset.tierRuleVersion=tiers.tierRuleVersion;
   setIngredientNote(tiers.quietSky?"quiet sky \u2014 no rain in the golden window right now":"");
 }
@@ -1497,12 +1525,16 @@ async function fetchCandidates(){
 const candPinMarkers = new Map();
 function updateCandidatePinMarkers(){
   if (!candMapLoaded) return;
+  // Tile features only tell us WHICH points are unclustered right now; their geometry is
+  // quantized to the tile grid, so always position markers from the exact candidate coords.
+  const byId = new Map(visibleMapCandidates(candidateArtifact).filter(c => isFiniteCoord(c.lat, c.lon)).map(c => [c.id, c]));
   const seen = new Set();
   for (const f of candMap.querySourceFeatures("candidates")) {
     if (f.properties.point_count) continue;
     const p = f.properties, id = p.id;
-    if (id == null || seen.has(id)) continue;
+    if (id == null || seen.has(id) || !byId.has(id)) continue;
     seen.add(id);
+    const c = byId.get(id);
     const cls = "bow-pin" + (p.verdict === "watch" ? " maybe" : "") + (p.active ? " active" : "");
     let m = candPinMarkers.get(id);
     if (!m) {
@@ -1511,13 +1543,14 @@ function updateCandidatePinMarkers(){
       el.title = p.label || "";
       el.addEventListener("click", ev => {
         ev.stopPropagation();
-        const candidate = visibleMapCandidates(candidateArtifact).find(c => c.id === id);
+        const candidate = visibleMapCandidates(candidateArtifact).find(cd => cd.id === id);
         if (candidate) selectCandidate(candidate, candidateArtifact);
       });
-      m = new maplibregl.Marker({ element: el }).setLngLat(f.geometry.coordinates).addTo(candMap);
+      m = new maplibregl.Marker({ element: el }).setLngLat([c.lon, c.lat]).addTo(candMap);
       candPinMarkers.set(id, m);
     } else {
-      m.setLngLat(f.geometry.coordinates);
+      const cur = m.getLngLat();
+      if (cur.lng !== c.lon || cur.lat !== c.lat) m.setLngLat([c.lon, c.lat]);
     }
     if (m.getElement().className !== cls) m.getElement().className = cls;
   }
