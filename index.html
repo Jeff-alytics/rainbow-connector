@@ -1394,6 +1394,48 @@ function insideDisplayLand(lon,lat){
   return polygons.some(p=>inRing(p[0])&&!p.slice(1).some(inRing));
 }
 
+/* Clip a grid cell to the US land outline (Sutherland–Hodgman: land rings clipped by the
+   cell rectangle) so solar-layer cells end at the coastline instead of overhanging water. */
+const landOuterRings=(()=>{let cache=null;return()=>{
+  if(cache)return cache;
+  const geometry=window.US_NATION?.geometry;if(!geometry)return cache=[];
+  const polygons=geometry.type==="MultiPolygon"?geometry.coordinates:[geometry.coordinates];
+  cache=polygons.map(p=>{
+    const ring=p[0];
+    let minX=1/0,minY=1/0,maxX=-1/0,maxY=-1/0;
+    for(const [x,y] of ring){if(x<minX)minX=x;if(x>maxX)maxX=x;if(y<minY)minY=y;if(y>maxY)maxY=y;}
+    return {ring,minX,minY,maxX,maxY};
+  });
+  return cache;
+};})();
+function clipCellToLand(x0,y0,x1,y1){
+  const pieces=[];
+  const clipEdge=(pts,inside,cross)=>{
+    const out=[];
+    for(let i=0;i<pts.length;i++){
+      const a=pts[i],b=pts[(i+1)%pts.length],ain=inside(a),bin=inside(b);
+      if(ain){out.push(a);if(!bin)out.push(cross(a,b));}
+      else if(bin)out.push(cross(a,b));
+    }
+    return out;
+  };
+  for(const {ring,minX,minY,maxX,maxY} of landOuterRings()){
+    if(maxX<x0||minX>x1||maxY<y0||minY>y1)continue;
+    let pts=ring[0][0]===ring[ring.length-1][0]&&ring[0][1]===ring[ring.length-1][1]?ring.slice(0,-1):ring.slice();
+    pts=clipEdge(pts,p=>p[0]>=x0,(a,b)=>[x0,a[1]+(x0-a[0])/(b[0]-a[0])*(b[1]-a[1])]);
+    if(pts.length<3)continue;
+    pts=clipEdge(pts,p=>p[0]<=x1,(a,b)=>[x1,a[1]+(x1-a[0])/(b[0]-a[0])*(b[1]-a[1])]);
+    if(pts.length<3)continue;
+    pts=clipEdge(pts,p=>p[1]>=y0,(a,b)=>[a[0]+(y0-a[1])/(b[1]-a[1])*(b[0]-a[0]),y0]);
+    if(pts.length<3)continue;
+    pts=clipEdge(pts,p=>p[1]<=y1,(a,b)=>[a[0]+(y1-a[1])/(b[1]-a[1])*(b[0]-a[0]),y1]);
+    if(pts.length<3)continue;
+    pts.push(pts[0]);
+    pieces.push(pts);
+  }
+  return pieces;
+}
+
 const solarIngredientCache=new Map();
 function subsolarPoint(at){
   const d=toDays(at),M=solarAnom(d),L=eclLon(M);
@@ -1425,18 +1467,27 @@ function solarIngredientLayers(scanTime){
   const cacheKey=new Date(scanTime).toISOString();
   if(solarIngredientCache.has(cacheKey))return solarIngredientCache.get(cacheKey);
   const at=new Date(scanTime),features=[],night=[],step=.35,half=step/2;
+  const landMemo=new Map(),onLand=(x,y)=>{const k=x+","+y;let v=landMemo.get(k);if(v===undefined){v=insideDisplayLand(x,y);landMemo.set(k,v);}return v;};
   for(let lat=24.5+half;lat<49.5;lat+=step)for(let lon=-125+half;lon<-66.5;lon+=step){
-    if(!insideDisplayLand(lon,lat))continue;
+    const x0=lon-half,y0=lat-half,x1=lon+half,y1=lat+half;
+    // corners + center: all on land → full cell; none → skip; mixed → clip to the coastline
+    // (corners are shared by 4 neighboring cells, so memoize the point-in-polygon tests)
+    const landHits=[[lon,lat],[x0,y0],[x1,y0],[x1,y1],[x0,y1]].filter(pt=>onLand(pt[0],pt[1])).length;
+    if(!landHits)continue;
+    const cell=()=>{
+      if(landHits===5)return {type:"Polygon",coordinates:[[[x0,y0],[x1,y0],[x1,y1],[x0,y1],[x0,y0]]]};
+      const pieces=clipCellToLand(x0,y0,x1,y1);
+      return pieces.length?{type:"MultiPolygon",coordinates:pieces.map(ring=>[ring])}:null;
+    };
     const elevation=solarReadout(at,lat,lon).elev;
-    const cell=()=>({type:"Polygon",coordinates:[[[lon-half,lat-half],[lon+half,lat-half],[lon+half,lat+half],[lon-half,lat+half],[lon-half,lat-half]]]});
     if(elevation>=0&&elevation<=42){
       // fade toward the 42° limit AND down to zero AT the sunset line — no gold past dark
       const opacity=.3*Math.min(1,(42-elevation)/14)*Math.min(1,elevation/5);
-      if(opacity>0)features.push({type:"Feature",properties:{elevation,opacity},geometry:cell()});
+      if(opacity>0){const g=cell();if(g)features.push({type:"Feature",properties:{elevation,opacity},geometry:g});}
     } else if(elevation<0){
       // dusk tint east of the sunset line, deepening through twilight (full by −8°)
       const opacity=.12*Math.min(1,-elevation/8);
-      if(opacity>.005)night.push({type:"Feature",properties:{opacity},geometry:cell()});
+      if(opacity>.005){const g=cell();if(g)night.push({type:"Feature",properties:{opacity},geometry:g});}
     }
   }
   const result={band:{type:"FeatureCollection",features},night:{type:"FeatureCollection",features:night},isoline:solarIsoCircle(at,42),sunset:solarIsoCircle(at,0)};
