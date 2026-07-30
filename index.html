@@ -493,7 +493,7 @@
     </div>
     <div class="ingredient-legend" aria-label="Map ingredients">
       <span class="sun"><i></i>The sun is low enough</span>
-      <span class="sunset"><i></i>Sunset line &mdash; dark past here</span>
+      <span class="sunset" id="terminator-legend"><i></i><span id="terminator-legend-text">Sunset line &mdash; dark east of it</span></span>
       <span class="rain"><i></i>The rain exists</span>
       <span class="aligned"><i></i>You're positioned right</span>
       <span class="possible" id="possible-legend" hidden><i></i>Possible &mdash; check your sky</span>
@@ -1490,7 +1490,14 @@ function solarIngredientLayers(scanTime){
       if(opacity>.005){const g=cell();if(g)night.push({type:"Feature",properties:{opacity},geometry:g});}
     }
   }
-  const result={band:{type:"FeatureCollection",features},night:{type:"FeatureCollection",features:night},isoline:solarIsoCircle(at,42),sunset:solarIsoCircle(at,0)};
+  const sunset=solarIsoCircle(at,0);
+  // Is the visible terminator a sunset or sunrise line? Sample its midpoint 10 min ahead.
+  let terminatorKind=null;
+  if(sunset.features.length){
+    const coords=sunset.features[0].geometry.coordinates,[mx,my]=coords[Math.floor(coords.length/2)];
+    terminatorKind=solarReadout(new Date(at.getTime()+600000),my,mx).elev>solarReadout(at,my,mx).elev?"sunrise":"sunset";
+  }
+  const result={band:{type:"FeatureCollection",features},night:{type:"FeatureCollection",features:night},isoline:solarIsoCircle(at,42),sunset,terminatorKind};
   solarIngredientCache.set(cacheKey,result);
   if(solarIngredientCache.size>8)solarIngredientCache.delete(solarIngredientCache.keys().next().value);
   return result;
@@ -1533,6 +1540,12 @@ function renderIngredients(tiers,artifact){
   if(!candMapLoaded)return;
   const scan=candidateScanTime(artifact);if(!scan)return;
   const solar=solarIngredientLayers(scan);candMap.getSource("sun-band").setData(solar.band);candMap.getSource("night-shade").setData(solar.night);candMap.getSource("sun-isoline").setData(solar.isoline);candMap.getSource("sunset-line").setData(solar.sunset);
+  const termLegend=$("#terminator-legend");
+  if(termLegend){
+    termLegend.hidden=!solar.terminatorKind;
+    if(solar.terminatorKind)$("#terminator-legend-text").textContent=solar.terminatorKind==="sunrise"
+      ?"Sunrise line — dark west of it":"Sunset line — dark east of it";
+  }
   if(!tiers||!sameScan(tiers.scanTime,scan)||tiers.stale){clearServerTiers();if(tiers?.stale)setIngredientNote("ingredients layer unavailable");return;}
   candMap.getSource("ingredient-rain").setData(smoothShapes(tiers.rain));candMap.getSource("ingredient-aligned").setData(smoothShapes(tiers.aligned));
   mapTierArtifact=tiers;$("#candmap").dataset.tierRuleVersion=tiers.tierRuleVersion;
