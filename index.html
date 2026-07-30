@@ -322,6 +322,7 @@
   .candidate-card { margin-top: 18px; }
   .ingredient-legend { display:flex; flex-wrap:wrap; gap:10px 22px; padding:2px 2px 14px; justify-content:center; color:var(--muted-fg); font:500 12.5px/1.25 "Fredoka",sans-serif; }
   .ingredient-legend span { display:inline-flex; align-items:center; gap:6px; }
+  .ingredient-legend span[hidden] { display:none; }
   .ingredient-legend i { width:15px; height:15px; border-radius:5px; display:inline-block; border:1px solid transparent; }
   .ingredient-legend .sun i { background:linear-gradient(135deg,#e89b2e,#f0d060); }
   .ingredient-legend .sunset i { width:20px; height:2px; border:none; border-radius:0;
@@ -1561,9 +1562,9 @@ async function fetchExactMapTiers(artifact){
       return;
     }catch{}
   }
-  for(let attempt=0;attempt<3;attempt++){
+  for(let attempt=0;attempt<6;attempt++){
     try{const r=await fetch("/api/map-tiers",{cache:"no-store"});if(r.ok){const tiers=await r.json();if(sameScan(tiers.scanTime,scan)){renderIngredients(tiers,artifact);return;}}}catch{}
-    await new Promise(resolve=>setTimeout(resolve,[800,1600,3200][attempt]));
+    await new Promise(resolve=>setTimeout(resolve,[800,1600,3200,6400,12800,20000][attempt]));
   }
   clearServerTiers();setIngredientNote("ingredients layer unavailable");
 }
