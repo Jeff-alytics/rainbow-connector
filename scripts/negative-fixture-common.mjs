@@ -29,11 +29,13 @@ export function negativeEvidence(event) {
   const distance = finite(camera.distanceKm);
   const bearing = finite(camera.bearingDifference);
   const skyPct = finite(camera.horizonSkyPct);
+  const visibleBowFraction = finite(camera.visibleBowFraction);
   const viewQuality = String(camera.viewQuality || "").toLowerCase();
   const knownBearing = bearing != null;
   const trustedFaaView = source === "FAA WeatherCam";
 
-  const direction = !knownBearing ? 0 : bearing <= 15 ? 1 : bearing <= 30 ? 0.75 : 0.25;
+  const direction = visibleBowFraction != null && visibleBowFraction < 0.5 ? 0
+    : !knownBearing ? 0 : bearing <= 15 ? 1 : bearing <= 30 ? 0.75 : 0.25;
   const proximity = distance == null ? 0 : distance <= 25 ? 1 : distance <= 35 ? 0.8 : 0.25;
   const timing = frames.nearestFrameOffsetMinutes == null ? 0
     : frames.nearestFrameOffsetMinutes <= 5 ? 1
@@ -52,6 +54,7 @@ export function negativeEvidence(event) {
   const adequateSky = sky >= 0.67;
   const eligibilityReasons = [];
   if (!knownBearing) eligibilityReasons.push("camera_bearing_unknown");
+  if (visibleBowFraction != null && visibleBowFraction < 0.5) eligibilityReasons.push("less_than_half_of_visible_bow_in_view");
   if (distance == null || distance > 35) eligibilityReasons.push("camera_too_distant_or_unknown");
   if (bearing != null && bearing > 30) eligibilityReasons.push("bow_direction_outside_strong_review_sector");
   if (frames.distinctFrames < 2) eligibilityReasons.push("single_or_missing_frame");
@@ -61,7 +64,7 @@ export function negativeEvidence(event) {
   if (weight < 0.5) eligibilityReasons.push("negative_evidence_weight_below_0_5");
 
   return {
-    methodVersion: "negative-evidence-v1",
+    methodVersion: "negative-evidence-v2-bow-coverage",
     weight,
     calibrationEligible: eligibilityReasons.length === 0,
     eligibilityReasons: [...new Set(eligibilityReasons)],
@@ -69,6 +72,7 @@ export function negativeEvidence(event) {
     inputs: {
       distanceKm: distance,
       bearingDifferenceDeg: bearing,
+      visibleBowFraction,
       viewQuality: viewQuality || null,
       horizonSkyPct: skyPct,
       source: source || null,
@@ -110,6 +114,7 @@ export function compactNegativeEvent(event) {
       bearingDifferenceDeg: finite(camera.bearingDifference),
       viewQuality: camera.viewQuality || null,
       horizonSkyPct: finite(camera.horizonSkyPct),
+      visibleBowFraction: finite(camera.visibleBowFraction),
     },
     negativeEvidence: negativeEvidence(event),
   };

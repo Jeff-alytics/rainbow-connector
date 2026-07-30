@@ -1,8 +1,24 @@
 import { json, readJsonBody, verifySecret } from "./alert-common.mjs";
-import { REVIEW_LABELS, labelGoEvent, loadGoEvents } from "./go-event-common.mjs";
+import { REVIEW_LABELS, evidenceFrameReviewGroups, labelGoEvent, labelGoEventView, loadGoEvents } from "./go-event-common.mjs";
 import { hasReviewSession } from "./review-auth-common.mjs";
 
 export const config = { maxDuration: 10 };
+
+export function apparentSolarElevationDeg(geometricElevationDeg) {
+  const elevation = Number(geometricElevationDeg);
+  if (!Number.isFinite(elevation)) return null;
+  if (elevation > 85) return elevation;
+  const tangent = Math.tan(elevation * Math.PI / 180);
+  let correctionArcSeconds;
+  if (elevation > 5) {
+    correctionArcSeconds = 58.1 / tangent - 0.07 / tangent ** 3 + 0.000086 / tangent ** 5;
+  } else if (elevation > -0.575) {
+    correctionArcSeconds = 1735 + elevation * (-518.2 + elevation * (103.4 + elevation * (-12.79 + elevation * 0.711)));
+  } else {
+    correctionArcSeconds = -20.774 / tangent;
+  }
+  return elevation + correctionArcSeconds / 3600;
+}
 
 function authorized(req, body = {}) {
   return hasReviewSession(req) || verifySecret(req, body);
@@ -10,20 +26,124 @@ function authorized(req, body = {}) {
 
 export function reviewQueue(events) {
   const strengthRank = { strong: 3, usable: 2, limited: 1, unknown: 0 };
-  return [...(events || [])]
-    .filter(event => (event.review?.label || "pending") === "pending")
+  const ordered = [...(events || [])]
+    .filter(event => {
+      const groups = evidenceFrameReviewGroups(event);
+      if (groups.length && ((event.review?.label || "pending") === "pending" || Object.keys(event.viewReviews || {}).length)) {
+        return groups.some(group => (event.viewReviews?.[group.key]?.label || "pending") === "pending");
+      }
+      return (event.review?.label || "pending") === "pending";
+    })
+    .filter(event => event.candidateType !== "research_possible" || Number(event.scanCount || 0) >= 2)
     .filter(event => (event.evidence?.frames || []).length > 0)
+    .filter(event => event.evidence?.source !== "FAA WeatherCam"
+      || (event.evidence.frames || []).filter(frame => Number(frame.timeOffsetMinutes) > 0).length >= 2)
     .sort((a, b) => {
       const aClass = eventClass(a) === "GO" ? 1 : 0;
       const bClass = eventClass(b) === "GO" ? 1 : 0;
       const aCamera = a.evidence?.camera || {}, bCamera = b.evidence?.camera || {};
-      const aStrength = reviewEvidenceStrength(aCamera.distanceKm, aCamera.bearingDifference, aCamera.viewQuality, aCamera.nearestFrameOffsetMinutes);
-      const bStrength = reviewEvidenceStrength(bCamera.distanceKm, bCamera.bearingDifference, bCamera.viewQuality, bCamera.nearestFrameOffsetMinutes);
+      const aStrength = reviewEvidenceStrength(aCamera.distanceKm, aCamera.bearingDifference, aCamera.viewQuality, aCamera.nearestFrameOffsetMinutes, aCamera.visibleBowFraction);
+      const bStrength = reviewEvidenceStrength(bCamera.distanceKm, bCamera.bearingDifference, bCamera.viewQuality, bCamera.nearestFrameOffsetMinutes, bCamera.visibleBowFraction);
       return bClass - aClass
       || strengthRank[bStrength] - strengthRank[aStrength]
       || Number(b.peakScore || 0) - Number(a.peakScore || 0)
       || new Date(b.lastSeenAt || 0) - new Date(a.lastSeenAt || 0);
     });
+  let researchSlots = 0;
+  return ordered.filter(event => event.candidateType !== "research_possible" || researchSlots++ < 2);
+}
+
+function cameraForGroup(event, group) {
+  const first = group?.frames?.[0] || {};
+  const stored = (event?.evidence?.cameras || []).find(camera =>
+    String(camera?.siteId) === String(first.siteId) && String(camera?.cameraId) === String(first.cameraId));
+  return {
+    name: first.cameraName || stored?.name || event?.evidence?.camera?.name || null,
+    direction: stored?.direction || null,
+    source: first.source || event?.evidence?.source || null,
+    distanceKm: Number.isFinite(first.distanceKm) ? first.distanceKm : Number.isFinite(stored?.distanceKm) ? stored.distanceKm : null,
+    bearingDifference: Number.isFinite(first.bearingDifference) ? first.bearingDifference : Number.isFinite(stored?.bearingDifference) ? stored.bearingDifference : null,
+    viewQuality: first.viewQuality || stored?.viewQuality || null,
+    horizonSkyPct: Number.isFinite(stored?.horizonSkyPct) ? stored.horizonSkyPct : null,
+    nearestFrameOffsetMinutes: group.frames.reduce((best, frame) => {
+      const value = Math.abs(Number(frame.timeOffsetMinutes));
+      return Number.isFinite(value) && (!Number.isFinite(best) || value < best) ? value : best;
+    }, null),
+    intervalMinutes: Number.isFinite(stored?.intervalMinutes) ? stored.intervalMinutes : null,
+    visibleBowFraction: Number.isFinite(first.visibleBowFraction) ? first.visibleBowFraction : Number.isFinite(stored?.visibleBowFraction) ? stored.visibleBowFraction : null,
+    bowArcOverlapDeg: Number.isFinite(first.bowArcOverlapDeg) ? first.bowArcOverlapDeg : Number.isFinite(stored?.bowArcOverlapDeg) ? stored.bowArcOverlapDeg : null,
+  };
+}
+
+function queueItem(event, group = null) {
+  const frames = group?.frames || event.evidence?.frames || [];
+  const geometricSunElevationDeg = Number(event?.representative?.evidence?.sunElevationDeg);
+  const apparentSunElevationDeg = apparentSolarElevationDeg(geometricSunElevationDeg);
+  const camera = group ? cameraForGroup(event, group) : event.evidence?.camera ? {
+    name: event.evidence.camera.name || null,
+    direction: event.evidence.camera.direction || null,
+    source: event.evidence.source || null,
+    distanceKm: Number.isFinite(event.evidence.camera.distanceKm) ? event.evidence.camera.distanceKm : null,
+    bearingDifference: Number.isFinite(event.evidence.camera.bearingDifference) ? event.evidence.camera.bearingDifference : null,
+    viewQuality: event.evidence.camera.viewQuality || null,
+    horizonSkyPct: Number.isFinite(event.evidence.camera.horizonSkyPct) ? event.evidence.camera.horizonSkyPct : null,
+    nearestFrameOffsetMinutes: Number.isFinite(event.evidence.camera.nearestFrameOffsetMinutes) ? event.evidence.camera.nearestFrameOffsetMinutes : null,
+    intervalMinutes: Number.isFinite(event.evidence.camera.intervalMinutes) ? event.evidence.camera.intervalMinutes : null,
+    visibleBowFraction: Number.isFinite(event.evidence.camera.visibleBowFraction) ? event.evidence.camera.visibleBowFraction : null,
+    bowArcOverlapDeg: Number.isFinite(event.evidence.camera.bowArcOverlapDeg) ? event.evidence.camera.bowArcOverlapDeg : null,
+  } : null;
+  const latestAssessment = (event.researchAssessments || []).at(-1) || null;
+  return {
+    id: group ? `${event.id}::${group.key}` : event.id,
+    eventId: event.id,
+    cameraKey: group?.key || null,
+    candidateType: event.candidateType || "live_go",
+    researchSource: event.researchSource || null,
+    scanCount: Number.isFinite(event.scanCount) ? event.scanCount : null,
+    researchContext: event.candidateType === "research_possible" ? {
+      selectionReason: latestAssessment?.researchReview?.selectionReason || event.representative?.evidence?.selectionReason || null,
+      currentDetectorDisposition: latestAssessment?.researchReview?.currentDetectorDisposition
+        || event.representative?.evidence?.currentDetectorDisposition || null,
+      persistenceScans: latestAssessment?.researchReview?.persistenceScans || event.scanCount || null,
+      rainArcSpanDeg: latestAssessment?.rain?.antiSolarRainArcSpanDeg
+        ?? event.representative?.evidence?.antiSolarRainArcSpanDeg ?? null,
+      ruleVersion: latestAssessment?.researchReview?.ruleVersion || event.researchRuleVersion || null,
+    } : null,
+    candidateClass: eventClass(event),
+    detectedAt: event.representative?.detectedAt || event.firstSeenAt || null,
+    sunElevationDeg: Number.isFinite(geometricSunElevationDeg) ? geometricSunElevationDeg : null,
+    apparentSunElevationDeg,
+    expectedBowTopDeg: Number.isFinite(apparentSunElevationDeg) ? Math.max(0, 42 - apparentSunElevationDeg) : null,
+    frames: frames.map(frame => ({
+      url: frame.url, observedAt: frame.observedAt || null, source: frame.source || event.evidence?.source || null,
+      cameraName: frame.cameraName || null, siteId: frame.siteId ?? null, cameraId: frame.cameraId ?? null,
+      distanceKm: Number.isFinite(frame.distanceKm) ? frame.distanceKm : null,
+      viewQuality: frame.viewQuality || null,
+      timeOffsetMinutes: Number.isFinite(frame.timeOffsetMinutes) ? frame.timeOffsetMinutes : null,
+      visibleBowFraction: Number.isFinite(frame.visibleBowFraction) ? frame.visibleBowFraction : null,
+      bowArcOverlapDeg: Number.isFinite(frame.bowArcOverlapDeg) ? frame.bowArcOverlapDeg : null,
+      negativeEvidenceEligible: frame.negativeEvidenceEligible === true,
+    })),
+    camera,
+    sunlightAssessmentAvailable: (event.researchAssessments || []).length > 0,
+  };
+}
+
+export function reviewQueueItems(events) {
+  const items = reviewQueue(events).flatMap(event => {
+    const possible = eventClass(event) === "POSSIBLE";
+    const allGroups = evidenceFrameReviewGroups(event);
+    if (!allGroups.length) return [queueItem(event)];
+    const groups = allGroups.filter(group => {
+      const distance = Number(group.frames?.[0]?.distanceKm);
+      return !possible || !Number.isFinite(distance) || distance <= 40;
+    });
+    return groups
+      .filter(group => (event.viewReviews?.[group.key]?.label || "pending") === "pending")
+      .map(group => queueItem(event, group));
+  });
+  let researchSlots = 0;
+  return items.filter(item => item.candidateType !== "research_possible" || researchSlots++ < 2);
 }
 
 function eventClass(event) {
@@ -32,9 +152,10 @@ function eventClass(event) {
   return "GO";
 }
 
-export function reviewEvidenceStrength(distanceKm, bearingDifference, viewQuality = "usable", frameTimeErrorMinutes = null) {
+export function reviewEvidenceStrength(distanceKm, bearingDifference, viewQuality = "usable", frameTimeErrorMinutes = null, visibleBowFraction = null) {
   if (!Number.isFinite(distanceKm) || !Number.isFinite(bearingDifference)) return "unknown";
   if (["limited", "unreviewed"].includes(viewQuality)
+    || (Number.isFinite(visibleBowFraction) && visibleBowFraction < 0.5)
     || (Number.isFinite(frameTimeErrorMinutes) && frameTimeErrorMinutes > 8)) return "limited";
   if (distanceKm <= 25 && bearingDifference <= 15) return "strong";
   if (distanceKm <= 35 && bearingDifference <= 30) return "usable";
@@ -42,23 +163,31 @@ export function reviewEvidenceStrength(distanceKm, bearingDifference, viewQualit
 }
 
 export function reviewResults(events) {
-  return [...(events || [])]
-    .filter(event => event.review?.label && event.review.label !== "pending")
+  const rows = [...(events || [])].flatMap(event => {
+    const groups = evidenceFrameReviewGroups(event);
+    const viewRows = groups.flatMap(group => {
+      const review = event.viewReviews?.[group.key];
+      return review?.label && review.label !== "pending" ? [{ event, review, group }] : [];
+    });
+    if (viewRows.length) return viewRows;
+    return event.review?.label && event.review.label !== "pending" ? [{ event, review: event.review, group: null }] : [];
+  });
+  return rows
     .sort((a, b) => new Date(b.review?.reviewedAt || 0) - new Date(a.review?.reviewedAt || 0))
-    .map(event => {
+    .map(({ event, review, group }) => {
       const rep = event.representative || {};
       const evidence = rep.evidence || {};
-      const camera = event.evidence?.camera || {};
+      const camera = group ? cameraForGroup(event, group) : event.evidence?.camera || {};
       return {
-        id: event.id,
+        id: group ? `${event.id}::${group.key}` : event.id,
         candidateType: event.candidateType || "live_go",
+        researchSource: event.researchSource || null,
         candidateClass: eventClass(event),
         archiveMethod: evidence.archiveMethod || null,
-        grade: event.review.label,
-        reviewedAt: event.review.reviewedAt || null,
-        notes: event.review.notes || null,
-        sceneSunlight: event.review.sceneSunlight || null,
-        sceneSunlight: event.review.sceneSunlight || null,
+        grade: review.label,
+        reviewedAt: review.reviewedAt || null,
+        notes: review.notes || null,
+        sceneSunlight: review.sceneSunlight || null,
         detectedAt: rep.detectedAt || event.firstSeenAt || null,
         score: Number.isFinite(event.peakScore) ? event.peakScore : null,
         scanCount: Number.isFinite(rep.persistence?.scanCount)
@@ -75,14 +204,16 @@ export function reviewResults(events) {
         observerRainIntensity: Number.isFinite(evidence.observerRainIntensity) ? evidence.observerRainIntensity : null,
         camera: {
           name: camera.name || null,
-          source: event.evidence?.source || null,
+          source: camera.source || event.evidence?.source || null,
           distanceKm: Number.isFinite(camera.distanceKm) ? camera.distanceKm : null,
           bearingDifference: Number.isFinite(camera.bearingDifference) ? camera.bearingDifference : null,
           viewQuality: camera.viewQuality || null,
           horizonSkyPct: Number.isFinite(camera.horizonSkyPct) ? camera.horizonSkyPct : null,
           nearestFrameOffsetMinutes: Number.isFinite(camera.nearestFrameOffsetMinutes) ? camera.nearestFrameOffsetMinutes : null,
+          visibleBowFraction: Number.isFinite(camera.visibleBowFraction) ? camera.visibleBowFraction : null,
+          bowArcOverlapDeg: Number.isFinite(camera.bowArcOverlapDeg) ? camera.bowArcOverlapDeg : null,
         },
-        reviewStrength: reviewEvidenceStrength(camera.distanceKm, camera.bearingDifference, camera.viewQuality, camera.nearestFrameOffsetMinutes),
+        reviewStrength: reviewEvidenceStrength(camera.distanceKm, camera.bearingDifference, camera.viewQuality, camera.nearestFrameOffsetMinutes, camera.visibleBowFraction),
         sunlightAssessment: (event.researchAssessments || []).at(-1) || null,
       };
     });
@@ -98,37 +229,13 @@ export default async function handler(req, res) {
     const loaded = await loadGoEvents(limit);
     const events = queue
       ? reviewQueue(loaded)
-      : loaded.filter(event => !label || event.review?.label === label)
-        .filter(event => !results || (event.review?.label && event.review.label !== "pending"));
+      : loaded.filter(event => !label || event.review?.label === label
+        || Object.values(event.viewReviews || {}).some(review => review?.label === label))
+        .filter(event => !results || (event.review?.label && event.review.label !== "pending")
+          || Object.values(event.viewReviews || {}).some(review => review?.label && review.label !== "pending"));
     const counts = {};
     for (const event of events) counts[event.review?.label || "pending"] = (counts[event.review?.label || "pending"] || 0) + 1;
-    const items = queue ? events.map(event => ({
-      id: event.id,
-      candidateType: event.candidateType || "live_go",
-      candidateClass: eventClass(event),
-      detectedAt: event.representative?.detectedAt || event.firstSeenAt || null,
-      frames: (event.evidence?.frames || []).map(frame => ({
-        url: frame.url,
-        observedAt: frame.observedAt || null,
-        source: frame.source || event.evidence?.source || null,
-        cameraName: frame.cameraName || null,
-        distanceKm: Number.isFinite(frame.distanceKm) ? frame.distanceKm : null,
-        viewQuality: frame.viewQuality || null,
-        timeOffsetMinutes: Number.isFinite(frame.timeOffsetMinutes) ? frame.timeOffsetMinutes : null,
-      })),
-      camera: event.evidence?.camera ? {
-        name: event.evidence.camera.name || null,
-        direction: event.evidence.camera.direction || null,
-        source: event.evidence.source || null,
-        distanceKm: Number.isFinite(event.evidence.camera.distanceKm) ? event.evidence.camera.distanceKm : null,
-        bearingDifference: Number.isFinite(event.evidence.camera.bearingDifference) ? event.evidence.camera.bearingDifference : null,
-        viewQuality: event.evidence.camera.viewQuality || null,
-        horizonSkyPct: Number.isFinite(event.evidence.camera.horizonSkyPct) ? event.evidence.camera.horizonSkyPct : null,
-        nearestFrameOffsetMinutes: Number.isFinite(event.evidence.camera.nearestFrameOffsetMinutes) ? event.evidence.camera.nearestFrameOffsetMinutes : null,
-        intervalMinutes: Number.isFinite(event.evidence.camera.intervalMinutes) ? event.evidence.camera.intervalMinutes : null,
-      } : null,
-      sunlightAssessmentAvailable: (event.researchAssessments || []).length > 0,
-    })) : results ? reviewResults(events) : events;
+    const items = queue ? reviewQueueItems(loaded) : results ? reviewResults(events) : events;
     json(res, 200, { ok: true, events: items.length, counts, items });
     return;
   }
@@ -140,7 +247,9 @@ export default async function handler(req, res) {
     }
     let event;
     try {
-      event = await labelGoEvent(body.id, body);
+      event = body.cameraKey
+        ? await labelGoEventView(body.eventId || body.id, body.cameraKey, body)
+        : await labelGoEvent(body.eventId || body.id, body);
     } catch (error) {
       if (error?.statusCode === 400) { json(res, 400, { ok: false, error: error.message }); return; }
       throw error;

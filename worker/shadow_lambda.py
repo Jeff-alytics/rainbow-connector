@@ -8,6 +8,8 @@ import os
 from pathlib import Path
 
 from decision_store import SCHEMA_VERSION, disagreement_metrics, encoded
+from ledger_review import load_faa_catalog
+from research_review import select_research_candidates
 from review_callback import safe_push_review_assessments
 from sunlight_v2 import METHOD_VERSION, enrich_sunlight_v2
 
@@ -57,12 +59,15 @@ def handler(event, context):
         Path(os.environ.get("RAINBOW_CACHE_DIR", "/tmp/rainbow-shadow")),
         assessment_processing_at=assessment_processing_at,
     )
+    camera_catalog = load_faa_catalog()
+    research_review = select_research_candidates(records, camera_catalog=camera_catalog)
     envelope["metrics"]["v1V2DisagreementRateByDisposition"] = disagreement_metrics(records)
     envelope["shadowV2"] = {
         "methodVersion": METHOD_VERSION, "status": "complete" if not result.get("errors") else "complete_with_errors",
         "assessmentProcessingAt": result.get("assessmentProcessingAt"),
         "enrichmentLatencySeconds": result.get("enrichmentLatencySeconds"),
         "enrichedRecords": result.get("enriched", 0), "errorCount": len(result.get("errors") or []),
+        "researchReview": research_review,
     }
     body, content_hash = encoded(envelope)
     s3.put_object(
@@ -73,4 +78,5 @@ def handler(event, context):
         },
     )
     review_callback = safe_push_review_assessments(envelope)
-    return {"ok": True, "bucket": bucket, "key": key, "reviewCallback": review_callback, **result}
+    return {"ok": True, "bucket": bucket, "key": key, "researchReview": research_review,
+            "reviewCallback": review_callback, **result}

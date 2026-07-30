@@ -7,9 +7,15 @@ import {
   reviewTokenFromRequest,
   validReviewToken,
 } from "../api/review-auth-common.mjs";
-import { matchChartCameras, matchFaaCamera } from "../api/go-evidence-common.mjs";
+import { matchChartCameras, matchFaaCamera, matchFaaCameras, selectFaaFrames, selectPendingFaaEvents, visibleBowArc } from "../api/go-evidence-common.mjs";
 import { reviewableCandidates } from "../api/go-event-common.mjs";
-import { reviewEvidenceStrength, reviewQueue, reviewResults } from "../api/go-events.mjs";
+import { apparentSolarElevationDeg, reviewEvidenceStrength, reviewQueue, reviewQueueItems, reviewResults } from "../api/go-events.mjs";
+
+test("near-horizon review geometry uses apparent solar elevation", () => {
+  assert.ok(apparentSolarElevationDeg(0) > 0.45);
+  assert.ok(apparentSolarElevationDeg(3.16) > 3.3);
+  assert.ok(apparentSolarElevationDeg(3.16) < 3.5);
+});
 
 test("review sessions reject tampering and expiration", () => {
   const previous = process.env.GO_REVIEW_SECRET;
@@ -49,6 +55,55 @@ test("FAA matching requires a nearby camera facing the predicted bow", () => {
   assert.ok(match.bearingDifference <= 50);
 });
 
+test("FAA arc matching finds both Utah viewpoints instead of one central bearing", () => {
+  const event = { representative: { lat: 41.193604, lon: -112.00825,
+    direction: { bearing: 112.3 }, evidence: { sunElevationDeg: 3.3 } } };
+  const catalog = [
+    { id: 969, name: "Ogden", lat: 41.193604, lon: -112.00825,
+      cameras: [{ id: 13590, bearing: 90, direction: "East" }, { id: 13592, bearing: 270, direction: "West" }] },
+    { id: 1077, name: "Bear River Valley Hospital", lat: 41.724174, lon: -112.18263,
+      cameras: [{ id: 14000, bearing: 160, direction: "South" }] },
+  ];
+  const arc = visibleBowArc(event);
+  assert.ok(arc.widthDeg > 80 && arc.widthDeg < 85);
+  const matches = matchFaaCameras(event, catalog, { maxDistanceKm: 80, limit: 3 });
+  assert.deepEqual(new Set(matches.map(match => match.camera.id)), new Set([13590, 14000]));
+  assert.ok(matches.every(match => match.bowArcOverlapDeg >= 3));
+});
+
+test("FAA arc matching preserves an opposite bow-leg view when available", () => {
+  const event = { representative: { lat: 41.193604, lon: -112.00825,
+    direction: { bearing: 112.3 }, evidence: { sunElevationDeg: 3.3 } } };
+  const catalog = [{ id: 1, name: "Near east", lat: 41.2, lon: -112,
+    cameras: [{ id: "east", bearing: 95, direction: "East" }] },
+  { id: 2, name: "Far south", lat: 41.7, lon: -112.18,
+    cameras: [{ id: "south", bearing: 160, direction: "South" }] },
+  { id: 3, name: "Another east", lat: 41.25, lon: -112,
+    cameras: [{ id: "east-two", bearing: 100, direction: "East" }] }];
+  const matches = matchFaaCameras(event, catalog, { maxDistanceKm: 80, limit: 3 });
+  assert.ok(matches.some(match => match.camera.id === "south"));
+});
+
+test("FAA capture reserves one of two slots for persistent research evidence", () => {
+  const go = { id: "go", candidateType: "live_go" }, old = { id: "old", candidateType: "live_possible" };
+  const research = { id: "research", candidateType: "research_possible" };
+  assert.deepEqual(selectPendingFaaEvents([go, old, research], 2).map(event => event.id), ["go", "research"]);
+});
+
+test("FAA frame selection requires multiple post-event views and keeps a balanced window", () => {
+  const center = Date.parse("2026-07-30T01:00:00Z");
+  const frame = (minutes, cameraId = 7) => ({
+    cameraId, imageUri: `https://example.test/${minutes}.jpg`,
+    imageDatetime: new Date(center + minutes * 60_000).toISOString(),
+  });
+  assert.deepEqual(selectFaaFrames([frame(-15), frame(-5), frame(5)], 7, center), []);
+  assert.deepEqual(
+    selectFaaFrames([frame(-25), frame(-15), frame(-5), frame(5), frame(15), frame(25), frame(2, 8)], 7, center)
+      .map(item => Math.round((new Date(item.imageDatetime).getTime() - center) / 60_000)),
+    [-15, -5, 5, 15, 25],
+  );
+});
+
 test("Maryland CHART matching returns the nearest reviewable cameras", () => {
   const event = { representative: { lat: 39.20, lon: -76.70 } };
   const catalog = [
@@ -78,6 +133,53 @@ test("review queue contains only ungraded GO evidence, strongest first", () => {
   );
 });
 
+test("FAA reviews stay hidden until at least two post-event frames exist", () => {
+  const event = offsets => ({
+    id: "faa-window", review: { label: "pending" },
+    evidence: { source: "FAA WeatherCam", frames: offsets.map((timeOffsetMinutes, index) => ({
+      url: String(index), cameraName: "Test Airport · West", timeOffsetMinutes,
+    })) },
+  });
+  assert.deepEqual(reviewQueue([event([-15, -6, 4])]), []);
+  assert.equal(reviewQueue([event([-15, -6, 4, 14])]).length, 1);
+});
+
+test("POSSIBLE reviews omit FAA cameras beyond 40 km while retaining nearby views", () => {
+  const frame = (cameraId, distanceKm, timeOffsetMinutes) => ({
+    url: `${cameraId}-${timeOffsetMinutes}`, source: "FAA WeatherCam",
+    siteId: cameraId, cameraId, cameraName: `Airport ${cameraId}`,
+    distanceKm, timeOffsetMinutes,
+  });
+  const event = {
+    id: "possible-distance", candidateClass: "POSSIBLE", review: { label: "pending" },
+    evidence: { source: "FAA WeatherCam", frames: [
+      frame("near", 38, 5), frame("near", 38, 15),
+      frame("far", 62, 5), frame("far", 62, 15),
+    ] },
+  };
+  const items = reviewQueueItems([event]);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].camera.name, "Airport near");
+});
+
+test("review queue provides a refracted bow-top search height", () => {
+  const event = {
+    id: "low-sun-bow", review: { label: "pending" },
+    representative: { evidence: { sunElevationDeg: 3.16 } },
+    evidence: { frames: [{ url: "frame" }] },
+  };
+  const [item] = reviewQueueItems([event]);
+  assert.equal(item.sunElevationDeg, 3.16);
+  assert.ok(item.apparentSunElevationDeg > 3.3 && item.apparentSunElevationDeg < 3.5);
+  assert.ok(item.expectedBowTopDeg > 38.5 && item.expectedBowTopDeg < 38.7);
+});
+
+test("review page explains low-sun red bows and expected bow height", async () => {
+  const page = await readFile(new URL("../review.html", import.meta.url), "utf8");
+  assert.match(page, /Expected bow top:/);
+  assert.match(page, /faint red or orange arc/);
+});
+
 test("review queue prioritizes camera evidence quality before model score", () => {
   const event = (id, peakScore, distanceKm, bearingDifference) => ({
     id, peakScore, review: { label: "pending" },
@@ -99,6 +201,75 @@ test("review queue places GO camera evidence before strong POSSIBLE evidence", (
     event("possible", "POSSIBLE", 99),
     event("go", "GO", 70),
   ]).map(item => item.id), ["go", "possible"]);
+});
+
+test("one-scan research POSSIBLE waits for persistence before review", () => {
+  const research = scanCount => ({ id: `research-${scanCount}`, candidateType: "research_possible",
+    candidateClass: "POSSIBLE", scanCount, peakScore: 80, review: { label: "pending" },
+    evidence: { frames: [{}], camera: { distanceKm: 10, bearingDifference: 5 } } });
+  assert.deepEqual(reviewQueue([research(1)]), []);
+  assert.deepEqual(reviewQueue([research(2)]).map(item => item.id), ["research-2"]);
+});
+
+test("research POSSIBLEs occupy at most two visible review slots", () => {
+  const research = index => ({ id: `research-${index}`, candidateType: "research_possible",
+    candidateClass: "POSSIBLE", scanCount: 2, peakScore: 90-index, review: { label: "pending" },
+    evidence: { frames: [{}], camera: { distanceKm: 10, bearingDifference: 5 } } });
+  assert.equal(reviewQueue([1,2,3,4].map(research)).length, 2);
+});
+
+test("multiple camera views cannot expand research candidates beyond two review items", () => {
+  const research = index => ({ id: `research-multi-${index}`, candidateType: "research_possible",
+    candidateClass: "POSSIBLE", scanCount: 2, peakScore: 90-index, review: { label: "pending" },
+    evidence: { source: "FAA WeatherCam", camera: { distanceKm: 10, bearingDifference: 5 }, frames: [
+      { url: `a-${index}`, siteId: index, cameraId: 1, cameraName: `Airport ${index} A`, distanceKm: 10, timeOffsetMinutes: 5 },
+      { url: `b-${index}`, siteId: index + 10, cameraId: 2, cameraName: `Airport ${index} B`, distanceKm: 12, timeOffsetMinutes: 10 },
+    ] } });
+  assert.equal(reviewQueueItems([research(1), research(2)]).length, 2);
+});
+
+test("review labels ledger candidates without exposing them as public POSSIBLEs", async () => {
+  const html = await readFile(new URL("../review.html", import.meta.url), "utf8");
+  assert.match(html, /Research POSSIBLE — ledger/);
+  assert.match(html, /currentDetectorDisposition/);
+  assert.match(html, /anti-solar rain span/);
+});
+
+test("FAA airports become separate review items with independent pending state", () => {
+  const event = {
+    id: "multi-airport", peakScore: 90, review: { label: "pending" },
+    evidence: { source: "FAA WeatherCam", frames: [
+      { url: "a1", source: "FAA WeatherCam", siteId: 1, cameraId: 10, cameraName: "Airport A · East", timeOffsetMinutes: 4 },
+      { url: "a2", source: "FAA WeatherCam", siteId: 1, cameraId: 10, cameraName: "Airport A · East", timeOffsetMinutes: 14 },
+      { url: "b1", source: "FAA WeatherCam", siteId: 2, cameraId: 20, cameraName: "Airport B · North", timeOffsetMinutes: 5 },
+      { url: "b2", source: "FAA WeatherCam", siteId: 2, cameraId: 20, cameraName: "Airport B · North", timeOffsetMinutes: 15 },
+    ] },
+  };
+  const both = reviewQueueItems([event]);
+  assert.equal(both.length, 2);
+  assert.deepEqual(both.map(item => item.frames.map(frame => frame.url)), [["a1", "a2"], ["b1", "b2"]]);
+  assert.notEqual(both[0].cameraKey, both[1].cameraKey);
+  event.viewReviews = { [both[0].cameraKey]: { label: "no_rainbow" } };
+  const remaining = reviewQueueItems([event]);
+  assert.equal(remaining.length, 1);
+  assert.equal(remaining[0].camera.name, "Airport B · North");
+});
+
+test("legacy camera frames split by camera name without reopening graded events", () => {
+  const event = {
+    id: "legacy-multi-airport", review: { label: "pending" },
+    evidence: { source: "FAA WeatherCam", frames: [
+      { url: "a1", source: "FAA WeatherCam", cameraName: "Airport A · East", timeOffsetMinutes: 4 },
+      { url: "a2", source: "FAA WeatherCam", cameraName: "Airport A · East", timeOffsetMinutes: 14 },
+      { url: "b1", source: "FAA WeatherCam", cameraName: "Airport B · West", timeOffsetMinutes: 5 },
+      { url: "b2", source: "FAA WeatherCam", cameraName: "Airport B · West", timeOffsetMinutes: 15 },
+    ] },
+  };
+  const items = reviewQueueItems([event]);
+  assert.equal(items.length, 2);
+  assert.deepEqual(items.map(item => item.camera.name), ["Airport A · East", "Airport B · West"]);
+  event.review = { label: "no_rainbow", reviewedAt: "2026-07-30T01:00:00Z" };
+  assert.deepEqual(reviewQueueItems([event]), []);
 });
 
 test("review candidates include GO plus only the strongest POSSIBLEs", () => {
@@ -123,7 +294,9 @@ test("review page quietly refreshes without replacing the active candidate", asy
   const page = await readFile(new URL("../review.html", import.meta.url), "utf8");
   assert.match(page, /REVIEW_REFRESH_MS = 2 \* 60 \* 1000/);
   assert.match(page, /loadQueue\(\{ preserveCurrent: true \}\)/);
+  assert.match(page, /incoming\.some\(item => item\.id === current\.id\)/);
   assert.match(page, /queue = \[current, \.\.\.incoming\.filter/);
+  assert.match(page, /That review expired or was completed elsewhere/);
   assert.match(page, /id="refresh"/);
   assert.match(page, /refreshReviewPage/);
   assert.match(page, /Updated \$\{refreshedAt\}/);
@@ -167,6 +340,28 @@ test("review results derive bow-top height when older records omit it", () => {
   assert.equal(item.rainbowArcDeg, 23.5);
 });
 
+test("review results keep sunlight and rainbow grades separate by airport", () => {
+  const event = {
+    id: "split-result", review: { label: "pending" }, representative: { evidence: {} },
+    evidence: { source: "FAA WeatherCam", frames: [
+      { url: "a1", source: "FAA WeatherCam", siteId: 1, cameraId: 10, cameraName: "Sunny Airport", timeOffsetMinutes: 4 },
+      { url: "a2", source: "FAA WeatherCam", siteId: 1, cameraId: 10, cameraName: "Sunny Airport", timeOffsetMinutes: 14 },
+      { url: "b1", source: "FAA WeatherCam", siteId: 2, cameraId: 20, cameraName: "Cloudy Airport", timeOffsetMinutes: 5 },
+      { url: "b2", source: "FAA WeatherCam", siteId: 2, cameraId: 20, cameraName: "Cloudy Airport", timeOffsetMinutes: 15 },
+    ] },
+  };
+  const units = reviewQueueItems([event]);
+  event.viewReviews = {
+    [units[0].cameraKey]: { label: "rainbow", sceneSunlight: "sunlit", reviewedAt: "2026-07-30T01:00:00Z" },
+    [units[1].cameraKey]: { label: "no_rainbow", sceneSunlight: "not_sunlit", reviewedAt: "2026-07-30T01:01:00Z" },
+  };
+  const results = reviewResults([event]);
+  assert.deepEqual(results.map(item => [item.camera.name, item.grade, item.sceneSunlight]), [
+    ["Cloudy Airport", "no_rainbow", "not_sunlit"],
+    ["Sunny Airport", "rainbow", "sunlit"],
+  ]);
+});
+
 test("review strength incorporates both distance and direction error", () => {
   assert.equal(reviewEvidenceStrength(23.3, 1), "strong");
   assert.equal(reviewEvidenceStrength(34.3, 25), "usable");
@@ -184,6 +379,7 @@ test("review page includes the model-versus-human results table", async () => {
   assert.match(page, /Keep this image if it shows a rainbow/);
   assert.match(page, /type="checkbox"/);
   assert.match(page, /confirmedFrameUrls/);
+  assert.match(page, /cameraKey:current\.cameraKey/);
   assert.match(page, /frame\.viewQuality/);
   assert.match(page, /frame\.timeOffsetMinutes/);
   assert.match(page, /Frame timing/);

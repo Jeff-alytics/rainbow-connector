@@ -177,19 +177,6 @@ export default async function handler(req, res) {
   }
 
   const candidates = alertableGoCandidates(artifact);
-  const faaEvidence = await capturePendingFaaEvidence(2).catch(error => [
-    { stored: false, reason: error?.message || "capture_failed" },
-  ]);
-  const nimsEvidence = await capturePendingNimsEvidence(2).catch(error => [
-    { stored: false, reason: error?.message || "nims_capture_failed" },
-  ]);
-  const webcoosEvidence = await capturePendingWebcoosEvidence(2).catch(error => [
-    { stored: false, reason: error?.message || "webcoos_capture_failed" },
-  ]);
-  const alertCaEvidence = await capturePendingAlertCaEvidence(2).catch(error => [
-    { stored: false, reason: error?.message || "alertca_capture_failed" },
-  ]);
-  const evidenceCapture = [...faaEvidence, ...nimsEvidence, ...webcoosEvidence, ...alertCaEvidence];
   const nowMs = Date.now();
   const matches = [];
   let skippedCooldown = 0;
@@ -222,6 +209,22 @@ export default async function handler(req, res) {
       errors.push({ email: match.sub.email, error: err.message || "send failed" });
     }
   }
+
+  // Review imagery is supporting research work. Capture it only after every
+  // user-facing alert has been sent so multi-camera collection cannot delay email.
+  const faaEvidence = await capturePendingFaaEvidence(2).catch(error => [
+    { stored: false, reason: error?.message || "capture_failed" },
+  ]);
+  const nimsEvidence = await capturePendingNimsEvidence(2).catch(error => [
+    { stored: false, reason: error?.message || "nims_capture_failed" },
+  ]);
+  const webcoosEvidence = await capturePendingWebcoosEvidence(2).catch(error => [
+    { stored: false, reason: error?.message || "webcoos_capture_failed" },
+  ]);
+  const alertCaEvidence = await capturePendingAlertCaEvidence(2).catch(error => [
+    { stored: false, reason: error?.message || "alertca_capture_failed" },
+  ]);
+  const evidenceCapture = [...faaEvidence, ...nimsEvidence, ...webcoosEvidence, ...alertCaEvidence];
 
   json(res, 200, {
     ok: true,

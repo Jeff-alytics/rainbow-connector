@@ -44,11 +44,14 @@ async function storeFrames(body) {
       url: stored.url,
       observedAt,
       source: frame.source,
+      cameraId: String(frame.cameraId),
+      siteId: `${String(frame.source).toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${frame.cameraId}`,
       cameraName: String(frame.cameraName || frame.cameraId).slice(0, 160),
       cameraPageUrl: frame.cameraPageUrl || null,
       distanceKm: Number.isFinite(Number(frame.distanceKm)) ? Number(Number(frame.distanceKm).toFixed(1)) : null,
       bearingDifference: Number.isFinite(Number(frame.bearingDifference)) ? Number(frame.bearingDifference) : null,
       direction: frame.direction || null,
+      publishedDirection: frame.publishedDirection || null,
       state: frame.state || null,
     };
     if (!byEvent.has(frame.eventId)) byEvent.set(frame.eventId, []);

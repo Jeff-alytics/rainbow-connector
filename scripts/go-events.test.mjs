@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { confirmedGalleryRecord, compactGoDetection, matchingAssessmentEvent, matchingEvent, mergeDetection, newGoEvent } from "../api/go-event-common.mjs";
+import { confirmedGalleryRecord, compactGoDetection, matchingAssessmentEvent, matchingEvent, mergeDetection, newGoEvent, newResearchReviewEvent, researchDetectionFromAssessment } from "../api/go-event-common.mjs";
 
 function detection(at, lat = 43, lon = -80, score = 80) {
   return compactGoDetection({ id: `candidate-${at}`, rank: 1, lat, lon,
@@ -46,6 +46,51 @@ test("private sunlight assessments match public review events by scan and locati
   assert.equal(matchingAssessmentEvent([event], { ...assessment, observer: { lat: 42.5, lon: -72.65 } }), null);
 });
 
+test("geometry-first assessments create private POSSIBLE review events", () => {
+  const assessment = {
+    candidateId: "utah-live", disposition: "selected_research_possible",
+    radarObservedAt: "2026-07-30T02:22:00Z", observer: { lat: 41.1218, lon: -112.0838 },
+    rain: { lat: 41.095, lon: -111.995, distanceKm: 8, rateMmHr: 1.2,
+      observerRateMmHr: 0, antiSolarRainArcSpanDeg: 100 },
+    geometry: { sunElevationDeg: 3.3, antiSolarBearingDeg: 112.3, radarScore: 66.8 },
+    researchReview: { ruleVersion: "geometry-first-review-2026-07-v1", rankWithinScan: 1 },
+  };
+  const detection = researchDetectionFromAssessment(assessment);
+  assert.equal(detection.candidateClass, "POSSIBLE");
+  assert.equal(detection.evidence.rainbowArcDeg, 38.7);
+  const event = newResearchReviewEvent(assessment);
+  assert.equal(event.candidateType, "research_possible");
+  assert.equal(event.candidateClass, "POSSIBLE");
+  assert.equal(event.scanCount, 1);
+});
+
+test("opportunity-ledger assessments stay private and retain their distinct source", () => {
+  const assessment = {
+    candidateId: "ledger-example", disposition: "selected_research_possible",
+    radarObservedAt: "2026-07-30T02:27:00Z", observer: { lat: 41.12, lon: -112.08 },
+    rain: { lat: 41.10, lon: -112.00, distanceKm: 8, rateMmHr: 1,
+      antiSolarRainArcSpanDeg: 42 },
+    geometry: { sunElevationDeg: 3.1, antiSolarBearingDeg: 112.3, radarScore: null },
+    researchReview: { source: "opportunity_ledger", ruleVersion: "opportunity-ledger-review-2026-07-v1",
+      currentDetectorDisposition: "not_generated_as_detector_candidate", rankWithinScan: 1 },
+  };
+  const detection = researchDetectionFromAssessment(assessment);
+  assert.equal(detection.evidence.selectionReason, "opportunity-ledger-camera-gated-review-only");
+  assert.equal(detection.evidence.currentDetectorDisposition, "not_generated_as_detector_candidate");
+  const event = newResearchReviewEvent(assessment);
+  assert.equal(event.candidateType, "research_possible");
+  assert.equal(event.researchSource, "opportunity_ledger");
+  assert.equal(event.candidateClass, "POSSIBLE");
+});
+
+test("geometry-first persistence tolerates moving observer seeds within a storm corridor", () => {
+  const first = newResearchReviewEvent({ candidateId: "one", disposition: "selected_research_possible",
+    radarObservedAt: "2026-07-30T02:22:00Z", observer: { lat: 41.1218, lon: -112.0838 },
+    rain: {}, geometry: { sunElevationDeg: 3.3, antiSolarBearingDeg: 112, radarScore: 67 }, researchReview: {} });
+  const next = { radarObservedAt: "2026-07-30T02:26:00Z", observer: { lat: 41.2467, lon: -112.0609 } };
+  assert.equal(matchingAssessmentEvent([first], next, { radiusKm: 35, gapMinutes: 12 }), first);
+});
+
 test("confirmed rainbow gallery records permanently retain frame links and evidence", () => {
   const event = {
     id: "go-example", firstSeenAt: "2026-07-26T23:00:00Z", peakScore: 91, scanCount: 1,
@@ -81,4 +126,20 @@ test("confirmed rainbow gallery records permanently retain frame links and evide
   assert.equal(record.evidence.directNormalIrradianceWm2, 420);
   assert.equal(confirmedGalleryRecord({ ...event, review: { label: "rainbow" } }), null);
   assert.equal(confirmedGalleryRecord({ ...event, review: { label: "possible" } }), null);
+});
+
+test("confirmed gallery accepts rainbow frames graded on one camera view", () => {
+  const event = {
+    id: "split-gallery", review: { label: "pending" }, representative: { evidence: {} },
+    viewReviews: {
+      "FAA:1:10": {
+        label: "rainbow", reviewedAt: "2026-07-30T01:00:00Z",
+        confirmedFrames: [{ url: "https://blob.example/airport.jpg", cameraName: "Airport East" }],
+      },
+      "FAA:2:20": { label: "no_rainbow", reviewedAt: "2026-07-30T01:01:00Z", confirmedFrames: [] },
+    },
+  };
+  const record = confirmedGalleryRecord(event);
+  assert.equal(record.frames.length, 1);
+  assert.equal(record.frames[0].cameraName, "Airport East");
 });

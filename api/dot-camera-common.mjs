@@ -5,6 +5,7 @@ const CALTRANS_DISTRICT_URL = district => `https://cwwp2.dot.ca.gov/data/d${dist
 const IOWA_QUERY = "https://services.arcgis.com/8lRhdTsQyJpO52F1/arcgis/rest/services/Traffic_Cameras_View/FeatureServer/0/query";
 const OHGO_CAMERAS = "https://publicapi.ohgo.com/api/v1/cameras?page-all=true";
 const WSDOT_CAMERAS = "https://www.wsdot.wa.gov/Traffic/api/HighwayCameras/HighwayCamerasREST.svc/GetCamerasAsJson";
+const GA511_CAMERAS = "https://511ga.org/api/v2/get/cameras";
 const CATALOG_TTL_MS = 30 * 60 * 1000;
 let deldotCache = null;
 let deldotCacheAt = 0;
@@ -16,6 +17,8 @@ let ohioCache = null;
 let ohioCacheAt = 0;
 let wsdotCache = null;
 let wsdotCacheAt = 0;
+let georgiaCache = null;
+let georgiaCacheAt = 0;
 
 const FETCH_HEADERS = { "User-Agent": "Mozilla/5.0 rainbow-connector-review" };
 
@@ -175,6 +178,38 @@ export async function loadWsdotCameras() {
   return wsdotCache;
 }
 
+export function parseGa511Cameras(payload) {
+  return (Array.isArray(payload) ? payload : []).flatMap(camera =>
+    (camera.Views || [])
+      .filter(view => String(view?.Status || "").toLowerCase() === "enabled")
+      .map(view => ({
+        id: `ga-${camera.Id}-${view.Id}`,
+        name: view.Description || camera.Location || camera.Name || `511GA camera ${camera.Id}`,
+        imageUrl: usableUrl(view.Url),
+        streamUrl: null,
+        pageUrl: "https://511ga.org/",
+        updatedAt: null,
+        lat: Number(camera.Latitude),
+        lon: Number(camera.Longitude),
+        routeDirection: camera.Direction || null,
+      }))
+  ).filter(camera => camera.id !== "ga-undefined-undefined" && camera.imageUrl
+    && camera.lat !== 0 && camera.lon !== 0
+    && Number.isFinite(camera.lat) && Number.isFinite(camera.lon));
+}
+
+export async function loadGa511Cameras() {
+  if (georgiaCache && Date.now() - georgiaCacheAt < CATALOG_TTL_MS) return georgiaCache;
+  const key = String(process.env.GA511_API_KEY || "").trim();
+  if (!key) throw new Error("GA511_API_KEY is not configured");
+  const query = new URLSearchParams({ key, format: "json" });
+  const response = await fetch(`${GA511_CAMERAS}?${query}`, { headers: FETCH_HEADERS });
+  if (!response.ok) throw new Error(`511GA camera list failed (${response.status})`);
+  georgiaCache = parseGa511Cameras(await response.json());
+  georgiaCacheAt = Date.now();
+  return georgiaCache;
+}
+
 export function matchNearbyDotCameras(event, catalog, maxDistanceKm = 35, limit = 3) {
   const rep = event?.representative || {};
   if (!Number.isFinite(rep.lat) || !Number.isFinite(rep.lon)) return [];
@@ -232,6 +267,7 @@ function catalogJobs(event, catalog, metadata, options = {}) {
     distanceKm: Number(match.distanceKm.toFixed(1)),
     bearingDifference: null,
     direction: metadata.direction,
+    publishedDirection: match.camera.routeDirection || null,
   }));
 }
 
@@ -244,6 +280,7 @@ export async function dotCameraJobs(events, options = {}) {
     requestedStates.has("IA") && loadIowaCameras().then(value => catalogs.set("IA", value)).catch(() => null),
     requestedStates.has("OH") && loadOhioCameras().then(value => catalogs.set("OH", value)).catch(() => null),
     requestedStates.has("WA") && loadWsdotCameras().then(value => catalogs.set("WA", value)).catch(() => null),
+    requestedStates.has("GA") && loadGa511Cameras().then(value => catalogs.set("GA", value)).catch(() => null),
   ].filter(Boolean));
   const metadata = {
     DE: { source: "DelDOT", state: "DE", pageUrl: "https://deldot.gov/map/index.shtml?tab=Cameras", direction: "Current view may change; bearing not published" },
@@ -251,6 +288,7 @@ export async function dotCameraJobs(events, options = {}) {
     IA: { source: "Iowa DOT", state: "IA", pageUrl: "https://data.iowadot.gov/datasets/IowaDOT::traffic-cameras-3/about", direction: "Current view may change; bearing not published" },
     OH: { source: "Ohio DOT", state: "OH", pageUrl: "https://ohgo.com/", direction: "Current view may be PTZ; usable bearing not published" },
     WA: { source: "WSDOT", state: "WA", pageUrl: "https://wsdot.com/Travel/Real-time/Map/", direction: "Published roadway direction is not treated as camera bearing" },
+    GA: { source: "511GA", state: "GA", pageUrl: "https://511ga.org/", direction: "Published direction is shown for context; PTZ or roadway alignment may differ from the current view" },
   };
   return (events || []).flatMap(event => {
     const state = stateCode(event);

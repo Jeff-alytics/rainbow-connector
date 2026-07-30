@@ -24,7 +24,7 @@ PTZ camera bearing, so it must not be treated as strong directional evidence.
 | --- | --- | --- | --- | --- | --- |
 | 1 | VDOT 511 | 1,679 active cameras verified July 28 | Free third-party user agreement requested by email | Current JPEG snapshot and HLS | Strongest immediate expansion. Public catalog is technically excellent, but VDOT requires an agreement before third-party use. |
 | 2 | FL511 | Florida statewide | Developer access currently broken; support request required | Camera API remains online but rejects requests without a key | Best expected rainbow yield because of frequent convective sun showers. |
-| 3 | 511GA | Georgia statewide | Free account and developer key; approval pending | Camera view URL and HLS `VideoUrl` returned by API | API returns latitude, longitude, direction, status, views, and video URL. |
+| 3 | 511GA | Georgia statewide; 4,043 active geolocated cameras at integration | Approved developer key; integrated | Direct PNG snapshot returned by each enabled camera-view URL | Catalog is cached for 30 minutes; published direction is context only and does not make a negative grade conclusive. |
 | 4 | DriveNC | Statewide | Free developer key; 10 calls per 60 seconds | Camera view URL; video availability varies | Clean official API and the same adapter family as Georgia. |
 | 5 | 511NY | New York statewide | Free developer-access application and key | Current image URL and live `VideoUrl` | Explicitly supports camera images/video; public attribution and access agreement apply. |
 | 6 | New England 511 | Maine, New Hampshire, Vermont | Camera API exists but developer documentation currently returns 404; support contact needed | Camera views | One approval could cover three states, but access terms need confirmation. |

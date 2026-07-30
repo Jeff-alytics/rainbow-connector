@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "opportunity-ledger-cases.v1",
+  "contentSha256": "5aba73b6a41de6eb8073c47ffc620398bdeeda0999a221672454ca2e838a6935",
+  "cases": [
+    {
+      "id": "baltimore-dundalk-20260728",
+      "status": "replay_ready",
+      "window": ["2026-07-28T23:25:00Z", "2026-07-28T23:45:00Z"],
+      "precision": "observer_reported_time",
+      "observations": [
+        {"id": "baltimore", "lat": 39.2904, "lon": -76.6122, "uncertaintyKm": 12, "label": "rainbow"},
+        {"id": "dundalk", "lat": 39.2507, "lon": -76.5205, "uncertaintyKm": 8, "label": "rainbow"}
+      ],
+      "expectedFailureClass": ["SUNLIGHT_FALSE_NEGATIVE"]
+    },
+    {
+      "id": "colorado-multicamera-20260730",
+      "status": "replay_ready",
+      "window": ["2026-07-30T01:20:00Z", "2026-07-30T01:40:00Z"],
+      "precision": "human_approximate_time",
+      "observations": [
+        {"id": "silver-west", "lat": 38.02381, "lon": -105.37973, "uncertaintyKm": 0.2, "label": "rainbow"},
+        {"id": "saguache-ne", "lat": 38.09902, "lon": -106.17035, "uncertaintyKm": 0.2, "label": "rainbow"},
+        {"id": "fremont-county", "lat": 38.4323, "lon": -105.1031, "uncertaintyKm": 0.2, "label": "rainbow"}
+      ],
+      "notes": "Same regional episode; do not assume each camera saw the same physical bow arc."
+    },
+    {
+      "id": "utah-ogden-bear-river-20260730",
+      "status": "replay_ready",
+      "window": ["2026-07-30T02:20:00Z", "2026-07-30T02:32:00Z"],
+      "precision": "faa_image_timestamp",
+      "observations": [
+        {"id": "ogden", "lat": 41.193604, "lon": -112.00825, "observedAt": "2026-07-30T02:27:50.605Z", "uncertaintyKm": 0.2, "label": "rainbow"},
+        {"id": "bear-river", "lat": 41.724174, "lon": -112.18263, "observedAt": "2026-07-30T02:23:08.238Z", "uncertaintyKm": 0.2, "label": "rainbow"}
+      ],
+      "expectedFailureClass": ["OBSERVER_SWATH_MISS", "REPRESENTATIVE_SEED_MISS"],
+      "expectedFailureClassIsHypothesis": true
+    },
+    {
+      "id": "middletown-connecticut-20260729",
+      "status": "replay_ready",
+      "window": ["2026-07-29T21:55:00Z", "2026-07-29T22:25:00Z"],
+      "precision": "bounded_before_tweet_post",
+      "observations": [
+        {"id": "middletown", "lat": 41.5623, "lon": -72.6506, "uncertaintyKm": 10, "label": "rainbow"}
+      ],
+      "expectedFailureClass": [],
+      "notes": "Tweet posted at 2026-07-29T22:24:49.445Z and was reported contemporaneously as just now. The 30-minute pre-post window is a recall probe, not an asserted capture time."
+    },
+    {
+      "id": "meeker-camera-20260709",
+      "status": "replay_ready",
+      "window": ["2026-07-09T01:34:25.024Z", "2026-07-09T02:08:18.413Z"],
+      "precision": "confirmed_camera_window",
+      "observations": [
+        {"id": "meeker", "lat": 40.044106, "lon": -107.88861, "uncertaintyKm": 0.2, "label": "rainbow", "cameraBearingDifferenceDeg": 42.87}
+      ],
+      "expectedFailureClass": []
+    },
+    {
+      "id": "delano-low-sun-20260729",
+      "status": "replay_ready",
+      "window": ["2026-07-29T02:20:24.778Z", "2026-07-29T03:01:27.311Z"],
+      "precision": "confirmed_camera_frame",
+      "observations": [
+        {"id": "delano", "lat": 41.723, "lon": -114.1839, "observedAt": "2026-07-29T02:20:24.778Z", "uncertaintyKm": 0.2, "label": "rainbow", "sunElevationDeg": 3.16}
+      ],
+      "expectedFailureClass": []
+    }
+  ]
+}

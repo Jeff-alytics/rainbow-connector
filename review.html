@@ -15,6 +15,7 @@
     button{background:#263249;color:var(--text);padding:11px 16px;cursor:pointer;font-weight:650}button:hover{filter:brightness(1.13)}button:disabled{opacity:.5;cursor:wait}
     .top{display:flex;align-items:center;justify-content:space-between;gap:16px}.review-refresh{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:10px}.small{font-size:13px;color:var(--muted)}
     .strip{display:flex;gap:12px;overflow-x:auto;padding:4px 0 14px}.frame{flex:0 0 min(720px,86vw);margin:0}.frame img{display:block;width:100%;height:min(470px,56vw);object-fit:contain;background:#05070b;border-radius:12px}.frame figcaption{color:var(--muted);font-size:12px;margin-top:6px}.frame-picker{display:flex;align-items:center;gap:8px;margin-top:8px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;color:var(--text);cursor:pointer}.frame-picker:has(input:checked){border-color:var(--green);background:#173625}.frame-picker input{min-width:0;margin:0;accent-color:var(--green)}
+    .bow-guidance{margin:12px 0;padding:10px 12px;border:1px solid #66542d;border-radius:10px;background:#2a2418;color:#f7d98c;line-height:1.45}.bow-guidance strong{color:#fff1c5}
     .grades{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:10px;margin-top:15px}.sunlight-grade{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}.sunlight-grade button{padding:8px 11px;font-size:13px}.sunlight-grade button.selected{outline:2px solid var(--blue);background:#344d7a}.yes{background:#17683d}.no{background:#7f2635}.possible{background:#765415}.secondary{background:#374055}
     .reveal{border-left:4px solid var(--green);padding:12px 15px;background:#131a25;margin-top:16px;color:var(--muted);line-height:1.55}.status{min-height:24px;color:var(--amber)}
     .results-copy{margin:4px 0 16px}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
@@ -29,7 +30,7 @@
 </head>
 <body><main>
   <h1>Rainbow candidate review</h1>
-  <p>Live Connector GO events, the strongest POSSIBLE events, and explicitly labeled historical archive candidates with usable camera evidence appear here. Grade what the imagery shows; model details are revealed after grading.</p>
+  <p>Live Connector GO events, the strongest POSSIBLE events, review-only geometry candidates, and explicitly labeled historical archive candidates with usable camera evidence appear here. Grade only what each camera view shows; a missing bow in a partial view is not evidence that no bow existed elsewhere.</p>
 
   <section id="login" class="card hidden">
     <h2>Private access</h2>
@@ -42,12 +43,14 @@
     <div class="review-refresh"><span id="refresh-status" class="small" role="status" aria-live="polite"></span><button id="refresh" class="secondary" type="button">Refresh</button></div>
     <article id="review-card" class="card hidden">
       <div class="top"><h2 id="event-id">Candidate</h2><span id="progress" class="small"></span></div>
+      <div id="bow-guidance" class="bow-guidance hidden"></div>
+      <div id="research-context" class="bow-guidance hidden"></div>
       <div id="frames" class="strip"></div>
       <textarea id="notes" placeholder="Optional note"></textarea>
       <div class="sunlight-grade"><strong>Does the camera scene show direct sunlight?</strong><button type="button" data-sunlight="sunlit">Yes</button><button type="button" data-sunlight="not_sunlit">No</button><button type="button" data-sunlight="uncertain">Can't tell</button></div>
       <div class="grades">
         <button data-label="rainbow" class="yes">Rainbow</button>
-        <button data-label="no_rainbow" class="no">No rainbow</button>
+        <button data-label="no_rainbow" class="no">No rainbow in this view</button>
         <button data-label="possible" class="possible">Possible</button>
         <button data-label="obscured" class="secondary">Obscured</button>
         <button data-label="no_camera" class="secondary">Bad view</button>
@@ -55,7 +58,7 @@
       <div id="grade-status" class="status"></div>
       <div id="reveal" class="reveal hidden"></div>
     </article>
-    <section id="empty" class="card hidden"><h2>Nothing awaiting review</h2><p>New events will appear after the Connector records a GO or strong POSSIBLE and finds usable camera imagery.</p></section>
+    <section id="empty" class="card hidden"><h2>Nothing awaiting review</h2><p>New events will appear after the Connector records a GO, strong POSSIBLE, or persistent research candidate and finds usable camera imagery.</p></section>
     <section class="card">
       <div class="top"><div><h2>Review results</h2><p class="results-copy">Human grades compared with the evidence that produced each candidate.</p></div><span id="results-count" class="small"></span></div>
       <p class="small">Model score is a 0–100 ranking score, not a percent probability. Review strength accounts for camera distance, direction error, view quality, and frame timing; negative grades are conclusive only with strong evidence.</p>
@@ -107,24 +110,55 @@ function render(){
   if (!current) return;
   const candidateLabel = current.candidateType === "historical_webcoos"
     ? "WebCOOS archive"
+    : current.candidateType === "research_possible" && current.researchSource === "opportunity_ledger" ? "Research POSSIBLE — ledger"
+    : current.candidateType === "research_possible" ? "Research POSSIBLE — detector"
     : current.candidateClass === "POSSIBLE" ? "Live POSSIBLE" : "Live GO";
-  $("#event-id").textContent = `${candidateLabel} candidate ${current.id.slice(-10)}`;
+  const viewLabel = current.camera?.name ? ` · ${current.camera.name}` : "";
+  $("#event-id").textContent = `${candidateLabel} candidate ${(current.eventId || current.id).slice(-10)}${viewLabel}`;
   $("#progress").textContent = completed ? `${completed} graded this session` : "";
   $("#notes").value = "";
   sceneSunlight = null;
   document.querySelectorAll("[data-sunlight]").forEach(button => button.classList.remove("selected"));
   $("#grade-status").textContent = "";
   $("#reveal").classList.add("hidden");
+  const bowGuidance = $("#bow-guidance");
+  if (Number.isFinite(current.expectedBowTopDeg)) {
+    const guidance = ['<strong>Expected bow top:</strong> about ' + current.expectedBowTopDeg.toFixed(1) + '° above the horizon.'];
+    if (Number.isFinite(current.apparentSunElevationDeg) && current.apparentSunElevationDeg < 5) {
+      guidance.push("The sun was extremely low, so look for a faint red or orange arc; a full spectrum may not be visible.");
+    } else if (current.expectedBowTopDeg <= 15) {
+      guidance.push("Any bow should remain low in the sky and may be partly hidden by terrain or trees.");
+    }
+    bowGuidance.innerHTML = guidance.join(" ");
+    bowGuidance.classList.remove("hidden");
+  } else {
+    bowGuidance.textContent = "";
+    bowGuidance.classList.add("hidden");
+  }
+  const researchContext = $("#research-context");
+  if (current.researchContext) {
+    const context = current.researchContext;
+    researchContext.innerHTML = `<strong>Why this reached Review:</strong> ${esc(context.selectionReason || "research-only selection")}. `
+      + `Detector status: ${esc(String(context.currentDetectorDisposition || "unknown").replaceAll("_", " "))}; `
+      + `persistence: ${number(context.persistenceScans)} scans; anti-solar rain span: ${number(context.rainArcSpanDeg, 0)}°; `
+      + `camera: ${number(current.camera?.distanceKm, 1)} km away, ${esc(current.camera?.direction || "direction unavailable")}, `
+      + `${number(current.camera?.visibleBowFraction * 100, 0)}% of the predicted bow in view.`;
+    researchContext.classList.remove("hidden");
+  } else {
+    researchContext.textContent = "";
+    researchContext.classList.add("hidden");
+  }
   $("#frames").innerHTML = current.frames.map((frame, index) => `
     <figure class="frame"><a href="${frame.url}" target="_blank" rel="noopener"><img src="${frame.url}" alt="Candidate frame ${index + 1}"></a>
-    <figcaption>${frame.observedAt ? new Date(frame.observedAt).toLocaleString() : `Frame ${index + 1}`}${frame.cameraName ? ` · ${esc(frame.cameraName)}${Number.isFinite(frame.distanceKm) ? ` · ${frame.distanceKm.toFixed(1)} km` : ""}` : ""}${frame.viewQuality ? ` · ${esc(frame.viewQuality)} view` : ""}${Number.isFinite(frame.timeOffsetMinutes) ? ` · ${Math.abs(frame.timeOffsetMinutes).toFixed(1)} min ${frame.timeOffsetMinutes < 0 ? "before" : "after"} GO` : ""}</figcaption>
+    <figcaption>${frame.observedAt ? new Date(frame.observedAt).toLocaleString() : `Frame ${index + 1}`}${frame.cameraName ? ` · ${esc(frame.cameraName)}${Number.isFinite(frame.distanceKm) ? ` · ${frame.distanceKm.toFixed(1)} km` : ""}` : ""}${frame.viewQuality ? ` · ${esc(frame.viewQuality)} view` : ""}${Number.isFinite(frame.visibleBowFraction) ? ` · ${Math.round(frame.visibleBowFraction * 100)}% of predicted bow in view` : ""}${Number.isFinite(frame.timeOffsetMinutes) ? ` · ${Math.abs(frame.timeOffsetMinutes).toFixed(1)} min ${frame.timeOffsetMinutes < 0 ? "before" : "after"} candidate` : ""}${frame.negativeEvidenceEligible === false ? ` · partial view: a negative is inconclusive` : ""}</figcaption>
     <label class="frame-picker"><input type="checkbox" name="confirmed-frame" value="${index}"> Keep this image if it shows a rainbow</label></figure>`).join("");
 }
 
 async function loadQueue({ preserveCurrent = false } = {}){
   const data = await api("/api/go-events?queue=1&limit=250");
   const incoming = data.items || [];
-  if (preserveCurrent && current) {
+  const currentStillPending = preserveCurrent && current && incoming.some(item => item.id === current.id);
+  if (currentStillPending) {
     queue = [current, ...incoming.filter(item => item.id !== current.id)];
     $("#queue-count").textContent = `${queue.length} candidate${queue.length === 1 ? "" : "s"} awaiting review`;
   } else {
@@ -155,7 +189,7 @@ async function refreshReviewPage({ announce = true } = {}){
   }
 }
 
-const gradeNames = { rainbow:"Rainbow", no_rainbow:"No rainbow", possible:"Possible", obscured:"Obscured", no_camera:"Bad view", invalid_location:"Invalid location" };
+const gradeNames = { rainbow:"Rainbow", no_rainbow:"No rainbow in this view", possible:"Possible", obscured:"Obscured", no_camera:"Bad view", invalid_location:"Invalid location" };
 const sunlightNames = { sunlit:"Yes", not_sunlit:"No", uncertain:"Can't tell" };
 const assessmentNames = { sunlit_supported:"Sunlight supported", sunlight_plausible:"Sunlight plausible", unresolved:"Unresolved", overcast_supported:"Overcast supported" };
 const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[char]);
@@ -173,7 +207,7 @@ async function loadResults(){
       <td><span class="grade ${gradeClass}">${esc(grade)}</span>${note}</td>
       <td>${esc(sunlightNames[item.sceneSunlight] || "—")}</td><td>${esc(assessmentNames[item.sunlightAssessment?.sunlightState] || "Not assessed")}</td>
       <td>${esc(item.candidateClass || "GO")}</td>
-      <td>${item.candidateType === "historical_webcoos" ? "Archive screen" : item.candidateType === "live_possible" ? "Live POSSIBLE" : "Live GO"}</td>
+      <td>${item.candidateType === "historical_webcoos" ? "Archive screen" : item.candidateType === "research_possible" && item.researchSource === "opportunity_ledger" ? "Research POSSIBLE — ledger" : item.candidateType === "research_possible" ? "Research POSSIBLE — detector" : item.candidateType === "live_possible" ? "Live POSSIBLE" : "Live GO"}</td>
       <td>${number(item.score, 1)}</td><td><span class="strength ${esc(item.reviewStrength)}">${esc(item.reviewStrength)}</span></td><td>${number(item.scanCount)}</td>
       <td>${number(item.sunElevationDeg, 1)}°</td><td>${number(item.rainbowArcDeg, 1)}°</td>
       <td>${number(item.directNormalIrradianceWm2)} W/m²</td>
@@ -230,13 +264,13 @@ document.querySelectorAll("[data-label]").forEach(button => button.addEventListe
   $("#grade-status").textContent = "Saving…";
   try {
     const data = await api("/api/go-events", { method:"POST", headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({id:current.id,label:button.dataset.label,notes:$("#notes").value,sceneSunlight,
+      body:JSON.stringify({id:current.eventId || current.id,cameraKey:current.cameraKey || null,label:button.dataset.label,notes:$("#notes").value,sceneSunlight,
         sunlightAssessmentExpandedBeforeGrade:false,
         confirmedFrameUrls:selectedFrames.map(input => current.frames[Number(input.value)]?.url).filter(Boolean)}) });
     const event = data.event, rep = event.representative || {};
     const assessment = (event.researchAssessments || []).at(-1);
     const assessmentText = assessment ? `<br><strong>Research sunlight-v2:</strong> ${esc(assessmentNames[assessment.sunlightState] || assessment.sunlightState || "unresolved")}. ${esc((assessment.sunlightStateReasons || []).join(", ").replaceAll("_", " "))}<details><summary>Assessment details</summary>Band-2 frames used: ${assessment.sources?.band2?.framesUsed ?? "—"}; corroborating frames: ${assessment.sources?.band2?.corroboratingFrames ?? "—"}; METAR support: ${number(assessment.sources?.metar?.supportScore, 2)}; anti-solar rain span: ${number(assessment.rain?.antiSolarRainArcSpanDeg, 0)}°; processing latency: ${number(assessment.enrichmentLatencySeconds, 0)} seconds.</details>` : "<br><strong>Research sunlight-v2:</strong> not available for this candidate yet.";
-    $("#reveal").innerHTML = `Saved <strong>${button.textContent}</strong>. Connector score ${event.peakScore ?? "—"}; ${rep.persistence?.scanCount ?? event.scanCount ?? "—"} confirming scans; camera distance ${event.evidence?.camera?.distanceKm ?? "—"} km; predicted direction difference ${event.evidence?.camera?.bearingDifference ?? "—"}°.${assessmentText}`;
+    $("#reveal").innerHTML = `Saved <strong>${button.textContent}</strong>. Connector score ${event.peakScore ?? "—"}; ${rep.persistence?.scanCount ?? event.scanCount ?? "—"} confirming scans; camera distance ${current.camera?.distanceKm ?? "—"} km; predicted direction difference ${current.camera?.bearingDifference ?? "—"}°.${assessmentText}`;
     $("#reveal").classList.remove("hidden");
     $("#grade-status").textContent = "";
     completed++;
@@ -244,7 +278,15 @@ document.querySelectorAll("[data-label]").forEach(button => button.addEventListe
     loadResults().catch(() => {});
     setTimeout(render, 1300);
   } catch (error) {
-    $("#grade-status").textContent = error.message;
+    if (/event not found|no longer available/i.test(error.message)) {
+      $("#grade-status").textContent = "That review expired or was completed elsewhere. Loading the next one…";
+      queue.shift();
+      setTimeout(() => loadQueue().catch(nextError => {
+        $("#grade-status").textContent = nextError.message;
+      }), 500);
+    } else {
+      $("#grade-status").textContent = error.message;
+    }
   } finally { document.querySelectorAll("[data-label]").forEach(item => item.disabled = false); }
 }));
 

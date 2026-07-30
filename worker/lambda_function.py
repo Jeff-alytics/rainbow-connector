@@ -10,6 +10,7 @@ from decision_store import safe_persist_decision_log
 from rain_footprint_store import safe_build_and_persist_rain_footprint
 from shadow_dispatch import safe_invoke_sunlight_v2
 from map_tier_dispatch import safe_invoke_map_tiers
+from opportunity_ledger_dispatch import safe_invoke_opportunity_ledger
 
 
 def handler(event, context):
@@ -29,6 +30,7 @@ def handler(event, context):
         research_artifacts.get("rainFootprintContext"), decision_records=decision_records,
     )
     map_tiers = safe_invoke_map_tiers(rain_footprint)
+    opportunity_ledger = safe_invoke_opportunity_ledger(rain_footprint)
     if rain_footprint.get("contentSha256"):
         artifact.setdefault("sourceHealth", {}).setdefault("radar", {})["rainFootprintContentSha256"] = rain_footprint["contentSha256"]
     decision_log = safe_persist_decision_log(artifact, decision_records)
@@ -50,6 +52,7 @@ def handler(event, context):
         "decisionLog": decision_log,
         "rainFootprint": rain_footprint,
         "mapTiers": map_tiers,
+        "opportunityLedger": opportunity_ledger,
         "sunlightV2": sunlight_v2,
         "dotEvidence": dot_evidence,
     }

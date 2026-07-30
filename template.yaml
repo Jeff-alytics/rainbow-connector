@@ -53,6 +53,10 @@ Resources:
             Status: Enabled
             Prefix: rain-footprint/rolling/
             ExpirationInDays: 14
+          - Id: ExpireRollingOpportunityLedgers
+            Status: Enabled
+            Prefix: opportunity-ledger/rolling/
+            ExpirationInDays: 14
 
   RainbowWorker:
     Type: AWS::Serverless::Function
@@ -82,6 +86,7 @@ Resources:
           RAINBOW_RESEARCH_BUCKET: !Ref RainbowResearchBucket
           RAINBOW_SHADOW_FUNCTION: !Ref SunlightShadowWorker
           RAINBOW_MAP_TIER_FUNCTION: !Ref MapTierWorker
+          RAINBOW_OPPORTUNITY_LEDGER_FUNCTION: !Ref OpportunityLedgerWorker
       Policies:
         - AWSLambdaBasicExecutionRole
         - Statement:
@@ -101,6 +106,10 @@ Resources:
               Effect: Allow
               Action: lambda:InvokeFunction
               Resource: !GetAtt MapTierWorker.Arn
+            - Sid: InvokeOpportunityLedgerWorker
+              Effect: Allow
+              Action: lambda:InvokeFunction
+              Resource: !GetAtt OpportunityLedgerWorker.Arn
       Events:
         FiveMinuteSchedule:
           Type: ScheduleV2
@@ -135,7 +144,6 @@ Resources:
         Variables:
           RAINBOW_CACHE_DIR: /tmp/rainbow-shadow
           RAINBOW_RESEARCH_BUCKET: !Ref RainbowResearchBucket
-          RAINBOW_REVIEW_ENRICH_URL: !Ref ReviewEnrichUrl
           REVIEW_ENRICH_SECRET_PARAMETER: /rainbow-connector/review-enrich-secret
       Policies:
         - AWSLambdaBasicExecutionRole
@@ -191,6 +199,64 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: !Sub /aws/lambda/${MapTierWorker}
+      RetentionInDays: 14
+
+  OpportunityLedgerWorker:
+    Type: AWS::Serverless::Function
+    Metadata:
+      Dockerfile: Dockerfile.worker
+      DockerContext: .
+      DockerTag: python3.12-opportunity-ledger-v2
+    Properties:
+      PackageType: Image
+      ImageUri: !Ref ImageUri
+      ImageConfig:
+        Command:
+          - worker.opportunity_ledger_lambda.handler
+      Architectures:
+        - arm64
+      MemorySize: 3008
+      Timeout: 300
+      EphemeralStorage:
+        Size: 2048
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 300
+        MaximumRetryAttempts: 0
+      Environment:
+        Variables:
+          RAINBOW_RESEARCH_BUCKET: !Ref RainbowResearchBucket
+          RAINBOW_CACHE_DIR: /tmp/rainbow-ledger-review
+          REVIEW_ENRICH_SECRET_PARAMETER: /rainbow-connector/review-enrich-secret
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            - Sid: ReadRollingRainFootprintsForOpportunityLedger
+              Effect: Allow
+              Action: s3:GetObject
+              Resource: !Sub ${RainbowResearchBucket.Arn}/rain-footprint/rolling/*
+            - Sid: ReadWriteRollingOpportunityLedgers
+              Effect: Allow
+              Action:
+                - s3:GetObject
+                - s3:PutObject
+              Resource: !Sub ${RainbowResearchBucket.Arn}/opportunity-ledger/rolling/*
+            - Sid: ListRollingOpportunityLedgers
+              Effect: Allow
+              Action: s3:ListBucket
+              Resource: !GetAtt RainbowResearchBucket.Arn
+              Condition:
+                StringLike:
+                  s3:prefix:
+                    - opportunity-ledger/rolling/*
+            - Sid: ReadLedgerReviewEnrichmentSecret
+              Effect: Allow
+              Action: ssm:GetParameter
+              Resource: !Sub arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/rainbow-connector/review-enrich-secret
+
+  OpportunityLedgerWorkerLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${OpportunityLedgerWorker}
       RetentionInDays: 14
 
   RainbowWorkerLogs:

@@ -324,8 +324,81 @@ export async function labelGoEvent(id, review) {
   return event;
 }
 
+export function evidenceFrameReviewKey(frame) {
+  const source = encodeURIComponent(String(frame.source || "camera"));
+  if (frame?.cameraId != null) {
+    const site = encodeURIComponent(String(frame.siteId ?? "site"));
+    const camera = encodeURIComponent(String(frame.cameraId));
+    return `${source}:${site}:${camera}`;
+  }
+  const cameraName = String(frame?.cameraName || "").trim();
+  return cameraName ? `${source}:name:${encodeURIComponent(cameraName)}` : null;
+}
+
+export function evidenceFrameReviewGroups(event) {
+  const groups = new Map();
+  for (const frame of event?.evidence?.frames || []) {
+    const key = evidenceFrameReviewKey(frame);
+    if (!key) continue;
+    if (!groups.has(key)) groups.set(key, { key, frames: [] });
+    groups.get(key).frames.push(frame);
+  }
+  return [...groups.values()];
+}
+
+export async function labelGoEventView(id, cameraKey, review) {
+  const cleanId = String(id || "").trim();
+  const cleanCameraKey = String(cameraKey || "").trim();
+  const label = String(review?.label || "").trim();
+  if (!cleanId || !cleanCameraKey || !REVIEW_LABELS.has(label)) throw new Error("Invalid event, camera, or review label.");
+  const raw = await redis(["GET", GO_EVENT_PREFIX + cleanId]);
+  if (!raw) return null;
+  const event = JSON.parse(raw);
+  const group = evidenceFrameReviewGroups(event).find(item => item.key === cleanCameraKey);
+  if (!group) {
+    const error = new Error("That camera view is no longer available for review.");
+    error.statusCode = 400;
+    throw error;
+  }
+  const requestedFrameUrls = [...new Set(
+    (Array.isArray(review?.confirmedFrameUrls) ? review.confirmedFrameUrls : [review?.confirmedFrameUrl])
+      .map(value => String(value || "").trim()).filter(Boolean).slice(0, 5)
+  )];
+  const confirmedFrames = requestedFrameUrls
+    .map(url => group.frames.find(frame => frame?.url === url))
+    .filter(Boolean);
+  if (label === "rainbow" && (!confirmedFrames.length || confirmedFrames.length !== requestedFrameUrls.length)) {
+    const error = new Error("Choose every frame that shows the rainbow before saving.");
+    error.statusCode = 400;
+    throw error;
+  }
+  event.viewReviews = { ...(event.viewReviews || {}) };
+  event.viewReviews[cleanCameraKey] = {
+    label, reviewedAt: new Date().toISOString(), cameraKey: cleanCameraKey,
+    notes: String(review?.notes || "").trim().slice(0, 1000) || null,
+    sceneSunlight: ["sunlit", "not_sunlit", "uncertain"].includes(review?.sceneSunlight) ? review.sceneSunlight : null,
+    sunlightAssessmentExpandedBeforeGrade: review?.sunlightAssessmentExpandedBeforeGrade === true,
+    evidenceUrls: Array.isArray(review?.evidenceUrls) ? review.evidenceUrls.map(value => String(value).trim()).filter(Boolean).slice(0, 10) : [],
+    confirmedFrames: confirmedFrames.map(frame => ({
+      url: frame.url, observedAt: frame.observedAt || null,
+      source: frame.source || event.evidence?.source || null,
+      cameraName: frame.cameraName || null, siteId: frame.siteId ?? null, cameraId: frame.cameraId ?? null,
+      distanceKm: finite(frame.distanceKm),
+    })),
+  };
+  await redis(["SET", GO_EVENT_PREFIX + cleanId, JSON.stringify(event), "EX", retentionDays() * 24 * 60 * 60]);
+  await syncConfirmedGallery(event);
+  return event;
+}
+
 export function confirmedGalleryRecord(event) {
-  const frames = (event?.review?.confirmedFrames || (event?.review?.confirmedFrame ? [event.review.confirmedFrame] : []))
+  const globalFrames = event?.review?.confirmedFrames || (event?.review?.confirmedFrame ? [event.review.confirmedFrame] : []);
+  const rainbowViewReviews = Object.values(event?.viewReviews || {}).filter(review => review?.label === "rainbow");
+  const allFrames = [
+    ...(event?.review?.label === "rainbow" ? globalFrames : []),
+    ...rainbowViewReviews.flatMap(review => review.confirmedFrames || []),
+  ];
+  const frames = allFrames
     .map(frame => ({
       url: frame?.url,
       observedAt: frame?.observedAt || null,
@@ -333,12 +406,14 @@ export function confirmedGalleryRecord(event) {
       cameraName: frame?.cameraName || null,
       distanceKm: finite(frame?.distanceKm),
     }))
-    .filter(frame => frame.url);
-  if (event?.review?.label !== "rainbow" || !frames.length) return null;
+    .filter((frame, index, items) => frame.url && items.findIndex(item => item.url === frame.url) === index);
+  if (!frames.length) return null;
   const rep = event.representative || {};
+  const reviewedTimes = [event?.review?.label === "rainbow" ? event.review.reviewedAt : null,
+    ...rainbowViewReviews.map(review => review.reviewedAt)].filter(Boolean);
   return {
     id: event.id,
-    confirmedAt: event.review.reviewedAt || new Date().toISOString(),
+    confirmedAt: reviewedTimes.sort().at(-1) || new Date().toISOString(),
     detectedAt: rep.detectedAt || event.firstSeenAt || null,
     peakScore: Number.isFinite(event.peakScore) ? event.peakScore : null,
     scanCount: Number.isFinite(rep.persistence?.scanCount)
@@ -416,6 +491,50 @@ export function matchingAssessmentEvent(events, assessment, options = {}) {
   return best?.event || null;
 }
 
+export function researchDetectionFromAssessment(assessment) {
+  const observer = assessment?.observer || {}, rain = assessment?.rain || {};
+  const geometry = assessment?.geometry || {}, at = assessment?.radarObservedAt;
+  const lat = Number(observer.lat), lon = Number(observer.lon), detectedMs = timeMs(at);
+  if (!Number.isFinite(lat) || !Number.isFinite(lon) || !detectedMs) return null;
+  const elevation = Number(geometry.sunElevationDeg), antiSolar = Number(geometry.antiSolarBearingDeg);
+  const score = Number(geometry.radarScore), rainRate = Number(rain.rateMmHr);
+  const observerRain = Number(rain.observerRateMmHr), rainDistance = Number(rain.distanceKm);
+  const ledger = assessment?.researchReview?.source === "opportunity_ledger";
+  return {
+    detectedAt: new Date(detectedMs).toISOString(), candidateId: assessment.candidateId || null,
+    candidateClass: "POSSIBLE", rank: finite(assessment?.researchReview?.rankWithinScan), lat, lon,
+    label: ledger ? "Opportunity-ledger research candidate" : "Geometry-first research candidate", nearestZip: null,
+    direction: Number.isFinite(antiSolar) ? { bearing: antiSolar, label: `Predicted bow direction ${Math.round(antiSolar)} degrees` } : null,
+    score: finite(score), persistence: { confirmed: false, scanCount: 1, firstSeenAt: at, lastSeenAt: at },
+    evidence: {
+      sunElevationDeg: finite(elevation), rainbowArcDeg: Number.isFinite(elevation) ? Math.max(0, 42 - elevation) : null,
+      directNormalIrradianceWm2: null, directRadiationWm2: null, cloudCoverPct: null,
+      rainPointDirectNormalIrradianceWm2: null, rainPointDirectRadiationWm2: null,
+      rainPointCloudCoverPct: null, rainIntensity: finite(rainRate), observerRainIntensity: finite(observerRain),
+      rainPoint: Number.isFinite(Number(rain.lat)) && Number.isFinite(Number(rain.lon))
+        ? { lat: Number(rain.lat), lon: Number(rain.lon), distanceKm: finite(rainDistance), bearing: antiSolar } : null,
+      goes: null, selectionReason: ledger ? "opportunity-ledger-camera-gated-review-only" : "geometry-first-review-only",
+      researchRuleVersion: assessment?.researchReview?.ruleVersion || null,
+      researchSource: assessment?.researchReview?.source || "detector_rejection_log",
+      currentDetectorDisposition: assessment?.researchReview?.currentDetectorDisposition || assessment?.disposition || null,
+      antiSolarRainArcSpanDeg: finite(rain.antiSolarRainArcSpanDeg),
+      antiSolarRainSpanByTier: rain.antiSolarRainSpanByTier || null,
+    },
+  };
+}
+
+export function newResearchReviewEvent(assessment) {
+  const detection = researchDetectionFromAssessment(assessment);
+  if (!detection) return null;
+  const event = newGoEvent(detection);
+  event.candidateClass = "POSSIBLE";
+  event.candidateType = "research_possible";
+  event.researchRuleVersion = assessment?.researchReview?.ruleVersion || null;
+  event.researchSource = assessment?.researchReview?.source || "detector_rejection_log";
+  event.ledgerEventId = assessment?.researchReview?.ledgerEventId || null;
+  return event;
+}
+
 export async function attachReviewAssessments(assessments, options = {}) {
   if (!configuredStore()) return { stored: false, reason: "store_not_configured", received: assessments?.length || 0 };
   const received = Array.isArray(assessments) ? assessments : [];
@@ -423,16 +542,30 @@ export async function attachReviewAssessments(assessments, options = {}) {
   const earliest = Math.min(...received.map(item => timeMs(item?.radarObservedAt)).filter(Boolean));
   const events = await loadRecentGoEvents(earliest - 20 * 60 * 1000, 250);
   const touched = new Map();
-  let attached = 0, duplicates = 0, unmatched = 0;
+  let attached = 0, duplicates = 0, unmatched = 0, created = 0;
   const ttlSeconds = retentionDays() * 24 * 60 * 60;
   for (const assessment of received) {
     const key = String(assessment?.idempotencyKey || "").trim();
     const candidateId = String(assessment?.candidateId || "").trim();
     if (!/^[a-f0-9]{64}$/.test(key) || !candidateId) { unmatched++; continue; }
-    const event = matchingAssessmentEvent(events, assessment, options);
+    const assessmentOptions = assessment?.disposition === "selected_research_possible"
+      ? { ...options, radiusKm: options.researchRadiusKm || 35, gapMinutes: options.researchGapMinutes || 12 }
+      : options;
+    let event = matchingAssessmentEvent(events, assessment, assessmentOptions);
+    let isNew = false;
+    if (!event && assessment?.disposition === "selected_research_possible") {
+      event = newResearchReviewEvent(assessment);
+      if (event) { events.push(event); isNew = true; created++; }
+    }
     if (!event) { unmatched++; continue; }
     const claimed = await redis(["SET", REVIEW_ASSESSMENT_IDEMPOTENCY_PREFIX + key, "1", "NX", "EX", ttlSeconds]);
     if (!claimed) { duplicates++; continue; }
+    if (!isNew && event.candidateType === "research_possible") {
+      const detection = researchDetectionFromAssessment(assessment);
+      if (detection && !(event.detections || []).some(item => item.detectedAt === detection.detectedAt)) mergeDetection(event, detection);
+      if (assessment?.researchReview?.source) event.researchSource = assessment.researchReview.source;
+      if (assessment?.researchReview?.ledgerEventId) event.ledgerEventId = assessment.researchReview.ledgerEventId;
+    }
     const compact = {
       ...assessment,
       receivedAt: new Date().toISOString(),
@@ -443,7 +576,10 @@ export async function attachReviewAssessments(assessments, options = {}) {
     attached++;
   }
   const commands = [];
-  for (const event of touched.values()) commands.push(["SET", GO_EVENT_PREFIX + event.id, JSON.stringify(event), "EX", ttlSeconds]);
+  for (const event of touched.values()) {
+    commands.push(["SET", GO_EVENT_PREFIX + event.id, JSON.stringify(event), "EX", ttlSeconds]);
+    commands.push(["ZADD", GO_EVENT_INDEX, timeMs(event.lastSeenAt), event.id]);
+  }
   await redisPipeline(commands);
-  return { stored: true, received: received.length, attached, duplicates, unmatched, eventIds: [...touched.keys()] };
+  return { stored: true, received: received.length, attached, duplicates, unmatched, created, eventIds: [...touched.keys()] };
 }

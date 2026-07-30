@@ -5,6 +5,7 @@ RUN pip install --no-cache-dir -r ${LAMBDA_TASK_ROOT}/worker-requirements.txt
 
 COPY worker ${LAMBDA_TASK_ROOT}/worker
 COPY docs/mockups/us-nation.geojson ${LAMBDA_TASK_ROOT}/worker/assets/us-nation.geojson
+COPY faa-sites-compact.json ${LAMBDA_TASK_ROOT}/worker/assets/faa-sites-compact.json
 COPY api/goes_sample.py api/sunlight_decision.py ${LAMBDA_TASK_ROOT}/api/
 
 ENV PYTHONPATH=${LAMBDA_TASK_ROOT}/worker:${LAMBDA_TASK_ROOT}/api

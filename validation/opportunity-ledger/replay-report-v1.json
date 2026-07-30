@@ -1,0 +1,252 @@
+{
+  "cases": [
+    {
+      "caseId": "baltimore-dundalk-20260728",
+      "disposition": "evaluated",
+      "ledgerScans": 2,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-4ac93b25e0658ff1"
+          ],
+          "nearestRepresentativeKm": 3.42,
+          "nearestSwathKm": 0.0,
+          "observationId": "baltimore",
+          "observer": {
+            "lat": 39.2904,
+            "lon": -76.6122,
+            "uncertaintyKm": 12
+          }
+        },
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-4ac93b25e0658ff1"
+          ],
+          "nearestRepresentativeKm": 6.83,
+          "nearestSwathKm": 2.15,
+          "observationId": "dundalk",
+          "observer": {
+            "lat": 39.2507,
+            "lon": -76.5205,
+            "uncertaintyKm": 8
+          }
+        }
+      ],
+      "opportunityRetained": true,
+      "rainEventRetained": true
+    },
+    {
+      "caseId": "colorado-multicamera-20260730",
+      "disposition": "evaluated",
+      "ledgerScans": 3,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-0ebfd75809251785",
+            "rain-event-227b0a7ce227f47f",
+            "rain-event-7647a8bb1ecc9a36",
+            "rain-event-b6aaef2a66c57950",
+            "rain-event-e4bc8a873b319848"
+          ],
+          "nearestRepresentativeKm": 3.18,
+          "nearestSwathKm": 0.0,
+          "observationId": "silver-west",
+          "observer": {
+            "lat": 38.02381,
+            "lon": -105.37973,
+            "uncertaintyKm": 0.2
+          }
+        },
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-2d2d6a1e8e50301f",
+            "rain-event-8f456a6ce9466f21"
+          ],
+          "nearestRepresentativeKm": 2.7,
+          "nearestSwathKm": 0.0,
+          "observationId": "saguache-ne",
+          "observer": {
+            "lat": 38.09902,
+            "lon": -106.17035,
+            "uncertaintyKm": 0.2
+          }
+        },
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-1ad99d31bd333667",
+            "rain-event-7647a8bb1ecc9a36",
+            "rain-event-f131a863f2d23187"
+          ],
+          "nearestRepresentativeKm": 4.34,
+          "nearestSwathKm": 0.0,
+          "observationId": "fremont-county",
+          "observer": {
+            "lat": 38.4323,
+            "lon": -105.1031,
+            "uncertaintyKm": 0.2
+          }
+        }
+      ],
+      "opportunityRetained": true,
+      "rainEventRetained": true
+    },
+    {
+      "caseId": "utah-ogden-bear-river-20260730",
+      "disposition": "evaluated",
+      "ledgerScans": 3,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-00d2b4928f17ab0c",
+            "rain-event-014c7226c8fbf25b",
+            "rain-event-20c615cfa5dfba32",
+            "rain-event-38c0f9ef0b0f0f3f"
+          ],
+          "nearestRepresentativeKm": 1.57,
+          "nearestSwathKm": 0.0,
+          "observationId": "ogden",
+          "observer": {
+            "lat": 41.193604,
+            "lon": -112.00825,
+            "uncertaintyKm": 0.2
+          }
+        },
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-35aa665b86403dc9",
+            "rain-event-38c0f9ef0b0f0f3f",
+            "rain-event-979d2522be0b6ef0",
+            "rain-event-e9b5e4275d008086"
+          ],
+          "nearestRepresentativeKm": 0.64,
+          "nearestSwathKm": 0.0,
+          "observationId": "bear-river",
+          "observer": {
+            "lat": 41.724174,
+            "lon": -112.18263,
+            "uncertaintyKm": 0.2
+          }
+        }
+      ],
+      "opportunityRetained": true,
+      "rainEventRetained": true
+    },
+    {
+      "caseId": "middletown-connecticut-20260729",
+      "disposition": "evaluated",
+      "ledgerScans": 4,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-6b8b0046819a0072",
+            "rain-event-8e0dc944b9fdacdf",
+            "rain-event-a8f7275e19593982",
+            "rain-event-ca685f33b23fe1c0",
+            "rain-event-db487449a3f898fc"
+          ],
+          "nearestRepresentativeKm": 1.37,
+          "nearestSwathKm": 0.0,
+          "observationId": "middletown",
+          "observer": {
+            "lat": 41.5623,
+            "lon": -72.6506,
+            "uncertaintyKm": 10
+          }
+        }
+      ],
+      "opportunityRetained": true,
+      "rainEventRetained": true
+    },
+    {
+      "caseId": "meeker-camera-20260709",
+      "disposition": "evaluated",
+      "ledgerScans": 2,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-090543583121cfc4",
+            "rain-event-32d7e088f20cbe57",
+            "rain-event-901a36817cc706a8",
+            "rain-event-e204b92ecf977bbb"
+          ],
+          "nearestRepresentativeKm": 2.42,
+          "nearestSwathKm": 0.0,
+          "observationId": "meeker",
+          "observer": {
+            "lat": 40.044106,
+            "lon": -107.88861,
+            "uncertaintyKm": 0.2
+          }
+        }
+      ],
+      "opportunityRetained": true,
+      "rainEventRetained": true
+    },
+    {
+      "caseId": "delano-low-sun-20260729",
+      "disposition": "evaluated",
+      "ledgerScans": 1,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-4b948127c6bd4b54",
+            "rain-event-9f66cba160b7290b"
+          ],
+          "nearestRepresentativeKm": 5.49,
+          "nearestSwathKm": 0.0,
+          "observationId": "delano",
+          "observer": {
+            "lat": 41.723,
+            "lon": -114.1839,
+            "uncertaintyKm": 0.2
+          }
+        }
+      ],
+      "opportunityRetained": true,
+      "rainEventRetained": true
+    }
+  ],
+  "contentSha256": "40aa53d6af117dfa468494d814fc21e8468d8f1ff058c7e000db1af4be071286",
+  "fixtureContentSha256": "5aba73b6a41de6eb8073c47ffc620398bdeeda0999a221672454ca2e838a6935",
+  "ledgerMethodVersions": [
+    "observer-swath-physical-envelope-2026-07-v3-viable-only"
+  ],
+  "schemaVersion": "opportunity-ledger-replay.v1",
+  "summary": {
+    "cases": 6,
+    "evaluated": 6,
+    "fixturesAwaitingTime": 0,
+    "missingLedgerWindows": 0,
+    "observationsInsideSwath": 10
+  }
+}

@@ -14,13 +14,15 @@ test("map tier contract requires timestamps, version, and both geometries",()=>{
 test("public map keeps pins independent and matches ingredient scans exactly",async()=>{
   const page=await readFile(new URL("../index.html",import.meta.url),"utf8");
   assert.match(page,/function sameScan\(a,b\)/);
-  assert.match(page,/attempt<3/);
+  assert.match(page,/attempt<6/);
   assert.match(page,/ingredients layer unavailable/);
   assert.match(page,/Pins are spots the Connector is actively tracking/);
   assert.match(page,/The sun is low enough/);
   assert.match(page,/center: \[-95\.5, 37\.6\], zoom: 3\.9/);
   assert.match(page,/step=\.35,half=step\/2/);
   assert.match(page,/\.3\*Math\.min\(1,\(42-elevation\)\/14\)/);
+  assert.match(page,/elevation>=-1&&elevation<=42/);
+  assert.match(page,/Math\.min\(1,\(elevation\+1\)\/3\)/);
   assert.match(page,/mapFixture/);
 });
 

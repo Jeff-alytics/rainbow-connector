@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   matchNearbyDotCameras, parseCaltransDistrict, parseIowaFeatures,
-  parseOhioCameras, parseWsdotCameras,
+  parseGa511Cameras, parseOhioCameras, parseWsdotCameras,
 } from "../api/dot-camera-common.mjs";
 import {
   angleDifference, matchAlertCaCameras, nearbyAlertCaCameras, parseAlertCaFeatures,
@@ -75,6 +75,20 @@ test("WSDOT cameras retain active image locations without exposing access codes"
   assert.equal(cameras[0].id, "wa-77");
   assert.equal(cameras[0].imageUrl, "https://example.test/washington.jpg");
   assert.equal(JSON.stringify(cameras).includes("AccessCode"), false);
+});
+
+test("511GA cameras expose enabled snapshot views and discard invalid locations", () => {
+  const cameras = parseGa511Cameras([
+    { Id: 11139, Direction: "Eastbound", Latitude: 33.995518, Longitude: -83.733475,
+      Views: [{ Id: 11139, Url: "https://511ga.org/map/Cctv/11139", Status: "Enabled", Description: "I-85 test" }] },
+    { Id: 6916, Direction: "Unknown", Latitude: 0, Longitude: 0,
+      Views: [{ Id: 6916, Url: "https://511ga.org/map/Cctv/6916", Status: "Disabled" }] },
+  ]);
+  assert.deepEqual(cameras, [{
+    id: "ga-11139-11139", name: "I-85 test", imageUrl: "https://511ga.org/map/Cctv/11139",
+    streamUrl: null, pageUrl: "https://511ga.org/", updatedAt: null,
+    lat: 33.995518, lon: -83.733475, routeDirection: "Eastbound",
+  }]);
 });
 test("ALERTCalifornia records expose live direction, time, and image metadata", () => {
   const [camera] = parseAlertCaFeatures({ features: [{

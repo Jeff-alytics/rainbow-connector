@@ -56,6 +56,12 @@ class ReviewCallbackTests(unittest.TestCase):
         self.assertEqual(item["rainFootprint"]["contentSha256"], "hash")
         self.assertEqual(item["sources"]["metar"]["stations"][0]["stationId"], "KBWI")
 
+    def test_payload_includes_review_only_geometry_selection(self):
+        item = record("selected_research_possible")
+        item["features"]["researchReview"] = {"ruleVersion": "geometry-first-review-2026-07-v1", "reviewOnly": True}
+        payload = build_payload({"radar": {"observedAt": "2026-07-28T23:34:00Z"}, "records": [item]})
+        self.assertEqual(payload["assessments"][0]["researchReview"]["reviewOnly"], True)
+
     def test_secret_comes_from_secure_parameter(self):
         fake = FakeSsm()
         with patch.dict(os.environ, {"REVIEW_ENRICH_SECRET_PARAMETER": "/test/secret"}, clear=True):

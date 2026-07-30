@@ -58,6 +58,7 @@ def compact_assessment(record: dict, envelope: dict) -> dict | None:
         "rain": features.get("rain") or {},
         "geometry": features.get("geometry") or {},
         "thresholdSnapshot": features.get("thresholdSnapshot") or {},
+        "researchReview": features.get("researchReview"),
         "radarObservedAt": radar.get("observedAt") or sunlight.get("radarObservedAt"),
         "assessmentProcessingAt": sunlight.get("assessmentProcessingAt"),
         "enrichmentLatencySeconds": finite(sunlight.get("enrichmentLatencySeconds")),
