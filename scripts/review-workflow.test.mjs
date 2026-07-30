@@ -8,8 +8,8 @@ import {
   validReviewToken,
 } from "../api/review-auth-common.mjs";
 import { matchChartCameras, matchFaaCamera, matchFaaCameras, selectFaaFrames, selectPendingFaaEvents, visibleBowArc } from "../api/go-evidence-common.mjs";
-import { reviewableCandidates } from "../api/go-event-common.mjs";
-import { apparentSolarElevationDeg, reviewEvidenceStrength, reviewQueue, reviewQueueItems, reviewResults } from "../api/go-events.mjs";
+import { evidenceFrameReviewGroups, reviewableCandidates } from "../api/go-event-common.mjs";
+import { allCameraViewsReviewed, apparentSolarElevationDeg, reviewEvidenceStrength, reviewQueue, reviewQueueItems, reviewResults, reviewSafeEvent } from "../api/go-events.mjs";
 
 test("near-horizon review geometry uses apparent solar elevation", () => {
   assert.ok(apparentSolarElevationDeg(0) > 0.45);
@@ -211,11 +211,11 @@ test("one-scan research POSSIBLE waits for persistence before review", () => {
   assert.deepEqual(reviewQueue([research(2)]).map(item => item.id), ["research-2"]);
 });
 
-test("research POSSIBLEs occupy at most two visible review slots", () => {
+test("research POSSIBLEs occupy at most two post-expansion review slots", () => {
   const research = index => ({ id: `research-${index}`, candidateType: "research_possible",
     candidateClass: "POSSIBLE", scanCount: 2, peakScore: 90-index, review: { label: "pending" },
     evidence: { frames: [{}], camera: { distanceKm: 10, bearingDifference: 5 } } });
-  assert.equal(reviewQueue([1,2,3,4].map(research)).length, 2);
+  assert.equal(reviewQueueItems([1,2,3,4].map(research)).length, 2);
 });
 
 test("multiple camera views cannot expand research candidates beyond two review items", () => {
@@ -226,6 +226,23 @@ test("multiple camera views cannot expand research candidates beyond two review 
       { url: `b-${index}`, siteId: index + 10, cameraId: 2, cameraName: `Airport ${index} B`, distanceKm: 12, timeOffsetMinutes: 10 },
     ] } });
   assert.equal(reviewQueueItems([research(1), research(2)]).length, 2);
+});
+
+test("sunlight assessment stays hidden until every sibling camera view is graded", () => {
+  const event = { id: "siblings", candidateType: "research_possible", review: { label: "pending" },
+    researchAssessments: [{ sunlightState: "sunlit_supported" }], evidence: { frames: [
+      { url: "a", source: "FAA WeatherCam", siteId: 1, cameraId: 10 },
+      { url: "b", source: "FAA WeatherCam", siteId: 2, cameraId: 20 },
+    ] }, viewReviews: {} };
+  const groups = evidenceFrameReviewGroups(event);
+  event.viewReviews[groups[0].key] = { label: "no_rainbow", reviewedAt: "2026-07-30T02:30:00Z" };
+  assert.equal(allCameraViewsReviewed(event), false);
+  assert.equal("researchAssessments" in reviewSafeEvent(event), false);
+  assert.equal(reviewResults([event])[0].sunlightAssessment, null);
+  event.viewReviews[groups[1].key] = { label: "rainbow", reviewedAt: "2026-07-30T02:31:00Z" };
+  assert.equal(allCameraViewsReviewed(event), true);
+  assert.equal(reviewSafeEvent(event).researchAssessments.length, 1);
+  assert.equal(reviewResults([event]).every(item => item.sunlightAssessment?.sunlightState === "sunlit_supported"), true);
 });
 
 test("review labels ledger candidates without exposing them as public POSSIBLEs", async () => {

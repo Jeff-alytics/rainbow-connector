@@ -91,6 +91,15 @@ test("geometry-first persistence tolerates moving observer seeds within a storm 
   assert.equal(matchingAssessmentEvent([first], next, { radiusKm: 35, gapMinutes: 12 }), first);
 });
 
+test("operational detections cannot match or merge into research events", () => {
+  const research = newResearchReviewEvent({ candidateId: "research", disposition: "selected_research_possible",
+    radarObservedAt: "2026-07-30T02:22:00Z", observer: { lat: 41.12, lon: -112.08 }, rain: {},
+    geometry: { sunElevationDeg: 3.3, antiSolarBearingDeg: 112, radarScore: 67 }, researchReview: {} });
+  const operational = detection("2026-07-30T02:25:00Z", 41.12, -112.08);
+  assert.equal(matchingEvent([research], operational, { radiusKm: 40, gapMinutes: 30 }), null);
+  assert.throws(() => mergeDetection(research, operational), /cannot share an event/);
+});
+
 test("confirmed rainbow gallery records permanently retain frame links and evidence", () => {
   const event = {
     id: "go-example", firstSeenAt: "2026-07-26T23:00:00Z", peakScore: 91, scanCount: 1,

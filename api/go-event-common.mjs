@@ -9,6 +9,13 @@ export const CONFIRMED_GALLERY_PREFIX = "rainbow:gallery:item:";
 export const REVIEW_ASSESSMENT_IDEMPOTENCY_PREFIX = "rainbow:review:assessment:";
 const GO_SCAN_PREFIX = "rainbow:go:scan:";
 const HISTORICAL_REVIEW_PREFIX = "archive-webcoos-";
+const EVENT_CAS_RETRIES = 8;
+const EVENT_CAS_LUA = `
+local current = redis.call('GET', KEYS[1])
+if not current or redis.sha1hex(current) ~= ARGV[1] then return 0 end
+redis.call('SET', KEYS[1], ARGV[2], 'EX', ARGV[3])
+return 1
+`;
 
 export const REVIEW_LABELS = new Set([
   "pending", "rainbow", "no_rainbow", "possible", "obscured", "no_camera", "invalid_location",
@@ -20,6 +27,37 @@ export const STRONG_POSSIBLE_MAX_PER_SCAN = 6;
 function retentionDays() {
   const value = Number(process.env.GO_EVENT_RETENTION_DAYS || 90);
   return Math.max(7, Math.min(Number.isFinite(value) ? value : 90, 365));
+}
+
+function eventTtlSeconds() {
+  return retentionDays() * 24 * 60 * 60;
+}
+
+export async function mutateGoEvent(id, mutator, retries = EVENT_CAS_RETRIES) {
+  const cleanId = String(id || "").trim();
+  if (!cleanId) return null;
+  const storageKey = GO_EVENT_PREFIX + cleanId;
+  for (let attempt = 0; attempt < retries; attempt++) {
+    const raw = await redis(["GET", storageKey]);
+    if (!raw) return null;
+    const event = JSON.parse(raw);
+    const next = mutator(event);
+    if (!next) return null;
+    const stored = await casReplaceGoEvent(cleanId, raw, next);
+    if (Number(stored) === 1) return next;
+  }
+  throw new Error(`Concurrent event update did not converge for ${cleanId}`);
+}
+
+async function casReplaceGoEvent(id, raw, next) {
+  const expected = createHash("sha1").update(raw).digest("hex");
+  return redis(["EVAL", EVENT_CAS_LUA, 1, GO_EVENT_PREFIX + id, expected,
+    JSON.stringify(next), eventTtlSeconds()]);
+}
+
+async function createGoEvent(event) {
+  const stored = await redis(["SET", GO_EVENT_PREFIX + event.id, JSON.stringify(event), "NX", "EX", eventTtlSeconds()]);
+  return stored ? event : null;
 }
 
 function matchRadiusKm() {
@@ -197,6 +235,7 @@ export function matchingEvent(events, detection, options = {}) {
   const detectedMs = timeMs(detection.detectedAt);
   let best = null;
   for (const event of events) {
+    if (!options.includeResearch && event?.candidateType === "research_possible") continue;
     const gap = detectedMs - timeMs(event.lastSeenAt);
     const point = event.latestLocation || event.representative;
     if (gap < 0 || gap > gapMs || !Number.isFinite(point?.lat) || !Number.isFinite(point?.lon)) continue;
@@ -207,6 +246,11 @@ export function matchingEvent(events, detection, options = {}) {
 }
 
 export function mergeDetection(event, detection) {
+  const researchDetection = ["geometry-first-review-only", "opportunity-ledger-camera-gated-review-only"]
+    .includes(detection?.evidence?.selectionReason);
+  if ((event?.candidateType === "research_possible") !== researchDetection) {
+    throw new Error("Operational and research detections cannot share an event");
+  }
   const sameScan = event.lastSeenAt === detection.detectedAt;
   event.lastSeenAt = detection.detectedAt;
   if (!sameScan) event.scanCount = Number(event.scanCount || 0) + 1;
@@ -261,31 +305,49 @@ export async function saveGoEvents(artifact, options = {}) {
   const claimed = await redis(["SET", scanKey, "1", "NX", "EX", ttlSeconds]);
   if (!claimed) return { stored: false, reason: "duplicate", candidates: candidates.length };
   try {
-    const recent = await loadRecentGoEvents(timeMs(generatedAt) - matchGapMinutes() * 60 * 1000);
-    const touched = new Map();
+    const recent = (await loadRecentGoEvents(timeMs(generatedAt) - matchGapMinutes() * 60 * 1000))
+      .filter(event => event.candidateType !== "research_possible");
+    const touched = new Set();
     let created = 0;
     for (const candidate of candidates) {
       const detection = compactGoDetection(candidate, generatedAt);
       let event = matchingEvent(recent, detection);
-      if (event) mergeDetection(event, detection);
-      else { event = newGoEvent(detection); recent.push(event); created++; }
-      touched.set(event.id, event);
+      if (event) {
+        event = await mutateGoEvent(event.id, current => {
+          if (current.candidateType === "research_possible") throw new Error("Research event rejected from operational merge");
+          return mergeDetection(current, detection);
+        });
+        const index = recent.findIndex(item => item.id === event.id);
+        if (index >= 0) recent[index] = event;
+      } else {
+        event = newGoEvent(detection);
+        const inserted = await createGoEvent(event);
+        if (!inserted) {
+          const collision = (await loadEventsByIds([GO_EVENT_PREFIX + event.id]))[0];
+          if (!collision || collision.candidateType === "research_possible") throw new Error("Operational event id collision");
+          event = await mutateGoEvent(collision.id, current => mergeDetection(current, detection));
+        } else {
+          created++;
+        }
+        recent.push(event);
+      }
+      touched.add(event.id);
     }
     const commands = [];
-    for (const event of touched.values()) {
-      commands.push(["SET", GO_EVENT_PREFIX + event.id, JSON.stringify(event), "EX", ttlSeconds]);
-      commands.push(["ZADD", GO_EVENT_INDEX, timeMs(event.lastSeenAt), event.id]);
+    for (const id of touched) {
+      const event = recent.find(item => item.id === id);
+      commands.push(["ZADD", GO_EVENT_INDEX, timeMs(event?.lastSeenAt), id]);
     }
     commands.push(["ZREMRANGEBYSCORE", GO_EVENT_INDEX, "-inf", Date.now() - ttlSeconds * 1000]);
     await redisPipeline(commands);
-    return { stored: true, candidates: candidates.length, eventsUpdated: touched.size, newEvents: created, eventIds: [...touched.keys()] };
+    return { stored: true, candidates: candidates.length, eventsUpdated: touched.size, newEvents: created, eventIds: [...touched] };
   } catch (error) {
     await redis(["DEL", scanKey]).catch(() => {});
     throw error;
   }
 }
 
-export async function labelGoEvent(id, review) {
+export async function labelGoEvent(id, review, attempt = 0) {
   const cleanId = String(id || "").trim();
   const label = String(review?.label || "").trim();
   if (!cleanId || !REVIEW_LABELS.has(label)) throw new Error("Invalid event or review label.");
@@ -319,7 +381,10 @@ export async function labelGoEvent(id, review) {
       distanceKm: finite(frame.distanceKm),
     })),
   };
-  await redis(["SET", GO_EVENT_PREFIX + cleanId, JSON.stringify(event), "EX", retentionDays() * 24 * 60 * 60]);
+  if (Number(await casReplaceGoEvent(cleanId, raw, event)) !== 1) {
+    if (attempt + 1 >= EVENT_CAS_RETRIES) throw new Error(`Concurrent review update did not converge for ${cleanId}`);
+    return labelGoEvent(cleanId, review, attempt + 1);
+  }
   await syncConfirmedGallery(event);
   return event;
 }
@@ -346,7 +411,7 @@ export function evidenceFrameReviewGroups(event) {
   return [...groups.values()];
 }
 
-export async function labelGoEventView(id, cameraKey, review) {
+export async function labelGoEventView(id, cameraKey, review, attempt = 0) {
   const cleanId = String(id || "").trim();
   const cleanCameraKey = String(cameraKey || "").trim();
   const label = String(review?.label || "").trim();
@@ -386,7 +451,10 @@ export async function labelGoEventView(id, cameraKey, review) {
       distanceKm: finite(frame.distanceKm),
     })),
   };
-  await redis(["SET", GO_EVENT_PREFIX + cleanId, JSON.stringify(event), "EX", retentionDays() * 24 * 60 * 60]);
+  if (Number(await casReplaceGoEvent(cleanId, raw, event)) !== 1) {
+    if (attempt + 1 >= EVENT_CAS_RETRIES) throw new Error(`Concurrent view review update did not converge for ${cleanId}`);
+    return labelGoEventView(cleanId, cleanCameraKey, review, attempt + 1);
+  }
   await syncConfirmedGallery(event);
   return event;
 }
@@ -456,16 +524,14 @@ export async function loadConfirmedGallery(limit = 250) {
 export async function attachGoEventEvidence(id, evidence) {
   const cleanId = String(id || "").trim();
   if (!cleanId) return null;
-  const raw = await redis(["GET", GO_EVENT_PREFIX + cleanId]);
-  if (!raw) return null;
-  const event = JSON.parse(raw);
-  event.evidence = {
-    ...(event.evidence || {}),
-    ...evidence,
-    updatedAt: new Date().toISOString(),
-  };
-  await redis(["SET", GO_EVENT_PREFIX + cleanId, JSON.stringify(event), "EX", retentionDays() * 24 * 60 * 60]);
-  return event;
+  return mutateGoEvent(cleanId, event => {
+    event.evidence = {
+      ...(event.evidence || {}),
+      ...evidence,
+      updatedAt: new Date().toISOString(),
+    };
+    return event;
+  });
 }
 
 export function matchingAssessmentEvent(events, assessment, options = {}) {
@@ -497,6 +563,7 @@ export function researchDetectionFromAssessment(assessment) {
   const lat = Number(observer.lat), lon = Number(observer.lon), detectedMs = timeMs(at);
   if (!Number.isFinite(lat) || !Number.isFinite(lon) || !detectedMs) return null;
   const elevation = Number(geometry.sunElevationDeg), antiSolar = Number(geometry.antiSolarBearingDeg);
+  const apparentElevation = Number(geometry.apparentSunElevationDeg);
   const score = Number(geometry.radarScore), rainRate = Number(rain.rateMmHr);
   const observerRain = Number(rain.observerRateMmHr), rainDistance = Number(rain.distanceKm);
   const ledger = assessment?.researchReview?.source === "opportunity_ledger";
@@ -507,12 +574,15 @@ export function researchDetectionFromAssessment(assessment) {
     direction: Number.isFinite(antiSolar) ? { bearing: antiSolar, label: `Predicted bow direction ${Math.round(antiSolar)} degrees` } : null,
     score: finite(score), persistence: { confirmed: false, scanCount: 1, firstSeenAt: at, lastSeenAt: at },
     evidence: {
-      sunElevationDeg: finite(elevation), rainbowArcDeg: Number.isFinite(elevation) ? Math.max(0, 42 - elevation) : null,
+      sunElevationDeg: finite(elevation),
+      apparentSunElevationDeg: finite(apparentElevation),
+      rainbowArcDeg: Number.isFinite(apparentElevation) ? Math.max(0, 42 - apparentElevation)
+        : Number.isFinite(elevation) ? Math.max(0, 42 - elevation) : null,
       directNormalIrradianceWm2: null, directRadiationWm2: null, cloudCoverPct: null,
       rainPointDirectNormalIrradianceWm2: null, rainPointDirectRadiationWm2: null,
       rainPointCloudCoverPct: null, rainIntensity: finite(rainRate), observerRainIntensity: finite(observerRain),
       rainPoint: Number.isFinite(Number(rain.lat)) && Number.isFinite(Number(rain.lon))
-        ? { lat: Number(rain.lat), lon: Number(rain.lon), distanceKm: finite(rainDistance), bearing: antiSolar } : null,
+        ? { lat: Number(rain.lat), lon: Number(rain.lon), distanceKm: finite(rainDistance), bearing: null } : null,
       goes: null, selectionReason: ledger ? "opportunity-ledger-camera-gated-review-only" : "geometry-first-review-only",
       researchRuleVersion: assessment?.researchReview?.ruleVersion || null,
       researchSource: assessment?.researchReview?.source || "detector_rejection_log",
@@ -541,45 +611,64 @@ export async function attachReviewAssessments(assessments, options = {}) {
   if (!received.length) return { stored: true, received: 0, attached: 0, duplicates: 0, unmatched: 0 };
   const earliest = Math.min(...received.map(item => timeMs(item?.radarObservedAt)).filter(Boolean));
   const events = await loadRecentGoEvents(earliest - 20 * 60 * 1000, 250);
-  const touched = new Map();
   let attached = 0, duplicates = 0, unmatched = 0, created = 0;
   const ttlSeconds = retentionDays() * 24 * 60 * 60;
+  const eventIds = new Set();
   for (const assessment of received) {
     const key = String(assessment?.idempotencyKey || "").trim();
     const candidateId = String(assessment?.candidateId || "").trim();
     if (!/^[a-f0-9]{64}$/.test(key) || !candidateId) { unmatched++; continue; }
-    const assessmentOptions = assessment?.disposition === "selected_research_possible"
+    if (await redis(["GET", REVIEW_ASSESSMENT_IDEMPOTENCY_PREFIX + key])) { duplicates++; continue; }
+    const research = assessment?.disposition === "selected_research_possible";
+    const pool = events.filter(event => research
+      ? event.candidateType === "research_possible"
+      : event.candidateType !== "research_possible");
+    const ledgerEventId = String(assessment?.researchReview?.ledgerEventId || "").trim();
+    let event = research && ledgerEventId
+      ? pool.find(item => item.ledgerEventId === ledgerEventId
+        && Math.abs(timeMs(item.lastSeenAt) - timeMs(assessment.radarObservedAt)) <= (options.researchGapMinutes || 12) * 60 * 1000)
+      : null;
+    event ||= matchingAssessmentEvent(pool, assessment, research
       ? { ...options, radiusKm: options.researchRadiusKm || 35, gapMinutes: options.researchGapMinutes || 12 }
-      : options;
-    let event = matchingAssessmentEvent(events, assessment, assessmentOptions);
+      : { ...options, radiusKm: options.radiusKm || 3 });
     let isNew = false;
-    if (!event && assessment?.disposition === "selected_research_possible") {
+    if (!event && research) {
       event = newResearchReviewEvent(assessment);
-      if (event) { events.push(event); isNew = true; created++; }
+      if (event) {
+        const inserted = await createGoEvent(event);
+        if (!inserted) {
+          event = (await loadEventsByIds([GO_EVENT_PREFIX + event.id]))[0] || null;
+        } else {
+          events.push(event); isNew = true; created++;
+        }
+      }
     }
     if (!event) { unmatched++; continue; }
+    const targetId = event.id;
+    event = await mutateGoEvent(targetId, current => {
+      if ((current.candidateType === "research_possible") !== research) {
+        throw new Error("Research assessment event class changed during update");
+      }
+      if (research && !isNew) {
+        const detection = researchDetectionFromAssessment(assessment);
+        if (detection && !(current.detections || []).some(item => item.detectedAt === detection.detectedAt)) {
+          mergeDetection(current, detection);
+        }
+      }
+      if (assessment?.researchReview?.source) current.researchSource = assessment.researchReview.source;
+      if (assessment?.researchReview?.ledgerEventId) current.ledgerEventId = assessment.researchReview.ledgerEventId;
+      const compact = { ...assessment, receivedAt: new Date().toISOString(), matchedEventId: current.id };
+      current.researchAssessments = [
+        ...(current.researchAssessments || []).filter(item => item.idempotencyKey !== key), compact,
+      ].slice(-24);
+      return current;
+    });
+    const index = events.findIndex(item => item.id === event.id);
+    if (index >= 0) events[index] = event; else events.push(event);
     const claimed = await redis(["SET", REVIEW_ASSESSMENT_IDEMPOTENCY_PREFIX + key, "1", "NX", "EX", ttlSeconds]);
-    if (!claimed) { duplicates++; continue; }
-    if (!isNew && event.candidateType === "research_possible") {
-      const detection = researchDetectionFromAssessment(assessment);
-      if (detection && !(event.detections || []).some(item => item.detectedAt === detection.detectedAt)) mergeDetection(event, detection);
-      if (assessment?.researchReview?.source) event.researchSource = assessment.researchReview.source;
-      if (assessment?.researchReview?.ledgerEventId) event.ledgerEventId = assessment.researchReview.ledgerEventId;
-    }
-    const compact = {
-      ...assessment,
-      receivedAt: new Date().toISOString(),
-      matchedEventId: event.id,
-    };
-    event.researchAssessments = [...(event.researchAssessments || []).filter(item => item.idempotencyKey !== key), compact].slice(-24);
-    touched.set(event.id, event);
-    attached++;
+    if (!claimed) duplicates++; else attached++;
+    await redis(["ZADD", GO_EVENT_INDEX, timeMs(event.lastSeenAt), event.id]);
+    eventIds.add(event.id);
   }
-  const commands = [];
-  for (const event of touched.values()) {
-    commands.push(["SET", GO_EVENT_PREFIX + event.id, JSON.stringify(event), "EX", ttlSeconds]);
-    commands.push(["ZADD", GO_EVENT_INDEX, timeMs(event.lastSeenAt), event.id]);
-  }
-  await redisPipeline(commands);
-  return { stored: true, received: received.length, attached, duplicates, unmatched, created, eventIds: [...touched.keys()] };
+  return { stored: true, received: received.length, attached, duplicates, unmatched, created, eventIds: [...eventIds] };
 }

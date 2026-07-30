@@ -55,6 +55,31 @@ class OpportunityLedgerTests(unittest.TestCase):
         self.assertEqual(edge["overlapCells"], 0)
         self.assertEqual(edge["boundingBoxGapCells"], 2)
 
+    def test_bounding_box_containment_cannot_join_distant_cells(self):
+        old = {"componentId": "crescent", "eventId": "old-storm",
+               "runs": [[0, 0, 100, 1], [100, 0, 100, 1]],
+               "bounds": {"rowMin": 0, "rowMax": 100, "columnMin": 0, "columnMax": 100},
+               "cellCount": 102}
+        fresh = {"componentId": "fresh", "eventId": "fresh-storm", "runs": [[50, 50, 50, 1]],
+                 "bounds": {"rowMin": 50, "rowMax": 50, "columnMin": 50, "columnMax": 50},
+                 "cellCount": 1}
+        current = {"rainEvents": [fresh], "opportunities": [{"rainComponentId": "fresh", "eventId": "fresh-storm"}]}
+        linked = link_lineage({"rainEvents": [old]}, current, maximum_motion_cells=12)
+        self.assertEqual(linked["rainEvents"][0]["eventId"], "fresh-storm")
+        self.assertEqual(linked["lineageEdges"], [])
+
+    def test_equal_overlap_prefers_dominant_parent_not_event_id(self):
+        small = {"componentId": "small", "eventId": "a-speck", "runs": [[0, 0, 0, 1]],
+                 "bounds": {"rowMin": 0, "rowMax": 0, "columnMin": 0, "columnMax": 0}, "cellCount": 1}
+        large = {"componentId": "large", "eventId": "z-system", "runs": [[0, 0, 99, 1]],
+                 "bounds": {"rowMin": 0, "rowMax": 0, "columnMin": 0, "columnMax": 99}, "cellCount": 100}
+        merged = {"componentId": "merged", "eventId": "new", "runs": [[0, 0, 0, 1]],
+                  "bounds": {"rowMin": 0, "rowMax": 0, "columnMin": 0, "columnMax": 0}, "cellCount": 1}
+        current = {"rainEvents": [merged], "opportunities": [{"rainComponentId": "merged", "eventId": "new"}]}
+        linked = link_lineage({"rainEvents": [small, large]}, current)
+        self.assertEqual(linked["rainEvents"][0]["eventId"], "z-system")
+        self.assertEqual(linked["rainEvents"][0]["lineageScanCount"], 2)
+
     def test_merge_identity_follows_dominant_overlap(self):
         small = {"componentId": "small", "eventId": "a-small", "runs": [[0, 0, 0, 1]], "bounds": {"rowMin": 0, "rowMax": 0, "columnMin": 0, "columnMax": 0}}
         large = {"componentId": "large", "eventId": "z-large", "runs": [[0, 1, 4, 1]], "bounds": {"rowMin": 0, "rowMax": 0, "columnMin": 1, "columnMax": 4}}

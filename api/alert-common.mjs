@@ -134,6 +134,10 @@ export async function redisPipeline(commands) {
   });
   const data = await response.json().catch(() => ({}));
   if (!response.ok || data.error) throw new Error(data.error || `Redis pipeline failed (${response.status})`);
+  if (Array.isArray(data)) {
+    const failed = data.find(item => item?.error);
+    if (failed) throw new Error(failed.error || "Redis pipeline command failed");
+  }
   return data;
 }
 

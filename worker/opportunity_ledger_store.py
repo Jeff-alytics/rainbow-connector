@@ -10,6 +10,8 @@ from typing import Any
 
 from opportunity_ledger import METHOD_VERSION, SCHEMA_VERSION
 
+MAX_PREVIOUS_AGE_MINUTES = 15
+
 
 def parse_utc(value: str) -> datetime:
     parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
@@ -59,7 +61,8 @@ def _keys_for_day(bucket: str, day: datetime, s3_client: Any) -> list[str]:
         token = response["NextContinuationToken"]
 
 
-def load_previous(bucket: str, scan_time: str, s3_client: Any) -> tuple[dict | None, str | None]:
+def load_previous(bucket: str, scan_time: str, s3_client: Any,
+                  maximum_age_minutes: float = MAX_PREVIOUS_AGE_MINUTES) -> tuple[dict | None, str | None]:
     observed = parse_utc(scan_time)
     candidates = []
     for day in (observed - timedelta(days=1), observed):
@@ -70,4 +73,8 @@ def load_previous(bucket: str, scan_time: str, s3_client: Any) -> tuple[dict | N
         return None, None
     key = earlier[-1]
     body = s3_client.get_object(Bucket=bucket, Key=key)["Body"].read()
-    return json.loads(gzip.decompress(body)), key
+    previous = json.loads(gzip.decompress(body))
+    age_minutes = (observed - parse_utc(previous["scanTime"])).total_seconds() / 60
+    if age_minutes <= 0 or age_minutes > maximum_age_minutes:
+        return None, None
+    return previous, key

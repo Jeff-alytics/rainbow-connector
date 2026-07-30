@@ -52,19 +52,25 @@ def handler(event, context):
     stored = persist(ledger, os.environ.get("RAINBOW_RESEARCH_BUCKET", bucket), s3)
     # This is a private, post-publication lane. Only persistent ledger swaths
     # with an actually useful camera can consume one of two research slots.
-    review_selection = select_ledger_review_records(ledger, previous, sidecar, load_faa_catalog())
-    records = review_selection.pop("records")
-    if records:
-        enrich_sunlight_v2(records, [_sunlight_candidate(record) for record in records], ledger["scanTime"],
-                           Path(os.environ.get("RAINBOW_CACHE_DIR", "/tmp/rainbow-ledger-review")),
-                           assessment_processing_at=ledger["generatedAt"])
-    review_callback = safe_push_review_assessments({
-        "detectorRuleVersion": review_selection["ruleVersion"],
-        "generatedAt": ledger["generatedAt"],
-        "radar": {"observedAt": ledger["scanTime"], "rainFootprintId": ledger["rainFootprintId"],
-                  "rainFootprintContentSha256": actual_hash},
-        "records": records,
-    })
+    try:
+        catalog = load_faa_catalog()
+        if not catalog:
+            raise ValueError("FAA camera catalog is empty")
+        review_selection = select_ledger_review_records(ledger, previous, sidecar, catalog)
+        records = review_selection.pop("records")
+        if records:
+            enrich_sunlight_v2(records, [_sunlight_candidate(record) for record in records], ledger["scanTime"],
+                               Path(os.environ.get("RAINBOW_CACHE_DIR", "/tmp/rainbow-ledger-review")),
+                               assessment_processing_at=ledger["generatedAt"])
+        review_callback = safe_push_review_assessments({
+            "detectorRuleVersion": review_selection["ruleVersion"], "generatedAt": ledger["generatedAt"],
+            "radar": {"observedAt": ledger["scanTime"], "rainFootprintId": ledger["rainFootprintId"],
+                      "rainFootprintContentSha256": actual_hash}, "records": records,
+        })
+    except Exception as error:
+        print(f"[ledger-review] selection failed: {str(error)[:300]}")
+        review_selection = {"ok": False, "operationalImpact": False, "error": str(error)[:300], "selected": 0}
+        review_callback = {"ok": False, "skipped": True, "operationalImpact": False, "reason": "selection_failed"}
     return {
         "ok": True, "scanTime": ledger["scanTime"], "runtimeMs": round((time.time() - started) * 1000),
         "rainEvents": ledger["stats"]["rainEvents"], "opportunities": ledger["stats"]["opportunities"],

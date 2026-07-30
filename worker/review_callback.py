@@ -163,11 +163,15 @@ def callback_secret(ssm_client=None) -> str:
 
 def push_review_assessments(envelope: dict, session=None, secret: str | None = None) -> dict:
     url = str(os.environ.get("RAINBOW_REVIEW_ENRICH_URL") or "").strip()
-    secret = secret if secret is not None else callback_secret()
     payload = build_payload(envelope)
     if not payload["assessments"]:
         return {"ok": True, "skipped": True, "reason": "no selected assessments", "assessments": 0}
-    if not url or not secret:
+    # A missing URL is the operational kill switch. Do not even fetch the
+    # signing secret while the research-to-Review lane is paused.
+    if not url:
+        return {"ok": True, "skipped": True, "reason": "review callback not configured", "assessments": len(payload["assessments"])}
+    secret = secret if secret is not None else callback_secret()
+    if not secret:
         return {"ok": True, "skipped": True, "reason": "review callback not configured", "assessments": len(payload["assessments"])}
     session = session or requests.Session()
     results = []

@@ -59,9 +59,15 @@ def handler(event, context):
         Path(os.environ.get("RAINBOW_CACHE_DIR", "/tmp/rainbow-shadow")),
         assessment_processing_at=assessment_processing_at,
     )
-    camera_catalog = load_faa_catalog()
-    research_review = select_research_candidates(records, camera_catalog=camera_catalog)
     envelope["metrics"]["v1V2DisagreementRateByDisposition"] = disagreement_metrics(records)
+    try:
+        camera_catalog = load_faa_catalog()
+        if not camera_catalog:
+            raise ValueError("FAA camera catalog is empty")
+        research_review = select_research_candidates(records, camera_catalog=camera_catalog)
+    except Exception as error:
+        print(f"[research-review] selection failed: {str(error)[:300]}")
+        research_review = {"ok": False, "operationalImpact": False, "error": str(error)[:300], "selected": 0}
     envelope["shadowV2"] = {
         "methodVersion": METHOD_VERSION, "status": "complete" if not result.get("errors") else "complete_with_errors",
         "assessmentProcessingAt": result.get("assessmentProcessingAt"),

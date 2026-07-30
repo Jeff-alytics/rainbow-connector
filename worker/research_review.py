@@ -36,7 +36,7 @@ def angle_difference(a, b):
     return abs((a-b+540) % 360-180)
 
 
-def camera_matches(record, catalog, maximum_distance_km=80):
+def camera_matches(record, catalog, maximum_distance_km=40):
     features = record.get("features") or {}
     observer, geometry = features.get("observer") or {}, features.get("geometry") or {}
     lat, lon = finite(observer.get("lat")), finite(observer.get("lon"))
@@ -54,8 +54,15 @@ def camera_matches(record, catalog, maximum_distance_km=80):
         for camera in site.get("cameras") or []:
             # For intervals narrower than 180°, overlap equals the amount by which
             # their half-widths exceed the circular center separation.
-            fov = finite(camera.get("mapWedgeAngle")) or 45.0
-            overlap = max(0.0, half_extent + fov/2 - angle_difference(float(camera["bearing"]), anti))
+            bearing = finite(camera.get("bearing"))
+            fov = finite(camera.get("mapWedgeAngle"))
+            if bearing is None:
+                continue
+            if fov is None:
+                fov = 45.0
+            if fov <= 0:
+                continue
+            overlap = max(0.0, half_extent + fov/2 - angle_difference(bearing, anti))
             overlap = min(overlap, bow_width, fov)
             if overlap < 3: continue
             matches.append({"siteId": site.get("id"), "cameraId": camera.get("id"), "name": site.get("name"),
@@ -112,12 +119,15 @@ def select_research_candidates(records, maximum=MAX_PER_SCAN, camera_catalog=Non
                                     *rank_key(item[0])), reverse=True)
     selected = eligible[:max(0, min(int(maximum), MAX_PER_SCAN))]
     for rank, (record, matches) in enumerate(selected, 1):
+        original_disposition = record.get("originalDisposition") or record.get("disposition")
+        record["originalDisposition"] = original_disposition
         record["disposition"] = "selected_research_possible"
         record["decisionStage"] = "research_review_selection"
         record["decisionReasons"] = [*(record.get("decisionReasons") or []), "selected_geometry_first_review_v1"]
         record.setdefault("features", {})["researchReview"] = {
             "ruleVersion": RULE_VERSION, "rankWithinScan": rank, "reviewOnly": True,
             "publicClassificationChanged": False, "thresholdSnapshot": dict(THRESHOLDS),
+            "originalDisposition": original_disposition,
             "cameraMatches": matches,
         }
     return {"ruleVersion": RULE_VERSION, "eligible": len(eligible), "selected": len(selected),

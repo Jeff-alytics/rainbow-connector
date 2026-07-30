@@ -49,8 +49,22 @@ export function reviewQueue(events) {
       || Number(b.peakScore || 0) - Number(a.peakScore || 0)
       || new Date(b.lastSeenAt || 0) - new Date(a.lastSeenAt || 0);
     });
-  let researchSlots = 0;
-  return ordered.filter(event => event.candidateType !== "research_possible" || researchSlots++ < 2);
+  return ordered;
+}
+
+export function allCameraViewsReviewed(event) {
+  const groups = evidenceFrameReviewGroups(event);
+  if (!groups.length) return Boolean(event?.review?.label && event.review.label !== "pending");
+  return groups.every(group => {
+    const label = event?.viewReviews?.[group.key]?.label;
+    return Boolean(label && label !== "pending");
+  });
+}
+
+export function reviewSafeEvent(event) {
+  if (allCameraViewsReviewed(event)) return event;
+  const { researchAssessments: _hidden, ...safe } = event || {};
+  return safe;
 }
 
 function cameraForGroup(event, group) {
@@ -214,7 +228,7 @@ export function reviewResults(events) {
           bowArcOverlapDeg: Number.isFinite(camera.bowArcOverlapDeg) ? camera.bowArcOverlapDeg : null,
         },
         reviewStrength: reviewEvidenceStrength(camera.distanceKm, camera.bearingDifference, camera.viewQuality, camera.nearestFrameOffsetMinutes, camera.visibleBowFraction),
-        sunlightAssessment: (event.researchAssessments || []).at(-1) || null,
+        sunlightAssessment: allCameraViewsReviewed(event) ? (event.researchAssessments || []).at(-1) || null : null,
       };
     });
 }
@@ -235,7 +249,7 @@ export default async function handler(req, res) {
           || Object.values(event.viewReviews || {}).some(review => review?.label && review.label !== "pending"));
     const counts = {};
     for (const event of events) counts[event.review?.label || "pending"] = (counts[event.review?.label || "pending"] || 0) + 1;
-    const items = queue ? reviewQueueItems(loaded) : results ? reviewResults(events) : events;
+    const items = queue ? reviewQueueItems(loaded) : results ? reviewResults(events) : events.map(reviewSafeEvent);
     json(res, 200, { ok: true, events: items.length, counts, items });
     return;
   }
@@ -255,7 +269,7 @@ export default async function handler(req, res) {
       throw error;
     }
     if (!event) { json(res, 404, { ok: false, error: "Event not found." }); return; }
-    json(res, 200, { ok: true, event });
+    json(res, 200, { ok: true, event: reviewSafeEvent(event) });
     return;
   }
   res.setHeader("Allow", "GET, POST");

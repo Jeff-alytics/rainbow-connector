@@ -79,6 +79,14 @@ class ReviewCallbackTests(unittest.TestCase):
         self.assertLess(len(kwargs["data"]), 128 * 1024)
         self.assertEqual(json.loads(kwargs["data"])["schemaVersion"], "review-assessment.v1")
 
+    def test_missing_callback_url_skips_before_reading_secret(self):
+        envelope = {"radar": {"observedAt": "2026-07-28T23:34:00Z"}, "records": [record()]}
+        with patch.dict(os.environ, {"REVIEW_ENRICH_SECRET_PARAMETER": "/test/secret"}, clear=True), \
+             patch("review_callback.callback_secret", side_effect=AssertionError("secret should not be read")):
+            result = push_review_assessments(envelope)
+        self.assertTrue(result["skipped"])
+        self.assertEqual(result["reason"], "review callback not configured")
+
     def test_large_payload_is_split_below_the_http_cap(self):
         envelope = {"detectorRuleVersion": "rule-v1", "radar": {"observedAt": "2026-07-28T23:34:00Z"}, "records": []}
         for index in range(80):

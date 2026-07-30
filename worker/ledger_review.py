@@ -79,7 +79,11 @@ def _base_record(opportunity: dict, representative: dict, scan_time: str) -> dic
 
 def select_ledger_review_records(ledger: dict, previous: dict | None, sidecar: dict,
                                  camera_catalog: list[dict] | None, maximum: int = MAX_PER_SCAN) -> dict:
-    previous_events = {item.get("eventId") for item in (previous or {}).get("opportunities") or []}
+    current_time = datetime.fromisoformat(ledger["scanTime"].replace("Z", "+00:00"))
+    previous_time = datetime.fromisoformat((previous or {}).get("scanTime", "1970-01-01T00:00:00Z").replace("Z", "+00:00"))
+    scan_gap_minutes = (current_time - previous_time).total_seconds() / 60
+    previous_events = ({item.get("eventId") for item in (previous or {}).get("opportunities") or []}
+                       if 0 < scan_gap_minutes <= 15 else set())
     components = {item["componentId"]: item for item in ledger.get("rainEvents") or []}
     persistent = [item for item in ledger.get("opportunities") or [] if item.get("eventId") in previous_events]
     # Join from the 960 fixed FAA sites into a row-indexed swath instead of
@@ -134,7 +138,9 @@ def select_ledger_review_records(ledger: dict, previous: dict | None, sidecar: d
             "selectionReason": "camera-gated persistent observer swath",
             "currentDetectorDisposition": "not_generated_as_detector_candidate",
             "ledgerEventId": opportunity["eventId"], "opportunityId": opportunity["opportunityId"],
-            "ledgerMethodVersion": ledger.get("methodVersion"), "persistenceScans": 2, "cameraMatches": matches,
+            "ledgerMethodVersion": ledger.get("methodVersion"),
+            "persistenceScans": int(opportunity.get("persistenceScans") or 1),
+            "scanGapMinutes": round(scan_gap_minutes, 2), "cameraMatches": matches,
         }
     return {"ruleVersion": RULE_VERSION, "eligibleCameraMatches": len(candidates), "selected": len(selected),
             "selectedCandidateIds": [item[0]["candidateId"] for item in selected],

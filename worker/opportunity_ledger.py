@@ -9,8 +9,12 @@ import numpy as np
 from collections import defaultdict
 from datetime import datetime, timezone
 from functools import lru_cache
+from pathlib import Path
 
-from detector_core import CONUS_BOUNDS, is_conus_land, solar_position
+from shapely import contains_xy
+from shapely.geometry import shape
+
+from detector_core import CONUS_BOUNDS, solar_position
 
 SCHEMA_VERSION = "opportunity-ledger.v1"
 METHOD_VERSION = "observer-swath-physical-envelope-2026-07-v3-viable-only"
@@ -90,15 +94,30 @@ def rain_components(sidecar: dict) -> list[dict]:
             },
             "cellCount": sum(run[2] - run[1] + 1 for run in runs),
             "maximumTier": max(run[3] for run in runs),
+            "lineageScanCount": 1,
         })
     return sorted(components, key=lambda item: item["componentId"])
 
 
-def _component_gap(left: dict, right: dict) -> int:
-    a, b = left["bounds"], right["bounds"]
-    row_gap = max(0, a["rowMin"] - b["rowMax"], b["rowMin"] - a["rowMax"])
-    column_gap = max(0, a["columnMin"] - b["columnMax"], b["columnMin"] - a["columnMax"])
-    return max(row_gap, column_gap)
+def _component_gap(left: dict, right: dict, maximum: int = 12) -> int:
+    """Return the exact Chebyshev cell gap within the motion window."""
+    left_runs, right_runs = left.get("runs") or [], right.get("runs") or []
+    if len(left_runs) > len(right_runs):
+        left_runs, right_runs = right_runs, left_runs
+    right_by_row: dict[int, list[tuple[int, int]]] = defaultdict(list)
+    for row, first, last, _ in right_runs:
+        right_by_row[int(row)].append((int(first), int(last)))
+    best = maximum + 1
+    for row, first, last, _ in left_runs:
+        row, first, last = int(row), int(first), int(last)
+        for other_row in range(row - maximum, row + maximum + 1):
+            row_gap = abs(row - other_row)
+            if row_gap >= best:
+                continue
+            for other_first, other_last in right_by_row.get(other_row, ()):
+                column_gap = max(0, other_first - last, first - other_last)
+                best = min(best, max(row_gap, column_gap))
+    return best
 
 
 def _overlap_cell_count(left: dict, right: dict) -> int:
@@ -146,20 +165,26 @@ def link_lineage(previous: dict | None, current: dict, maximum_motion_cells: int
                     "linkBasis": "native_cell_overlap",
                     "overlapCells": count,
                     "boundingBoxGapCells": 0,
+                    "cellGapCells": 0,
                 }
         else:
             bounds = item["bounds"]
             possible_indices = set()
             for row in range(bounds["rowMin"], bounds["rowMax"] + 1):
                 possible_indices.update(old_motion_by_row.get(row, ()))
-            nearby = [(old[index], _component_gap(old[index], item)) for index in possible_indices]
-            nearest = min((gap for _, gap in nearby), default=maximum_motion_cells + 1)
-            matches = [candidate for candidate, gap in nearby if gap == nearest and gap <= maximum_motion_cells][:1]
+            nearby = [(old[index], _component_gap(old[index], item, maximum_motion_cells)) for index in possible_indices]
+            nearby = sorted(
+                ((candidate, gap) for candidate, gap in nearby if gap <= maximum_motion_cells),
+                key=lambda pair: (pair[1], -int(pair[0].get("cellCount") or 0), pair[0]["eventId"]),
+            )
+            matches = [nearby[0][0]] if nearby else []
             for candidate in matches:
+                nearest = _component_gap(candidate, item, maximum_motion_cells)
                 link_details[(candidate["componentId"], item["componentId"])] = {
                     "linkBasis": "nearest_motion_fallback",
                     "overlapCells": 0,
                     "boundingBoxGapCells": nearest,
+                    "cellGapCells": nearest,
                 }
         parents[item["componentId"]] = matches
         for match in matches:
@@ -170,10 +195,12 @@ def link_lineage(previous: dict | None, current: dict, maximum_motion_cells: int
                 key=lambda match: (
                     -link_details[(match["componentId"], item["componentId"])]["overlapCells"],
                     link_details[(match["componentId"], item["componentId"])]["boundingBoxGapCells"],
+                    -int(match.get("cellCount") or 0),
                     match["eventId"],
                 ),
             )[0]
             item["eventId"] = primary["eventId"]
+            item["lineageScanCount"] = int(primary.get("lineageScanCount") or 1) + 1
             item["primaryParentComponentId"] = primary["componentId"]
             item["parentComponentIds"] = sorted(match["componentId"] for match in matches)
     edges = []
@@ -194,9 +221,11 @@ def link_lineage(previous: dict | None, current: dict, maximum_motion_cells: int
                 **detail,
             })
     current["lineageEdges"] = sorted(edges, key=lambda item: (item["fromComponentId"], item["toComponentId"]))
-    opportunity_events = {item["componentId"]: item["eventId"] for item in new}
+    opportunity_events = {item["componentId"]: item for item in new}
     for opportunity in current.get("opportunities") or []:
-        opportunity["eventId"] = opportunity_events[opportunity["rainComponentId"]]
+        event = opportunity_events[opportunity["rainComponentId"]]
+        opportunity["eventId"] = event["eventId"]
+        opportunity["persistenceScans"] = int(event.get("lineageScanCount") or 1)
     return current
 
 
@@ -234,10 +263,10 @@ def _swath_coordinate(row: int, column: int) -> tuple[float, float]:
     return south + row * SWATH_RESOLUTION_DEG, west + column * SWATH_RESOLUTION_DEG
 
 
-@lru_cache(maxsize=750_000)
-def _swath_cell_is_land(row: int, column: int) -> bool:
-    lat, lon = _swath_coordinate(row, column)
-    return is_conus_land(lat, lon)
+@lru_cache(maxsize=1)
+def _land_geometry():
+    payload = json.loads(Path(__file__).with_name("conus-land.json").read_text(encoding="utf-8"))
+    return shape(payload["geometry"])
 
 
 def encode_swath(cells: set[tuple[int, int]]) -> list[list[int]]:
@@ -350,12 +379,15 @@ def observer_swath(component: dict, sidecar: dict, observed_at: datetime) -> dic
             rows = np.rint((observer_lats[valid] - CONUS_BOUNDS[1]) / SWATH_RESOLUTION_DEG).astype(int)
             columns = np.rint((observer_lons[valid] - CONUS_BOUNDS[0]) / SWATH_RESOLUTION_DEG).astype(int)
             projected_cells = set(zip(rows.tolist(), columns.tolist()))
-    # Quantization collapses many projected rays onto the same 2-3 km cell.
-    # Run the expensive coastline test once per unique cell, not once per ray.
+    # Shapely applies the same land polygon to the complete unique-cell array
+    # in native code. This replaces hundreds of thousands of Python ray casts.
     cells = set()
-    for cell in projected_cells:
-        if _swath_cell_is_land(*cell):
-            cells.add(cell)
+    if projected_cells:
+        projected = np.asarray(sorted(projected_cells), dtype=int)
+        cell_lats = CONUS_BOUNDS[1] + projected[:, 0] * SWATH_RESOLUTION_DEG
+        cell_lons = CONUS_BOUNDS[0] + projected[:, 1] * SWATH_RESOLUTION_DEG
+        on_land = np.asarray(contains_xy(_land_geometry(), cell_lons, cell_lats), dtype=bool)
+        cells = {tuple(item) for item in projected[on_land].tolist()}
     runs = encode_swath(cells)
     return {
         "schemaVersion": "observer-swath.v1",
@@ -388,6 +420,7 @@ def build_opportunity_ledger(sidecar: dict, previous: dict | None = None) -> dic
             "opportunityId": "bow-opportunity-" + event["componentId"].split("-")[-1],
             "rainComponentId": event["componentId"], "eventId": event["eventId"],
             "scanTime": _iso(observed_at), "observerSwath": swath,
+            "persistenceScans": 1,
             "disposition": "retained_sensor_supported",
             "thresholdSnapshot": {
                 "rainMinimumMmHr": 0.05, "sunApparentElevationDeg": [-0.833, 42],
