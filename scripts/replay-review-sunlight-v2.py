@@ -26,6 +26,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "worker"))
 
 from decision_log import SUNLIGHT_V2_METHOD_VERSION, candidate_id  # noqa: E402
+from review_callback import build_payload, payload_batches  # noqa: E402
 
 
 def instant(value: str) -> datetime:
@@ -164,6 +165,35 @@ def encoded(value: dict) -> bytes:
     return gzip.compress(json.dumps(value, sort_keys=True, separators=(",", ":")).encode(), mtime=0)
 
 
+def redeliver_existing(s3, bucket: str, event_ids: set[str], base_url: str, secret: str) -> dict:
+    assessments = []
+    paginator = s3.get_paginator("list_objects_v2")
+    prefix = "decision-log/rolling/review-exact-point-replay.v1/"
+    for page in paginator.paginate(Bucket=bucket, Prefix=prefix):
+        for item in page.get("Contents") or []:
+            body = s3.get_object(Bucket=bucket, Key=item["Key"])["Body"].read()
+            envelope = json.loads(gzip.decompress(body))
+            envelope["records"] = [record for record in envelope.get("records") or []
+                                   if str(record.get("replayTargetEventId") or "") in event_ids]
+            for assessment in build_payload(envelope)["assessments"]:
+                assessment["idempotencyKey"] = hashlib.sha256(
+                    f"{assessment['idempotencyKey']}|target-event-v1".encode()
+                ).hexdigest()
+                assessments.append(assessment)
+    payload = {"schemaVersion": "review-assessment.v1", "detectorRuleVersion": "review-exact-point-causal-replay-v1",
+               "sunlightMethodVersion": SUNLIGHT_V2_METHOD_VERSION, "sentAt": iso(datetime.now(timezone.utc)),
+               "assessments": assessments}
+    totals = {name: 0 for name in ("received", "attached", "duplicates", "unmatched")}
+    for _, body in payload_batches(payload):
+        response = requests.post(f"{base_url}/api/review-assessment", data=body,
+                                 headers={"Authorization": f"Bearer {secret}", "Content-Type": "application/json"}, timeout=30)
+        response.raise_for_status()
+        result = response.json()
+        for name in totals:
+            totals[name] += int(result.get(name) or 0)
+    return {"assessments": len(assessments), **totals}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--bucket", required=True)
@@ -172,6 +202,7 @@ def main() -> int:
     parser.add_argument("--end", required=True)
     parser.add_argument("--base-url", default="https://therainbowconnector.com")
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument("--redeliver", action="store_true")
     args = parser.parse_args()
     password = str(os.environ.get("GO_REVIEW_PASSWORD") or "").strip()
     if not password:
@@ -181,6 +212,12 @@ def main() -> int:
     session = review_session(base_url, password)
     events = missing_events(session, base_url, start, end)
     s3 = boto3.client("s3", region_name="us-east-1")
+    if args.redeliver:
+        secret = str(os.environ.get("REVIEW_ENRICH_SECRET") or "").strip()
+        if not secret:
+            raise SystemExit("REVIEW_ENRICH_SECRET is required for --redeliver")
+        print(json.dumps(redeliver_existing(s3, args.bucket, {str(event.get("id")) for event in events}, base_url, secret), sort_keys=True))
+        return 0
     sources = load_source_envelopes(s3, args.bucket, scan_keys(s3, args.bucket, events), events)
     groups: dict[str, dict] = {}
     skipped = []
