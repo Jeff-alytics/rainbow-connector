@@ -20,3 +20,9 @@ validation/webcoos/cache/
 __pycache__/
 *.pyc
 validation/
+
+# Turn-by-turn exchange between the Claude and Codex sessions on this machine.
+# Both run against this working tree, so a file is a lossless channel where
+# copy-pasting terminal output truncates. Conversational only -- anything worth
+# keeping gets promoted to docs/ and committed. See docs/agent-handoff.md.
+handoff/
