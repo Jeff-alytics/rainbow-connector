@@ -532,6 +532,41 @@ Resources:
       LogGroupName: !Sub /aws/lambda/${RainbowWorker}
       RetentionInDays: 14
 
+  # Lambda publishes Max Memory Used only in the REPORT log line, never as a
+  # CloudWatch metric, so memory pressure on the public path was unobservable
+  # and unalarmable. Extract it. The trailing "..." matches cold starts, which
+  # append Init Duration; verified against both shapes with test-metric-filter.
+  RainbowWorkerMemoryMetric:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref RainbowWorkerLogs
+      FilterPattern: "[r=REPORT, rl, rid, dl, dur, du, b1, b2, bdur, bdu, m1, m2, msize, msu, x1, x2, x3, maxmem, mmu, ...]"
+      MetricTransformations:
+        - MetricNamespace: RainbowConnector/Lambda
+          MetricName: RainbowWorkerMaxMemoryUsedMB
+          MetricValue: "$maxmem"
+          Unit: Megabytes
+
+  # 2400 MB of the 3008 MB ceiling, so there is lead time to act rather than an
+  # OOM with no warning. Maximum over two periods: a single deep scan should not
+  # page, a sustained climb should. notBreaching because a scan that never ran
+  # emits no REPORT line, and the staleness alarm already owns that signal.
+  RainbowWorkerMemoryAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: RainbowWorker memory exceeded 2400 MB of its 3008 MB ceiling.
+      Namespace: RainbowConnector/Lambda
+      MetricName: RainbowWorkerMaxMemoryUsedMB
+      Statistic: Maximum
+      Period: 900
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
+      Threshold: 2400
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
+
 Outputs:
   WorkerFunctionArn:
     Value: !GetAtt RainbowWorker.Arn

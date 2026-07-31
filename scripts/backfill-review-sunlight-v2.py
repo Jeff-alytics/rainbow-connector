@@ -49,6 +49,21 @@ def prefixes(start: datetime, end: datetime) -> list[str]:
 EVENT_PAGE_LIMIT = 1000
 
 
+def salted_key(idempotency_key: str, resalt: str) -> str:
+    """Return the natural key unless a salt is named.
+
+    The natural key makes re-running a no-op: the callback sees the existing
+    claim and counts a duplicate. Re-salting overrides that, which is needed
+    only when a live delivery burned the key without landing on this event.
+    attachReviewAssessments filters by the incoming key, so a new salt appends
+    rather than replaces and researchAssessments accumulates against its
+    24-entry cap.
+    """
+    if not resalt:
+        return idempotency_key
+    return hashlib.sha256(f"{idempotency_key}|{resalt}".encode("utf-8")).hexdigest()
+
+
 def guard_not_truncated(payload: dict, what: str) -> dict:
     if int(payload.get("events") or 0) >= EVENT_PAGE_LIMIT:
         raise SystemExit(
@@ -155,17 +170,7 @@ def main() -> int:
         payload = build_payload(filtered)
         selected_records += len(payload["assessments"])
         for assessment in payload["assessments"]:
-            # The natural key makes re-running a no-op: the callback sees the
-            # claim and counts a duplicate. Re-salting overrides that, which is
-            # occasionally needed when a live delivery burned the key without
-            # landing on this event -- but it must be a deliberate act, because
-            # attachReviewAssessments filters by the incoming key, so a new salt
-            # appends rather than replaces and researchAssessments accumulates
-            # against its 24-entry cap.
-            if args.resalt:
-                assessment["idempotencyKey"] = hashlib.sha256(
-                    f"{assessment['idempotencyKey']}|{args.resalt}".encode("utf-8")
-                ).hexdigest()
+            assessment["idempotencyKey"] = salted_key(assessment["idempotencyKey"], args.resalt)
             assessments[assessment["idempotencyKey"]] = assessment
 
     summary = {

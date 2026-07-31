@@ -61,6 +61,15 @@ def review_session(base_url: str, password: str) -> requests.Session:
 EVENT_PAGE_LIMIT = 1000
 
 
+def salted_key(idempotency_key: str, resalt: str) -> str:
+    """Return the natural key unless a salt is named. See the backfill script:
+    re-salting forces a re-attach and appends rather than replaces, so it must
+    be a deliberate act rather than the default."""
+    if not resalt:
+        return idempotency_key
+    return hashlib.sha256(f"{idempotency_key}|{resalt}".encode()).hexdigest()
+
+
 def guard_not_truncated(payload: dict, what: str) -> dict:
     if int(payload.get("events") or 0) >= EVENT_PAGE_LIMIT:
         raise SystemExit(
@@ -193,13 +202,7 @@ def redeliver_existing(s3, bucket: str, event_ids: set[str], base_url: str, secr
             envelope["records"] = [record for record in envelope.get("records") or []
                                    if str(record.get("replayTargetEventId") or "") in event_ids]
             for assessment in build_payload(envelope)["assessments"]:
-                # Natural key keeps redelivery idempotent. Re-salting forces a
-                # re-attach and appends rather than replaces, so require it to be
-                # named explicitly.
-                if resalt:
-                    assessment["idempotencyKey"] = hashlib.sha256(
-                        f"{assessment['idempotencyKey']}|{resalt}".encode()
-                    ).hexdigest()
+                assessment["idempotencyKey"] = salted_key(assessment["idempotencyKey"], resalt)
                 assessments.append(assessment)
     payload = {"schemaVersion": "review-assessment.v1", "detectorRuleVersion": "review-exact-point-causal-replay-v1",
                "sunlightMethodVersion": SUNLIGHT_V2_METHOD_VERSION, "sentAt": iso(datetime.now(timezone.utc)),

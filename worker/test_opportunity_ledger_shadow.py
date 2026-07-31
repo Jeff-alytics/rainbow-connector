@@ -71,6 +71,21 @@ class OpportunityLedgerShadowTests(unittest.TestCase):
         # its memory tail scales with rain extent: max observed 1945 MB against
         # the old 2048 MB ceiling. Guard the floor so it cannot be quietly cut.
         self.assertGreaterEqual(resources["RainbowWorker"]["Properties"]["MemorySize"], 3008)
+        # Max Memory Used exists only in the REPORT line, so without this filter
+        # memory pressure on the public path cannot alarm at all.
+        memory_filter = resources["RainbowWorkerMemoryMetric"]["Properties"]
+        transformation = memory_filter["MetricTransformations"][0]
+        # The extracted field must actually exist in the pattern, or the filter
+        # matches and publishes nothing.
+        self.assertTrue(transformation["MetricValue"].startswith("$"))
+        self.assertIn(transformation["MetricValue"].lstrip("$"), memory_filter["FilterPattern"])
+        self.assertTrue(memory_filter["FilterPattern"].rstrip().endswith("...]"),
+                        "pattern must tolerate the Init Duration field on cold starts")
+        memory_alarm = resources["RainbowWorkerMemoryAlarm"]["Properties"]
+        self.assertEqual(memory_alarm["MetricName"], transformation["MetricName"])
+        self.assertEqual(memory_alarm["Namespace"], transformation["MetricNamespace"])
+        self.assertLessEqual(memory_alarm["Threshold"], 2400)
+        self.assertEqual(memory_alarm["AlarmActions"], [{"Ref": "OpportunityLedgerAlarmTopic"}])
         lifecycle = resources["RainbowResearchBucket"]["Properties"]["LifecycleConfiguration"]["Rules"]
         self.assertTrue(any(rule.get("Prefix") == "opportunity-ledger/rolling/" for rule in lifecycle))
         invoke = ledger["EventInvokeConfig"]
