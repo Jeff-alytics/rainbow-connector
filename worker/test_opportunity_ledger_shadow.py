@@ -3,6 +3,9 @@ import json
 import unittest
 from pathlib import Path
 
+import yaml
+from yaml.nodes import MappingNode, ScalarNode, SequenceNode
+
 from opportunity_ledger_dispatch import invoke_opportunity_ledger, safe_invoke_opportunity_ledger
 from opportunity_ledger_store import encode, load_previous, object_key
 
@@ -19,23 +22,63 @@ class FakeS3:
     def get_object(self, Bucket, Key): return {"Body": io.BytesIO(self.objects[Key])}
 
 
+class CloudFormationLoader(yaml.SafeLoader):
+    pass
+
+
+def cloudformation_tag(loader, tag_suffix, node):
+    if isinstance(node, ScalarNode):
+        value = loader.construct_scalar(node)
+    elif isinstance(node, SequenceNode):
+        value = loader.construct_sequence(node)
+    elif isinstance(node, MappingNode):
+        value = loader.construct_mapping(node)
+    else:
+        raise TypeError(f"Unsupported YAML node: {type(node).__name__}")
+    return {tag_suffix: value}
+
+
+CloudFormationLoader.add_multi_constructor("!", cloudformation_tag)
+
+
 class OpportunityLedgerShadowTests(unittest.TestCase):
     def test_infrastructure_is_private_rolling_and_post_publication(self):
         root = Path(__file__).resolve().parents[1]
-        template = (root / "template.yaml").read_text(encoding="utf-8")
+        template_text = (root / "template.yaml").read_text(encoding="utf-8")
+        template = yaml.load(template_text, Loader=CloudFormationLoader)
         source = (root / "worker" / "lambda_function.py").read_text(encoding="utf-8")
-        self.assertIn("OpportunityLedgerWorker:", template)
-        self.assertIn("worker.opportunity_ledger_lambda.handler", template)
-        self.assertIn("Prefix: opportunity-ledger/rolling/", template)
-        self.assertIn("MaximumEventAgeInSeconds: 300", template)
-        self.assertIn("MaximumRetryAttempts: 0", template)
-        self.assertIn("ReadWriteRollingOpportunityLedgers", template)
-        shadow_block = template.split("SunlightShadowWorker:", 1)[1].split("SunlightShadowWorkerLogs:", 1)[0]
-        ledger_block = template.split("OpportunityLedgerWorker:", 1)[1].split("OpportunityLedgerWorkerLogs:", 1)[0]
-        self.assertIn("RAINBOW_REVIEW_ENRICH_URL: !Ref ReviewEnrichUrl", shadow_block)
-        self.assertIn('RAINBOW_RESEARCH_REVIEW_ENABLED: "false"', shadow_block)
-        self.assertNotIn("RAINBOW_REVIEW_ENRICH_URL", ledger_block)
-        self.assertNotIn("RAINBOW_PUBLISH_URL: !Ref PublishUrl", template.split("OpportunityLedgerWorker:", 1)[1])
+        resources = template["Resources"]
+        shadow = resources["SunlightShadowWorker"]["Properties"]
+        ledger = resources["OpportunityLedgerWorker"]["Properties"]
+        shadow_env = shadow["Environment"]["Variables"]
+        ledger_env = ledger["Environment"]["Variables"]
+        self.assertEqual(shadow["ImageConfig"]["Command"], ["worker.shadow_lambda.handler"])
+        self.assertEqual(ledger["ImageConfig"]["Command"], ["worker.opportunity_ledger_lambda.handler"])
+        self.assertEqual(shadow_env["RAINBOW_REVIEW_ENRICH_URL"], {"Ref": "ReviewEnrichUrl"})
+        self.assertEqual(shadow_env["RAINBOW_RESEARCH_REVIEW_ENABLED"], "false")
+        self.assertNotIn("RAINBOW_REVIEW_ENRICH_URL", ledger_env)
+        self.assertNotIn("RAINBOW_PUBLISH_URL", ledger_env)
+        lifecycle = resources["RainbowResearchBucket"]["Properties"]["LifecycleConfiguration"]["Rules"]
+        self.assertTrue(any(rule.get("Prefix") == "opportunity-ledger/rolling/" for rule in lifecycle))
+        invoke = ledger["EventInvokeConfig"]
+        self.assertEqual(invoke["MaximumEventAgeInSeconds"], 120)
+        self.assertEqual(invoke["MaximumRetryAttempts"], 0)
+        topic = resources["OpportunityLedgerAlarmTopic"]
+        self.assertEqual(topic["Type"], "AWS::SNS::Topic")
+        for name in ("OpportunityLedgerDurationAlarm", "OpportunityLedgerErrorsAlarm", "OpportunityLedgerStaleAlarm"):
+            alarm = resources[name]["Properties"]
+            self.assertEqual(alarm["AlarmActions"], [{"Ref": "OpportunityLedgerAlarmTopic"}])
+        # A skipped dispatch emits no Duration or Errors datapoint, so only the
+        # invocation alarm may treat missing data as a failure. Breaching on the
+        # other two would page with the wrong diagnosis on every footprint gap.
+        self.assertEqual(resources["OpportunityLedgerDurationAlarm"]["Properties"]["TreatMissingData"], "notBreaching")
+        self.assertEqual(resources["OpportunityLedgerErrorsAlarm"]["Properties"]["TreatMissingData"], "notBreaching")
+        stale = resources["OpportunityLedgerStaleAlarm"]["Properties"]
+        self.assertEqual(stale["TreatMissingData"], "breaching")
+        self.assertEqual(stale["MetricName"], "Invocations")
+        self.assertEqual(stale["ComparisonOperator"], "LessThanThreshold")
+        # Must span more than one scan so the 4/6-minute cadence cannot alias.
+        self.assertGreaterEqual(stale["Period"], 900)
         self.assertLess(source.index("stored = publish_artifact"), source.index("notified = notify_subscribers"))
         self.assertLess(source.index("notified = notify_subscribers"), source.index("rain_footprint ="))
         self.assertLess(source.index("rain_footprint ="), source.index("opportunity_ledger ="))

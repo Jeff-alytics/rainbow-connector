@@ -32,7 +32,9 @@ export default async function handler(req, res) {
     json(res, 200, { ok: true, subscribers: 0, items: [] });
     return;
   }
-  const responses = await redisPipeline(keys.slice(0, 1000).map(key => ["GET", key]));
+  // Read fanout: one malformed subscriber key must not empty the whole table.
+  // The row-level try/catch below is only reachable if the pipeline tolerates it.
+  const responses = await redisPipeline(keys.slice(0, 1000).map(key => ["GET", key]), { allowCommandErrors: true });
   const rows = responses.map(response => {
     try { return response?.result ? JSON.parse(response.result) : null; } catch { return null; }
   }).filter(Boolean);

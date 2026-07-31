@@ -5,7 +5,8 @@ import test from "node:test";
 
 import { redisPipeline } from "../api/alert-common.mjs";
 import { GO_EVENT_PREFIX, attachReviewAssessments, evidenceFrameReviewKey, labelGoEvent, labelGoEventView,
-  mutateGoEvent, newGoEvent, newResearchReviewEvent } from "../api/go-event-common.mjs";
+  mutateGoEvent, newGoEvent, newResearchReviewEvent, saveHistoricalReviewEvent,
+  syncConfirmedGallery } from "../api/go-event-common.mjs";
 
 function response(result) {
   return { ok: true, status: 200, json: async () => ({ result }) };
@@ -156,6 +157,62 @@ test("Redis pipeline can preserve per-key tolerance for read fanout", async () =
     assert.equal(rows[0].result, "value");
     assert.equal(rows[1].error, "one key failed");
   });
+});
+
+function recordingRedis(seed = {}) {
+  const values = new Map(Object.entries(seed));
+  const commands = [];
+  const fetch = async (_url, options) => {
+    const body = JSON.parse(options.body);
+    const batch = Array.isArray(body[0]) ? body : [body];
+    batch.forEach(command => commands.push(command));
+    const reply = command => {
+      const [name, ...args] = command;
+      if (name === "GET") return { result: values.get(args[0]) ?? null };
+      if (name === "SET") {
+        if (args.includes("NX") && values.has(args[0])) return { result: null };
+        values.set(args[0], args[1]);
+        return { result: "OK" };
+      }
+      return { result: 1 };
+    };
+    if (Array.isArray(body[0])) return { ok: true, status: 200, json: async () => batch.map(reply) };
+    return { ok: true, status: 200, json: async () => reply(body) };
+  };
+  return { values, commands, fetch, find: name => commands.find(command => command[0] === name) };
+}
+
+test("historical review events are claimed with NX so a concurrent seed cannot be clobbered", async () => {
+  const candidate = { cameraId: "cam-1", observedAt: "2026-07-29T22:10:00Z", lat: 39.29, lon: -76.61,
+    score: 70, bowBearing: 100, sourceKey: "cam-1:2026-07-29T22:10:00.000Z" };
+  const fake = recordingRedis();
+  const first = await withRedis(fake, () => saveHistoricalReviewEvent(candidate));
+  assert.equal(first.stored, true);
+  const write = fake.find("SET");
+  assert.equal(write.includes("NX"), true, "historical write must be conditional");
+  assert.equal(write.includes("EX"), true, "historical write must carry a TTL");
+  // A second writer racing the same source key must not overwrite the first.
+  const rival = { ...JSON.parse(fake.values.get(GO_EVENT_PREFIX + first.event.id)),
+    review: { label: "rainbow", reviewedAt: "2026-07-29T23:00:00Z" } };
+  fake.values.set(GO_EVENT_PREFIX + first.event.id, JSON.stringify(rival));
+  const second = await withRedis(fake, () => saveHistoricalReviewEvent(candidate));
+  assert.equal(second.stored, false);
+  assert.equal(JSON.parse(fake.values.get(GO_EVENT_PREFIX + first.event.id)).review.label, "rainbow");
+});
+
+test("confirmed gallery rows expire with the event they describe", async () => {
+  const event = newGoEvent({ detectedAt: "2026-07-30T02:20:00Z", lat: 41, lon: -112,
+    score: 90, candidateClass: "GO", evidence: {} });
+  event.review = { label: "rainbow", reviewedAt: "2026-07-30T03:00:00Z",
+    confirmedFrames: [{ url: "https://frames.test/a.jpg", source: "FAA WeatherCam", distanceKm: 12 }] };
+  event.evidence = { source: "FAA WeatherCam", camera: { name: "Test" },
+    frames: [{ url: "https://frames.test/a.jpg", timeOffsetMinutes: 5 }] };
+  const fake = recordingRedis();
+  await withRedis(fake, () => syncConfirmedGallery(event));
+  const write = fake.commands.find(command => command[0] === "SET" && String(command[1]).startsWith("rainbow:gallery:item:"));
+  assert.ok(write, "gallery row must be written");
+  assert.equal(write.includes("EX"), true, "gallery row must carry a TTL");
+  assert.equal(Number(write[write.indexOf("EX") + 1]) > 0, true);
 });
 
 test("Python review callback payload matches the JavaScript research-event contract", () => {

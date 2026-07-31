@@ -245,9 +245,27 @@ test("multiple camera views cannot expand research candidates beyond two review 
   assert.deepEqual(items.map(item => item.eventId), ["research-multi-1", "research-multi-2"]);
 });
 
-test("sunlight assessment stays hidden until every sibling camera view is graded", () => {
+test("a lone research event still fills both review slots with separate camera views", () => {
+  // Per-event fairness must not forfeit the second slot when there is no second
+  // event to give it to. A camera-gated candidate is worth two views.
+  const frames = ["10", "20", "30"].flatMap(cameraId => [
+    { url: `a${cameraId}`, source: "FAA WeatherCam", siteId: 1, cameraId, timeOffsetMinutes: 4, distanceKm: 12 },
+    { url: `b${cameraId}`, source: "FAA WeatherCam", siteId: 1, cameraId, timeOffsetMinutes: 9, distanceKm: 12 },
+  ]);
+  const event = { id: "research-solo", candidateType: "research_possible", candidateClass: "POSSIBLE",
+    scanCount: 2, lastSeenAt: "2026-07-30T20:00:00Z", review: { label: "pending" },
+    evidence: { source: "FAA WeatherCam", frames }, viewReviews: {}, representative: { evidence: {} } };
+  const items = reviewQueueItems([event]);
+  assert.equal(items.length, 2);
+  assert.deepEqual(items.map(item => item.eventId), ["research-solo", "research-solo"]);
+  assert.equal(new Set(items.map(item => item.cameraKey)).size, 2);
+});
+
+test("sunlight assessment and research context stay hidden until every sibling camera view is graded", () => {
   const event = { id: "siblings", candidateType: "research_possible", review: { label: "pending" },
-    researchAssessments: [{ sunlightState: "sunlit_supported" }], evidence: { frames: [
+    researchAssessments: [{ sunlightState: "sunlit_supported",
+      researchReview: { selectionReason: "strong geometry", currentDetectorDisposition: "rejected" },
+      rain: { antiSolarRainArcSpanDeg: 35 } }], evidence: { frames: [
       { url: "a", source: "FAA WeatherCam", siteId: 1, cameraId: 10 },
       { url: "b", source: "FAA WeatherCam", siteId: 2, cameraId: 20 },
     ] }, viewReviews: {} };
@@ -255,6 +273,7 @@ test("sunlight assessment stays hidden until every sibling camera view is graded
   const queueItem = reviewQueueItems([{ ...event, scanCount: 2 }])[0];
   assert.equal("sunlightAssessmentAvailable" in queueItem, false);
   assert.equal("researchAssessments" in queueItem, false);
+  assert.equal(queueItem.researchContext, null);
   event.viewReviews[groups[0].key] = { label: "no_rainbow", reviewedAt: "2026-07-30T02:30:00Z" };
   assert.equal(allCameraViewsReviewed(event), false);
   assert.equal("researchAssessments" in reviewSafeEvent(event), false);

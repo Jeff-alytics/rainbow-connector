@@ -114,7 +114,10 @@ function queueItem(event, group = null) {
     candidateType: event.candidateType || "live_go",
     researchSource: event.researchSource || null,
     scanCount: Number.isFinite(event.scanCount) ? event.scanCount : null,
-    researchContext: event.candidateType === "research_possible" ? {
+    // Detailed selection evidence can anchor the human grade just as strongly
+    // as the sunlight verdict. Reveal it only after every sibling camera view
+    // has been graded.
+    researchContext: event.candidateType === "research_possible" && allCameraViewsReviewed(event) ? {
       selectionReason: latestAssessment?.researchReview?.selectionReason || event.representative?.evidence?.selectionReason || null,
       currentDetectorDisposition: latestAssessment?.researchReview?.currentDetectorDisposition
         || event.representative?.evidence?.currentDetectorDisposition || null,
@@ -158,13 +161,22 @@ export function reviewQueueItems(events) {
       .map(group => queueItem(event, group));
   });
   const operational = items.filter(item => item.candidateType !== "research_possible");
+  const researchItems = items.filter(item => item.candidateType === "research_possible");
   const research = [];
   const representedEvents = new Set();
-  for (const item of items) {
-    if (item.candidateType !== "research_possible" || representedEvents.has(item.eventId)) continue;
+  // First pass gives every distinct event one slot, so a multi-camera event
+  // cannot starve a second candidate. Second pass spends any slot the first
+  // pass left unused on a further view of an event already represented, so a
+  // lone candidate still gets both slots.
+  for (const item of researchItems) {
+    if (research.length >= 2) break;
+    if (representedEvents.has(item.eventId)) continue;
     representedEvents.add(item.eventId);
     research.push(item);
+  }
+  for (const item of researchItems) {
     if (research.length >= 2) break;
+    if (!research.includes(item)) research.push(item);
   }
   return [...operational, ...research];
 }

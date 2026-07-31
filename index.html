@@ -1556,6 +1556,7 @@ function updateCandidatePinMarkers(){
     let m = candPinMarkers.get(id);
     if (!m) {
       const el = document.createElement("div");
+      el.className = "bow-pin";
       el.textContent = c.verdict === "watch" ? "\u26C5" : "\uD83C\uDF08";
       el.title = c.label || "";
       el.addEventListener("click", ev => {
@@ -1569,7 +1570,13 @@ function updateCandidatePinMarkers(){
       const cur = m.getLngLat();
       if (cur.lng !== c.lon || cur.lat !== c.lat) m.setLngLat([c.lon, c.lat]);
     }
-    if (m.getElement().className !== cls) m.getElement().className = cls;
+    // MapLibre adds its own maplibregl-marker class, which owns the absolute
+    // positioning transform. Never replace the whole className or the pin will
+    // drift in normal document flow while the map zooms.
+    const markerEl = m.getElement();
+    markerEl.classList.add("bow-pin");
+    markerEl.classList.toggle("maybe", c.verdict === "watch");
+    markerEl.classList.toggle("active", active);
   }
   for (const [id, m] of candPinMarkers) if (!seen.has(id)) { m.remove(); candPinMarkers.delete(id); }
 }

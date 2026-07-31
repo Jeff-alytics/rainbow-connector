@@ -5,7 +5,9 @@ from pathlib import Path
 from unittest.mock import patch
 
 from review_callback import build_payload, callback_secret, payload_batches, push_review_assessments
+from ledger_review import select_ledger_review_records
 from sunlight_v2 import METHOD_VERSION
+from test_ledger_review import camera_catalog, example
 
 
 def record(disposition="selected_possible"):
@@ -63,6 +65,27 @@ class ReviewCallbackTests(unittest.TestCase):
                     "radar": {"observedAt": "2026-07-30T02:20:00Z", "rainFootprintId": "fp-1"},
                     "records": [item]}
         self.assertEqual(build_payload(envelope)["assessments"][0], expected)
+
+    def test_real_ledger_selector_preserves_cross_language_identity_fields(self):
+        sidecar, previous, ledger = example()
+        selected = select_ledger_review_records(ledger, previous, sidecar, camera_catalog(ledger))
+        self.assertEqual(selected["selected"], 1)
+        record = selected["records"][0]
+        opportunity = ledger["opportunities"][0]
+        research = record["features"]["researchReview"]
+        self.assertEqual(research["ledgerEventId"], opportunity["eventId"])
+        self.assertEqual(research["opportunityId"], opportunity["opportunityId"])
+        record["features"]["sunlightV2"] = {
+            "methodVersion": METHOD_VERSION, "sunlightState": "unresolved",
+        }
+        payload = build_payload({
+            "detectorRuleVersion": "contract-test",
+            "radar": {"observedAt": ledger["scanTime"], "rainFootprintId": sidecar["rainFootprintId"]},
+            "records": [record],
+        })
+        assessment = payload["assessments"][0]
+        self.assertEqual(assessment["researchReview"]["ledgerEventId"], opportunity["eventId"])
+        self.assertEqual(assessment["researchReview"]["opportunityId"], opportunity["opportunityId"])
 
     def test_payload_includes_selected_and_excludes_rejected(self):
         envelope = {"detectorRuleVersion": "rule-v1", "radar": {"observedAt": "2026-07-28T23:34:00Z", "rainFootprintId": "fp", "rainFootprintContentSha256": "hash"}, "records": [record(), record("rejected")]}

@@ -282,11 +282,15 @@ Resources:
           Value: !Ref OpportunityLedgerWorker
       Statistic: Maximum
       Period: 300
-      EvaluationPeriods: 1
-      DatapointsToAlarm: 1
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
       Threshold: 90000
       ComparisonOperator: GreaterThanThreshold
-      TreatMissingData: breaching
+      # Missing data means the scan never ran, which is a staleness condition,
+      # not a slow run. Breaching here would page "exceeded the 90-second
+      # budget" whenever the rain footprint was unavailable. See the
+      # invocation alarm below, which owns that signal.
+      TreatMissingData: notBreaching
       AlarmActions:
         - !Ref OpportunityLedgerAlarmTopic
 
@@ -305,6 +309,29 @@ Resources:
       DatapointsToAlarm: 1
       Threshold: 0
       ComparisonOperator: GreaterThanThreshold
+      # An absent datapoint means no invocation, not a silent error.
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
+
+  # Owns the "did not run" signal. Period spans three scans so the 4/6-minute
+  # cadence alternation cannot leave a legitimately empty 5-minute bucket, and
+  # missing data is breaching because total silence IS the failure here.
+  OpportunityLedgerStaleAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Opportunity ledger stopped running; no invocation in 15 minutes.
+      Namespace: AWS/Lambda
+      MetricName: Invocations
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref OpportunityLedgerWorker
+      Statistic: Sum
+      Period: 900
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 1
+      ComparisonOperator: LessThanThreshold
       TreatMissingData: breaching
       AlarmActions:
         - !Ref OpportunityLedgerAlarmTopic

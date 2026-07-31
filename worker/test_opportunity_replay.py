@@ -8,6 +8,15 @@ from opportunity_replay import build_report
 
 
 class OpportunityReplayTests(unittest.TestCase):
+    EXPECTED_OBSERVATIONS = {
+        "baltimore-dundalk-20260728": {"baltimore": (39.2904, -76.6122), "dundalk": (39.2507, -76.5205)},
+        "colorado-multicamera-20260730": {"silver-west": (38.02381, -105.37973), "saguache-ne": (38.09902, -106.17035), "fremont-county": (38.4323, -105.1031)},
+        "utah-ogden-bear-river-20260730": {"ogden": (41.193604, -112.00825), "bear-river": (41.724174, -112.18263)},
+        "middletown-connecticut-20260729": {"middletown": (41.5623, -72.6506)},
+        "meeker-camera-20260709": {"meeker": (40.044106, -107.88861)},
+        "delano-low-sun-20260729": {"delano": (41.723, -114.1839)},
+    }
+
     def test_frozen_case_fixture_hash_and_unresolved_time_are_explicit(self):
         path = Path(__file__).resolve().parents[1] / "validation" / "opportunity-ledger" / "case-fixture-v1.json"
         fixture = json.loads(path.read_text(encoding="utf-8"))
@@ -50,6 +59,30 @@ class OpportunityReplayTests(unittest.TestCase):
         ]}
         report = build_report(fixture, [])
         self.assertEqual([item["disposition"] for item in report["cases"]], ["fixture_not_ready", "ledger_window_missing"])
+
+    def test_frozen_report_pins_every_named_case_and_observer_location(self):
+        root = Path(__file__).resolve().parents[1] / "validation" / "opportunity-ledger"
+        fixture = json.loads((root / "case-fixture-v1.json").read_text(encoding="utf-8"))
+        report = json.loads((root / "replay-report-v1.json").read_text(encoding="utf-8"))
+        self.assertEqual(report["fixtureContentSha256"], fixture["contentSha256"])
+        self.assertEqual(set(self.EXPECTED_OBSERVATIONS), {item["caseId"] for item in report["cases"]})
+        self.assertEqual(report["summary"]["cases"], 6)
+        self.assertEqual(report["summary"]["evaluated"], 6)
+        self.assertEqual(report["summary"]["observationsInsideSwath"], 10)
+        for case in report["cases"]:
+            self.assertEqual(case["disposition"], "evaluated")
+            self.assertTrue(case["rainEventRetained"])
+            self.assertTrue(case["opportunityRetained"])
+            expected = self.EXPECTED_OBSERVATIONS[case["caseId"]]
+            self.assertEqual(set(expected), {item["observationId"] for item in case["observations"]})
+            for observation in case["observations"]:
+                self.assertEqual(
+                    (observation["observer"]["lat"], observation["observer"]["lon"]),
+                    expected[observation["observationId"]],
+                )
+                self.assertTrue(observation["insideObserverSwath"])
+                self.assertLessEqual(observation["nearestSwathKm"], 3)
+                self.assertEqual(observation["failureCodes"], [])
 
 
 if __name__ == "__main__":

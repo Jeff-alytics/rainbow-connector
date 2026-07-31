@@ -207,10 +207,14 @@ export async function saveHistoricalReviewEvent(candidate) {
     review: { label: "pending", reviewedAt: null, notes: null, evidenceUrls: [] },
   };
   const ttlSeconds = retentionDays() * 24 * 60 * 60;
-  await redisPipeline([
-    ["SET", GO_EVENT_PREFIX + id, JSON.stringify(event), "EX", ttlSeconds],
-    ["ZADD", GO_EVENT_INDEX, Date.now(), id],
-  ]);
+  // NX so a concurrent seed cannot be clobbered between the GET above and this
+  // write. Losing the race means the other writer already stored the event.
+  const claimed = await redis(["SET", GO_EVENT_PREFIX + id, JSON.stringify(event), "NX", "EX", ttlSeconds]);
+  if (!claimed) {
+    const existing = await redis(["GET", GO_EVENT_PREFIX + id]);
+    return { stored: false, reason: "duplicate", event: existing ? JSON.parse(existing) : event };
+  }
+  await redisPipeline([["ZADD", GO_EVENT_INDEX, Date.now(), id]]);
   return { stored: true, event };
 }
 
@@ -506,8 +510,10 @@ export async function syncConfirmedGallery(event) {
     return { stored: false, reason: "not_confirmed_rainbow" };
   }
   const score = new Date(record.confirmedAt).getTime() || Date.now();
+  // Expire with the event it describes. Without EX this was the only unbounded
+  // key in the store, so graded events aged out while their gallery row did not.
   await redisPipeline([
-    ["SET", CONFIRMED_GALLERY_PREFIX + event.id, JSON.stringify(record)],
+    ["SET", CONFIRMED_GALLERY_PREFIX + event.id, JSON.stringify(record), "EX", retentionDays() * 24 * 60 * 60],
     ["ZADD", CONFIRMED_GALLERY_INDEX, score, event.id],
   ]);
   return { stored: true, eventId: event.id, frames: record.frames.length };
