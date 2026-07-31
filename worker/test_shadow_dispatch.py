@@ -1,5 +1,11 @@
 import json
+import sys
 import unittest
+from pathlib import Path
+
+API_DIR = Path(__file__).resolve().parents[1] / 'api'
+if str(API_DIR) not in sys.path:
+    sys.path.insert(0, str(API_DIR))
 
 from shadow_dispatch import invoke_sunlight_v2, safe_invoke_sunlight_v2
 from shadow_lambda import already_enriched, candidate_from_record

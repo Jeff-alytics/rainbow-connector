@@ -143,6 +143,11 @@ Resources:
       Timeout: 300
       EphemeralStorage:
         Size: 3072
+      EventInvokeConfig:
+        DestinationConfig:
+          OnFailure:
+            Type: SNS
+            Destination: !Ref OpportunityLedgerAlarmTopic
       Environment:
         Variables:
           RAINBOW_CACHE_DIR: /tmp/rainbow-shadow
@@ -188,6 +193,11 @@ Resources:
       Timeout: 300
       EphemeralStorage:
         Size: 2048
+      EventInvokeConfig:
+        DestinationConfig:
+          OnFailure:
+            Type: SNS
+            Destination: !Ref OpportunityLedgerAlarmTopic
       Environment:
         Variables:
           RAINBOW_MAP_TIER_PUBLISH_URL: !Ref MapTierPublishUrl
@@ -227,6 +237,10 @@ Resources:
       EventInvokeConfig:
         MaximumEventAgeInSeconds: 120
         MaximumRetryAttempts: 0
+        DestinationConfig:
+          OnFailure:
+            Type: SNS
+            Destination: !Ref OpportunityLedgerAlarmTopic
       Environment:
         Variables:
           RAINBOW_RESEARCH_BUCKET: !Ref RainbowResearchBucket
@@ -305,8 +319,8 @@ Resources:
           Value: !Ref OpportunityLedgerWorker
       Statistic: Sum
       Period: 300
-      EvaluationPeriods: 1
-      DatapointsToAlarm: 1
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
       Threshold: 0
       ComparisonOperator: GreaterThanThreshold
       # An absent datapoint means no invocation, not a silent error.
@@ -336,6 +350,176 @@ Resources:
       AlarmActions:
         - !Ref OpportunityLedgerAlarmTopic
 
+  RainbowWorkerDurationAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Rainbow worker exceeded the scan duration budget.
+      Namespace: AWS/Lambda
+      MetricName: Duration
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref RainbowWorker
+      Statistic: Maximum
+      Period: 300
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
+      Threshold: 180000
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
+
+  RainbowWorkerErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Rainbow worker emitted a Lambda error.
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref RainbowWorker
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
+
+  RainbowWorkerStaleAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Rainbow worker stopped running; no invocation in 15 minutes.
+      Namespace: AWS/Lambda
+      MetricName: Invocations
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref RainbowWorker
+      Statistic: Sum
+      Period: 900
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 1
+      ComparisonOperator: LessThanThreshold
+      TreatMissingData: breaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
+
+  MapTierWorkerDurationAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Map tier worker exceeded the scan duration budget.
+      Namespace: AWS/Lambda
+      MetricName: Duration
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref MapTierWorker
+      Statistic: Maximum
+      Period: 300
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
+      Threshold: 300000
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
+
+  MapTierWorkerErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Map tier worker emitted a Lambda error.
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref MapTierWorker
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
+
+  MapTierWorkerStaleAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Map tier worker stopped running; no invocation in 15 minutes.
+      Namespace: AWS/Lambda
+      MetricName: Invocations
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref MapTierWorker
+      Statistic: Sum
+      Period: 900
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 1
+      ComparisonOperator: LessThanThreshold
+      TreatMissingData: breaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
+
+  SunlightShadowWorkerDurationAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Sunlight shadow worker exceeded the scan duration budget.
+      Namespace: AWS/Lambda
+      MetricName: Duration
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref SunlightShadowWorker
+      Statistic: Maximum
+      Period: 300
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
+      Threshold: 300000
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
+
+  SunlightShadowWorkerErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Sunlight shadow worker emitted a Lambda error.
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref SunlightShadowWorker
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
+
+  SunlightShadowWorkerStaleAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Sunlight shadow worker stopped running; no invocation in 15 minutes.
+      Namespace: AWS/Lambda
+      MetricName: Invocations
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref SunlightShadowWorker
+      Statistic: Sum
+      Period: 900
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 1
+      ComparisonOperator: LessThanThreshold
+      TreatMissingData: breaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
   RainbowWorkerLogs:
     Type: AWS::Logs::LogGroup
     Properties:

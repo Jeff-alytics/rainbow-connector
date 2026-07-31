@@ -74,20 +74,38 @@ class OpportunityLedgerShadowTests(unittest.TestCase):
         self.assertEqual(invoke["MaximumRetryAttempts"], 0)
         topic = resources["OpportunityLedgerAlarmTopic"]
         self.assertEqual(topic["Type"], "AWS::SNS::Topic")
-        for name in ("OpportunityLedgerDurationAlarm", "OpportunityLedgerErrorsAlarm", "OpportunityLedgerStaleAlarm"):
-            alarm = resources[name]["Properties"]
-            self.assertEqual(alarm["AlarmActions"], [{"Ref": "OpportunityLedgerAlarmTopic"}])
-        # A skipped dispatch emits no Duration or Errors datapoint, so only the
-        # invocation alarm may treat missing data as a failure. Breaching on the
-        # other two would page with the wrong diagnosis on every footprint gap.
-        self.assertEqual(resources["OpportunityLedgerDurationAlarm"]["Properties"]["TreatMissingData"], "notBreaching")
-        self.assertEqual(resources["OpportunityLedgerErrorsAlarm"]["Properties"]["TreatMissingData"], "notBreaching")
-        stale = resources["OpportunityLedgerStaleAlarm"]["Properties"]
-        self.assertEqual(stale["TreatMissingData"], "breaching")
-        self.assertEqual(stale["MetricName"], "Invocations")
-        self.assertEqual(stale["ComparisonOperator"], "LessThanThreshold")
-        # Must span more than one scan so the 4/6-minute cadence cannot alias.
-        self.assertGreaterEqual(stale["Period"], 900)
+        for function_name in ("MapTierWorker", "SunlightShadowWorker", "OpportunityLedgerWorker"):
+            event_invoke = resources[function_name]["Properties"]["EventInvokeConfig"]
+            self.assertEqual(
+                event_invoke["DestinationConfig"]["OnFailure"],
+                {"Type": "SNS", "Destination": {"Ref": "OpportunityLedgerAlarmTopic"}},
+            )
+        alarm_specs = {
+            "RainbowWorker": ("RainbowWorkerDurationAlarm", "RainbowWorkerErrorsAlarm", "RainbowWorkerStaleAlarm"),
+            "MapTierWorker": ("MapTierWorkerDurationAlarm", "MapTierWorkerErrorsAlarm", "MapTierWorkerStaleAlarm"),
+            "SunlightShadowWorker": ("SunlightShadowWorkerDurationAlarm", "SunlightShadowWorkerErrorsAlarm", "SunlightShadowWorkerStaleAlarm"),
+            "OpportunityLedgerWorker": ("OpportunityLedgerDurationAlarm", "OpportunityLedgerErrorsAlarm", "OpportunityLedgerStaleAlarm"),
+        }
+        for function_name, names in alarm_specs.items():
+            duration = resources[names[0]]["Properties"]
+            errors = resources[names[1]]["Properties"]
+            stale = resources[names[2]]["Properties"]
+            expected_dimension = [{"Name": "FunctionName", "Value": {"Ref": function_name}}]
+            self.assertEqual(duration["MetricName"], "Duration")
+            self.assertEqual(errors["MetricName"], "Errors")
+            self.assertEqual(stale["MetricName"], "Invocations")
+            self.assertEqual(duration["Dimensions"], expected_dimension)
+            self.assertEqual(errors["Dimensions"], expected_dimension)
+            self.assertEqual(stale["Dimensions"], expected_dimension)
+            self.assertEqual(duration["TreatMissingData"], "notBreaching")
+            self.assertEqual(errors["TreatMissingData"], "notBreaching")
+            self.assertEqual(stale["TreatMissingData"], "breaching")
+            self.assertEqual(duration["EvaluationPeriods"], 2)
+            self.assertEqual(errors["EvaluationPeriods"], 2)
+            self.assertGreaterEqual(stale["Period"], 900)
+            self.assertEqual(stale["ComparisonOperator"], "LessThanThreshold")
+            for name in names:
+                self.assertEqual(resources[name]["Properties"]["AlarmActions"], [{"Ref": "OpportunityLedgerAlarmTopic"}])
         self.assertLess(source.index("stored = publish_artifact"), source.index("notified = notify_subscribers"))
         self.assertLess(source.index("notified = notify_subscribers"), source.index("rain_footprint ="))
         self.assertLess(source.index("rain_footprint ="), source.index("opportunity_ledger ="))

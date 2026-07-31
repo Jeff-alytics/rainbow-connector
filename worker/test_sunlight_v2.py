@@ -1,9 +1,14 @@
 import csv
 import gzip
 import io
+import sys
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+
+API_DIR = Path(__file__).resolve().parents[1] / 'api'
+if str(API_DIR) not in sys.path:
+    sys.path.insert(0, str(API_DIR))
 
 from decision_store import build_envelope
 from sunlight_v2 import (

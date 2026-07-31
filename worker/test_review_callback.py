@@ -1,8 +1,13 @@
 import json
 import os
+import sys
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+
+API_DIR = Path(__file__).resolve().parents[1] / 'api'
+if str(API_DIR) not in sys.path:
+    sys.path.insert(0, str(API_DIR))
 
 from review_callback import build_payload, callback_secret, payload_batches, push_review_assessments
 from ledger_review import select_ledger_review_records
