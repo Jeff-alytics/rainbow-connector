@@ -67,6 +67,10 @@ class OpportunityLedgerShadowTests(unittest.TestCase):
         self.assertEqual(shadow_env["RAINBOW_RESEARCH_REVIEW_ENABLED"], "false")
         self.assertNotIn("RAINBOW_REVIEW_ENRICH_URL", ledger_env)
         self.assertNotIn("RAINBOW_PUBLISH_URL", ledger_env)
+        # RainbowWorker publishes the public map and triggers alert emails, and
+        # its memory tail scales with rain extent: max observed 1945 MB against
+        # the old 2048 MB ceiling. Guard the floor so it cannot be quietly cut.
+        self.assertGreaterEqual(resources["RainbowWorker"]["Properties"]["MemorySize"], 3008)
         lifecycle = resources["RainbowResearchBucket"]["Properties"]["LifecycleConfiguration"]["Rules"]
         self.assertTrue(any(rule.get("Prefix") == "opportunity-ledger/rolling/" for rule in lifecycle))
         invoke = ledger["EventInvokeConfig"]

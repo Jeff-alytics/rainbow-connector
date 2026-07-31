@@ -72,7 +72,13 @@ Resources:
       ImageUri: !Ref ImageUri
       Architectures:
         - arm64
-      MemorySize: 2048
+      # Measured over 288 invocations: p50 833 MB, p90 1437, p99 1878, max 1945
+      # against the previous 2048 MB ceiling -- 103 MB of headroom on the path
+      # that publishes the public map and triggers alert emails. The tail scales
+      # with rain extent, so heavier weather would have hit an OOM. Do not lower
+      # this below 3008 without a fortnight of peak-window memory data; the
+      # invocation costs ~7.7 s so the extra GB is about a dollar a month.
+      MemorySize: 3008
       Timeout: 180
       EphemeralStorage:
         Size: 1024
