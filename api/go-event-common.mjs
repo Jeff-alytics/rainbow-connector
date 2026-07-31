@@ -634,7 +634,13 @@ export async function attachReviewAssessments(assessments, options = {}) {
       ? event.candidateType === "research_possible"
       : event.candidateType !== "research_possible");
     const ledgerEventId = String(assessment?.researchReview?.ledgerEventId || "").trim();
-    let event = research && ledgerEventId
+    const replayTargetId = assessment?.decisionStage === "exact_point_causal_replay"
+      ? String(assessment?.targetEventId || "").trim() : "";
+    let event = replayTargetId
+      ? pool.find(item => item.id === replayTargetId
+        && matchingAssessmentEvent([item], assessment, { ...options, radiusKm: 0.25, gapMinutes: 12 })?.id === item.id)
+      : null;
+    event ||= research && ledgerEventId
       ? pool.find(item => item.ledgerEventId === ledgerEventId
         && Math.abs(timeMs(item.lastSeenAt) - timeMs(assessment.radarObservedAt)) <= (options.researchGapMinutes || 12) * 60 * 1000)
       : null;

@@ -106,6 +106,21 @@ test("ledger assessment cannot attach to a nearby operational GO", async () => {
   assert.equal(storedResearch.ledgerEventId, "rain-system-1");
 });
 
+test("exact-point replay targets its named event only when time and location also match", async () => {
+  const at = "2026-07-30T02:20:00Z";
+  const target = newGoEvent({ detectedAt: at, lat: 41, lon: -112, score: 80, candidateClass: "GO", evidence: {} });
+  const neighbor = newGoEvent({ detectedAt: at, lat: 41, lon: -112, score: 81, candidateClass: "GO", evidence: {} });
+  neighbor.id += "-neighbor";
+  const assessment = { targetEventId: target.id, candidateId: "replay", disposition: "selected_possible",
+    decisionStage: "exact_point_causal_replay", radarObservedAt: at, observer: { lat: 41, lon: -112 },
+    rain: {}, geometry: {}, idempotencyKey: "d".repeat(64) };
+  const fake = fakeRedis({ [GO_EVENT_PREFIX + target.id]: JSON.stringify(target),
+    [GO_EVENT_PREFIX + neighbor.id]: JSON.stringify(neighbor) });
+  await withRedis(fake, () => attachReviewAssessments([assessment]));
+  assert.equal(JSON.parse(fake.values.get(GO_EVENT_PREFIX + target.id)).researchAssessments[0].candidateId, "replay");
+  assert.equal(JSON.parse(fake.values.get(GO_EVENT_PREFIX + neighbor.id)).researchAssessments, undefined);
+});
+
 test("human event and view labels retry CAS without losing concurrent fields", async () => {
   const detection = { detectedAt: "2026-07-30T02:20:00Z", lat: 41, lon: -112,
     score: 80, candidateClass: "GO", evidence: {} };

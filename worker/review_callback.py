@@ -51,6 +51,7 @@ def compact_assessment(record: dict, envelope: dict) -> dict | None:
     metar = sunlight.get("metar") or {}
     radar = envelope.get("radar") or {}
     return {
+        "targetEventId": record.get("replayTargetEventId"),
         "candidateId": record.get("candidateId"),
         "disposition": record.get("disposition"),
         "decisionStage": record.get("decisionStage"),
