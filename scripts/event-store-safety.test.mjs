@@ -181,9 +181,19 @@ function recordingRedis(seed = {}) {
     const body = JSON.parse(options.body);
     const batch = Array.isArray(body[0]) ? body : [body];
     batch.forEach(command => commands.push(command));
+    const eventIds = () => [...values.keys()]
+      .filter(key => key.startsWith(GO_EVENT_PREFIX))
+      .map(key => key.slice(GO_EVENT_PREFIX.length));
     const reply = command => {
       const [name, ...args] = command;
       if (name === "GET") return { result: values.get(args[0]) ?? null };
+      if (name === "MGET") return { result: args.map(key => values.get(key) ?? null) };
+      if (name === "ZREVRANGEBYSCORE" || name === "ZREVRANGE") return { result: eventIds() };
+      if (name === "EVAL") {
+        const [, , eventKey, , next] = args;
+        values.set(eventKey, next);
+        return { result: 1 };
+      }
       if (name === "SET") {
         if (args.includes("NX") && values.has(args[0])) return { result: null };
         values.set(args[0], args[1]);
@@ -228,6 +238,50 @@ test("confirmed gallery rows expire with the event they describe", async () => {
   assert.ok(write, "gallery row must be written");
   assert.equal(write.includes("EX"), true, "gallery row must carry a TTL");
   assert.equal(Number(write[write.indexOf("EX") + 1]) > 0, true);
+});
+
+test("assessments that match nothing cost no Redis round trip", async () => {
+  // The shadow worker sends one assessment per selected candidate -- dozens per
+  // scan -- while the store holds only strict GO plus a handful of possibles, so
+  // most legitimately match nothing. Resolving the match first keeps those off
+  // the wire entirely; checking idempotency first cost a GET apiece.
+  const at = "2026-07-30T02:20:00Z";
+  const stored = newGoEvent({ detectedAt: at, lat: 41, lon: -112, score: 90,
+    candidateClass: "GO", evidence: {} });
+  const assessment = (candidateId, lat, lon) => ({
+    candidateId, disposition: "selected_possible", radarObservedAt: at,
+    observer: { lat, lon }, rain: {}, geometry: {},
+    idempotencyKey: candidateId.padEnd(64, "0"),
+  });
+  const fake = recordingRedis({ [GO_EVENT_PREFIX + stored.id]: JSON.stringify(stored) });
+  const result = await withRedis(fake, () => attachReviewAssessments([
+    assessment("aa", 41, -112),      // matches the stored event
+    assessment("bb", 20, -80),       // far away, matches nothing
+    assessment("cc", 21, -81),       // far away, matches nothing
+    assessment("dd", 22, -82),       // far away, matches nothing
+  ]));
+  assert.equal(result.attached, 1);
+  assert.equal(result.unmatched, 3);
+  const idempotencyReads = fake.commands.filter(command =>
+    command[0] === "GET" && String(command[1]).startsWith("rainbow:review:assessment:"));
+  assert.equal(idempotencyReads.length, 1,
+    "only the matching assessment may read its idempotency key");
+});
+
+test("a redelivered assessment is still counted as a duplicate", async () => {
+  const at = "2026-07-30T02:20:00Z";
+  const stored = newGoEvent({ detectedAt: at, lat: 41, lon: -112, score: 90,
+    candidateClass: "GO", evidence: {} });
+  const key = "e".repeat(64);
+  const assessment = { candidateId: "repeat", disposition: "selected_possible",
+    radarObservedAt: at, observer: { lat: 41, lon: -112 }, rain: {}, geometry: {},
+    idempotencyKey: key };
+  const fake = recordingRedis({ [GO_EVENT_PREFIX + stored.id]: JSON.stringify(stored) });
+  const first = await withRedis(fake, () => attachReviewAssessments([assessment]));
+  assert.equal(first.attached, 1);
+  const second = await withRedis(fake, () => attachReviewAssessments([assessment]));
+  assert.equal(second.attached, 0);
+  assert.equal(second.duplicates, 1, "the claim must still short-circuit a redelivery");
 });
 
 test("Python review callback payload matches the JavaScript research-event contract", () => {

@@ -628,7 +628,6 @@ export async function attachReviewAssessments(assessments, options = {}) {
     const key = String(assessment?.idempotencyKey || "").trim();
     const candidateId = String(assessment?.candidateId || "").trim();
     if (!/^[a-f0-9]{64}$/.test(key) || !candidateId) { unmatched++; continue; }
-    if (await redis(["GET", REVIEW_ASSESSMENT_IDEMPOTENCY_PREFIX + key])) { duplicates++; continue; }
     const research = assessment?.disposition === "selected_research_possible";
     const pool = events.filter(event => research
       ? event.candidateType === "research_possible"
@@ -647,6 +646,16 @@ export async function attachReviewAssessments(assessments, options = {}) {
     event ||= matchingAssessmentEvent(pool, assessment, research
       ? { ...options, radiusKm: options.researchRadiusKm || 35, gapMinutes: options.researchGapMinutes || 12 }
       : { ...options, radiusKm: options.radiusKm || 3 });
+    // Matching runs against events already held in memory from one MGET, so it
+    // costs nothing. Resolve it before spending a Redis round trip on the
+    // idempotency key: the shadow worker sends an assessment for every selected
+    // candidate, but the store holds only strict GO plus
+    // STRONG_POSSIBLE_MAX_PER_SCAN possibles, so most records legitimately match
+    // nothing and used to cost a GET each on the way to being dropped.
+    if (!event && !research) { unmatched++; continue; }
+    // Still gate creation on the claim, or a redelivery whose original event has
+    // since expired would mint a fresh event and then skip attaching to it.
+    if (await redis(["GET", REVIEW_ASSESSMENT_IDEMPOTENCY_PREFIX + key])) { duplicates++; continue; }
     let isNew = false;
     if (!event && research) {
       event = newResearchReviewEvent(assessment);
