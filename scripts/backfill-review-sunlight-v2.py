@@ -42,6 +42,23 @@ def prefixes(start: datetime, end: datetime) -> list[str]:
     return output
 
 
+# loadGoEvents clamps to 1000 and the endpoint offers no cursor, so a full
+# response means the window was truncated and we cannot see all of it. Backfill
+# silently covering only the newest 1000 events, while reporting success, is
+# worse than refusing to run.
+EVENT_PAGE_LIMIT = 1000
+
+
+def guard_not_truncated(payload: dict, what: str) -> dict:
+    if int(payload.get("events") or 0) >= EVENT_PAGE_LIMIT:
+        raise SystemExit(
+            f"{what} returned {EVENT_PAGE_LIMIT} rows, the API maximum, so the window is "
+            "truncated and this backfill would silently cover only the newest events. "
+            "Narrow --start/--end and run the window in slices."
+        )
+    return payload
+
+
 def review_candidate_ids(
     base_url: str, password: str, start: datetime, end: datetime,
 ) -> tuple[set[str], int]:
@@ -53,9 +70,10 @@ def review_candidate_ids(
     )
     response.raise_for_status()
     results_response = session.get(
-        f"{base_url}/api/go-events?results=1&limit=1000", timeout=30,
+        f"{base_url}/api/go-events?results=1&limit={EVENT_PAGE_LIMIT}", timeout=30,
     )
     results_response.raise_for_status()
+    guard_not_truncated(results_response.json(), "The graded-results query")
     reviewed_event_ids = set()
     reviewed_rows = 0
     for row in results_response.json().get("items") or []:
@@ -66,8 +84,9 @@ def review_candidate_ids(
         reviewed_rows += 1
         reviewed_event_ids.add(str(row.get("id") or "").split("::", 1)[0])
 
-    events_response = session.get(f"{base_url}/api/go-events?limit=1000", timeout=30)
+    events_response = session.get(f"{base_url}/api/go-events?limit={EVENT_PAGE_LIMIT}", timeout=30)
     events_response.raise_for_status()
+    guard_not_truncated(events_response.json(), "The event query")
     ids = set()
     for event in events_response.json().get("items") or []:
         if str(event.get("id") or "") not in reviewed_event_ids:
@@ -98,6 +117,12 @@ def main() -> int:
     parser.add_argument("--end", required=True, help="Inclusive UTC ISO timestamp")
     parser.add_argument("--base-url", default="https://therainbowconnector.com")
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument(
+        "--resalt", metavar="REASON", default="",
+        help="Override idempotency with this salt so already-delivered assessments "
+             "re-attach. Omit unless a previous run burned the key without landing; "
+             "changing the value re-applies everything.",
+    )
     args = parser.parse_args()
 
     start, end = instant(args.start), instant(args.end)
@@ -130,14 +155,22 @@ def main() -> int:
         payload = build_payload(filtered)
         selected_records += len(payload["assessments"])
         for assessment in payload["assessments"]:
-            original_key = assessment["idempotencyKey"]
-            assessment["idempotencyKey"] = hashlib.sha256(
-                f"{original_key}|results-backfill-v1".encode("utf-8")
-            ).hexdigest()
+            # The natural key makes re-running a no-op: the callback sees the
+            # claim and counts a duplicate. Re-salting overrides that, which is
+            # occasionally needed when a live delivery burned the key without
+            # landing on this event -- but it must be a deliberate act, because
+            # attachReviewAssessments filters by the incoming key, so a new salt
+            # appends rather than replaces and researchAssessments accumulates
+            # against its 24-entry cap.
+            if args.resalt:
+                assessment["idempotencyKey"] = hashlib.sha256(
+                    f"{assessment['idempotencyKey']}|{args.resalt}".encode("utf-8")
+                ).hexdigest()
             assessments[assessment["idempotencyKey"]] = assessment
 
     summary = {
         "apply": args.apply,
+        "resalt": args.resalt or None,
         "start": start.isoformat(),
         "end": end.isoformat(),
         "reviewedRows": reviewed_rows,

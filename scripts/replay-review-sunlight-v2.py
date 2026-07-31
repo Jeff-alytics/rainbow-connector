@@ -55,18 +55,35 @@ def review_session(base_url: str, password: str) -> requests.Session:
     return session
 
 
+# loadGoEvents clamps to 1000 and the endpoint has no cursor, so a full page
+# means the window is truncated. Replaying only the newest 1000 while reporting
+# success would silently leave graded rows unassessed.
+EVENT_PAGE_LIMIT = 1000
+
+
+def guard_not_truncated(payload: dict, what: str) -> dict:
+    if int(payload.get("events") or 0) >= EVENT_PAGE_LIMIT:
+        raise SystemExit(
+            f"{what} returned {EVENT_PAGE_LIMIT} rows, the API maximum, so the window is "
+            "truncated and this replay would silently skip older rows. Narrow "
+            "--start/--end and run the window in slices."
+        )
+    return payload
+
+
 def missing_events(session: requests.Session, base_url: str, start: datetime, end: datetime) -> list[dict]:
-    results = session.get(f"{base_url}/api/go-events?results=1&limit=1000", timeout=30)
+    results = session.get(f"{base_url}/api/go-events?results=1&limit={EVENT_PAGE_LIMIT}", timeout=30)
     results.raise_for_status()
     ids = {
         str(row.get("id") or "").split("::", 1)[0]
-        for row in results.json().get("items") or []
+        for row in guard_not_truncated(results.json(), "The graded-results query").get("items") or []
         if row.get("reviewedAt") and start <= instant(row["reviewedAt"]) <= end
         and row.get("sunlightAssessment") is None
     }
-    response = session.get(f"{base_url}/api/go-events?limit=1000", timeout=30)
+    response = session.get(f"{base_url}/api/go-events?limit={EVENT_PAGE_LIMIT}", timeout=30)
     response.raise_for_status()
-    return [event for event in response.json().get("items") or [] if str(event.get("id")) in ids]
+    events = guard_not_truncated(response.json(), "The event query").get("items") or []
+    return [event for event in events if str(event.get("id")) in ids]
 
 
 def scan_keys(s3, bucket: str, events: list[dict]) -> list[str]:
@@ -165,7 +182,7 @@ def encoded(value: dict) -> bytes:
     return gzip.compress(json.dumps(value, sort_keys=True, separators=(",", ":")).encode(), mtime=0)
 
 
-def redeliver_existing(s3, bucket: str, event_ids: set[str], base_url: str, secret: str) -> dict:
+def redeliver_existing(s3, bucket: str, event_ids: set[str], base_url: str, secret: str, resalt: str = "") -> dict:
     assessments = []
     paginator = s3.get_paginator("list_objects_v2")
     prefix = "decision-log/rolling/review-exact-point-replay.v1/"
@@ -176,9 +193,13 @@ def redeliver_existing(s3, bucket: str, event_ids: set[str], base_url: str, secr
             envelope["records"] = [record for record in envelope.get("records") or []
                                    if str(record.get("replayTargetEventId") or "") in event_ids]
             for assessment in build_payload(envelope)["assessments"]:
-                assessment["idempotencyKey"] = hashlib.sha256(
-                    f"{assessment['idempotencyKey']}|target-event-v1".encode()
-                ).hexdigest()
+                # Natural key keeps redelivery idempotent. Re-salting forces a
+                # re-attach and appends rather than replaces, so require it to be
+                # named explicitly.
+                if resalt:
+                    assessment["idempotencyKey"] = hashlib.sha256(
+                        f"{assessment['idempotencyKey']}|{resalt}".encode()
+                    ).hexdigest()
                 assessments.append(assessment)
     payload = {"schemaVersion": "review-assessment.v1", "detectorRuleVersion": "review-exact-point-causal-replay-v1",
                "sunlightMethodVersion": SUNLIGHT_V2_METHOD_VERSION, "sentAt": iso(datetime.now(timezone.utc)),
@@ -203,6 +224,12 @@ def main() -> int:
     parser.add_argument("--base-url", default="https://therainbowconnector.com")
     parser.add_argument("--apply", action="store_true")
     parser.add_argument("--redeliver", action="store_true")
+    parser.add_argument(
+        "--resalt", metavar="REASON", default="",
+        help="Override idempotency on --redeliver so already-delivered assessments "
+             "re-attach. Omit unless a previous delivery burned the key without "
+             "landing; changing the value re-applies everything.",
+    )
     args = parser.parse_args()
     password = str(os.environ.get("GO_REVIEW_PASSWORD") or "").strip()
     if not password:
@@ -216,7 +243,7 @@ def main() -> int:
         secret = str(os.environ.get("REVIEW_ENRICH_SECRET") or "").strip()
         if not secret:
             raise SystemExit("REVIEW_ENRICH_SECRET is required for --redeliver")
-        print(json.dumps(redeliver_existing(s3, args.bucket, {str(event.get("id")) for event in events}, base_url, secret), sort_keys=True))
+        print(json.dumps(redeliver_existing(s3, args.bucket, {str(event.get("id")) for event in events}, base_url, secret, args.resalt), sort_keys=True))
         return 0
     sources = load_source_envelopes(s3, args.bucket, scan_keys(s3, args.bucket, events), events)
     groups: dict[str, dict] = {}
