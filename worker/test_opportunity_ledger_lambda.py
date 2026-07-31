@@ -27,7 +27,7 @@ class FakeS3:
 
 
 class OpportunityLedgerLambdaTests(unittest.TestCase):
-    def test_review_selection_failure_never_fails_private_ledger_storage(self):
+    def test_disabled_review_lane_still_persists_private_ledger(self):
         sidecar = {"observedAt": "2026-07-30T23:30:00Z"}
         raw = json.dumps(sidecar).encode("utf-8")
         fake_s3 = FakeS3(gzip.compress(raw))
@@ -48,8 +48,30 @@ class OpportunityLedgerLambdaTests(unittest.TestCase):
             }, None)
         self.assertTrue(result["ok"])
         self.assertEqual(result["storage"]["key"], "stored")
-        self.assertFalse(result["reviewSelection"]["ok"])
-        self.assertEqual(result["reviewCallback"]["reason"], "selection_failed")
+        self.assertTrue(result["reviewSelection"]["skipped"])
+        self.assertEqual(result["reviewCallback"]["reason"], "ledger review lane disabled")
+
+    def test_enabled_review_selection_failure_is_a_lambda_error_after_storage(self):
+        sidecar = {"observedAt": "2026-07-30T23:30:00Z"}
+        raw = json.dumps(sidecar).encode("utf-8")
+        fake_s3 = FakeS3(gzip.compress(raw))
+        ledger = {"scanTime": sidecar["observedAt"], "rainFootprintId": "fp-1",
+                  "stats": {"rainEvents": 1, "opportunities": 1, "observerSwathCells": 10}}
+        persisted = {"called": False}
+        def persist(*_args, **_kwargs):
+            persisted["called"] = True
+            return {"key": "stored"}
+        with patch.dict(sys.modules, {"boto3": SimpleNamespace(client=lambda _name: fake_s3)}), \
+             patch.dict(os.environ, {"RAINBOW_RESEARCH_BUCKET": "research",
+                                     "RAINBOW_REVIEW_ENRICH_URL": "https://example.test/review"}, clear=True), \
+             patch.object(target, "load_previous", return_value=(None, None)), \
+             patch.object(target, "build_opportunity_ledger", return_value=ledger), \
+             patch.object(target, "persist", side_effect=persist), \
+             patch.object(target, "load_faa_catalog", return_value=[]):
+            with self.assertRaisesRegex(ValueError, "FAA camera catalog is empty"):
+                target.handler({"bucket": "source", "key": "footprint",
+                                "contentSha256": hashlib.sha256(raw).hexdigest()}, None)
+        self.assertTrue(persisted["called"])
 
     def test_source_hash_mismatch_fails_before_build(self):
         raw = json.dumps({"observedAt": "2026-07-30T23:30:00Z"}).encode("utf-8")

@@ -50,9 +50,12 @@ def handler(event, context):
     ledger["previousLedgerKey"] = previous_key
     ledger["generationLagSeconds"] = round((now - observed).total_seconds(), 1)
     stored = persist(ledger, os.environ.get("RAINBOW_RESEARCH_BUCKET", bucket), s3)
-    # This is a private, post-publication lane. Only persistent ledger swaths
-    # with an actually useful camera can consume one of two research slots.
-    try:
+    # This is a private, post-publication lane. A missing callback URL is the
+    # explicit kill switch; ledger storage continues but review selection does not.
+    if not str(os.environ.get("RAINBOW_REVIEW_ENRICH_URL") or "").strip():
+        review_selection = {"ok": True, "skipped": True, "reason": "ledger review lane disabled", "selected": 0}
+        review_callback = {"ok": True, "skipped": True, "reason": "ledger review lane disabled", "assessments": 0}
+    else:
         catalog = load_faa_catalog()
         if not catalog:
             raise ValueError("FAA camera catalog is empty")
@@ -67,10 +70,8 @@ def handler(event, context):
             "radar": {"observedAt": ledger["scanTime"], "rainFootprintId": ledger["rainFootprintId"],
                       "rainFootprintContentSha256": actual_hash}, "records": records,
         })
-    except Exception as error:
-        print(f"[ledger-review] selection failed: {str(error)[:300]}")
-        review_selection = {"ok": False, "operationalImpact": False, "error": str(error)[:300], "selected": 0}
-        review_callback = {"ok": False, "skipped": True, "operationalImpact": False, "reason": "selection_failed"}
+        if not review_callback.get("ok"):
+            raise RuntimeError(f"ledger review callback failed: {review_callback.get('error') or 'unknown error'}")
     return {
         "ok": True, "scanTime": ledger["scanTime"], "runtimeMs": round((time.time() - started) * 1000),
         "rainEvents": ledger["stats"]["rainEvents"], "opportunities": ledger["stats"]["opportunities"],

@@ -42,6 +42,20 @@ class ResearchReviewTests(unittest.TestCase):
         result = select_research_candidates([desert, ogden], camera_catalog=catalog)
         self.assertEqual(result["selectedCandidateIds"], ["ogden"])
         self.assertEqual(ogden["features"]["researchReview"]["cameraMatches"][0]["cameraId"], 13590)
+        self.assertEqual(ogden["originalDisposition"], "rejected")
+        self.assertEqual(ogden["features"]["researchReview"]["originalDisposition"], "rejected")
+
+    def test_camera_gate_rejects_unknown_zero_fov_and_more_than_40km(self):
+        item = record("camera-guards")
+        invalid = [
+            {"id": 1, "name": "Unknown bearing", "lat": 41.12, "lon": -112.08,
+             "cameras": [{"id": 1, "direction": "unknown"}]},
+            {"id": 2, "name": "Zero FOV", "lat": 41.12, "lon": -112.08,
+             "cameras": [{"id": 2, "bearing": 112.3, "mapWedgeAngle": 0}]},
+            {"id": 3, "name": "Too far", "lat": 41.6, "lon": -112.08,
+             "cameras": [{"id": 3, "bearing": 112.3, "mapWedgeAngle": 45}]},
+        ]
+        self.assertEqual(select_research_candidates([item], camera_catalog=invalid)["selected"], 0)
 
 
 if __name__ == "__main__": unittest.main()

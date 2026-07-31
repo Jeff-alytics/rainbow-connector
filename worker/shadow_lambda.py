@@ -36,6 +36,10 @@ def candidate_from_record(record: dict) -> dict | None:
     }
 
 
+def research_review_enabled() -> bool:
+    return str(os.environ.get("RAINBOW_RESEARCH_REVIEW_ENABLED") or "").strip().lower() in {"1", "true", "yes"}
+
+
 def handler(event, context):
     bucket = str((event or {}).get("bucket") or os.environ.get("RAINBOW_RESEARCH_BUCKET") or "").strip()
     key = str((event or {}).get("key") or "").strip()
@@ -60,14 +64,17 @@ def handler(event, context):
         assessment_processing_at=assessment_processing_at,
     )
     envelope["metrics"]["v1V2DisagreementRateByDisposition"] = disagreement_metrics(records)
-    try:
-        camera_catalog = load_faa_catalog()
-        if not camera_catalog:
-            raise ValueError("FAA camera catalog is empty")
-        research_review = select_research_candidates(records, camera_catalog=camera_catalog)
-    except Exception as error:
-        print(f"[research-review] selection failed: {str(error)[:300]}")
-        research_review = {"ok": False, "operationalImpact": False, "error": str(error)[:300], "selected": 0}
+    if research_review_enabled():
+        try:
+            camera_catalog = load_faa_catalog()
+            if not camera_catalog:
+                raise ValueError("FAA camera catalog is empty")
+            research_review = select_research_candidates(records, camera_catalog=camera_catalog)
+        except Exception as error:
+            print(f"[research-review] selection failed: {str(error)[:300]}")
+            research_review = {"ok": False, "operationalImpact": False, "error": str(error)[:300], "selected": 0}
+    else:
+        research_review = {"ok": True, "skipped": True, "reason": "research review lane disabled", "selected": 0}
     envelope["shadowV2"] = {
         "methodVersion": METHOD_VERSION, "status": "complete" if not result.get("errors") else "complete_with_errors",
         "assessmentProcessingAt": result.get("assessmentProcessingAt"),

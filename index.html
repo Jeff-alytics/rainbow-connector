@@ -1328,57 +1328,10 @@ function ensureCandidateMap(){
     candMap.addSource("candidates", {
       type: "geojson",
       data: EMPTY,
-      cluster: true,
-      clusterRadius: 34,
-      clusterMaxZoom: 7,
     });
-    candMap.addLayer({
-      id: "candidate-clusters",
-      type: "circle",
-      source: "candidates",
-      filter: ["has", "point_count"],
-      paint: {
-        "circle-radius": ["step", ["get", "point_count"], 12, 4, 14, 8, 16],
-        "circle-color": "#ffffff",
-        "circle-stroke-color": "#19a85b",
-        "circle-stroke-width": 3,
-        "circle-opacity": 0.96,
-      },
-    });
-    candMap.addLayer({
-      id: "candidate-cluster-count",
-      type: "symbol",
-      source: "candidates",
-      filter: ["has", "point_count"],
-      layout: {
-        "text-field": ["concat", ["get", "point_count_abbreviated"], " sites"],
-        "text-size": 10.5,
-        "text-font": ["Noto Sans Bold"],
-      },
-      paint: {
-        "text-color": "#11683a",
-        "text-halo-color": "#ffffff",
-        "text-halo-width": 1,
-      },
-    });
-    /* Unclustered pins are DOM markers (like the approved mockup) — MapLibre symbol
-       layers can't render color emoji, which left the pins as plain circles. */
-    candMap.on("data", e => { if (e.sourceId === "candidates") updateCandidatePinMarkers(); });
-    candMap.on("moveend", updateCandidatePinMarkers);
-    candMap.on("click", "candidate-clusters", e => {
-      const feature = e.features?.[0];
-      const clusterId = feature?.properties?.cluster_id;
-      if (clusterId == null) return;
-      const source = candMap.getSource("candidates");
-      const zoomToCluster = (err, zoom) => {
-        if (err) return;
-        candMap.easeTo({ center: feature.geometry.coordinates, zoom, duration: 500 });
-      };
-      const result = source.getClusterExpansionZoom(clusterId, zoomToCluster);
-      if (result && typeof result.then === "function") result.then(zoom => zoomToCluster(null, zoom)).catch(zoomToCluster);
-    });
-    candMap.on("mouseenter", "candidate-clusters", () => { candMap.getCanvas().style.cursor = "zoom-in"; });
-    candMap.on("mouseleave", "candidate-clusters", () => { candMap.getCanvas().style.cursor = ""; });
+    /* Use direct DOM markers at the artifact coordinates, matching the approved
+       mockup. Clusters move to a computed centroid as zoom changes, so they cannot
+       truthfully represent an exact observer location. */
     if (candPending) { renderCandidatePins(candPending); candPending = null; }
     if (candidateArtifact) {
       renderIngredients(pendingMapTierArtifact, candidateArtifact);
@@ -1592,22 +1545,19 @@ async function fetchCandidates(){
 const candPinMarkers = new Map();
 function updateCandidatePinMarkers(){
   if (!candMapLoaded) return;
-  // Tile features only tell us WHICH points are unclustered right now; their geometry is
-  // quantized to the tile grid, so always position markers from the exact candidate coords.
-  const byId = new Map(visibleMapCandidates(candidateArtifact).filter(c => isFiniteCoord(c.lat, c.lon)).map(c => [c.id, c]));
+  const candidates = visibleMapCandidates(candidateArtifact).filter(c => isFiniteCoord(c.lat, c.lon));
   const seen = new Set();
-  for (const f of candMap.querySourceFeatures("candidates")) {
-    if (f.properties.point_count) continue;
-    const p = f.properties, id = p.id;
-    if (id == null || seen.has(id) || !byId.has(id)) continue;
+  for (const c of candidates) {
+    const id = c.id;
+    if (id == null || seen.has(id)) continue;
     seen.add(id);
-    const c = byId.get(id);
-    const cls = "bow-pin" + (p.verdict === "watch" ? " maybe" : "") + (p.active ? " active" : "");
+    const active = id === activeCandidateId;
+    const cls = "bow-pin" + (c.verdict === "watch" ? " maybe" : "") + (active ? " active" : "");
     let m = candPinMarkers.get(id);
     if (!m) {
       const el = document.createElement("div");
-      el.textContent = p.marker;
-      el.title = p.label || "";
+      el.textContent = c.verdict === "watch" ? "\u26C5" : "\uD83C\uDF08";
+      el.title = c.label || "";
       el.addEventListener("click", ev => {
         ev.stopPropagation();
         const candidate = visibleMapCandidates(candidateArtifact).find(cd => cd.id === id);
@@ -1629,6 +1579,7 @@ function renderCandidatePins(artifact){
   if(ingredientFixtureMode){candMap.getSource("candidates").setData(EMPTY);return;}
   const candidates = visibleMapCandidates(artifact);
   candMap.getSource("candidates").setData(candidateFeatureCollection(artifact));
+  updateCandidatePinMarkers();
   const validCandidates = candidates.filter(c => isFiniteCoord(c.lat, c.lon));
   if (validCandidates.length && !activeCandidateId) {
     const bounds = new maplibregl.LngLatBounds();

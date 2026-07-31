@@ -239,7 +239,10 @@ test("multiple camera views cannot expand research candidates beyond two review 
       { url: `a-${index}`, siteId: index, cameraId: 1, cameraName: `Airport ${index} A`, distanceKm: 10, timeOffsetMinutes: 5 },
       { url: `b-${index}`, siteId: index + 10, cameraId: 2, cameraName: `Airport ${index} B`, distanceKm: 12, timeOffsetMinutes: 10 },
     ] } });
-  assert.equal(reviewQueueItems([research(1), research(2)]).length, 2);
+  const items = reviewQueueItems([research(1), research(2)]);
+  assert.equal(items.length, 2);
+  assert.equal(new Set(items.map(item => item.eventId)).size, 2);
+  assert.deepEqual(items.map(item => item.eventId), ["research-multi-1", "research-multi-2"]);
 });
 
 test("sunlight assessment stays hidden until every sibling camera view is graded", () => {
@@ -249,6 +252,9 @@ test("sunlight assessment stays hidden until every sibling camera view is graded
       { url: "b", source: "FAA WeatherCam", siteId: 2, cameraId: 20 },
     ] }, viewReviews: {} };
   const groups = evidenceFrameReviewGroups(event);
+  const queueItem = reviewQueueItems([{ ...event, scanCount: 2 }])[0];
+  assert.equal("sunlightAssessmentAvailable" in queueItem, false);
+  assert.equal("researchAssessments" in queueItem, false);
   event.viewReviews[groups[0].key] = { label: "no_rainbow", reviewedAt: "2026-07-30T02:30:00Z" };
   assert.equal(allCameraViewsReviewed(event), false);
   assert.equal("researchAssessments" in reviewSafeEvent(event), false);
@@ -257,6 +263,12 @@ test("sunlight assessment stays hidden until every sibling camera view is graded
   assert.equal(allCameraViewsReviewed(event), true);
   assert.equal(reviewSafeEvent(event).researchAssessments.length, 1);
   assert.equal(reviewResults([event]).every(item => item.sunlightAssessment?.sunlightState === "sunlit_supported"), true);
+});
+
+test("review API serializes both list and grade responses through the anchoring guard", async () => {
+  const source = await readFile(new URL("../api/go-events.mjs", import.meta.url), "utf8");
+  assert.match(source, /events\.map\(reviewSafeEvent\)/);
+  assert.match(source, /event:\s*reviewSafeEvent\(event\)/);
 });
 
 test("review labels ledger candidates without exposing them as public POSSIBLEs", async () => {

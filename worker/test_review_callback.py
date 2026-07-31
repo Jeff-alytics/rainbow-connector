@@ -1,6 +1,7 @@
 import json
 import os
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 from review_callback import build_payload, callback_secret, payload_batches, push_review_assessments
@@ -47,6 +48,22 @@ class FakeSsm:
 
 
 class ReviewCallbackTests(unittest.TestCase):
+    def test_cross_language_contract_fixture(self):
+        fixture_path = Path(__file__).resolve().parents[1] / "scripts" / "fixtures" / "review-callback-contract-v1.json"
+        expected = json.loads(fixture_path.read_text(encoding="utf-8"))
+        item = record("selected_research_possible")
+        item.update({"candidateId": "contract-candidate", "decisionStage": "research", "decisionReasons": []})
+        item["features"] = {
+            "observer": {"lat": 41.0, "lon": -112.0}, "rain": {},
+            "geometry": {"sunElevationDeg": 3.0, "antiSolarBearingDeg": 100.0},
+            "researchReview": {"source": "opportunity_ledger", "ledgerEventId": "rain-system-1"},
+            "sunlightV2": {"methodVersion": METHOD_VERSION, "sunlightState": "unresolved"},
+        }
+        envelope = {"detectorRuleVersion": "contract-test",
+                    "radar": {"observedAt": "2026-07-30T02:20:00Z", "rainFootprintId": "fp-1"},
+                    "records": [item]}
+        self.assertEqual(build_payload(envelope)["assessments"][0], expected)
+
     def test_payload_includes_selected_and_excludes_rejected(self):
         envelope = {"detectorRuleVersion": "rule-v1", "radar": {"observedAt": "2026-07-28T23:34:00Z", "rainFootprintId": "fp", "rainFootprintContentSha256": "hash"}, "records": [record(), record("rejected")]}
         payload = build_payload(envelope)

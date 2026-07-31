@@ -27,6 +27,9 @@ Parameters:
   MapTierPublishUrl:
     Type: String
     Default: https://therainbowconnector.com/api/map-tiers-publish
+  AlarmNotificationEmail:
+    Type: String
+    Default: jeffmasher@gmail.com
 
 Resources:
   RainbowResearchBucket:
@@ -144,6 +147,8 @@ Resources:
         Variables:
           RAINBOW_CACHE_DIR: /tmp/rainbow-shadow
           RAINBOW_RESEARCH_BUCKET: !Ref RainbowResearchBucket
+          RAINBOW_REVIEW_ENRICH_URL: !Ref ReviewEnrichUrl
+          RAINBOW_RESEARCH_REVIEW_ENABLED: "false"
           REVIEW_ENRICH_SECRET_PARAMETER: /rainbow-connector/review-enrich-secret
       Policies:
         - AWSLambdaBasicExecutionRole
@@ -259,6 +264,13 @@ Resources:
       LogGroupName: !Sub /aws/lambda/${OpportunityLedgerWorker}
       RetentionInDays: 14
 
+  OpportunityLedgerAlarmTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        - Protocol: email
+          Endpoint: !Ref AlarmNotificationEmail
+
   OpportunityLedgerDurationAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
@@ -274,7 +286,9 @@ Resources:
       DatapointsToAlarm: 1
       Threshold: 90000
       ComparisonOperator: GreaterThanThreshold
-      TreatMissingData: notBreaching
+      TreatMissingData: breaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
 
   OpportunityLedgerErrorsAlarm:
     Type: AWS::CloudWatch::Alarm
@@ -291,7 +305,9 @@ Resources:
       DatapointsToAlarm: 1
       Threshold: 0
       ComparisonOperator: GreaterThanThreshold
-      TreatMissingData: notBreaching
+      TreatMissingData: breaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
 
   RainbowWorkerLogs:
     Type: AWS::Logs::LogGroup

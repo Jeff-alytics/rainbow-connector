@@ -121,7 +121,7 @@ ${isNew ? "<p><strong>Look now:</strong> this is a fresh first detection, and ra
 async function loadActiveSubscriptions() {
   const keys = await redis(["SMEMBERS", SUBS_KEY]);
   if (!Array.isArray(keys) || !keys.length) return [];
-  const responses = await redisPipeline(keys.map(key => ["GET", key]));
+  const responses = await redisPipeline(keys.map(key => ["GET", key]), { allowCommandErrors: true });
   return responses
     .map((r, idx) => {
       if (!r?.result) return null;

@@ -121,7 +121,7 @@ export async function redis(command) {
   return data.result;
 }
 
-export async function redisPipeline(commands) {
+export async function redisPipeline(commands, options = {}) {
   if (!commands.length) return [];
   if (!configuredStore()) throw new Error("alert storage is not configured");
   const response = await fetch(`${redisUrl()}/pipeline`, {
@@ -134,7 +134,7 @@ export async function redisPipeline(commands) {
   });
   const data = await response.json().catch(() => ({}));
   if (!response.ok || data.error) throw new Error(data.error || `Redis pipeline failed (${response.status})`);
-  if (Array.isArray(data)) {
+  if (Array.isArray(data) && !options.allowCommandErrors) {
     const failed = data.find(item => item?.error);
     if (failed) throw new Error(failed.error || "Redis pipeline command failed");
   }

@@ -19,6 +19,9 @@ test("public map keeps pins independent and matches ingredient scans exactly",as
   assert.match(page,/Pins are spots the Connector is actively tracking/);
   assert.match(page,/The sun is low enough/);
   assert.match(page,/center: \[-95\.5, 37\.6\], zoom: 3\.9/);
+  assert.doesNotMatch(page,/cluster:\s*true/);
+  assert.doesNotMatch(page,/querySourceFeatures\("candidates"\)/);
+  assert.match(page,/new maplibregl\.Marker\(\{ element: el \}\)\.setLngLat\(\[c\.lon, c\.lat\]\)/);
   assert.match(page,/step=\.35,half=step\/2/);
   assert.match(page,/\.3\*Math\.min\(1,\(42-elevation\)\/14\)/);
   assert.match(page,/elevation>=-1&&elevation<=42/);

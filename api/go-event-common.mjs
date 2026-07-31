@@ -317,6 +317,7 @@ export async function saveGoEvents(artifact, options = {}) {
           if (current.candidateType === "research_possible") throw new Error("Research event rejected from operational merge");
           return mergeDetection(current, detection);
         });
+        if (!event) throw new Error("Operational event disappeared during merge");
         const index = recent.findIndex(item => item.id === event.id);
         if (index >= 0) recent[index] = event;
       } else {
@@ -326,6 +327,7 @@ export async function saveGoEvents(artifact, options = {}) {
           const collision = (await loadEventsByIds([GO_EVENT_PREFIX + event.id]))[0];
           if (!collision || collision.candidateType === "research_possible") throw new Error("Operational event id collision");
           event = await mutateGoEvent(collision.id, current => mergeDetection(current, detection));
+          if (!event) throw new Error("Colliding operational event disappeared during merge");
         } else {
           created++;
         }
@@ -612,9 +614,11 @@ export async function attachReviewAssessments(assessments, options = {}) {
   const earliest = Math.min(...received.map(item => timeMs(item?.radarObservedAt)).filter(Boolean));
   const events = await loadRecentGoEvents(earliest - 20 * 60 * 1000, 250);
   let attached = 0, duplicates = 0, unmatched = 0, created = 0;
+  const errors = [];
   const ttlSeconds = retentionDays() * 24 * 60 * 60;
   const eventIds = new Set();
   for (const assessment of received) {
+    try {
     const key = String(assessment?.idempotencyKey || "").trim();
     const candidateId = String(assessment?.candidateId || "").trim();
     if (!/^[a-f0-9]{64}$/.test(key) || !candidateId) { unmatched++; continue; }
@@ -663,12 +667,19 @@ export async function attachReviewAssessments(assessments, options = {}) {
       ].slice(-24);
       return current;
     });
+    if (!event) { unmatched++; continue; }
     const index = events.findIndex(item => item.id === event.id);
     if (index >= 0) events[index] = event; else events.push(event);
     const claimed = await redis(["SET", REVIEW_ASSESSMENT_IDEMPOTENCY_PREFIX + key, "1", "NX", "EX", ttlSeconds]);
     if (!claimed) duplicates++; else attached++;
     await redis(["ZADD", GO_EVENT_INDEX, timeMs(event.lastSeenAt), event.id]);
     eventIds.add(event.id);
+    } catch (error) {
+      unmatched++;
+      errors.push({ candidateId: String(assessment?.candidateId || "").slice(0, 120), error: String(error?.message || error).slice(0, 300) });
+      console.warn("[review-assessment] record failed:", error?.message || error);
+    }
   }
-  return { stored: true, received: received.length, attached, duplicates, unmatched, created, eventIds: [...eventIds] };
+  return { stored: true, received: received.length, attached, duplicates, unmatched, created,
+    errors, eventIds: [...eventIds] };
 }

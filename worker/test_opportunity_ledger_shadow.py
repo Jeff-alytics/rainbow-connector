@@ -30,6 +30,11 @@ class OpportunityLedgerShadowTests(unittest.TestCase):
         self.assertIn("MaximumEventAgeInSeconds: 300", template)
         self.assertIn("MaximumRetryAttempts: 0", template)
         self.assertIn("ReadWriteRollingOpportunityLedgers", template)
+        shadow_block = template.split("SunlightShadowWorker:", 1)[1].split("SunlightShadowWorkerLogs:", 1)[0]
+        ledger_block = template.split("OpportunityLedgerWorker:", 1)[1].split("OpportunityLedgerWorkerLogs:", 1)[0]
+        self.assertIn("RAINBOW_REVIEW_ENRICH_URL: !Ref ReviewEnrichUrl", shadow_block)
+        self.assertIn('RAINBOW_RESEARCH_REVIEW_ENABLED: "false"', shadow_block)
+        self.assertNotIn("RAINBOW_REVIEW_ENRICH_URL", ledger_block)
         self.assertNotIn("RAINBOW_PUBLISH_URL: !Ref PublishUrl", template.split("OpportunityLedgerWorker:", 1)[1])
         self.assertLess(source.index("stored = publish_artifact"), source.index("notified = notify_subscribers"))
         self.assertLess(source.index("notified = notify_subscribers"), source.index("rain_footprint ="))
@@ -58,6 +63,14 @@ class OpportunityLedgerShadowTests(unittest.TestCase):
         previous, previous_key = load_previous("private", "2026-07-30T01:40:00Z", s3)
         self.assertEqual(previous["rainFootprintId"], "fp")
         self.assertEqual(previous_key, key)
+
+    def test_previous_scan_older_than_lineage_window_is_rejected(self):
+        ledger = {"scanTime": "2026-07-30T01:30:00Z", "rainFootprintId": "fp"}
+        body, _, _ = encode(ledger)
+        key = object_key(ledger)
+        previous, previous_key = load_previous("private", "2026-07-30T01:46:00Z", FakeS3({key: body}))
+        self.assertIsNone(previous)
+        self.assertIsNone(previous_key)
 
 
 if __name__ == "__main__": unittest.main()

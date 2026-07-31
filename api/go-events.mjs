@@ -139,7 +139,6 @@ function queueItem(event, group = null) {
       negativeEvidenceEligible: frame.negativeEvidenceEligible === true,
     })),
     camera,
-    sunlightAssessmentAvailable: (event.researchAssessments || []).length > 0,
   };
 }
 
@@ -158,8 +157,16 @@ export function reviewQueueItems(events) {
       .filter(group => (event.viewReviews?.[group.key]?.label || "pending") === "pending")
       .map(group => queueItem(event, group));
   });
-  let researchSlots = 0;
-  return items.filter(item => item.candidateType !== "research_possible" || researchSlots++ < 2);
+  const operational = items.filter(item => item.candidateType !== "research_possible");
+  const research = [];
+  const representedEvents = new Set();
+  for (const item of items) {
+    if (item.candidateType !== "research_possible" || representedEvents.has(item.eventId)) continue;
+    representedEvents.add(item.eventId);
+    research.push(item);
+    if (research.length >= 2) break;
+  }
+  return [...operational, ...research];
 }
 
 function eventClass(event) {
