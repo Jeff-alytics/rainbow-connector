@@ -1,4 +1,5 @@
 {
+  "targetEventId": null,
   "candidateId": "contract-candidate",
   "disposition": "selected_research_possible",
   "decisionStage": "research",
