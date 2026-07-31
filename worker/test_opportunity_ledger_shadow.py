@@ -99,30 +99,45 @@ class OpportunityLedgerShadowTests(unittest.TestCase):
                 event_invoke["DestinationConfig"]["OnFailure"],
                 {"Type": "SNS", "Destination": {"Ref": "OpportunityLedgerAlarmTopic"}},
             )
+        # Only RainbowWorker is on the schedule, so only its silence means the
+        # pipeline stopped. The dispatched workers skip scans by design, so a
+        # staleness alarm on them pages during normal operation; a dispatch that
+        # genuinely fails is caught by the log-based alarm asserted below.
+        for absent in ("MapTierWorkerStaleAlarm", "SunlightShadowWorkerStaleAlarm",
+                       "OpportunityLedgerStaleAlarm"):
+            self.assertNotIn(absent, resources)
+        dispatch_filter = resources["RainbowWorkerDispatchFailureMetric"]["Properties"]
+        self.assertIn("async dispatch failed", dispatch_filter["FilterPattern"])
+        dispatch_alarm = resources["RainbowWorkerDispatchFailureAlarm"]["Properties"]
+        self.assertEqual(dispatch_alarm["MetricName"],
+                         dispatch_filter["MetricTransformations"][0]["MetricName"])
+        self.assertEqual(dispatch_alarm["Threshold"], 0)
+        self.assertEqual(dispatch_alarm["ComparisonOperator"], "GreaterThanThreshold")
         alarm_specs = {
             "RainbowWorker": ("RainbowWorkerDurationAlarm", "RainbowWorkerErrorsAlarm", "RainbowWorkerStaleAlarm"),
-            "MapTierWorker": ("MapTierWorkerDurationAlarm", "MapTierWorkerErrorsAlarm", "MapTierWorkerStaleAlarm"),
-            "SunlightShadowWorker": ("SunlightShadowWorkerDurationAlarm", "SunlightShadowWorkerErrorsAlarm", "SunlightShadowWorkerStaleAlarm"),
-            "OpportunityLedgerWorker": ("OpportunityLedgerDurationAlarm", "OpportunityLedgerErrorsAlarm", "OpportunityLedgerStaleAlarm"),
+            "MapTierWorker": ("MapTierWorkerDurationAlarm", "MapTierWorkerErrorsAlarm"),
+            "SunlightShadowWorker": ("SunlightShadowWorkerDurationAlarm", "SunlightShadowWorkerErrorsAlarm"),
+            "OpportunityLedgerWorker": ("OpportunityLedgerDurationAlarm", "OpportunityLedgerErrorsAlarm"),
         }
         for function_name, names in alarm_specs.items():
             duration = resources[names[0]]["Properties"]
             errors = resources[names[1]]["Properties"]
-            stale = resources[names[2]]["Properties"]
             expected_dimension = [{"Name": "FunctionName", "Value": {"Ref": function_name}}]
             self.assertEqual(duration["MetricName"], "Duration")
             self.assertEqual(errors["MetricName"], "Errors")
-            self.assertEqual(stale["MetricName"], "Invocations")
             self.assertEqual(duration["Dimensions"], expected_dimension)
             self.assertEqual(errors["Dimensions"], expected_dimension)
-            self.assertEqual(stale["Dimensions"], expected_dimension)
             self.assertEqual(duration["TreatMissingData"], "notBreaching")
             self.assertEqual(errors["TreatMissingData"], "notBreaching")
-            self.assertEqual(stale["TreatMissingData"], "breaching")
             self.assertEqual(duration["EvaluationPeriods"], 2)
             self.assertEqual(errors["EvaluationPeriods"], 2)
-            self.assertGreaterEqual(stale["Period"], 900)
-            self.assertEqual(stale["ComparisonOperator"], "LessThanThreshold")
+            if len(names) > 2:
+                stale = resources[names[2]]["Properties"]
+                self.assertEqual(stale["MetricName"], "Invocations")
+                self.assertEqual(stale["Dimensions"], expected_dimension)
+                self.assertEqual(stale["TreatMissingData"], "breaching")
+                self.assertGreaterEqual(stale["Period"], 900)
+                self.assertEqual(stale["ComparisonOperator"], "LessThanThreshold")
             for name in names:
                 self.assertEqual(resources[name]["Properties"]["AlarmActions"], [{"Ref": "OpportunityLedgerAlarmTopic"}])
         self.assertLess(source.index("stored = publish_artifact"), source.index("notified = notify_subscribers"))

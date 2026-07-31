@@ -337,25 +337,6 @@ Resources:
   # Owns the "did not run" signal. Period spans three scans so the 4/6-minute
   # cadence alternation cannot leave a legitimately empty 5-minute bucket, and
   # missing data is breaching because total silence IS the failure here.
-  OpportunityLedgerStaleAlarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmDescription: Opportunity ledger stopped running; no invocation in 15 minutes.
-      Namespace: AWS/Lambda
-      MetricName: Invocations
-      Dimensions:
-        - Name: FunctionName
-          Value: !Ref OpportunityLedgerWorker
-      Statistic: Sum
-      Period: 900
-      EvaluationPeriods: 1
-      DatapointsToAlarm: 1
-      Threshold: 1
-      ComparisonOperator: LessThanThreshold
-      TreatMissingData: breaching
-      AlarmActions:
-        - !Ref OpportunityLedgerAlarmTopic
-
   RainbowWorkerDurationAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
@@ -451,25 +432,6 @@ Resources:
       AlarmActions:
         - !Ref OpportunityLedgerAlarmTopic
 
-  MapTierWorkerStaleAlarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmDescription: Map tier worker stopped running; no invocation in 15 minutes.
-      Namespace: AWS/Lambda
-      MetricName: Invocations
-      Dimensions:
-        - Name: FunctionName
-          Value: !Ref MapTierWorker
-      Statistic: Sum
-      Period: 900
-      EvaluationPeriods: 1
-      DatapointsToAlarm: 1
-      Threshold: 1
-      ComparisonOperator: LessThanThreshold
-      TreatMissingData: breaching
-      AlarmActions:
-        - !Ref OpportunityLedgerAlarmTopic
-
   SunlightShadowWorkerDurationAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
@@ -508,24 +470,6 @@ Resources:
       AlarmActions:
         - !Ref OpportunityLedgerAlarmTopic
 
-  SunlightShadowWorkerStaleAlarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmDescription: Sunlight shadow worker stopped running; no invocation in 15 minutes.
-      Namespace: AWS/Lambda
-      MetricName: Invocations
-      Dimensions:
-        - Name: FunctionName
-          Value: !Ref SunlightShadowWorker
-      Statistic: Sum
-      Period: 900
-      EvaluationPeriods: 1
-      DatapointsToAlarm: 1
-      Threshold: 1
-      ComparisonOperator: LessThanThreshold
-      TreatMissingData: breaching
-      AlarmActions:
-        - !Ref OpportunityLedgerAlarmTopic
   RainbowWorkerLogs:
     Type: AWS::Logs::LogGroup
     Properties:
@@ -546,6 +490,41 @@ Resources:
           MetricName: RainbowWorkerMaxMemoryUsedMB
           MetricValue: "$maxmem"
           Unit: Megabytes
+
+  # The dispatched workers legitimately skip scans -- "no candidate decision
+  # records", "rain footprint unavailable" -- so an Invocations staleness alarm
+  # on them pages during normal operation, which is exactly what fired for
+  # SunlightShadow. Those three alarms are gone. RainbowWorker keeps its own,
+  # since it is the only function on the schedule. The remaining gap was a
+  # dispatch that *fails*: safe_invoke_* swallows the exception and prints
+  # "[name] async dispatch failed", so the function succeeds and nothing pages.
+  # Count those lines instead.
+  RainbowWorkerDispatchFailureMetric:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref RainbowWorkerLogs
+      FilterPattern: '"async dispatch failed"'
+      MetricTransformations:
+        - MetricNamespace: RainbowConnector/Lambda
+          MetricName: RainbowWorkerDispatchFailures
+          MetricValue: "1"
+          DefaultValue: 0
+
+  RainbowWorkerDispatchFailureAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: RainbowWorker could not dispatch a downstream worker; the scan published but a lane was skipped.
+      Namespace: RainbowConnector/Lambda
+      MetricName: RainbowWorkerDispatchFailures
+      Statistic: Sum
+      Period: 900
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref OpportunityLedgerAlarmTopic
 
   # 2400 MB of the 3008 MB ceiling, so there is lead time to act rather than an
   # OOM with no warning. Maximum over two periods: a single deep scan should not
