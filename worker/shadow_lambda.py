@@ -14,6 +14,26 @@ from review_callback import safe_push_review_assessments
 from sunlight_v2 import METHOD_VERSION, enrich_sunlight_v2
 
 
+def delivery_summary(review_callback: dict) -> dict:
+    """Flatten a review-callback result into one loggable line.
+
+    A pending review item withholds its own assessment, so once the lane is
+    healthy there is no user-visible signal that delivery is still working.
+    This lane going silently dead is the failure this pipeline actually hit,
+    so emit the counts every scan instead of waiting for someone to notice
+    "Not assessed" in the workbench.
+    """
+    summary = {"ok": bool(review_callback.get("ok")),
+               "assessments": int(review_callback.get("assessments") or 0)}
+    for key, value in (review_callback.get("response") or {}).items():
+        summary[key] = int(value or 0)
+    if review_callback.get("skipped"):
+        summary["skipped"] = str(review_callback.get("reason") or "unknown")
+    if review_callback.get("error"):
+        summary["error"] = str(review_callback["error"])[:200]
+    return summary
+
+
 def already_enriched(envelope: dict) -> bool:
     shadow = envelope.get("shadowV2") or {}
     return shadow.get("methodVersion") == METHOD_VERSION and shadow.get("status") in {
@@ -91,5 +111,6 @@ def handler(event, context):
         },
     )
     review_callback = safe_push_review_assessments(envelope)
+    print(f"[review-callback] {json.dumps(delivery_summary(review_callback), sort_keys=True)}")
     return {"ok": True, "bucket": bucket, "key": key, "researchReview": research_review,
             "reviewCallback": review_callback, **result}

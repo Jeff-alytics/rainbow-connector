@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import gzip
+import hashlib
 import json
 import os
 import sys
@@ -59,7 +60,8 @@ def review_candidate_ids(
     reviewed_rows = 0
     for row in results_response.json().get("items") or []:
         reviewed_at = row.get("reviewedAt")
-        if not reviewed_at or not start <= instant(reviewed_at) <= end:
+        if (not reviewed_at or not start <= instant(reviewed_at) <= end
+                or row.get("sunlightAssessment") is not None):
             continue
         reviewed_rows += 1
         reviewed_event_ids.add(str(row.get("id") or "").split("::", 1)[0])
@@ -107,8 +109,9 @@ def main() -> int:
     )
     s3 = boto3.client("s3", region_name="us-east-1")
     assessments = {}
-    scanned_objects = selected_records = 0
-    for _, envelope in stored_envelopes(s3, args.bucket, start, end):
+    scanned_objects = selected_records = matched_records = 0
+    matched_keys = []
+    for key, envelope in stored_envelopes(s3, args.bucket, start, end):
         scanned_objects += 1
         filtered = {
             **envelope,
@@ -117,9 +120,20 @@ def main() -> int:
                 if str(record.get("candidateId") or "") in target_ids
             ],
         }
+        matched_records += len(filtered["records"])
+        if filtered["records"]:
+            matched_keys.append({
+                "key": key,
+                "shadowStatus": (envelope.get("shadowV2") or {}).get("status"),
+                "matchedRecords": len(filtered["records"]),
+            })
         payload = build_payload(filtered)
         selected_records += len(payload["assessments"])
         for assessment in payload["assessments"]:
+            original_key = assessment["idempotencyKey"]
+            assessment["idempotencyKey"] = hashlib.sha256(
+                f"{original_key}|results-backfill-v1".encode("utf-8")
+            ).hexdigest()
             assessments[assessment["idempotencyKey"]] = assessment
 
     summary = {
@@ -130,6 +144,8 @@ def main() -> int:
         "reviewCandidateIds": len(target_ids),
         "decisionObjects": scanned_objects,
         "selectedRecords": selected_records,
+        "matchedDecisionRecords": matched_records,
+        "matchedDecisionObjects": matched_keys,
         "uniqueAssessments": len(assessments),
     }
     if not args.apply:

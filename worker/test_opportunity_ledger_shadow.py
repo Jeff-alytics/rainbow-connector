@@ -1,13 +1,22 @@
 import io
 import json
+import sys
 import unittest
 from pathlib import Path
 
 import yaml
 from yaml.nodes import MappingNode, ScalarNode, SequenceNode
 
+# shadow_lambda reaches sunlight_v2 -> goes_sample, which lives in api/. Without
+# this guard the module only imports when an alphabetically earlier test module
+# has already patched sys.path, so running this file alone would fail.
+API_DIR = Path(__file__).resolve().parents[1] / "api"
+if str(API_DIR) not in sys.path:
+    sys.path.insert(0, str(API_DIR))
+
 from opportunity_ledger_dispatch import invoke_opportunity_ledger, safe_invoke_opportunity_ledger
 from opportunity_ledger_store import encode, load_previous, object_key
+from shadow_lambda import delivery_summary
 
 
 class FakeLambda:
@@ -114,6 +123,27 @@ class OpportunityLedgerShadowTests(unittest.TestCase):
         previous, previous_key = load_previous("private", "2026-07-30T01:46:00Z", FakeS3({key: body}))
         self.assertIsNone(previous)
         self.assertIsNone(previous_key)
+
+    def test_delivery_summary_reports_counts_skips_and_failures(self):
+        # A healthy lane must be visible in logs, because a pending review item
+        # withholds its own assessment and shows nothing in the workbench.
+        delivered = delivery_summary({"ok": True, "assessments": 7,
+                                      "response": {"received": 7, "attached": 3, "duplicates": 0, "unmatched": 4}})
+        self.assertEqual(delivered["ok"], True)
+        self.assertEqual(delivered["assessments"], 7)
+        self.assertEqual(delivered["attached"], 3)
+        self.assertEqual(delivered["unmatched"], 4)
+        self.assertNotIn("skipped", delivered)
+        # A silent skip is the failure mode that hid the outage; it must surface.
+        skipped = delivery_summary({"ok": True, "skipped": True, "assessments": 0,
+                                    "reason": "review callback not configured"})
+        self.assertEqual(skipped["skipped"], "review callback not configured")
+        self.assertEqual(skipped["assessments"], 0)
+        failed = delivery_summary({"ok": False, "error": "Review assessment callback failed (401): {}"})
+        self.assertEqual(failed["ok"], False)
+        self.assertIn("401", failed["error"])
+        # Must be JSON-serialisable so the log line stays machine-readable.
+        self.assertEqual(json.loads(json.dumps(delivered))["attached"], 3)
 
 
 if __name__ == "__main__": unittest.main()
