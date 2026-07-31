@@ -10,8 +10,9 @@ from typing import Any
 
 import requests
 
-from decision_log import RULE_VERSION
-from sunlight_v2 import METHOD_VERSION
+from decision_log import RULE_VERSION, SUNLIGHT_V2_METHOD_VERSION
+
+METHOD_VERSION = SUNLIGHT_V2_METHOD_VERSION
 
 CALLBACK_SCHEMA_VERSION = "review-assessment.v1"
 CALLBACK_MAX_BYTES = 128 * 1024

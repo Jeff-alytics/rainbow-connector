@@ -261,7 +261,7 @@ test("a lone research event still fills both review slots with separate camera v
   assert.equal(new Set(items.map(item => item.cameraKey)).size, 2);
 });
 
-test("sunlight assessment and research context stay hidden until every sibling camera view is graded", () => {
+test("active reviews stay blinded while completed result rows expose their stored sunlight assessment", () => {
   const event = { id: "siblings", candidateType: "research_possible", review: { label: "pending" },
     researchAssessments: [{ sunlightState: "sunlit_supported",
       researchReview: { selectionReason: "strong geometry", currentDetectorDisposition: "rejected" },
@@ -277,7 +277,7 @@ test("sunlight assessment and research context stay hidden until every sibling c
   event.viewReviews[groups[0].key] = { label: "no_rainbow", reviewedAt: "2026-07-30T02:30:00Z" };
   assert.equal(allCameraViewsReviewed(event), false);
   assert.equal("researchAssessments" in reviewSafeEvent(event), false);
-  assert.equal(reviewResults([event])[0].sunlightAssessment, null);
+  assert.equal(reviewResults([event])[0].sunlightAssessment?.sunlightState, "sunlit_supported");
   event.viewReviews[groups[1].key] = { label: "rainbow", reviewedAt: "2026-07-30T02:31:00Z" };
   assert.equal(allCameraViewsReviewed(event), true);
   assert.equal(reviewSafeEvent(event).researchAssessments.length, 1);

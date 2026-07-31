@@ -249,7 +249,10 @@ export function reviewResults(events) {
           bowArcOverlapDeg: Number.isFinite(camera.bowArcOverlapDeg) ? camera.bowArcOverlapDeg : null,
         },
         reviewStrength: reviewEvidenceStrength(camera.distanceKm, camera.bearingDifference, camera.viewQuality, camera.nearestFrameOffsetMinutes, camera.visibleBowFraction),
-        sunlightAssessment: allCameraViewsReviewed(event) ? (event.researchAssessments || []).at(-1) || null : null,
+        // This row exists only after its grade has been submitted. Keep the
+        // active queue blinded, but do not strand historical v2 evidence when
+        // another camera group was never reviewable or has since expired.
+        sunlightAssessment: (event.researchAssessments || []).at(-1) || null,
       };
     });
 }
