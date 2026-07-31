@@ -1,0 +1,3726 @@
+{
+  "schemaVersion": 1,
+  "fixtureId": "rainbow-negative-precision-v1",
+  "frozenThrough": "2026-07-29T15:19:07.752Z",
+  "purpose": "Human-reviewed no-rainbow comparison fixture. Weak evidence is retained transparently but receives little or zero calibration weight.",
+  "methodology": {
+    "version": "negative-evidence-v1",
+    "calibrationMinimumWeight": 0.5,
+    "unknownBearingWeight": 0,
+    "requiredForCalibration": [
+      "known bearing within 30 degrees",
+      "camera within 35 km",
+      "at least two distinct frames",
+      "nearest frame within 8 minutes",
+      "adequate reviewed sky view"
+    ],
+    "limitation": "This v1 weight uses camera-bearing difference as a proxy until Phase 1 supplies visible-bow fraction and rain-backed visible-bow fraction."
+  },
+  "summary": {
+    "records": 47,
+    "calibrationEligible": 26,
+    "zeroWeight": 2,
+    "weakNonzero": 19,
+    "totalCalibrationWeight": 21.248
+  },
+  "records": [
+    {
+      "eventId": "archive-webcoos-314c7cbca1474676",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": "historical_webcoos",
+      "firstSeenAt": "2024-06-24T22:50:00.000Z",
+      "lastSeenAt": "2024-06-24T22:50:00.000Z",
+      "reviewedAt": "2026-07-28T22:37:30.588Z",
+      "scanCount": 1,
+      "peakScore": 73.5,
+      "observer": {
+        "lat": 34.717564,
+        "lon": -76.671283
+      },
+      "meteorology": {
+        "sunElevationDeg": 16.78,
+        "directNormalIrradianceWm2": 125,
+        "cloudCoverPct": 100,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0.686,
+        "rainPoint": {
+          "lat": 34.7175,
+          "lon": -76.5072,
+          "distanceKm": 15,
+          "bearing": 90
+        },
+        "goes": null
+      },
+      "camera": {
+        "source": "WebCOOS / contributing camera partner",
+        "name": "Beaufort, NC",
+        "state": null,
+        "direction": "Fixed view centered 99.0°; 90.0° half-width",
+        "distanceKm": 0,
+        "bearingDifferenceDeg": 0,
+        "viewQuality": "unreviewed",
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.2,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "sky_view_not_verified_adequate",
+          "view_quality_not_calibration_grade",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.2
+        },
+        "inputs": {
+          "distanceKm": 0,
+          "bearingDifferenceDeg": 0,
+          "viewQuality": "unreviewed",
+          "horizonSkyPct": null,
+          "source": "WebCOOS / contributing camera partner",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2024-06-24T22:48:04+00:00",
+            "2024-06-24T22:49:04+00:00",
+            "2024-06-24T22:50:07+00:00",
+            "2024-06-24T22:51:06+00:00",
+            "2024-06-24T22:52:02+00:00"
+          ],
+          "nearestFrameOffsetMinutes": 0.1,
+          "frameSpanMinutes": 4
+        }
+      }
+    },
+    {
+      "eventId": "archive-webcoos-3d173f3960511837",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": "historical_webcoos",
+      "firstSeenAt": "2024-11-23T22:50:00.000Z",
+      "lastSeenAt": "2024-11-23T22:50:00.000Z",
+      "reviewedAt": "2026-07-28T22:37:41.933Z",
+      "scanCount": 1,
+      "peakScore": 73.4,
+      "observer": {
+        "lat": 36.960695,
+        "lon": -122.0022
+      },
+      "meteorology": {
+        "sunElevationDeg": 19.29,
+        "directNormalIrradianceWm2": 505,
+        "cloudCoverPct": 17,
+        "rainIntensity": 0.6,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 37.056,
+          "lon": -121.8827,
+          "distanceKm": 15,
+          "bearing": 45
+        },
+        "goes": null
+      },
+      "camera": {
+        "source": "WebCOOS / contributing camera partner",
+        "name": "Walton Lighthouse, Santa Cruz, CA",
+        "state": "California",
+        "direction": "Fixed view centered 9.0°; 90.0° half-width",
+        "distanceKm": 0,
+        "bearingDifferenceDeg": 0,
+        "viewQuality": "unreviewed",
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.2,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "sky_view_not_verified_adequate",
+          "view_quality_not_calibration_grade",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.2
+        },
+        "inputs": {
+          "distanceKm": 0,
+          "bearingDifferenceDeg": 0,
+          "viewQuality": "unreviewed",
+          "horizonSkyPct": null,
+          "source": "WebCOOS / contributing camera partner",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2024-11-23T22:48:08+00:00",
+            "2024-11-23T22:49:04+00:00",
+            "2024-11-23T22:50:08+00:00",
+            "2024-11-23T22:51:04+00:00",
+            "2024-11-23T22:52:08+00:00"
+          ],
+          "nearestFrameOffsetMinutes": 0.1,
+          "frameSpanMinutes": 4
+        }
+      }
+    },
+    {
+      "eventId": "archive-webcoos-9c529d40241f22ef",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": "historical_webcoos",
+      "firstSeenAt": "2024-02-19T16:10:00.000Z",
+      "lastSeenAt": "2024-02-19T16:10:00.000Z",
+      "reviewedAt": "2026-07-28T22:37:18.273Z",
+      "scanCount": 1,
+      "peakScore": 83.9,
+      "observer": {
+        "lat": 36.960695,
+        "lon": -122.0022
+      },
+      "meteorology": {
+        "sunElevationDeg": 13.61,
+        "directNormalIrradianceWm2": 421,
+        "cloudCoverPct": 42,
+        "rainIntensity": 0.9,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 36.9606,
+          "lon": -122.171,
+          "distanceKm": 15,
+          "bearing": 270
+        },
+        "goes": null
+      },
+      "camera": {
+        "source": "WebCOOS / contributing camera partner",
+        "name": "Walton Lighthouse, Santa Cruz, CA",
+        "state": "California",
+        "direction": "Fixed view centered 9.0°; 90.0° half-width",
+        "distanceKm": 0,
+        "bearingDifferenceDeg": 0,
+        "viewQuality": "unreviewed",
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.2,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "sky_view_not_verified_adequate",
+          "view_quality_not_calibration_grade",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.2
+        },
+        "inputs": {
+          "distanceKm": 0,
+          "bearingDifferenceDeg": 0,
+          "viewQuality": "unreviewed",
+          "horizonSkyPct": null,
+          "source": "WebCOOS / contributing camera partner",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2024-02-19T16:07:51+00:00",
+            "2024-02-19T16:08:47+00:00",
+            "2024-02-19T16:09:51+00:00",
+            "2024-02-19T16:10:47+00:00",
+            "2024-02-19T16:11:49+00:00"
+          ],
+          "nearestFrameOffsetMinutes": 0.2,
+          "frameSpanMinutes": 4
+        }
+      }
+    },
+    {
+      "eventId": "archive-webcoos-b78004b9bf663857",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": "historical_webcoos",
+      "firstSeenAt": "2024-03-23T22:10:00.000Z",
+      "lastSeenAt": "2024-03-23T22:10:00.000Z",
+      "reviewedAt": "2026-07-28T22:38:20.213Z",
+      "scanCount": 1,
+      "peakScore": 55.5,
+      "observer": {
+        "lat": 34.14,
+        "lon": -77.862
+      },
+      "meteorology": {
+        "sunElevationDeg": 14.79,
+        "directNormalIrradianceWm2": 255,
+        "cloudCoverPct": 40,
+        "rainIntensity": 0.514,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 34.1399,
+          "lon": -77.699,
+          "distanceKm": 15,
+          "bearing": 90
+        },
+        "goes": null
+      },
+      "camera": {
+        "source": "WebCOOS / contributing camera partner",
+        "name": "University of North Carolina Wilmington Dock (south view), Wilmington, NC",
+        "state": "North Carolina",
+        "direction": "Fixed view centered 139.0°; 49.0° half-width",
+        "distanceKm": 0,
+        "bearingDifferenceDeg": 8.7,
+        "viewQuality": "unreviewed",
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.2,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "sky_view_not_verified_adequate",
+          "view_quality_not_calibration_grade",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.2
+        },
+        "inputs": {
+          "distanceKm": 0,
+          "bearingDifferenceDeg": 8.7,
+          "viewQuality": "unreviewed",
+          "horizonSkyPct": null,
+          "source": "WebCOOS / contributing camera partner",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2024-03-23T22:08:24+00:00",
+            "2024-03-23T22:09:28+00:00",
+            "2024-03-23T22:10:25+00:00",
+            "2024-03-23T22:11:28+00:00",
+            "2024-03-23T22:12:24+00:00"
+          ],
+          "nearestFrameOffsetMinutes": 0.4,
+          "frameSpanMinutes": 4
+        }
+      }
+    },
+    {
+      "eventId": "archive-webcoos-fe548e7b54f1690f",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": "historical_webcoos",
+      "firstSeenAt": "2025-11-17T22:50:00.000Z",
+      "lastSeenAt": "2025-11-17T22:50:00.000Z",
+      "reviewedAt": "2026-07-28T22:38:09.084Z",
+      "scanCount": 1,
+      "peakScore": 57.7,
+      "observer": {
+        "lat": 37.862,
+        "lon": -122.49
+      },
+      "meteorology": {
+        "sunElevationDeg": 19.95,
+        "directNormalIrradianceWm2": 403,
+        "cloudCoverPct": 100,
+        "rainIntensity": 0.5,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 37.9573,
+          "lon": -122.369,
+          "distanceKm": 15,
+          "bearing": 45
+        },
+        "goes": null
+      },
+      "camera": {
+        "source": "WebCOOS / contributing camera partner",
+        "name": "Sausalito - Galilee Harbor",
+        "state": "California",
+        "direction": "Fixed view centered 24.3°; 24.3° half-width",
+        "distanceKm": 0,
+        "bearingDifferenceDeg": 0,
+        "viewQuality": "unreviewed",
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.2,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "sky_view_not_verified_adequate",
+          "view_quality_not_calibration_grade",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.2
+        },
+        "inputs": {
+          "distanceKm": 0,
+          "bearingDifferenceDeg": 0,
+          "viewQuality": "unreviewed",
+          "horizonSkyPct": null,
+          "source": "WebCOOS / contributing camera partner",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2025-11-17T22:48:12+00:00",
+            "2025-11-17T22:49:12+00:00",
+            "2025-11-17T22:50:12+00:00",
+            "2025-11-17T22:51:12+00:00",
+            "2025-11-17T22:52:12+00:00"
+          ],
+          "nearestFrameOffsetMinutes": 0.2,
+          "frameSpanMinutes": 4
+        }
+      }
+    },
+    {
+      "eventId": "go-202607262354-df0f3aed9a",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": null,
+      "firstSeenAt": "2026-07-26T23:54:57.294200Z",
+      "lastSeenAt": "2026-07-26T23:54:57.294200Z",
+      "reviewedAt": "2026-07-27T00:03:30.475Z",
+      "scanCount": 1,
+      "peakScore": 96.2,
+      "observer": {
+        "lat": 29.8144,
+        "lon": -89.775
+      },
+      "meteorology": {
+        "sunElevationDeg": 12.33,
+        "directNormalIrradianceWm2": 463,
+        "cloudCoverPct": 7,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 29.795,
+          "lon": -89.695,
+          "distanceKm": 8,
+          "bearing": 106
+        },
+        "goes": {
+          "decision": "go",
+          "positiveSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "negativeSources": [],
+          "sources": {
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "positive": true,
+              "negative": false,
+              "strength": "moderate-context",
+              "reason": "downward shortwave flux 201.86936950683594 W m-2 (not direct-normal irradiance)",
+              "observedAt": "2026-07-26T23:30:20Z",
+              "observedAgeMinutes": 25,
+              "maxAgeMinutes": 30,
+              "product": "ABI-L2-DSRF",
+              "variable": "DSR",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "value": 201.86936950683594,
+              "units": "W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/207/23/OR_ABI-L2-DSRF-M6_G19_s20262072330208_e20262072339517_c20262072346342.nc"
+            },
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "positive": true,
+              "negative": false,
+              "strength": "clear-mask",
+              "reason": "clear/probably clear",
+              "observedAt": "2026-07-26T23:51:17Z",
+              "observedAgeMinutes": 4,
+              "maxAgeMinutes": 20,
+              "product": "ABI-L2-ACMC",
+              "variable": "BCM",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "value": 0,
+              "units": "1",
+              "s3Key": "ABI-L2-ACMC/2026/207/23/OR_ABI-L2-ACMC-M6_G19_s20262072351176_e20262072353549_c20262072354278.nc"
+            }
+          }
+        }
+      },
+      "camera": {
+        "source": null,
+        "name": null,
+        "state": null,
+        "direction": null,
+        "distanceKm": null,
+        "bearingDifferenceDeg": null,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "camera_bearing_unknown",
+          "camera_too_distant_or_unknown",
+          "single_or_missing_frame",
+          "frames_not_timely",
+          "sky_view_not_verified_adequate",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0,
+          "proximity": 0,
+          "timing": 0,
+          "coverage": 0,
+          "sky": 0.5
+        },
+        "inputs": {
+          "distanceKm": null,
+          "bearingDifferenceDeg": null,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": null,
+          "distinctFrames": 0,
+          "observedAt": [],
+          "nearestFrameOffsetMinutes": null,
+          "frameSpanMinutes": 0
+        }
+      }
+    },
+    {
+      "eventId": "go-202607270119-b2d9e1fca4",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": null,
+      "firstSeenAt": "2026-07-27T01:19:57.268564Z",
+      "lastSeenAt": "2026-07-27T01:19:57.268564Z",
+      "reviewedAt": "2026-07-27T02:00:24.364Z",
+      "scanCount": 1,
+      "peakScore": 72.7,
+      "observer": {
+        "lat": 53.5012,
+        "lon": -116.4157
+      },
+      "meteorology": {
+        "sunElevationDeg": 20.82,
+        "directNormalIrradianceWm2": 288,
+        "cloudCoverPct": 44,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 53.495,
+          "lon": -116.295,
+          "distanceKm": 8,
+          "bearing": 95
+        },
+        "goes": {
+          "decision": "go",
+          "positiveSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "negativeSources": [],
+          "sources": {
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "positive": true,
+              "negative": false,
+              "strength": "moderate-context",
+              "reason": "downward shortwave flux 281.6648864746094 W m-2 (not direct-normal irradiance)",
+              "observedAt": "2026-07-27T01:00:21Z",
+              "observedAgeMinutes": 20,
+              "maxAgeMinutes": 30,
+              "product": "ABI-L2-DSRF",
+              "variable": "DSR",
+              "satellite": "GOES-18",
+              "satellitePosition": "west",
+              "value": 281.6648864746094,
+              "units": "W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/208/01/OR_ABI-L2-DSRF-M6_G18_s20262080100215_e20262080109524_c20262080115195.nc"
+            },
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "positive": true,
+              "negative": false,
+              "strength": "clear-mask",
+              "reason": "clear/probably clear",
+              "observedAt": "2026-07-27T01:16:18Z",
+              "observedAgeMinutes": 4,
+              "maxAgeMinutes": 20,
+              "product": "ABI-L2-ACMC",
+              "variable": "BCM",
+              "satellite": "GOES-18",
+              "satellitePosition": "west",
+              "value": 0,
+              "units": "1",
+              "s3Key": "ABI-L2-ACMC/2026/208/01/OR_ABI-L2-ACMC-M6_G18_s20262080116183_e20262080118556_c20262080119305.nc"
+            }
+          }
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Edson",
+        "state": "AB",
+        "direction": "East",
+        "distanceKm": 9.2,
+        "bearingDifferenceDeg": 25,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.638,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 0.75,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 9.2,
+          "bearingDifferenceDeg": 25,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-27T01:02:04.786Z",
+            "2026-07-27T01:14:05.142Z",
+            "2026-07-27T01:22:35.147Z",
+            "2026-07-27T01:34:42.462Z",
+            "2026-07-27T01:42:48.529Z"
+          ],
+          "nearestFrameOffsetMinutes": 2.6,
+          "frameSpanMinutes": 40.7
+        }
+      }
+    },
+    {
+      "eventId": "go-202607280054-b595d6215c",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": null,
+      "firstSeenAt": "2026-07-28T00:54:57.148307Z",
+      "lastSeenAt": "2026-07-28T00:54:57.148307Z",
+      "reviewedAt": "2026-07-28T01:28:26.708Z",
+      "scanCount": 1,
+      "peakScore": 86.9,
+      "observer": {
+        "lat": 39.2123,
+        "lon": -103.6853
+      },
+      "meteorology": {
+        "sunElevationDeg": 13.73,
+        "directNormalIrradianceWm2": 543,
+        "cloudCoverPct": 6,
+        "rainIntensity": 0.35,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 39.195,
+          "lon": -103.595,
+          "distanceKm": 8,
+          "bearing": 104
+        },
+        "goes": {
+          "decision": "go",
+          "positiveSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "negativeSources": [],
+          "sources": {
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "positive": true,
+              "negative": false,
+              "strength": "moderate-context",
+              "reason": "downward shortwave flux 233.343505859375 W m-2 (not direct-normal irradiance)",
+              "observedAt": "2026-07-28T00:30:20Z",
+              "observedAgeMinutes": 25,
+              "maxAgeMinutes": 30,
+              "product": "ABI-L2-DSRF",
+              "variable": "DSR",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "value": 233.343505859375,
+              "units": "W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/209/00/OR_ABI-L2-DSRF-M6_G19_s20262090030209_e20262090039518_c20262090046144.nc"
+            },
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "positive": true,
+              "negative": false,
+              "strength": "clear-mask",
+              "reason": "clear/probably clear",
+              "observedAt": "2026-07-28T00:51:17Z",
+              "observedAgeMinutes": 4,
+              "maxAgeMinutes": 20,
+              "product": "ABI-L2-ACMC",
+              "variable": "BCM",
+              "satellite": "GOES-19",
+              "satellitePosition": "east",
+              "value": 0,
+              "units": "1",
+              "s3Key": "ABI-L2-ACMC/2026/209/00/OR_ABI-L2-ACMC-M6_G19_s20262090051177_e20262090053550_c20262090054304.nc"
+            }
+          }
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Limon",
+        "state": "CO",
+        "direction": "East",
+        "distanceKm": 6.3,
+        "bearingDifferenceDeg": 24,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.574,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 0.75,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 0.9,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 6.3,
+          "bearingDifferenceDeg": 24,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 4,
+          "observedAt": [
+            "2026-07-28T00:32:52.533Z",
+            "2026-07-28T00:41:21.597Z",
+            "2026-07-28T00:49:51.172Z",
+            "2026-07-28T00:58:12.198Z"
+          ],
+          "nearestFrameOffsetMinutes": 3.3,
+          "frameSpanMinutes": 25.3
+        }
+      }
+    },
+    {
+      "eventId": "go-202607280104-544fb50332",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": null,
+      "firstSeenAt": "2026-07-28T01:04:57.163052Z",
+      "lastSeenAt": "2026-07-28T01:34:57.069009Z",
+      "reviewedAt": "2026-07-28T01:28:52.876Z",
+      "scanCount": 2,
+      "peakScore": 99.5,
+      "observer": {
+        "lat": 53.0784,
+        "lon": -109.4775
+      },
+      "meteorology": {
+        "sunElevationDeg": 14.13,
+        "directNormalIrradianceWm2": 455,
+        "cloudCoverPct": 0,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 52.995,
+          "lon": -108.895,
+          "distanceKm": 40,
+          "bearing": 103
+        },
+        "goes": {
+          "decision": "go",
+          "positiveSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "negativeSources": [],
+          "sources": {
+            "goesDsrf": {
+              "available": true,
+              "fresh": true,
+              "positive": true,
+              "negative": false,
+              "strength": "moderate-context",
+              "reason": "downward shortwave flux 223.52357482910156 W m-2 (not direct-normal irradiance)",
+              "observedAt": "2026-07-28T01:10:21Z",
+              "observedAgeMinutes": 25,
+              "maxAgeMinutes": 30,
+              "product": "ABI-L2-DSRF",
+              "variable": "DSR",
+              "satellite": "GOES-18",
+              "satellitePosition": "west",
+              "value": 223.52357482910156,
+              "units": "W m-2",
+              "s3Key": "ABI-L2-DSRF/2026/209/01/OR_ABI-L2-DSRF-M6_G18_s20262090110217_e20262090119525_c20262090125183.nc"
+            },
+            "goesAcmc": {
+              "available": true,
+              "fresh": true,
+              "positive": true,
+              "negative": false,
+              "strength": "clear-mask",
+              "reason": "clear/probably clear",
+              "observedAt": "2026-07-28T01:31:18Z",
+              "observedAgeMinutes": 4,
+              "maxAgeMinutes": 20,
+              "product": "ABI-L2-ACMC",
+              "variable": "BCM",
+              "satellite": "GOES-18",
+              "satellitePosition": "west",
+              "value": 0,
+              "units": "1",
+              "s3Key": "ABI-L2-ACMC/2026/209/01/OR_ABI-L2-ACMC-M6_G18_s20262090131185_e20262090133558_c20262090134291.nc"
+            }
+          }
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Lloydminster",
+        "state": "AB",
+        "direction": "SouthEast",
+        "distanceKm": 27.7,
+        "bearingDifferenceDeg": 48,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.013,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "bow_direction_outside_strong_review_sector",
+          "frames_not_timely",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.25,
+          "proximity": 0.8,
+          "timing": 0.1,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 27.7,
+          "bearingDifferenceDeg": 48,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-28T00:40:48.120Z",
+            "2026-07-28T00:52:06.589Z",
+            "2026-07-28T01:01:02.783Z"
+          ],
+          "nearestFrameOffsetMinutes": 33.9,
+          "frameSpanMinutes": 20.2
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282124-502c490439",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T21:24:57.104622Z",
+      "lastSeenAt": "2026-07-28T21:24:57.104622Z",
+      "reviewedAt": "2026-07-29T01:42:04.181Z",
+      "scanCount": 1,
+      "peakScore": 45.3,
+      "observer": {
+        "lat": 44.5932,
+        "lon": -70.9962
+      },
+      "meteorology": {
+        "sunElevationDeg": 29.18,
+        "directNormalIrradianceWm2": 302,
+        "cloudCoverPct": 71,
+        "rainIntensity": 0.45,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 44.595,
+          "lon": -70.895,
+          "distanceKm": 8,
+          "bearing": 89
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Berlin Regional Airport",
+        "state": "NH",
+        "direction": "East",
+        "distanceKm": 14.5,
+        "bearingDifferenceDeg": 14,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.85,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 14.5,
+          "bearingDifferenceDeg": 14,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T21:08:23.423Z",
+            "2026-07-28T21:16:39.068Z",
+            "2026-07-28T21:24:53.973Z",
+            "2026-07-28T21:33:26.526Z",
+            "2026-07-28T21:42:01.857Z"
+          ],
+          "nearestFrameOffsetMinutes": 0.1,
+          "frameSpanMinutes": 33.6
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282124-f1f9be37cf",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T21:24:57.104622Z",
+      "lastSeenAt": "2026-07-28T21:24:57.104622Z",
+      "reviewedAt": "2026-07-29T01:44:28.761Z",
+      "scanCount": 1,
+      "peakScore": 33.4,
+      "observer": {
+        "lat": 43.4939,
+        "lon": -71.0943
+      },
+      "meteorology": {
+        "sunElevationDeg": 29.27,
+        "directNormalIrradianceWm2": 170,
+        "cloudCoverPct": 100,
+        "rainIntensity": 0.65,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 43.495,
+          "lon": -70.995,
+          "distanceKm": 8,
+          "bearing": 89
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Sanford Seacoast Reg Airport",
+        "state": "ME",
+        "direction": "East",
+        "distanceKm": 32.6,
+        "bearingDifferenceDeg": 1,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.68,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 32.6,
+          "bearingDifferenceDeg": 1,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T21:08:12.051Z",
+            "2026-07-28T21:16:28.266Z",
+            "2026-07-28T21:24:57.988Z",
+            "2026-07-28T21:33:14.738Z",
+            "2026-07-28T21:41:46.581Z"
+          ],
+          "nearestFrameOffsetMinutes": 0,
+          "frameSpanMinutes": 33.6
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282139-852dc42198",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T21:39:57.939923Z",
+      "lastSeenAt": "2026-07-28T21:39:57.939923Z",
+      "reviewedAt": "2026-07-29T01:44:38.958Z",
+      "scanCount": 1,
+      "peakScore": 32.3,
+      "observer": {
+        "lat": 46.8968,
+        "lon": -69.4004
+      },
+      "meteorology": {
+        "sunElevationDeg": 25.27,
+        "directNormalIrradianceWm2": 168,
+        "cloudCoverPct": 96,
+        "rainIntensity": 0.4,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 46.895,
+          "lon": -69.295,
+          "distanceKm": 8,
+          "bearing": 91
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Clayton Lake",
+        "state": "ME",
+        "direction": "East",
+        "distanceKm": 33.1,
+        "bearingDifferenceDeg": 9,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.68,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 33.1,
+          "bearingDifferenceDeg": 9,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T21:25:03.082Z",
+            "2026-07-28T21:33:26.625Z",
+            "2026-07-28T21:41:58.731Z",
+            "2026-07-28T21:50:11.411Z",
+            "2026-07-28T21:58:45.202Z"
+          ],
+          "nearestFrameOffsetMinutes": 2,
+          "frameSpanMinutes": 33.7
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282144-e0adb98a21",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T21:44:58.123046Z",
+      "lastSeenAt": "2026-07-28T21:44:58.123046Z",
+      "reviewedAt": "2026-07-29T01:42:12.717Z",
+      "scanCount": 1,
+      "peakScore": 44.7,
+      "observer": {
+        "lat": 41.3961,
+        "lon": -75.1911
+      },
+      "meteorology": {
+        "sunElevationDeg": 28.61,
+        "directNormalIrradianceWm2": 233,
+        "cloudCoverPct": 83,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 41.395,
+          "lon": -75.095,
+          "distanceKm": 8,
+          "bearing": 91
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Cherry Ridge",
+        "state": "PA",
+        "direction": "East",
+        "distanceKm": 14.2,
+        "bearingDifferenceDeg": 1,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.85,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 14.2,
+          "bearingDifferenceDeg": 1,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T21:24:02.107Z",
+            "2026-07-28T21:32:31.316Z",
+            "2026-07-28T21:40:57.181Z",
+            "2026-07-28T21:49:26.833Z",
+            "2026-07-28T21:57:57.244Z"
+          ],
+          "nearestFrameOffsetMinutes": 4,
+          "frameSpanMinutes": 33.9
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282159-7ff6853abb",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T21:59:58.374581Z",
+      "lastSeenAt": "2026-07-28T21:59:58.374581Z",
+      "reviewedAt": "2026-07-29T01:44:14.867Z",
+      "scanCount": 1,
+      "peakScore": 39.2,
+      "observer": {
+        "lat": 44.4008,
+        "lon": -71.3955
+      },
+      "meteorology": {
+        "sunElevationDeg": 23.04,
+        "directNormalIrradianceWm2": 213,
+        "cloudCoverPct": 100,
+        "rainIntensity": 0.35,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 44.395,
+          "lon": -71.295,
+          "distanceKm": 8,
+          "bearing": 95
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Berlin Regional Airport",
+        "state": "NH",
+        "direction": "East",
+        "distanceKm": 26,
+        "bearingDifferenceDeg": 20,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.51,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 0.75,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 26,
+          "bearingDifferenceDeg": 20,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T21:42:01.857Z",
+            "2026-07-28T21:50:25.542Z",
+            "2026-07-28T21:58:41.962Z",
+            "2026-07-28T22:07:13.650Z",
+            "2026-07-28T22:15:26.774Z"
+          ],
+          "nearestFrameOffsetMinutes": 1.3,
+          "frameSpanMinutes": 33.4
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282159-96417db1ab",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T21:59:58.374581Z",
+      "lastSeenAt": "2026-07-28T21:59:58.374581Z",
+      "reviewedAt": "2026-07-29T01:42:24.083Z",
+      "scanCount": 1,
+      "peakScore": 42.9,
+      "observer": {
+        "lat": 40.7129,
+        "lon": -74.1911
+      },
+      "meteorology": {
+        "sunElevationDeg": 24.66,
+        "directNormalIrradianceWm2": 147,
+        "cloudCoverPct": 100,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 40.695,
+          "lon": -73.895,
+          "distanceKm": 25,
+          "bearing": 95
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Teterboro Airport",
+        "state": "NJ",
+        "direction": "East",
+        "distanceKm": 19.1,
+        "bearingDifferenceDeg": 15,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.85,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 19.1,
+          "bearingDifferenceDeg": 15,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T21:43:50.094Z",
+            "2026-07-28T21:52:15.351Z",
+            "2026-07-28T22:00:34.430Z",
+            "2026-07-28T22:08:49.240Z",
+            "2026-07-28T22:17:00.572Z"
+          ],
+          "nearestFrameOffsetMinutes": 0.6,
+          "frameSpanMinutes": 33.2
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282204-c0ea555847",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T22:04:58.353062Z",
+      "lastSeenAt": "2026-07-28T22:04:58.353062Z",
+      "reviewedAt": "2026-07-29T01:43:58.738Z",
+      "scanCount": 1,
+      "peakScore": 43.2,
+      "observer": {
+        "lat": 40.5282,
+        "lon": -74.3669
+      },
+      "meteorology": {
+        "sunElevationDeg": 23.88,
+        "directNormalIrradianceWm2": 262,
+        "cloudCoverPct": 100,
+        "rainIntensity": 0.35,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 40.495,
+          "lon": -73.895,
+          "distanceKm": 40,
+          "bearing": 95
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [
+            "goesDsrf"
+          ],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Old Bridge Airport",
+        "state": "NJ",
+        "direction": "East",
+        "distanceKm": 22.3,
+        "bearingDifferenceDeg": 30,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.638,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 0.75,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 22.3,
+          "bearingDifferenceDeg": 30,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T21:45:20.278Z",
+            "2026-07-28T21:53:53.466Z",
+            "2026-07-28T22:02:22.675Z",
+            "2026-07-28T22:10:53.346Z",
+            "2026-07-28T22:19:25.578Z"
+          ],
+          "nearestFrameOffsetMinutes": 2.6,
+          "frameSpanMinutes": 34.1
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282229-3aa69aee40",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T22:29:59.113089Z",
+      "lastSeenAt": "2026-07-28T22:29:59.113089Z",
+      "reviewedAt": "2026-07-29T01:42:36.558Z",
+      "scanCount": 1,
+      "peakScore": 41.2,
+      "observer": {
+        "lat": 41.0169,
+        "lon": -73.6717
+      },
+      "meteorology": {
+        "sunElevationDeg": 18.76,
+        "directNormalIrradianceWm2": 124,
+        "cloudCoverPct": 86,
+        "rainIntensity": 0.5,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 40.995,
+          "lon": -73.495,
+          "distanceKm": 15,
+          "bearing": 99
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Westchester County Airport",
+        "state": "NY",
+        "direction": "East",
+        "distanceKm": 6.1,
+        "bearingDifferenceDeg": 14,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.85,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 6.1,
+          "bearingDifferenceDeg": 14,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T22:11:31.725Z",
+            "2026-07-28T22:19:48.156Z",
+            "2026-07-28T22:28:08.273Z",
+            "2026-07-28T22:36:29.753Z",
+            "2026-07-28T22:45:02.999Z"
+          ],
+          "nearestFrameOffsetMinutes": 1.8,
+          "frameSpanMinutes": 33.5
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282244-680bc5633c",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T22:44:59.084909Z",
+      "lastSeenAt": "2026-07-28T22:44:59.084909Z",
+      "reviewedAt": "2026-07-29T01:44:51.409Z",
+      "scanCount": 1,
+      "peakScore": 47.7,
+      "observer": {
+        "lat": 26.7232,
+        "lon": -81.9429
+      },
+      "meteorology": {
+        "sunElevationDeg": 19.63,
+        "directNormalIrradianceWm2": 134,
+        "cloudCoverPct": 100,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 26.695,
+          "lon": -81.795,
+          "distanceKm": 15,
+          "bearing": 102
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Salty Approach Airport",
+        "state": "FL",
+        "direction": "East",
+        "distanceKm": 30.6,
+        "bearingDifferenceDeg": 32,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.153,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "bow_direction_outside_strong_review_sector",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.25,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 0.9,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 30.6,
+          "bearingDifferenceDeg": 32,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 4,
+          "observedAt": [
+            "2026-07-28T22:29:51.699Z",
+            "2026-07-28T22:38:47.354Z",
+            "2026-07-28T22:49:45.652Z",
+            "2026-07-28T23:04:56.819Z"
+          ],
+          "nearestFrameOffsetMinutes": 4.8,
+          "frameSpanMinutes": 35.1
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282249-1fdf30569e",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T22:49:59.058332Z",
+      "lastSeenAt": "2026-07-28T22:49:59.058332Z",
+      "reviewedAt": "2026-07-29T01:43:41.152Z",
+      "scanCount": 1,
+      "peakScore": 45.5,
+      "observer": {
+        "lat": 30.6143,
+        "lon": -88.4504
+      },
+      "meteorology": {
+        "sunElevationDeg": 25.07,
+        "directNormalIrradianceWm2": 176,
+        "cloudCoverPct": 66,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 30.595,
+          "lon": -88.295,
+          "distanceKm": 15,
+          "bearing": 98
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Mobile West",
+        "state": "AL",
+        "direction": "East",
+        "distanceKm": 26,
+        "bearingDifferenceDeg": 8,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.68,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 26,
+          "bearingDifferenceDeg": 8,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T22:34:51.295Z",
+            "2026-07-28T22:43:15.057Z",
+            "2026-07-28T22:51:50.515Z",
+            "2026-07-28T23:03:11.341Z",
+            "2026-07-28T23:11:34.998Z"
+          ],
+          "nearestFrameOffsetMinutes": 1.9,
+          "frameSpanMinutes": 36.7
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282304-4105897cab",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T23:04:59.031938Z",
+      "lastSeenAt": "2026-07-28T23:04:59.031938Z",
+      "reviewedAt": "2026-07-29T01:44:44.465Z",
+      "scanCount": 1,
+      "peakScore": 49.2,
+      "observer": {
+        "lat": 40.5127,
+        "lon": -74.2869
+      },
+      "meteorology": {
+        "sunElevationDeg": 12.87,
+        "directNormalIrradianceWm2": 137,
+        "cloudCoverPct": 99,
+        "rainIntensity": 0.25,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 40.495,
+          "lon": -74.195,
+          "distanceKm": 8,
+          "bearing": 104
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Old Bridge Airport",
+        "state": "NJ",
+        "direction": "East",
+        "distanceKm": 21.2,
+        "bearingDifferenceDeg": 39,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.213,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "bow_direction_outside_strong_review_sector",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.25,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 21.2,
+          "bearingDifferenceDeg": 39,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T22:44:48.262Z",
+            "2026-07-28T22:53:17.613Z",
+            "2026-07-28T23:01:41.770Z",
+            "2026-07-28T23:10:10.292Z",
+            "2026-07-28T23:18:34.449Z"
+          ],
+          "nearestFrameOffsetMinutes": 3.3,
+          "frameSpanMinutes": 33.8
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282309-b8a39503d2",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T23:09:58.989827Z",
+      "lastSeenAt": "2026-07-28T23:09:58.989827Z",
+      "reviewedAt": "2026-07-29T01:43:03.801Z",
+      "scanCount": 1,
+      "peakScore": 49.7,
+      "observer": {
+        "lat": 40.8139,
+        "lon": -74.0869
+      },
+      "meteorology": {
+        "sunElevationDeg": 11.7,
+        "directNormalIrradianceWm2": 141,
+        "cloudCoverPct": 100,
+        "rainIntensity": 0.3,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 40.795,
+          "lon": -73.995,
+          "distanceKm": 8,
+          "bearing": 105
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Teterboro Airport",
+        "state": "NJ",
+        "direction": "East",
+        "distanceKm": 4.9,
+        "bearingDifferenceDeg": 25,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.638,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 0.75,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 4.9,
+          "bearingDifferenceDeg": 25,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T22:50:56.220Z",
+            "2026-07-28T22:59:10.434Z",
+            "2026-07-28T23:07:32.562Z",
+            "2026-07-28T23:15:47.446Z",
+            "2026-07-28T23:24:15.554Z"
+          ],
+          "nearestFrameOffsetMinutes": 2.4,
+          "frameSpanMinutes": 33.3
+        }
+      }
+    },
+    {
+      "eventId": "go-202607282354-377ae73623",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-28T23:54:59.643873Z",
+      "lastSeenAt": "2026-07-28T23:54:59.643873Z",
+      "reviewedAt": "2026-07-29T01:43:32.286Z",
+      "scanCount": 1,
+      "peakScore": 46.8,
+      "observer": {
+        "lat": 39.5248,
+        "lon": -103.4604
+      },
+      "meteorology": {
+        "sunElevationDeg": 25,
+        "directNormalIrradianceWm2": 187,
+        "cloudCoverPct": 100,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 39.495,
+          "lon": -102.995,
+          "distanceKm": 40,
+          "bearing": 95
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Limon",
+        "state": "CO",
+        "direction": "East",
+        "distanceKm": 33.6,
+        "bearingDifferenceDeg": 15,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.68,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 33.6,
+          "bearingDifferenceDeg": 15,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T23:35:12.083Z",
+            "2026-07-28T23:43:37.320Z",
+            "2026-07-28T23:52:11.737Z",
+            "2026-07-29T00:00:39.980Z",
+            "2026-07-29T00:08:58.925Z"
+          ],
+          "nearestFrameOffsetMinutes": 2.8,
+          "frameSpanMinutes": 33.8
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290009-96d96d99e1",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T00:09:59.252848Z",
+      "lastSeenAt": "2026-07-29T00:09:59.252848Z",
+      "reviewedAt": "2026-07-29T01:43:49.661Z",
+      "scanCount": 1,
+      "peakScore": 44.2,
+      "observer": {
+        "lat": 40.8011,
+        "lon": -105.8899
+      },
+      "meteorology": {
+        "sunElevationDeg": 24.2,
+        "directNormalIrradianceWm2": 155,
+        "cloudCoverPct": 44,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 40.795,
+          "lon": -105.795,
+          "distanceKm": 8,
+          "bearing": 95
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Walden/Jackson County",
+        "state": "CO",
+        "direction": "SouthEast",
+        "distanceKm": 32.9,
+        "bearingDifferenceDeg": 20,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.51,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 0.75,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 32.9,
+          "bearingDifferenceDeg": 20,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-28T23:50:12.071Z",
+            "2026-07-28T23:58:36.742Z",
+            "2026-07-29T00:06:52.490Z",
+            "2026-07-29T00:15:19.199Z",
+            "2026-07-29T00:23:40.363Z"
+          ],
+          "nearestFrameOffsetMinutes": 3.1,
+          "frameSpanMinutes": 33.5
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290019-c6ff94defd",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T00:19:58.743186Z",
+      "lastSeenAt": "2026-07-29T00:19:58.743186Z",
+      "reviewedAt": "2026-07-29T01:41:42.898Z",
+      "scanCount": 1,
+      "peakScore": 49.9,
+      "observer": {
+        "lat": 35.0054,
+        "lon": -106.6821
+      },
+      "meteorology": {
+        "sunElevationDeg": 22.19,
+        "directNormalIrradianceWm2": 209,
+        "cloudCoverPct": 97,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 34.995,
+          "lon": -106.595,
+          "distanceKm": 8,
+          "bearing": 98
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Double Eagle II Airport",
+        "state": "NM",
+        "direction": "East",
+        "distanceKm": 17.6,
+        "bearingDifferenceDeg": 8,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.85,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 17.6,
+          "bearingDifferenceDeg": 8,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-29T00:04:31.861Z",
+            "2026-07-29T00:13:04.759Z",
+            "2026-07-29T00:21:28.177Z",
+            "2026-07-29T00:29:57.561Z",
+            "2026-07-29T00:38:32.187Z"
+          ],
+          "nearestFrameOffsetMinutes": 1.5,
+          "frameSpanMinutes": 34
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290019-e21f972699",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T00:19:58.743186Z",
+      "lastSeenAt": "2026-07-29T00:19:58.743186Z",
+      "reviewedAt": "2026-07-29T01:43:20.350Z",
+      "scanCount": 1,
+      "peakScore": 48.1,
+      "observer": {
+        "lat": 39.6037,
+        "lon": -105.8879
+      },
+      "meteorology": {
+        "sunElevationDeg": 22.17,
+        "directNormalIrradianceWm2": 176,
+        "cloudCoverPct": 100,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 39.595,
+          "lon": -105.795,
+          "distanceKm": 8,
+          "bearing": 97
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Copper Mountain",
+        "state": "CO",
+        "direction": "East",
+        "distanceKm": 26.8,
+        "bearingDifferenceDeg": 3,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.68,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 26.8,
+          "bearingDifferenceDeg": 3,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-29T00:05:18.647Z",
+            "2026-07-29T00:13:34.450Z",
+            "2026-07-29T00:22:22.412Z",
+            "2026-07-29T00:30:42.521Z",
+            "2026-07-29T00:39:16.998Z"
+          ],
+          "nearestFrameOffsetMinutes": 2.4,
+          "frameSpanMinutes": 34
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290024-f07b6de6f6",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": "live_go",
+      "firstSeenAt": "2026-07-29T00:24:58.519518Z",
+      "lastSeenAt": "2026-07-29T00:24:58.519518Z",
+      "reviewedAt": "2026-07-29T00:27:36.879Z",
+      "scanCount": 1,
+      "peakScore": 80.1,
+      "observer": {
+        "lat": 39.8237,
+        "lon": -106.2857
+      },
+      "meteorology": {
+        "sunElevationDeg": 21.59,
+        "directNormalIrradianceWm2": 475,
+        "cloudCoverPct": 61,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 39.795,
+          "lon": -105.995,
+          "distanceKm": 25,
+          "bearing": 97
+        },
+        "goes": {
+          "decision": "go",
+          "positiveSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "negativeSources": []
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Kremmling/McElroy Field",
+        "state": "CO",
+        "direction": "East",
+        "distanceKm": 26.9,
+        "bearingDifferenceDeg": 11,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.51,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 26.9,
+          "bearingDifferenceDeg": 11,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T00:03:55.558Z",
+            "2026-07-29T00:12:41.171Z",
+            "2026-07-29T00:21:09.841Z"
+          ],
+          "nearestFrameOffsetMinutes": 3.8,
+          "frameSpanMinutes": 17.2
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290044-c458192c9b",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T00:44:57.888822Z",
+      "lastSeenAt": "2026-07-29T00:44:57.888822Z",
+      "reviewedAt": "2026-07-29T01:42:52.094Z",
+      "scanCount": 1,
+      "peakScore": 49.9,
+      "observer": {
+        "lat": 47.4163,
+        "lon": -92.6967
+      },
+      "meteorology": {
+        "sunElevationDeg": 10.14,
+        "directNormalIrradianceWm2": 196,
+        "cloudCoverPct": 1,
+        "rainIntensity": 0.1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 47.395,
+          "lon": -92.595,
+          "distanceKm": 8,
+          "bearing": 107
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [
+            "goesAcmc"
+          ],
+          "negativeSources": []
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Eveleth",
+        "state": "MN",
+        "direction": "East",
+        "distanceKm": 14.5,
+        "bearingDifferenceDeg": 17,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.638,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 0.75,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 14.5,
+          "bearingDifferenceDeg": 17,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-29T00:30:33.452Z",
+            "2026-07-29T00:38:52.094Z",
+            "2026-07-29T00:47:07.903Z",
+            "2026-07-29T00:55:30.963Z",
+            "2026-07-29T01:04:05.202Z"
+          ],
+          "nearestFrameOffsetMinutes": 2.2,
+          "frameSpanMinutes": 33.5
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290051-7e889cd1ef",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": null,
+      "firstSeenAt": "2026-07-29T00:51:09.185517Z",
+      "lastSeenAt": "2026-07-29T00:51:09.185517Z",
+      "reviewedAt": "2026-07-29T01:12:22.599Z",
+      "scanCount": 1,
+      "peakScore": 84.1,
+      "observer": {
+        "lat": 45.7026,
+        "lon": -111.4976
+      },
+      "meteorology": {
+        "sunElevationDeg": 21.1,
+        "directNormalIrradianceWm2": 534,
+        "cloudCoverPct": 0,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 45.695,
+          "lon": -111.395,
+          "distanceKm": 8,
+          "bearing": 96
+        },
+        "goes": {
+          "decision": "go",
+          "positiveSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "negativeSources": []
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Three Forks",
+        "state": "MT",
+        "direction": "East",
+        "distanceKm": 20.9,
+        "bearingDifferenceDeg": 26,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.638,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 0.75,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 20.9,
+          "bearingDifferenceDeg": 26,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-29T00:29:17.090Z",
+            "2026-07-29T00:37:41.925Z",
+            "2026-07-29T00:46:20.516Z",
+            "2026-07-29T00:54:49.966Z",
+            "2026-07-29T01:03:12.828Z"
+          ],
+          "nearestFrameOffsetMinutes": 3.7,
+          "frameSpanMinutes": 33.9
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290114-5b57e2bea6",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T01:14:57.908762Z",
+      "lastSeenAt": "2026-07-29T01:14:57.908762Z",
+      "reviewedAt": "2026-07-29T01:29:38.006Z",
+      "scanCount": 1,
+      "peakScore": 91.4,
+      "observer": {
+        "lat": 40.2528,
+        "lon": -105.98
+      },
+      "meteorology": {
+        "sunElevationDeg": 12.04,
+        "directNormalIrradianceWm2": 524,
+        "cloudCoverPct": 73,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 40.195,
+          "lon": -105.695,
+          "distanceKm": 25,
+          "bearing": 105
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [
+            "goesAcmc"
+          ],
+          "negativeSources": []
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Granby County Airport",
+        "state": "CO",
+        "direction": "East",
+        "distanceKm": 19.2,
+        "bearingDifferenceDeg": 15,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.765,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 0.9,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 19.2,
+          "bearingDifferenceDeg": 15,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 4,
+          "observedAt": [
+            "2026-07-29T00:54:38.942Z",
+            "2026-07-29T01:03:11.842Z",
+            "2026-07-29T01:11:28.588Z",
+            "2026-07-29T01:20:02.423Z"
+          ],
+          "nearestFrameOffsetMinutes": 3.5,
+          "frameSpanMinutes": 25.4
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290114-8a9839397a",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T01:14:57.908762Z",
+      "lastSeenAt": "2026-07-29T01:14:57.908762Z",
+      "reviewedAt": "2026-07-29T01:41:51.809Z",
+      "scanCount": 1,
+      "peakScore": 49.5,
+      "observer": {
+        "lat": 37.7145,
+        "lon": -105.1827
+      },
+      "meteorology": {
+        "sunElevationDeg": 10.93,
+        "directNormalIrradianceWm2": 45,
+        "cloudCoverPct": 96,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 37.695,
+          "lon": -105.095,
+          "distanceKm": 8,
+          "bearing": 106
+        },
+        "goes": {
+          "decision": "blocked",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "La Veta Pass",
+        "state": "CO",
+        "direction": "East",
+        "distanceKm": 22.6,
+        "bearingDifferenceDeg": 4,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.85,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 22.6,
+          "bearingDifferenceDeg": 4,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-29T01:01:57.460Z",
+            "2026-07-29T01:10:22.445Z",
+            "2026-07-29T01:18:49.948Z",
+            "2026-07-29T01:26:55.680Z",
+            "2026-07-29T01:35:11.843Z"
+          ],
+          "nearestFrameOffsetMinutes": 3.9,
+          "frameSpanMinutes": 33.2
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290131-76a4cf3110",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T01:31:09.248588Z",
+      "lastSeenAt": "2026-07-29T02:14:57.533798Z",
+      "reviewedAt": "2026-07-29T01:51:22.123Z",
+      "scanCount": 9,
+      "peakScore": 91.6,
+      "observer": {
+        "lat": 42.1118,
+        "lon": -113.8895
+      },
+      "meteorology": {
+        "sunElevationDeg": 13.67,
+        "directNormalIrradianceWm2": 482,
+        "cloudCoverPct": 3,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 42.095,
+          "lon": -113.795,
+          "distanceKm": 8,
+          "bearing": 104
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Mt Harrison",
+        "state": "ID",
+        "direction": "SouthEast",
+        "distanceKm": 30.6,
+        "bearingDifferenceDeg": 21,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.383,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.75,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 30.6,
+          "bearingDifferenceDeg": 21,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T01:24:21.687Z",
+            "2026-07-29T01:35:21.240Z",
+            "2026-07-29T01:46:05.061Z"
+          ],
+          "nearestFrameOffsetMinutes": 4.6,
+          "frameSpanMinutes": 21.7
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290131-99cc76acaa",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T01:31:09.248588Z",
+      "lastSeenAt": "2026-07-29T01:59:57.698519Z",
+      "reviewedAt": "2026-07-29T01:45:25.661Z",
+      "scanCount": 5,
+      "peakScore": 90.9,
+      "observer": {
+        "lat": 41.7449,
+        "lon": -114.2891
+      },
+      "meteorology": {
+        "sunElevationDeg": 14.45,
+        "directNormalIrradianceWm2": 463,
+        "cloudCoverPct": 56,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 41.695,
+          "lon": -113.995,
+          "distanceKm": 25,
+          "bearing": 103
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Delano",
+        "state": "NV",
+        "direction": "SouthEast",
+        "distanceKm": 14.3,
+        "bearingDifferenceDeg": 32,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.159,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "bow_direction_outside_strong_review_sector",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.25,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 14.3,
+          "bearingDifferenceDeg": 32,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T01:16:07.456Z",
+            "2026-07-29T01:31:45.059Z",
+            "2026-07-29T01:40:06.574Z"
+          ],
+          "nearestFrameOffsetMinutes": 3.2,
+          "frameSpanMinutes": 24
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290131-c14237f1a3",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T01:31:09.248588Z",
+      "lastSeenAt": "2026-07-29T01:31:09.248588Z",
+      "reviewedAt": "2026-07-29T02:15:33.757Z",
+      "scanCount": 1,
+      "peakScore": 86.5,
+      "observer": {
+        "lat": 40.6165,
+        "lon": -106.0856
+      },
+      "meteorology": {
+        "sunElevationDeg": 9.08,
+        "directNormalIrradianceWm2": 455,
+        "cloudCoverPct": 100,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 40.595,
+          "lon": -105.995,
+          "distanceKm": 8,
+          "bearing": 107
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Walden/Jackson County",
+        "state": "CO",
+        "direction": "SouthEast",
+        "distanceKm": 21.3,
+        "bearingDifferenceDeg": 8,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.85,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 21.3,
+          "bearingDifferenceDeg": 8,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-29T01:14:01.239Z",
+            "2026-07-29T01:22:41.508Z",
+            "2026-07-29T01:31:00.795Z",
+            "2026-07-29T01:39:32.928Z",
+            "2026-07-29T01:48:04.571Z"
+          ],
+          "nearestFrameOffsetMinutes": 0.1,
+          "frameSpanMinutes": 34.1
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290134-14a81b02c9",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T01:34:57.940648Z",
+      "lastSeenAt": "2026-07-29T01:44:57.813438Z",
+      "reviewedAt": "2026-07-29T01:57:58.560Z",
+      "scanCount": 3,
+      "peakScore": 89.1,
+      "observer": {
+        "lat": 40.0329,
+        "lon": -109.0643
+      },
+      "meteorology": {
+        "sunElevationDeg": 10.29,
+        "directNormalIrradianceWm2": 465,
+        "cloudCoverPct": 57,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 39.995,
+          "lon": -108.895,
+          "distanceKm": 15,
+          "bearing": 106
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Rangely Airport",
+        "state": "CO",
+        "direction": "East",
+        "distanceKm": 27,
+        "bearingDifferenceDeg": 36,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.17,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "bow_direction_outside_strong_review_sector",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.25,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 27,
+          "bearingDifferenceDeg": 36,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-29T01:19:17.541Z",
+            "2026-07-29T01:27:42.382Z",
+            "2026-07-29T01:36:04.127Z",
+            "2026-07-29T01:44:34.112Z",
+            "2026-07-29T01:52:49.157Z"
+          ],
+          "nearestFrameOffsetMinutes": 1.1,
+          "frameSpanMinutes": 33.5
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290154-e5a14f96a5",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T01:54:57.852783Z",
+      "lastSeenAt": "2026-07-29T01:54:57.852783Z",
+      "reviewedAt": "2026-07-29T02:37:43.308Z",
+      "scanCount": 1,
+      "peakScore": 74.2,
+      "observer": {
+        "lat": 40.0397,
+        "lon": -109.0614
+      },
+      "meteorology": {
+        "sunElevationDeg": 6.64,
+        "directNormalIrradianceWm2": 372,
+        "cloudCoverPct": 84,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 39.995,
+          "lon": -108.895,
+          "distanceKm": 15,
+          "bearing": 109
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Rangely Airport",
+        "state": "CO",
+        "direction": "East",
+        "distanceKm": 26.6,
+        "bearingDifferenceDeg": 39,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.17,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "bow_direction_outside_strong_review_sector",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.25,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 26.6,
+          "bearingDifferenceDeg": 39,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-29T01:36:04.127Z",
+            "2026-07-29T01:44:34.112Z",
+            "2026-07-29T01:52:49.157Z",
+            "2026-07-29T02:01:12.313Z",
+            "2026-07-29T02:09:32.097Z"
+          ],
+          "nearestFrameOffsetMinutes": 2.1,
+          "frameSpanMinutes": 33.5
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290219-0f323b5700",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T02:19:57.031293Z",
+      "lastSeenAt": "2026-07-29T02:19:57.031293Z",
+      "reviewedAt": "2026-07-29T09:55:54.665Z",
+      "scanCount": 1,
+      "peakScore": 53.3,
+      "observer": {
+        "lat": 45.9286,
+        "lon": -110.775
+      },
+      "meteorology": {
+        "sunElevationDeg": 5.52,
+        "directNormalIrradianceWm2": 195,
+        "cloudCoverPct": 23,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 45.795,
+          "lon": -110.295,
+          "distanceKm": 40,
+          "bearing": 112
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Bozeman Pass",
+        "state": "MT",
+        "direction": "East",
+        "distanceKm": 29.2,
+        "bearingDifferenceDeg": 12,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.68,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 1,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 29.2,
+          "bearingDifferenceDeg": 12,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 5,
+          "observedAt": [
+            "2026-07-29T02:01:14.488Z",
+            "2026-07-29T02:09:32.797Z",
+            "2026-07-29T02:17:59.707Z",
+            "2026-07-29T02:26:15.149Z",
+            "2026-07-29T02:34:39.230Z"
+          ],
+          "nearestFrameOffsetMinutes": 2,
+          "frameSpanMinutes": 33.4
+        }
+      }
+    },
+    {
+      "eventId": "go-202607290224-6d4a7a84fe",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T02:24:56.961895Z",
+      "lastSeenAt": "2026-07-29T02:24:56.961895Z",
+      "reviewedAt": "2026-07-29T02:37:25.434Z",
+      "scanCount": 1,
+      "peakScore": 82.8,
+      "observer": {
+        "lat": 47.4132,
+        "lon": -121.798
+      },
+      "meteorology": {
+        "sunElevationDeg": 12.47,
+        "directNormalIrradianceWm2": 545,
+        "cloudCoverPct": 4,
+        "rainIntensity": 0.7,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 47.395,
+          "lon": -121.695,
+          "distanceKm": 8,
+          "bearing": 105
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Auburn",
+        "state": "WA",
+        "direction": "East",
+        "distanceKm": 33.6,
+        "bearingDifferenceDeg": 15,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.357,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 0.7,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 33.6,
+          "bearingDifferenceDeg": 15,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T02:04:11.131Z",
+            "2026-07-29T02:17:10.751Z",
+            "2026-07-29T02:33:36.064Z"
+          ],
+          "nearestFrameOffsetMinutes": 7.8,
+          "frameSpanMinutes": 29.4
+        }
+      }
+    },
+    {
+      "eventId": "go-202607291044-bedcdd9627",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T10:44:58.228771Z",
+      "lastSeenAt": "2026-07-29T10:59:58.293283Z",
+      "reviewedAt": "2026-07-29T11:46:46.632Z",
+      "scanCount": 4,
+      "peakScore": 54.8,
+      "observer": {
+        "lat": 43.0292,
+        "lon": -73.0162
+      },
+      "meteorology": {
+        "sunElevationDeg": 12.2,
+        "directNormalIrradianceWm2": 0,
+        "cloudCoverPct": 100,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 42.995,
+          "lon": -73.195,
+          "distanceKm": 15,
+          "bearing": 255
+        },
+        "goes": {
+          "decision": "blocked",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Rutland",
+        "state": "VT",
+        "direction": "SouthWest",
+        "distanceKm": 10.8,
+        "bearingDifferenceDeg": 33,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.016,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "bow_direction_outside_strong_review_sector",
+          "frames_not_timely",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.25,
+          "proximity": 1,
+          "timing": 0.1,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 10.8,
+          "bearingDifferenceDeg": 33,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T10:26:36.760Z",
+            "2026-07-29T10:34:57.135Z",
+            "2026-07-29T10:43:17.064Z"
+          ],
+          "nearestFrameOffsetMinutes": 16.7,
+          "frameSpanMinutes": 16.7
+        }
+      }
+    },
+    {
+      "eventId": "go-202607291104-e38b91613b",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T11:04:58.468341Z",
+      "lastSeenAt": "2026-07-29T11:14:58.413191Z",
+      "reviewedAt": "2026-07-29T11:46:37.257Z",
+      "scanCount": 3,
+      "peakScore": 61.8,
+      "observer": {
+        "lat": 43.4122,
+        "lon": -72.9987
+      },
+      "meteorology": {
+        "sunElevationDeg": 13.08,
+        "directNormalIrradianceWm2": 33,
+        "cloudCoverPct": 100,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 43.395,
+          "lon": -73.095,
+          "distanceKm": 8,
+          "bearing": 256
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Rutland",
+        "state": "VT",
+        "direction": "SouthWest",
+        "distanceKm": 13.6,
+        "bearingDifferenceDeg": 36,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.159,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "bow_direction_outside_strong_review_sector",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.25,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 13.6,
+          "bearingDifferenceDeg": 36,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T10:43:17.064Z",
+            "2026-07-29T10:51:48.930Z",
+            "2026-07-29T11:00:19.872Z"
+          ],
+          "nearestFrameOffsetMinutes": 4.6,
+          "frameSpanMinutes": 17
+        }
+      }
+    },
+    {
+      "eventId": "go-202607291119-9277111703",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T11:19:58.477900Z",
+      "lastSeenAt": "2026-07-29T11:19:58.477900Z",
+      "reviewedAt": "2026-07-29T11:47:19.259Z",
+      "scanCount": 1,
+      "peakScore": 58.3,
+      "observer": {
+        "lat": 44.8087,
+        "lon": -73.0953
+      },
+      "meteorology": {
+        "sunElevationDeg": 16.11,
+        "directNormalIrradianceWm2": 26,
+        "cloudCoverPct": 99,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 44.795,
+          "lon": -73.195,
+          "distanceKm": 8,
+          "bearing": 259
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "USGS NIMS",
+        "name": "Richelieu River at Rouses Point",
+        "state": "NY",
+        "direction": "Fixed view; bearing not published",
+        "distanceKm": 29.5,
+        "bearingDifferenceDeg": null,
+        "viewQuality": "usable",
+        "horizonSkyPct": 89.9
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "camera_bearing_unknown",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 0.9,
+          "sky": 1
+        },
+        "inputs": {
+          "distanceKm": 29.5,
+          "bearingDifferenceDeg": null,
+          "viewQuality": "usable",
+          "horizonSkyPct": 89.9,
+          "source": "USGS NIMS",
+          "distinctFrames": 4,
+          "observedAt": [
+            "2026-07-29T10:45:01Z",
+            "2026-07-29T11:00:04Z",
+            "2026-07-29T11:15:04Z",
+            "2026-07-29T11:30:12Z"
+          ],
+          "nearestFrameOffsetMinutes": 4.9,
+          "frameSpanMinutes": 45.2
+        }
+      }
+    },
+    {
+      "eventId": "go-202607291134-2816813488",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T11:34:58.542684Z",
+      "lastSeenAt": "2026-07-29T11:34:58.542684Z",
+      "reviewedAt": "2026-07-29T12:17:29.307Z",
+      "scanCount": 1,
+      "peakScore": 57.1,
+      "observer": {
+        "lat": 44.0081,
+        "lon": -76.0965
+      },
+      "meteorology": {
+        "sunElevationDeg": 16.66,
+        "directNormalIrradianceWm2": 8,
+        "cloudCoverPct": 100,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 43.995,
+          "lon": -76.195,
+          "distanceKm": 8,
+          "bearing": 260
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Watertown International Airport",
+        "state": "NY",
+        "direction": "West",
+        "distanceKm": 6,
+        "bearingDifferenceDeg": 10,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.765,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 1,
+          "timing": 1,
+          "coverage": 0.9,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 6,
+          "bearingDifferenceDeg": 10,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 4,
+          "observedAt": [
+            "2026-07-29T11:17:30.458Z",
+            "2026-07-29T11:25:55.988Z",
+            "2026-07-29T11:34:22.819Z",
+            "2026-07-29T11:42:54.785Z"
+          ],
+          "nearestFrameOffsetMinutes": 0.6,
+          "frameSpanMinutes": 25.4
+        }
+      }
+    },
+    {
+      "eventId": "go-202607291304-0eb3de6492",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T13:04:57.701725Z",
+      "lastSeenAt": "2026-07-29T13:19:57.976179Z",
+      "reviewedAt": "2026-07-29T13:07:28.376Z",
+      "scanCount": 4,
+      "peakScore": 91.5,
+      "observer": {
+        "lat": 45.7114,
+        "lon": -106.7945
+      },
+      "meteorology": {
+        "sunElevationDeg": 13.74,
+        "directNormalIrradianceWm2": 449,
+        "cloudCoverPct": 0,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 45.695,
+          "lon": -106.895,
+          "distanceKm": 8,
+          "bearing": 257
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Colstrip Airport",
+        "state": "MT",
+        "direction": "West",
+        "distanceKm": 10.9,
+        "bearingDifferenceDeg": 16,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.048,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "frames_not_timely",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.75,
+          "proximity": 1,
+          "timing": 0.1,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 10.9,
+          "bearingDifferenceDeg": 16,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T12:42:07.881Z",
+            "2026-07-29T12:50:36.152Z",
+            "2026-07-29T12:59:06.731Z"
+          ],
+          "nearestFrameOffsetMinutes": 20.9,
+          "frameSpanMinutes": 17
+        }
+      }
+    },
+    {
+      "eventId": "go-202607291344-1b8f6f42b5",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T13:44:57.619886Z",
+      "lastSeenAt": "2026-07-29T13:44:57.619886Z",
+      "reviewedAt": "2026-07-29T13:59:49.013Z",
+      "scanCount": 1,
+      "peakScore": 81.8,
+      "observer": {
+        "lat": 42.0726,
+        "lon": -110.4215
+      },
+      "meteorology": {
+        "sunElevationDeg": 14.68,
+        "directNormalIrradianceWm2": 357,
+        "cloudCoverPct": 100,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 41.995,
+          "lon": -110.895,
+          "distanceKm": 40,
+          "bearing": 258
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Hogsback",
+        "state": "WY",
+        "direction": "West",
+        "distanceKm": 29.7,
+        "bearingDifferenceDeg": 3,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.357,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 0.7,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 29.7,
+          "bearingDifferenceDeg": 3,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T13:28:32.697Z",
+            "2026-07-29T13:38:34.353Z",
+            "2026-07-29T13:50:21.965Z"
+          ],
+          "nearestFrameOffsetMinutes": 5.4,
+          "frameSpanMinutes": 21.8
+        }
+      }
+    },
+    {
+      "eventId": "go-202607291359-b8fa83fce7",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T13:59:57.458406Z",
+      "lastSeenAt": "2026-07-29T13:59:57.458406Z",
+      "reviewedAt": "2026-07-29T14:04:04.381Z",
+      "scanCount": 1,
+      "peakScore": 77.8,
+      "observer": {
+        "lat": 45.8211,
+        "lon": -107.0742
+      },
+      "meteorology": {
+        "sunElevationDeg": 20.28,
+        "directNormalIrradianceWm2": 535,
+        "cloudCoverPct": 3,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 45.795,
+          "lon": -107.395,
+          "distanceKm": 25,
+          "bearing": 263
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Colstrip Airport",
+        "state": "MT",
+        "direction": "West",
+        "distanceKm": 28.8,
+        "bearingDifferenceDeg": 7,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.51,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 28.8,
+          "bearingDifferenceDeg": 7,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T13:41:20.719Z",
+            "2026-07-29T13:49:36.917Z",
+            "2026-07-29T13:58:01.936Z"
+          ],
+          "nearestFrameOffsetMinutes": 1.9,
+          "frameSpanMinutes": 16.7
+        }
+      }
+    },
+    {
+      "eventId": "go-202607291420-d3afc06c29",
+      "label": "no_rainbow",
+      "candidateClass": "GO",
+      "candidateType": "live_go",
+      "firstSeenAt": "2026-07-29T14:20:17.312184Z",
+      "lastSeenAt": "2026-07-29T14:20:25.435629Z",
+      "reviewedAt": "2026-07-29T14:23:12.599Z",
+      "scanCount": 2,
+      "peakScore": 65.2,
+      "observer": {
+        "lat": 42.6066,
+        "lon": -114.4984
+      },
+      "meteorology": {
+        "sunElevationDeg": 18.27,
+        "directNormalIrradianceWm2": 316,
+        "cloudCoverPct": 0,
+        "rainIntensity": 0.1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 42.595,
+          "lon": -114.595,
+          "distanceKm": 8,
+          "bearing": 261
+        },
+        "goes": {
+          "decision": "go",
+          "positiveSources": [
+            "goesDsrf",
+            "goesAcmc"
+          ],
+          "negativeSources": []
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "Notch Butte",
+        "state": "ID",
+        "direction": "West",
+        "distanceKm": 31.6,
+        "bearingDifferenceDeg": 1,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.51,
+        "calibrationEligible": true,
+        "eligibilityReasons": [],
+        "components": {
+          "direction": 1,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 31.6,
+          "bearingDifferenceDeg": 1,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T13:58:23.225Z",
+            "2026-07-29T14:08:17.390Z",
+            "2026-07-29T14:18:22.672Z"
+          ],
+          "nearestFrameOffsetMinutes": 1.9,
+          "frameSpanMinutes": 20
+        }
+      }
+    },
+    {
+      "eventId": "go-202607291439-48d3fc8991",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T14:39:57.217716Z",
+      "lastSeenAt": "2026-07-29T14:49:57.253507Z",
+      "reviewedAt": "2026-07-29T14:46:03.940Z",
+      "scanCount": 3,
+      "peakScore": 74.2,
+      "observer": {
+        "lat": 37.3046,
+        "lon": -113.7052
+      },
+      "meteorology": {
+        "sunElevationDeg": 21.9,
+        "directNormalIrradianceWm2": 673,
+        "cloudCoverPct": 80,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 37.295,
+          "lon": -113.795,
+          "distanceKm": 8,
+          "bearing": 262
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "St George Regional Hospital",
+        "state": "UT",
+        "direction": "SouthWest",
+        "distanceKm": 26.5,
+        "bearingDifferenceDeg": 37,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.128,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "bow_direction_outside_strong_review_sector",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.25,
+          "proximity": 0.8,
+          "timing": 1,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 26.5,
+          "bearingDifferenceDeg": 37,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T14:21:31.788Z",
+            "2026-07-29T14:29:52.033Z",
+            "2026-07-29T14:38:23.186Z"
+          ],
+          "nearestFrameOffsetMinutes": 1.6,
+          "frameSpanMinutes": 16.9
+        }
+      }
+    },
+    {
+      "eventId": "go-202607291504-ce6fddbc23",
+      "label": "no_rainbow",
+      "candidateClass": "POSSIBLE",
+      "candidateType": "live_possible",
+      "firstSeenAt": "2026-07-29T15:04:57.272202Z",
+      "lastSeenAt": "2026-07-29T15:19:57.108213Z",
+      "reviewedAt": "2026-07-29T15:19:07.752Z",
+      "scanCount": 4,
+      "peakScore": 67.5,
+      "observer": {
+        "lat": 37.1015,
+        "lon": -113.4258
+      },
+      "meteorology": {
+        "sunElevationDeg": 28.77,
+        "directNormalIrradianceWm2": 659,
+        "cloudCoverPct": 6,
+        "rainIntensity": 1,
+        "observerRainIntensity": 0,
+        "rainPoint": {
+          "lat": 37.095,
+          "lon": -113.595,
+          "distanceKm": 15,
+          "bearing": 267
+        },
+        "goes": {
+          "decision": "watch",
+          "positiveSources": [],
+          "negativeSources": [
+            "goesAcmc"
+          ]
+        }
+      },
+      "camera": {
+        "source": "FAA WeatherCam",
+        "name": "St George Regional Hospital",
+        "state": "UT",
+        "direction": "SouthWest",
+        "distanceKm": 4.4,
+        "bearingDifferenceDeg": 42,
+        "viewQuality": null,
+        "horizonSkyPct": null
+      },
+      "negativeEvidence": {
+        "methodVersion": "negative-evidence-v1",
+        "weight": 0.048,
+        "calibrationEligible": false,
+        "eligibilityReasons": [
+          "bow_direction_outside_strong_review_sector",
+          "frames_not_timely",
+          "negative_evidence_weight_below_0_5"
+        ],
+        "components": {
+          "direction": 0.25,
+          "proximity": 1,
+          "timing": 0.3,
+          "coverage": 0.75,
+          "sky": 0.85
+        },
+        "inputs": {
+          "distanceKm": 4.4,
+          "bearingDifferenceDeg": 42,
+          "viewQuality": null,
+          "horizonSkyPct": null,
+          "source": "FAA WeatherCam",
+          "distinctFrames": 3,
+          "observedAt": [
+            "2026-07-29T14:46:55.524Z",
+            "2026-07-29T14:55:28.158Z",
+            "2026-07-29T15:03:55.254Z"
+          ],
+          "nearestFrameOffsetMinutes": 11,
+          "frameSpanMinutes": 17
+        }
+      }
+    }
+  ],
+  "contentSha256": "5162a06d961bf4eaee9650d57acafa0282ecc79993d69567e11a8ee142337c88"
+}

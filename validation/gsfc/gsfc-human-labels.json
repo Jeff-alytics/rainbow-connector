@@ -1,0 +1,12 @@
+{
+  "source": "NASA GSFC all-sky camera",
+  "reviewedAt": "2026-07-25",
+  "batch": "gsfc-review-batch-01",
+  "labels": [
+    {"candidateId": "gsfc-01", "label": "no", "note": "Basically solid gray; no visible direct-sun clearing."},
+    {"candidateId": "gsfc-02", "label": "no", "note": "Basically solid gray; no visible direct-sun clearing."},
+    {"candidateId": "gsfc-03", "label": "no", "note": "Basically solid gray; no visible direct-sun clearing."},
+    {"candidateId": "gsfc-04", "label": "no", "note": "Basically solid gray; no visible direct-sun clearing."}
+  ],
+  "finding": "Global horizontal irradiance plus precipitation is not enough to establish rainbow illumination. Diffuse overcast light can satisfy the numeric threshold. Future GSFC candidates require image evidence of a visible solar disk or strong localized bright/blue clearing before full-resolution archive download."
+}

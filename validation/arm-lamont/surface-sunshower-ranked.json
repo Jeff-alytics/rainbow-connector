@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-25T18:55:21.395647Z",
+  "purpose": "Measured surface sunshower discovery using QCRAD direct-normal irradiance and precipitation.",
+  "daysRequested": 157,
+  "daysAvailable": 115,
+  "errors": [
+    {
+      "day": "20250810",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    },
+    {
+      "day": "20250818",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    },
+    {
+      "day": "20250915",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    },
+    {
+      "day": "20250918",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    },
+    {
+      "day": "20251006",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    },
+    {
+      "day": "20250823",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    },
+    {
+      "day": "20251024",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    },
+    {
+      "day": "20251007",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    },
+    {
+      "day": "20251124",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    },
+    {
+      "day": "20251026",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    },
+    {
+      "day": "20260114",
+      "error": "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+    }
+  ],
+  "candidates": [
+    {
+      "day": "20240513",
+      "observedAt": "2024-05-13T22:05:00Z",
+      "measuredDirectNormalIrradianceWm2": 308.8,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 39.12,
+      "score": 30.381
+    },
+    {
+      "day": "20250726",
+      "observedAt": "2025-07-26T00:20:00Z",
+      "measuredDirectNormalIrradianceWm2": 274.56,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 14.76,
+      "score": 28.098
+    },
+    {
+      "day": "20240630",
+      "observedAt": "2024-06-30T00:05:00Z",
+      "measuredDirectNormalIrradianceWm2": 267.08,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 19.12,
+      "score": 27.599
+    },
+    {
+      "day": "20250726",
+      "observedAt": "2025-07-26T00:38:00Z",
+      "measuredDirectNormalIrradianceWm2": 202.44,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 11.26,
+      "score": 23.29
+    },
+    {
+      "day": "20250726",
+      "observedAt": "2025-07-26T00:44:00Z",
+      "measuredDirectNormalIrradianceWm2": 197.33,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 10.11,
+      "score": 22.949
+    },
+    {
+      "day": "20240630",
+      "observedAt": "2024-06-30T00:01:00Z",
+      "measuredDirectNormalIrradianceWm2": 192.62,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 19.9,
+      "score": 22.635
+    },
+    {
+      "day": "20250726",
+      "observedAt": "2025-07-26T00:17:00Z",
+      "measuredDirectNormalIrradianceWm2": 189.98,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 15.34,
+      "score": 22.459
+    },
+    {
+      "day": "20250726",
+      "observedAt": "2025-07-26T00:18:00Z",
+      "measuredDirectNormalIrradianceWm2": 171.33,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 15.15,
+      "score": 21.216
+    },
+    {
+      "day": "20240630",
+      "observedAt": "2024-06-30T00:00:00Z",
+      "measuredDirectNormalIrradianceWm2": 162.7,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 20.09,
+      "score": 20.641
+    },
+    {
+      "day": "20240630",
+      "observedAt": "2024-06-30T00:03:00Z",
+      "measuredDirectNormalIrradianceWm2": 146.7,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 19.51,
+      "score": 19.574
+    },
+    {
+      "day": "20250726",
+      "observedAt": "2025-07-26T00:51:00Z",
+      "measuredDirectNormalIrradianceWm2": 131.84,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 8.77,
+      "score": 18.584
+    },
+    {
+      "day": "20250726",
+      "observedAt": "2025-07-26T00:54:00Z",
+      "measuredDirectNormalIrradianceWm2": 115.81,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 8.19,
+      "score": 17.515
+    },
+    {
+      "day": "20250726",
+      "observedAt": "2025-07-26T00:56:00Z",
+      "measuredDirectNormalIrradianceWm2": 108.75,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 7.81,
+      "score": 17.044
+    },
+    {
+      "day": "20250726",
+      "observedAt": "2025-07-26T00:58:00Z",
+      "measuredDirectNormalIrradianceWm2": 108.36,
+      "measuredPrecipitationMm": 0.256,
+      "sunElevationDeg": 7.43,
+      "score": 17.018
+    }
+  ]
+}

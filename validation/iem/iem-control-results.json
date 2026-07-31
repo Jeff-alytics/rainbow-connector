@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "documentedPositive": {
+    "cameraId": "KCCI-006",
+    "observedAt": "2005-05-27T00:15:00Z"
+  },
+  "crossCamera": [
+    {
+      "cameraId": "KCCI-008",
+      "cameraName": "Humboldt",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-008_200505270015.jpg",
+      "semanticScore": -0.016129,
+      "rainbowSimilarity": 0.217066
+    },
+    {
+      "cameraId": "KCCI-009",
+      "cameraName": "Indianola",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-009_200505270015.jpg",
+      "semanticScore": -0.029041,
+      "rainbowSimilarity": 0.167303
+    },
+    {
+      "cameraId": "KCCI-016",
+      "cameraName": "ISU Ames",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-016_200505270015.jpg",
+      "semanticScore": -0.01029,
+      "rainbowSimilarity": 0.213538
+    },
+    {
+      "cameraId": "KCCI-001",
+      "cameraName": "Jefferson",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-001_200505270015.jpg",
+      "semanticScore": 0.005402,
+      "rainbowSimilarity": 0.203406
+    },
+    {
+      "cameraId": "KCCI-011",
+      "cameraName": "Newton",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-011_200505270015.jpg",
+      "semanticScore": -0.006972,
+      "rainbowSimilarity": 0.203038
+    },
+    {
+      "cameraId": "KCCI-014",
+      "cameraName": "Panora",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-014_200505270015.jpg",
+      "semanticScore": -0.009983,
+      "rainbowSimilarity": 0.226355
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270015.jpg",
+      "semanticScore": 0.022429,
+      "rainbowSimilarity": 0.250481
+    },
+    {
+      "cameraId": "KCCI-015",
+      "cameraName": "Rathbun Lake",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-015_200505270015.jpg",
+      "semanticScore": -0.014966,
+      "rainbowSimilarity": 0.194433
+    },
+    {
+      "cameraId": "KCCI-010",
+      "cameraName": "Rockwell City",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-010_200505270015.jpg",
+      "semanticScore": 0.010401,
+      "rainbowSimilarity": 0.205434
+    },
+    {
+      "cameraId": "KCCI-017",
+      "cameraName": "Tama",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-017_200505270015.jpg",
+      "semanticScore": -0.027581,
+      "rainbowSimilarity": 0.204089
+    }
+  ],
+  "pellaSequence": [
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-26T23:45:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505262345.jpg",
+      "semanticScore": -0.039521,
+      "rainbowSimilarity": 0.167067
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-26T23:50:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505262350.jpg",
+      "semanticScore": -0.037074,
+      "rainbowSimilarity": 0.177372
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-26T23:55:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505262355.jpg",
+      "semanticScore": -0.036429,
+      "rainbowSimilarity": 0.180072
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:00:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270000.jpg",
+      "semanticScore": -0.038133,
+      "rainbowSimilarity": 0.170475
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:05:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270005.jpg",
+      "semanticScore": -0.027461,
+      "rainbowSimilarity": 0.19947
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:10:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270010.jpg",
+      "semanticScore": 0.021875,
+      "rainbowSimilarity": 0.248775
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:15:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270015.jpg",
+      "semanticScore": 0.022429,
+      "rainbowSimilarity": 0.250481
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:20:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270020.jpg",
+      "semanticScore": -0.015181,
+      "rainbowSimilarity": 0.192788
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:25:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270025.jpg",
+      "semanticScore": -0.026002,
+      "rainbowSimilarity": 0.17763
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:30:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270030.jpg",
+      "semanticScore": -0.029909,
+      "rainbowSimilarity": 0.173557
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:35:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270035.jpg",
+      "semanticScore": -0.038242,
+      "rainbowSimilarity": 0.155867
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:40:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270040.jpg",
+      "semanticScore": -0.030866,
+      "rainbowSimilarity": 0.163548
+    },
+    {
+      "cameraId": "KCCI-006",
+      "cameraName": "Pella",
+      "observedAt": "2005-05-27T00:45:00Z",
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\control-images-utc\\KCCI-006_200505270045.jpg",
+      "semanticScore": -0.023588,
+      "rainbowSimilarity": 0.172804
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "notes": [
+    "Times for social reports are bounded observation windows, not claimed capture timestamps.",
+    "Named-place coordinates are audit reference points with explicit uncertainty.",
+    "The Idaho report has no defensible point location and is excluded from point-based recall metrics."
+  ],
+  "events": [
+    {
+      "id": "production-bozeman-pass-20260727",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "bozeman-pass-20260727",
+      "observer": {"lat": 45.5061, "lon": -110.9966, "uncertaintyKm": 0.2, "basis": "worker observer seed"},
+      "observation": {"representativeAt": "2026-07-27T01:04:57.286166Z", "windowStart": "2026-07-27T00:45:50.191Z", "windowEnd": "2026-07-27T01:19:05.056Z", "confirmedFrameAt": "2026-07-27T01:10:54.716Z", "precision": "confirmed_frame"},
+      "provenance": {"kind": "production_review", "sourceId": "go-202607270104-cc49d0640d", "camera": "FAA WeatherCam Bozeman Pass, camera 12000"},
+      "frozenEvidence": {"candidateClass": "GO", "score": 89.5, "sunElevationDeg": 18.95, "directNormalIrradianceWm2": 646, "cloudCoverPct": 100, "rainDistanceKm": 8, "goesDecision": "go", "goesDsrf": {"value": 282.00823974609375, "positive": true, "observedAt": "2026-07-27T00:50:21Z"}, "goesAcmc": {"value": 0, "positive": true, "observedAt": "2026-07-27T01:01:18Z"}},
+      "expected": {"rainbowPossible": true, "recallProbe": true}
+    },
+    {
+      "id": "production-delano-20260729",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "delano-20260729",
+      "observer": {"lat": 41.723, "lon": -114.1839, "uncertaintyKm": 0.2, "basis": "worker observer seed"},
+      "observation": {"representativeAt": "2026-07-29T02:39:56.896448Z", "windowStart": "2026-07-29T02:20:24.778Z", "windowEnd": "2026-07-29T03:01:27.311Z", "confirmedFrameAt": "2026-07-29T02:20:24.778Z", "precision": "confirmed_frame"},
+      "provenance": {"kind": "production_review", "sourceId": "go-202607290239-40cabbcad8", "camera": "FAA WeatherCam Delano, camera 12981"},
+      "frozenEvidence": {"candidateClass": "POSSIBLE", "score": 51.2, "sunElevationDeg": 3.16, "directNormalIrradianceWm2": 202, "cloudCoverPct": 0, "rainDistanceKm": 8, "goesDecision": "watch", "goesDsrf": {"positive": false, "negative": true}, "goesAcmc": {"value": 0, "positive": true}},
+      "expected": {"rainbowPossible": true, "recallProbe": true}
+    },
+    {
+      "id": "social-baltimore-20260728",
+      "label": "rainbow",
+      "evidenceClass": "social_report",
+      "productionScope": "conus_recall",
+      "eventGroup": "baltimore-dundalk-20260728",
+      "observer": {"lat": 39.2904, "lon": -76.6122, "uncertaintyKm": 12, "basis": "named city, not image geolocation"},
+      "observation": {"representativeAt": "2026-07-28T23:32:00Z", "windowStart": "2026-07-28T23:25:00Z", "windowEnd": "2026-07-28T23:45:00Z", "reportedBowStart": "2026-07-28T23:30:00Z", "reportedBowEnd": "2026-07-28T23:34:00Z", "postAt": "2026-07-28T23:17:32.121Z", "precision": "observer_reported_time"},
+      "provenance": {"kind": "social_report", "url": "https://x.com/FOXBaltimore/status/2082244090771448213"},
+      "expected": {"rainbowPossible": true, "recallProbe": true}
+    },
+    {
+      "id": "social-dundalk-20260728",
+      "label": "rainbow",
+      "evidenceClass": "social_report",
+      "productionScope": "conus_recall",
+      "eventGroup": "baltimore-dundalk-20260728",
+      "observer": {"lat": 39.2507, "lon": -76.5205, "uncertaintyKm": 8, "basis": "named community, not image geolocation"},
+      "observation": {"representativeAt": "2026-07-28T23:32:00Z", "windowStart": "2026-07-28T23:25:00Z", "windowEnd": "2026-07-28T23:45:00Z", "reportedBowStart": "2026-07-28T23:30:00Z", "reportedBowEnd": "2026-07-28T23:34:00Z", "postAt": "2026-07-28T23:37:42.845Z", "precision": "observer_reported_time"},
+      "provenance": {"kind": "social_report", "url": "https://x.com/boothy443/status/2082249168916029923"},
+      "expected": {"rainbowPossible": true, "recallProbe": true}
+    },
+    {
+      "id": "social-person-county-20260728",
+      "label": "rainbow",
+      "evidenceClass": "social_report",
+      "productionScope": "conus_recall",
+      "eventGroup": "person-county-20260728",
+      "observer": {"lat": 36.39, "lon": -78.98, "uncertaintyKm": 25, "basis": "county reference point, not image geolocation"},
+      "observation": {"windowStart": "2026-07-28T23:15:00Z", "windowEnd": "2026-07-29T00:59:53.825Z", "postAt": "2026-07-29T00:59:53.825Z", "precision": "bounded_from_post_and_user_report"},
+      "provenance": {"kind": "social_report", "url": "https://x.com/dwaynereaves/status/2082269850945118529"},
+      "expected": {"rainbowPossible": true, "recallProbe": true}
+    },
+    {
+      "id": "social-idaho-20260728",
+      "label": "rainbow",
+      "evidenceClass": "social_report",
+      "productionScope": "region_only",
+      "eventGroup": "idaho-20260728",
+      "observer": {"region": "Idaho", "basis": "user location only; no city established"},
+      "observation": {"windowStart": "2026-07-28T23:00:00Z", "windowEnd": "2026-07-29T01:28:12.139Z", "postAt": "2026-07-29T01:28:12.139Z", "precision": "state_and_bounded_post_time"},
+      "provenance": {"kind": "corroborated_social_report", "urls": ["https://x.com/im_a_preacher/status/2082276974190579770", "https://x.com/brianmgwyn/status/2082274982315651464"]},
+      "expected": {"rainbowPossible": true, "recallProbe": true}
+    }
+  ]
+}

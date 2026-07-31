@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-25T17:15:02.503534Z",
+  "purpose": "Human-review prioritization; heuristic score, not calibrated probability.",
+  "selectionRules": {
+    "cameraMustBeDryDbz": "<5 or no echo",
+    "antiSolarPeakDbz": "15-48",
+    "antiSolarWetPointCount": "1-16",
+    "minimumDniWm2": 350,
+    "cloudCoverPct": "5-90"
+  },
+  "candidates": [
+    {
+      "pairId": "lamont-060",
+      "centerTime": "2023-08-09T22:05:00Z",
+      "opportunityScore": 72.013,
+      "inputs": {
+        "dniWm2": 616.8,
+        "cloudCoverPct": 45,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 21.0,
+        "antiSolarWetPoints": 7,
+        "antiSolarModeratePoints": 1
+      }
+    },
+    {
+      "pairId": "lamont-078",
+      "centerTime": "2026-06-01T23:10:00Z",
+      "opportunityScore": 70.314,
+      "inputs": {
+        "dniWm2": 581.2,
+        "cloudCoverPct": 48,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 35.5,
+        "antiSolarWetPoints": 3,
+        "antiSolarModeratePoints": 1
+      }
+    },
+    {
+      "pairId": "lamont-076",
+      "centerTime": "2025-08-23T22:20:00Z",
+      "opportunityScore": 66.516,
+      "inputs": {
+        "dniWm2": 622.1,
+        "cloudCoverPct": 64,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 23.5,
+        "antiSolarWetPoints": 11,
+        "antiSolarModeratePoints": 2
+      }
+    },
+    {
+      "pairId": "lamont-054",
+      "centerTime": "2026-06-17T01:30:00Z",
+      "opportunityScore": 61.523,
+      "inputs": {
+        "dniWm2": 446.9,
+        "cloudCoverPct": 21,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 30.0,
+        "antiSolarWetPoints": 6,
+        "antiSolarModeratePoints": 1
+      }
+    },
+    {
+      "pairId": "lamont-079",
+      "centerTime": "2025-05-24T22:00:00Z",
+      "opportunityScore": 56.259,
+      "inputs": {
+        "dniWm2": 568.7,
+        "cloudCoverPct": 39,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 44.0,
+        "antiSolarWetPoints": 4,
+        "antiSolarModeratePoints": 1
+      }
+    },
+    {
+      "pairId": "lamont-086",
+      "centerTime": "2025-07-02T22:30:00Z",
+      "opportunityScore": 52.39,
+      "inputs": {
+        "dniWm2": 423.9,
+        "cloudCoverPct": 44,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 39.0,
+        "antiSolarWetPoints": 7,
+        "antiSolarModeratePoints": 1
+      }
+    },
+    {
+      "pairId": "lamont-082",
+      "centerTime": "2023-05-11T14:10:00Z",
+      "opportunityScore": 50.659,
+      "inputs": {
+        "dniWm2": 477.7,
+        "cloudCoverPct": 86,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 38.0,
+        "antiSolarWetPoints": 5,
+        "antiSolarModeratePoints": 2
+      }
+    },
+    {
+      "pairId": "lamont-041",
+      "centerTime": "2025-08-10T22:00:00Z",
+      "opportunityScore": 43.071,
+      "inputs": {
+        "dniWm2": 507.1,
+        "cloudCoverPct": 70,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 18.5,
+        "antiSolarWetPoints": 1,
+        "antiSolarModeratePoints": 0
+      }
+    },
+    {
+      "pairId": "lamont-068",
+      "centerTime": "2025-07-18T00:00:00Z",
+      "opportunityScore": 40.927,
+      "inputs": {
+        "dniWm2": 367.6,
+        "cloudCoverPct": 78,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 21.0,
+        "antiSolarWetPoints": 5,
+        "antiSolarModeratePoints": 2
+      }
+    },
+    {
+      "pairId": "lamont-080",
+      "centerTime": "2024-11-18T20:30:00Z",
+      "opportunityScore": 40.511,
+      "inputs": {
+        "dniWm2": 519,
+        "cloudCoverPct": 19,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 17.0,
+        "antiSolarWetPoints": 2,
+        "antiSolarModeratePoints": 0
+      }
+    },
+    {
+      "pairId": "lamont-083",
+      "centerTime": "2025-05-26T22:45:00Z",
+      "opportunityScore": 38.771,
+      "inputs": {
+        "dniWm2": 464.1,
+        "cloudCoverPct": 76,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 18.5,
+        "antiSolarWetPoints": 2,
+        "antiSolarModeratePoints": 0
+      }
+    },
+    {
+      "pairId": "lamont-010",
+      "centerTime": "2025-08-01T00:05:00Z",
+      "opportunityScore": 32.977,
+      "inputs": {
+        "dniWm2": 355.6,
+        "cloudCoverPct": 65,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 19.5,
+        "antiSolarWetPoints": 2,
+        "antiSolarModeratePoints": 0
+      }
+    },
+    {
+      "pairId": "lamont-089",
+      "centerTime": "2026-06-06T23:15:00Z",
+      "opportunityScore": 31.324,
+      "inputs": {
+        "dniWm2": 383.8,
+        "cloudCoverPct": 79,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 20.0,
+        "antiSolarWetPoints": 1,
+        "antiSolarModeratePoints": 1
+      }
+    },
+    {
+      "pairId": "lamont-051",
+      "centerTime": "2025-06-26T22:35:00Z",
+      "opportunityScore": 25.784,
+      "inputs": {
+        "dniWm2": 360.9,
+        "cloudCoverPct": 86,
+        "observerDbz": null,
+        "antiSolarPeakDbz": 47.5,
+        "antiSolarWetPoints": 5,
+        "antiSolarModeratePoints": 2
+      }
+    }
+  ]
+}

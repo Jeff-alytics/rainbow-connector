@@ -1,0 +1,1298 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-25T15:45:11.749393Z",
+  "purpose": "Retrospective candidate ranking; not a production forecast input.",
+  "method": {
+    "source": "IEM nationwide NEXRAD N0Q composite",
+    "timeResolutionMinutes": 5,
+    "fanDistancesKm": [
+      5,
+      10,
+      15,
+      22,
+      30,
+      40,
+      48
+    ],
+    "fanBearingOffsetsDeg": [
+      -28,
+      -16,
+      -8,
+      0,
+      8,
+      16,
+      28
+    ],
+    "wetThresholdDbz": 5,
+    "moderateThresholdDbz": 20
+  },
+  "site": {
+    "name": "ARM Southern Great Plains C1, Lamont, Oklahoma",
+    "lat": 36.607322,
+    "lon": -97.487643,
+    "datastream": "sgpasiskyimageC1.a1",
+    "imageStart": "2023-04-15"
+  },
+  "candidates": [
+    {
+      "pairId": "lamont-004",
+      "observedAt": "2026-06-26T23:00:00.000Z",
+      "antiSolarBearingDeg": 96.88,
+      "directNormalIrradianceWm2": 476.8,
+      "openMeteoPrecipitationMm": 7,
+      "radarScore": 82.623,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": 45.0,
+        "fanWetPoints": 19,
+        "fanModeratePoints": 12,
+        "fanValidPoints": 19,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": 15.0,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "10": {
+            "maxDbz": 22.5,
+            "wetPoints": 4,
+            "moderatePoints": 2,
+            "validPoints": 4
+          },
+          "15": {
+            "maxDbz": 39.0,
+            "wetPoints": 3,
+            "moderatePoints": 3,
+            "validPoints": 3
+          },
+          "22": {
+            "maxDbz": 45.0,
+            "wetPoints": 4,
+            "moderatePoints": 3,
+            "validPoints": 4
+          },
+          "30": {
+            "maxDbz": 40.5,
+            "wetPoints": 4,
+            "moderatePoints": 3,
+            "validPoints": 4
+          },
+          "40": {
+            "maxDbz": 22.5,
+            "wetPoints": 3,
+            "moderatePoints": 1,
+            "validPoints": 3
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2026-06-26T23:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202606262300&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-020",
+      "observedAt": "2025-08-18T22:00:00.000Z",
+      "antiSolarBearingDeg": 76.55,
+      "directNormalIrradianceWm2": 597.1,
+      "openMeteoPrecipitationMm": 1.7,
+      "radarScore": 80.036,
+      "radar": {
+        "observerDbz": 51.5,
+        "fanMaxDbz": 61.0,
+        "fanWetPoints": 27,
+        "fanModeratePoints": 23,
+        "fanValidPoints": 29,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": 61.0,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          },
+          "10": {
+            "maxDbz": 50.0,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          },
+          "15": {
+            "maxDbz": 39.0,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          },
+          "22": {
+            "maxDbz": 26.0,
+            "wetPoints": 3,
+            "moderatePoints": 2,
+            "validPoints": 4
+          },
+          "30": {
+            "maxDbz": 18.5,
+            "wetPoints": 3,
+            "moderatePoints": 0,
+            "validPoints": 3
+          },
+          "40": {
+            "maxDbz": 2.5,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2025-08-18T22:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202508182200&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-012",
+      "observedAt": "2025-07-26T00:00:00.000Z",
+      "antiSolarBearingDeg": 100.85,
+      "directNormalIrradianceWm2": 363.9,
+      "openMeteoPrecipitationMm": 2.7,
+      "radarScore": 64.647,
+      "radar": {
+        "observerDbz": 22.5,
+        "fanMaxDbz": 54.5,
+        "fanWetPoints": 19,
+        "fanModeratePoints": 8,
+        "fanValidPoints": 20,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": 43.0,
+            "wetPoints": 7,
+            "moderatePoints": 2,
+            "validPoints": 7
+          },
+          "10": {
+            "maxDbz": 54.5,
+            "wetPoints": 6,
+            "moderatePoints": 4,
+            "validPoints": 7
+          },
+          "15": {
+            "maxDbz": 47.0,
+            "wetPoints": 4,
+            "moderatePoints": 2,
+            "validPoints": 4
+          },
+          "22": {
+            "maxDbz": 12.5,
+            "wetPoints": 2,
+            "moderatePoints": 0,
+            "validPoints": 2
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2025-07-26T00:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202507260000&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-017",
+      "observedAt": "2024-05-26T00:00:00.000Z",
+      "antiSolarBearingDeg": 103.53,
+      "directNormalIrradianceWm2": 222.6,
+      "openMeteoPrecipitationMm": 2.4,
+      "radarScore": 58.86,
+      "radar": {
+        "observerDbz": 29.0,
+        "fanMaxDbz": 34.5,
+        "fanWetPoints": 49,
+        "fanModeratePoints": 49,
+        "fanValidPoints": 49,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": 33.0,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          },
+          "10": {
+            "maxDbz": 29.0,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          },
+          "15": {
+            "maxDbz": 27.5,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          },
+          "22": {
+            "maxDbz": 27.0,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          },
+          "30": {
+            "maxDbz": 28.5,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          },
+          "40": {
+            "maxDbz": 31.5,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          },
+          "48": {
+            "maxDbz": 34.5,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          }
+        },
+        "radarAt": "2024-05-26T00:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202405260000&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-011",
+      "observedAt": "2025-10-06T23:00:00.000Z",
+      "antiSolarBearingDeg": 73.74,
+      "directNormalIrradianceWm2": 187.1,
+      "openMeteoPrecipitationMm": 3.1,
+      "radarScore": 49.096,
+      "radar": {
+        "observerDbz": 36.5,
+        "fanMaxDbz": 42.0,
+        "fanWetPoints": 20,
+        "fanModeratePoints": 14,
+        "fanValidPoints": 21,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": 42.0,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          },
+          "10": {
+            "maxDbz": 29.5,
+            "wetPoints": 7,
+            "moderatePoints": 4,
+            "validPoints": 7
+          },
+          "15": {
+            "maxDbz": 23.0,
+            "wetPoints": 5,
+            "moderatePoints": 3,
+            "validPoints": 6
+          },
+          "22": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": 10.0,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          }
+        },
+        "radarAt": "2025-10-06T23:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202510062300&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-001",
+      "observedAt": "2025-06-14T00:00:00.000Z",
+      "antiSolarBearingDeg": 105.01,
+      "directNormalIrradianceWm2": 152.2,
+      "openMeteoPrecipitationMm": 12.3,
+      "radarScore": 34.849,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": 23.5,
+        "fanWetPoints": 4,
+        "fanModeratePoints": 2,
+        "fanValidPoints": 8,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": 4.5,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 2
+          },
+          "10": {
+            "maxDbz": 23.5,
+            "wetPoints": 3,
+            "moderatePoints": 2,
+            "validPoints": 5
+          },
+          "15": {
+            "maxDbz": 15.5,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "22": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2025-06-14T00:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202506140000&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-006",
+      "observedAt": "2023-06-02T14:00:00.000Z",
+      "antiSolarBearingDeg": 264.15,
+      "directNormalIrradianceWm2": 385.6,
+      "openMeteoPrecipitationMm": 4.2,
+      "radarScore": 28.517,
+      "radar": {
+        "observerDbz": 16.0,
+        "fanMaxDbz": 34.5,
+        "fanWetPoints": 8,
+        "fanModeratePoints": 2,
+        "fanValidPoints": 11,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": 2.0,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 2
+          },
+          "10": {
+            "maxDbz": 30.0,
+            "wetPoints": 2,
+            "moderatePoints": 1,
+            "validPoints": 3
+          },
+          "15": {
+            "maxDbz": 15.0,
+            "wetPoints": 3,
+            "moderatePoints": 0,
+            "validPoints": 3
+          },
+          "22": {
+            "maxDbz": 34.5,
+            "wetPoints": 3,
+            "moderatePoints": 1,
+            "validPoints": 3
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2023-06-02T14:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202306021400&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-014",
+      "observedAt": "2023-11-19T17:00:00.000Z",
+      "antiSolarBearingDeg": 339.05,
+      "directNormalIrradianceWm2": 184.4,
+      "openMeteoPrecipitationMm": 2.7,
+      "radarScore": 27.769,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": 30.0,
+        "fanWetPoints": 10,
+        "fanModeratePoints": 5,
+        "fanValidPoints": 11,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "10": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": 20.0,
+            "wetPoints": 1,
+            "moderatePoints": 1,
+            "validPoints": 1
+          },
+          "30": {
+            "maxDbz": 14.0,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "40": {
+            "maxDbz": 21.5,
+            "wetPoints": 3,
+            "moderatePoints": 1,
+            "validPoints": 4
+          },
+          "48": {
+            "maxDbz": 30.0,
+            "wetPoints": 5,
+            "moderatePoints": 3,
+            "validPoints": 5
+          }
+        },
+        "radarAt": "2023-11-19T17:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202311191700&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-007",
+      "observedAt": "2025-08-03T23:00:00.000Z",
+      "antiSolarBearingDeg": 90.46,
+      "directNormalIrradianceWm2": 584.1,
+      "openMeteoPrecipitationMm": 3.6,
+      "radarScore": 27.286,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": 11.0,
+        "fanWetPoints": 2,
+        "fanModeratePoints": 0,
+        "fanValidPoints": 3,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "10": {
+            "maxDbz": 11.0,
+            "wetPoints": 2,
+            "moderatePoints": 0,
+            "validPoints": 3
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2025-08-03T23:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202508032300&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-013",
+      "observedAt": "2025-07-25T00:00:00.000Z",
+      "antiSolarBearingDeg": 101.04,
+      "directNormalIrradianceWm2": 192,
+      "openMeteoPrecipitationMm": 2.8,
+      "radarScore": 25.986,
+      "radar": {
+        "observerDbz": 16.0,
+        "fanMaxDbz": 34.0,
+        "fanWetPoints": 10,
+        "fanModeratePoints": 3,
+        "fanValidPoints": 12,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": 9.0,
+            "wetPoints": 2,
+            "moderatePoints": 0,
+            "validPoints": 3
+          },
+          "10": {
+            "maxDbz": 34.0,
+            "wetPoints": 5,
+            "moderatePoints": 1,
+            "validPoints": 5
+          },
+          "15": {
+            "maxDbz": 25.0,
+            "wetPoints": 2,
+            "moderatePoints": 2,
+            "validPoints": 3
+          },
+          "22": {
+            "maxDbz": 6.5,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2025-07-25T00:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202507250000&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-005",
+      "observedAt": "2026-04-17T23:00:00.000Z",
+      "antiSolarBearingDeg": 85.19,
+      "directNormalIrradianceWm2": 188.8,
+      "openMeteoPrecipitationMm": 6.5,
+      "radarScore": 24.394,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": 52.0,
+        "fanWetPoints": 14,
+        "fanModeratePoints": 6,
+        "fanValidPoints": 17,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "10": {
+            "maxDbz": 10.5,
+            "wetPoints": 2,
+            "moderatePoints": 0,
+            "validPoints": 4
+          },
+          "15": {
+            "maxDbz": 8.5,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "22": {
+            "maxDbz": 15.0,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 2
+          },
+          "30": {
+            "maxDbz": 52.0,
+            "wetPoints": 2,
+            "moderatePoints": 1,
+            "validPoints": 2
+          },
+          "40": {
+            "maxDbz": 38.0,
+            "wetPoints": 4,
+            "moderatePoints": 2,
+            "validPoints": 4
+          },
+          "48": {
+            "maxDbz": 38.0,
+            "wetPoints": 4,
+            "moderatePoints": 3,
+            "validPoints": 4
+          }
+        },
+        "radarAt": "2026-04-17T23:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202604172300&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-002",
+      "observedAt": "2023-07-14T23:00:00.000Z",
+      "antiSolarBearingDeg": 94.75,
+      "directNormalIrradianceWm2": 231.7,
+      "openMeteoPrecipitationMm": 11.3,
+      "radarScore": 23.12,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": 13.5,
+        "fanWetPoints": 4,
+        "fanModeratePoints": 0,
+        "fanValidPoints": 4,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": 11.5,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "10": {
+            "maxDbz": 6.0,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": 13.5,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "30": {
+            "maxDbz": 13.0,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2023-07-14T23:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202307142300&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-010",
+      "observedAt": "2025-08-01T00:00:00.000Z",
+      "antiSolarBearingDeg": 99.64,
+      "directNormalIrradianceWm2": 355.6,
+      "openMeteoPrecipitationMm": 3,
+      "radarScore": 21.16,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": 10.0,
+        "fanWetPoints": 1,
+        "fanModeratePoints": 0,
+        "fanValidPoints": 1,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "10": {
+            "maxDbz": 10.0,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2025-08-01T00:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202508010000&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-003",
+      "observedAt": "2023-06-01T13:00:00.000Z",
+      "antiSolarBearingDeg": 256.28,
+      "directNormalIrradianceWm2": 121.6,
+      "openMeteoPrecipitationMm": 12.5,
+      "radarScore": 18.474,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": 12.0,
+        "fanWetPoints": 3,
+        "fanModeratePoints": 0,
+        "fanValidPoints": 3,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "10": {
+            "maxDbz": 12.0,
+            "wetPoints": 2,
+            "moderatePoints": 0,
+            "validPoints": 2
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": 9.0,
+            "wetPoints": 1,
+            "moderatePoints": 0,
+            "validPoints": 1
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2023-06-01T13:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202306011300&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-015",
+      "observedAt": "2023-07-05T23:00:00.000Z",
+      "antiSolarBearingDeg": 96.06,
+      "directNormalIrradianceWm2": 310,
+      "openMeteoPrecipitationMm": 2.4,
+      "radarScore": 3.107,
+      "radar": {
+        "observerDbz": 8.5,
+        "fanMaxDbz": 12.5,
+        "fanWetPoints": 6,
+        "fanModeratePoints": 0,
+        "fanValidPoints": 8,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": 11.5,
+            "wetPoints": 4,
+            "moderatePoints": 0,
+            "validPoints": 6
+          },
+          "10": {
+            "maxDbz": 12.5,
+            "wetPoints": 2,
+            "moderatePoints": 0,
+            "validPoints": 2
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2023-07-05T23:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202307052300&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-019",
+      "observedAt": "2024-04-06T23:00:00.000Z",
+      "antiSolarBearingDeg": 81.39,
+      "directNormalIrradianceWm2": 451.7,
+      "openMeteoPrecipitationMm": 2,
+      "radarScore": -19.094,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": 46.0,
+        "fanWetPoints": 11,
+        "fanModeratePoints": 7,
+        "fanValidPoints": 11,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "10": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "30": {
+            "maxDbz": 37.0,
+            "wetPoints": 4,
+            "moderatePoints": 3,
+            "validPoints": 4
+          },
+          "40": {
+            "maxDbz": 19.0,
+            "wetPoints": 3,
+            "moderatePoints": 0,
+            "validPoints": 3
+          },
+          "48": {
+            "maxDbz": 46.0,
+            "wetPoints": 4,
+            "moderatePoints": 4,
+            "validPoints": 4
+          }
+        },
+        "radarAt": "2024-04-06T23:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202404062300&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-009",
+      "observedAt": "2025-06-27T23:00:00.000Z",
+      "antiSolarBearingDeg": 96.79,
+      "directNormalIrradianceWm2": 292.2,
+      "openMeteoPrecipitationMm": 3.4,
+      "radarScore": -23.651,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": null,
+        "fanWetPoints": 0,
+        "fanModeratePoints": 0,
+        "fanValidPoints": 0,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "10": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2025-06-27T23:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202506272300&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-008",
+      "observedAt": "2024-05-20T00:00:00.000Z",
+      "antiSolarBearingDeg": 102.59,
+      "directNormalIrradianceWm2": 242,
+      "openMeteoPrecipitationMm": 3.8,
+      "radarScore": -25.086,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": null,
+        "fanWetPoints": 0,
+        "fanModeratePoints": 0,
+        "fanValidPoints": 0,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "10": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2024-05-20T00:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202405200000&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-018",
+      "observedAt": "2025-07-12T23:00:00.000Z",
+      "antiSolarBearingDeg": 95.01,
+      "directNormalIrradianceWm2": 178.8,
+      "openMeteoPrecipitationMm": 2.5,
+      "radarScore": -26.891,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": 42.0,
+        "fanWetPoints": 16,
+        "fanModeratePoints": 12,
+        "fanValidPoints": 16,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "10": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "30": {
+            "maxDbz": 29.0,
+            "wetPoints": 2,
+            "moderatePoints": 2,
+            "validPoints": 2
+          },
+          "40": {
+            "maxDbz": 36.5,
+            "wetPoints": 7,
+            "moderatePoints": 3,
+            "validPoints": 7
+          },
+          "48": {
+            "maxDbz": 42.0,
+            "wetPoints": 7,
+            "moderatePoints": 7,
+            "validPoints": 7
+          }
+        },
+        "radarAt": "2025-07-12T23:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202507122300&prod=composite_n0q"
+      },
+      "error": null
+    },
+    {
+      "pairId": "lamont-016",
+      "observedAt": "2023-05-28T23:00:00.000Z",
+      "antiSolarBearingDeg": 95.74,
+      "directNormalIrradianceWm2": 135.2,
+      "openMeteoPrecipitationMm": 2.8,
+      "radarScore": -28.137,
+      "radar": {
+        "observerDbz": null,
+        "fanMaxDbz": null,
+        "fanWetPoints": 0,
+        "fanModeratePoints": 0,
+        "fanValidPoints": 0,
+        "fanPointCount": 49,
+        "byDistanceKm": {
+          "5": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "10": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "15": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "22": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "30": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "40": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          },
+          "48": {
+            "maxDbz": null,
+            "wetPoints": 0,
+            "moderatePoints": 0,
+            "validPoints": 0
+          }
+        },
+        "radarAt": "2023-05-28T23:00:00Z",
+        "sourceUrl": "https://mesonet.agron.iastate.edu/cgi-bin/request/raster2netcdf.py?dstr=202305282300&prod=composite_n0q"
+      },
+      "error": null
+    }
+  ]
+}

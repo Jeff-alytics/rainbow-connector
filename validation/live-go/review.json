@@ -1,0 +1,2370 @@
+{
+  "generatedAt": "2026-07-27T00:01:49.273582+00:00",
+  "matched": [
+    {
+      "event": {
+        "id": "go-202607262250-1d15da38bb",
+        "firstSeenAt": "2026-07-26T22:50:59.968600Z",
+        "lastSeenAt": "2026-07-26T22:51:23.519600Z",
+        "scanCount": 2,
+        "detectionCount": 2,
+        "peakScore": 85.1,
+        "representative": {
+          "detectedAt": "2026-07-26T22:50:59.968600Z",
+          "candidateId": "42.195,-75.595:3",
+          "rank": 3,
+          "lat": 42.2093,
+          "lon": -75.6904,
+          "label": "42.21, -75.69",
+          "nearestZip": null,
+          "direction": {
+            "bearing": 101,
+            "label": "Look toward 101 degrees"
+          },
+          "score": 85.1,
+          "persistence": {
+            "confirmed": true,
+            "scanCount": null,
+            "firstSeenAt": null,
+            "lastSeenAt": null
+          },
+          "evidence": {
+            "sunElevationDeg": 16.75,
+            "rainbowArcDeg": null,
+            "directNormalIrradianceWm2": 306,
+            "directRadiationWm2": null,
+            "cloudCoverPct": 24,
+            "rainPointDirectNormalIrradianceWm2": null,
+            "rainPointDirectRadiationWm2": null,
+            "rainPointCloudCoverPct": null,
+            "rainIntensity": 1,
+            "observerRainIntensity": 0,
+            "rainPoint": {
+              "lat": 42.195,
+              "lon": -75.595,
+              "distanceKm": 8,
+              "bearing": 101
+            },
+            "goes": null
+          }
+        },
+        "latestLocation": {
+          "lat": 42.2093,
+          "lon": -75.6904
+        },
+        "detections": [
+          {
+            "detectedAt": "2026-07-26T22:50:59.968600Z",
+            "candidateId": "42.195,-75.595:3",
+            "rank": 3,
+            "lat": 42.2093,
+            "lon": -75.6904,
+            "label": "42.21, -75.69",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 101,
+              "label": "Look toward 101 degrees"
+            },
+            "score": 85.1,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 16.75,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 306,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 24,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 42.195,
+                "lon": -75.595,
+                "distanceKm": 8,
+                "bearing": 101
+              },
+              "goes": null
+            }
+          },
+          {
+            "detectedAt": "2026-07-26T22:51:23.519600Z",
+            "candidateId": "42.195,-75.595:3",
+            "rank": 3,
+            "lat": 42.2093,
+            "lon": -75.6904,
+            "label": "42.21, -75.69",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 101,
+              "label": "Look toward 101 degrees"
+            },
+            "score": 85.1,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 16.75,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 306,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 24,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 42.195,
+                "lon": -75.595,
+                "distanceKm": 8,
+                "bearing": 101
+              },
+              "goes": null
+            }
+          }
+        ],
+        "review": {
+          "label": "pending",
+          "reviewedAt": null,
+          "notes": null,
+          "evidenceUrls": []
+        }
+      },
+      "site": {
+        "siteId": 1063,
+        "siteName": "Cherry Ridge",
+        "siteArea": "Cherry Ridge",
+        "observeCivil": false,
+        "civilBegins": "2026-07-25T09:18:02.000Z",
+        "civilEnds": "2026-07-26T00:59:17.000Z",
+        "siteIdentifier": "N30",
+        "icao": null,
+        "latitude": 41.515175,
+        "longitude": -75.252785,
+        "elevation": 1356,
+        "magVariation": -12.02803,
+        "magVarDate": "2026-07-01T08:07:00.000Z",
+        "siteInMaintenance": false,
+        "siteActive": true,
+        "thirdParty": false,
+        "validated": true,
+        "sunrise": "2026-07-25T09:50:00.000Z",
+        "sunset": "2026-07-26T00:27:20.000Z",
+        "timeZone": "America/New_York",
+        "country": "US",
+        "state": "PA",
+        "wxsrc": 0,
+        "wxTable": null,
+        "operatedBy": null,
+        "attribution": null,
+        "displayVeia": true,
+        "cameras": [
+          {
+            "cameraId": 13946,
+            "cameraName": "Camera 3",
+            "cameraDirection": "South",
+            "cameraBearing": 180,
+            "cameraLastSuccess": "2026-07-26T01:49:45.807Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1063,
+            "displayOrder": 4,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 41.515175,
+            "longitude": -75.252785
+          },
+          {
+            "cameraId": 13945,
+            "cameraName": "Camera 2",
+            "cameraDirection": "East",
+            "cameraBearing": 90,
+            "cameraLastSuccess": "2026-07-26T01:45:13.963Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1063,
+            "displayOrder": 2,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 41.515175,
+            "longitude": -75.252785
+          },
+          {
+            "cameraId": 13947,
+            "cameraName": "Camera 4",
+            "cameraDirection": "West",
+            "cameraBearing": 270,
+            "cameraLastSuccess": "2026-07-26T01:44:19.799Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1063,
+            "displayOrder": 6,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 41.515175,
+            "longitude": -75.252785
+          },
+          {
+            "cameraId": 13944,
+            "cameraName": "Camera 1",
+            "cameraDirection": "North",
+            "cameraBearing": 0,
+            "cameraLastSuccess": "2026-07-26T01:45:41.271Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1063,
+            "displayOrder": 0,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 41.515175,
+            "longitude": -75.252785
+          }
+        ]
+      },
+      "camera": {
+        "cameraId": 13945,
+        "cameraName": "Camera 2",
+        "cameraDirection": "East",
+        "cameraBearing": 90,
+        "cameraLastSuccess": "2026-07-26T01:45:13.963Z",
+        "cameraInMaintenance": false,
+        "cameraOutOfOrder": false,
+        "siteId": 1063,
+        "displayOrder": 2,
+        "enableVeia": false,
+        "veiaProcessType": 1,
+        "mapWedgeAngle": 90,
+        "latitude": 41.515175,
+        "longitude": -75.252785
+      },
+      "distanceKm": 85.3,
+      "bearingDifference": 11.0,
+      "frames": [
+        {
+          "file": "go-202607262250-1d15da38bb/01.jpg",
+          "observedAt": "2026-07-26T22:33:02.850Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1063/26/13945-1785105162608.jpg"
+        },
+        {
+          "file": "go-202607262250-1d15da38bb/02.jpg",
+          "observedAt": "2026-07-26T22:41:31.900Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1063/26/13945-1785105672932.jpg"
+        },
+        {
+          "file": "go-202607262250-1d15da38bb/03.jpg",
+          "observedAt": "2026-07-26T22:50:07.035Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1063/26/13945-1785106182814.jpg"
+        },
+        {
+          "file": "go-202607262250-1d15da38bb/04.jpg",
+          "observedAt": "2026-07-26T22:58:36.090Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1063/26/13945-1785106692907.jpg"
+        },
+        {
+          "file": "go-202607262250-1d15da38bb/05.jpg",
+          "observedAt": "2026-07-26T23:06:59.128Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1063/26/13945-1785107202999.jpg"
+        }
+      ]
+    },
+    {
+      "event": {
+        "id": "go-202607262250-4f368556d1",
+        "firstSeenAt": "2026-07-26T22:50:59.968600Z",
+        "lastSeenAt": "2026-07-26T22:51:23.519600Z",
+        "scanCount": 2,
+        "detectionCount": 2,
+        "peakScore": 75.1,
+        "representative": {
+          "detectedAt": "2026-07-26T22:50:59.968600Z",
+          "candidateId": "42.095,-75.095:5",
+          "rank": 5,
+          "lat": 42.1097,
+          "lon": -75.1901,
+          "label": "42.11, -75.19",
+          "nearestZip": null,
+          "direction": {
+            "bearing": 102,
+            "label": "Look toward 102 degrees"
+          },
+          "score": 75.1,
+          "persistence": {
+            "confirmed": true,
+            "scanCount": null,
+            "firstSeenAt": null,
+            "lastSeenAt": null
+          },
+          "evidence": {
+            "sunElevationDeg": 16.37,
+            "rainbowArcDeg": null,
+            "directNormalIrradianceWm2": 297,
+            "directRadiationWm2": null,
+            "cloudCoverPct": 11,
+            "rainPointDirectNormalIrradianceWm2": null,
+            "rainPointDirectRadiationWm2": null,
+            "rainPointCloudCoverPct": null,
+            "rainIntensity": 0.6,
+            "observerRainIntensity": 0,
+            "rainPoint": {
+              "lat": 42.095,
+              "lon": -75.095,
+              "distanceKm": 8,
+              "bearing": 102
+            },
+            "goes": null
+          }
+        },
+        "latestLocation": {
+          "lat": 42.1097,
+          "lon": -75.1901
+        },
+        "detections": [
+          {
+            "detectedAt": "2026-07-26T22:50:59.968600Z",
+            "candidateId": "42.095,-75.095:5",
+            "rank": 5,
+            "lat": 42.1097,
+            "lon": -75.1901,
+            "label": "42.11, -75.19",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 102,
+              "label": "Look toward 102 degrees"
+            },
+            "score": 75.1,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 16.37,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 297,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 11,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 0.6,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 42.095,
+                "lon": -75.095,
+                "distanceKm": 8,
+                "bearing": 102
+              },
+              "goes": null
+            }
+          },
+          {
+            "detectedAt": "2026-07-26T22:51:23.519600Z",
+            "candidateId": "42.095,-75.095:5",
+            "rank": 5,
+            "lat": 42.1097,
+            "lon": -75.1901,
+            "label": "42.11, -75.19",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 102,
+              "label": "Look toward 102 degrees"
+            },
+            "score": 75.1,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 16.37,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 297,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 11,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 0.6,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 42.095,
+                "lon": -75.095,
+                "distanceKm": 8,
+                "bearing": 102
+              },
+              "goes": null
+            }
+          }
+        ],
+        "review": {
+          "label": "pending",
+          "reviewedAt": null,
+          "notes": null,
+          "evidenceUrls": []
+        }
+      },
+      "site": {
+        "siteId": 1063,
+        "siteName": "Cherry Ridge",
+        "siteArea": "Cherry Ridge",
+        "observeCivil": false,
+        "civilBegins": "2026-07-25T09:18:02.000Z",
+        "civilEnds": "2026-07-26T00:59:17.000Z",
+        "siteIdentifier": "N30",
+        "icao": null,
+        "latitude": 41.515175,
+        "longitude": -75.252785,
+        "elevation": 1356,
+        "magVariation": -12.02803,
+        "magVarDate": "2026-07-01T08:07:00.000Z",
+        "siteInMaintenance": false,
+        "siteActive": true,
+        "thirdParty": false,
+        "validated": true,
+        "sunrise": "2026-07-25T09:50:00.000Z",
+        "sunset": "2026-07-26T00:27:20.000Z",
+        "timeZone": "America/New_York",
+        "country": "US",
+        "state": "PA",
+        "wxsrc": 0,
+        "wxTable": null,
+        "operatedBy": null,
+        "attribution": null,
+        "displayVeia": true,
+        "cameras": [
+          {
+            "cameraId": 13946,
+            "cameraName": "Camera 3",
+            "cameraDirection": "South",
+            "cameraBearing": 180,
+            "cameraLastSuccess": "2026-07-26T01:49:45.807Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1063,
+            "displayOrder": 4,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 41.515175,
+            "longitude": -75.252785
+          },
+          {
+            "cameraId": 13945,
+            "cameraName": "Camera 2",
+            "cameraDirection": "East",
+            "cameraBearing": 90,
+            "cameraLastSuccess": "2026-07-26T01:45:13.963Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1063,
+            "displayOrder": 2,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 41.515175,
+            "longitude": -75.252785
+          },
+          {
+            "cameraId": 13947,
+            "cameraName": "Camera 4",
+            "cameraDirection": "West",
+            "cameraBearing": 270,
+            "cameraLastSuccess": "2026-07-26T01:44:19.799Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1063,
+            "displayOrder": 6,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 41.515175,
+            "longitude": -75.252785
+          },
+          {
+            "cameraId": 13944,
+            "cameraName": "Camera 1",
+            "cameraDirection": "North",
+            "cameraBearing": 0,
+            "cameraLastSuccess": "2026-07-26T01:45:41.271Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1063,
+            "displayOrder": 0,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 41.515175,
+            "longitude": -75.252785
+          }
+        ]
+      },
+      "camera": {
+        "cameraId": 13945,
+        "cameraName": "Camera 2",
+        "cameraDirection": "East",
+        "cameraBearing": 90,
+        "cameraLastSuccess": "2026-07-26T01:45:13.963Z",
+        "cameraInMaintenance": false,
+        "cameraOutOfOrder": false,
+        "siteId": 1063,
+        "displayOrder": 2,
+        "enableVeia": false,
+        "veiaProcessType": 1,
+        "mapWedgeAngle": 90,
+        "latitude": 41.515175,
+        "longitude": -75.252785
+      },
+      "distanceKm": 66.3,
+      "bearingDifference": 12.0,
+      "frames": [
+        {
+          "file": "go-202607262250-4f368556d1/01.jpg",
+          "observedAt": "2026-07-26T22:33:02.850Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1063/26/13945-1785105162608.jpg"
+        },
+        {
+          "file": "go-202607262250-4f368556d1/02.jpg",
+          "observedAt": "2026-07-26T22:41:31.900Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1063/26/13945-1785105672932.jpg"
+        },
+        {
+          "file": "go-202607262250-4f368556d1/03.jpg",
+          "observedAt": "2026-07-26T22:50:07.035Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1063/26/13945-1785106182814.jpg"
+        },
+        {
+          "file": "go-202607262250-4f368556d1/04.jpg",
+          "observedAt": "2026-07-26T22:58:36.090Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1063/26/13945-1785106692907.jpg"
+        },
+        {
+          "file": "go-202607262250-4f368556d1/05.jpg",
+          "observedAt": "2026-07-26T23:06:59.128Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1063/26/13945-1785107202999.jpg"
+        }
+      ]
+    },
+    {
+      "event": {
+        "id": "go-202607262250-0c5549c42d",
+        "firstSeenAt": "2026-07-26T22:50:59.968600Z",
+        "lastSeenAt": "2026-07-26T22:54:57.274198Z",
+        "scanCount": 3,
+        "detectionCount": 3,
+        "peakScore": 99.4,
+        "representative": {
+          "detectedAt": "2026-07-26T22:54:57.274198Z",
+          "candidateId": "42.095,-73.195:1",
+          "rank": 1,
+          "lat": 42.1119,
+          "lon": -73.2894,
+          "label": "42.11, -73.29",
+          "nearestZip": null,
+          "direction": {
+            "bearing": 104,
+            "label": "Look toward 104 degrees"
+          },
+          "score": 99.4,
+          "persistence": {
+            "confirmed": true,
+            "scanCount": null,
+            "firstSeenAt": null,
+            "lastSeenAt": null
+          },
+          "evidence": {
+            "sunElevationDeg": 14.27,
+            "rainbowArcDeg": null,
+            "directNormalIrradianceWm2": 427,
+            "directRadiationWm2": null,
+            "cloudCoverPct": 0,
+            "rainPointDirectNormalIrradianceWm2": null,
+            "rainPointDirectRadiationWm2": null,
+            "rainPointCloudCoverPct": null,
+            "rainIntensity": 1,
+            "observerRainIntensity": 0,
+            "rainPoint": {
+              "lat": 42.095,
+              "lon": -73.195,
+              "distanceKm": 8,
+              "bearing": 104
+            },
+            "goes": null
+          }
+        },
+        "latestLocation": {
+          "lat": 42.1119,
+          "lon": -73.2894
+        },
+        "detections": [
+          {
+            "detectedAt": "2026-07-26T22:50:59.968600Z",
+            "candidateId": "42.095,-73.195:2",
+            "rank": 2,
+            "lat": 42.1112,
+            "lon": -73.2897,
+            "label": "42.11, -73.29",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 103,
+              "label": "Look toward 103 degrees"
+            },
+            "score": 98.5,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 14.99,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 427,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 0,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 42.095,
+                "lon": -73.195,
+                "distanceKm": 8,
+                "bearing": 103
+              },
+              "goes": null
+            }
+          },
+          {
+            "detectedAt": "2026-07-26T22:51:23.519600Z",
+            "candidateId": "42.095,-73.195:2",
+            "rank": 2,
+            "lat": 42.1112,
+            "lon": -73.2897,
+            "label": "42.11, -73.29",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 103,
+              "label": "Look toward 103 degrees"
+            },
+            "score": 98.5,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 14.99,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 427,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 0,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 42.095,
+                "lon": -73.195,
+                "distanceKm": 8,
+                "bearing": 103
+              },
+              "goes": null
+            }
+          },
+          {
+            "detectedAt": "2026-07-26T22:54:57.274198Z",
+            "candidateId": "42.095,-73.195:1",
+            "rank": 1,
+            "lat": 42.1119,
+            "lon": -73.2894,
+            "label": "42.11, -73.29",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 104,
+              "label": "Look toward 104 degrees"
+            },
+            "score": 99.4,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 14.27,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 427,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 0,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 42.095,
+                "lon": -73.195,
+                "distanceKm": 8,
+                "bearing": 104
+              },
+              "goes": null
+            }
+          }
+        ],
+        "review": {
+          "label": "pending",
+          "reviewedAt": null,
+          "notes": null,
+          "evidenceUrls": []
+        }
+      },
+      "site": {
+        "siteId": 1005,
+        "siteName": "Bennington",
+        "siteArea": "Bennington",
+        "observeCivil": false,
+        "civilBegins": "2026-07-25T09:05:06.000Z",
+        "civilEnds": "2026-07-26T00:56:11.000Z",
+        "siteIdentifier": "DDH",
+        "icao": "KDDH",
+        "latitude": 42.889824,
+        "longitude": -73.24678,
+        "elevation": 813,
+        "magVariation": -13.19629,
+        "magVarDate": "2026-07-01T08:07:00.000Z",
+        "siteInMaintenance": false,
+        "siteActive": true,
+        "thirdParty": false,
+        "validated": true,
+        "sunrise": "2026-07-25T09:38:03.000Z",
+        "sunset": "2026-07-26T00:23:14.000Z",
+        "timeZone": "America/New_York",
+        "country": "US",
+        "state": "VT",
+        "wxsrc": 0,
+        "wxTable": "",
+        "operatedBy": null,
+        "attribution": null,
+        "displayVeia": false,
+        "cameras": [
+          {
+            "cameraId": 13728,
+            "cameraName": "Camera 3",
+            "cameraDirection": "South",
+            "cameraBearing": 165,
+            "cameraLastSuccess": "2026-07-26T01:43:34.457Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1005,
+            "displayOrder": 4,
+            "enableVeia": true,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 42.889824,
+            "longitude": -73.24678
+          },
+          {
+            "cameraId": 13729,
+            "cameraName": "Camera 4",
+            "cameraDirection": "NorthWest",
+            "cameraBearing": 305,
+            "cameraLastSuccess": "2026-07-26T01:43:04.326Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1005,
+            "displayOrder": 7,
+            "enableVeia": true,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 42.889824,
+            "longitude": -73.24678
+          },
+          {
+            "cameraId": 13727,
+            "cameraName": "Camera 2",
+            "cameraDirection": "East",
+            "cameraBearing": 100,
+            "cameraLastSuccess": "2026-07-26T01:45:23.284Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1005,
+            "displayOrder": 2,
+            "enableVeia": true,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 42.889824,
+            "longitude": -73.24678
+          },
+          {
+            "cameraId": 13726,
+            "cameraName": "Camera 1",
+            "cameraDirection": "North",
+            "cameraBearing": 20,
+            "cameraLastSuccess": "2026-07-26T01:47:02.528Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1005,
+            "displayOrder": 0,
+            "enableVeia": true,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 42.889824,
+            "longitude": -73.24678
+          }
+        ]
+      },
+      "camera": {
+        "cameraId": 13727,
+        "cameraName": "Camera 2",
+        "cameraDirection": "East",
+        "cameraBearing": 100,
+        "cameraLastSuccess": "2026-07-26T01:45:23.284Z",
+        "cameraInMaintenance": false,
+        "cameraOutOfOrder": false,
+        "siteId": 1005,
+        "displayOrder": 2,
+        "enableVeia": true,
+        "veiaProcessType": 1,
+        "mapWedgeAngle": 45,
+        "latitude": 42.889824,
+        "longitude": -73.24678
+      },
+      "distanceKm": 86.6,
+      "bearingDifference": 4.0,
+      "frames": [
+        {
+          "file": "go-202607262250-0c5549c42d/01.jpg",
+          "observedAt": "2026-07-26T22:42:08.103Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1005/26/13727-1785105713595.jpg"
+        },
+        {
+          "file": "go-202607262250-0c5549c42d/02.jpg",
+          "observedAt": "2026-07-26T22:50:24.993Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1005/26/13727-1785106212843.jpg"
+        },
+        {
+          "file": "go-202607262250-0c5549c42d/03.jpg",
+          "observedAt": "2026-07-26T22:59:07.052Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1005/26/13727-1785106733857.jpg"
+        },
+        {
+          "file": "go-202607262250-0c5549c42d/04.jpg",
+          "observedAt": "2026-07-26T23:07:16.710Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1005/26/13727-1785107233007.jpg"
+        }
+      ]
+    },
+    {
+      "event": {
+        "id": "go-202607262250-73dab70751",
+        "firstSeenAt": "2026-07-26T22:50:59.968600Z",
+        "lastSeenAt": "2026-07-26T22:54:57.274198Z",
+        "scanCount": 3,
+        "detectionCount": 3,
+        "peakScore": 98.6,
+        "representative": {
+          "detectedAt": "2026-07-26T22:50:59.968600Z",
+          "candidateId": "46.095,-71.295:1",
+          "rank": 1,
+          "lat": 46.1114,
+          "lon": -71.3962,
+          "label": "46.11, -71.40",
+          "nearestZip": null,
+          "direction": {
+            "bearing": 103,
+            "label": "Look toward 103 degrees"
+          },
+          "score": 98.6,
+          "persistence": {
+            "confirmed": true,
+            "scanCount": null,
+            "firstSeenAt": null,
+            "lastSeenAt": null
+          },
+          "evidence": {
+            "sunElevationDeg": 14.57,
+            "rainbowArcDeg": null,
+            "directNormalIrradianceWm2": 429,
+            "directRadiationWm2": null,
+            "cloudCoverPct": 0,
+            "rainPointDirectNormalIrradianceWm2": null,
+            "rainPointDirectRadiationWm2": null,
+            "rainPointCloudCoverPct": null,
+            "rainIntensity": 1,
+            "observerRainIntensity": 0,
+            "rainPoint": {
+              "lat": 46.095,
+              "lon": -71.295,
+              "distanceKm": 8,
+              "bearing": 103
+            },
+            "goes": null
+          }
+        },
+        "latestLocation": {
+          "lat": 46.1123,
+          "lon": -71.3959
+        },
+        "detections": [
+          {
+            "detectedAt": "2026-07-26T22:50:59.968600Z",
+            "candidateId": "46.095,-71.295:1",
+            "rank": 1,
+            "lat": 46.1114,
+            "lon": -71.3962,
+            "label": "46.11, -71.40",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 103,
+              "label": "Look toward 103 degrees"
+            },
+            "score": 98.6,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 14.57,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 429,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 0,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 46.095,
+                "lon": -71.295,
+                "distanceKm": 8,
+                "bearing": 103
+              },
+              "goes": null
+            }
+          },
+          {
+            "detectedAt": "2026-07-26T22:51:23.519600Z",
+            "candidateId": "46.095,-71.295:1",
+            "rank": 1,
+            "lat": 46.1114,
+            "lon": -71.3962,
+            "label": "46.11, -71.40",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 103,
+              "label": "Look toward 103 degrees"
+            },
+            "score": 98.6,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 14.57,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 429,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 0,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 46.095,
+                "lon": -71.295,
+                "distanceKm": 8,
+                "bearing": 103
+              },
+              "goes": null
+            }
+          },
+          {
+            "detectedAt": "2026-07-26T22:54:57.274198Z",
+            "candidateId": "46.095,-71.295:2",
+            "rank": 2,
+            "lat": 46.1123,
+            "lon": -71.3959,
+            "label": "46.11, -71.40",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 104,
+              "label": "Look toward 104 degrees"
+            },
+            "score": 94,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 13.89,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 429,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 0,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 46.095,
+                "lon": -71.295,
+                "distanceKm": 8,
+                "bearing": 104
+              },
+              "goes": null
+            }
+          }
+        ],
+        "review": {
+          "label": "pending",
+          "reviewedAt": null,
+          "notes": null,
+          "evidenceUrls": []
+        }
+      },
+      "site": {
+        "siteId": 386,
+        "siteName": "Sherbrooke",
+        "siteArea": "Sherbrooke",
+        "observeCivil": false,
+        "civilBegins": "2026-07-25T08:48:55.000Z",
+        "civilEnds": "2026-07-26T00:59:55.000Z",
+        "siteIdentifier": "",
+        "icao": "CYSC",
+        "latitude": 45.43861,
+        "longitude": -71.69139,
+        "elevation": 792,
+        "magVariation": -14.36076,
+        "magVarDate": "2026-07-01T08:02:00.000Z",
+        "siteInMaintenance": false,
+        "siteActive": true,
+        "thirdParty": true,
+        "validated": false,
+        "sunrise": "2026-07-25T09:23:59.000Z",
+        "sunset": "2026-07-26T00:24:52.000Z",
+        "timeZone": "America/Toronto",
+        "country": "CA",
+        "state": "QC",
+        "wxsrc": 0,
+        "wxTable": null,
+        "operatedBy": "NAV CANADA",
+        "attribution": "NAV CANADA Aviation Weather Web Site <a href=\"http://www.navcanada.ca/en/Pages/contact-us.aspx\" target=\"_blank\">(NAV CANADA)</a><p>These cameras are not maintained by the FAA Aviation Weather Camera Program.&#10;For issues with these cameras please contact NAV CANADA.<br/>Thank You</p>",
+        "displayVeia": false,
+        "cameras": [
+          {
+            "cameraId": 11229,
+            "cameraName": "Camera 2",
+            "cameraDirection": "SouthEast",
+            "cameraBearing": 125,
+            "cameraLastSuccess": "2026-07-26T01:43:17.915Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 386,
+            "displayOrder": 3,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 45.43861,
+            "longitude": -71.69139
+          },
+          {
+            "cameraId": 11855,
+            "cameraName": "Camera 1",
+            "cameraDirection": "NorthEast",
+            "cameraBearing": 30,
+            "cameraLastSuccess": "2026-07-26T01:41:56.104Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 386,
+            "displayOrder": 1,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 45.43861,
+            "longitude": -71.69139
+          },
+          {
+            "cameraId": 11856,
+            "cameraName": "Camera 3",
+            "cameraDirection": "SouthWest",
+            "cameraBearing": 130,
+            "cameraLastSuccess": "2026-07-26T01:42:07.706Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 386,
+            "displayOrder": 5,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 45.43861,
+            "longitude": -71.69139
+          },
+          {
+            "cameraId": 11230,
+            "cameraName": "Camera 4",
+            "cameraDirection": "West",
+            "cameraBearing": 290,
+            "cameraLastSuccess": "2026-07-26T01:42:43.406Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 386,
+            "displayOrder": 6,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 45.43861,
+            "longitude": -71.69139
+          }
+        ]
+      },
+      "camera": {
+        "cameraId": 11229,
+        "cameraName": "Camera 2",
+        "cameraDirection": "SouthEast",
+        "cameraBearing": 125,
+        "cameraLastSuccess": "2026-07-26T01:43:17.915Z",
+        "cameraInMaintenance": false,
+        "cameraOutOfOrder": false,
+        "siteId": 386,
+        "displayOrder": 3,
+        "enableVeia": false,
+        "veiaProcessType": 1,
+        "mapWedgeAngle": 45,
+        "latitude": 45.43861,
+        "longitude": -71.69139
+      },
+      "distanceKm": 78.2,
+      "bearingDifference": 22.0,
+      "frames": [
+        {
+          "file": "go-202607262250-73dab70751/01.jpg",
+          "observedAt": "2026-07-26T22:35:25.187Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/386/26/11229-1785105309734.jpg"
+        },
+        {
+          "file": "go-202607262250-73dab70751/02.jpg",
+          "observedAt": "2026-07-26T22:43:35.696Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/386/26/11229-1785105807797.jpg"
+        },
+        {
+          "file": "go-202607262250-73dab70751/03.jpg",
+          "observedAt": "2026-07-26T22:52:05.975Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/386/26/11229-1785106317840.jpg"
+        },
+        {
+          "file": "go-202607262250-73dab70751/04.jpg",
+          "observedAt": "2026-07-26T23:03:39.149Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/386/26/11229-1785107003117.jpg"
+        }
+      ]
+    },
+    {
+      "event": {
+        "id": "go-202607262250-31f9ab664d",
+        "firstSeenAt": "2026-07-26T22:50:59.968600Z",
+        "lastSeenAt": "2026-07-26T22:51:23.519600Z",
+        "scanCount": 2,
+        "detectionCount": 2,
+        "peakScore": 80.8,
+        "representative": {
+          "detectedAt": "2026-07-26T22:50:59.968600Z",
+          "candidateId": "45.995,-72.395:7",
+          "rank": 7,
+          "lat": 46.0105,
+          "lon": -72.4963,
+          "label": "46.01, -72.50",
+          "nearestZip": null,
+          "direction": {
+            "bearing": 102,
+            "label": "Look toward 102 degrees"
+          },
+          "score": 80.8,
+          "persistence": {
+            "confirmed": true,
+            "scanCount": null,
+            "firstSeenAt": null,
+            "lastSeenAt": null
+          },
+          "evidence": {
+            "sunElevationDeg": 15.29,
+            "rainbowArcDeg": null,
+            "directNormalIrradianceWm2": 381,
+            "directRadiationWm2": null,
+            "cloudCoverPct": 0,
+            "rainPointDirectNormalIrradianceWm2": null,
+            "rainPointDirectRadiationWm2": null,
+            "rainPointCloudCoverPct": null,
+            "rainIntensity": 0.2,
+            "observerRainIntensity": 0,
+            "rainPoint": {
+              "lat": 45.995,
+              "lon": -72.395,
+              "distanceKm": 8,
+              "bearing": 102
+            },
+            "goes": null
+          }
+        },
+        "latestLocation": {
+          "lat": 46.0105,
+          "lon": -72.4963
+        },
+        "detections": [
+          {
+            "detectedAt": "2026-07-26T22:50:59.968600Z",
+            "candidateId": "45.995,-72.395:7",
+            "rank": 7,
+            "lat": 46.0105,
+            "lon": -72.4963,
+            "label": "46.01, -72.50",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 102,
+              "label": "Look toward 102 degrees"
+            },
+            "score": 80.8,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 15.29,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 381,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 0,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 0.2,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 45.995,
+                "lon": -72.395,
+                "distanceKm": 8,
+                "bearing": 102
+              },
+              "goes": null
+            }
+          },
+          {
+            "detectedAt": "2026-07-26T22:51:23.519600Z",
+            "candidateId": "45.995,-72.395:7",
+            "rank": 7,
+            "lat": 46.0105,
+            "lon": -72.4963,
+            "label": "46.01, -72.50",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 102,
+              "label": "Look toward 102 degrees"
+            },
+            "score": 80.8,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 15.29,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 381,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 0,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 0.2,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 45.995,
+                "lon": -72.395,
+                "distanceKm": 8,
+                "bearing": 102
+              },
+              "goes": null
+            }
+          }
+        ],
+        "review": {
+          "label": "pending",
+          "reviewedAt": null,
+          "notes": null,
+          "evidenceUrls": []
+        }
+      },
+      "site": {
+        "siteId": 389,
+        "siteName": "Trois Rivieres",
+        "siteArea": "Trois Rivieres",
+        "observeCivil": false,
+        "civilBegins": "2026-07-25T08:48:58.000Z",
+        "civilEnds": "2026-07-26T01:07:42.000Z",
+        "siteIdentifier": "",
+        "icao": "CYRQ",
+        "latitude": 46.35167,
+        "longitude": -72.67056,
+        "elevation": 199,
+        "magVariation": -14.19486,
+        "magVarDate": "2026-07-01T08:02:00.000Z",
+        "siteInMaintenance": false,
+        "siteActive": true,
+        "thirdParty": true,
+        "validated": false,
+        "sunrise": "2026-07-25T09:24:53.000Z",
+        "sunset": "2026-07-26T00:31:47.000Z",
+        "timeZone": "America/Toronto",
+        "country": "CA",
+        "state": "QC",
+        "wxsrc": 0,
+        "wxTable": null,
+        "operatedBy": "NAV CANADA",
+        "attribution": "NAV CANADA Aviation Weather Web Site <a href=\"http://www.navcanada.ca/en/Pages/contact-us.aspx\" target=\"_blank\">(NAV CANADA)</a><p>These cameras are not maintained by the FAA Aviation Weather Camera Program.&#10;For issues with these cameras please contact NAV CANADA.<br/>Thank You</p>",
+        "displayVeia": false,
+        "cameras": [
+          {
+            "cameraId": 11236,
+            "cameraName": "Camera 2",
+            "cameraDirection": "SouthEast",
+            "cameraBearing": 120,
+            "cameraLastSuccess": "2026-07-26T01:43:17.131Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 389,
+            "displayOrder": 3,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 46.35167,
+            "longitude": -72.67056
+          },
+          {
+            "cameraId": 11238,
+            "cameraName": "Camera 4",
+            "cameraDirection": "NorthWest",
+            "cameraBearing": 300,
+            "cameraLastSuccess": "2026-07-26T01:42:41.485Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 389,
+            "displayOrder": 7,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 46.35167,
+            "longitude": -72.67056
+          },
+          {
+            "cameraId": 11237,
+            "cameraName": "Camera 3",
+            "cameraDirection": "SouthWest",
+            "cameraBearing": 210,
+            "cameraLastSuccess": "2026-07-26T01:42:04.701Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 389,
+            "displayOrder": 5,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 46.35167,
+            "longitude": -72.67056
+          },
+          {
+            "cameraId": 11235,
+            "cameraName": "Camera 1",
+            "cameraDirection": "NorthEast",
+            "cameraBearing": 35,
+            "cameraLastSuccess": "2026-07-26T01:41:58.991Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 389,
+            "displayOrder": 1,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 46.35167,
+            "longitude": -72.67056
+          }
+        ]
+      },
+      "camera": {
+        "cameraId": 11236,
+        "cameraName": "Camera 2",
+        "cameraDirection": "SouthEast",
+        "cameraBearing": 120,
+        "cameraLastSuccess": "2026-07-26T01:43:17.131Z",
+        "cameraInMaintenance": false,
+        "cameraOutOfOrder": false,
+        "siteId": 389,
+        "displayOrder": 3,
+        "enableVeia": false,
+        "veiaProcessType": 1,
+        "mapWedgeAngle": 45,
+        "latitude": 46.35167,
+        "longitude": -72.67056
+      },
+      "distanceKm": 40.2,
+      "bearingDifference": 18.0,
+      "frames": [
+        {
+          "file": "go-202607262250-31f9ab664d/01.jpg",
+          "observedAt": "2026-07-26T22:33:01.455Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/389/26/11236-1785105177605.jpg"
+        },
+        {
+          "file": "go-202607262250-31f9ab664d/02.jpg",
+          "observedAt": "2026-07-26T22:45:00.409Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/389/26/11236-1785105895300.jpg"
+        },
+        {
+          "file": "go-202607262250-31f9ab664d/03.jpg",
+          "observedAt": "2026-07-26T22:53:20.478Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/389/26/11236-1785106392853.jpg"
+        },
+        {
+          "file": "go-202607262250-31f9ab664d/04.jpg",
+          "observedAt": "2026-07-26T23:01:47.988Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/389/26/11236-1785106903019.jpg"
+        }
+      ]
+    },
+    {
+      "event": {
+        "id": "go-202607262254-e9416b5e7a",
+        "firstSeenAt": "2026-07-26T22:54:57.274198Z",
+        "lastSeenAt": "2026-07-26T23:24:57.229186Z",
+        "scanCount": 3,
+        "detectionCount": 3,
+        "peakScore": 92.9,
+        "representative": {
+          "detectedAt": "2026-07-26T23:24:57.229186Z",
+          "candidateId": "42.395,-81.895:1",
+          "rank": 1,
+          "lat": 42.4105,
+          "lon": -81.9903,
+          "label": "42.41, -81.99",
+          "nearestZip": null,
+          "direction": {
+            "bearing": 102,
+            "label": "Look toward 102 degrees"
+          },
+          "score": 92.9,
+          "persistence": {
+            "confirmed": true,
+            "scanCount": null,
+            "firstSeenAt": null,
+            "lastSeenAt": null
+          },
+          "evidence": {
+            "sunElevationDeg": 15.56,
+            "rainbowArcDeg": null,
+            "directNormalIrradianceWm2": 356,
+            "directRadiationWm2": null,
+            "cloudCoverPct": 28,
+            "rainPointDirectNormalIrradianceWm2": null,
+            "rainPointDirectRadiationWm2": null,
+            "rainPointCloudCoverPct": null,
+            "rainIntensity": 1,
+            "observerRainIntensity": 0,
+            "rainPoint": {
+              "lat": 42.395,
+              "lon": -81.895,
+              "distanceKm": 8,
+              "bearing": 102
+            },
+            "goes": null
+          }
+        },
+        "latestLocation": {
+          "lat": 42.4105,
+          "lon": -81.9903
+        },
+        "detections": [
+          {
+            "detectedAt": "2026-07-26T22:54:57.274198Z",
+            "candidateId": "42.295,-81.495:4",
+            "rank": 4,
+            "lat": 42.3471,
+            "lon": -81.9771,
+            "label": "42.35, -81.98",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 98,
+              "label": "Look toward 98 degrees"
+            },
+            "score": 85.9,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 20.34,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 503,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 0,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 42.295,
+                "lon": -81.495,
+                "distanceKm": 40,
+                "bearing": 98
+              },
+              "goes": null
+            }
+          },
+          {
+            "detectedAt": "2026-07-26T23:09:57.215889Z",
+            "candidateId": "42.395,-81.895:2",
+            "rank": 2,
+            "lat": 42.4078,
+            "lon": -81.991,
+            "label": "42.41, -81.99",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 100,
+              "label": "Look toward 100 degrees"
+            },
+            "score": 91.8,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 18.09,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 447,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 10,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 42.395,
+                "lon": -81.895,
+                "distanceKm": 8,
+                "bearing": 100
+              },
+              "goes": null
+            }
+          },
+          {
+            "detectedAt": "2026-07-26T23:24:57.229186Z",
+            "candidateId": "42.395,-81.895:1",
+            "rank": 1,
+            "lat": 42.4105,
+            "lon": -81.9903,
+            "label": "42.41, -81.99",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 102,
+              "label": "Look toward 102 degrees"
+            },
+            "score": 92.9,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 15.56,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 356,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 28,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 42.395,
+                "lon": -81.895,
+                "distanceKm": 8,
+                "bearing": 102
+              },
+              "goes": null
+            }
+          }
+        ],
+        "review": {
+          "label": "pending",
+          "reviewedAt": null,
+          "notes": null,
+          "evidenceUrls": []
+        }
+      },
+      "site": {
+        "siteId": 349,
+        "siteName": "Chatham Kent",
+        "siteArea": "Chatham Kent",
+        "observeCivil": false,
+        "civilBegins": "2026-07-25T09:42:35.000Z",
+        "civilEnds": "2026-07-26T01:29:22.000Z",
+        "siteIdentifier": "",
+        "icao": "CYCK",
+        "latitude": 42.30639,
+        "longitude": -82.08194,
+        "elevation": 650,
+        "magVariation": -8.17995,
+        "magVarDate": "2026-07-01T08:02:00.000Z",
+        "siteInMaintenance": false,
+        "siteActive": true,
+        "thirdParty": true,
+        "validated": false,
+        "sunrise": "2026-07-25T10:15:06.000Z",
+        "sunset": "2026-07-26T00:56:52.000Z",
+        "timeZone": "America/Toronto",
+        "country": "CA",
+        "state": "ON",
+        "wxsrc": 0,
+        "wxTable": null,
+        "operatedBy": "NAV CANADA",
+        "attribution": "NAV CANADA Aviation Weather Web Site <a href=\"http://www.navcanada.ca/en/Pages/contact-us.aspx\" target=\"_blank\">(NAV CANADA)</a><p>These cameras are not maintained by the FAA Aviation Weather Camera Program.&#10;For issues with these cameras please contact NAV CANADA.<br/>Thank You</p>",
+        "displayVeia": false,
+        "cameras": [
+          {
+            "cameraId": 11143,
+            "cameraName": "Camera 4",
+            "cameraDirection": "West",
+            "cameraBearing": 270,
+            "cameraLastSuccess": "2026-07-26T01:44:43.648Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 349,
+            "displayOrder": 6,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 42.30639,
+            "longitude": -82.08194
+          },
+          {
+            "cameraId": 11142,
+            "cameraName": "Camera 3",
+            "cameraDirection": "South",
+            "cameraBearing": 190,
+            "cameraLastSuccess": "2026-07-26T01:43:54.852Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 349,
+            "displayOrder": 4,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 42.30639,
+            "longitude": -82.08194
+          },
+          {
+            "cameraId": 11141,
+            "cameraName": "Camera 2",
+            "cameraDirection": "East",
+            "cameraBearing": 90,
+            "cameraLastSuccess": "2026-07-26T01:44:06.536Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 349,
+            "displayOrder": 2,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 42.30639,
+            "longitude": -82.08194
+          },
+          {
+            "cameraId": 11140,
+            "cameraName": "Camera 1",
+            "cameraDirection": "North",
+            "cameraBearing": 0,
+            "cameraLastSuccess": "2026-07-26T01:43:14.491Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 349,
+            "displayOrder": 0,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 42.30639,
+            "longitude": -82.08194
+          }
+        ]
+      },
+      "camera": {
+        "cameraId": 11141,
+        "cameraName": "Camera 2",
+        "cameraDirection": "East",
+        "cameraBearing": 90,
+        "cameraLastSuccess": "2026-07-26T01:44:06.536Z",
+        "cameraInMaintenance": false,
+        "cameraOutOfOrder": false,
+        "siteId": 349,
+        "displayOrder": 2,
+        "enableVeia": false,
+        "veiaProcessType": 1,
+        "mapWedgeAngle": 45,
+        "latitude": 42.30639,
+        "longitude": -82.08194
+      },
+      "distanceKm": 13.8,
+      "bearingDifference": 12.0,
+      "frames": [
+        {
+          "file": "go-202607262254-e9416b5e7a/01.jpg",
+          "observedAt": "2026-07-26T23:11:44.675Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/349/26/11141-1785107488066.jpg"
+        },
+        {
+          "file": "go-202607262254-e9416b5e7a/02.jpg",
+          "observedAt": "2026-07-26T23:23:49.627Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/349/26/11141-1785108219034.jpg"
+        },
+        {
+          "file": "go-202607262254-e9416b5e7a/03.jpg",
+          "observedAt": "2026-07-26T23:32:29.030Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/349/26/11141-1785108731933.jpg"
+        }
+      ]
+    },
+    {
+      "event": {
+        "id": "go-202607262349-f39a62fea8",
+        "firstSeenAt": "2026-07-26T23:49:57.253903Z",
+        "lastSeenAt": "2026-07-26T23:49:57.253903Z",
+        "scanCount": 1,
+        "detectionCount": 1,
+        "peakScore": 81.2,
+        "representative": {
+          "detectedAt": "2026-07-26T23:49:57.253903Z",
+          "candidateId": "35.995,-91.895:4",
+          "rank": 4,
+          "lat": 36.0102,
+          "lon": -91.9821,
+          "label": "36.01, -91.98",
+          "nearestZip": null,
+          "direction": {
+            "bearing": 102,
+            "label": "Look toward 102 degrees"
+          },
+          "score": 81.2,
+          "persistence": {
+            "confirmed": true,
+            "scanCount": 2,
+            "firstSeenAt": null,
+            "lastSeenAt": null
+          },
+          "evidence": {
+            "sunElevationDeg": 16.84,
+            "rainbowArcDeg": null,
+            "directNormalIrradianceWm2": 437,
+            "directRadiationWm2": null,
+            "cloudCoverPct": 2,
+            "rainPointDirectNormalIrradianceWm2": null,
+            "rainPointDirectRadiationWm2": null,
+            "rainPointCloudCoverPct": null,
+            "rainIntensity": 0.3,
+            "observerRainIntensity": 0,
+            "rainPoint": {
+              "lat": 35.995,
+              "lon": -91.895,
+              "distanceKm": 8,
+              "bearing": 102
+            },
+            "goes": {
+              "decision": "go",
+              "positiveSources": [
+                "goesDsrf",
+                "goesAcmc"
+              ],
+              "negativeSources": [],
+              "sources": {
+                "goesDsrf": {
+                  "available": true,
+                  "fresh": true,
+                  "positive": true,
+                  "negative": false,
+                  "strength": "moderate-context",
+                  "reason": "downward shortwave flux 262.551513671875 W m-2 (not direct-normal irradiance)",
+                  "observedAt": "2026-07-26T23:30:20Z",
+                  "observedAgeMinutes": 20,
+                  "maxAgeMinutes": 30,
+                  "product": "ABI-L2-DSRF",
+                  "variable": "DSR",
+                  "satellite": "GOES-19",
+                  "satellitePosition": "east",
+                  "value": 262.551513671875,
+                  "units": "W m-2",
+                  "s3Key": "ABI-L2-DSRF/2026/207/23/OR_ABI-L2-DSRF-M6_G19_s20262072330208_e20262072339517_c20262072346342.nc"
+                },
+                "goesAcmc": {
+                  "available": true,
+                  "fresh": true,
+                  "positive": true,
+                  "negative": false,
+                  "strength": "clear-mask",
+                  "reason": "clear/probably clear",
+                  "observedAt": "2026-07-26T23:46:17Z",
+                  "observedAgeMinutes": 4,
+                  "maxAgeMinutes": 20,
+                  "product": "ABI-L2-ACMC",
+                  "variable": "BCM",
+                  "satellite": "GOES-19",
+                  "satellitePosition": "east",
+                  "value": 0,
+                  "units": "1",
+                  "s3Key": "ABI-L2-ACMC/2026/207/23/OR_ABI-L2-ACMC-M6_G19_s20262072346176_e20262072348550_c20262072349287.nc"
+                }
+              }
+            }
+          }
+        },
+        "latestLocation": {
+          "lat": 36.0102,
+          "lon": -91.9821
+        },
+        "detections": [
+          {
+            "detectedAt": "2026-07-26T23:49:57.253903Z",
+            "candidateId": "35.995,-91.895:4",
+            "rank": 4,
+            "lat": 36.0102,
+            "lon": -91.9821,
+            "label": "36.01, -91.98",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 102,
+              "label": "Look toward 102 degrees"
+            },
+            "score": 81.2,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": 2,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 16.84,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 437,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 2,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 0.3,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 35.995,
+                "lon": -91.895,
+                "distanceKm": 8,
+                "bearing": 102
+              },
+              "goes": {
+                "decision": "go",
+                "positiveSources": [
+                  "goesDsrf",
+                  "goesAcmc"
+                ],
+                "negativeSources": [],
+                "sources": {
+                  "goesDsrf": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "moderate-context",
+                    "reason": "downward shortwave flux 262.551513671875 W m-2 (not direct-normal irradiance)",
+                    "observedAt": "2026-07-26T23:30:20Z",
+                    "observedAgeMinutes": 20,
+                    "maxAgeMinutes": 30,
+                    "product": "ABI-L2-DSRF",
+                    "variable": "DSR",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 262.551513671875,
+                    "units": "W m-2",
+                    "s3Key": "ABI-L2-DSRF/2026/207/23/OR_ABI-L2-DSRF-M6_G19_s20262072330208_e20262072339517_c20262072346342.nc"
+                  },
+                  "goesAcmc": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "clear-mask",
+                    "reason": "clear/probably clear",
+                    "observedAt": "2026-07-26T23:46:17Z",
+                    "observedAgeMinutes": 4,
+                    "maxAgeMinutes": 20,
+                    "product": "ABI-L2-ACMC",
+                    "variable": "BCM",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 0,
+                    "units": "1",
+                    "s3Key": "ABI-L2-ACMC/2026/207/23/OR_ABI-L2-ACMC-M6_G19_s20262072346176_e20262072348550_c20262072349287.nc"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "review": {
+          "label": "pending",
+          "reviewedAt": null,
+          "notes": null,
+          "evidenceUrls": []
+        }
+      },
+      "site": {
+        "siteId": 1023,
+        "siteName": "Jonesboro",
+        "siteArea": "Jonesboro",
+        "observeCivil": false,
+        "civilBegins": "2026-07-25T10:37:19.000Z",
+        "civilEnds": "2026-07-26T01:43:12.000Z",
+        "siteIdentifier": "JBR",
+        "icao": "KJBR",
+        "latitude": 35.833836,
+        "longitude": -90.65187,
+        "elevation": 250,
+        "magVariation": -1.52819,
+        "magVarDate": "2026-07-01T08:07:00.000Z",
+        "siteInMaintenance": false,
+        "siteActive": true,
+        "thirdParty": false,
+        "validated": true,
+        "sunrise": "2026-07-25T11:06:01.000Z",
+        "sunset": "2026-07-26T01:14:30.000Z",
+        "timeZone": "America/Chicago",
+        "country": "US",
+        "state": "AR",
+        "wxsrc": 0,
+        "wxTable": "",
+        "operatedBy": null,
+        "attribution": null,
+        "displayVeia": true,
+        "cameras": [
+          {
+            "cameraId": 13800,
+            "cameraName": "Camera 2",
+            "cameraDirection": "East",
+            "cameraBearing": 90,
+            "cameraLastSuccess": "2026-07-26T01:43:39.227Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1023,
+            "displayOrder": 2,
+            "enableVeia": true,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 35.833836,
+            "longitude": -90.65187
+          },
+          {
+            "cameraId": 13799,
+            "cameraName": "Camera 1",
+            "cameraDirection": "North",
+            "cameraBearing": 0,
+            "cameraLastSuccess": "2026-07-26T01:43:04.296Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1023,
+            "displayOrder": 0,
+            "enableVeia": true,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 35.833836,
+            "longitude": -90.65187
+          },
+          {
+            "cameraId": 13801,
+            "cameraName": "Camera 3",
+            "cameraDirection": "South",
+            "cameraBearing": 180,
+            "cameraLastSuccess": "2026-07-26T01:45:15.026Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1023,
+            "displayOrder": 4,
+            "enableVeia": true,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 35.833836,
+            "longitude": -90.65187
+          },
+          {
+            "cameraId": 13802,
+            "cameraName": "Camera 4",
+            "cameraDirection": "West",
+            "cameraBearing": 270,
+            "cameraLastSuccess": "2026-07-26T01:46:09.224Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 1023,
+            "displayOrder": 6,
+            "enableVeia": true,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 90,
+            "latitude": 35.833836,
+            "longitude": -90.65187
+          }
+        ]
+      },
+      "camera": {
+        "cameraId": 13800,
+        "cameraName": "Camera 2",
+        "cameraDirection": "East",
+        "cameraBearing": 90,
+        "cameraLastSuccess": "2026-07-26T01:43:39.227Z",
+        "cameraInMaintenance": false,
+        "cameraOutOfOrder": false,
+        "siteId": 1023,
+        "displayOrder": 2,
+        "enableVeia": true,
+        "veiaProcessType": 1,
+        "mapWedgeAngle": 90,
+        "latitude": 35.833836,
+        "longitude": -90.65187
+      },
+      "distanceKm": 121.4,
+      "bearingDifference": 12.0,
+      "frames": [
+        {
+          "file": "go-202607262349-f39a62fea8/01.jpg",
+          "observedAt": "2026-07-26T23:36:57.709Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1023/26/13800-1785109003380.jpg"
+        },
+        {
+          "file": "go-202607262349-f39a62fea8/02.jpg",
+          "observedAt": "2026-07-26T23:45:17.253Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1023/26/13800-1785109498514.jpg"
+        },
+        {
+          "file": "go-202607262349-f39a62fea8/03.jpg",
+          "observedAt": "2026-07-26T23:54:02.051Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1023/26/13800-1785110008629.jpg"
+        }
+      ]
+    },
+    {
+      "event": {
+        "id": "go-202607262250-0da6208d5a",
+        "firstSeenAt": "2026-07-26T22:50:59.968600Z",
+        "lastSeenAt": "2026-07-26T22:51:23.519600Z",
+        "scanCount": 2,
+        "detectionCount": 2,
+        "peakScore": 75.3,
+        "representative": {
+          "detectedAt": "2026-07-26T22:50:59.968600Z",
+          "candidateId": "43.395,-80.195:6",
+          "rank": 6,
+          "lat": 43.4267,
+          "lon": -80.5019,
+          "label": "43.43, -80.50",
+          "nearestZip": null,
+          "direction": {
+            "bearing": 98,
+            "label": "Look toward 98 degrees"
+          },
+          "score": 75.3,
+          "persistence": {
+            "confirmed": true,
+            "scanCount": null,
+            "firstSeenAt": null,
+            "lastSeenAt": null
+          },
+          "evidence": {
+            "sunElevationDeg": 20.28,
+            "rainbowArcDeg": null,
+            "directNormalIrradianceWm2": 299,
+            "directRadiationWm2": null,
+            "cloudCoverPct": 39,
+            "rainPointDirectNormalIrradianceWm2": null,
+            "rainPointDirectRadiationWm2": null,
+            "rainPointCloudCoverPct": null,
+            "rainIntensity": 1,
+            "observerRainIntensity": 0,
+            "rainPoint": {
+              "lat": 43.395,
+              "lon": -80.195,
+              "distanceKm": 25,
+              "bearing": 98
+            },
+            "goes": null
+          }
+        },
+        "latestLocation": {
+          "lat": 43.4267,
+          "lon": -80.5019
+        },
+        "detections": [
+          {
+            "detectedAt": "2026-07-26T22:50:59.968600Z",
+            "candidateId": "43.395,-80.195:6",
+            "rank": 6,
+            "lat": 43.4267,
+            "lon": -80.5019,
+            "label": "43.43, -80.50",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 98,
+              "label": "Look toward 98 degrees"
+            },
+            "score": 75.3,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 20.28,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 299,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 39,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 43.395,
+                "lon": -80.195,
+                "distanceKm": 25,
+                "bearing": 98
+              },
+              "goes": null
+            }
+          },
+          {
+            "detectedAt": "2026-07-26T22:51:23.519600Z",
+            "candidateId": "43.395,-80.195:6",
+            "rank": 6,
+            "lat": 43.4267,
+            "lon": -80.5019,
+            "label": "43.43, -80.50",
+            "nearestZip": null,
+            "direction": {
+              "bearing": 98,
+              "label": "Look toward 98 degrees"
+            },
+            "score": 75.3,
+            "persistence": {
+              "confirmed": true,
+              "scanCount": null,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 20.28,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 299,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 39,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 43.395,
+                "lon": -80.195,
+                "distanceKm": 25,
+                "bearing": 98
+              },
+              "goes": null
+            }
+          }
+        ],
+        "review": {
+          "label": "pending",
+          "reviewedAt": null,
+          "notes": null,
+          "evidenceUrls": []
+        }
+      },
+      "site": {
+        "siteId": 358,
+        "siteName": "Kitchener - Waterloo",
+        "siteArea": "Kitchener",
+        "observeCivil": false,
+        "civilBegins": "2026-07-25T09:31:31.000Z",
+        "civilEnds": "2026-07-26T01:26:49.000Z",
+        "siteIdentifier": "",
+        "icao": "CYKF",
+        "latitude": 43.46083,
+        "longitude": -80.37861,
+        "elevation": 1054,
+        "magVariation": -9.4851,
+        "magVarDate": "2026-07-01T08:02:00.000Z",
+        "siteInMaintenance": false,
+        "siteActive": true,
+        "thirdParty": true,
+        "validated": false,
+        "sunrise": "2026-07-25T10:04:54.000Z",
+        "sunset": "2026-07-26T00:53:26.000Z",
+        "timeZone": "America/Toronto",
+        "country": "CA",
+        "state": "ON",
+        "wxsrc": 0,
+        "wxTable": null,
+        "operatedBy": "NAV CANADA",
+        "attribution": "NAV CANADA Aviation Weather Web Site <a href=\"http://www.navcanada.ca/en/Pages/contact-us.aspx\" target=\"_blank\">(NAV CANADA)</a><p>These cameras are not maintained by the FAA Aviation Weather Camera Program.&#10;For issues with these cameras please contact NAV CANADA.<br/>Thank You</p>",
+        "displayVeia": false,
+        "cameras": [
+          {
+            "cameraId": 11792,
+            "cameraName": "Camera 3",
+            "cameraDirection": "South",
+            "cameraBearing": 285,
+            "cameraLastSuccess": "2026-07-26T01:43:30.445Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 358,
+            "displayOrder": 4,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 43.46083,
+            "longitude": -80.37861
+          },
+          {
+            "cameraId": 11164,
+            "cameraName": "Camera 1",
+            "cameraDirection": "North",
+            "cameraBearing": 355,
+            "cameraLastSuccess": "2026-07-26T01:41:58.446Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 358,
+            "displayOrder": 0,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 43.46083,
+            "longitude": -80.37861
+          },
+          {
+            "cameraId": 11166,
+            "cameraName": "Camera 4",
+            "cameraDirection": "West",
+            "cameraBearing": 290,
+            "cameraLastSuccess": "2026-07-26T01:40:47.347Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 358,
+            "displayOrder": 6,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 43.46083,
+            "longitude": -80.37861
+          },
+          {
+            "cameraId": 11165,
+            "cameraName": "Camera 2",
+            "cameraDirection": "SouthEast",
+            "cameraBearing": 120,
+            "cameraLastSuccess": "2026-07-26T01:41:29.577Z",
+            "cameraInMaintenance": false,
+            "cameraOutOfOrder": false,
+            "siteId": 358,
+            "displayOrder": 3,
+            "enableVeia": false,
+            "veiaProcessType": 1,
+            "mapWedgeAngle": 45,
+            "latitude": 43.46083,
+            "longitude": -80.37861
+          }
+        ]
+      },
+      "camera": {
+        "cameraId": 11165,
+        "cameraName": "Camera 2",
+        "cameraDirection": "SouthEast",
+        "cameraBearing": 120,
+        "cameraLastSuccess": "2026-07-26T01:41:29.577Z",
+        "cameraInMaintenance": false,
+        "cameraOutOfOrder": false,
+        "siteId": 358,
+        "displayOrder": 3,
+        "enableVeia": false,
+        "veiaProcessType": 1,
+        "mapWedgeAngle": 45,
+        "latitude": 43.46083,
+        "longitude": -80.37861
+      },
+      "distanceKm": 10.7,
+      "bearingDifference": 22.0,
+      "frames": [
+        {
+          "file": "go-202607262250-0da6208d5a/01.jpg",
+          "observedAt": "2026-07-26T22:41:03.825Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/358/26/11165-1785105652022.jpg"
+        },
+        {
+          "file": "go-202607262250-0da6208d5a/02.jpg",
+          "observedAt": "2026-07-26T22:52:29.406Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/358/26/11165-1785106328831.jpg"
+        },
+        {
+          "file": "go-202607262250-0da6208d5a/03.jpg",
+          "observedAt": "2026-07-26T23:00:48.358Z",
+          "sourceUrl": "https://images.wcams-static.faa.gov/webimages/358/26/11165-1785106843021.jpg"
+        }
+      ]
+    }
+  ],
+  "unmatchedEventIds": [
+    "go-202607262354-df0f3aed9a",
+    "go-202607262354-0ff508e972",
+    "go-202607262319-99cbcaa6c2",
+    "go-202607262309-8744dafda5",
+    "go-202607262304-4db13409ce",
+    "go-202607262254-6fba62e431",
+    "go-202607262251-5c975973f8",
+    "go-202607262250-2dc517b71b"
+  ]
+}

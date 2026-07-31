@@ -1,0 +1,125 @@
+[
+  {
+    "id": "lamont-001",
+    "kind": "event",
+    "sample": {
+      "observedAt": "2023-05-20T12:25:00.000Z",
+      "sunElevationDeg": 19.45,
+      "sunBearingDeg": 285.01,
+      "antiSolarBearingDeg": 105.01,
+      "expectedRainbowTopElevationDeg": 22.55,
+      "directNormalIrradianceWm2": 152.2,
+      "precipitationMm": 12.3,
+      "cloudCoverPct": 100,
+      "prefilterScore": 61.89,
+      "dayArchive": "sgpasiskyimageC1.a1.20230520.000000.jpg.tar"
+    },
+    "frames": [
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.121500.jpg",
+        "observedAt": "2023-05-20T12:15:00.000Z",
+        "offsetSeconds": -600
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.121600.jpg",
+        "observedAt": "2023-05-20T12:16:00.000Z",
+        "offsetSeconds": -540
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.121700.jpg",
+        "observedAt": "2023-05-20T12:17:00.000Z",
+        "offsetSeconds": -480
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.121800.jpg",
+        "observedAt": "2023-05-20T12:18:00.000Z",
+        "offsetSeconds": -420
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.121900.jpg",
+        "observedAt": "2023-05-20T12:19:00.000Z",
+        "offsetSeconds": -360
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.122000.jpg",
+        "observedAt": "2023-05-20T12:20:00.000Z",
+        "offsetSeconds": -300
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.122100.jpg",
+        "observedAt": "2023-05-20T12:21:00.000Z",
+        "offsetSeconds": -240
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.122200.jpg",
+        "observedAt": "2023-05-20T12:22:00.000Z",
+        "offsetSeconds": -180
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.122300.jpg",
+        "observedAt": "2023-05-20T12:23:00.000Z",
+        "offsetSeconds": -120
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.122400.jpg",
+        "observedAt": "2023-05-20T12:24:00.000Z",
+        "offsetSeconds": -60
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.122500.jpg",
+        "observedAt": "2023-05-20T12:25:00.000Z",
+        "offsetSeconds": 0
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.122600.jpg",
+        "observedAt": "2023-05-20T12:26:00.000Z",
+        "offsetSeconds": 60
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.122700.jpg",
+        "observedAt": "2023-05-20T12:27:00.000Z",
+        "offsetSeconds": 120
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.122800.jpg",
+        "observedAt": "2023-05-20T12:28:00.000Z",
+        "offsetSeconds": 180
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.122900.jpg",
+        "observedAt": "2023-05-20T12:29:00.000Z",
+        "offsetSeconds": 240
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.123000.jpg",
+        "observedAt": "2023-05-20T12:30:00.000Z",
+        "offsetSeconds": 300
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.123100.jpg",
+        "observedAt": "2023-05-20T12:31:00.000Z",
+        "offsetSeconds": 360
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.123200.jpg",
+        "observedAt": "2023-05-20T12:32:00.000Z",
+        "offsetSeconds": 420
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.123300.jpg",
+        "observedAt": "2023-05-20T12:33:00.000Z",
+        "offsetSeconds": 480
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.123400.jpg",
+        "observedAt": "2023-05-20T12:34:00.000Z",
+        "offsetSeconds": 540
+      },
+      {
+        "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\frames\\lamont-001\\event\\sgpasiskyimageC1.a1.20230520.123500.jpg",
+        "observedAt": "2023-05-20T12:35:00.000Z",
+        "offsetSeconds": 600
+      }
+    ]
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "site_owner",
+  "reviewedAt": "2026-07-26",
+  "source": "faa-review-batch-03",
+  "status": "complete",
+  "summary": {
+    "reviewed": 25,
+    "rainbows": 3,
+    "highTier": {"reviewed": 2, "rainbows": 2},
+    "nearCutoffTier": {"reviewed": 3, "rainbows": 1},
+    "weatherStrongImageWeakerTier": {"reviewed": 20, "rainbows": 0}
+  },
+  "labels": [
+    {"candidateId": "faan-01", "label": "rainbow", "note": "Human-confirmed visible bow."},
+    {"candidateId": "faan-02", "label": "rainbow", "note": "Human-confirmed visible bow."},
+    {"candidateId": "faan-03", "label": "no_rainbow"},
+    {"candidateId": "faan-04", "label": "rainbow", "note": "Human-confirmed visible bow."},
+    {"candidateId": "faan-05", "label": "no_rainbow"},
+    {"candidateId": "faan-06", "label": "no_rainbow"},
+    {"candidateId": "faan-07", "label": "no_rainbow"},
+    {"candidateId": "faan-08", "label": "no_rainbow"},
+    {"candidateId": "faan-09", "label": "no_rainbow"},
+    {"candidateId": "faan-10", "label": "no_rainbow"},
+    {"candidateId": "faan-11", "label": "no_rainbow"},
+    {"candidateId": "faan-12", "label": "no_rainbow"},
+    {"candidateId": "faan-13", "label": "no_rainbow"},
+    {"candidateId": "faan-14", "label": "no_rainbow"},
+    {"candidateId": "faan-15", "label": "no_rainbow"},
+    {"candidateId": "faan-16", "label": "no_rainbow"},
+    {"candidateId": "faan-17", "label": "no_rainbow"},
+    {"candidateId": "faan-18", "label": "no_rainbow"},
+    {"candidateId": "faan-19", "label": "no_rainbow"},
+    {"candidateId": "faan-20", "label": "no_rainbow"},
+    {"candidateId": "faan-21", "label": "no_rainbow"},
+    {"candidateId": "faan-22", "label": "no_rainbow"},
+    {"candidateId": "faan-23", "label": "no_rainbow"},
+    {"candidateId": "faan-24", "label": "no_rainbow"},
+    {"candidateId": "faan-25", "label": "no_rainbow"}
+  ]
+}

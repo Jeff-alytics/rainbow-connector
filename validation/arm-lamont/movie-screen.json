@@ -1,0 +1,39 @@
+{
+  "pairId": "lamont-012",
+  "candidate": "surface-03",
+  "centerTime": "2025-07-26T00:20:00.000Z",
+  "movie": {
+    "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\movies\\sgpasimovieC1.a1.20250725.110000.mpg",
+    "bytes": 33603616,
+    "sourceFile": "sgpasimovieC1.a1.20250725.110000.mpg"
+  },
+  "frames": [
+    {
+      "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\movie-frames\\surface-03\\sgpasimovieC1.a1.20250726T001000.jpg",
+      "observedAt": "2025-07-26T00:10:00.000Z",
+      "offsetSeconds": -600
+    },
+    {
+      "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\movie-frames\\surface-03\\sgpasimovieC1.a1.20250726T001500.jpg",
+      "observedAt": "2025-07-26T00:15:00.000Z",
+      "offsetSeconds": -300
+    },
+    {
+      "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\movie-frames\\surface-03\\sgpasimovieC1.a1.20250726T002000.jpg",
+      "observedAt": "2025-07-26T00:20:00.000Z",
+      "offsetSeconds": 0
+    },
+    {
+      "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\movie-frames\\surface-03\\sgpasimovieC1.a1.20250726T002500.jpg",
+      "observedAt": "2025-07-26T00:25:00.000Z",
+      "offsetSeconds": 300
+    },
+    {
+      "file": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\movie-frames\\surface-03\\sgpasimovieC1.a1.20250726T003000.jpg",
+      "observedAt": "2025-07-26T00:30:00.000Z",
+      "offsetSeconds": 600
+    }
+  ],
+  "review": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\review\\surface-03-movie-screen.jpg",
+  "horizonReview": "C:\\Users\\jeffm\\rainbow-finder\\validation\\arm-lamont\\review\\surface-03-horizon-screen.jpg"
+}

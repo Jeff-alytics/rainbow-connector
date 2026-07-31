@@ -1,0 +1,868 @@
+{
+  "schemaVersion": 1,
+  "methodVersion": "sunlight-v2-shadow-2026-07-v2",
+  "purpose": "Historical sunlight-v2 replay for the confirmed Baltimore/Dundalk bow.",
+  "observationWindow": {
+    "windowStart": "2026-07-28T23:25:00Z",
+    "windowEnd": "2026-07-28T23:45:00Z",
+    "reportedBowStart": "2026-07-28T23:30:00Z",
+    "reportedBowEnd": "2026-07-28T23:34:00Z",
+    "precision": "observer_reported_time"
+  },
+  "mrmsReplayContentSha256": "36e3e884878cca313c9aafb73e4147a825fc651d0fcde3898817d131d2e84f39",
+  "historicalMetarAvailable": false,
+  "interpretationGuard": "Shadow probabilities are provisional and omit METAR; this is a feature replay, not an operational classification.",
+  "samples": [
+    {
+      "observedAt": "2026-07-28T23:30:00Z",
+      "points": [
+        {
+          "name": "Baltimore observer reference",
+          "lat": 39.2904,
+          "lon": -76.6122,
+          "sunElevationDeg": 8.79,
+          "sunBearingDeg": 287.49,
+          "directSunProbability": 0.0,
+          "shadowCategory": "dark",
+          "probabilityStatus": "provisional-uncalibrated",
+          "componentsUsed": {
+            "band2": {
+              "value": 0.0,
+              "weight": 0.45
+            },
+            "acmc": {
+              "value": 0.0,
+              "weight": 0.25
+            }
+          },
+          "band2": {
+            "product": "ABI-L1b-RadC",
+            "channel": 2,
+            "s3Key": "ABI-L1b-RadC/2026/209/23/OR_ABI-L1b-RadC-M6C02_G19_s20262092331178_e20262092333551_c20262092333569.nc",
+            "observedAt": "2026-07-28T23:31:17Z",
+            "timeOffsetMinutes": 1.3,
+            "satellitePosition": "east",
+            "available": true,
+            "normalizationVersion": "abi-kappa0-divide-cos-sza-v1",
+            "gapThreshold": 0.35,
+            "temporalWindowRequestedMinutes": [
+              -15,
+              15
+            ],
+            "temporalFramesUsed": 1,
+            "scenarios": {
+              "observer": {
+                "available": true,
+                "pixel": {
+                  "x": 6974,
+                  "y": 1480
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.13392829669070494,
+                "cosineNormalizedMean": 0.876710977354505,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud2Km": {
+                "displacementKm": 12.94,
+                "available": true,
+                "pixel": {
+                  "x": 6951,
+                  "y": 1475
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.08703479325982855,
+                "cosineNormalizedMean": 0.5697403800997295,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud4Km": {
+                "displacementKm": 25.88,
+                "available": true,
+                "pixel": {
+                  "x": 6927,
+                  "y": 1470
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.1432914871966986,
+                "cosineNormalizedMean": 0.9380035652728268,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud6Km": {
+                "displacementKm": 38.82,
+                "available": true,
+                "pixel": {
+                  "x": 6904,
+                  "y": 1465
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.17585264826796987,
+                "cosineNormalizedMean": 1.1511529000434895,
+                "gapFraction": 0.0
+              }
+            },
+            "maxGapFraction": 0.0
+          },
+          "acmc": {
+            "available": true,
+            "observedAt": "2026-07-28T23:31:17Z",
+            "radiusPixels": 2,
+            "counts": {
+              "clear": 0,
+              "probablyClear": 0,
+              "probablyCloudy": 0,
+              "cloudy": 25
+            },
+            "fractions": {
+              "clear": 0.0,
+              "probablyClear": 0.0,
+              "probablyCloudy": 0.0,
+              "cloudy": 1.0
+            },
+            "supportScore": 0.0
+          },
+          "dsrf": {
+            "valueWm2": 2.7010529041290283,
+            "observedAt": "2026-07-28T23:30:21Z",
+            "fresh": null,
+            "available": null,
+            "error": null,
+            "dqf": 1,
+            "dqfMeaning": "degraded_or_invalid",
+            "solarZenithDeg": 81.213,
+            "quantitativeSolarZenithBoundsDeg": [
+              0.0,
+              70.0
+            ],
+            "retrievalSolarZenithBoundsDeg": [
+              0.0,
+              90.0
+            ],
+            "usable": false,
+            "unavailableReason": "outside_quantitative_solar_zenith_range",
+            "clearSkyExpectedWm2": null,
+            "clearnessRatio": null,
+            "clearSkyMethodVersion": null
+          },
+          "metar": {
+            "available": false,
+            "supportScore": null,
+            "unavailableReason": "historical METAR is not retained by the current-cache ingestion path"
+          }
+        },
+        {
+          "name": "Dundalk observer reference",
+          "lat": 39.2507,
+          "lon": -76.5205,
+          "sunElevationDeg": 8.71,
+          "sunBearingDeg": 287.55,
+          "directSunProbability": 0.0,
+          "shadowCategory": "dark",
+          "probabilityStatus": "provisional-uncalibrated",
+          "componentsUsed": {
+            "band2": {
+              "value": 0.0,
+              "weight": 0.45
+            },
+            "acmc": {
+              "value": 0.0,
+              "weight": 0.25
+            }
+          },
+          "band2": {
+            "product": "ABI-L1b-RadC",
+            "channel": 2,
+            "s3Key": "ABI-L1b-RadC/2026/209/23/OR_ABI-L1b-RadC-M6C02_G19_s20262092331178_e20262092333551_c20262092333569.nc",
+            "observedAt": "2026-07-28T23:31:17Z",
+            "timeOffsetMinutes": 1.3,
+            "satellitePosition": "east",
+            "available": true,
+            "normalizationVersion": "abi-kappa0-divide-cos-sza-v1",
+            "gapThreshold": 0.35,
+            "temporalWindowRequestedMinutes": [
+              -15,
+              15
+            ],
+            "temporalFramesUsed": 1,
+            "scenarios": {
+              "observer": {
+                "available": true,
+                "pixel": {
+                  "x": 6989,
+                  "y": 1486
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.1268396681740498,
+                "cosineNormalizedMean": 0.8378437808345406,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud2Km": {
+                "displacementKm": 13.06,
+                "available": true,
+                "pixel": {
+                  "x": 6965,
+                  "y": 1481
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.0903044792280916,
+                "cosineNormalizedMean": 0.5965093364871955,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud4Km": {
+                "displacementKm": 26.12,
+                "available": true,
+                "pixel": {
+                  "x": 6942,
+                  "y": 1476
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.08196225533347246,
+                "cosineNormalizedMean": 0.5414044902742192,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud6Km": {
+                "displacementKm": 39.18,
+                "available": true,
+                "pixel": {
+                  "x": 6918,
+                  "y": 1471
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.18164244739639201,
+                "cosineNormalizedMean": 1.1998454196348052,
+                "gapFraction": 0.0
+              }
+            },
+            "maxGapFraction": 0.0
+          },
+          "acmc": {
+            "available": true,
+            "observedAt": "2026-07-28T23:31:17Z",
+            "radiusPixels": 2,
+            "counts": {
+              "clear": 0,
+              "probablyClear": 0,
+              "probablyCloudy": 0,
+              "cloudy": 25
+            },
+            "fractions": {
+              "clear": 0.0,
+              "probablyClear": 0.0,
+              "probablyCloudy": 0.0,
+              "cloudy": 1.0
+            },
+            "supportScore": 0.0
+          },
+          "dsrf": {
+            "valueWm2": 2.815504312515259,
+            "observedAt": "2026-07-28T23:30:21Z",
+            "fresh": null,
+            "available": null,
+            "error": null,
+            "dqf": 1,
+            "dqfMeaning": "degraded_or_invalid",
+            "solarZenithDeg": 81.2926,
+            "quantitativeSolarZenithBoundsDeg": [
+              0.0,
+              70.0
+            ],
+            "retrievalSolarZenithBoundsDeg": [
+              0.0,
+              90.0
+            ],
+            "usable": false,
+            "unavailableReason": "outside_quantitative_solar_zenith_range",
+            "clearSkyExpectedWm2": null,
+            "clearnessRatio": null,
+            "clearSkyMethodVersion": null
+          },
+          "metar": {
+            "available": false,
+            "supportScore": null,
+            "unavailableReason": "historical METAR is not retained by the current-cache ingestion path"
+          }
+        },
+        {
+          "name": "nearest production-stride seed",
+          "lat": 39.2632,
+          "lon": -76.672,
+          "sunElevationDeg": 8.82,
+          "sunBearingDeg": 287.46,
+          "directSunProbability": 0.09183673469387754,
+          "shadowCategory": "dark",
+          "probabilityStatus": "provisional-uncalibrated",
+          "componentsUsed": {
+            "band2": {
+              "value": 0.14285714285714285,
+              "weight": 0.45
+            },
+            "acmc": {
+              "value": 0.0,
+              "weight": 0.25
+            }
+          },
+          "band2": {
+            "product": "ABI-L1b-RadC",
+            "channel": 2,
+            "s3Key": "ABI-L1b-RadC/2026/209/23/OR_ABI-L1b-RadC-M6C02_G19_s20262092331178_e20262092333551_c20262092333569.nc",
+            "observedAt": "2026-07-28T23:31:17Z",
+            "timeOffsetMinutes": 1.3,
+            "satellitePosition": "east",
+            "available": true,
+            "normalizationVersion": "abi-kappa0-divide-cos-sza-v1",
+            "gapThreshold": 0.35,
+            "temporalWindowRequestedMinutes": [
+              -15,
+              15
+            ],
+            "temporalFramesUsed": 1,
+            "scenarios": {
+              "observer": {
+                "available": true,
+                "pixel": {
+                  "x": 6964,
+                  "y": 1484
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.07057651062590775,
+                "cosineNormalizedMean": 0.4601330139269566,
+                "gapFraction": 0.14285714285714285
+              },
+              "sunwardCloud2Km": {
+                "displacementKm": 12.88,
+                "available": true,
+                "pixel": {
+                  "x": 6941,
+                  "y": 1479
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.07698664725148774,
+                "cosineNormalizedMean": 0.5019247582205454,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud4Km": {
+                "displacementKm": 25.77,
+                "available": true,
+                "pixel": {
+                  "x": 6918,
+                  "y": 1474
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.177073934837626,
+                "cosineNormalizedMean": 1.154457235164485,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud6Km": {
+                "displacementKm": 38.65,
+                "available": true,
+                "pixel": {
+                  "x": 6894,
+                  "y": 1469
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.13733367878345604,
+                "cosineNormalizedMean": 0.895365313075017,
+                "gapFraction": 0.0
+              }
+            },
+            "maxGapFraction": 0.14285714285714285
+          },
+          "acmc": {
+            "available": true,
+            "observedAt": "2026-07-28T23:31:17Z",
+            "radiusPixels": 2,
+            "counts": {
+              "clear": 0,
+              "probablyClear": 0,
+              "probablyCloudy": 0,
+              "cloudy": 25
+            },
+            "fractions": {
+              "clear": 0.0,
+              "probablyClear": 0.0,
+              "probablyCloudy": 0.0,
+              "cloudy": 1.0
+            },
+            "supportScore": 0.0
+          },
+          "dsrf": {
+            "valueWm2": 40.14955139160156,
+            "observedAt": "2026-07-28T23:30:21Z",
+            "fresh": null,
+            "available": null,
+            "error": null,
+            "dqf": 1,
+            "dqfMeaning": "degraded_or_invalid",
+            "solarZenithDeg": 81.177,
+            "quantitativeSolarZenithBoundsDeg": [
+              0.0,
+              70.0
+            ],
+            "retrievalSolarZenithBoundsDeg": [
+              0.0,
+              90.0
+            ],
+            "usable": false,
+            "unavailableReason": "outside_quantitative_solar_zenith_range",
+            "clearSkyExpectedWm2": null,
+            "clearnessRatio": null,
+            "clearSkyMethodVersion": null
+          },
+          "metar": {
+            "available": false,
+            "supportScore": null,
+            "unavailableReason": "historical METAR is not retained by the current-cache ingestion path"
+          }
+        }
+      ]
+    },
+    {
+      "observedAt": "2026-07-28T23:40:00Z",
+      "points": [
+        {
+          "name": "Baltimore observer reference",
+          "lat": 39.2904,
+          "lon": -76.6122,
+          "sunElevationDeg": 6.95,
+          "sunBearingDeg": 288.99,
+          "directSunProbability": 0.32798833819241985,
+          "shadowCategory": "dark",
+          "probabilityStatus": "provisional-uncalibrated",
+          "componentsUsed": {
+            "band2": {
+              "value": 0.5102040816326531,
+              "weight": 0.45
+            },
+            "acmc": {
+              "value": 0.0,
+              "weight": 0.25
+            }
+          },
+          "band2": {
+            "product": "ABI-L1b-RadC",
+            "channel": 2,
+            "s3Key": "ABI-L1b-RadC/2026/209/23/OR_ABI-L1b-RadC-M6C02_G19_s20262092341178_e20262092343551_c20262092343567.nc",
+            "observedAt": "2026-07-28T23:41:17Z",
+            "timeOffsetMinutes": 1.3,
+            "satellitePosition": "east",
+            "available": true,
+            "normalizationVersion": "abi-kappa0-divide-cos-sza-v1",
+            "gapThreshold": 0.35,
+            "temporalWindowRequestedMinutes": [
+              -15,
+              15
+            ],
+            "temporalFramesUsed": 1,
+            "scenarios": {
+              "observer": {
+                "available": true,
+                "pixel": {
+                  "x": 6974,
+                  "y": 1480
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.0950151543980624,
+                "cosineNormalizedMean": 0.7854031533193702,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud2Km": {
+                "displacementKm": 16.41,
+                "available": true,
+                "pixel": {
+                  "x": 6945,
+                  "y": 1473
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.0955256384808969,
+                "cosineNormalizedMean": 0.7896228571225957,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud4Km": {
+                "displacementKm": 32.82,
+                "available": true,
+                "pixel": {
+                  "x": 6915,
+                  "y": 1466
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.12526944311739285,
+                "cosineNormalizedMean": 1.0354876152363353,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud6Km": {
+                "displacementKm": 49.23,
+                "available": true,
+                "pixel": {
+                  "x": 6886,
+                  "y": 1459
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.04645450018503805,
+                "cosineNormalizedMean": 0.3839967546476795,
+                "gapFraction": 0.5102040816326531
+              }
+            },
+            "maxGapFraction": 0.5102040816326531
+          },
+          "acmc": {
+            "available": true,
+            "observedAt": "2026-07-28T23:41:17Z",
+            "radiusPixels": 2,
+            "counts": {
+              "clear": 0,
+              "probablyClear": 0,
+              "probablyCloudy": 0,
+              "cloudy": 25
+            },
+            "fractions": {
+              "clear": 0.0,
+              "probablyClear": 0.0,
+              "probablyCloudy": 0.0,
+              "cloudy": 1.0
+            },
+            "supportScore": 0.0
+          },
+          "dsrf": {
+            "valueWm2": 15.267816543579102,
+            "observedAt": "2026-07-28T23:40:21Z",
+            "fresh": null,
+            "available": null,
+            "error": null,
+            "dqf": 1,
+            "dqfMeaning": "degraded_or_invalid",
+            "solarZenithDeg": 83.0516,
+            "quantitativeSolarZenithBoundsDeg": [
+              0.0,
+              70.0
+            ],
+            "retrievalSolarZenithBoundsDeg": [
+              0.0,
+              90.0
+            ],
+            "usable": false,
+            "unavailableReason": "outside_quantitative_solar_zenith_range",
+            "clearSkyExpectedWm2": null,
+            "clearnessRatio": null,
+            "clearSkyMethodVersion": null
+          },
+          "metar": {
+            "available": false,
+            "supportScore": null,
+            "unavailableReason": "historical METAR is not retained by the current-cache ingestion path"
+          }
+        },
+        {
+          "name": "Dundalk observer reference",
+          "lat": 39.2507,
+          "lon": -76.5205,
+          "sunElevationDeg": 6.87,
+          "sunBearingDeg": 289.05,
+          "directSunProbability": 0.10495626822157433,
+          "shadowCategory": "dark",
+          "probabilityStatus": "provisional-uncalibrated",
+          "componentsUsed": {
+            "band2": {
+              "value": 0.16326530612244897,
+              "weight": 0.45
+            },
+            "acmc": {
+              "value": 0.0,
+              "weight": 0.25
+            }
+          },
+          "band2": {
+            "product": "ABI-L1b-RadC",
+            "channel": 2,
+            "s3Key": "ABI-L1b-RadC/2026/209/23/OR_ABI-L1b-RadC-M6C02_G19_s20262092341178_e20262092343551_c20262092343567.nc",
+            "observedAt": "2026-07-28T23:41:17Z",
+            "timeOffsetMinutes": 1.3,
+            "satellitePosition": "east",
+            "available": true,
+            "normalizationVersion": "abi-kappa0-divide-cos-sza-v1",
+            "gapThreshold": 0.35,
+            "temporalWindowRequestedMinutes": [
+              -15,
+              15
+            ],
+            "temporalFramesUsed": 1,
+            "scenarios": {
+              "observer": {
+                "available": true,
+                "pixel": {
+                  "x": 6989,
+                  "y": 1486
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.11227470419760976,
+                "cosineNormalizedMean": 0.9388363074320711,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud2Km": {
+                "displacementKm": 16.6,
+                "available": true,
+                "pixel": {
+                  "x": 6959,
+                  "y": 1479
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.10504391555662096,
+                "cosineNormalizedMean": 0.8783727599567689,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud4Km": {
+                "displacementKm": 33.21,
+                "available": true,
+                "pixel": {
+                  "x": 6929,
+                  "y": 1472
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.14833171444959348,
+                "cosineNormalizedMean": 1.2403434955733283,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud6Km": {
+                "displacementKm": 49.81,
+                "available": true,
+                "pixel": {
+                  "x": 6900,
+                  "y": 1465
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.058266725498747896,
+                "cosineNormalizedMean": 0.48722388363742536,
+                "gapFraction": 0.16326530612244897
+              }
+            },
+            "maxGapFraction": 0.16326530612244897
+          },
+          "acmc": {
+            "available": true,
+            "observedAt": "2026-07-28T23:41:17Z",
+            "radiusPixels": 2,
+            "counts": {
+              "clear": 0,
+              "probablyClear": 0,
+              "probablyCloudy": 0,
+              "cloudy": 25
+            },
+            "fractions": {
+              "clear": 0.0,
+              "probablyClear": 0.0,
+              "probablyCloudy": 0.0,
+              "cloudy": 1.0
+            },
+            "supportScore": 0.0
+          },
+          "dsrf": {
+            "valueWm2": 2.1745765209198,
+            "observedAt": "2026-07-28T23:40:21Z",
+            "fresh": null,
+            "available": null,
+            "error": null,
+            "dqf": 1,
+            "dqfMeaning": "degraded_or_invalid",
+            "solarZenithDeg": 83.1316,
+            "quantitativeSolarZenithBoundsDeg": [
+              0.0,
+              70.0
+            ],
+            "retrievalSolarZenithBoundsDeg": [
+              0.0,
+              90.0
+            ],
+            "usable": false,
+            "unavailableReason": "outside_quantitative_solar_zenith_range",
+            "clearSkyExpectedWm2": null,
+            "clearnessRatio": null,
+            "clearSkyMethodVersion": null
+          },
+          "metar": {
+            "available": false,
+            "supportScore": null,
+            "unavailableReason": "historical METAR is not retained by the current-cache ingestion path"
+          }
+        },
+        {
+          "name": "nearest production-stride seed",
+          "lat": 39.2392,
+          "lon": -76.6598,
+          "sunElevationDeg": 6.97,
+          "sunBearingDeg": 288.97,
+          "directSunProbability": 0.39358600583090386,
+          "shadowCategory": "dark",
+          "probabilityStatus": "provisional-uncalibrated",
+          "componentsUsed": {
+            "band2": {
+              "value": 0.6122448979591837,
+              "weight": 0.45
+            },
+            "acmc": {
+              "value": 0.0,
+              "weight": 0.25
+            }
+          },
+          "band2": {
+            "product": "ABI-L1b-RadC",
+            "channel": 2,
+            "s3Key": "ABI-L1b-RadC/2026/209/23/OR_ABI-L1b-RadC-M6C02_G19_s20262092341178_e20262092343551_c20262092343567.nc",
+            "observedAt": "2026-07-28T23:41:17Z",
+            "timeOffsetMinutes": 1.3,
+            "satellitePosition": "east",
+            "available": true,
+            "normalizationVersion": "abi-kappa0-divide-cos-sza-v1",
+            "gapThreshold": 0.35,
+            "temporalWindowRequestedMinutes": [
+              -15,
+              15
+            ],
+            "temporalFramesUsed": 1,
+            "scenarios": {
+              "observer": {
+                "available": true,
+                "pixel": {
+                  "x": 6966,
+                  "y": 1488
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.05884828948831977,
+                "cosineNormalizedMean": 0.48518052438119574,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud2Km": {
+                "displacementKm": 16.37,
+                "available": true,
+                "pixel": {
+                  "x": 6937,
+                  "y": 1481
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.07055712593155494,
+                "cosineNormalizedMean": 0.581715180780173,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud4Km": {
+                "displacementKm": 32.73,
+                "available": true,
+                "pixel": {
+                  "x": 6907,
+                  "y": 1474
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.09991968303959808,
+                "cosineNormalizedMean": 0.8237976776330467,
+                "gapFraction": 0.0
+              },
+              "sunwardCloud6Km": {
+                "displacementKm": 49.1,
+                "available": true,
+                "pixel": {
+                  "x": 6878,
+                  "y": 1467
+                },
+                "radiusPixels": 3,
+                "kappa0": 0.001996499951928854,
+                "validPixelFraction": 1.0,
+                "reflectanceFactorMean": 0.04063239092715776,
+                "cosineNormalizedMean": 0.33499775283719996,
+                "gapFraction": 0.6122448979591837
+              }
+            },
+            "maxGapFraction": 0.6122448979591837
+          },
+          "acmc": {
+            "available": true,
+            "observedAt": "2026-07-28T23:41:17Z",
+            "radiusPixels": 2,
+            "counts": {
+              "clear": 0,
+              "probablyClear": 0,
+              "probablyCloudy": 0,
+              "cloudy": 25
+            },
+            "fractions": {
+              "clear": 0.0,
+              "probablyClear": 0.0,
+              "probablyCloudy": 0.0,
+              "cloudy": 1.0
+            },
+            "supportScore": 0.0
+          },
+          "dsrf": {
+            "valueWm2": 43.05661392211914,
+            "observedAt": "2026-07-28T23:40:21Z",
+            "fresh": null,
+            "available": null,
+            "error": null,
+            "dqf": 1,
+            "dqfMeaning": "degraded_or_invalid",
+            "solarZenithDeg": 83.0334,
+            "quantitativeSolarZenithBoundsDeg": [
+              0.0,
+              70.0
+            ],
+            "retrievalSolarZenithBoundsDeg": [
+              0.0,
+              90.0
+            ],
+            "usable": false,
+            "unavailableReason": "outside_quantitative_solar_zenith_range",
+            "clearSkyExpectedWm2": null,
+            "clearnessRatio": null,
+            "clearSkyMethodVersion": null
+          },
+          "metar": {
+            "available": false,
+            "supportScore": null,
+            "unavailableReason": "historical METAR is not retained by the current-cache ingestion path"
+          }
+        }
+      ]
+    }
+  ],
+  "contentSha256": "eb049ad798031df373f6f530467bd4120d67138d5465a22b40597f70740f1e7b"
+}

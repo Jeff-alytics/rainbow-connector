@@ -1,0 +1,3242 @@
+[
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/07/14/5099207/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/07/14/5099209/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/07/14/5099208/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/07/14/5099210/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/07/14/5099211/original.jpg"
+    },
+    "local": "2026-07-14T17:24:00",
+    "sunElevation": 19.79,
+    "metadataScore": 1.933528038695716,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212632471-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/07/14/5099207/original.jpg",
+        "semanticScore": -0.031396,
+        "rainbowSimilarity": 0.256535
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212632471-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/07/14/5099209/original.jpg",
+        "semanticScore": 0.040081,
+        "rainbowSimilarity": 0.308264
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212632471-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/07/14/5099208/original.jpg",
+        "semanticScore": 0.034918,
+        "rainbowSimilarity": 0.326615
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212632471-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/07/14/5099210/original.jpg",
+        "semanticScore": -0.034904,
+        "rainbowSimilarity": 0.258663
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212632471-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/07/14/5099211/original.jpg",
+        "semanticScore": -0.025825,
+        "rainbowSimilarity": 0.271588
+      }
+    ],
+    "modelPeak": 0.040081,
+    "modelSecond": 0.034918,
+    "finalScore": 0.08130522058043574,
+    "pid": 212632471,
+    "country": "Poland"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/04/25/4475365/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/04/25/4475367/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/04/25/4475366/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/04/25/4475368/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/04/25/4475369/original.jpg"
+    },
+    "local": "2025-04-25T18:20:00",
+    "sunElevation": 9.09,
+    "metadataScore": 1.6813093372293957,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210532561-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/04/25/4475365/original.jpg",
+        "semanticScore": -0.034409,
+        "rainbowSimilarity": 0.242051
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210532561-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/04/25/4475367/original.jpg",
+        "semanticScore": -0.037111,
+        "rainbowSimilarity": 0.230225
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210532561-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/04/25/4475366/original.jpg",
+        "semanticScore": 0.009948,
+        "rainbowSimilarity": 0.310774
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210532561-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/04/25/4475368/original.jpg",
+        "semanticScore": -0.038447,
+        "rainbowSimilarity": 0.231455
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210532561-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/04/25/4475369/original.jpg",
+        "semanticScore": 0.006507,
+        "rainbowSimilarity": 0.288546
+      }
+    ],
+    "modelPeak": 0.009948,
+    "modelSecond": 0.006507,
+    "finalScore": 0.03744509005844093,
+    "pid": 210532561,
+    "country": "Italy"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/07/07/4622974/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/07/07/4622976/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/07/07/4622975/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/07/07/4622977/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/07/07/4622978/original.jpg"
+    },
+    "local": "2025-07-07T18:05:00",
+    "sunElevation": 9.23,
+    "metadataScore": 1.9389975339677696,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210800233-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/07/07/4622974/original.jpg",
+        "semanticScore": 0.004445,
+        "rainbowSimilarity": 0.251775
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210800233-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/07/07/4622976/original.jpg",
+        "semanticScore": -0.0455,
+        "rainbowSimilarity": 0.221421
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210800233-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/07/07/4622975/original.jpg",
+        "semanticScore": -0.02407,
+        "rainbowSimilarity": 0.242701
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210800233-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/07/07/4622977/original.jpg",
+        "semanticScore": -0.005241,
+        "rainbowSimilarity": 0.247138
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210800233-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/07/07/4622978/original.jpg",
+        "semanticScore": -0.014268,
+        "rainbowSimilarity": 0.24983
+      }
+    ],
+    "modelPeak": 0.004445,
+    "modelSecond": -0.005241,
+    "finalScore": 0.031695613009516545,
+    "pid": 210800233,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/04/16/4990274/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/04/16/4990276/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/04/16/4990275/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/04/16/4990277/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/04/16/4990278/original.jpg"
+    },
+    "local": "2026-04-16T17:29:00",
+    "sunElevation": 5.42,
+    "metadataScore": 1.9721942083841744,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212402069-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/04/16/4990274/original.jpg",
+        "semanticScore": -0.005715,
+        "rainbowSimilarity": 0.245228
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212402069-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/04/16/4990276/original.jpg",
+        "semanticScore": -0.026721,
+        "rainbowSimilarity": 0.181692
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212402069-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/04/16/4990275/original.jpg",
+        "semanticScore": -0.019693,
+        "rainbowSimilarity": 0.257563
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212402069-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/04/16/4990277/original.jpg",
+        "semanticScore": 0.001494,
+        "rainbowSimilarity": 0.250607
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212402069-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/04/16/4990278/original.jpg",
+        "semanticScore": -0.04828,
+        "rainbowSimilarity": 0.229689
+      }
+    ],
+    "modelPeak": 0.001494,
+    "modelSecond": -0.005715,
+    "finalScore": 0.029076663125762615,
+    "pid": 212402069,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/06/19/4585966/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/06/19/4585968/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/06/19/4585967/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/06/19/4585969/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/06/19/4585970/original.jpg"
+    },
+    "local": "2025-06-19T17:50:00",
+    "sunElevation": 17.37,
+    "metadataScore": 2.3538889461234804,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210732602-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/06/19/4585966/original.jpg",
+        "semanticScore": -0.061071,
+        "rainbowSimilarity": 0.194335
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210732602-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/06/19/4585968/original.jpg",
+        "semanticScore": -0.039792,
+        "rainbowSimilarity": 0.193302
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210732602-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/06/19/4585967/original.jpg",
+        "semanticScore": -0.079364,
+        "rainbowSimilarity": 0.139914
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210732602-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/06/19/4585969/original.jpg",
+        "semanticScore": -0.003539,
+        "rainbowSimilarity": 0.253717
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210732602-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/06/19/4585970/original.jpg",
+        "semanticScore": -0.019418,
+        "rainbowSimilarity": 0.27085
+      }
+    ],
+    "modelPeak": -0.003539,
+    "modelSecond": -0.019418,
+    "finalScore": 0.024973034191852206,
+    "pid": 210732602,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/07/04/5088115/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/07/04/5088117/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/07/04/5088116/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/07/04/5088118/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/07/04/5088119/original.jpg"
+    },
+    "local": "2026-07-04T18:59:00",
+    "sunElevation": 2.52,
+    "metadataScore": 1.9036422570543876,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212608704-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/07/04/5088115/original.jpg",
+        "semanticScore": -0.001035,
+        "rainbowSimilarity": 0.234483
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212608704-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/07/04/5088117/original.jpg",
+        "semanticScore": -0.007702,
+        "rainbowSimilarity": 0.249839
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212608704-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/07/04/5088116/original.jpg",
+        "semanticScore": -0.018302,
+        "rainbowSimilarity": 0.254811
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212608704-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/07/04/5088118/original.jpg",
+        "semanticScore": -0.032179,
+        "rainbowSimilarity": 0.249496
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212608704-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/07/04/5088119/original.jpg",
+        "semanticScore": -0.026935,
+        "rainbowSimilarity": 0.261515
+      }
+    ],
+    "modelPeak": -0.001035,
+    "modelSecond": -0.007702,
+    "finalScore": 0.024823933855815813,
+    "pid": 212608704,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/07/15/4640470/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/07/15/4640472/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/07/15/4640471/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/07/15/4640473/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/07/15/4640474/original.jpg"
+    },
+    "local": "2025-07-15T18:28:00",
+    "sunElevation": 15.55,
+    "metadataScore": 1.7476472828364913,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211207999-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/07/15/4640470/original.jpg",
+        "semanticScore": -0.026244,
+        "rainbowSimilarity": 0.238597
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211207999-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/07/15/4640472/original.jpg",
+        "semanticScore": 0.001793,
+        "rainbowSimilarity": 0.274951
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211207999-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/07/15/4640471/original.jpg",
+        "semanticScore": -0.01274,
+        "rainbowSimilarity": 0.277058
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211207999-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/07/15/4640473/original.jpg",
+        "semanticScore": -0.026592,
+        "rainbowSimilarity": 0.239533
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211207999-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/07/15/4640474/original.jpg",
+        "semanticScore": -0.024541,
+        "rainbowSimilarity": 0.232201
+      }
+    ],
+    "modelPeak": 0.001793,
+    "modelSecond": -0.01274,
+    "finalScore": 0.02354870924254737,
+    "pid": 211207999,
+    "country": "United Kingdom"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/06/10/5054644/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/06/10/5054646/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/06/10/5054645/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/06/10/5054647/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/06/10/5054648/original.jpg"
+    },
+    "local": "2026-06-10T18:44:00",
+    "sunElevation": 12.37,
+    "metadataScore": 2.246746275444564,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212546939-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/06/10/5054644/original.jpg",
+        "semanticScore": -0.031406,
+        "rainbowSimilarity": 0.254146
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212546939-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/06/10/5054646/original.jpg",
+        "semanticScore": -0.017401,
+        "rainbowSimilarity": 0.249197
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212546939-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/06/10/5054645/original.jpg",
+        "semanticScore": -0.019062,
+        "rainbowSimilarity": 0.257868
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212546939-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/06/10/5054647/original.jpg",
+        "semanticScore": -0.01473,
+        "rainbowSimilarity": 0.266316
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212546939-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/06/10/5054648/original.jpg",
+        "semanticScore": -0.008869,
+        "rainbowSimilarity": 0.270393
+      }
+    ],
+    "modelPeak": -0.008869,
+    "modelSecond": -0.01473,
+    "finalScore": 0.01967669413166846,
+    "pid": 212546939,
+    "country": "United Kingdom"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/07/05/5096549/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/07/05/5096551/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/07/05/5096550/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/07/05/5096552/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/07/05/5096553/original.jpg"
+    },
+    "local": "2026-07-05T18:14:00",
+    "sunElevation": 9.1,
+    "metadataScore": 1.9318397273824988,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212622798-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/07/05/5096549/original.jpg",
+        "semanticScore": -0.011947,
+        "rainbowSimilarity": 0.263976
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212622798-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/07/05/5096551/original.jpg",
+        "semanticScore": -0.021976,
+        "rainbowSimilarity": 0.227131
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212622798-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/07/05/5096550/original.jpg",
+        "semanticScore": -0.039347,
+        "rainbowSimilarity": 0.240169
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212622798-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/07/05/5096552/original.jpg",
+        "semanticScore": -0.024794,
+        "rainbowSimilarity": 0.253005
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212622798-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/07/05/5096553/original.jpg",
+        "semanticScore": -0.005806,
+        "rainbowSimilarity": 0.273875
+      }
+    ],
+    "modelPeak": -0.005806,
+    "modelSecond": -0.011947,
+    "finalScore": 0.01899014591073748,
+    "pid": 212622798,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/04/01/4963403/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/04/01/4963405/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/04/01/4963404/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/04/01/4963406/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/04/01/4963407/original.jpg"
+    },
+    "local": "2026-04-01T17:25:00",
+    "sunElevation": 9.85,
+    "metadataScore": 1.97119967500285,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212334402-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/04/01/4963403/original.jpg",
+        "semanticScore": -0.00671,
+        "rainbowSimilarity": 0.24936
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212334402-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/04/01/4963405/original.jpg",
+        "semanticScore": -0.021473,
+        "rainbowSimilarity": 0.248051
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212334402-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/04/01/4963404/original.jpg",
+        "semanticScore": -0.01152,
+        "rainbowSimilarity": 0.25584
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212334402-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/04/01/4963406/original.jpg",
+        "semanticScore": -0.014858,
+        "rainbowSimilarity": 0.242878
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212334402-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/04/01/4963407/original.jpg",
+        "semanticScore": -0.020103,
+        "rainbowSimilarity": 0.250126
+      }
+    ],
+    "modelPeak": -0.00671,
+    "modelSecond": -0.01152,
+    "finalScore": 0.018825995125042752,
+    "pid": 212334402,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/05/04/4490626/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/05/04/4490628/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/05/04/4490627/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/05/04/4490629/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/05/04/4490630/original.jpg"
+    },
+    "local": "2025-05-04T17:54:00",
+    "sunElevation": 8.64,
+    "metadataScore": 2.1045088889302543,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210563565-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/05/04/4490626/original.jpg",
+        "semanticScore": -0.021233,
+        "rainbowSimilarity": 0.256833
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210563565-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/05/04/4490628/original.jpg",
+        "semanticScore": -0.013352,
+        "rainbowSimilarity": 0.258566
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210563565-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/05/04/4490627/original.jpg",
+        "semanticScore": -0.010849,
+        "rainbowSimilarity": 0.275702
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210563565-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/05/04/4490629/original.jpg",
+        "semanticScore": -0.017836,
+        "rainbowSimilarity": 0.245709
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210563565-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/05/04/4490630/original.jpg",
+        "semanticScore": -0.009588,
+        "rainbowSimilarity": 0.278094
+      }
+    ],
+    "modelPeak": -0.009588,
+    "modelSecond": -0.010849,
+    "finalScore": 0.018182483333953815,
+    "pid": 210563565,
+    "country": "Poland"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/10/07/4746254/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/10/07/4746256/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/10/07/4746255/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/10/07/4746257/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/10/07/4746258/original.jpg"
+    },
+    "local": "2025-10-07T15:55:00",
+    "sunElevation": 15.14,
+    "metadataScore": 2.012743518918236,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211482894-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/10/07/4746254/original.jpg",
+        "semanticScore": -0.016119,
+        "rainbowSimilarity": 0.248148
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211482894-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/10/07/4746256/original.jpg",
+        "semanticScore": -0.030062,
+        "rainbowSimilarity": 0.245109
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211482894-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/10/07/4746255/original.jpg",
+        "semanticScore": -0.02789,
+        "rainbowSimilarity": 0.242205
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211482894-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/10/07/4746257/original.jpg",
+        "semanticScore": -0.027062,
+        "rainbowSimilarity": 0.236696
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211482894-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/10/07/4746258/original.jpg",
+        "semanticScore": -0.009605,
+        "rainbowSimilarity": 0.271755
+      }
+    ],
+    "modelPeak": -0.009605,
+    "modelSecond": -0.016119,
+    "finalScore": 0.014944502783773538,
+    "pid": 211482894,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/07/07/5091599/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/07/07/5091601/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/07/07/5091600/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/07/07/5091602/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/07/07/5091603/original.jpg"
+    },
+    "local": "2026-07-07T17:15:00",
+    "sunElevation": 24.3,
+    "metadataScore": 1.5980089272540507,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212615126-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/07/07/5091599/original.jpg",
+        "semanticScore": -0.018512,
+        "rainbowSimilarity": 0.238373
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212615126-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/07/07/5091601/original.jpg",
+        "semanticScore": -0.005517,
+        "rainbowSimilarity": 0.251783
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212615126-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/07/07/5091600/original.jpg",
+        "semanticScore": -0.011392,
+        "rainbowSimilarity": 0.270605
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212615126-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/07/07/5091602/original.jpg",
+        "semanticScore": -0.03884,
+        "rainbowSimilarity": 0.215426
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212615126-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/07/07/5091603/original.jpg",
+        "semanticScore": -0.017568,
+        "rainbowSimilarity": 0.254847
+      }
+    ],
+    "modelPeak": -0.005517,
+    "modelSecond": -0.011392,
+    "finalScore": 0.01446593390881076,
+    "pid": 212615126,
+    "country": "Italy"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/09/22/4725866/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/09/22/4725868/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/09/22/4725867/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/09/22/4725869/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/09/22/4725870/original.jpg"
+    },
+    "local": "2025-09-22T16:31:00",
+    "sunElevation": 21.69,
+    "metadataScore": 1.7859618587716077,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211424675-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/09/22/4725866/original.jpg",
+        "semanticScore": -0.031003,
+        "rainbowSimilarity": 0.254985
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211424675-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/09/22/4725868/original.jpg",
+        "semanticScore": -0.019672,
+        "rainbowSimilarity": 0.25549
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211424675-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/09/22/4725867/original.jpg",
+        "semanticScore": -0.031195,
+        "rainbowSimilarity": 0.241747
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211424675-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/09/22/4725869/original.jpg",
+        "semanticScore": -0.017978,
+        "rainbowSimilarity": 0.264057
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211424675-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/09/22/4725870/original.jpg",
+        "semanticScore": -0.006461,
+        "rainbowSimilarity": 0.254105
+      }
+    ],
+    "modelPeak": -0.006461,
+    "modelSecond": -0.017978,
+    "finalScore": 0.014036127881574115,
+    "pid": 211424675,
+    "country": "Ghana"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/08/24/4687900/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/08/24/4687902/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/08/24/4687901/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/08/24/4687903/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/08/24/4687904/original.jpg"
+    },
+    "local": "2025-08-24T18:16:00",
+    "sunElevation": 4.57,
+    "metadataScore": 1.6055265080294592,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211323359-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/08/24/4687900/original.jpg",
+        "semanticScore": -0.015097,
+        "rainbowSimilarity": 0.25432
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211323359-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/08/24/4687902/original.jpg",
+        "semanticScore": -0.005263,
+        "rainbowSimilarity": 0.284767
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211323359-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/08/24/4687901/original.jpg",
+        "semanticScore": -0.018812,
+        "rainbowSimilarity": 0.252451
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211323359-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/08/24/4687903/original.jpg",
+        "semanticScore": -0.022229,
+        "rainbowSimilarity": 0.255805
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211323359-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/08/24/4687904/original.jpg",
+        "semanticScore": -0.030829,
+        "rainbowSimilarity": 0.251288
+      }
+    ],
+    "modelPeak": -0.005263,
+    "modelSecond": -0.015097,
+    "finalScore": 0.013535947620441888,
+    "pid": 211323359,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/08/25/4694624/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/08/25/4694626/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/08/25/4694625/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/08/25/4694627/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/08/25/4694628/original.jpg"
+    },
+    "local": "2025-08-25T08:21:00",
+    "sunElevation": 29.94,
+    "metadataScore": 1.8432576688557545,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211324599-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/08/25/4694624/original.jpg",
+        "semanticScore": -0.048153,
+        "rainbowSimilarity": 0.231786
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211324599-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/08/25/4694626/original.jpg",
+        "semanticScore": -0.010826,
+        "rainbowSimilarity": 0.256585
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211324599-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/08/25/4694625/original.jpg",
+        "semanticScore": -0.010826,
+        "rainbowSimilarity": 0.256585
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211324599-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/08/25/4694627/original.jpg",
+        "semanticScore": -0.030817,
+        "rainbowSimilarity": 0.241899
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211324599-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/08/25/4694628/original.jpg",
+        "semanticScore": -0.010826,
+        "rainbowSimilarity": 0.256585
+      }
+    ],
+    "modelPeak": -0.010826,
+    "modelSecond": -0.010826,
+    "finalScore": 0.013033765032836315,
+    "pid": 211324599,
+    "country": "Thailand"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/05/02/4487716/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/05/02/4487718/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/05/02/4487717/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/05/02/4487719/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/05/02/4487720/original.jpg"
+    },
+    "local": "2025-05-02T18:40:00",
+    "sunElevation": 5.4,
+    "metadataScore": 1.6702704446205312,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210556883-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/05/02/4487716/original.jpg",
+        "semanticScore": -0.015682,
+        "rainbowSimilarity": 0.260416
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210556883-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/05/02/4487718/original.jpg",
+        "semanticScore": -0.011571,
+        "rainbowSimilarity": 0.243608
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210556883-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/05/02/4487717/original.jpg",
+        "semanticScore": -0.049742,
+        "rainbowSimilarity": 0.214207
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210556883-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/05/02/4487719/original.jpg",
+        "semanticScore": -0.03105,
+        "rainbowSimilarity": 0.258292
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210556883-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/05/02/4487720/original.jpg",
+        "semanticScore": -0.008382,
+        "rainbowSimilarity": 0.26895
+      }
+    ],
+    "modelPeak": -0.008382,
+    "modelSecond": -0.011571,
+    "finalScore": 0.012622206669307967,
+    "pid": 210556883,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/04/02/4429129/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/04/02/4429128/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/04/02/4429127/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/04/02/4429130/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/04/02/4429131/original.jpg"
+    },
+    "local": "2025-04-02T07:59:00",
+    "sunElevation": 24.97,
+    "metadataScore": 1.6559994036544552,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209248908-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/04/02/4429129/original.jpg",
+        "semanticScore": -0.016736,
+        "rainbowSimilarity": 0.245761
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209248908-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/04/02/4429128/original.jpg",
+        "semanticScore": -0.032994,
+        "rainbowSimilarity": 0.261474
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209248908-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/04/02/4429127/original.jpg",
+        "semanticScore": -0.028132,
+        "rainbowSimilarity": 0.235411
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209248908-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/04/02/4429130/original.jpg",
+        "semanticScore": -0.010589,
+        "rainbowSimilarity": 0.229737
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209248908-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/04/02/4429131/original.jpg",
+        "semanticScore": -0.018642,
+        "rainbowSimilarity": 0.247734
+      }
+    ],
+    "modelPeak": -0.010589,
+    "modelSecond": -0.016736,
+    "finalScore": 0.008393391054816828,
+    "pid": 209248908,
+    "country": "Spain"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/09/26/4732891/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/09/26/4732893/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/09/26/4732892/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/09/26/4732894/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/09/26/4732895/original.jpg"
+    },
+    "local": "2025-09-26T17:44:00",
+    "sunElevation": 8.08,
+    "metadataScore": 1.8684774693925075,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211442418-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/09/26/4732891/original.jpg",
+        "semanticScore": -0.00912,
+        "rainbowSimilarity": 0.268616
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211442418-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/09/26/4732893/original.jpg",
+        "semanticScore": -0.030894,
+        "rainbowSimilarity": 0.251893
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211442418-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/09/26/4732892/original.jpg",
+        "semanticScore": -0.03099,
+        "rainbowSimilarity": 0.247046
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211442418-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/09/26/4732894/original.jpg",
+        "semanticScore": -0.052153,
+        "rainbowSimilarity": 0.22209
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211442418-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/09/26/4732895/original.jpg",
+        "semanticScore": -0.051501,
+        "rainbowSimilarity": 0.230049
+      }
+    ],
+    "modelPeak": -0.00912,
+    "modelSecond": -0.030894,
+    "finalScore": 0.00809426204088761,
+    "pid": 211442418,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/05/14/5021225/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/05/14/5021227/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/05/14/5021226/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/05/14/5021228/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/05/14/5021229/original.jpg"
+    },
+    "local": "2026-05-14T17:35:00",
+    "sunElevation": 17.25,
+    "metadataScore": 2.211393518010315,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212480695-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/05/14/5021225/original.jpg",
+        "semanticScore": -0.016987,
+        "rainbowSimilarity": 0.249363
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212480695-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/05/14/5021227/original.jpg",
+        "semanticScore": -0.025187,
+        "rainbowSimilarity": 0.256827
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212480695-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/05/14/5021226/original.jpg",
+        "semanticScore": -0.024163,
+        "rainbowSimilarity": 0.239617
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212480695-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/05/14/5021228/original.jpg",
+        "semanticScore": -0.026938,
+        "rainbowSimilarity": 0.251016
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212480695-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/05/14/5021229/original.jpg",
+        "semanticScore": -0.03873,
+        "rainbowSimilarity": 0.262853
+      }
+    ],
+    "modelPeak": -0.016987,
+    "modelSecond": -0.024163,
+    "finalScore": 0.007726852770154724,
+    "pid": 212480695,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/06/19/4585160/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/06/19/4585162/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/06/19/4585161/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/06/19/4585163/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/06/19/4585164/original.jpg"
+    },
+    "local": "2025-06-19T07:57:00",
+    "sunElevation": 14.19,
+    "metadataScore": 2.2884283305469775,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210730578-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/06/19/4585160/original.jpg",
+        "semanticScore": -0.032633,
+        "rainbowSimilarity": 0.237122
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210730578-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/06/19/4585162/original.jpg",
+        "semanticScore": -0.018884,
+        "rainbowSimilarity": 0.247965
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210730578-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/06/19/4585161/original.jpg",
+        "semanticScore": -0.025151,
+        "rainbowSimilarity": 0.235965
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210730578-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/06/19/4585163/original.jpg",
+        "semanticScore": -0.042217,
+        "rainbowSimilarity": 0.205999
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210730578-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/06/19/4585164/original.jpg",
+        "semanticScore": -0.024346,
+        "rainbowSimilarity": 0.23505
+      }
+    ],
+    "modelPeak": -0.018884,
+    "modelSecond": -0.024346,
+    "finalScore": 0.006921324958204661,
+    "pid": 210730578,
+    "country": "Mauritius"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/10/22/4772937/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/10/22/4772939/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/10/22/4772938/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/10/22/4772940/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/10/22/4772941/original.jpg"
+    },
+    "local": "2025-10-22T16:36:00",
+    "sunElevation": 13.05,
+    "metadataScore": 1.799980259533441,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211542116-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/10/22/4772937/original.jpg",
+        "semanticScore": -0.042338,
+        "rainbowSimilarity": 0.226042
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211542116-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/10/22/4772939/original.jpg",
+        "semanticScore": -0.023626,
+        "rainbowSimilarity": 0.241182
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211542116-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/10/22/4772938/original.jpg",
+        "semanticScore": -0.013138,
+        "rainbowSimilarity": 0.275209
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211542116-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/10/22/4772940/original.jpg",
+        "semanticScore": -0.05143,
+        "rainbowSimilarity": 0.224795
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211542116-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/10/22/4772941/original.jpg",
+        "semanticScore": -0.020534,
+        "rainbowSimilarity": 0.2688
+      }
+    ],
+    "modelPeak": -0.013138,
+    "modelSecond": -0.020534,
+    "finalScore": 0.006674803893001617,
+    "pid": 211542116,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/05/27/5042268/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/05/27/5042270/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/05/27/5042269/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/05/27/5042271/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/05/27/5042272/original.jpg"
+    },
+    "local": "2026-05-27T19:16:00",
+    "sunElevation": 5.58,
+    "metadataScore": 1.9844409949554063,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212514591-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/05/27/5042268/original.jpg",
+        "semanticScore": -0.015061,
+        "rainbowSimilarity": 0.241167
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212514591-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/05/27/5042270/original.jpg",
+        "semanticScore": -0.025301,
+        "rainbowSimilarity": 0.25315
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212514591-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/05/27/5042269/original.jpg",
+        "semanticScore": -0.024603,
+        "rainbowSimilarity": 0.230853
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212514591-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/05/27/5042271/original.jpg",
+        "semanticScore": -0.031508,
+        "rainbowSimilarity": 0.235896
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212514591-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/05/27/5042272/original.jpg",
+        "semanticScore": -0.037915,
+        "rainbowSimilarity": 0.252391
+      }
+    ],
+    "modelPeak": -0.015061,
+    "modelSecond": -0.024603,
+    "finalScore": 0.0060945649243310945,
+    "pid": 212514591,
+    "country": "United Kingdom"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/05/27/5042458/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/05/27/5042460/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/05/27/5042459/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/05/27/5042461/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/05/27/5042462/original.jpg"
+    },
+    "local": "2026-05-27T17:25:00",
+    "sunElevation": 14.82,
+    "metadataScore": 2.023108023887694,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212514762-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/05/27/5042458/original.jpg",
+        "semanticScore": -0.015206,
+        "rainbowSimilarity": 0.266366
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212514762-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/05/27/5042460/original.jpg",
+        "semanticScore": -0.04235,
+        "rainbowSimilarity": 0.227021
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212514762-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/05/27/5042459/original.jpg",
+        "semanticScore": -0.056035,
+        "rainbowSimilarity": 0.235965
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212514762-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/05/27/5042461/original.jpg",
+        "semanticScore": -0.035264,
+        "rainbowSimilarity": 0.262102
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212514762-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/05/27/5042462/original.jpg",
+        "semanticScore": -0.02968,
+        "rainbowSimilarity": 0.260506
+      }
+    ],
+    "modelPeak": -0.015206,
+    "modelSecond": -0.02968,
+    "finalScore": 0.004752620358315411,
+    "pid": 212514762,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/04/10/4443314/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/04/10/4443316/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/04/10/4443315/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/04/10/4443317/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/04/10/4443318/original.jpg"
+    },
+    "local": "2025-04-10T15:58:00",
+    "sunElevation": 21.46,
+    "metadataScore": 1.9033944226019148,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209315858-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/04/10/4443314/original.jpg",
+        "semanticScore": -0.018315,
+        "rainbowSimilarity": 0.217409
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209315858-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/04/10/4443316/original.jpg",
+        "semanticScore": -0.066038,
+        "rainbowSimilarity": 0.163803
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209315858-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/04/10/4443315/original.jpg",
+        "semanticScore": -0.052064,
+        "rainbowSimilarity": 0.171822
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209315858-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/04/10/4443317/original.jpg",
+        "semanticScore": -0.052071,
+        "rainbowSimilarity": 0.170458
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209315858-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/04/10/4443318/original.jpg",
+        "semanticScore": -0.018661,
+        "rainbowSimilarity": 0.24344
+      }
+    ],
+    "modelPeak": -0.018315,
+    "modelSecond": -0.018661,
+    "finalScore": 0.0037045663390287177,
+    "pid": 209315858,
+    "country": "Paraguay"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/08/05/4666858/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/08/05/4666860/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/08/05/4666859/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/08/05/4666861/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/08/05/4666862/original.jpg"
+    },
+    "local": "2025-08-05T17:16:00",
+    "sunElevation": 23.28,
+    "metadataScore": 1.7673300842305575,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211271909-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/08/05/4666858/original.jpg",
+        "semanticScore": -0.009061,
+        "rainbowSimilarity": 0.257034
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211271909-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/08/05/4666860/original.jpg",
+        "semanticScore": -0.039662,
+        "rainbowSimilarity": 0.231407
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211271909-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/08/05/4666859/original.jpg",
+        "semanticScore": -0.042803,
+        "rainbowSimilarity": 0.234779
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211271909-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/08/05/4666861/original.jpg",
+        "semanticScore": -0.04183,
+        "rainbowSimilarity": 0.215356
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211271909-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/08/05/4666862/original.jpg",
+        "semanticScore": -0.043056,
+        "rainbowSimilarity": 0.233377
+      }
+    ],
+    "modelPeak": -0.009061,
+    "modelSecond": -0.039662,
+    "finalScore": 0.0035672512634583597,
+    "pid": 211271909,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/05/23/4531324/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/05/23/4531327/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/05/23/4531326/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/05/23/4531328/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/05/23/4531323/original.jpg"
+    },
+    "local": "2025-05-23T16:55:00",
+    "sunElevation": 22.67,
+    "metadataScore": 1.711751766998732,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210635446-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/05/23/4531324/original.jpg",
+        "semanticScore": -0.036848,
+        "rainbowSimilarity": 0.251655
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210635446-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/05/23/4531327/original.jpg",
+        "semanticScore": -0.037025,
+        "rainbowSimilarity": 0.233159
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210635446-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/05/23/4531326/original.jpg",
+        "semanticScore": -0.024047,
+        "rainbowSimilarity": 0.250478
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210635446-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/05/23/4531328/original.jpg",
+        "semanticScore": -0.025392,
+        "rainbowSimilarity": 0.245673
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210635446-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/05/23/4531323/original.jpg",
+        "semanticScore": -0.013945,
+        "rainbowSimilarity": 0.275827
+      }
+    ],
+    "modelPeak": -0.013945,
+    "modelSecond": -0.024047,
+    "finalScore": 0.003314826504980984,
+    "pid": 210635446,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/06/18/4583850/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/06/18/4583852/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/06/18/4583851/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/06/18/4583853/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/06/18/4583854/original.jpg"
+    },
+    "local": "2025-06-18T18:19:00",
+    "sunElevation": 11.67,
+    "metadataScore": 2.0854404270813385,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210727841-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/06/18/4583850/original.jpg",
+        "semanticScore": -0.017446,
+        "rainbowSimilarity": 0.246726
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210727841-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/06/18/4583852/original.jpg",
+        "semanticScore": -0.093585,
+        "rainbowSimilarity": 0.118427
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210727841-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/06/18/4583851/original.jpg",
+        "semanticScore": -0.067256,
+        "rainbowSimilarity": 0.142429
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210727841-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/06/18/4583853/original.jpg",
+        "semanticScore": -0.042033,
+        "rainbowSimilarity": 0.233843
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210727841-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/06/18/4583854/original.jpg",
+        "semanticScore": -0.031747,
+        "rainbowSimilarity": 0.25314
+      }
+    ],
+    "modelPeak": -0.017446,
+    "modelSecond": -0.031747,
+    "finalScore": 0.002724156406220077,
+    "pid": 210727841,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/06/10/4557662/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/06/10/4557664/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/06/10/4557663/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/06/10/4557665/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/06/10/4557666/original.jpg"
+    },
+    "local": "2025-06-10T17:22:00",
+    "sunElevation": 22.82,
+    "metadataScore": 1.800858992926376,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210699438-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/06/10/4557662/original.jpg",
+        "semanticScore": -0.025765,
+        "rainbowSimilarity": 0.237982
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210699438-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/06/10/4557664/original.jpg",
+        "semanticScore": -0.038954,
+        "rainbowSimilarity": 0.23236
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210699438-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/06/10/4557663/original.jpg",
+        "semanticScore": -0.083584,
+        "rainbowSimilarity": 0.151945
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210699438-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/06/10/4557665/original.jpg",
+        "semanticScore": -0.05394,
+        "rainbowSimilarity": 0.213476
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210699438-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/06/10/4557666/original.jpg",
+        "semanticScore": -0.015275,
+        "rainbowSimilarity": 0.208111
+      }
+    ],
+    "modelPeak": -0.015275,
+    "modelSecond": -0.025765,
+    "finalScore": 0.002720134893895637,
+    "pid": 210699438,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/06/29/4607004/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/06/29/4607006/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/06/29/4607005/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/06/29/4607007/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/06/29/4607008/original.jpg"
+    },
+    "local": "2025-06-29T07:03:00",
+    "sunElevation": 15.04,
+    "metadataScore": 1.7663215429021353,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210767932-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/06/29/4607004/original.jpg",
+        "semanticScore": -0.028623,
+        "rainbowSimilarity": 0.244448
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210767932-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/06/29/4607006/original.jpg",
+        "semanticScore": -0.040619,
+        "rainbowSimilarity": 0.241215
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210767932-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/06/29/4607005/original.jpg",
+        "semanticScore": -0.039322,
+        "rainbowSimilarity": 0.22475
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210767932-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/06/29/4607007/original.jpg",
+        "semanticScore": -0.017414,
+        "rainbowSimilarity": 0.237013
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210767932-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/06/29/4607008/original.jpg",
+        "semanticScore": -0.018737,
+        "rainbowSimilarity": 0.251642
+      }
+    ],
+    "modelPeak": -0.017414,
+    "modelSecond": -0.018737,
+    "finalScore": 0.0025228731435320284,
+    "pid": 210767932,
+    "country": "Thailand"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/05/14/4519615/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/05/14/4519617/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/05/14/4519616/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/05/14/4519618/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/05/14/4519619/original.jpg"
+    },
+    "local": "2025-05-14T07:05:00",
+    "sunElevation": 16.17,
+    "metadataScore": 1.9203586963591295,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210602736-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/05/14/4519615/original.jpg",
+        "semanticScore": -0.022183,
+        "rainbowSimilarity": 0.229772
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210602736-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/05/14/4519617/original.jpg",
+        "semanticScore": -0.027509,
+        "rainbowSimilarity": 0.251728
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210602736-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/05/14/4519616/original.jpg",
+        "semanticScore": -0.04138,
+        "rainbowSimilarity": 0.19706
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210602736-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/05/14/4519618/original.jpg",
+        "semanticScore": -0.018889,
+        "rainbowSimilarity": 0.25711
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210602736-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/05/14/4519619/original.jpg",
+        "semanticScore": -0.02935,
+        "rainbowSimilarity": 0.24988
+      }
+    ],
+    "modelPeak": -0.018889,
+    "modelSecond": -0.022183,
+    "finalScore": 0.0021523304453869435,
+    "pid": 210602736,
+    "country": "Uganda"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/07/28/4657335/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/07/28/4657337/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/07/28/4657336/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/07/28/4657338/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/07/28/4657339/original.jpg"
+    },
+    "local": "2025-07-28T18:04:00",
+    "sunElevation": 6.44,
+    "metadataScore": 1.5009175258861398,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211249077-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/07/28/4657335/original.jpg",
+        "semanticScore": -0.022237,
+        "rainbowSimilarity": 0.255374
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211249077-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/07/28/4657337/original.jpg",
+        "semanticScore": -0.01368,
+        "rainbowSimilarity": 0.257589
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211249077-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/07/28/4657336/original.jpg",
+        "semanticScore": -0.041488,
+        "rainbowSimilarity": 0.225077
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211249077-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/07/28/4657338/original.jpg",
+        "semanticScore": -0.019434,
+        "rainbowSimilarity": 0.256551
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211249077-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/07/28/4657339/original.jpg",
+        "semanticScore": -0.026838,
+        "rainbowSimilarity": 0.2426
+      }
+    ],
+    "modelPeak": -0.01368,
+    "modelSecond": -0.019434,
+    "finalScore": 0.0020318628882920985,
+    "pid": 211249077,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/09/24/4729259/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/09/24/4729261/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/09/24/4729260/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/09/24/4729262/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/09/24/4729263/original.jpg"
+    },
+    "local": "2025-09-24T17:01:00",
+    "sunElevation": 11.76,
+    "metadataScore": 2.237380731331977,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211433148-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/09/24/4729259/original.jpg",
+        "semanticScore": -0.027084,
+        "rainbowSimilarity": 0.243266
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211433148-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/09/24/4729261/original.jpg",
+        "semanticScore": -0.023348,
+        "rainbowSimilarity": 0.235045
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211433148-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/09/24/4729260/original.jpg",
+        "semanticScore": -0.032228,
+        "rainbowSimilarity": 0.257334
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211433148-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/09/24/4729262/original.jpg",
+        "semanticScore": -0.023804,
+        "rainbowSimilarity": 0.24402
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211433148-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/09/24/4729263/original.jpg",
+        "semanticScore": -0.02362,
+        "rainbowSimilarity": 0.248628
+      }
+    ],
+    "modelPeak": -0.023348,
+    "modelSecond": -0.02362,
+    "finalScore": 0.0019457109699796554,
+    "pid": 211433148,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/09/25/4730082/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/09/25/4730084/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/09/25/4730083/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/09/25/4730085/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/09/25/4730086/original.jpg"
+    },
+    "local": "2025-09-25T07:05:00",
+    "sunElevation": 12.27,
+    "metadataScore": 2.0456136161291885,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211435400-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/09/25/4730082/original.jpg",
+        "semanticScore": -0.051844,
+        "rainbowSimilarity": 0.156333
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211435400-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/09/25/4730084/original.jpg",
+        "semanticScore": -0.060431,
+        "rainbowSimilarity": 0.177005
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211435400-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/09/25/4730083/original.jpg",
+        "semanticScore": -0.044834,
+        "rainbowSimilarity": 0.233049
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211435400-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/09/25/4730085/original.jpg",
+        "semanticScore": -0.047899,
+        "rainbowSimilarity": 0.2414
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211435400-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/09/25/4730086/original.jpg",
+        "semanticScore": -0.014075,
+        "rainbowSimilarity": 0.255824
+      }
+    ],
+    "modelPeak": -0.014075,
+    "modelSecond": -0.044834,
+    "finalScore": 0.0009173042419378281,
+    "pid": 211435400,
+    "country": "Thailand"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/06/10/4557723/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/06/10/4557725/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/06/10/4557724/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/06/10/4557726/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/06/10/4557727/original.jpg"
+    },
+    "local": "2025-06-10T17:55:00",
+    "sunElevation": 16.82,
+    "metadataScore": 2.136629142539049,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210699462-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/06/10/4557723/original.jpg",
+        "semanticScore": -0.055124,
+        "rainbowSimilarity": 0.229436
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210699462-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/06/10/4557725/original.jpg",
+        "semanticScore": -0.046416,
+        "rainbowSimilarity": 0.243233
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210699462-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/06/10/4557724/original.jpg",
+        "semanticScore": -0.030378,
+        "rainbowSimilarity": 0.231533
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210699462-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/06/10/4557726/original.jpg",
+        "semanticScore": -0.025229,
+        "rainbowSimilarity": 0.244357
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210699462-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/06/10/4557727/original.jpg",
+        "semanticScore": -0.022332,
+        "rainbowSimilarity": 0.266322
+      }
+    ],
+    "modelPeak": -0.022332,
+    "modelSecond": -0.025229,
+    "finalScore": 0.0008872871380857378,
+    "pid": 210699462,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/04/01/4428105/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/04/01/4428107/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/04/01/4428106/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/04/01/4428108/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/04/01/4428109/original.jpg"
+    },
+    "local": "2025-04-01T17:27:00",
+    "sunElevation": 7.89,
+    "metadataScore": 1.6061078434695046,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209245417-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/04/01/4428105/original.jpg",
+        "semanticScore": -0.017063,
+        "rainbowSimilarity": 0.244602
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209245417-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/04/01/4428107/original.jpg",
+        "semanticScore": -0.035858,
+        "rainbowSimilarity": 0.256582
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209245417-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/04/01/4428106/original.jpg",
+        "semanticScore": -0.026903,
+        "rainbowSimilarity": 0.257816
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209245417-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/04/01/4428108/original.jpg",
+        "semanticScore": -0.033699,
+        "rainbowSimilarity": 0.230577
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\209245417-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/04/01/4428109/original.jpg",
+        "semanticScore": -0.020387,
+        "rainbowSimilarity": 0.261651
+      }
+    ],
+    "modelPeak": -0.017063,
+    "modelSecond": -0.020387,
+    "finalScore": -0.00010683234795742791,
+    "pid": 209245417,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/07/20/4647554/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/07/20/4647556/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/07/20/4647555/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/07/20/4647557/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/07/20/4647558/original.jpg"
+    },
+    "local": "2025-07-20T17:26:00",
+    "sunElevation": 19.14,
+    "metadataScore": 1.7825354874959678,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211223901-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/07/20/4647554/original.jpg",
+        "semanticScore": -0.032125,
+        "rainbowSimilarity": 0.244748
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211223901-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/07/20/4647556/original.jpg",
+        "semanticScore": -0.01569,
+        "rainbowSimilarity": 0.24432
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211223901-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/07/20/4647555/original.jpg",
+        "semanticScore": -0.048809,
+        "rainbowSimilarity": 0.227689
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211223901-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/07/20/4647557/original.jpg",
+        "semanticScore": -0.045508,
+        "rainbowSimilarity": 0.238554
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211223901-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/07/20/4647558/original.jpg",
+        "semanticScore": -0.047459,
+        "rainbowSimilarity": 0.192947
+      }
+    ],
+    "modelPeak": -0.01569,
+    "modelSecond": -0.032125,
+    "finalScore": -0.00019571768756048227,
+    "pid": 211223901,
+    "country": "France"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/08/07/4670019/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/08/07/4670021/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/08/07/4670020/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/08/07/4670022/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/08/07/4670023/original.jpg"
+    },
+    "local": "2025-08-07T17:54:00",
+    "sunElevation": 7.98,
+    "metadataScore": 1.862156441397763,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211279318-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/08/07/4670019/original.jpg",
+        "semanticScore": -0.022471,
+        "rainbowSimilarity": 0.252093
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211279318-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/08/07/4670021/original.jpg",
+        "semanticScore": -0.042495,
+        "rainbowSimilarity": 0.225721
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211279318-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/08/07/4670020/original.jpg",
+        "semanticScore": -0.030883,
+        "rainbowSimilarity": 0.237902
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211279318-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/08/07/4670022/original.jpg",
+        "semanticScore": -0.022116,
+        "rainbowSimilarity": 0.246384
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211279318-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/08/07/4670023/original.jpg",
+        "semanticScore": -0.020613,
+        "rainbowSimilarity": 0.253664
+      }
+    ],
+    "modelPeak": -0.020613,
+    "modelSecond": -0.022116,
+    "finalScore": -0.0004212533790335579,
+    "pid": 211279318,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/04/28/4478708/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/04/28/4478710/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/04/28/4478709/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/04/28/4478711/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/04/28/4478712/original.jpg"
+    },
+    "local": "2025-04-28T06:54:00",
+    "sunElevation": 19.75,
+    "metadataScore": 1.6861411328250593,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210540390-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/04/28/4478708/original.jpg",
+        "semanticScore": -0.051668,
+        "rainbowSimilarity": 0.233733
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210540390-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/04/28/4478710/original.jpg",
+        "semanticScore": -0.017243,
+        "rainbowSimilarity": 0.244444
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210540390-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/04/28/4478709/original.jpg",
+        "semanticScore": -0.040236,
+        "rainbowSimilarity": 0.222963
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210540390-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/04/28/4478711/original.jpg",
+        "semanticScore": -0.053513,
+        "rainbowSimilarity": 0.19566
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210540390-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/04/28/4478712/original.jpg",
+        "semanticScore": -0.025461,
+        "rainbowSimilarity": 0.25295
+      }
+    ],
+    "modelPeak": -0.017243,
+    "modelSecond": -0.025461,
+    "finalScore": -0.0008622330076241101,
+    "pid": 210540390,
+    "country": "Taiwan Partnership"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/07/17/5102459/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/07/17/5102461/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/07/17/5102460/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/07/17/5102462/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/07/17/5102463/original.jpg"
+    },
+    "local": "2026-07-17T17:45:00",
+    "sunElevation": 12.55,
+    "metadataScore": 2.0483116619120745,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212639859-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/07/17/5102459/original.jpg",
+        "semanticScore": -0.028444,
+        "rainbowSimilarity": 0.23338
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212639859-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/07/17/5102461/original.jpg",
+        "semanticScore": -0.056546,
+        "rainbowSimilarity": 0.202049
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212639859-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/07/17/5102460/original.jpg",
+        "semanticScore": -0.026367,
+        "rainbowSimilarity": 0.256537
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212639859-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/07/17/5102462/original.jpg",
+        "semanticScore": -0.028997,
+        "rainbowSimilarity": 0.256496
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212639859-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/07/17/5102463/original.jpg",
+        "semanticScore": -0.02322,
+        "rainbowSimilarity": 0.254378
+      }
+    ],
+    "modelPeak": -0.02322,
+    "modelSecond": -0.026367,
+    "finalScore": -0.0017237750713188886,
+    "pid": 212639859,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/05/04/4489707/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/05/04/4489709/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/05/04/4489708/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/05/04/4489710/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/05/04/4489711/original.jpg"
+    },
+    "local": "2025-05-04T06:57:00",
+    "sunElevation": 19.67,
+    "metadataScore": 2.0420033184970388,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210561182-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/05/04/4489707/original.jpg",
+        "semanticScore": -0.078597,
+        "rainbowSimilarity": 0.178198
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210561182-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/05/04/4489709/original.jpg",
+        "semanticScore": -0.03109,
+        "rainbowSimilarity": 0.217051
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210561182-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/05/04/4489708/original.jpg",
+        "semanticScore": -0.031837,
+        "rainbowSimilarity": 0.246224
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210561182-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/05/04/4489710/original.jpg",
+        "semanticScore": -0.02752,
+        "rainbowSimilarity": 0.241019
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210561182-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/05/04/4489711/original.jpg",
+        "semanticScore": -0.023162,
+        "rainbowSimilarity": 0.257455
+      }
+    ],
+    "modelPeak": -0.023162,
+    "modelSecond": -0.02752,
+    "finalScore": -0.002163950222544418,
+    "pid": 210561182,
+    "country": "Bhutan"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/04/04/4966110/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/04/04/4966112/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/04/04/4966111/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/04/04/4966114/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/04/04/4966116/original.jpg"
+    },
+    "local": "2026-04-04T17:26:00",
+    "sunElevation": 14.49,
+    "metadataScore": 2.0319028245363038,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212348497-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/04/04/4966110/original.jpg",
+        "semanticScore": -0.026027,
+        "rainbowSimilarity": 0.245956
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212348497-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/04/04/4966112/original.jpg",
+        "semanticScore": -0.025142,
+        "rainbowSimilarity": 0.242264
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212348497-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/04/04/4966111/original.jpg",
+        "semanticScore": -0.037494,
+        "rainbowSimilarity": 0.23054
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212348497-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/04/04/4966114/original.jpg",
+        "semanticScore": -0.043007,
+        "rainbowSimilarity": 0.235581
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212348497-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/04/04/4966116/original.jpg",
+        "semanticScore": -0.029055,
+        "rainbowSimilarity": 0.242588
+      }
+    ],
+    "modelPeak": -0.025142,
+    "modelSecond": -0.026027,
+    "finalScore": -0.0037729076319554487,
+    "pid": 212348497,
+    "country": "Panama"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/05/25/4535399/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/05/25/4535401/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/05/25/4535400/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/05/25/4535402/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/05/25/4535403/original.jpg"
+    },
+    "local": "2025-05-25T06:09:00",
+    "sunElevation": 8.09,
+    "metadataScore": 1.6194301240798787,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210641425-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/05/25/4535399/original.jpg",
+        "semanticScore": -0.051787,
+        "rainbowSimilarity": 0.222474
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210641425-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/05/25/4535401/original.jpg",
+        "semanticScore": -0.038151,
+        "rainbowSimilarity": 0.240787
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210641425-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/05/25/4535400/original.jpg",
+        "semanticScore": -0.042726,
+        "rainbowSimilarity": 0.193863
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210641425-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/05/25/4535402/original.jpg",
+        "semanticScore": -0.043078,
+        "rainbowSimilarity": 0.232125
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210641425-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/05/25/4535403/original.jpg",
+        "semanticScore": -0.015678,
+        "rainbowSimilarity": 0.259922
+      }
+    ],
+    "modelPeak": -0.015678,
+    "modelSecond": -0.038151,
+    "finalScore": -0.004739398138801816,
+    "pid": 210641425,
+    "country": "Nepal"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/09/06/4698945/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/09/06/4698947/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/09/06/4698946/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/09/06/4698948/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/09/06/4698949/original.jpg"
+    },
+    "local": "2025-09-06T17:56:00",
+    "sunElevation": 9.55,
+    "metadataScore": 1.95655525623599,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211347570-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/09/06/4698945/original.jpg",
+        "semanticScore": -0.03636,
+        "rainbowSimilarity": 0.257931
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211347570-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/09/06/4698947/original.jpg",
+        "semanticScore": -0.041691,
+        "rainbowSimilarity": 0.246612
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211347570-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/09/06/4698946/original.jpg",
+        "semanticScore": -0.023394,
+        "rainbowSimilarity": 0.252639
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211347570-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/09/06/4698948/original.jpg",
+        "semanticScore": -0.040874,
+        "rainbowSimilarity": 0.23434
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211347570-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/09/06/4698949/original.jpg",
+        "semanticScore": -0.030623,
+        "rainbowSimilarity": 0.24769
+      }
+    ],
+    "modelPeak": -0.023394,
+    "modelSecond": -0.030623,
+    "finalScore": -0.004763721156460156,
+    "pid": 211347570,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/05/23/4532935/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/05/23/4532937/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/05/23/4532936/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/05/23/4532938/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/05/23/4532939/original.jpg"
+    },
+    "local": "2025-05-23T06:16:00",
+    "sunElevation": 9.43,
+    "metadataScore": 1.9002330980438653,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210633385-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/05/23/4532935/original.jpg",
+        "semanticScore": -0.042204,
+        "rainbowSimilarity": 0.234964
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210633385-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/05/23/4532937/original.jpg",
+        "semanticScore": -0.041149,
+        "rainbowSimilarity": 0.232868
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210633385-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/05/23/4532936/original.jpg",
+        "semanticScore": -0.038068,
+        "rainbowSimilarity": 0.197798
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210633385-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/05/23/4532938/original.jpg",
+        "semanticScore": -0.043434,
+        "rainbowSimilarity": 0.237421
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210633385-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/05/23/4532939/original.jpg",
+        "semanticScore": -0.020515,
+        "rainbowSimilarity": 0.26305
+      }
+    ],
+    "modelPeak": -0.020515,
+    "modelSecond": -0.038068,
+    "finalScore": -0.005335303529342018,
+    "pid": 210633385,
+    "country": "Nepal"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/04/01/4963365/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/04/01/4963367/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/04/01/4963366/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/04/01/4963368/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/04/01/4963364/original.jpg"
+    },
+    "local": "2026-04-01T17:13:00",
+    "sunElevation": 12.85,
+    "metadataScore": 2.0498088554066145,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212334365-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/04/01/4963365/original.jpg",
+        "semanticScore": -0.025258,
+        "rainbowSimilarity": 0.261752
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212334365-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/04/01/4963367/original.jpg",
+        "semanticScore": -0.035878,
+        "rainbowSimilarity": 0.241766
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212334365-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/04/01/4963366/original.jpg",
+        "semanticScore": -0.036361,
+        "rainbowSimilarity": 0.249744
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212334365-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/04/01/4963368/original.jpg",
+        "semanticScore": -0.033766,
+        "rainbowSimilarity": 0.262915
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212334365-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/04/01/4963364/original.jpg",
+        "semanticScore": -0.034699,
+        "rainbowSimilarity": 0.25781
+      }
+    ],
+    "modelPeak": -0.025258,
+    "modelSecond": -0.033766,
+    "finalScore": -0.0063289671689007836,
+    "pid": 212334365,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/04/21/4469501/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/04/21/4469503/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/04/21/4469502/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/04/21/4469504/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/04/21/4469505/original.jpg"
+    },
+    "local": "2025-04-21T17:11:00",
+    "sunElevation": 18.46,
+    "metadataScore": 1.7818519467760334,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210499494-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/04/21/4469501/original.jpg",
+        "semanticScore": -0.021778,
+        "rainbowSimilarity": 0.250747
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210499494-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/04/21/4469503/original.jpg",
+        "semanticScore": -0.036762,
+        "rainbowSimilarity": 0.237148
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210499494-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/04/21/4469502/original.jpg",
+        "semanticScore": -0.038708,
+        "rainbowSimilarity": 0.188318
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210499494-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/04/21/4469504/original.jpg",
+        "semanticScore": -0.034592,
+        "rainbowSimilarity": 0.245263
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210499494-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/04/21/4469505/original.jpg",
+        "semanticScore": -0.033476,
+        "rainbowSimilarity": 0.243511
+      }
+    ],
+    "modelPeak": -0.021778,
+    "modelSecond": -0.033476,
+    "finalScore": -0.0067668207983595,
+    "pid": 210499494,
+    "country": "United Kingdom"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/07/13/4637032/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/07/13/4637034/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/07/13/4637033/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/07/13/4637035/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/07/13/4637036/original.jpg"
+    },
+    "local": "2025-07-13T17:25:00",
+    "sunElevation": 24.73,
+    "metadataScore": 1.6707152508436818,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211200875-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/07/13/4637032/original.jpg",
+        "semanticScore": -0.024064,
+        "rainbowSimilarity": 0.251657
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211200875-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/07/13/4637034/original.jpg",
+        "semanticScore": -0.023464,
+        "rainbowSimilarity": 0.236578
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211200875-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/07/13/4637033/original.jpg",
+        "semanticScore": -0.036359,
+        "rainbowSimilarity": 0.231967
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211200875-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/07/13/4637035/original.jpg",
+        "semanticScore": -0.036466,
+        "rainbowSimilarity": 0.222093
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211200875-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/07/13/4637036/original.jpg",
+        "semanticScore": -0.046631,
+        "rainbowSimilarity": 0.239662
+      }
+    ],
+    "modelPeak": -0.023464,
+    "modelSecond": -0.024064,
+    "finalScore": -0.006825671237344771,
+    "pid": 211200875,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/08/28/4690042/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/08/28/4690044/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/08/28/4690043/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/08/28/4690045/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/08/28/4690046/original.jpg"
+    },
+    "local": "2025-08-28T16:03:00",
+    "sunElevation": 22.55,
+    "metadataScore": 1.5207836570224065,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211326657-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/08/28/4690042/original.jpg",
+        "semanticScore": -0.022649,
+        "rainbowSimilarity": 0.247217
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211326657-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/08/28/4690044/original.jpg",
+        "semanticScore": -0.022259,
+        "rainbowSimilarity": 0.242772
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211326657-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/08/28/4690043/original.jpg",
+        "semanticScore": -0.030205,
+        "rainbowSimilarity": 0.247903
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211326657-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/08/28/4690045/original.jpg",
+        "semanticScore": -0.028498,
+        "rainbowSimilarity": 0.247726
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211326657-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/08/28/4690046/original.jpg",
+        "semanticScore": -0.02382,
+        "rainbowSimilarity": 0.241678
+      }
+    ],
+    "modelPeak": -0.022259,
+    "modelSecond": -0.022649,
+    "finalScore": -0.007374395144663905,
+    "pid": 211326657,
+    "country": "Belgium"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/05/19/5035641/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/05/19/5035643/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/05/19/5035642/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/05/19/5035644/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/05/19/5035645/original.jpg"
+    },
+    "local": "2026-05-19T17:53:00",
+    "sunElevation": 9.34,
+    "metadataScore": 1.694943992184953,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212495044-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/05/19/5035641/original.jpg",
+        "semanticScore": -0.020395,
+        "rainbowSimilarity": 0.256031
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212495044-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/05/19/5035643/original.jpg",
+        "semanticScore": -0.052021,
+        "rainbowSimilarity": 0.217329
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212495044-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/05/19/5035642/original.jpg",
+        "semanticScore": -0.038222,
+        "rainbowSimilarity": 0.227934
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212495044-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/05/19/5035644/original.jpg",
+        "semanticScore": -0.037587,
+        "rainbowSimilarity": 0.236105
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212495044-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/05/19/5035645/original.jpg",
+        "semanticScore": -0.046598,
+        "rainbowSimilarity": 0.23823
+      }
+    ],
+    "modelPeak": -0.020395,
+    "modelSecond": -0.037587,
+    "finalScore": -0.00812629011722571,
+    "pid": 212495044,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/06/14/4572471/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/06/14/4572473/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/06/14/4572472/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/06/14/4572474/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/06/14/4572475/original.jpg"
+    },
+    "local": "2025-06-14T19:16:00",
+    "sunElevation": 8.78,
+    "metadataScore": 1.9132456789014936,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210714624-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/06/14/4572471/original.jpg",
+        "semanticScore": -0.036829,
+        "rainbowSimilarity": 0.24997
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210714624-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/06/14/4572473/original.jpg",
+        "semanticScore": -0.03231,
+        "rainbowSimilarity": 0.260275
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210714624-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/06/14/4572472/original.jpg",
+        "semanticScore": -0.029945,
+        "rainbowSimilarity": 0.252173
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210714624-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/06/14/4572474/original.jpg",
+        "semanticScore": -0.031223,
+        "rainbowSimilarity": 0.265674
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210714624-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/06/14/4572475/original.jpg",
+        "semanticScore": -0.037904,
+        "rainbowSimilarity": 0.254487
+      }
+    ],
+    "modelPeak": -0.029945,
+    "modelSecond": -0.031223,
+    "finalScore": -0.012174364816477597,
+    "pid": 210714624,
+    "country": "United Kingdom"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/08/10/4672681/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/08/10/4672683/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/08/10/4672682/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/08/10/4672684/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/08/10/4672685/original.jpg"
+    },
+    "local": "2025-08-10T17:53:00",
+    "sunElevation": 11.08,
+    "metadataScore": 1.7698567741726952,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211285766-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/08/10/4672681/original.jpg",
+        "semanticScore": -0.053959,
+        "rainbowSimilarity": 0.229416
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211285766-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/08/10/4672683/original.jpg",
+        "semanticScore": -0.047059,
+        "rainbowSimilarity": 0.223408
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211285766-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/08/10/4672682/original.jpg",
+        "semanticScore": -0.034567,
+        "rainbowSimilarity": 0.247386
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211285766-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/08/10/4672684/original.jpg",
+        "semanticScore": -0.044432,
+        "rainbowSimilarity": 0.252196
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211285766-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/08/10/4672685/original.jpg",
+        "semanticScore": -0.028098,
+        "rainbowSimilarity": 0.241524
+      }
+    ],
+    "modelPeak": -0.028098,
+    "modelSecond": -0.034567,
+    "finalScore": -0.013648598387409575,
+    "pid": 211285766,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/04/14/4987988/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/04/14/4987990/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/04/14/4987989/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/04/14/4987991/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/04/14/4987992/original.jpg"
+    },
+    "local": "2026-04-14T16:30:00",
+    "sunElevation": 21.82,
+    "metadataScore": 1.7756965917761633,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212393498-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/04/14/4987988/original.jpg",
+        "semanticScore": -0.032382,
+        "rainbowSimilarity": 0.229641
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212393498-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/04/14/4987990/original.jpg",
+        "semanticScore": -0.039806,
+        "rainbowSimilarity": 0.250028
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212393498-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/04/14/4987989/original.jpg",
+        "semanticScore": -0.029833,
+        "rainbowSimilarity": 0.261644
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212393498-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/04/14/4987991/original.jpg",
+        "semanticScore": -0.037847,
+        "rainbowSimilarity": 0.21831
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212393498-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/04/14/4987992/original.jpg",
+        "semanticScore": -0.041564,
+        "rainbowSimilarity": 0.258114
+      }
+    ],
+    "modelPeak": -0.029833,
+    "modelSecond": -0.032382,
+    "finalScore": -0.014531251123357552,
+    "pid": 212393498,
+    "country": "Ecuador"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/09/22/4724843/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/09/22/4724845/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/09/22/4724844/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/09/22/4724846/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/09/22/4724847/original.jpg"
+    },
+    "local": "2025-09-22T06:02:00",
+    "sunElevation": 3.91,
+    "metadataScore": 1.7552318785339567,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211422676-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/09/22/4724843/original.jpg",
+        "semanticScore": -0.061694,
+        "rainbowSimilarity": 0.222946
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211422676-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/09/22/4724845/original.jpg",
+        "semanticScore": -0.038418,
+        "rainbowSimilarity": 0.237282
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211422676-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/09/22/4724844/original.jpg",
+        "semanticScore": -0.054232,
+        "rainbowSimilarity": 0.222108
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211422676-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/09/22/4724846/original.jpg",
+        "semanticScore": -0.029671,
+        "rainbowSimilarity": 0.240869
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211422676-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/09/22/4724847/original.jpg",
+        "semanticScore": -0.035421,
+        "rainbowSimilarity": 0.255064
+      }
+    ],
+    "modelPeak": -0.029671,
+    "modelSecond": -0.035421,
+    "finalScore": -0.015739871821990648,
+    "pid": 211422676,
+    "country": "India"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2026/07/22/5106157/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2026/07/22/5106159/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2026/07/22/5106158/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2026/07/22/5106160/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2026/07/22/5106161/original.jpg"
+    },
+    "local": "2026-07-22T18:26:00",
+    "sunElevation": 4.17,
+    "metadataScore": 1.575192975008508,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212656688-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2026/07/22/5106157/original.jpg",
+        "semanticScore": -0.029514,
+        "rainbowSimilarity": 0.24363
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212656688-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2026/07/22/5106159/original.jpg",
+        "semanticScore": -0.038835,
+        "rainbowSimilarity": 0.22927
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212656688-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2026/07/22/5106158/original.jpg",
+        "semanticScore": -0.036139,
+        "rainbowSimilarity": 0.24519
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212656688-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2026/07/22/5106160/original.jpg",
+        "semanticScore": -0.029975,
+        "rainbowSimilarity": 0.252786
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\212656688-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2026/07/22/5106161/original.jpg",
+        "semanticScore": -0.041373,
+        "rainbowSimilarity": 0.241175
+      }
+    ],
+    "modelPeak": -0.029514,
+    "modelSecond": -0.029975,
+    "finalScore": -0.01637735537487238,
+    "pid": 212656688,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/05/25/4535405/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/05/25/4535407/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/05/25/4535406/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/05/25/4535408/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/05/25/4535409/original.jpg"
+    },
+    "local": "2025-05-25T06:21:00",
+    "sunElevation": 10.61,
+    "metadataScore": 1.7540041275436453,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210641419-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/05/25/4535405/original.jpg",
+        "semanticScore": -0.049074,
+        "rainbowSimilarity": 0.227101
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210641419-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/05/25/4535407/original.jpg",
+        "semanticScore": -0.035026,
+        "rainbowSimilarity": 0.242854
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210641419-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/05/25/4535406/original.jpg",
+        "semanticScore": -0.037695,
+        "rainbowSimilarity": 0.218589
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210641419-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/05/25/4535408/original.jpg",
+        "semanticScore": -0.032768,
+        "rainbowSimilarity": 0.247237
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210641419-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/05/25/4535409/original.jpg",
+        "semanticScore": -0.04343,
+        "rainbowSimilarity": 0.246736
+      }
+    ],
+    "modelPeak": -0.032768,
+    "modelSecond": -0.035026,
+    "finalScore": -0.01871703808684532,
+    "pid": 210641419,
+    "country": "Nepal"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/06/21/4589719/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/06/21/4589721/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/06/21/4589720/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/06/21/4589722/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/06/21/4589723/original.jpg"
+    },
+    "local": "2025-06-21T18:17:00",
+    "sunElevation": 18.67,
+    "metadataScore": 1.8165218672827583,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210740671-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/06/21/4589719/original.jpg",
+        "semanticScore": -0.039243,
+        "rainbowSimilarity": 0.216779
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210740671-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/06/21/4589721/original.jpg",
+        "semanticScore": -0.050901,
+        "rainbowSimilarity": 0.235524
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210740671-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/06/21/4589720/original.jpg",
+        "semanticScore": -0.036383,
+        "rainbowSimilarity": 0.252897
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210740671-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/06/21/4589722/original.jpg",
+        "semanticScore": -0.044147,
+        "rainbowSimilarity": 0.248622
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\210740671-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/06/21/4589723/original.jpg",
+        "semanticScore": -0.040529,
+        "rainbowSimilarity": 0.252069
+      }
+    ],
+    "modelPeak": -0.036383,
+    "modelSecond": -0.039243,
+    "finalScore": -0.022870221990758624,
+    "pid": 210740671,
+    "country": "Italy"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/07/12/4665054/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/07/12/4665059/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/07/12/4665058/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/07/12/4665060/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/07/12/4665061/original.jpg"
+    },
+    "local": "2025-07-12T16:45:00",
+    "sunElevation": 24.79,
+    "metadataScore": 1.6167595556446737,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211267446-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/07/12/4665054/original.jpg",
+        "semanticScore": -0.070398,
+        "rainbowSimilarity": 0.176611
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211267446-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/07/12/4665059/original.jpg",
+        "semanticScore": -0.040456,
+        "rainbowSimilarity": 0.208184
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211267446-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/07/12/4665058/original.jpg",
+        "semanticScore": -0.042767,
+        "rainbowSimilarity": 0.225491
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211267446-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/07/12/4665060/original.jpg",
+        "semanticScore": -0.058327,
+        "rainbowSimilarity": 0.199361
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211267446-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/07/12/4665061/original.jpg",
+        "semanticScore": -0.065933,
+        "rainbowSimilarity": 0.177661
+      }
+    ],
+    "modelPeak": -0.040456,
+    "modelSecond": -0.042767,
+    "finalScore": -0.031173056665329896,
+    "pid": 211267446,
+    "country": "Thailand"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/08/17/4680580/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/08/17/4680582/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/08/17/4680581/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/08/17/4680583/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/08/17/4680584/original.jpg"
+    },
+    "local": "2025-08-17T17:16:00",
+    "sunElevation": 21.32,
+    "metadataScore": 1.6141745309559128,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211303984-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/08/17/4680580/original.jpg",
+        "semanticScore": -0.047788,
+        "rainbowSimilarity": 0.238478
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211303984-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/08/17/4680582/original.jpg",
+        "semanticScore": -0.0708,
+        "rainbowSimilarity": 0.188743
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211303984-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/08/17/4680581/original.jpg",
+        "semanticScore": -0.053801,
+        "rainbowSimilarity": 0.222694
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211303984-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/08/17/4680583/original.jpg",
+        "semanticScore": -0.043876,
+        "rainbowSimilarity": 0.234707
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211303984-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/08/17/4680584/original.jpg",
+        "semanticScore": -0.046482,
+        "rainbowSimilarity": 0.241394
+      }
+    ],
+    "modelPeak": -0.043876,
+    "modelSecond": -0.046482,
+    "finalScore": -0.035932082035661304,
+    "pid": 211303984,
+    "country": "United States"
+  },
+  {
+    "urls": {
+      "North": "https://data.globe.gov/system/photos/2025/10/19/4768850/original.jpg",
+      "East": "https://data.globe.gov/system/photos/2025/10/19/4768852/original.jpg",
+      "South": "https://data.globe.gov/system/photos/2025/10/19/4768851/original.jpg",
+      "West": "https://data.globe.gov/system/photos/2025/10/19/4768853/original.jpg",
+      "Upward": "https://data.globe.gov/system/photos/2025/10/19/4768854/original.jpg"
+    },
+    "local": "2025-10-19T17:19:00",
+    "sunElevation": 6.72,
+    "metadataScore": 1.5219202759376156,
+    "frames": [
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211530562-north.jpg",
+        "direction": "North",
+        "url": "https://data.globe.gov/system/photos/2025/10/19/4768850/original.jpg",
+        "semanticScore": -0.048468,
+        "rainbowSimilarity": 0.233209
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211530562-east.jpg",
+        "direction": "East",
+        "url": "https://data.globe.gov/system/photos/2025/10/19/4768852/original.jpg",
+        "semanticScore": -0.048502,
+        "rainbowSimilarity": 0.240228
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211530562-south.jpg",
+        "direction": "South",
+        "url": "https://data.globe.gov/system/photos/2025/10/19/4768851/original.jpg",
+        "semanticScore": -0.04759,
+        "rainbowSimilarity": 0.245972
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211530562-west.jpg",
+        "direction": "West",
+        "url": "https://data.globe.gov/system/photos/2025/10/19/4768853/original.jpg",
+        "semanticScore": -0.047165,
+        "rainbowSimilarity": 0.233992
+      },
+      {
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\globe\\images\\211530562-upward.jpg",
+        "direction": "Upward",
+        "url": "https://data.globe.gov/system/photos/2025/10/19/4768854/original.jpg",
+        "semanticScore": -0.045568,
+        "rainbowSimilarity": 0.240838
+      }
+    ],
+    "modelPeak": -0.045568,
+    "modelSecond": -0.047165,
+    "finalScore": -0.039246945860935765,
+    "pid": 211530562,
+    "country": "Brazil"
+  }
+]

@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 1,
+  "orientation": {
+    "sign": -1,
+    "offsetDeg": 254.97494434003312,
+    "medianResidualDeg": 2.2092237332034586
+  },
+  "rows": [
+    {
+      "candidateId": "ena-33-fullres",
+      "label": "no_rainbow",
+      "score": 6.16889,
+      "frameScores": [
+        6.16889,
+        1.66937,
+        1.3485,
+        0.83218,
+        0.87379
+      ]
+    },
+    {
+      "candidateId": "ena-93-fullres",
+      "label": "rainbow",
+      "score": 4.96563,
+      "frameScores": [
+        1.27378,
+        4.96563,
+        4.58308,
+        2.17474,
+        1.24425
+      ]
+    },
+    {
+      "candidateId": "ena-89-fullres",
+      "label": "rainbow",
+      "score": 4.51196,
+      "frameScores": [
+        1.82283,
+        2.06963,
+        4.18765,
+        4.51196,
+        4.40159
+      ]
+    },
+    {
+      "candidateId": "ena-48-fullres",
+      "label": "no_rainbow",
+      "score": 4.34779,
+      "frameScores": [
+        0.03743,
+        4.13139,
+        3.63965,
+        4.34779,
+        0.1622
+      ]
+    },
+    {
+      "candidateId": "ena-55-fullres",
+      "label": "no_rainbow",
+      "score": 4.12601,
+      "frameScores": [
+        0.28269,
+        1.10275,
+        4.12601,
+        1.76004,
+        1.64882
+      ]
+    },
+    {
+      "candidateId": "ena-26-fullres",
+      "label": "no_rainbow",
+      "score": 3.78713,
+      "frameScores": [
+        3.78713,
+        2.26659,
+        1.67694,
+        2.3999,
+        2.56639
+      ]
+    },
+    {
+      "candidateId": "ena-03-fullres",
+      "label": "rainbow",
+      "score": 3.30632,
+      "frameScores": [
+        3.30632,
+        2.53023,
+        1.73731,
+        0.11653,
+        0.46243
+      ]
+    },
+    {
+      "candidateId": "ena-56-fullres",
+      "label": "no_rainbow",
+      "score": 2.39382,
+      "frameScores": [
+        1.41678,
+        0.66966,
+        2.39382,
+        1.21738,
+        0.94826
+      ]
+    },
+    {
+      "candidateId": "ena-42-fullres",
+      "label": "rainbow",
+      "score": 1.84797,
+      "frameScores": [
+        0.58678,
+        1.84797,
+        0.62175,
+        0.4811,
+        0.53014
+      ]
+    },
+    {
+      "candidateId": "ena-41-fullres",
+      "label": "no_rainbow",
+      "score": 1.76329,
+      "frameScores": [
+        0.20922,
+        0.29939,
+        0.0071,
+        1.76329,
+        0.66836
+      ]
+    },
+    {
+      "candidateId": "ena-02-fullres",
+      "label": "rainbow",
+      "score": 1.28984,
+      "frameScores": [
+        0.0777,
+        0.03791,
+        1.28984,
+        0.15749,
+        0.01369
+      ]
+    },
+    {
+      "candidateId": "ena-27-fullres",
+      "label": "no_rainbow",
+      "score": 0.99082,
+      "frameScores": [
+        0.24912,
+        0.71938,
+        0.78043,
+        0.99082,
+        0.07024
+      ]
+    },
+    {
+      "candidateId": "ena-37-fullres",
+      "label": "no_rainbow",
+      "score": 0.79074,
+      "frameScores": [
+        0.43219,
+        0.55291,
+        0.32085,
+        0.79074,
+        0.232
+      ]
+    },
+    {
+      "candidateId": "ena-29-fullres",
+      "label": "rainbow",
+      "score": 0.74263,
+      "frameScores": [
+        0.59374,
+        0.46302,
+        0.47514,
+        0.57114,
+        0.74263
+      ]
+    },
+    {
+      "candidateId": "ena-46-fullres",
+      "label": "no_rainbow",
+      "score": 0.71215,
+      "frameScores": [
+        0.25522,
+        0.07702,
+        0.6477,
+        0.46579,
+        0.71215
+      ]
+    },
+    {
+      "candidateId": "ena-24-fullres",
+      "label": "no_rainbow",
+      "score": 0.54601,
+      "frameScores": [
+        0.15675,
+        0.54601,
+        0.38703,
+        0.20734,
+        0.41587
+      ]
+    },
+    {
+      "candidateId": "ena-30-fullres",
+      "label": "no_rainbow",
+      "score": 0.49774,
+      "frameScores": [
+        0.43434,
+        0.44655,
+        0.32632,
+        0.49774,
+        0.26076
+      ]
+    },
+    {
+      "candidateId": "ena-25-fullres",
+      "label": "no_rainbow",
+      "score": 0.31163,
+      "frameScores": [
+        0.10448,
+        0.14844,
+        0.13231,
+        0.14031,
+        0.31163
+      ]
+    },
+    {
+      "candidateId": "ena-07-fullres",
+      "label": "rainbow",
+      "score": 0.22678,
+      "frameScores": [
+        0.22678,
+        0.0,
+        0.01204,
+        0.07768,
+        0.15671
+      ]
+    },
+    {
+      "candidateId": "ena-88-fullres",
+      "label": "rainbow",
+      "score": 0.12123,
+      "frameScores": [
+        0.0488,
+        0.00249,
+        0.04769,
+        0.12123,
+        0.02264
+      ]
+    },
+    {
+      "candidateId": "ena-34-fullres",
+      "label": "no_rainbow",
+      "score": 0.08601,
+      "frameScores": [
+        0.01509,
+        0.08601,
+        0.01679,
+        0.0422,
+        0.06083
+      ]
+    },
+    {
+      "candidateId": "ena-60-fullres",
+      "label": "no_rainbow",
+      "score": 0.07828,
+      "frameScores": [
+        0.02718,
+        0.00532,
+        0.07828,
+        0.02746,
+        0.00513
+      ]
+    },
+    {
+      "candidateId": "ena-59-fullres",
+      "label": "no_rainbow",
+      "score": 0.03493,
+      "frameScores": [
+        0.0,
+        0.00434,
+        0.00684,
+        0.03493,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-22-fullres",
+      "label": "no_rainbow",
+      "score": 0.03428,
+      "frameScores": [
+        0.01618,
+        0.03292,
+        0.03428,
+        0.01907,
+        0.02692
+      ]
+    },
+    {
+      "candidateId": "ena-28-fullres",
+      "label": "no_rainbow",
+      "score": 0.03175,
+      "frameScores": [
+        0.02984,
+        0.0,
+        0.03175,
+        0.01416,
+        0.01589
+      ]
+    },
+    {
+      "candidateId": "ena-32-fullres",
+      "label": "no_rainbow",
+      "score": 0.02389,
+      "frameScores": [
+        0.00809,
+        0.02389,
+        0.01415,
+        0.02063,
+        0.01474
+      ]
+    },
+    {
+      "candidateId": "ena-36-fullres",
+      "label": "no_rainbow",
+      "score": 0.02126,
+      "frameScores": [
+        0.0,
+        0.02126,
+        0.00495,
+        0.00511,
+        0.00529
+      ]
+    },
+    {
+      "candidateId": "ena-47-fullres",
+      "label": "no_rainbow",
+      "score": 0.01267,
+      "frameScores": [
+        0.01123,
+        0.01267,
+        0.00254,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-45-fullres",
+      "label": "no_rainbow",
+      "score": 0.0126,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.00091,
+        0.0126,
+        0.00314
+      ]
+    },
+    {
+      "candidateId": "ena-43-fullres",
+      "label": "no_rainbow",
+      "score": 0.00792,
+      "frameScores": [
+        0.00073,
+        0.00792,
+        0.0,
+        0.0,
+        0.00265
+      ]
+    },
+    {
+      "candidateId": "ena-23-fullres",
+      "label": "no_rainbow",
+      "score": 0.0068,
+      "frameScores": [
+        0.00438,
+        0.0,
+        0.00678,
+        0.00207,
+        0.0068
+      ]
+    },
+    {
+      "candidateId": "ena-39-fullres",
+      "label": "no_rainbow",
+      "score": 0.00067,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.00067,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-21-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-31-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-35-fullres",
+      "label": "rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-38-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-40-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-49-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-50-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-51-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-52-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-53-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-54-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-57-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "candidateId": "ena-58-fullres",
+      "label": "no_rainbow",
+      "score": 0.0,
+      "frameScores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

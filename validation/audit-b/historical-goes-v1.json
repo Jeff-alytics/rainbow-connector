@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 1,
+  "fixtureId": "rainbow-positive-regression-v1",
+  "fixtureContentSha256": "6a4eb03a4bf05267202fb5baed799b5d2ee739b03e7e72647345ee0908fe2053",
+  "events": [
+    {
+      "eventId": "arm-lamont-039",
+      "targetAt": "2024-06-30T00:05:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-16",
+        "observedAt": "2024-06-30T00:00:21Z",
+        "sampleOffsetMinutes": -4.65,
+        "value": 113.99359130859375,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2024/182/00/OR_ABI-L2-DSRF-M6_G16_s20241820000211_e20241820009519_c20241820018176.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-16",
+        "observedAt": "2024-06-30T00:06:17Z",
+        "sampleOffsetMinutes": 1.28,
+        "value": 1,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2024/182/00/OR_ABI-L2-ACMC-M6_G16_s20241820006179_e20241820008552_c20241820009433.nc"
+      }
+    },
+    {
+      "eventId": "arm-lamont-012",
+      "targetAt": "2025-07-26T00:20:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-19",
+        "observedAt": "2025-07-26T00:20:20Z",
+        "sampleOffsetMinutes": 0.33,
+        "value": 117.47291564941406,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2025/207/00/OR_ABI-L2-DSRF-M6_G19_s20252070020206_e20252070029514_c20252070037200.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-19",
+        "observedAt": "2025-07-26T00:21:17Z",
+        "sampleOffsetMinutes": 1.28,
+        "value": 1,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2025/207/00/OR_ABI-L2-ACMC-M6_G19_s20252070021173_e20252070023547_c20252070025179.nc"
+      }
+    },
+    {
+      "eventId": "faa-faax-02",
+      "targetAt": "2026-06-30T00:55:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-19",
+        "observedAt": "2026-06-30T01:20:20Z",
+        "sampleOffsetMinutes": 25.33,
+        "value": 128.34579467773438,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/181/01/OR_ABI-L2-DSRF-M6_G19_s20261810120209_e20261810129517_c20261810136590.nc"
+      },
+      "goesAcmc": {
+        "available": false,
+        "product": "ABI-L2-ACMC",
+        "reason": "no scan within 30 minutes"
+      }
+    },
+    {
+      "eventId": "faa-faax-04",
+      "targetAt": "2026-06-30T22:53:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-19",
+        "observedAt": "2026-06-30T22:50:21Z",
+        "sampleOffsetMinutes": -2.65,
+        "value": 130.42881774902344,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/181/22/OR_ABI-L2-DSRF-M6_G19_s20261812250210_e20261812259518_c20261812307433.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-19",
+        "observedAt": "2026-06-30T22:51:17Z",
+        "sampleOffsetMinutes": -1.72,
+        "value": 1,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2026/181/22/OR_ABI-L2-ACMC-M6_G19_s20261812251178_e20261812253551_c20261812255158.nc"
+      }
+    },
+    {
+      "eventId": "faa-faa-01",
+      "targetAt": "2026-07-08T00:55:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-19",
+        "observedAt": "2026-07-08T00:50:20Z",
+        "sampleOffsetMinutes": -4.67,
+        "value": 154.78407287597656,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/189/00/OR_ABI-L2-DSRF-M6_G19_s20261890050203_e20261890059511_c20261890106580.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-19",
+        "observedAt": "2026-07-08T00:56:17Z",
+        "sampleOffsetMinutes": 1.28,
+        "value": 1,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2026/189/00/OR_ABI-L2-ACMC-M6_G19_s20261890056171_e20261890058544_c20261890100094.nc"
+      }
+    },
+    {
+      "eventId": "faa-faa-07",
+      "targetAt": "2026-07-09T01:53:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-09T01:50:20Z",
+        "sampleOffsetMinutes": -2.67,
+        "value": 60.911033630371094,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/190/01/OR_ABI-L2-DSRF-M6_G18_s20261900150208_e20261900159517_c20261900207037.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-09T01:51:17Z",
+        "sampleOffsetMinutes": -1.72,
+        "value": 1,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2026/190/01/OR_ABI-L2-ACMC-M6_G18_s20261900151176_e20261900153549_c20261900155133.nc"
+      }
+    },
+    {
+      "eventId": "faa-faan-01",
+      "targetAt": "2026-07-18T01:51:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-18T01:50:23Z",
+        "sampleOffsetMinutes": -0.62,
+        "value": 127.65908813476562,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/199/01/OR_ABI-L2-DSRF-M6_G18_s20261990150230_e20261990159539_c20261990205295.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-18T01:51:19Z",
+        "sampleOffsetMinutes": 0.32,
+        "value": 0,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2026/199/01/OR_ABI-L2-ACMC-M6_G18_s20261990151198_e20261990153571_c20261990154337.nc"
+      }
+    },
+    {
+      "eventId": "faa-faax-03",
+      "targetAt": "2026-07-22T22:53:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-19",
+        "observedAt": "2026-07-22T22:50:20Z",
+        "sampleOffsetMinutes": -2.67,
+        "value": 8.286280632019043,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/203/22/OR_ABI-L2-DSRF-M6_G19_s20262032250204_e20262032259513_c20262032306151.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-19",
+        "observedAt": "2026-07-22T22:51:17Z",
+        "sampleOffsetMinutes": -1.72,
+        "value": 1,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2026/203/22/OR_ABI-L2-ACMC-M6_G19_s20262032251172_e20262032253545_c20262032254272.nc"
+      }
+    },
+    {
+      "eventId": "faa-faa-06",
+      "targetAt": "2026-07-23T00:45:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-23T00:40:20Z",
+        "sampleOffsetMinutes": -4.67,
+        "value": 72.85975646972656,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/204/00/OR_ABI-L2-DSRF-M6_G18_s20262040040207_e20262040049516_c20262040055216.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-23T00:46:17Z",
+        "sampleOffsetMinutes": 1.28,
+        "value": 1,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2026/204/00/OR_ABI-L2-ACMC-M6_G18_s20262040046175_e20262040048548_c20262040049283.nc"
+      }
+    },
+    {
+      "eventId": "faa-faa-03",
+      "targetAt": "2026-07-24T00:55:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-24T00:50:20Z",
+        "sampleOffsetMinutes": -4.67,
+        "value": null,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/205/00/OR_ABI-L2-DSRF-M6_G18_s20262050050209_e20262050059518_c20262050105225.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-24T00:56:17Z",
+        "sampleOffsetMinutes": 1.28,
+        "value": 1,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2026/205/00/OR_ABI-L2-ACMC-M6_G18_s20262050056177_e20262050058551_c20262050059278.nc"
+      }
+    },
+    {
+      "eventId": "faa-faax-01",
+      "targetAt": "2026-07-26T01:55:00Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-26T01:50:21Z",
+        "sampleOffsetMinutes": -4.65,
+        "value": null,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/207/01/OR_ABI-L2-DSRF-M6_G18_s20262070150213_e20262070159522_c20262070204347.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-26T01:56:18Z",
+        "sampleOffsetMinutes": 1.3,
+        "value": null,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2026/207/01/OR_ABI-L2-ACMC-M6_G18_s20262070156181_e20262070158554_c20262070159096.nc"
+      }
+    },
+    {
+      "eventId": "production-bozeman-pass-20260727",
+      "targetAt": "2026-07-27T01:10:54.716000Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-27T01:10:21Z",
+        "sampleOffsetMinutes": -0.56,
+        "value": 270.0823974609375,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/208/01/OR_ABI-L2-DSRF-M6_G18_s20262080110215_e20262080119524_c20262080125187.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-27T01:11:18Z",
+        "sampleOffsetMinutes": 0.39,
+        "value": 0,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2026/208/01/OR_ABI-L2-ACMC-M6_G18_s20262080111183_e20262080113556_c20262080114303.nc"
+      }
+    },
+    {
+      "eventId": "production-delano-20260729",
+      "targetAt": "2026-07-29T02:20:24.778000Z",
+      "goesDsrf": {
+        "available": true,
+        "product": "ABI-L2-DSRF",
+        "variable": "DSR",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-29T02:20:21Z",
+        "sampleOffsetMinutes": -0.06,
+        "value": 24.01190185546875,
+        "units": "W m-2",
+        "s3Key": "ABI-L2-DSRF/2026/210/02/OR_ABI-L2-DSRF-M6_G18_s20262100220219_e20262100229527_c20262100235169.nc"
+      },
+      "goesAcmc": {
+        "available": true,
+        "product": "ABI-L2-ACMC",
+        "variable": "BCM",
+        "satellite": "GOES-18",
+        "observedAt": "2026-07-29T02:21:18Z",
+        "sampleOffsetMinutes": 0.89,
+        "value": 1,
+        "units": "1",
+        "s3Key": "ABI-L2-ACMC/2026/210/02/OR_ABI-L2-ACMC-M6_G18_s20262100221187_e20262100223560_c20262100224293.nc"
+      }
+    }
+  ],
+  "contentSha256": "f3c42bb91512ea3634a6e9dae625de60a89ff3d93e8bfeff0a31efd9b00376f5"
+}

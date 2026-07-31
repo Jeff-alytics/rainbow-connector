@@ -1,0 +1,3118 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Diagnostic regional replay; classify Person County independently from Baltimore.",
+  "place": {
+    "name": "Person County",
+    "lat": 36.39,
+    "lon": -78.98,
+    "uncertaintyKm": 25
+  },
+  "fallbackNearMissDefinition": {
+    "radarScoreBand": [
+      80,
+      90
+    ],
+    "rainDistanceBandKm": [
+      15,
+      40
+    ],
+    "note": "Logged for evaluation; not an automatic acceptance rule."
+  },
+  "summary": {
+    "stride10Nearest": {
+      "distanceKm": 3.6,
+      "rank": null,
+      "observerLat": 36.4223,
+      "observerLon": -78.9778,
+      "rainLat": 36.395,
+      "rainLon": -78.895,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 2.5,
+      "sunElevationDeg": 2.07,
+      "radarScore": 54.2,
+      "observerRainRateMmHr": 0.0
+    },
+    "stride5Nearest": {
+      "distanceKm": 2.0,
+      "rank": null,
+      "observerLat": 36.3723,
+      "observerLon": -78.9778,
+      "rainLat": 36.345,
+      "rainLon": -78.895,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 6.9,
+      "sunElevationDeg": 2.05,
+      "radarScore": 61.9,
+      "observerRainRateMmHr": 0.0
+    },
+    "stride2Nearest": {
+      "distanceKm": 1.0,
+      "rank": null,
+      "observerLat": 36.3863,
+      "observerLon": -78.9902,
+      "rainLat": 36.335,
+      "rainLon": -78.835,
+      "rainDistanceKm": 15,
+      "rainRateMmHr": 3.7,
+      "sunElevationDeg": 2.0,
+      "radarScore": 60.5,
+      "observerRainRateMmHr": 0.0
+    },
+    "stride1Nearest": {
+      "distanceKm": 3.4,
+      "rank": null,
+      "observerLat": 36.4163,
+      "observerLon": -79.0002,
+      "rainLat": 36.365,
+      "rainLon": -78.845,
+      "rainDistanceKm": 15,
+      "rainRateMmHr": 4.5,
+      "sunElevationDeg": 2.02,
+      "radarScore": 61.8,
+      "observerRainRateMmHr": 0.0
+    }
+  },
+  "scans": [
+    {
+      "observedAt": "2026-07-28T23:20:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-232000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 15,
+          "nearest": {
+            "distanceKm": 54.3,
+            "rank": null,
+            "observerLat": 36.1137,
+            "observerLon": -79.4811,
+            "rainLat": 36.095,
+            "rainLon": -79.395,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 6.5,
+            "sunElevationDeg": 11.91,
+            "radarScore": 99.2,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 58.9,
+              "rank": null,
+              "observerLat": 36.4888,
+              "observerLon": -79.6273,
+              "rainLat": 36.395,
+              "rainLon": -79.195,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 0.5,
+              "sunElevationDeg": 11.83,
+              "radarScore": 72.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 59.3,
+              "rank": null,
+              "observerLat": 35.9542,
+              "observerLon": -79.3632,
+              "rainLat": 35.895,
+              "rainLon": -79.095,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 3.5,
+              "sunElevationDeg": 11.62,
+              "radarScore": 96.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 78.9,
+              "rank": null,
+              "observerLat": 36.588,
+              "observerLon": -79.8281,
+              "rainLat": 36.495,
+              "rainLon": -79.395,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 5.3,
+              "sunElevationDeg": 12.01,
+              "radarScore": 99.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 136.5,
+              "rank": null,
+              "observerLat": 35.3302,
+              "observerLon": -79.7549,
+              "rainLat": 35.295,
+              "rainLon": -79.595,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.1,
+              "sunElevationDeg": 11.86,
+              "radarScore": 88.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 155.8,
+              "rank": null,
+              "observerLat": 35.6522,
+              "observerLon": -80.4629,
+              "rainLat": 35.595,
+              "rainLon": -80.195,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 4.5,
+              "sunElevationDeg": 12.41,
+              "radarScore": 99.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 164.5,
+              "rank": null,
+              "observerLat": 35.2531,
+              "observerLon": -80.1613,
+              "rainLat": 35.195,
+              "rainLon": -79.895,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 2.6,
+              "sunElevationDeg": 12.07,
+              "radarScore": 92.2,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 81,
+            "rainEdgeCells": 75,
+            "lowSunRainEdges": 75,
+            "dryObserverSeeds": 55,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 15
+          }
+        },
+        "5": {
+          "regionalSeedCount": 23,
+          "nearest": {
+            "distanceKm": 32.5,
+            "rank": null,
+            "observerLat": 36.4637,
+            "observerLon": -79.3315,
+            "rainLat": 36.445,
+            "rainLon": -79.245,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 1.2,
+            "sunElevationDeg": 11.88,
+            "radarScore": 81.3,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 32.5,
+              "rank": null,
+              "observerLat": 36.4637,
+              "observerLon": -79.3315,
+              "rainLat": 36.445,
+              "rainLon": -79.245,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.2,
+              "sunElevationDeg": 11.88,
+              "radarScore": 81.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 78.9,
+              "rank": null,
+              "observerLat": 36.588,
+              "observerLon": -79.8281,
+              "rainLat": 36.495,
+              "rainLon": -79.395,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 5.3,
+              "sunElevationDeg": 12.01,
+              "radarScore": 99.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 152.0,
+              "rank": null,
+              "observerLat": 35.6523,
+              "observerLon": -80.4129,
+              "rainLat": 35.595,
+              "rainLon": -80.145,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 5.9,
+              "sunElevationDeg": 12.37,
+              "radarScore": 99.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 164.5,
+              "rank": null,
+              "observerLat": 35.2531,
+              "observerLon": -80.1613,
+              "rainLat": 35.195,
+              "rainLon": -79.895,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 2.6,
+              "sunElevationDeg": 12.07,
+              "radarScore": 92.2,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 213.7,
+              "rank": null,
+              "observerLat": 35.5351,
+              "observerLon": -81.1233,
+              "rainLat": 35.445,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.9,
+              "sunElevationDeg": 12.76,
+              "radarScore": 88.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 229.7,
+              "rank": null,
+              "observerLat": 37.6994,
+              "observerLon": -80.971,
+              "rainLat": 37.645,
+              "rainLon": -80.695,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 0.4,
+              "sunElevationDeg": 13.3,
+              "radarScore": 72.3,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 309,
+            "rainEdgeCells": 230,
+            "lowSunRainEdges": 230,
+            "dryObserverSeeds": 184,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 23
+          }
+        },
+        "2": {
+          "regionalSeedCount": 31,
+          "nearest": {
+            "distanceKm": 31.9,
+            "rank": null,
+            "observerLat": 36.4737,
+            "observerLon": -79.3215,
+            "rainLat": 36.455,
+            "rainLon": -79.235,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 1.4,
+            "sunElevationDeg": 11.88,
+            "radarScore": 83.2,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 31.9,
+              "rank": null,
+              "observerLat": 36.4737,
+              "observerLon": -79.3215,
+              "rainLat": 36.455,
+              "rainLon": -79.235,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 11.88,
+              "radarScore": 83.2,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 44.5,
+              "rank": null,
+              "observerLat": 35.9941,
+              "observerLon": -78.9009,
+              "rainLat": 35.975,
+              "rainLon": -78.815,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 11.42,
+              "radarScore": 83.2,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 50.6,
+              "rank": null,
+              "observerLat": 36.3535,
+              "observerLon": -79.5448,
+              "rainLat": 36.295,
+              "rainLon": -79.275,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 8.9,
+              "sunElevationDeg": 11.87,
+              "radarScore": 99.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 73.7,
+              "rank": null,
+              "observerLat": 36.2335,
+              "observerLon": -79.7813,
+              "rainLat": 36.215,
+              "rainLon": -79.695,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.8,
+              "sunElevationDeg": 12.17,
+              "radarScore": 86.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 86.4,
+              "rank": null,
+              "observerLat": 36.3679,
+              "observerLon": -79.9469,
+              "rainLat": 36.275,
+              "rainLon": -79.515,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 7.1,
+              "sunElevationDeg": 12.05,
+              "radarScore": 99.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 105.9,
+              "rank": null,
+              "observerLat": 35.7336,
+              "observerLon": -79.8408,
+              "rainLat": 35.715,
+              "rainLon": -79.755,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.1,
+              "sunElevationDeg": 12.09,
+              "radarScore": 89.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 114.4,
+              "rank": null,
+              "observerLat": 35.8134,
+              "observerLon": -80.0409,
+              "rainLat": 35.795,
+              "rainLon": -79.955,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 12.27,
+              "radarScore": 84.6,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 124.2,
+              "rank": null,
+              "observerLat": 35.4138,
+              "observerLon": -79.6604,
+              "rainLat": 35.395,
+              "rainLon": -79.575,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 11.87,
+              "radarScore": 83.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 145.0,
+              "rank": null,
+              "observerLat": 35.2537,
+              "observerLon": -79.7802,
+              "rainLat": 35.235,
+              "rainLon": -79.695,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.1,
+              "sunElevationDeg": 11.92,
+              "radarScore": 88.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 171.3,
+              "rank": null,
+              "observerLat": 35.4932,
+              "observerLon": -80.5406,
+              "rainLat": 35.475,
+              "rainLon": -80.455,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.0,
+              "sunElevationDeg": 12.58,
+              "radarScore": 88.8,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 1929,
+            "rainEdgeCells": 858,
+            "lowSunRainEdges": 858,
+            "dryObserverSeeds": 728,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 31
+          }
+        },
+        "1": {
+          "regionalSeedCount": 31,
+          "nearest": {
+            "distanceKm": 27.9,
+            "rank": null,
+            "observerLat": 36.3738,
+            "observerLon": -79.2914,
+            "rainLat": 36.355,
+            "rainLon": -79.205,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 8.9,
+            "sunElevationDeg": 11.83,
+            "radarScore": 99.0,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 44.5,
+              "rank": null,
+              "observerLat": 35.9941,
+              "observerLon": -78.9009,
+              "rainLat": 35.975,
+              "rainLon": -78.815,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 11.42,
+              "radarScore": 83.2,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 70.8,
+              "rank": null,
+              "observerLat": 36.2298,
+              "observerLon": -79.7468,
+              "rainLat": 36.195,
+              "rainLon": -79.585,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 1.1,
+              "sunElevationDeg": 12.08,
+              "radarScore": 80.5,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 86.6,
+              "rank": null,
+              "observerLat": 36.3379,
+              "observerLon": -79.9467,
+              "rainLat": 36.245,
+              "rainLon": -79.515,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 3.9,
+              "sunElevationDeg": 12.04,
+              "radarScore": 98.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 108.1,
+              "rank": null,
+              "observerLat": 35.7136,
+              "observerLon": -79.8508,
+              "rainLat": 35.695,
+              "rainLon": -79.765,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 12.09,
+              "radarScore": 84.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 121.9,
+              "rank": null,
+              "observerLat": 36.3524,
+              "observerLon": -77.6162,
+              "rainLat": 36.315,
+              "rainLon": -77.455,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.7,
+              "sunElevationDeg": 10.46,
+              "radarScore": 89.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 125.1,
+              "rank": null,
+              "observerLat": 35.4237,
+              "observerLon": -79.7004,
+              "rainLat": 35.405,
+              "rainLon": -79.615,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.2,
+              "sunElevationDeg": 11.9,
+              "radarScore": 81.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 145.0,
+              "rank": null,
+              "observerLat": 35.2537,
+              "observerLon": -79.7802,
+              "rainLat": 35.235,
+              "rainLon": -79.695,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.1,
+              "sunElevationDeg": 11.92,
+              "radarScore": 88.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 171.3,
+              "rank": null,
+              "observerLat": 35.4932,
+              "observerLon": -80.5406,
+              "rainLat": 35.475,
+              "rainLon": -80.455,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.0,
+              "sunElevationDeg": 12.58,
+              "radarScore": 88.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 201.8,
+              "rank": null,
+              "observerLat": 35.5355,
+              "observerLon": -80.9731,
+              "rainLat": 35.445,
+              "rainLon": -80.545,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 12.64,
+              "radarScore": 84.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 203.2,
+              "rank": null,
+              "observerLat": 35.0433,
+              "observerLon": -80.5201,
+              "rainLat": 35.025,
+              "rainLon": -80.435,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 12.45,
+              "radarScore": 84.7,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 7731,
+            "rainEdgeCells": 2061,
+            "lowSunRainEdges": 2061,
+            "dryObserverSeeds": 1773,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 31
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T23:30:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-233000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 21,
+          "nearest": {
+            "distanceKm": 42.5,
+            "rank": null,
+            "observerLat": 36.0158,
+            "observerLon": -78.8803,
+            "rainLat": 35.995,
+            "rainLon": -78.795,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 0.4,
+            "sunElevationDeg": 9.47,
+            "radarScore": 64.4,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 54.0,
+              "rank": null,
+              "observerLat": 35.9596,
+              "observerLon": -79.2614,
+              "rainLat": 35.895,
+              "rainLon": -78.995,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 2.7,
+              "sunElevationDeg": 9.6,
+              "radarScore": 86.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 67.5,
+              "rank": null,
+              "observerLat": 36.6151,
+              "observerLon": -79.6812,
+              "rainLat": 36.595,
+              "rainLon": -79.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.6,
+              "sunElevationDeg": 10.26,
+              "radarScore": 87.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 134.0,
+              "rank": null,
+              "observerLat": 36.4166,
+              "observerLon": -77.4804,
+              "rainLat": 36.395,
+              "rainLon": -77.395,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 11.1,
+              "sunElevationDeg": 8.51,
+              "radarScore": 87.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 141.8,
+              "rank": null,
+              "observerLat": 35.2334,
+              "observerLon": -79.6536,
+              "rainLat": 35.195,
+              "rainLon": -79.495,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.4,
+              "sunElevationDeg": 9.79,
+              "radarScore": 84.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 197.5,
+              "rank": null,
+              "observerLat": 35.1952,
+              "observerLon": -80.6181,
+              "rainLat": 35.095,
+              "rainLon": -80.195,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 0.3,
+              "sunElevationDeg": 10.31,
+              "radarScore": 65.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 206.4,
+              "rank": null,
+              "observerLat": 35.693,
+              "observerLon": -81.1215,
+              "rainLat": 35.595,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 10.84,
+              "radarScore": 80.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 215.6,
+              "rank": null,
+              "observerLat": 35.4932,
+              "observerLon": -81.1203,
+              "rainLat": 35.395,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 2.0,
+              "sunElevationDeg": 10.78,
+              "radarScore": 85.6,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 86,
+            "rainEdgeCells": 82,
+            "lowSunRainEdges": 82,
+            "dryObserverSeeds": 62,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 21
+          }
+        },
+        "5": {
+          "regionalSeedCount": 25,
+          "nearest": {
+            "distanceKm": 30.2,
+            "rank": null,
+            "observerLat": 36.2655,
+            "observerLon": -79.2807,
+            "rainLat": 36.245,
+            "rainLon": -79.195,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 1.7,
+            "sunElevationDeg": 9.85,
+            "radarScore": 80.1,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 30.2,
+              "rank": null,
+              "observerLat": 36.2655,
+              "observerLon": -79.2807,
+              "rainLat": 36.245,
+              "rainLon": -79.195,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.7,
+              "sunElevationDeg": 9.85,
+              "radarScore": 80.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 53.8,
+              "rank": null,
+              "observerLat": 36.5086,
+              "observerLon": -79.5636,
+              "rainLat": 36.445,
+              "rainLon": -79.295,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 6.6,
+              "sunElevationDeg": 9.98,
+              "radarScore": 94.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 54.0,
+              "rank": null,
+              "observerLat": 35.9596,
+              "observerLon": -79.2614,
+              "rainLat": 35.895,
+              "rainLon": -78.995,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 2.7,
+              "sunElevationDeg": 9.6,
+              "radarScore": 86.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 117.7,
+              "rank": null,
+              "observerLat": 36.5665,
+              "observerLon": -77.6806,
+              "rainLat": 36.545,
+              "rainLon": -77.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 8.3,
+              "sunElevationDeg": 8.71,
+              "radarScore": 88.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 129.6,
+              "rank": null,
+              "observerLat": 36.4166,
+              "observerLon": -77.5304,
+              "rainLat": 36.395,
+              "rainLon": -77.445,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 5.5,
+              "sunElevationDeg": 8.55,
+              "radarScore": 88.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 141.8,
+              "rank": null,
+              "observerLat": 35.2334,
+              "observerLon": -79.6536,
+              "rainLat": 35.195,
+              "rainLon": -79.495,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.4,
+              "sunElevationDeg": 9.79,
+              "radarScore": 84.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 206.4,
+              "rank": null,
+              "observerLat": 35.693,
+              "observerLon": -81.1215,
+              "rainLat": 35.595,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 10.84,
+              "radarScore": 80.9,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 325,
+            "rainEdgeCells": 233,
+            "lowSunRainEdges": 233,
+            "dryObserverSeeds": 175,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 25
+          }
+        },
+        "2": {
+          "regionalSeedCount": 32,
+          "nearest": {
+            "distanceKm": 27.7,
+            "rank": null,
+            "observerLat": 36.4954,
+            "observerLon": -79.261,
+            "rainLat": 36.475,
+            "rainLon": -79.175,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 0.2,
+            "sunElevationDeg": 9.9,
+            "radarScore": 62.7,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 28.1,
+              "rank": null,
+              "observerLat": 36.2755,
+              "observerLon": -79.2607,
+              "rainLat": 36.255,
+              "rainLon": -79.175,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.3,
+              "sunElevationDeg": 9.84,
+              "radarScore": 84.5,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 75.4,
+              "rank": null,
+              "observerLat": 36.1751,
+              "observerLon": -79.7807,
+              "rainLat": 36.155,
+              "rainLon": -79.695,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.0,
+              "sunElevationDeg": 10.21,
+              "radarScore": 83.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 114.8,
+              "rank": null,
+              "observerLat": 36.5964,
+              "observerLon": -77.7207,
+              "rainLat": 36.575,
+              "rainLon": -77.635,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 14.8,
+              "sunElevationDeg": 8.75,
+              "radarScore": 88.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 130.5,
+              "rank": null,
+              "observerLat": 36.4166,
+              "observerLon": -77.5204,
+              "rainLat": 36.395,
+              "rainLon": -77.435,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 6.3,
+              "sunElevationDeg": 8.54,
+              "radarScore": 88.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 131.9,
+              "rank": null,
+              "observerLat": 36.2166,
+              "observerLon": -77.5202,
+              "rainLat": 36.195,
+              "rainLon": -77.435,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 6.0,
+              "sunElevationDeg": 8.48,
+              "radarScore": 87.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 140.3,
+              "rank": null,
+              "observerLat": 35.6525,
+              "observerLon": -80.2547,
+              "rainLat": 35.615,
+              "rainLon": -80.095,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.6,
+              "sunElevationDeg": 10.37,
+              "radarScore": 88.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 145.2,
+              "rank": null,
+              "observerLat": 36.6966,
+              "observerLon": -77.4007,
+              "rainLat": 36.675,
+              "rainLon": -77.315,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 3.8,
+              "sunElevationDeg": 8.53,
+              "radarScore": 87.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 163.3,
+              "rank": null,
+              "observerLat": 35.1586,
+              "observerLon": -79.9791,
+              "rainLat": 35.095,
+              "rainLon": -79.715,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 2.5,
+              "sunElevationDeg": 9.93,
+              "radarScore": 86.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 193.4,
+              "rank": null,
+              "observerLat": 35.4918,
+              "observerLon": -80.8346,
+              "rainLat": 35.455,
+              "rainLon": -80.675,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 10.78,
+              "radarScore": 81.6,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 198.7,
+              "rank": null,
+              "observerLat": 35.0975,
+              "observerLon": -80.5193,
+              "rainLat": 35.035,
+              "rainLon": -80.255,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 1.2,
+              "sunElevationDeg": 10.34,
+              "radarScore": 77.4,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 2005,
+            "rainEdgeCells": 841,
+            "lowSunRainEdges": 841,
+            "dryObserverSeeds": 669,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 32
+          }
+        },
+        "1": {
+          "regionalSeedCount": 32,
+          "nearest": {
+            "distanceKm": 16.4,
+            "rank": null,
+            "observerLat": 36.3655,
+            "observerLon": -79.1608,
+            "rainLat": 36.345,
+            "rainLon": -79.075,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 1.1,
+            "sunElevationDeg": 9.79,
+            "radarScore": 74.4,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 57.9,
+              "rank": null,
+              "observerLat": 35.9155,
+              "observerLon": -79.2503,
+              "rainLat": 35.895,
+              "rainLon": -79.165,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.6,
+              "sunElevationDeg": 9.73,
+              "radarScore": 85.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 116.8,
+              "rank": null,
+              "observerLat": 36.6064,
+              "observerLon": -77.7007,
+              "rainLat": 36.585,
+              "rainLon": -77.615,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 5.0,
+              "sunElevationDeg": 8.73,
+              "radarScore": 88.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 128.6,
+              "rank": null,
+              "observerLat": 36.3766,
+              "observerLon": -77.5404,
+              "rainLat": 36.355,
+              "rainLon": -77.455,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 7.1,
+              "sunElevationDeg": 8.54,
+              "radarScore": 88.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 139.4,
+              "rank": null,
+              "observerLat": 36.5366,
+              "observerLon": -77.4305,
+              "rainLat": 36.515,
+              "rainLon": -77.345,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 4.8,
+              "sunElevationDeg": 8.5,
+              "radarScore": 87.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 145.9,
+              "rank": null,
+              "observerLat": 35.6176,
+              "observerLon": -80.3009,
+              "rainLat": 35.555,
+              "rainLon": -80.035,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 2.4,
+              "sunElevationDeg": 10.31,
+              "radarScore": 86.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 163.3,
+              "rank": null,
+              "observerLat": 35.1586,
+              "observerLon": -79.9791,
+              "rainLat": 35.095,
+              "rainLon": -79.715,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 2.5,
+              "sunElevationDeg": 9.93,
+              "radarScore": 86.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 173.7,
+              "rank": null,
+              "observerLat": 35.4148,
+              "observerLon": -80.5,
+              "rainLat": 35.395,
+              "rainLon": -80.415,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.5,
+              "sunElevationDeg": 10.56,
+              "radarScore": 88.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 199.6,
+              "rank": null,
+              "observerLat": 35.4839,
+              "observerLon": -80.91,
+              "rainLat": 35.385,
+              "rainLon": -80.485,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 2.5,
+              "sunElevationDeg": 10.61,
+              "radarScore": 88.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 203.5,
+              "rank": null,
+              "observerLat": 35.7031,
+              "observerLon": -81.0915,
+              "rainLat": 35.605,
+              "rainLon": -80.665,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 0.6,
+              "sunElevationDeg": 10.82,
+              "radarScore": 72.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 209.5,
+              "rank": null,
+              "observerLat": 37.6442,
+              "observerLon": -80.7327,
+              "rainLat": 37.625,
+              "rainLon": -80.645,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 11.34,
+              "radarScore": 82.2,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 7919,
+            "rainEdgeCells": 2020,
+            "lowSunRainEdges": 2020,
+            "dryObserverSeeds": 1670,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 32
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T23:40:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-234000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 22,
+          "nearest": {
+            "distanceKm": 30.3,
+            "rank": null,
+            "observerLat": 36.5171,
+            "observerLon": -79.2803,
+            "rainLat": 36.495,
+            "rainLon": -79.195,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 9.8,
+            "sunElevationDeg": 8.0,
+            "radarScore": 85.4,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 30.3,
+              "rank": null,
+              "observerLat": 36.5171,
+              "observerLon": -79.2803,
+              "rainLat": 36.495,
+              "rainLon": -79.195,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 9.8,
+              "sunElevationDeg": 8.0,
+              "radarScore": 85.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 57.0,
+              "rank": null,
+              "observerLat": 36.2169,
+              "observerLon": -79.5801,
+              "rainLat": 36.195,
+              "rainLon": -79.495,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 5.5,
+              "sunElevationDeg": 8.14,
+              "radarScore": 86.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 57.7,
+              "rank": null,
+              "observerLat": 36.0364,
+              "observerLon": -79.454,
+              "rainLat": 35.995,
+              "rainLon": -79.295,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 7.8,
+              "sunElevationDeg": 7.92,
+              "radarScore": 85.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 66.2,
+              "rank": null,
+              "observerLat": 36.4052,
+              "observerLon": -79.7207,
+              "rainLat": 36.295,
+              "rainLon": -79.295,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 8.8,
+              "sunElevationDeg": 8.02,
+              "radarScore": 85.5,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 83.2,
+              "rank": null,
+              "observerLat": 35.817,
+              "observerLon": -79.5796,
+              "rainLat": 35.795,
+              "rainLon": -79.495,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 10.5,
+              "sunElevationDeg": 8.02,
+              "radarScore": 85.5,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 99.4,
+              "rank": null,
+              "observerLat": 35.836,
+              "observerLon": -79.8538,
+              "rainLat": 35.795,
+              "rainLon": -79.695,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 6.6,
+              "sunElevationDeg": 8.17,
+              "radarScore": 86.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 122.2,
+              "rank": null,
+              "observerLat": 36.9164,
+              "observerLon": -80.1811,
+              "rainLat": 36.895,
+              "rainLon": -80.095,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 3.5,
+              "sunElevationDeg": 8.81,
+              "radarScore": 86.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 149.2,
+              "rank": null,
+              "observerLat": 35.4047,
+              "observerLon": -80.1156,
+              "rainLat": 35.295,
+              "rainLon": -79.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 2.4,
+              "sunElevationDeg": 8.02,
+              "radarScore": 77.2,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 169.6,
+              "rank": null,
+              "observerLat": 35.3355,
+              "observerLon": -80.3529,
+              "rainLat": 35.295,
+              "rainLon": -80.195,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.6,
+              "sunElevationDeg": 8.41,
+              "radarScore": 80.2,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 202.0,
+              "rank": null,
+              "observerLat": 35.8011,
+              "observerLon": -81.1191,
+              "rainLat": 35.695,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 5.7,
+              "sunElevationDeg": 8.92,
+              "radarScore": 89.7,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 89,
+            "rainEdgeCells": 84,
+            "lowSunRainEdges": 84,
+            "dryObserverSeeds": 56,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 22
+          }
+        },
+        "5": {
+          "regionalSeedCount": 27,
+          "nearest": {
+            "distanceKm": 27.1,
+            "rank": null,
+            "observerLat": 36.2866,
+            "observerLon": -79.2544,
+            "rainLat": 36.245,
+            "rainLon": -79.095,
+            "rainDistanceKm": 15,
+            "rainRateMmHr": 14.3,
+            "sunElevationDeg": 7.85,
+            "radarScore": 84.7,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 27.1,
+              "rank": null,
+              "observerLat": 36.2866,
+              "observerLon": -79.2544,
+              "rainLat": 36.245,
+              "rainLon": -79.095,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 14.3,
+              "sunElevationDeg": 7.85,
+              "radarScore": 84.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 34.3,
+              "rank": null,
+              "observerLat": 36.517,
+              "observerLon": -79.3304,
+              "rainLat": 36.495,
+              "rainLon": -79.245,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 16.2,
+              "sunElevationDeg": 8.04,
+              "radarScore": 85.6,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 57.3,
+              "rank": null,
+              "observerLat": 36.067,
+              "observerLon": -79.4799,
+              "rainLat": 36.045,
+              "rainLon": -79.395,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 19.2,
+              "sunElevationDeg": 8.02,
+              "radarScore": 85.5,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 58.0,
+              "rank": null,
+              "observerLat": 35.9366,
+              "observerLon": -79.3037,
+              "rainLat": 35.895,
+              "rainLon": -79.145,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 7.9,
+              "sunElevationDeg": 7.78,
+              "radarScore": 84.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 58.2,
+              "rank": null,
+              "observerLat": 36.3669,
+              "observerLon": -79.6303,
+              "rainLat": 36.345,
+              "rainLon": -79.545,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 19.0,
+              "sunElevationDeg": 8.22,
+              "radarScore": 86.5,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 61.8,
+              "rank": null,
+              "observerLat": 36.6669,
+              "observerLon": -79.5806,
+              "rainLat": 36.645,
+              "rainLon": -79.495,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 7.7,
+              "sunElevationDeg": 8.28,
+              "radarScore": 86.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 79.0,
+              "rank": null,
+              "observerLat": 35.867,
+              "observerLon": -79.5797,
+              "rainLat": 35.845,
+              "rainLon": -79.495,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 10.7,
+              "sunElevationDeg": 8.03,
+              "radarScore": 85.6,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 89.3,
+              "rank": null,
+              "observerLat": 35.9668,
+              "observerLon": -79.8299,
+              "rainLat": 35.945,
+              "rainLon": -79.745,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 14.4,
+              "sunElevationDeg": 8.26,
+              "radarScore": 86.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 102.7,
+              "rank": null,
+              "observerLat": 35.7668,
+              "observerLon": -79.8296,
+              "rainLat": 35.745,
+              "rainLon": -79.745,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 3.7,
+              "sunElevationDeg": 8.19,
+              "radarScore": 85.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 127.7,
+              "rank": null,
+              "observerLat": 36.8663,
+              "observerLon": -80.281,
+              "rainLat": 36.845,
+              "rainLon": -80.195,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 4.3,
+              "sunElevationDeg": 8.87,
+              "radarScore": 89.5,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 354,
+            "rainEdgeCells": 256,
+            "lowSunRainEdges": 256,
+            "dryObserverSeeds": 183,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 27
+          }
+        },
+        "2": {
+          "regionalSeedCount": 30,
+          "nearest": {
+            "distanceKm": 31.4,
+            "rank": null,
+            "observerLat": 36.5371,
+            "observerLon": -79.2804,
+            "rainLat": 36.515,
+            "rainLon": -79.195,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 18.9,
+            "sunElevationDeg": 8.01,
+            "radarScore": 85.5,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 31.4,
+              "rank": null,
+              "observerLat": 36.5371,
+              "observerLon": -79.2804,
+              "rainLat": 36.515,
+              "rainLon": -79.195,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 18.9,
+              "sunElevationDeg": 8.01,
+              "radarScore": 85.5,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 33.3,
+              "rank": null,
+              "observerLat": 36.1168,
+              "observerLon": -79.134,
+              "rainLat": 36.075,
+              "rainLon": -78.975,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 3.4,
+              "sunElevationDeg": 7.7,
+              "radarScore": 81.2,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 51.0,
+              "rank": null,
+              "observerLat": 36.5369,
+              "observerLon": -79.5204,
+              "rainLat": 36.515,
+              "rainLon": -79.435,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 6.9,
+              "sunElevationDeg": 8.19,
+              "radarScore": 86.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 55.9,
+              "rank": null,
+              "observerLat": 36.1563,
+              "observerLon": -79.5343,
+              "rainLat": 36.115,
+              "rainLon": -79.375,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 15.5,
+              "sunElevationDeg": 8.02,
+              "radarScore": 85.6,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 56.0,
+              "rank": null,
+              "observerLat": 35.9771,
+              "observerLon": -79.3397,
+              "rainLat": 35.955,
+              "rainLon": -79.255,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 4.2,
+              "sunElevationDeg": 7.88,
+              "radarScore": 84.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 64.9,
+              "rank": null,
+              "observerLat": 36.3168,
+              "observerLon": -79.7002,
+              "rainLat": 36.295,
+              "rainLon": -79.615,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 6.3,
+              "sunElevationDeg": 8.26,
+              "radarScore": 86.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 68.2,
+              "rank": null,
+              "observerLat": 36.6968,
+              "observerLon": -79.6407,
+              "rainLat": 36.675,
+              "rainLon": -79.555,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 16.9,
+              "sunElevationDeg": 8.33,
+              "radarScore": 87.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 78.2,
+              "rank": null,
+              "observerLat": 35.877,
+              "observerLon": -79.5797,
+              "rainLat": 35.855,
+              "rainLon": -79.495,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 4.6,
+              "sunElevationDeg": 8.03,
+              "radarScore": 85.6,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 78.7,
+              "rank": null,
+              "observerLat": 36.3579,
+              "observerLon": -78.0998,
+              "rainLat": 36.335,
+              "rainLon": -78.015,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 7.7,
+              "sunElevationDeg": 7.05,
+              "radarScore": 80.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 84.2,
+              "rank": null,
+              "observerLat": 36.0168,
+              "observerLon": -79.7999,
+              "rainLat": 35.995,
+              "rainLon": -79.715,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 4.0,
+              "sunElevationDeg": 8.25,
+              "radarScore": 86.6,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 2126,
+            "rainEdgeCells": 906,
+            "lowSunRainEdges": 906,
+            "dryObserverSeeds": 669,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 30
+          }
+        },
+        "1": {
+          "regionalSeedCount": 31,
+          "nearest": {
+            "distanceKm": 30.5,
+            "rank": null,
+            "observerLat": 36.5471,
+            "observerLon": -79.2604,
+            "rainLat": 36.525,
+            "rainLon": -79.175,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 15.7,
+            "sunElevationDeg": 7.99,
+            "radarScore": 85.4,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 30.5,
+              "rank": null,
+              "observerLat": 36.5471,
+              "observerLon": -79.2604,
+              "rainLat": 36.525,
+              "rainLon": -79.175,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 15.7,
+              "sunElevationDeg": 7.99,
+              "radarScore": 85.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 32.9,
+              "rank": null,
+              "observerLat": 36.1073,
+              "observerLon": -79.0898,
+              "rainLat": 36.085,
+              "rainLon": -79.005,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 8.2,
+              "sunElevationDeg": 7.73,
+              "radarScore": 84.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 49.4,
+              "rank": null,
+              "observerLat": 36.5169,
+              "observerLon": -79.5104,
+              "rainLat": 36.495,
+              "rainLon": -79.425,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 6.4,
+              "sunElevationDeg": 8.18,
+              "radarScore": 86.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 55.9,
+              "rank": null,
+              "observerLat": 36.1563,
+              "observerLon": -79.5343,
+              "rainLat": 36.115,
+              "rainLon": -79.375,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 15.5,
+              "sunElevationDeg": 8.02,
+              "radarScore": 85.6,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 58.3,
+              "rank": null,
+              "observerLat": 35.9471,
+              "observerLon": -79.3297,
+              "rainLat": 35.925,
+              "rainLon": -79.245,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 6.0,
+              "sunElevationDeg": 7.86,
+              "radarScore": 84.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 68.7,
+              "rank": null,
+              "observerLat": 36.7068,
+              "observerLon": -79.6407,
+              "rainLat": 36.685,
+              "rainLon": -79.555,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 19.8,
+              "sunElevationDeg": 8.33,
+              "radarScore": 87.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 71.3,
+              "rank": null,
+              "observerLat": 36.2552,
+              "observerLon": -79.7599,
+              "rainLat": 36.145,
+              "rainLon": -79.335,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 6.9,
+              "sunElevationDeg": 8.0,
+              "radarScore": 85.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 76.8,
+              "rank": null,
+              "observerLat": 35.887,
+              "observerLon": -79.5697,
+              "rainLat": 35.865,
+              "rainLon": -79.485,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 10.6,
+              "sunElevationDeg": 8.03,
+              "radarScore": 85.6,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 77.0,
+              "rank": null,
+              "observerLat": 36.3479,
+              "observerLon": -78.1198,
+              "rainLat": 36.325,
+              "rainLon": -78.035,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 4.1,
+              "sunElevationDeg": 7.06,
+              "radarScore": 80.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 89.3,
+              "rank": null,
+              "observerLat": 35.9668,
+              "observerLon": -79.8299,
+              "rainLat": 35.945,
+              "rainLon": -79.745,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 14.4,
+              "sunElevationDeg": 8.26,
+              "radarScore": 86.7,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 8411,
+            "rainEdgeCells": 2198,
+            "lowSunRainEdges": 2198,
+            "dryObserverSeeds": 1677,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 31
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T23:50:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-235000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 22,
+          "nearest": {
+            "distanceKm": 22.9,
+            "rank": null,
+            "observerLat": 36.5188,
+            "observerLon": -79.1796,
+            "rainLat": 36.495,
+            "rainLon": -79.095,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 8.7,
+            "sunElevationDeg": 6.02,
+            "radarScore": 76.0,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 143.0,
+              "rank": null,
+              "observerLat": 35.3686,
+              "observerLon": -79.9558,
+              "rainLat": 35.295,
+              "rainLon": -79.695,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 0.4,
+              "sunElevationDeg": 6.08,
+              "radarScore": 48.6,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 181.5,
+              "rank": null,
+              "observerLat": 35.7666,
+              "observerLon": -80.8579,
+              "rainLat": 35.695,
+              "rainLon": -80.595,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 0.5,
+              "sunElevationDeg": 6.9,
+              "radarScore": 54.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 208.9,
+              "rank": null,
+              "observerLat": 35.2669,
+              "observerLon": -80.8562,
+              "rainLat": 35.195,
+              "rainLon": -80.595,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 3.5,
+              "sunElevationDeg": 6.75,
+              "radarScore": 77.1,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 90,
+            "rainEdgeCells": 82,
+            "lowSunRainEdges": 82,
+            "dryObserverSeeds": 60,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 22
+          }
+        },
+        "5": {
+          "regionalSeedCount": 32,
+          "nearest": {
+            "distanceKm": 22.9,
+            "rank": null,
+            "observerLat": 36.5188,
+            "observerLon": -79.1796,
+            "rainLat": 36.495,
+            "rainLon": -79.095,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 8.7,
+            "sunElevationDeg": 6.02,
+            "radarScore": 76.0,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 37.3,
+              "rank": null,
+              "observerLat": 36.0701,
+              "observerLon": -79.1074,
+              "rainLat": 35.995,
+              "rainLon": -78.845,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 0.4,
+              "sunElevationDeg": 5.66,
+              "radarScore": 46.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 153.7,
+              "rank": null,
+              "observerLat": 35.3131,
+              "observerLon": -80.0616,
+              "rainLat": 35.195,
+              "rainLon": -79.645,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 6.01,
+              "radarScore": 60.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 181.4,
+              "rank": null,
+              "observerLat": 35.2677,
+              "observerLon": -80.4559,
+              "rainLat": 35.195,
+              "rainLon": -80.195,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 1.8,
+              "sunElevationDeg": 6.44,
+              "radarScore": 65.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 185.7,
+              "rank": null,
+              "observerLat": 35.7665,
+              "observerLon": -80.908,
+              "rainLat": 35.695,
+              "rainLon": -80.645,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 1.7,
+              "sunElevationDeg": 6.94,
+              "radarScore": 67.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 202.9,
+              "rank": null,
+              "observerLat": 35.3106,
+              "observerLon": -80.8127,
+              "rainLat": 35.195,
+              "rainLon": -80.395,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 3.4,
+              "sunElevationDeg": 6.59,
+              "radarScore": 75.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 207.3,
+              "rank": null,
+              "observerLat": 35.6594,
+              "observerLon": -81.115,
+              "rainLat": 35.545,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.6,
+              "sunElevationDeg": 6.93,
+              "radarScore": 66.1,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 340,
+            "rainEdgeCells": 249,
+            "lowSunRainEdges": 249,
+            "dryObserverSeeds": 196,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 32
+          }
+        },
+        "2": {
+          "regionalSeedCount": 32,
+          "nearest": {
+            "distanceKm": 21.6,
+            "rank": null,
+            "observerLat": 36.2589,
+            "observerLon": -79.1593,
+            "rainLat": 36.235,
+            "rainLon": -79.075,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 4.9,
+            "sunElevationDeg": 5.92,
+            "radarScore": 75.5,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 195.0,
+              "rank": null,
+              "observerLat": 35.6465,
+              "observerLon": -80.9576,
+              "rainLat": 35.575,
+              "rainLon": -80.695,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 0.6,
+              "sunElevationDeg": 6.94,
+              "radarScore": 55.6,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 195.7,
+              "rank": null,
+              "observerLat": 35.3109,
+              "observerLon": -80.7125,
+              "rainLat": 35.195,
+              "rainLon": -80.295,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 6.51,
+              "radarScore": 63.2,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 2051,
+            "rainEdgeCells": 957,
+            "lowSunRainEdges": 957,
+            "dryObserverSeeds": 782,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 32
+          }
+        },
+        "1": {
+          "regionalSeedCount": 33,
+          "nearest": {
+            "distanceKm": 23.6,
+            "rank": null,
+            "observerLat": 36.5288,
+            "observerLon": -79.1796,
+            "rainLat": 36.505,
+            "rainLon": -79.095,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 6.8,
+            "sunElevationDeg": 6.02,
+            "radarScore": 76.0,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 118.7,
+              "rank": null,
+              "observerLat": 36.8481,
+              "observerLon": -80.1803,
+              "rainLat": 36.825,
+              "rainLon": -80.095,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 4.5,
+              "sunElevationDeg": 6.88,
+              "radarScore": 80.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 156.0,
+              "rank": null,
+              "observerLat": 35.3129,
+              "observerLon": -80.1017,
+              "rainLat": 35.195,
+              "rainLon": -79.685,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.7,
+              "sunElevationDeg": 6.04,
+              "radarScore": 62.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 187.4,
+              "rank": null,
+              "observerLat": 35.7865,
+              "observerLon": -80.9381,
+              "rainLat": 35.715,
+              "rainLon": -80.675,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 0.9,
+              "sunElevationDeg": 6.97,
+              "radarScore": 59.5,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 195.7,
+              "rank": null,
+              "observerLat": 35.3109,
+              "observerLon": -80.7125,
+              "rainLat": 35.195,
+              "rainLon": -80.295,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 6.51,
+              "radarScore": 63.2,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 196.4,
+              "rank": null,
+              "observerLat": 37.5577,
+              "observerLon": -80.6313,
+              "rainLat": 37.535,
+              "rainLon": -80.545,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 4.7,
+              "sunElevationDeg": 7.45,
+              "radarScore": 82.8,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 8067,
+            "rainEdgeCells": 2407,
+            "lowSunRainEdges": 2407,
+            "dryObserverSeeds": 1993,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 33
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-29T00:00:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260729/MRMS_PrecipRate_00.00_20260729-000000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 19,
+          "nearest": {
+            "distanceKm": 33.7,
+            "rank": null,
+            "observerLat": 36.3748,
+            "observerLon": -79.3563,
+            "rainLat": 36.295,
+            "rainLon": -79.095,
+            "rainDistanceKm": 25,
+            "rainRateMmHr": 10.1,
+            "sunElevationDeg": 4.06,
+            "radarScore": 67.9,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 33.7,
+              "rank": null,
+              "observerLat": 36.3748,
+              "observerLon": -79.3563,
+              "rainLat": 36.295,
+              "rainLon": -79.095,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 10.1,
+              "sunElevationDeg": 4.06,
+              "radarScore": 67.9,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 48.6,
+              "rank": null,
+              "observerLat": 36.1231,
+              "observerLon": -79.4113,
+              "rainLat": 35.995,
+              "rainLon": -78.995,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 11.4,
+              "sunElevationDeg": 3.88,
+              "radarScore": 67.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 53.1,
+              "rank": null,
+              "observerLat": 36.2744,
+              "observerLon": -79.5562,
+              "rainLat": 36.195,
+              "rainLon": -79.295,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 11.1,
+              "sunElevationDeg": 4.17,
+              "radarScore": 68.3,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 142.4,
+              "rank": null,
+              "observerLat": 35.3738,
+              "observerLon": -79.9535,
+              "rainLat": 35.295,
+              "rainLon": -79.695,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 0.7,
+              "sunElevationDeg": 4.16,
+              "radarScore": 44.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 176.6,
+              "rank": null,
+              "observerLat": 35.1732,
+              "observerLon": -80.2531,
+              "rainLat": 35.095,
+              "rainLon": -79.995,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 0.8,
+              "sunElevationDeg": 4.32,
+              "radarScore": 46.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 195.0,
+              "rank": null,
+              "observerLat": 35.1726,
+              "observerLon": -80.5534,
+              "rainLat": 35.095,
+              "rainLon": -80.295,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 3.7,
+              "sunElevationDeg": 4.55,
+              "radarScore": 68.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 213.6,
+              "rank": null,
+              "observerLat": 35.5177,
+              "observerLon": -81.1107,
+              "rainLat": 35.395,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.2,
+              "sunElevationDeg": 4.96,
+              "radarScore": 53.5,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 74,
+            "rainEdgeCells": 67,
+            "lowSunRainEdges": 67,
+            "dryObserverSeeds": 57,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 19
+          }
+        },
+        "5": {
+          "regionalSeedCount": 26,
+          "nearest": {
+            "distanceKm": 29.4,
+            "rank": null,
+            "observerLat": 36.4428,
+            "observerLon": -79.302,
+            "rainLat": 36.395,
+            "rainLon": -79.145,
+            "rainDistanceKm": 15,
+            "rainRateMmHr": 8.8,
+            "sunElevationDeg": 4.13,
+            "radarScore": 68.2,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 48.1,
+              "rank": null,
+              "observerLat": 36.1247,
+              "observerLon": -79.4055,
+              "rainLat": 36.045,
+              "rainLon": -79.145,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 5.7,
+              "sunElevationDeg": 4.01,
+              "radarScore": 67.7,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 198.4,
+              "rank": null,
+              "observerLat": 35.2193,
+              "observerLon": -80.6584,
+              "rainLat": 35.095,
+              "rainLon": -80.245,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 2.9,
+              "sunElevationDeg": 4.51,
+              "radarScore": 64.2,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 213.6,
+              "rank": null,
+              "observerLat": 35.5177,
+              "observerLon": -81.1107,
+              "rainLat": 35.395,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.2,
+              "sunElevationDeg": 4.96,
+              "radarScore": 53.5,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 278,
+            "rainEdgeCells": 213,
+            "lowSunRainEdges": 213,
+            "dryObserverSeeds": 183,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 26
+          }
+        },
+        "2": {
+          "regionalSeedCount": 36,
+          "nearest": {
+            "distanceKm": 13.4,
+            "rank": null,
+            "observerLat": 36.4806,
+            "observerLon": -79.0788,
+            "rainLat": 36.455,
+            "rainLon": -78.995,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 0.4,
+            "sunElevationDeg": 4.04,
+            "radarScore": 40.1,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 35.5,
+              "rank": null,
+              "observerLat": 36.0953,
+              "observerLon": -79.1352,
+              "rainLat": 36.015,
+              "rainLon": -78.875,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 3.79,
+              "radarScore": 51.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 202.0,
+              "rank": null,
+              "observerLat": 35.2988,
+              "observerLon": -80.789,
+              "rainLat": 35.175,
+              "rainLon": -80.375,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 0.4,
+              "sunElevationDeg": 4.64,
+              "radarScore": 42.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 212.0,
+              "rank": null,
+              "observerLat": 35.5178,
+              "observerLon": -81.0906,
+              "rainLat": 35.395,
+              "rainLon": -80.675,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.2,
+              "sunElevationDeg": 4.95,
+              "radarScore": 53.5,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 1704,
+            "rainEdgeCells": 868,
+            "lowSunRainEdges": 868,
+            "dryObserverSeeds": 760,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 36
+          }
+        },
+        "1": {
+          "regionalSeedCount": 34,
+          "nearest": {
+            "distanceKm": 17.7,
+            "rank": null,
+            "observerLat": 36.5106,
+            "observerLon": -79.1088,
+            "rainLat": 36.485,
+            "rainLon": -79.025,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 7.2,
+            "sunElevationDeg": 4.07,
+            "radarScore": 68.0,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 202.0,
+              "rank": null,
+              "observerLat": 35.2988,
+              "observerLon": -80.789,
+              "rainLat": 35.175,
+              "rainLon": -80.375,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 0.4,
+              "sunElevationDeg": 4.64,
+              "radarScore": 42.4,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 6783,
+            "rainEdgeCells": 2344,
+            "lowSunRainEdges": 2344,
+            "dryObserverSeeds": 2049,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 34
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-29T00:10:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260729/MRMS_PrecipRate_00.00_20260729-001000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 21,
+          "nearest": {
+            "distanceKm": 3.6,
+            "rank": null,
+            "observerLat": 36.4223,
+            "observerLon": -78.9778,
+            "rainLat": 36.395,
+            "rainLon": -78.895,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 2.5,
+            "sunElevationDeg": 2.07,
+            "radarScore": 54.2,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 76.9,
+              "rank": null,
+              "observerLat": 36.5825,
+              "observerLon": -78.1531,
+              "rainLat": 36.495,
+              "rainLon": -77.895,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 1.37,
+              "radarScore": 45.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 193.8,
+              "rank": null,
+              "observerLat": 35.2775,
+              "observerLon": -80.6515,
+              "rainLat": 35.195,
+              "rainLon": -80.395,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 2.75,
+              "radarScore": 47.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 195.6,
+              "rank": null,
+              "observerLat": 35.477,
+              "observerLon": -80.8523,
+              "rainLat": 35.395,
+              "rainLon": -80.595,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 0.4,
+              "sunElevationDeg": 2.98,
+              "radarScore": 36.7,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 62,
+            "rainEdgeCells": 62,
+            "lowSunRainEdges": 62,
+            "dryObserverSeeds": 58,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 21
+          }
+        },
+        "5": {
+          "regionalSeedCount": 30,
+          "nearest": {
+            "distanceKm": 2.0,
+            "rank": null,
+            "observerLat": 36.3723,
+            "observerLon": -78.9778,
+            "rainLat": 36.345,
+            "rainLon": -78.895,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 6.9,
+            "sunElevationDeg": 2.05,
+            "radarScore": 61.9,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 193.8,
+              "rank": null,
+              "observerLat": 35.2775,
+              "observerLon": -80.6515,
+              "rainLat": 35.195,
+              "rainLon": -80.395,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 2.75,
+              "radarScore": 47.8,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 215.4,
+              "rank": null,
+              "observerLat": 35.4759,
+              "observerLon": -81.1066,
+              "rainLat": 35.345,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 2.9,
+              "sunElevationDeg": 3.03,
+              "radarScore": 59.1,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 243,
+            "rainEdgeCells": 224,
+            "lowSunRainEdges": 224,
+            "dryObserverSeeds": 210,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 30
+          }
+        },
+        "2": {
+          "regionalSeedCount": 32,
+          "nearest": {
+            "distanceKm": 1.0,
+            "rank": null,
+            "observerLat": 36.3863,
+            "observerLon": -78.9902,
+            "rainLat": 36.335,
+            "rainLon": -78.835,
+            "rainDistanceKm": 15,
+            "rainRateMmHr": 3.7,
+            "sunElevationDeg": 2.0,
+            "radarScore": 60.5,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 200.4,
+              "rank": null,
+              "observerLat": 35.1277,
+              "observerLon": -80.584,
+              "rainLat": 34.995,
+              "rainLon": -80.175,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.9,
+              "sunElevationDeg": 2.51,
+              "radarScore": 51.2,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 214.4,
+              "rank": null,
+              "observerLat": 35.466,
+              "observerLon": -81.0865,
+              "rainLat": 35.335,
+              "rainLon": -80.675,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 2.5,
+              "sunElevationDeg": 3.02,
+              "radarScore": 56.7,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 1452,
+            "rainEdgeCells": 950,
+            "lowSunRainEdges": 950,
+            "dryObserverSeeds": 886,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 32
+          }
+        },
+        "1": {
+          "regionalSeedCount": 33,
+          "nearest": {
+            "distanceKm": 3.4,
+            "rank": null,
+            "observerLat": 36.4163,
+            "observerLon": -79.0002,
+            "rainLat": 36.365,
+            "rainLon": -78.845,
+            "rainDistanceKm": 15,
+            "rainRateMmHr": 4.5,
+            "sunElevationDeg": 2.02,
+            "radarScore": 61.8,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 215.1,
+              "rank": null,
+              "observerLat": 35.466,
+              "observerLon": -81.0965,
+              "rainLat": 35.335,
+              "rainLon": -80.685,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 2.9,
+              "sunElevationDeg": 3.02,
+              "radarScore": 59.1,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 5867,
+            "rainEdgeCells": 2460,
+            "lowSunRainEdges": 2460,
+            "dryObserverSeeds": 2275,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 33
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-29T00:20:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260729/MRMS_PrecipRate_00.00_20260729-002000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 12,
+          "nearest": {
+            "distanceKm": 11.8,
+            "rank": null,
+            "observerLat": 36.3241,
+            "observerLon": -78.8768,
+            "rainLat": 36.295,
+            "rainLon": -78.795,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 3.4,
+            "sunElevationDeg": 0.1,
+            "radarScore": 55.6,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 193.9,
+              "rank": null,
+              "observerLat": 35.1828,
+              "observerLon": -80.5485,
+              "rainLat": 35.095,
+              "rainLon": -80.295,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 1.6,
+              "sunElevationDeg": 0.74,
+              "radarScore": 45.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 207.4,
+              "rank": null,
+              "observerLat": 35.6342,
+              "observerLon": -81.1033,
+              "rainLat": 35.495,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 12.6,
+              "sunElevationDeg": 1.2,
+              "radarScore": 60.1,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 60,
+            "rainEdgeCells": 59,
+            "lowSunRainEdges": 35,
+            "dryObserverSeeds": 27,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 12
+          }
+        },
+        "5": {
+          "regionalSeedCount": 15,
+          "nearest": {
+            "distanceKm": 11.3,
+            "rank": null,
+            "observerLat": 36.324,
+            "observerLon": -79.0769,
+            "rainLat": 36.295,
+            "rainLon": -78.995,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 8.1,
+            "sunElevationDeg": 0.25,
+            "radarScore": 58.5,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 193.9,
+              "rank": null,
+              "observerLat": 35.1828,
+              "observerLon": -80.5485,
+              "rainLat": 35.095,
+              "rainLon": -80.295,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 1.6,
+              "sunElevationDeg": 0.74,
+              "radarScore": 45.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 207.4,
+              "rank": null,
+              "observerLat": 35.6342,
+              "observerLon": -81.1033,
+              "rainLat": 35.495,
+              "rainLon": -80.695,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 12.6,
+              "sunElevationDeg": 1.2,
+              "radarScore": 60.1,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 250,
+            "rainEdgeCells": 222,
+            "lowSunRainEdges": 128,
+            "dryObserverSeeds": 112,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 15
+          }
+        },
+        "2": {
+          "regionalSeedCount": 21,
+          "nearest": {
+            "distanceKm": 8.7,
+            "rank": null,
+            "observerLat": 36.384,
+            "observerLon": -79.0769,
+            "rainLat": 36.355,
+            "rainLon": -78.995,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 6.7,
+            "sunElevationDeg": 0.27,
+            "radarScore": 58.6,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 191.4,
+              "rank": null,
+              "observerLat": 35.6421,
+              "observerLon": -80.9103,
+              "rainLat": 35.555,
+              "rainLon": -80.655,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 4.1,
+              "sunElevationDeg": 1.19,
+              "radarScore": 60.1,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 1556,
+            "rainEdgeCells": 943,
+            "lowSunRainEdges": 548,
+            "dryObserverSeeds": 467,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 21
+          }
+        },
+        "1": {
+          "regionalSeedCount": 23,
+          "nearest": {
+            "distanceKm": 5.1,
+            "rank": null,
+            "observerLat": 36.384,
+            "observerLon": -79.0369,
+            "rainLat": 36.355,
+            "rainLon": -78.955,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 2.3,
+            "sunElevationDeg": 0.25,
+            "radarScore": 49.5,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 145.6,
+              "rank": null,
+              "observerLat": 35.2046,
+              "observerLon": -79.6776,
+              "rainLat": 35.115,
+              "rainLon": -79.425,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 1.0,
+              "sunElevationDeg": 0.1,
+              "radarScore": 38.4,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 196.8,
+              "rank": null,
+              "observerLat": 35.2326,
+              "observerLon": -80.6487,
+              "rainLat": 35.145,
+              "rainLon": -80.395,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 0.7,
+              "sunElevationDeg": 0.84,
+              "radarScore": 36.0,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 203.3,
+              "rank": null,
+              "observerLat": 35.6543,
+              "observerLon": -81.0633,
+              "rainLat": 35.515,
+              "rainLon": -80.655,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 5.0,
+              "sunElevationDeg": 1.18,
+              "radarScore": 60.1,
+              "observerRainRateMmHr": 0.0
+            },
+            {
+              "distanceKm": 221.8,
+              "rank": null,
+              "observerLat": 37.464,
+              "observerLon": -81.0731,
+              "rainLat": 37.325,
+              "rainLon": -80.655,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 1.88,
+              "radarScore": 45.6,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 6098,
+            "rainEdgeCells": 2352,
+            "lowSunRainEdges": 1371,
+            "dryObserverSeeds": 1182,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 23
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-29T00:30:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260729/MRMS_PrecipRate_00.00_20260729-003000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 66,
+            "rainEdgeCells": 63,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        },
+        "5": {
+          "regionalSeedCount": 1,
+          "nearest": {
+            "distanceKm": 201.2,
+            "rank": null,
+            "observerLat": 37.4003,
+            "observerLon": -80.8501,
+            "rainLat": 37.345,
+            "rainLon": -80.695,
+            "rainDistanceKm": 15,
+            "rainRateMmHr": 2.4,
+            "sunElevationDeg": 0.09,
+            "radarScore": 49.9,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 258,
+            "rainEdgeCells": 216,
+            "lowSunRainEdges": 1,
+            "dryObserverSeeds": 1,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 1
+          }
+        },
+        "2": {
+          "regionalSeedCount": 2,
+          "nearest": {
+            "distanceKm": 189.1,
+            "rank": null,
+            "observerLat": 37.3846,
+            "observerLon": -80.6977,
+            "rainLat": 37.355,
+            "rainLon": -80.615,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 9.7,
+            "sunElevationDeg": 0.04,
+            "radarScore": 58.3,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [
+            {
+              "distanceKm": 207.9,
+              "rank": null,
+              "observerLat": 37.4073,
+              "observerLon": -80.9333,
+              "rainLat": 37.315,
+              "rainLon": -80.675,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 4.8,
+              "sunElevationDeg": 0.06,
+              "radarScore": 58.3,
+              "observerRainRateMmHr": 0.0
+            }
+          ],
+          "diagnostics": {
+            "sampledWetCells": 1610,
+            "rainEdgeCells": 905,
+            "lowSunRainEdges": 9,
+            "dryObserverSeeds": 9,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 2
+          }
+        },
+        "1": {
+          "regionalSeedCount": 1,
+          "nearest": {
+            "distanceKm": 194.0,
+            "rank": null,
+            "observerLat": 37.4045,
+            "observerLon": -80.7477,
+            "rainLat": 37.375,
+            "rainLon": -80.665,
+            "rainDistanceKm": 8,
+            "rainRateMmHr": 7.8,
+            "sunElevationDeg": 0.08,
+            "radarScore": 58.3,
+            "observerRainRateMmHr": 0.0
+          },
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 6414,
+            "rainEdgeCells": 2329,
+            "lowSunRainEdges": 27,
+            "dryObserverSeeds": 27,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 1
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-29T00:40:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260729/MRMS_PrecipRate_00.00_20260729-004000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 74,
+            "rainEdgeCells": 73,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        },
+        "5": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 293,
+            "rainEdgeCells": 261,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        },
+        "2": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 1731,
+            "rainEdgeCells": 1036,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        },
+        "1": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 6971,
+            "rainEdgeCells": 2668,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-29T00:50:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260729/MRMS_PrecipRate_00.00_20260729-005000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 69,
+            "rainEdgeCells": 69,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        },
+        "5": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 301,
+            "rainEdgeCells": 257,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        },
+        "2": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 1813,
+            "rainEdgeCells": 1112,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        },
+        "1": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 7199,
+            "rainEdgeCells": 2939,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-29T01:00:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260729/MRMS_PrecipRate_00.00_20260729-010000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 78,
+            "rainEdgeCells": 78,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        },
+        "5": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 285,
+            "rainEdgeCells": 259,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        },
+        "2": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 1836,
+            "rainEdgeCells": 1182,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        },
+        "1": {
+          "regionalSeedCount": 0,
+          "nearest": null,
+          "fallbackNearMisses": [],
+          "diagnostics": {
+            "sampledWetCells": 7412,
+            "rainEdgeCells": 3230,
+            "lowSunRainEdges": 0,
+            "dryObserverSeeds": 0,
+            "nonConusObserverSeeds": 0,
+            "clusteredObserverSeeds": 0
+          }
+        }
+      }
+    }
+  ]
+}

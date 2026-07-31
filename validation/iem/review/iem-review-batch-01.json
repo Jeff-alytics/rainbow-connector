@@ -1,0 +1,632 @@
+[
+  {
+    "cameraId": "KCCI-036",
+    "cameraName": "Big Creek Beach",
+    "network": "KCCI",
+    "observedAt": "2024-12-14T14:45:00Z",
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20241214T1445Z.jpg",
+    "longitude": -93.74188,
+    "latitude": 41.82003,
+    "semanticScore": 0.000764,
+    "rainbowSimilarity": 0.178113,
+    "frames": [
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-12-14T14:35:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20241214T1435Z.jpg",
+        "semanticScore": 0.004365,
+        "rainbowSimilarity": 0.183871
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-12-14T14:40:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20241214T1440Z.jpg",
+        "semanticScore": -0.006974,
+        "rainbowSimilarity": 0.175249
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-12-14T14:45:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20241214T1445Z.jpg",
+        "semanticScore": 0.000764,
+        "rainbowSimilarity": 0.178113
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-12-14T14:50:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20241214T1450Z.jpg",
+        "semanticScore": -0.029493,
+        "rainbowSimilarity": 0.152606
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-12-14T14:55:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20241214T1455Z.jpg",
+        "semanticScore": -0.022659,
+        "rainbowSimilarity": 0.157529
+      }
+    ],
+    "peakScore": 0.004365,
+    "secondScore": 0.000764,
+    "positiveFrames": 2,
+    "candidateId": "iem-01",
+    "image": "iem-01-sequence.jpg"
+  },
+  {
+    "cameraId": "KCCI-027",
+    "cameraName": "ISU Ag Farm",
+    "network": "KCCI",
+    "observedAt": "2024-05-24T11:45:00Z",
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240524T1145Z.jpg",
+    "longitude": -93.7736,
+    "latitude": 42.02098,
+    "semanticScore": -0.008953,
+    "rainbowSimilarity": 0.21834,
+    "frames": [
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2024-05-24T11:35:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240524T1135Z.jpg",
+        "semanticScore": -0.016261,
+        "rainbowSimilarity": 0.205087
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2024-05-24T11:40:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240524T1140Z.jpg",
+        "semanticScore": -0.019248,
+        "rainbowSimilarity": 0.214231
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2024-05-24T11:45:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240524T1145Z.jpg",
+        "semanticScore": -0.008953,
+        "rainbowSimilarity": 0.21834
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2024-05-24T11:50:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240524T1150Z.jpg",
+        "semanticScore": -0.013046,
+        "rainbowSimilarity": 0.211214
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2024-05-24T11:55:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240524T1155Z.jpg",
+        "semanticScore": -0.016878,
+        "rainbowSimilarity": 0.21294
+      }
+    ],
+    "peakScore": -0.008953,
+    "secondScore": -0.013046,
+    "positiveFrames": 0,
+    "candidateId": "iem-02",
+    "image": "iem-02-sequence.jpg"
+  },
+  {
+    "cameraId": "KCCI-036",
+    "cameraName": "Big Creek Beach",
+    "network": "KCCI",
+    "observedAt": "2024-05-21T11:45:00Z",
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240521T1145Z.jpg",
+    "longitude": -93.74188,
+    "latitude": 41.82003,
+    "semanticScore": -0.0081,
+    "rainbowSimilarity": 0.188102,
+    "frames": [
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-05-21T11:35:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240521T1135Z.jpg",
+        "semanticScore": -0.020513,
+        "rainbowSimilarity": 0.164301
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-05-21T11:40:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240521T1140Z.jpg",
+        "semanticScore": -0.023819,
+        "rainbowSimilarity": 0.167422
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-05-21T11:45:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240521T1145Z.jpg",
+        "semanticScore": -0.0081,
+        "rainbowSimilarity": 0.188102
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-05-21T11:50:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240521T1150Z.jpg",
+        "semanticScore": -0.028705,
+        "rainbowSimilarity": 0.16701
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-05-21T11:55:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240521T1155Z.jpg",
+        "semanticScore": -0.024432,
+        "rainbowSimilarity": 0.170446
+      }
+    ],
+    "peakScore": -0.0081,
+    "secondScore": -0.020513,
+    "positiveFrames": 0,
+    "candidateId": "iem-03",
+    "image": "iem-03-sequence.jpg"
+  },
+  {
+    "cameraId": "KCCI-036",
+    "cameraName": "Big Creek Beach",
+    "network": "KCCI",
+    "observedAt": "2025-07-06T00:45:00Z",
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20250706T0045Z.jpg",
+    "longitude": -93.74188,
+    "latitude": 41.82003,
+    "semanticScore": -0.019545,
+    "rainbowSimilarity": 0.159381,
+    "frames": [
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2025-07-06T00:35:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20250706T0035Z.jpg",
+        "semanticScore": -0.02503,
+        "rainbowSimilarity": 0.161967
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2025-07-06T00:40:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20250706T0040Z.jpg",
+        "semanticScore": -0.015383,
+        "rainbowSimilarity": 0.152391
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2025-07-06T00:45:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20250706T0045Z.jpg",
+        "semanticScore": -0.019545,
+        "rainbowSimilarity": 0.159381
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2025-07-06T00:50:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20250706T0050Z.jpg",
+        "semanticScore": -0.012265,
+        "rainbowSimilarity": 0.17021
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2025-07-06T00:55:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20250706T0055Z.jpg",
+        "semanticScore": -0.022935,
+        "rainbowSimilarity": 0.165178
+      }
+    ],
+    "peakScore": -0.012265,
+    "secondScore": -0.015383,
+    "positiveFrames": 0,
+    "candidateId": "iem-04",
+    "image": "iem-04-sequence.jpg"
+  },
+  {
+    "cameraId": "KCCI-036",
+    "cameraName": "Big Creek Beach",
+    "network": "KCCI",
+    "observedAt": "2026-04-27T12:45:00Z",
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20260427T1245Z.jpg",
+    "longitude": -93.74188,
+    "latitude": 41.82003,
+    "semanticScore": -0.016002,
+    "rainbowSimilarity": 0.167799,
+    "frames": [
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2026-04-27T12:35:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20260427T1235Z.jpg",
+        "semanticScore": -0.022804,
+        "rainbowSimilarity": 0.16377
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2026-04-27T12:40:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20260427T1240Z.jpg",
+        "semanticScore": -0.013113,
+        "rainbowSimilarity": 0.167101
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2026-04-27T12:45:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20260427T1245Z.jpg",
+        "semanticScore": -0.016002,
+        "rainbowSimilarity": 0.167799
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2026-04-27T12:50:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20260427T1250Z.jpg",
+        "semanticScore": -0.015091,
+        "rainbowSimilarity": 0.173742
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2026-04-27T12:55:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20260427T1255Z.jpg",
+        "semanticScore": -0.012808,
+        "rainbowSimilarity": 0.179925
+      }
+    ],
+    "peakScore": -0.012808,
+    "secondScore": -0.013113,
+    "positiveFrames": 0,
+    "candidateId": "iem-05",
+    "image": "iem-05-sequence.jpg"
+  },
+  {
+    "cameraId": "KCCI-027",
+    "cameraName": "ISU Ag Farm",
+    "network": "KCCI",
+    "observedAt": "2025-06-20T12:45:00Z",
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250620T1245Z.jpg",
+    "longitude": -93.7736,
+    "latitude": 42.02098,
+    "semanticScore": -0.012319,
+    "rainbowSimilarity": 0.21955,
+    "frames": [
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-06-20T12:35:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250620T1235Z.jpg",
+        "semanticScore": -0.021767,
+        "rainbowSimilarity": 0.211945
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-06-20T12:40:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250620T1240Z.jpg",
+        "semanticScore": -0.018131,
+        "rainbowSimilarity": 0.221855
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-06-20T12:45:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250620T1245Z.jpg",
+        "semanticScore": -0.012319,
+        "rainbowSimilarity": 0.21955
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-06-20T12:50:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250620T1250Z.jpg",
+        "semanticScore": -0.017956,
+        "rainbowSimilarity": 0.22196
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-06-20T12:55:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250620T1255Z.jpg",
+        "semanticScore": -0.02457,
+        "rainbowSimilarity": 0.219521
+      }
+    ],
+    "peakScore": -0.012319,
+    "secondScore": -0.017956,
+    "positiveFrames": 0,
+    "candidateId": "iem-06",
+    "image": "iem-06-sequence.jpg"
+  },
+  {
+    "cameraId": "KCCI-027",
+    "cameraName": "ISU Ag Farm",
+    "network": "KCCI",
+    "observedAt": "2025-08-10T11:45:00Z",
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250810T1145Z.jpg",
+    "longitude": -93.7736,
+    "latitude": 42.02098,
+    "semanticScore": -0.014388,
+    "rainbowSimilarity": 0.195047,
+    "frames": [
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-08-10T11:35:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250810T1135Z.jpg",
+        "semanticScore": -0.023936,
+        "rainbowSimilarity": 0.16601
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-08-10T11:40:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250810T1140Z.jpg",
+        "semanticScore": -0.023732,
+        "rainbowSimilarity": 0.178664
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-08-10T11:45:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250810T1145Z.jpg",
+        "semanticScore": -0.014388,
+        "rainbowSimilarity": 0.195047
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-08-10T11:50:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250810T1150Z.jpg",
+        "semanticScore": -0.026234,
+        "rainbowSimilarity": 0.184128
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-08-10T11:55:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250810T1155Z.jpg",
+        "semanticScore": -0.013541,
+        "rainbowSimilarity": 0.202861
+      }
+    ],
+    "peakScore": -0.013541,
+    "secondScore": -0.014388,
+    "positiveFrames": 0,
+    "candidateId": "iem-07",
+    "image": "iem-07-sequence.jpg"
+  },
+  {
+    "cameraId": "KCCI-027",
+    "cameraName": "ISU Ag Farm",
+    "network": "KCCI",
+    "observedAt": "2024-05-01T00:45:00Z",
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240501T0045Z.jpg",
+    "longitude": -93.7736,
+    "latitude": 42.02098,
+    "semanticScore": -0.015828,
+    "rainbowSimilarity": 0.211057,
+    "frames": [
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2024-05-01T00:35:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240501T0035Z.jpg",
+        "semanticScore": -0.024636,
+        "rainbowSimilarity": 0.197074
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2024-05-01T00:40:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240501T0040Z.jpg",
+        "semanticScore": -0.01596,
+        "rainbowSimilarity": 0.211597
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2024-05-01T00:45:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240501T0045Z.jpg",
+        "semanticScore": -0.015828,
+        "rainbowSimilarity": 0.211057
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2024-05-01T00:50:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240501T0050Z.jpg",
+        "semanticScore": -0.015625,
+        "rainbowSimilarity": 0.209361
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2024-05-01T00:55:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20240501T0055Z.jpg",
+        "semanticScore": -0.025243,
+        "rainbowSimilarity": 0.201851
+      }
+    ],
+    "peakScore": -0.015625,
+    "secondScore": -0.015828,
+    "positiveFrames": 0,
+    "candidateId": "iem-08",
+    "image": "iem-08-sequence.jpg"
+  },
+  {
+    "cameraId": "KCCI-036",
+    "cameraName": "Big Creek Beach",
+    "network": "KCCI",
+    "observedAt": "2024-06-28T11:45:00Z",
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240628T1145Z.jpg",
+    "longitude": -93.74188,
+    "latitude": 41.82003,
+    "semanticScore": -0.023043,
+    "rainbowSimilarity": 0.177516,
+    "frames": [
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-06-28T11:35:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240628T1135Z.jpg",
+        "semanticScore": -0.017098,
+        "rainbowSimilarity": 0.184204
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-06-28T11:40:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240628T1140Z.jpg",
+        "semanticScore": -0.015392,
+        "rainbowSimilarity": 0.189399
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-06-28T11:45:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240628T1145Z.jpg",
+        "semanticScore": -0.023043,
+        "rainbowSimilarity": 0.177516
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-06-28T11:50:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240628T1150Z.jpg",
+        "semanticScore": -0.02977,
+        "rainbowSimilarity": 0.172238
+      },
+      {
+        "cameraId": "KCCI-036",
+        "cameraName": "Big Creek Beach",
+        "network": "KCCI",
+        "observedAt": "2024-06-28T11:55:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-036_20240628T1155Z.jpg",
+        "semanticScore": -0.030829,
+        "rainbowSimilarity": 0.161322
+      }
+    ],
+    "peakScore": -0.015392,
+    "secondScore": -0.017098,
+    "positiveFrames": 0,
+    "candidateId": "iem-09",
+    "image": "iem-09-sequence.jpg"
+  },
+  {
+    "cameraId": "KCCI-027",
+    "cameraName": "ISU Ag Farm",
+    "network": "KCCI",
+    "observedAt": "2025-03-19T13:45:00Z",
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250319T1345Z.jpg",
+    "longitude": -93.7736,
+    "latitude": 42.02098,
+    "semanticScore": -0.015826,
+    "rainbowSimilarity": 0.197968,
+    "frames": [
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-03-19T13:35:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250319T1335Z.jpg",
+        "semanticScore": -0.019017,
+        "rainbowSimilarity": 0.210043
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-03-19T13:40:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250319T1340Z.jpg",
+        "semanticScore": -0.033816,
+        "rainbowSimilarity": 0.193212
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-03-19T13:45:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250319T1345Z.jpg",
+        "semanticScore": -0.015826,
+        "rainbowSimilarity": 0.197968
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-03-19T13:50:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250319T1350Z.jpg",
+        "semanticScore": -0.021193,
+        "rainbowSimilarity": 0.182773
+      },
+      {
+        "cameraId": "KCCI-027",
+        "cameraName": "ISU Ag Farm",
+        "network": "KCCI",
+        "observedAt": "2025-03-19T13:55:00Z",
+        "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\iem\\batch-images\\KCCI-027_20250319T1355Z.jpg",
+        "semanticScore": -0.044979,
+        "rainbowSimilarity": 0.161699
+      }
+    ],
+    "peakScore": -0.015826,
+    "secondScore": -0.019017,
+    "positiveFrames": 0,
+    "candidateId": "iem-10",
+    "image": "iem-10-sequence.jpg"
+  }
+]

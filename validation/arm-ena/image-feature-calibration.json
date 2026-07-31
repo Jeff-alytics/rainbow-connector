@@ -1,0 +1,2390 @@
+{
+  "schemaVersion": 1,
+  "rows": [
+    {
+      "candidateId": "ena-47-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 9.27175,
+      "bestFrame": "enaasiskyimageC1.a1.20241030.111500.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20241030.110500.jpg",
+          "score": 0.37213,
+          "nonBlue": 0.20492,
+          "coexist": 0.04098,
+          "diversity": 0.7225,
+          "chroma": 0.21665,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241030.111000.jpg",
+          "score": 0.13412,
+          "nonBlue": 0.14286,
+          "coexist": 0.0,
+          "diversity": 0.50226,
+          "chroma": 0.23389,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241030.111500.jpg",
+          "score": 9.27175,
+          "nonBlue": 0.82955,
+          "coexist": 0.39773,
+          "diversity": 1.58479,
+          "chroma": 0.19964,
+          "activeHues": 6
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241030.112000.jpg",
+          "score": 2.68574,
+          "nonBlue": 0.61017,
+          "coexist": 0.11864,
+          "diversity": 1.33002,
+          "chroma": 0.21688,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241030.112500.jpg",
+          "score": 7.43785,
+          "nonBlue": 0.8867,
+          "coexist": 0.43842,
+          "diversity": 1.29824,
+          "chroma": 0.22422,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-57-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 9.26389,
+      "bestFrame": "enaasiskyimageC1.a1.20250315.112200.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250315.111700.jpg",
+          "score": 0.73325,
+          "nonBlue": 0.36471,
+          "coexist": 0.03529,
+          "diversity": 0.90713,
+          "chroma": 0.23903,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250315.112200.jpg",
+          "score": 9.26389,
+          "nonBlue": 0.93182,
+          "coexist": 0.4375,
+          "diversity": 1.45238,
+          "chroma": 0.15729,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250315.112700.jpg",
+          "score": 8.04729,
+          "nonBlue": 0.84302,
+          "coexist": 0.41279,
+          "diversity": 1.47306,
+          "chroma": 0.20632,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250315.113200.jpg",
+          "score": 5.96446,
+          "nonBlue": 0.97101,
+          "coexist": 0.36957,
+          "diversity": 1.10013,
+          "chroma": 0.16868,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250315.113700.jpg",
+          "score": 6.07472,
+          "nonBlue": 0.98582,
+          "coexist": 0.36879,
+          "diversity": 1.09578,
+          "chroma": 0.17099,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-21-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 8.36221,
+      "bestFrame": "enaasiskyimageC1.a1.20241128.120500.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20241128.115500.jpg",
+          "score": 7.85624,
+          "nonBlue": 0.97449,
+          "coexist": 0.45918,
+          "diversity": 1.10361,
+          "chroma": 0.21605,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241128.120000.jpg",
+          "score": 0.04544,
+          "nonBlue": 0.08197,
+          "coexist": 0.0,
+          "diversity": 0.28355,
+          "chroma": 0.21824,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241128.120500.jpg",
+          "score": 8.36221,
+          "nonBlue": 0.88071,
+          "coexist": 0.39594,
+          "diversity": 1.55708,
+          "chroma": 0.2104,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241128.121000.jpg",
+          "score": 0.56597,
+          "nonBlue": 0.33735,
+          "coexist": 0.04819,
+          "diversity": 0.8277,
+          "chroma": 0.18162,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241128.121500.jpg",
+          "score": 6.92808,
+          "nonBlue": 0.83929,
+          "coexist": 0.41667,
+          "diversity": 1.31122,
+          "chroma": 0.20777,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-07-fullres",
+      "label": "rainbow",
+      "sequenceScore": 8.29716,
+      "bestFrame": "enaasiskyimageC1.a1.20251010.100600.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20251010.100600.jpg",
+          "score": 8.29716,
+          "nonBlue": 0.88372,
+          "coexist": 0.34109,
+          "diversity": 1.54963,
+          "chroma": 0.09333,
+          "activeHues": 6
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251010.101100.jpg",
+          "score": 0.86078,
+          "nonBlue": 0.68056,
+          "coexist": 0.0,
+          "diversity": 1.09121,
+          "chroma": 0.10741,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251010.101600.jpg",
+          "score": 0.63277,
+          "nonBlue": 0.49425,
+          "coexist": 0.0,
+          "diversity": 1.03232,
+          "chroma": 0.12179,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251010.102100.jpg",
+          "score": 1.18757,
+          "nonBlue": 0.86458,
+          "coexist": 0.01042,
+          "diversity": 1.01934,
+          "chroma": 0.11928,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251010.102600.jpg",
+          "score": 1.10044,
+          "nonBlue": 0.84706,
+          "coexist": 0.0,
+          "diversity": 0.96694,
+          "chroma": 0.12844,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-56-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 8.10071,
+      "bestFrame": "enaasiskyimageC1.a1.20260318.170900.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20260318.170900.jpg",
+          "score": 8.10071,
+          "nonBlue": 1.0,
+          "coexist": 0.48598,
+          "diversity": 1.2637,
+          "chroma": 0.11508,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260318.171400.jpg",
+          "score": 4.5482,
+          "nonBlue": 0.76,
+          "coexist": 0.32,
+          "diversity": 1.29017,
+          "chroma": 0.10787,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260318.171900.jpg",
+          "score": 5.26093,
+          "nonBlue": 1.0,
+          "coexist": 0.32323,
+          "diversity": 1.06917,
+          "chroma": 0.11099,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260318.172400.jpg",
+          "score": 5.81096,
+          "nonBlue": 0.98718,
+          "coexist": 0.33333,
+          "diversity": 1.18792,
+          "chroma": 0.12227,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260318.172900.jpg",
+          "score": 1.44933,
+          "nonBlue": 0.52663,
+          "coexist": 0.08284,
+          "diversity": 1.24662,
+          "chroma": 0.13911,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-40-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 7.9432,
+      "bestFrame": "enaasiskyimageC1.a1.20240924.101800.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20240924.100300.jpg",
+          "score": 6.13992,
+          "nonBlue": 1.0,
+          "coexist": 0.5,
+          "diversity": 0.99479,
+          "chroma": 0.1197,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240924.100800.jpg",
+          "score": 6.89596,
+          "nonBlue": 0.89493,
+          "coexist": 0.41667,
+          "diversity": 1.23852,
+          "chroma": 0.19652,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240924.101300.jpg",
+          "score": 5.83014,
+          "nonBlue": 0.80392,
+          "coexist": 0.38824,
+          "diversity": 1.3308,
+          "chroma": 0.15845,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240924.101800.jpg",
+          "score": 7.9432,
+          "nonBlue": 0.95055,
+          "coexist": 0.46703,
+          "diversity": 1.17672,
+          "chroma": 0.21452,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240924.102300.jpg",
+          "score": 6.56402,
+          "nonBlue": 0.83744,
+          "coexist": 0.40394,
+          "diversity": 1.29609,
+          "chroma": 0.21147,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-88-fullres",
+      "label": "rainbow",
+      "sequenceScore": 7.60623,
+      "bestFrame": "enaasiskyimageC1.a1.20251111.092700.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20251111.092200.jpg",
+          "score": 5.38515,
+          "nonBlue": 0.87156,
+          "coexist": 0.29817,
+          "diversity": 1.34075,
+          "chroma": 0.12542,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251111.092700.jpg",
+          "score": 7.60623,
+          "nonBlue": 0.96104,
+          "coexist": 0.41558,
+          "diversity": 1.2112,
+          "chroma": 0.08154,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251111.093200.jpg",
+          "score": 3.3714,
+          "nonBlue": 1.0,
+          "coexist": 0.2043,
+          "diversity": 1.04352,
+          "chroma": 0.11503,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251111.093700.jpg",
+          "score": 7.44859,
+          "nonBlue": 0.92453,
+          "coexist": 0.37736,
+          "diversity": 1.21276,
+          "chroma": 0.11757,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251111.094200.jpg",
+          "score": 0.66969,
+          "nonBlue": 0.52041,
+          "coexist": 0.0,
+          "diversity": 0.93482,
+          "chroma": 0.12629,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-31-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 7.0503,
+      "bestFrame": "enaasiskyimageC1.a1.20240923.093700.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20240923.093200.jpg",
+          "score": 1.24096,
+          "nonBlue": 0.48538,
+          "coexist": 0.07602,
+          "diversity": 1.11608,
+          "chroma": 0.20532,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240923.093700.jpg",
+          "score": 7.0503,
+          "nonBlue": 0.88235,
+          "coexist": 0.43529,
+          "diversity": 1.27095,
+          "chroma": 0.20554,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240923.094200.jpg",
+          "score": 1.23782,
+          "nonBlue": 0.57895,
+          "coexist": 0.03947,
+          "diversity": 1.14487,
+          "chroma": 0.20093,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240923.094700.jpg",
+          "score": 2.0851,
+          "nonBlue": 0.71605,
+          "coexist": 0.08642,
+          "diversity": 1.26113,
+          "chroma": 0.17986,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240923.095200.jpg",
+          "score": 6.17935,
+          "nonBlue": 0.90955,
+          "coexist": 0.41206,
+          "diversity": 1.18341,
+          "chroma": 0.13203,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-33-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 6.85605,
+      "bestFrame": "enaasiskyimageC1.a1.20260317.173700.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20260317.173700.jpg",
+          "score": 6.85605,
+          "nonBlue": 0.8642,
+          "coexist": 0.33333,
+          "diversity": 1.40513,
+          "chroma": 0.11431,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260317.174200.jpg",
+          "score": 5.30647,
+          "nonBlue": 0.85714,
+          "coexist": 0.36735,
+          "diversity": 1.22929,
+          "chroma": 0.1052,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260317.174700.jpg",
+          "score": 1.03976,
+          "nonBlue": 0.36364,
+          "coexist": 0.12879,
+          "diversity": 1.05156,
+          "chroma": 0.10701,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260317.175200.jpg",
+          "score": 0.77881,
+          "nonBlue": 0.34595,
+          "coexist": 0.07027,
+          "diversity": 1.00412,
+          "chroma": 0.12884,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260317.175700.jpg",
+          "score": 0.76199,
+          "nonBlue": 0.36066,
+          "coexist": 0.05464,
+          "diversity": 0.99935,
+          "chroma": 0.13893,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-53-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 6.59463,
+      "bestFrame": "enaasiskyimageC1.a1.20250103.154700.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250103.153700.jpg",
+          "score": 0.10613,
+          "nonBlue": 0.15315,
+          "coexist": 0.0,
+          "diversity": 0.42814,
+          "chroma": 0.21502,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250103.154200.jpg",
+          "score": 0.31726,
+          "nonBlue": 0.36975,
+          "coexist": 0.0,
+          "diversity": 0.65882,
+          "chroma": 0.25444,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250103.154700.jpg",
+          "score": 6.59463,
+          "nonBlue": 0.71257,
+          "coexist": 0.32934,
+          "diversity": 1.56087,
+          "chroma": 0.19138,
+          "activeHues": 6
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250103.155200.jpg",
+          "score": 0.1951,
+          "nonBlue": 0.25424,
+          "coexist": 0.0,
+          "diversity": 0.56694,
+          "chroma": 0.20921,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250103.155700.jpg",
+          "score": 0.16334,
+          "nonBlue": 0.21818,
+          "coexist": 0.0,
+          "diversity": 0.5246,
+          "chroma": 0.13283,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-32-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 6.49474,
+      "bestFrame": "enaasiskyimageC1.a1.20251026.100100.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20251026.095600.jpg",
+          "score": 0.7537,
+          "nonBlue": 0.58974,
+          "coexist": 0.0,
+          "diversity": 1.02809,
+          "chroma": 0.1173,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251026.100100.jpg",
+          "score": 6.49474,
+          "nonBlue": 0.87879,
+          "coexist": 0.39394,
+          "diversity": 1.30982,
+          "chroma": 0.14557,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251026.100600.jpg",
+          "score": 0.83298,
+          "nonBlue": 0.67045,
+          "coexist": 0.0,
+          "diversity": 1.01397,
+          "chroma": 0.12001,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251026.101100.jpg",
+          "score": 0.96708,
+          "nonBlue": 0.68421,
+          "coexist": 0.0,
+          "diversity": 1.09394,
+          "chroma": 0.14815,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251026.101600.jpg",
+          "score": 1.09044,
+          "nonBlue": 0.80851,
+          "coexist": 0.0,
+          "diversity": 1.01443,
+          "chroma": 0.14618,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-59-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 6.49274,
+      "bestFrame": "enaasiskyimageC1.a1.20250208.102200.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250208.101200.jpg",
+          "score": 0.03593,
+          "nonBlue": 0.06604,
+          "coexist": 0.0,
+          "diversity": 0.24327,
+          "chroma": 0.15934,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250208.101700.jpg",
+          "score": 0.12476,
+          "nonBlue": 0.17797,
+          "coexist": 0.0,
+          "diversity": 0.4683,
+          "chroma": 0.1899,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250208.102200.jpg",
+          "score": 6.49274,
+          "nonBlue": 0.81609,
+          "coexist": 0.4023,
+          "diversity": 1.40638,
+          "chroma": 0.24958,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250208.102700.jpg",
+          "score": 0.57731,
+          "nonBlue": 0.84,
+          "coexist": 0.0,
+          "diversity": 0.43967,
+          "chroma": 0.18609,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250208.103200.jpg",
+          "score": 0.59502,
+          "nonBlue": 0.83117,
+          "coexist": 0.0,
+          "diversity": 0.45403,
+          "chroma": 0.2137,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-03-fullres",
+      "label": "rainbow",
+      "sequenceScore": 6.42876,
+      "bestFrame": "enaasiskyimageC1.a1.20260508.075400.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20260508.073400.jpg",
+          "score": 6.14512,
+          "nonBlue": 0.82278,
+          "coexist": 0.36709,
+          "diversity": 1.40078,
+          "chroma": 0.13244,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260508.073900.jpg",
+          "score": 4.58709,
+          "nonBlue": 1.0,
+          "coexist": 0.35294,
+          "diversity": 1.06633,
+          "chroma": 0.07792,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260508.074400.jpg",
+          "score": 3.19179,
+          "nonBlue": 0.77064,
+          "coexist": 0.27523,
+          "diversity": 1.08099,
+          "chroma": 0.09822,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260508.074900.jpg",
+          "score": 2.27787,
+          "nonBlue": 0.86047,
+          "coexist": 0.09302,
+          "diversity": 1.12392,
+          "chroma": 0.12677,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260508.075400.jpg",
+          "score": 6.42876,
+          "nonBlue": 0.8412,
+          "coexist": 0.41631,
+          "diversity": 1.34988,
+          "chroma": 0.11248,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-35-fullres",
+      "label": "rainbow",
+      "sequenceScore": 6.23417,
+      "bestFrame": "enaasiskyimageC1.a1.20241218.105800.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20241218.104800.jpg",
+          "score": 0.50604,
+          "nonBlue": 0.57778,
+          "coexist": 0.0,
+          "diversity": 0.681,
+          "chroma": 0.16266,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241218.105300.jpg",
+          "score": 1.5022,
+          "nonBlue": 0.98387,
+          "coexist": 0.16129,
+          "diversity": 0.55352,
+          "chroma": 0.13586,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241218.105800.jpg",
+          "score": 6.23417,
+          "nonBlue": 1.0,
+          "coexist": 0.45238,
+          "diversity": 1.00181,
+          "chroma": 0.13777,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241218.110300.jpg",
+          "score": 0.68601,
+          "nonBlue": 0.81111,
+          "coexist": 0.01111,
+          "diversity": 0.54331,
+          "chroma": 0.18915,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241218.110800.jpg",
+          "score": 0.53251,
+          "nonBlue": 0.63333,
+          "coexist": 0.0,
+          "diversity": 0.65716,
+          "chroma": 0.17133,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-22-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 5.98009,
+      "bestFrame": "enaasiskyimageC1.a1.20260126.145800.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20260126.145300.jpg",
+          "score": 5.53216,
+          "nonBlue": 0.80952,
+          "coexist": 0.3619,
+          "diversity": 1.30745,
+          "chroma": 0.12299,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260126.145800.jpg",
+          "score": 5.98009,
+          "nonBlue": 0.88571,
+          "coexist": 0.35714,
+          "diversity": 1.28855,
+          "chroma": 0.11613,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260126.150300.jpg",
+          "score": 0.44783,
+          "nonBlue": 0.52,
+          "coexist": 0.0,
+          "diversity": 0.69235,
+          "chroma": 0.14302,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260126.150800.jpg",
+          "score": 0.62826,
+          "nonBlue": 0.53741,
+          "coexist": 0.02041,
+          "diversity": 0.86307,
+          "chroma": 0.16492,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260126.151300.jpg",
+          "score": 0.57312,
+          "nonBlue": 0.70732,
+          "coexist": 0.0,
+          "diversity": 0.60454,
+          "chroma": 0.16208,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-49-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 5.97577,
+      "bestFrame": "enaasiskyimageC1.a1.20250209.115700.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250209.115700.jpg",
+          "score": 5.97577,
+          "nonBlue": 0.91892,
+          "coexist": 0.37838,
+          "diversity": 1.25394,
+          "chroma": 0.11468,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250209.120200.jpg",
+          "score": 0.22343,
+          "nonBlue": 0.27835,
+          "coexist": 0.0,
+          "diversity": 0.59139,
+          "chroma": 0.18856,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250209.120700.jpg",
+          "score": 5.35919,
+          "nonBlue": 0.92282,
+          "coexist": 0.33221,
+          "diversity": 1.08853,
+          "chroma": 0.16752,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250209.121200.jpg",
+          "score": 0.34018,
+          "nonBlue": 0.23936,
+          "coexist": 0.0266,
+          "diversity": 0.75349,
+          "chroma": 0.17621,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250209.121700.jpg",
+          "score": 0.54075,
+          "nonBlue": 0.75824,
+          "coexist": 0.0,
+          "diversity": 0.5531,
+          "chroma": 0.09894,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-93-fullres",
+      "label": "rainbow",
+      "sequenceScore": 5.70421,
+      "bestFrame": "enaasiskyimageC1.a1.20240810.202600.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20240810.202100.jpg",
+          "score": 3.82534,
+          "nonBlue": 0.82353,
+          "coexist": 0.36765,
+          "diversity": 1.05812,
+          "chroma": 0.16995,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240810.202600.jpg",
+          "score": 5.70421,
+          "nonBlue": 0.80128,
+          "coexist": 0.39744,
+          "diversity": 1.14907,
+          "chroma": 0.13763,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240810.203100.jpg",
+          "score": 5.44059,
+          "nonBlue": 0.97333,
+          "coexist": 0.24,
+          "diversity": 1.2381,
+          "chroma": 0.14112,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240810.203600.jpg",
+          "score": 1.87687,
+          "nonBlue": 1.0,
+          "coexist": 0.09449,
+          "diversity": 0.76592,
+          "chroma": 0.15266,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240810.204100.jpg",
+          "score": 1.6717,
+          "nonBlue": 1.0,
+          "coexist": 0.02994,
+          "diversity": 0.71332,
+          "chroma": 0.19885,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-34-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 5.41506,
+      "bestFrame": "enaasiskyimageC1.a1.20260205.145600.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20260205.145600.jpg",
+          "score": 5.41506,
+          "nonBlue": 1.0,
+          "coexist": 0.29365,
+          "diversity": 1.21199,
+          "chroma": 0.11905,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260205.150100.jpg",
+          "score": 1.37264,
+          "nonBlue": 0.49457,
+          "coexist": 0.08696,
+          "diversity": 1.20119,
+          "chroma": 0.13796,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260205.150600.jpg",
+          "score": 3.83458,
+          "nonBlue": 0.65934,
+          "coexist": 0.2967,
+          "diversity": 1.34638,
+          "chroma": 0.12394,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260205.151100.jpg",
+          "score": 0.54453,
+          "nonBlue": 0.52778,
+          "coexist": 0.0,
+          "diversity": 0.8692,
+          "chroma": 0.10125,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260205.151600.jpg",
+          "score": 0.55326,
+          "nonBlue": 0.64327,
+          "coexist": 0.0,
+          "diversity": 0.65151,
+          "chroma": 0.15881,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-89-fullres",
+      "label": "rainbow",
+      "sequenceScore": 4.44686,
+      "bestFrame": "enaasiskyimageC1.a1.20240603.203100.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20240603.202100.jpg",
+          "score": 2.13707,
+          "nonBlue": 0.92,
+          "coexist": 0.12,
+          "diversity": 0.86447,
+          "chroma": 0.21511,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240603.202600.jpg",
+          "score": 2.17692,
+          "nonBlue": 0.68456,
+          "coexist": 0.18121,
+          "diversity": 1.01901,
+          "chroma": 0.12728,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240603.203100.jpg",
+          "score": 4.44686,
+          "nonBlue": 0.96774,
+          "coexist": 0.46237,
+          "diversity": 0.81234,
+          "chroma": 0.17048,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240603.203600.jpg",
+          "score": 4.4415,
+          "nonBlue": 0.8024,
+          "coexist": 0.35928,
+          "diversity": 1.04885,
+          "chroma": 0.15581,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240603.204100.jpg",
+          "score": 4.38415,
+          "nonBlue": 0.88816,
+          "coexist": 0.34868,
+          "diversity": 0.94532,
+          "chroma": 0.15488,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-45-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 4.35471,
+      "bestFrame": "enaasiskyimageC1.a1.20241222.142700.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20241222.141700.jpg",
+          "score": 0.10044,
+          "nonBlue": 0.12269,
+          "coexist": 0.00463,
+          "diversity": 0.45351,
+          "chroma": 0.21463,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241222.142200.jpg",
+          "score": 0.16057,
+          "nonBlue": 0.15075,
+          "coexist": 0.01759,
+          "diversity": 0.55251,
+          "chroma": 0.19131,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241222.142700.jpg",
+          "score": 4.35471,
+          "nonBlue": 0.68421,
+          "coexist": 0.25263,
+          "diversity": 1.4465,
+          "chroma": 0.2052,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241222.143200.jpg",
+          "score": 0.67466,
+          "nonBlue": 0.37179,
+          "coexist": 0.02564,
+          "diversity": 0.89841,
+          "chroma": 0.17506,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241222.143700.jpg",
+          "score": 2.83198,
+          "nonBlue": 0.61429,
+          "coexist": 0.25714,
+          "diversity": 1.17411,
+          "chroma": 0.12347,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-28-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 4.22637,
+      "bestFrame": "enaasiskyimageC1.a1.20250216.164500.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250216.163500.jpg",
+          "score": 0.08644,
+          "nonBlue": 0.09574,
+          "coexist": 0.00851,
+          "diversity": 0.40354,
+          "chroma": 0.26802,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250216.164000.jpg",
+          "score": 0.29028,
+          "nonBlue": 0.27097,
+          "coexist": 0.0,
+          "diversity": 0.73295,
+          "chroma": 0.20152,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250216.164500.jpg",
+          "score": 4.22637,
+          "nonBlue": 0.71429,
+          "coexist": 0.25893,
+          "diversity": 1.29989,
+          "chroma": 0.17885,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250216.165000.jpg",
+          "score": 0.29214,
+          "nonBlue": 0.18132,
+          "coexist": 0.06044,
+          "diversity": 0.66441,
+          "chroma": 0.18166,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250216.165500.jpg",
+          "score": 1.59921,
+          "nonBlue": 0.35099,
+          "coexist": 0.16556,
+          "diversity": 1.15793,
+          "chroma": 0.18013,
+          "activeHues": 6
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-41-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 4.21576,
+      "bestFrame": "enaasiskyimageC1.a1.20251006.153800.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20251006.152800.jpg",
+          "score": 0.45523,
+          "nonBlue": 0.45455,
+          "coexist": 0.0,
+          "diversity": 0.68901,
+          "chroma": 0.20967,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251006.153300.jpg",
+          "score": 0.26211,
+          "nonBlue": 0.32,
+          "coexist": 0.0,
+          "diversity": 0.62687,
+          "chroma": 0.17506,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251006.153800.jpg",
+          "score": 4.21576,
+          "nonBlue": 0.76852,
+          "coexist": 0.26852,
+          "diversity": 1.31024,
+          "chroma": 0.10955,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251006.154300.jpg",
+          "score": 2.10937,
+          "nonBlue": 0.57534,
+          "coexist": 0.16438,
+          "diversity": 1.1399,
+          "chroma": 0.11963,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251006.154800.jpg",
+          "score": 0.87939,
+          "nonBlue": 0.29885,
+          "coexist": 0.13793,
+          "diversity": 0.96561,
+          "chroma": 0.10615,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-55-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 4.20484,
+      "bestFrame": "enaasiskyimageC1.a1.20250715.200000.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250715.195000.jpg",
+          "score": 1.5672,
+          "nonBlue": 0.44444,
+          "coexist": 0.16667,
+          "diversity": 1.17346,
+          "chroma": 0.12898,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250715.195500.jpg",
+          "score": 1.43251,
+          "nonBlue": 0.40323,
+          "coexist": 0.16129,
+          "diversity": 1.04068,
+          "chroma": 0.18763,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250715.200000.jpg",
+          "score": 4.20484,
+          "nonBlue": 0.92517,
+          "coexist": 0.34014,
+          "diversity": 0.9887,
+          "chroma": 0.10028,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250715.200500.jpg",
+          "score": 2.00511,
+          "nonBlue": 0.51965,
+          "coexist": 0.16594,
+          "diversity": 1.15271,
+          "chroma": 0.1532,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250715.201000.jpg",
+          "score": 2.0196,
+          "nonBlue": 0.83173,
+          "coexist": 0.08173,
+          "diversity": 0.98735,
+          "chroma": 0.1444,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-29-fullres",
+      "label": "rainbow",
+      "sequenceScore": 4.00445,
+      "bestFrame": "enaasiskyimageC1.a1.20251208.164900.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20251208.162900.jpg",
+          "score": 0.51671,
+          "nonBlue": 0.61176,
+          "coexist": 0.0,
+          "diversity": 0.66795,
+          "chroma": 0.13361,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251208.163400.jpg",
+          "score": 1.17097,
+          "nonBlue": 0.39252,
+          "coexist": 0.1215,
+          "diversity": 0.98772,
+          "chroma": 0.137,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251208.163900.jpg",
+          "score": 1.66931,
+          "nonBlue": 0.47959,
+          "coexist": 0.21429,
+          "diversity": 1.02202,
+          "chroma": 0.16156,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251208.164400.jpg",
+          "score": 3.76854,
+          "nonBlue": 0.81443,
+          "coexist": 0.2268,
+          "diversity": 1.13614,
+          "chroma": 0.1451,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251208.164900.jpg",
+          "score": 4.00445,
+          "nonBlue": 0.83333,
+          "coexist": 0.23077,
+          "diversity": 1.11763,
+          "chroma": 0.13389,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-51-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 3.23697,
+      "bestFrame": "enaasiskyimageC1.a1.20250214.142600.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250214.141100.jpg",
+          "score": 0.38206,
+          "nonBlue": 0.44231,
+          "coexist": 0.0,
+          "diversity": 0.68648,
+          "chroma": 0.16855,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250214.141600.jpg",
+          "score": 0.25598,
+          "nonBlue": 0.30233,
+          "coexist": 0.0,
+          "diversity": 0.61282,
+          "chroma": 0.22541,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250214.142100.jpg",
+          "score": 0.23455,
+          "nonBlue": 0.29091,
+          "coexist": 0.0,
+          "diversity": 0.60296,
+          "chroma": 0.20082,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250214.142600.jpg",
+          "score": 3.23697,
+          "nonBlue": 0.75,
+          "coexist": 0.17708,
+          "diversity": 1.34155,
+          "chroma": 0.18619,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250214.143100.jpg",
+          "score": 2.8773,
+          "nonBlue": 0.76923,
+          "coexist": 0.13462,
+          "diversity": 1.3129,
+          "chroma": 0.21618,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-26-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 3.2246,
+      "bestFrame": "enaasiskyimageC1.a1.20260511.184400.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20260511.182400.jpg",
+          "score": 2.49924,
+          "nonBlue": 1.0,
+          "coexist": 0.28873,
+          "diversity": 0.60101,
+          "chroma": 0.12466,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260511.182900.jpg",
+          "score": 1.16923,
+          "nonBlue": 1.0,
+          "coexist": 0.07292,
+          "diversity": 0.46167,
+          "chroma": 0.09089,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260511.183400.jpg",
+          "score": 1.82867,
+          "nonBlue": 0.43671,
+          "coexist": 0.20253,
+          "diversity": 1.17016,
+          "chroma": 0.14113,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260511.183900.jpg",
+          "score": 2.33297,
+          "nonBlue": 0.73554,
+          "coexist": 0.1405,
+          "diversity": 1.10706,
+          "chroma": 0.10426,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260511.184400.jpg",
+          "score": 3.2246,
+          "nonBlue": 0.70588,
+          "coexist": 0.30588,
+          "diversity": 1.18805,
+          "chroma": 0.0931,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-39-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 3.15585,
+      "bestFrame": "enaasiskyimageC1.a1.20241217.150500.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20241217.144500.jpg",
+          "score": 0.28432,
+          "nonBlue": 0.32967,
+          "coexist": 0.0,
+          "diversity": 0.63394,
+          "chroma": 0.23835,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241217.145000.jpg",
+          "score": 0.044,
+          "nonBlue": 0.08075,
+          "coexist": 0.0,
+          "diversity": 0.28059,
+          "chroma": 0.22348,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241217.145500.jpg",
+          "score": 1.20613,
+          "nonBlue": 0.80233,
+          "coexist": 0.02326,
+          "diversity": 1.00175,
+          "chroma": 0.20534,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241217.150000.jpg",
+          "score": 1.08694,
+          "nonBlue": 0.59494,
+          "coexist": 0.02532,
+          "diversity": 1.0376,
+          "chroma": 0.21087,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241217.150500.jpg",
+          "score": 3.15585,
+          "nonBlue": 0.76923,
+          "coexist": 0.08974,
+          "diversity": 1.38387,
+          "chroma": 0.20412,
+          "activeHues": 6
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-48-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 3.12955,
+      "bestFrame": "enaasiskyimageC1.a1.20250407.191400.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250407.190400.jpg",
+          "score": 0.21858,
+          "nonBlue": 0.25439,
+          "coexist": 0.0,
+          "diversity": 0.5671,
+          "chroma": 0.24534,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250407.190900.jpg",
+          "score": 2.96003,
+          "nonBlue": 0.68317,
+          "coexist": 0.15842,
+          "diversity": 1.18501,
+          "chroma": 0.13434,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250407.191400.jpg",
+          "score": 3.12955,
+          "nonBlue": 0.56962,
+          "coexist": 0.21519,
+          "diversity": 1.38493,
+          "chroma": 0.11606,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250407.191900.jpg",
+          "score": 0.57963,
+          "nonBlue": 0.27907,
+          "coexist": 0.05814,
+          "diversity": 0.88028,
+          "chroma": 0.17811,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250407.192400.jpg",
+          "score": 0.89582,
+          "nonBlue": 0.35484,
+          "coexist": 0.16129,
+          "diversity": 0.89488,
+          "chroma": 0.16964,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-42-fullres",
+      "label": "rainbow",
+      "sequenceScore": 2.96732,
+      "bestFrame": "enaasiskyimageC1.a1.20260201.174300.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20260201.173800.jpg",
+          "score": 2.48713,
+          "nonBlue": 0.67568,
+          "coexist": 0.13514,
+          "diversity": 1.17981,
+          "chroma": 0.11298,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260201.174300.jpg",
+          "score": 2.96732,
+          "nonBlue": 0.89831,
+          "coexist": 0.11864,
+          "diversity": 1.10476,
+          "chroma": 0.09569,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260201.174800.jpg",
+          "score": 0.60913,
+          "nonBlue": 0.79452,
+          "coexist": 0.0,
+          "diversity": 0.50791,
+          "chroma": 0.13892,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260201.175300.jpg",
+          "score": 0.97378,
+          "nonBlue": 0.35897,
+          "coexist": 0.08974,
+          "diversity": 1.01576,
+          "chroma": 0.14997,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260201.175800.jpg",
+          "score": 1.18729,
+          "nonBlue": 0.44444,
+          "coexist": 0.16667,
+          "diversity": 0.98099,
+          "chroma": 0.1093,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-50-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 2.83721,
+      "bestFrame": "enaasiskyimageC1.a1.20250313.090800.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250313.085800.jpg",
+          "score": 0.03552,
+          "nonBlue": 0.05979,
+          "coexist": 0.0,
+          "diversity": 0.2264,
+          "chroma": 0.29092,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250313.090300.jpg",
+          "score": 0.10627,
+          "nonBlue": 0.11229,
+          "coexist": 0.01059,
+          "diversity": 0.45463,
+          "chroma": 0.28067,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250313.090800.jpg",
+          "score": 2.83721,
+          "nonBlue": 0.82979,
+          "coexist": 0.10638,
+          "diversity": 1.32897,
+          "chroma": 0.24547,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250313.091300.jpg",
+          "score": 2.2242,
+          "nonBlue": 0.48544,
+          "coexist": 0.22816,
+          "diversity": 1.17655,
+          "chroma": 0.20129,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250313.091800.jpg",
+          "score": 0.1569,
+          "nonBlue": 0.21368,
+          "coexist": 0.0,
+          "diversity": 0.51879,
+          "chroma": 0.17805,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-36-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 2.65762,
+      "bestFrame": "enaasiskyimageC1.a1.20241010.163900.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20241010.162400.jpg",
+          "score": 0.11915,
+          "nonBlue": 0.16667,
+          "coexist": 0.0,
+          "diversity": 0.45056,
+          "chroma": 0.25046,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241010.162900.jpg",
+          "score": 0.07725,
+          "nonBlue": 0.11864,
+          "coexist": 0.0,
+          "diversity": 0.36421,
+          "chroma": 0.22748,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241010.163400.jpg",
+          "score": 0.45203,
+          "nonBlue": 0.33333,
+          "coexist": 0.04,
+          "diversity": 0.81306,
+          "chroma": 0.22536,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241010.163900.jpg",
+          "score": 2.65762,
+          "nonBlue": 0.75342,
+          "coexist": 0.23288,
+          "diversity": 1.07654,
+          "chroma": 0.2145,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241010.164400.jpg",
+          "score": 0.81701,
+          "nonBlue": 0.34746,
+          "coexist": 0.14407,
+          "diversity": 0.88161,
+          "chroma": 0.2446,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-58-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 2.02144,
+      "bestFrame": "enaasiskyimageC1.a1.20241106.131400.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20241106.125900.jpg",
+          "score": 0.44496,
+          "nonBlue": 0.36471,
+          "coexist": 0.0,
+          "diversity": 0.79632,
+          "chroma": 0.21098,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241106.130400.jpg",
+          "score": 0.24282,
+          "nonBlue": 0.22222,
+          "coexist": 0.00855,
+          "diversity": 0.68369,
+          "chroma": 0.14895,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241106.130900.jpg",
+          "score": 0.27646,
+          "nonBlue": 0.23664,
+          "coexist": 0.01908,
+          "diversity": 0.72023,
+          "chroma": 0.14477,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241106.131400.jpg",
+          "score": 2.02144,
+          "nonBlue": 0.69231,
+          "coexist": 0.07692,
+          "diversity": 1.11306,
+          "chroma": 0.21307,
+          "activeHues": 5
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241106.131900.jpg",
+          "score": 1.16993,
+          "nonBlue": 0.36517,
+          "coexist": 0.14045,
+          "diversity": 1.07166,
+          "chroma": 0.19708,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-60-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 1.76478,
+      "bestFrame": "enaasiskyimageC1.a1.20251026.122400.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20251026.120400.jpg",
+          "score": 0.83039,
+          "nonBlue": 0.68482,
+          "coexist": 0.0,
+          "diversity": 0.89595,
+          "chroma": 0.15595,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251026.120900.jpg",
+          "score": 1.53911,
+          "nonBlue": 0.78667,
+          "coexist": 0.02667,
+          "diversity": 1.11855,
+          "chroma": 0.13778,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251026.121400.jpg",
+          "score": 0.9328,
+          "nonBlue": 0.75949,
+          "coexist": 0.0,
+          "diversity": 0.89386,
+          "chroma": 0.13795,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251026.121900.jpg",
+          "score": 0.61657,
+          "nonBlue": 0.64356,
+          "coexist": 0.0,
+          "diversity": 0.65134,
+          "chroma": 0.19247,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20251026.122400.jpg",
+          "score": 1.76478,
+          "nonBlue": 0.60759,
+          "coexist": 0.07595,
+          "diversity": 1.04886,
+          "chroma": 0.16287,
+          "activeHues": 5
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-02-fullres",
+      "label": "rainbow",
+      "sequenceScore": 1.56585,
+      "bestFrame": "enaasiskyimageC1.a1.20250306.182500.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250306.181500.jpg",
+          "score": 0.36198,
+          "nonBlue": 0.18848,
+          "coexist": 0.08901,
+          "diversity": 0.68008,
+          "chroma": 0.32223,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250306.182000.jpg",
+          "score": 0.26664,
+          "nonBlue": 0.29825,
+          "coexist": 0.0,
+          "diversity": 0.60937,
+          "chroma": 0.27509,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250306.182500.jpg",
+          "score": 1.56585,
+          "nonBlue": 0.61491,
+          "coexist": 0.08696,
+          "diversity": 1.08723,
+          "chroma": 0.12841,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250306.183000.jpg",
+          "score": 0.09819,
+          "nonBlue": 0.09119,
+          "coexist": 0.04403,
+          "diversity": 0.4098,
+          "chroma": 0.21708,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250306.183500.jpg",
+          "score": 0.05855,
+          "nonBlue": 0.07773,
+          "coexist": 0.0,
+          "diversity": 0.32754,
+          "chroma": 0.41324,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-37-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 1.07894,
+      "bestFrame": "enaasiskyimageC1.a1.20260204.172300.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20260204.171800.jpg",
+          "score": 0.53162,
+          "nonBlue": 0.75676,
+          "coexist": 0.0,
+          "diversity": 0.55479,
+          "chroma": 0.10673,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260204.172300.jpg",
+          "score": 1.07894,
+          "nonBlue": 0.776,
+          "coexist": 0.016,
+          "diversity": 0.88229,
+          "chroma": 0.1638,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260204.172800.jpg",
+          "score": 0.81277,
+          "nonBlue": 0.63636,
+          "coexist": 0.0,
+          "diversity": 1.05376,
+          "chroma": 0.1157,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260204.173300.jpg",
+          "score": 0.74705,
+          "nonBlue": 0.58219,
+          "coexist": 0.0,
+          "diversity": 1.03807,
+          "chroma": 0.12146,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20260204.173800.jpg",
+          "score": 0.51608,
+          "nonBlue": 0.89474,
+          "coexist": 0.0,
+          "diversity": 0.3365,
+          "chroma": 0.12792,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-25-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 0.89437,
+      "bestFrame": "enaasiskyimageC1.a1.20250919.090900.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250919.090400.jpg",
+          "score": 0.44807,
+          "nonBlue": 0.54639,
+          "coexist": 0.0,
+          "diversity": 0.68884,
+          "chroma": 0.11352,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250919.090900.jpg",
+          "score": 0.89437,
+          "nonBlue": 0.50581,
+          "coexist": 0.02907,
+          "diversity": 0.91382,
+          "chroma": 0.13557,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250919.091400.jpg",
+          "score": 0.46929,
+          "nonBlue": 0.38356,
+          "coexist": 0.0,
+          "diversity": 0.79638,
+          "chroma": 0.1408,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250919.091900.jpg",
+          "score": 0.34901,
+          "nonBlue": 0.29078,
+          "coexist": 0.0,
+          "diversity": 0.71067,
+          "chroma": 0.21399,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250919.092400.jpg",
+          "score": 0.72161,
+          "nonBlue": 0.65789,
+          "coexist": 0.0,
+          "diversity": 0.88382,
+          "chroma": 0.10144,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-52-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 0.86619,
+      "bestFrame": "enaasiskyimageC1.a1.20241127.151800.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20241127.145800.jpg",
+          "score": 0.06279,
+          "nonBlue": 0.0998,
+          "coexist": 0.0,
+          "diversity": 0.32464,
+          "chroma": 0.2849,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241127.150300.jpg",
+          "score": 0.24771,
+          "nonBlue": 0.29752,
+          "coexist": 0.0,
+          "diversity": 0.60875,
+          "chroma": 0.22353,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241127.150800.jpg",
+          "score": 0.4652,
+          "nonBlue": 0.54945,
+          "coexist": 0.0,
+          "diversity": 0.78053,
+          "chroma": 0.17035,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241127.151300.jpg",
+          "score": 0.37649,
+          "nonBlue": 0.40909,
+          "coexist": 0.0,
+          "diversity": 0.75091,
+          "chroma": 0.21661,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20241127.151800.jpg",
+          "score": 0.86619,
+          "nonBlue": 0.73494,
+          "coexist": 0.0,
+          "diversity": 0.90617,
+          "chroma": 0.20369,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-30-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 0.81733,
+      "bestFrame": "enaasiskyimageC1.a1.20250918.165800.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250918.165800.jpg",
+          "score": 0.81733,
+          "nonBlue": 0.65145,
+          "coexist": 0.00415,
+          "diversity": 0.8472,
+          "chroma": 0.17938,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250918.170300.jpg",
+          "score": 0.44591,
+          "nonBlue": 0.52273,
+          "coexist": 0.0,
+          "diversity": 0.69211,
+          "chroma": 0.15107,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250918.170800.jpg",
+          "score": 0.44105,
+          "nonBlue": 0.37838,
+          "coexist": 0.0,
+          "diversity": 0.78226,
+          "chroma": 0.1788,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250918.171300.jpg",
+          "score": 0.43647,
+          "nonBlue": 0.37611,
+          "coexist": 0.0,
+          "diversity": 0.78918,
+          "chroma": 0.17369,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250918.171800.jpg",
+          "score": 0.51423,
+          "nonBlue": 0.36681,
+          "coexist": 0.03057,
+          "diversity": 0.76245,
+          "chroma": 0.17734,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-24-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 0.68,
+      "bestFrame": "enaasiskyimageC1.a1.20250715.183400.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250715.181400.jpg",
+          "score": 0.11811,
+          "nonBlue": 0.13475,
+          "coexist": 0.0,
+          "diversity": 0.47936,
+          "chroma": 0.17085,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250715.181900.jpg",
+          "score": 0.38455,
+          "nonBlue": 0.20482,
+          "coexist": 0.07229,
+          "diversity": 0.73393,
+          "chroma": 0.16119,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250715.182400.jpg",
+          "score": 0.23225,
+          "nonBlue": 0.15333,
+          "coexist": 0.05333,
+          "diversity": 0.61859,
+          "chroma": 0.16869,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250715.182900.jpg",
+          "score": 0.19174,
+          "nonBlue": 0.1938,
+          "coexist": 0.0,
+          "diversity": 0.62462,
+          "chroma": 0.22092,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250715.183400.jpg",
+          "score": 0.68,
+          "nonBlue": 0.33333,
+          "coexist": 0.11111,
+          "diversity": 0.84869,
+          "chroma": 0.12871,
+          "activeHues": 3
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-46-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 0.57832,
+      "bestFrame": "enaasiskyimageC1.a1.20250428.181600.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250428.180600.jpg",
+          "score": 0.30259,
+          "nonBlue": 0.35135,
+          "coexist": 0.0,
+          "diversity": 0.64828,
+          "chroma": 0.26257,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250428.181100.jpg",
+          "score": 0.24695,
+          "nonBlue": 0.28302,
+          "coexist": 0.0,
+          "diversity": 0.59578,
+          "chroma": 0.26323,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250428.181600.jpg",
+          "score": 0.57832,
+          "nonBlue": 0.47761,
+          "coexist": 0.0,
+          "diversity": 0.99948,
+          "chroma": 0.1686,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250428.182100.jpg",
+          "score": 0.32341,
+          "nonBlue": 0.26966,
+          "coexist": 0.01124,
+          "diversity": 0.77796,
+          "chroma": 0.21859,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250428.182600.jpg",
+          "score": 0.56911,
+          "nonBlue": 0.27083,
+          "coexist": 0.07292,
+          "diversity": 0.82817,
+          "chroma": 0.23705,
+          "activeHues": 4
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-27-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 0.57038,
+      "bestFrame": "enaasiskyimageC1.a1.20250406.181100.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250406.180100.jpg",
+          "score": 0.08948,
+          "nonBlue": 0.09978,
+          "coexist": 0.03548,
+          "diversity": 0.43694,
+          "chroma": 0.21845,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250406.180600.jpg",
+          "score": 0.23692,
+          "nonBlue": 0.20918,
+          "coexist": 0.02551,
+          "diversity": 0.62985,
+          "chroma": 0.15606,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250406.181100.jpg",
+          "score": 0.57038,
+          "nonBlue": 0.39241,
+          "coexist": 0.03797,
+          "diversity": 0.79457,
+          "chroma": 0.18645,
+          "activeHues": 3
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250406.181600.jpg",
+          "score": 0.50306,
+          "nonBlue": 0.2375,
+          "coexist": 0.0875,
+          "diversity": 0.76424,
+          "chroma": 0.1877,
+          "activeHues": 4
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250406.182100.jpg",
+          "score": 0.14259,
+          "nonBlue": 0.17241,
+          "coexist": 0.01149,
+          "diversity": 0.50192,
+          "chroma": 0.2568,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-38-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 0.43235,
+      "bestFrame": "enaasiskyimageC1.a1.20250512.100200.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250512.100200.jpg",
+          "score": 0.43235,
+          "nonBlue": 0.5082,
+          "coexist": 0.0,
+          "diversity": 0.69301,
+          "chroma": 0.20296,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250512.100700.jpg",
+          "score": 0.27953,
+          "nonBlue": 0.30769,
+          "coexist": 0.0,
+          "diversity": 0.61724,
+          "chroma": 0.35442,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250512.101200.jpg",
+          "score": 0.35651,
+          "nonBlue": 0.41176,
+          "coexist": 0.0,
+          "diversity": 0.67749,
+          "chroma": 0.23875,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250512.101700.jpg",
+          "score": 0.29513,
+          "nonBlue": 0.3252,
+          "coexist": 0.0,
+          "diversity": 0.63073,
+          "chroma": 0.31089,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250512.102200.jpg",
+          "score": 0.23705,
+          "nonBlue": 0.26891,
+          "coexist": 0.0,
+          "diversity": 0.58217,
+          "chroma": 0.36075,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-54-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 0.3325,
+      "bestFrame": "enaasiskyimageC1.a1.20250428.091200.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250428.090200.jpg",
+          "score": 0.2774,
+          "nonBlue": 0.31818,
+          "coexist": 0.0,
+          "diversity": 0.62549,
+          "chroma": 0.2923,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250428.090700.jpg",
+          "score": 0.30028,
+          "nonBlue": 0.33333,
+          "coexist": 0.0,
+          "diversity": 0.63651,
+          "chroma": 0.28614,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250428.091200.jpg",
+          "score": 0.3325,
+          "nonBlue": 0.40217,
+          "coexist": 0.0,
+          "diversity": 0.67388,
+          "chroma": 0.14569,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250428.091700.jpg",
+          "score": 0.27026,
+          "nonBlue": 0.32143,
+          "coexist": 0.0,
+          "diversity": 0.62794,
+          "chroma": 0.25266,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250428.092200.jpg",
+          "score": 0.30865,
+          "nonBlue": 0.35294,
+          "coexist": 0.0,
+          "diversity": 0.64925,
+          "chroma": 0.27672,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-43-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 0.30486,
+      "bestFrame": "enaasiskyimageC1.a1.20250214.161200.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20250214.160700.jpg",
+          "score": 0.29417,
+          "nonBlue": 0.32203,
+          "coexist": 0.0,
+          "diversity": 0.62839,
+          "chroma": 0.29987,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250214.161200.jpg",
+          "score": 0.30486,
+          "nonBlue": 0.32773,
+          "coexist": 0.0,
+          "diversity": 0.63256,
+          "chroma": 0.30107,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250214.161700.jpg",
+          "score": 0.22534,
+          "nonBlue": 0.2735,
+          "coexist": 0.0,
+          "diversity": 0.58671,
+          "chroma": 0.27595,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250214.162200.jpg",
+          "score": 0.0969,
+          "nonBlue": 0.14216,
+          "coexist": 0.0,
+          "diversity": 0.40886,
+          "chroma": 0.23581,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20250214.162700.jpg",
+          "score": 0.06547,
+          "nonBlue": 0.09756,
+          "coexist": 0.0,
+          "diversity": 0.31969,
+          "chroma": 0.34132,
+          "activeHues": 2
+        }
+      ]
+    },
+    {
+      "candidateId": "ena-23-fullres",
+      "label": "no_rainbow",
+      "sequenceScore": 0.18443,
+      "bestFrame": "enaasiskyimageC1.a1.20240912.162400.jpg",
+      "frames": [
+        {
+          "file": "enaasiskyimageC1.a1.20240912.160400.jpg",
+          "score": 0.1242,
+          "nonBlue": 0.17094,
+          "coexist": 0.0,
+          "diversity": 0.51294,
+          "chroma": 0.20835,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240912.160900.jpg",
+          "score": 0.12908,
+          "nonBlue": 0.18254,
+          "coexist": 0.0,
+          "diversity": 0.47522,
+          "chroma": 0.20809,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240912.161400.jpg",
+          "score": 0.17499,
+          "nonBlue": 0.23308,
+          "coexist": 0.0,
+          "diversity": 0.54297,
+          "chroma": 0.19891,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240912.161900.jpg",
+          "score": 0.09223,
+          "nonBlue": 0.14667,
+          "coexist": 0.0,
+          "diversity": 0.41688,
+          "chroma": 0.11875,
+          "activeHues": 2
+        },
+        {
+          "file": "enaasiskyimageC1.a1.20240912.162400.jpg",
+          "score": 0.18443,
+          "nonBlue": 0.2446,
+          "coexist": 0.0,
+          "diversity": 0.55633,
+          "chroma": 0.1947,
+          "activeHues": 2
+        }
+      ]
+    }
+  ]
+}

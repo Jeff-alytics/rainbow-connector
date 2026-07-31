@@ -1,0 +1,616 @@
+{
+  "schemaVersion": 1,
+  "model": "openai/clip-vit-base-patch32",
+  "events": [
+    {
+      "candidateId": "ena-02-fullres",
+      "label": "rainbow",
+      "start": 0,
+      "end": 1,
+      "zeroShotScore": 0.031197,
+      "prototypeScore": -0.017143
+    },
+    {
+      "candidateId": "ena-03-fullres",
+      "label": "rainbow",
+      "start": 1,
+      "end": 2,
+      "zeroShotScore": 0.023177,
+      "prototypeScore": 0.010341
+    },
+    {
+      "candidateId": "ena-07-fullres",
+      "label": "rainbow",
+      "start": 2,
+      "end": 3,
+      "zeroShotScore": -0.000588,
+      "prototypeScore": 0.003149
+    },
+    {
+      "candidateId": "ena-21-fullres",
+      "label": "no_rainbow",
+      "start": 3,
+      "end": 4,
+      "zeroShotScore": -0.004698,
+      "prototypeScore": -0.01275
+    },
+    {
+      "candidateId": "ena-22-fullres",
+      "label": "no_rainbow",
+      "start": 4,
+      "end": 5,
+      "zeroShotScore": -0.009577,
+      "prototypeScore": -0.001852
+    },
+    {
+      "candidateId": "ena-23-fullres",
+      "label": "no_rainbow",
+      "start": 5,
+      "end": 6,
+      "zeroShotScore": 0.00868,
+      "prototypeScore": -0.013377
+    },
+    {
+      "candidateId": "ena-24-fullres",
+      "label": "no_rainbow",
+      "start": 6,
+      "end": 7,
+      "zeroShotScore": -0.021728,
+      "prototypeScore": -0.008764
+    },
+    {
+      "candidateId": "ena-25-fullres",
+      "label": "no_rainbow",
+      "start": 7,
+      "end": 8,
+      "zeroShotScore": -0.008063,
+      "prototypeScore": 0.000448
+    },
+    {
+      "candidateId": "ena-26-fullres",
+      "label": "no_rainbow",
+      "start": 8,
+      "end": 9,
+      "zeroShotScore": -0.065451,
+      "prototypeScore": -0.024234
+    },
+    {
+      "candidateId": "ena-27-fullres",
+      "label": "no_rainbow",
+      "start": 9,
+      "end": 10,
+      "zeroShotScore": -0.004443,
+      "prototypeScore": -0.002842
+    },
+    {
+      "candidateId": "ena-28-fullres",
+      "label": "no_rainbow",
+      "start": 10,
+      "end": 11,
+      "zeroShotScore": -0.022144,
+      "prototypeScore": -0.001805
+    },
+    {
+      "candidateId": "ena-29-fullres",
+      "label": "rainbow",
+      "start": 11,
+      "end": 12,
+      "zeroShotScore": 0.0166,
+      "prototypeScore": 0.004426
+    },
+    {
+      "candidateId": "ena-30-fullres",
+      "label": "no_rainbow",
+      "start": 12,
+      "end": 13,
+      "zeroShotScore": -0.059759,
+      "prototypeScore": -0.011866
+    },
+    {
+      "candidateId": "ena-31-fullres",
+      "label": "no_rainbow",
+      "start": 13,
+      "end": 14,
+      "zeroShotScore": -0.008933,
+      "prototypeScore": -0.012524
+    },
+    {
+      "candidateId": "ena-32-fullres",
+      "label": "no_rainbow",
+      "start": 14,
+      "end": 15,
+      "zeroShotScore": -0.00263,
+      "prototypeScore": 0.006682
+    },
+    {
+      "candidateId": "ena-33-fullres",
+      "label": "no_rainbow",
+      "start": 15,
+      "end": 16,
+      "zeroShotScore": -0.008796,
+      "prototypeScore": 0.000151
+    },
+    {
+      "candidateId": "ena-34-fullres",
+      "label": "no_rainbow",
+      "start": 16,
+      "end": 17,
+      "zeroShotScore": -0.029597,
+      "prototypeScore": 0.0086
+    },
+    {
+      "candidateId": "ena-35-fullres",
+      "label": "rainbow",
+      "start": 17,
+      "end": 18,
+      "zeroShotScore": -0.008377,
+      "prototypeScore": -0.014624
+    },
+    {
+      "candidateId": "ena-36-fullres",
+      "label": "no_rainbow",
+      "start": 18,
+      "end": 19,
+      "zeroShotScore": 0.021198,
+      "prototypeScore": 0.007141
+    },
+    {
+      "candidateId": "ena-37-fullres",
+      "label": "no_rainbow",
+      "start": 19,
+      "end": 20,
+      "zeroShotScore": -0.01704,
+      "prototypeScore": 0.002911
+    },
+    {
+      "candidateId": "ena-38-fullres",
+      "label": "no_rainbow",
+      "start": 20,
+      "end": 21,
+      "zeroShotScore": -0.010614,
+      "prototypeScore": -0.011718
+    },
+    {
+      "candidateId": "ena-39-fullres",
+      "label": "no_rainbow",
+      "start": 21,
+      "end": 22,
+      "zeroShotScore": 0.00624,
+      "prototypeScore": -0.005679
+    },
+    {
+      "candidateId": "ena-40-fullres",
+      "label": "no_rainbow",
+      "start": 22,
+      "end": 23,
+      "zeroShotScore": -0.02786,
+      "prototypeScore": -0.016793
+    },
+    {
+      "candidateId": "ena-41-fullres",
+      "label": "no_rainbow",
+      "start": 23,
+      "end": 24,
+      "zeroShotScore": -0.022917,
+      "prototypeScore": 0.00472
+    },
+    {
+      "candidateId": "ena-42-fullres",
+      "label": "rainbow",
+      "start": 24,
+      "end": 25,
+      "zeroShotScore": 0.000122,
+      "prototypeScore": 0.003038
+    },
+    {
+      "candidateId": "ena-43-fullres",
+      "label": "no_rainbow",
+      "start": 25,
+      "end": 26,
+      "zeroShotScore": 0.00409,
+      "prototypeScore": -0.004642
+    },
+    {
+      "candidateId": "ena-45-fullres",
+      "label": "no_rainbow",
+      "start": 26,
+      "end": 27,
+      "zeroShotScore": -0.059351,
+      "prototypeScore": -0.014608
+    },
+    {
+      "candidateId": "ena-46-fullres",
+      "label": "no_rainbow",
+      "start": 27,
+      "end": 28,
+      "zeroShotScore": 0.017555,
+      "prototypeScore": -0.008388
+    },
+    {
+      "candidateId": "ena-47-fullres",
+      "label": "no_rainbow",
+      "start": 28,
+      "end": 29,
+      "zeroShotScore": -0.05031,
+      "prototypeScore": -0.007195
+    },
+    {
+      "candidateId": "ena-48-fullres",
+      "label": "no_rainbow",
+      "start": 29,
+      "end": 30,
+      "zeroShotScore": -0.017916,
+      "prototypeScore": -0.009472
+    },
+    {
+      "candidateId": "ena-49-fullres",
+      "label": "no_rainbow",
+      "start": 30,
+      "end": 31,
+      "zeroShotScore": -0.014755,
+      "prototypeScore": -0.006146
+    },
+    {
+      "candidateId": "ena-50-fullres",
+      "label": "no_rainbow",
+      "start": 31,
+      "end": 32,
+      "zeroShotScore": -0.01777,
+      "prototypeScore": -0.008735
+    },
+    {
+      "candidateId": "ena-51-fullres",
+      "label": "no_rainbow",
+      "start": 32,
+      "end": 33,
+      "zeroShotScore": -0.00821,
+      "prototypeScore": -0.005958
+    },
+    {
+      "candidateId": "ena-52-fullres",
+      "label": "no_rainbow",
+      "start": 33,
+      "end": 34,
+      "zeroShotScore": -0.015002,
+      "prototypeScore": 0.006211
+    },
+    {
+      "candidateId": "ena-53-fullres",
+      "label": "no_rainbow",
+      "start": 34,
+      "end": 35,
+      "zeroShotScore": -0.008135,
+      "prototypeScore": -0.006302
+    },
+    {
+      "candidateId": "ena-54-fullres",
+      "label": "no_rainbow",
+      "start": 35,
+      "end": 36,
+      "zeroShotScore": 0.004492,
+      "prototypeScore": -0.007851
+    },
+    {
+      "candidateId": "ena-55-fullres",
+      "label": "no_rainbow",
+      "start": 36,
+      "end": 37,
+      "zeroShotScore": 0.020604,
+      "prototypeScore": 0.003731
+    },
+    {
+      "candidateId": "ena-56-fullres",
+      "label": "no_rainbow",
+      "start": 37,
+      "end": 38,
+      "zeroShotScore": -0.024285,
+      "prototypeScore": 0.00324
+    },
+    {
+      "candidateId": "ena-57-fullres",
+      "label": "no_rainbow",
+      "start": 38,
+      "end": 39,
+      "zeroShotScore": 0.006356,
+      "prototypeScore": -0.014205
+    },
+    {
+      "candidateId": "ena-58-fullres",
+      "label": "no_rainbow",
+      "start": 39,
+      "end": 40,
+      "zeroShotScore": -0.023197,
+      "prototypeScore": -0.003882
+    },
+    {
+      "candidateId": "ena-59-fullres",
+      "label": "no_rainbow",
+      "start": 40,
+      "end": 41,
+      "zeroShotScore": 0.024527,
+      "prototypeScore": -0.005108
+    },
+    {
+      "candidateId": "ena-60-fullres",
+      "label": "no_rainbow",
+      "start": 41,
+      "end": 42,
+      "zeroShotScore": -0.025659,
+      "prototypeScore": -0.000577
+    },
+    {
+      "candidateId": "ena-88-fullres",
+      "label": "rainbow",
+      "start": 42,
+      "end": 43,
+      "zeroShotScore": -0.00698,
+      "prototypeScore": 0.005649
+    },
+    {
+      "candidateId": "ena-89-fullres",
+      "label": "rainbow",
+      "start": 43,
+      "end": 44,
+      "zeroShotScore": 0.032333,
+      "prototypeScore": -0.025417
+    },
+    {
+      "candidateId": "ena-93-fullres",
+      "label": "rainbow",
+      "start": 44,
+      "end": 45,
+      "zeroShotScore": 0.027619,
+      "prototypeScore": -0.00491
+    },
+    {
+      "candidateId": "visual-01",
+      "label": "no_rainbow",
+      "start": 45,
+      "end": 46,
+      "zeroShotScore": -0.014345,
+      "prototypeScore": -0.004541
+    },
+    {
+      "candidateId": "visual-02",
+      "label": "no_rainbow",
+      "start": 46,
+      "end": 47,
+      "zeroShotScore": -0.060627,
+      "prototypeScore": -0.001768
+    },
+    {
+      "candidateId": "visual-03",
+      "label": "no_rainbow",
+      "start": 47,
+      "end": 48,
+      "zeroShotScore": 0.046249,
+      "prototypeScore": 0.007685
+    },
+    {
+      "candidateId": "visual-04",
+      "label": "no_rainbow",
+      "start": 48,
+      "end": 49,
+      "zeroShotScore": 0.003111,
+      "prototypeScore": 0.002416
+    },
+    {
+      "candidateId": "visual-05",
+      "label": "no_rainbow",
+      "start": 49,
+      "end": 50,
+      "zeroShotScore": 0.008627,
+      "prototypeScore": 0.012956
+    },
+    {
+      "candidateId": "visual-06",
+      "label": "no_rainbow",
+      "start": 50,
+      "end": 51,
+      "zeroShotScore": 0.025124,
+      "prototypeScore": 0.00817
+    },
+    {
+      "candidateId": "visual-07",
+      "label": "no_rainbow",
+      "start": 51,
+      "end": 52,
+      "zeroShotScore": -0.047504,
+      "prototypeScore": -0.016931
+    },
+    {
+      "candidateId": "visual-08",
+      "label": "no_rainbow",
+      "start": 52,
+      "end": 53,
+      "zeroShotScore": 0.003532,
+      "prototypeScore": -0.015776
+    },
+    {
+      "candidateId": "visual-09",
+      "label": "no_rainbow",
+      "start": 53,
+      "end": 54,
+      "zeroShotScore": 0.00501,
+      "prototypeScore": -0.011617
+    },
+    {
+      "candidateId": "visual-10",
+      "label": "no_rainbow",
+      "start": 54,
+      "end": 55,
+      "zeroShotScore": -0.022728,
+      "prototypeScore": -0.011747
+    },
+    {
+      "candidateId": "visual-11",
+      "label": "rainbow",
+      "start": 55,
+      "end": 56,
+      "zeroShotScore": -0.00268,
+      "prototypeScore": -0.004473
+    },
+    {
+      "candidateId": "visual-12",
+      "label": "no_rainbow",
+      "start": 56,
+      "end": 57,
+      "zeroShotScore": -0.002926,
+      "prototypeScore": -0.025138
+    },
+    {
+      "candidateId": "visual-13",
+      "label": "no_rainbow",
+      "start": 57,
+      "end": 58,
+      "zeroShotScore": -0.017054,
+      "prototypeScore": -0.002967
+    },
+    {
+      "candidateId": "visual-14",
+      "label": "no_rainbow",
+      "start": 58,
+      "end": 59,
+      "zeroShotScore": -0.036656,
+      "prototypeScore": -0.025417
+    },
+    {
+      "candidateId": "visual-15",
+      "label": "no_rainbow",
+      "start": 59,
+      "end": 60,
+      "zeroShotScore": 0.000978,
+      "prototypeScore": -0.007411
+    },
+    {
+      "candidateId": "visual-16",
+      "label": "no_rainbow",
+      "start": 60,
+      "end": 61,
+      "zeroShotScore": -0.015385,
+      "prototypeScore": -0.006163
+    },
+    {
+      "candidateId": "visual-17",
+      "label": "no_rainbow",
+      "start": 61,
+      "end": 62,
+      "zeroShotScore": -0.00637,
+      "prototypeScore": -0.003491
+    },
+    {
+      "candidateId": "visual-18",
+      "label": "no_rainbow",
+      "start": 62,
+      "end": 63,
+      "zeroShotScore": -0.046558,
+      "prototypeScore": -0.026718
+    },
+    {
+      "candidateId": "visual-19",
+      "label": "no_rainbow",
+      "start": 63,
+      "end": 64,
+      "zeroShotScore": -0.011851,
+      "prototypeScore": -0.01747
+    },
+    {
+      "candidateId": "visual-20",
+      "label": "no_rainbow",
+      "start": 64,
+      "end": 65,
+      "zeroShotScore": 0.029148,
+      "prototypeScore": -0.00479
+    }
+  ],
+  "rankedIds": [
+    "visual-05",
+    "ena-03-fullres",
+    "ena-34-fullres",
+    "visual-06",
+    "visual-03",
+    "ena-36-fullres",
+    "ena-32-fullres",
+    "ena-52-fullres",
+    "ena-88-fullres",
+    "ena-41-fullres",
+    "ena-29-fullres",
+    "ena-55-fullres",
+    "ena-56-fullres",
+    "ena-07-fullres",
+    "ena-42-fullres",
+    "ena-37-fullres",
+    "visual-04",
+    "ena-25-fullres",
+    "ena-33-fullres",
+    "ena-60-fullres",
+    "visual-02",
+    "ena-28-fullres",
+    "ena-22-fullres",
+    "ena-27-fullres",
+    "visual-13",
+    "visual-17",
+    "ena-58-fullres",
+    "visual-11",
+    "visual-01",
+    "ena-43-fullres",
+    "visual-20",
+    "ena-93-fullres",
+    "ena-59-fullres",
+    "ena-39-fullres",
+    "ena-51-fullres",
+    "ena-49-fullres",
+    "visual-16",
+    "ena-53-fullres",
+    "ena-47-fullres",
+    "visual-15",
+    "ena-54-fullres",
+    "ena-46-fullres",
+    "ena-50-fullres",
+    "ena-24-fullres",
+    "ena-48-fullres",
+    "visual-09",
+    "ena-38-fullres",
+    "visual-10",
+    "ena-30-fullres",
+    "ena-31-fullres",
+    "ena-21-fullres",
+    "ena-23-fullres",
+    "ena-57-fullres",
+    "ena-45-fullres",
+    "ena-35-fullres",
+    "visual-08",
+    "ena-40-fullres",
+    "visual-07",
+    "ena-02-fullres",
+    "visual-19",
+    "ena-26-fullres",
+    "visual-12",
+    "ena-89-fullres",
+    "visual-14",
+    "visual-18"
+  ],
+  "metrics": [
+    {
+      "top": 5,
+      "selected": 5,
+      "rainbows": 1,
+      "precision": 0.2,
+      "recall": 0.1
+    },
+    {
+      "top": 10,
+      "selected": 10,
+      "rainbows": 2,
+      "precision": 0.2,
+      "recall": 0.2
+    },
+    {
+      "top": 20,
+      "selected": 20,
+      "rainbows": 5,
+      "precision": 0.25,
+      "recall": 0.5
+    }
+  ]
+}

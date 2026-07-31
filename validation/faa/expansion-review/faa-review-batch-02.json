@@ -1,0 +1,188 @@
+[
+  {
+    "candidateId": "faax-01",
+    "siteId": 683,
+    "station": "M75",
+    "siteName": "Malta Airport",
+    "state": "MT",
+    "latitude": 48.36845,
+    "longitude": -107.91262,
+    "cameraId": 12396,
+    "cameraDirection": "East",
+    "cameraBearing": 90,
+    "observedAt": "2026-07-26T01:55:00Z",
+    "weather": "",
+    "sunElevation": 8.68,
+    "antiSolarAzimuth": 109.76,
+    "frames": [
+      {
+        "file": "faax-01-01.jpg",
+        "observedAt": "2026-07-26T01:41:16.472Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/683/26/12396-1785030058460.jpg",
+        "semanticScore": 0.043027
+      },
+      {
+        "file": "faax-01-02.jpg",
+        "observedAt": "2026-07-26T01:49:34.417Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/683/26/12396-1785030569326.jpg",
+        "semanticScore": 0.043333
+      },
+      {
+        "file": "faax-01-03.jpg",
+        "observedAt": "2026-07-26T01:57:58.205Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/683/26/12396-1785031068800.jpg",
+        "semanticScore": 0.040505
+      },
+      {
+        "file": "faax-01-04.jpg",
+        "observedAt": "2026-07-26T02:06:14.503Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/683/26/12396-1785031563108.jpg",
+        "semanticScore": 0.033058
+      },
+      {
+        "file": "faax-01-05.jpg",
+        "observedAt": "2026-07-26T02:14:35.931Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/683/26/12396-1785032069590.jpg",
+        "semanticScore": 0.023261
+      }
+    ]
+  },
+  {
+    "candidateId": "faax-02",
+    "siteId": 1099,
+    "station": "Y19",
+    "siteName": "Mandan Reg Airport Lawler Field",
+    "state": "ND",
+    "latitude": 46.76488,
+    "longitude": -100.89416,
+    "cameraId": 14064,
+    "cameraDirection": "East",
+    "cameraBearing": 90,
+    "observedAt": "2026-06-30T00:55:00Z",
+    "weather": "VCTS RA",
+    "sunElevation": 15.44,
+    "antiSolarAzimuth": 107.65,
+    "frames": [
+      {
+        "file": "faax-02-01.jpg",
+        "observedAt": "2026-06-30T00:43:14.497Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1099/30/14064-1782780097314.jpg",
+        "semanticScore": -0.03813
+      },
+      {
+        "file": "faax-02-02.jpg",
+        "observedAt": "2026-06-30T00:51:52.905Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1099/30/14064-1782780679271.jpg",
+        "semanticScore": 0.037134
+      },
+      {
+        "file": "faax-02-03.jpg",
+        "observedAt": "2026-06-30T01:02:21.820Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1099/30/14064-1782781276570.jpg",
+        "semanticScore": -0.003899
+      },
+      {
+        "file": "faax-02-04.jpg",
+        "observedAt": "2026-06-30T01:11:50.125Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1099/30/14064-1782781843672.jpg",
+        "semanticScore": 0.013067
+      }
+    ]
+  },
+  {
+    "candidateId": "faax-03",
+    "siteId": 607,
+    "station": "MLT",
+    "siteName": "Millinocket Municipal Airport",
+    "state": "ME",
+    "latitude": 45.64865,
+    "longitude": -68.69392,
+    "cameraId": 12224,
+    "cameraDirection": "East",
+    "cameraBearing": 90,
+    "observedAt": "2026-07-22T22:53:00Z",
+    "weather": "-TSRA FG",
+    "sunElevation": 12.37,
+    "antiSolarAzimuth": 106.36,
+    "frames": [
+      {
+        "file": "faax-03-01.jpg",
+        "observedAt": "2026-07-22T22:39:22.426Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/607/22/12224-1784759957072.jpg",
+        "semanticScore": -0.043508
+      },
+      {
+        "file": "faax-03-02.jpg",
+        "observedAt": "2026-07-22T22:47:37.919Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/607/22/12224-1784760452461.jpg",
+        "semanticScore": -0.076221
+      },
+      {
+        "file": "faax-03-03.jpg",
+        "observedAt": "2026-07-22T22:55:54.051Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/607/22/12224-1784760947821.jpg",
+        "semanticScore": 0.025279
+      },
+      {
+        "file": "faax-03-04.jpg",
+        "observedAt": "2026-07-22T23:04:42.714Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/607/22/12224-1784761458188.jpg",
+        "semanticScore": 0.023714
+      },
+      {
+        "file": "faax-03-05.jpg",
+        "observedAt": "2026-07-22T23:12:58.364Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/607/22/12224-1784761968624.jpg",
+        "semanticScore": -0.01321
+      }
+    ]
+  },
+  {
+    "candidateId": "faax-04",
+    "siteId": 606,
+    "station": "FVE",
+    "siteName": "Northern Aroostook Reg Airport",
+    "state": "ME",
+    "latitude": 47.28697,
+    "longitude": -68.313774,
+    "cameraId": 12220,
+    "cameraDirection": "East",
+    "cameraBearing": 90,
+    "observedAt": "2026-06-30T22:53:00Z",
+    "weather": "",
+    "sunElevation": 14.24,
+    "antiSolarAzimuth": 108.85,
+    "frames": [
+      {
+        "file": "faax-04-01.jpg",
+        "observedAt": "2026-06-30T22:31:08.177Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/606/30/12220-1782858601743.jpg",
+        "semanticScore": -0.06963
+      },
+      {
+        "file": "faax-04-02.jpg",
+        "observedAt": "2026-06-30T22:40:20.716Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/606/30/12220-1782859169579.jpg",
+        "semanticScore": 0.026133
+      },
+      {
+        "file": "faax-04-03.jpg",
+        "observedAt": "2026-06-30T22:49:21.285Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/606/30/12220-1782859710310.jpg",
+        "semanticScore": 0.003815
+      },
+      {
+        "file": "faax-04-04.jpg",
+        "observedAt": "2026-06-30T22:58:48.903Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/606/30/12220-1782860274584.jpg",
+        "semanticScore": -0.026403
+      },
+      {
+        "file": "faax-04-05.jpg",
+        "observedAt": "2026-06-30T23:07:28.278Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/606/30/12220-1782860814374.jpg",
+        "semanticScore": -0.003049
+      }
+    ]
+  }
+]

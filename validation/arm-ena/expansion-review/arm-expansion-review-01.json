@@ -1,0 +1,2162 @@
+[
+  {
+    "candidateId": "armx-001",
+    "observedAt": "2026-07-05T06:41:00Z",
+    "movie": "enaasimovieC1.a1.20260705.060100.mpg",
+    "sampleIndex": 8,
+    "sunElevationDeg": 0.69,
+    "quality": 0.5762,
+    "semanticScore": 0.039213,
+    "rainbowSimilarity": 0.322469,
+    "persistentFrames": 2,
+    "secondBestScore": 0.014902,
+    "eventScore": 0.044429,
+    "day": "20260705",
+    "frames": [
+      {
+        "file": "armx-001-01.jpg",
+        "observedAt": "2026-07-05T06:31:00Z"
+      },
+      {
+        "file": "armx-001-02.jpg",
+        "observedAt": "2026-07-05T06:36:00Z"
+      },
+      {
+        "file": "armx-001-03.jpg",
+        "observedAt": "2026-07-05T06:41:00Z"
+      },
+      {
+        "file": "armx-001-04.jpg",
+        "observedAt": "2026-07-05T06:46:00Z"
+      },
+      {
+        "file": "armx-001-05.jpg",
+        "observedAt": "2026-07-05T06:51:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-002",
+    "observedAt": "2024-10-20T10:47:00Z",
+    "movie": "enaasimovieC1.a1.20241020.073700.mpg",
+    "sampleIndex": 38,
+    "sunElevationDeg": 26.6,
+    "quality": 0.6667,
+    "semanticScore": 0.033968,
+    "rainbowSimilarity": 0.323664,
+    "persistentFrames": 2,
+    "secondBestScore": 0.022217,
+    "eventScore": 0.041744,
+    "day": "20241020",
+    "frames": [
+      {
+        "file": "armx-002-01.jpg",
+        "observedAt": "2024-10-20T10:37:00Z"
+      },
+      {
+        "file": "armx-002-02.jpg",
+        "observedAt": "2024-10-20T10:42:00Z"
+      },
+      {
+        "file": "armx-002-03.jpg",
+        "observedAt": "2024-10-20T10:47:00Z"
+      },
+      {
+        "file": "armx-002-04.jpg",
+        "observedAt": "2024-10-20T10:52:00Z"
+      },
+      {
+        "file": "armx-002-05.jpg",
+        "observedAt": "2024-10-20T10:57:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-003",
+    "observedAt": "2026-07-06T07:22:00Z",
+    "movie": "enaasimovieC1.a1.20260706.060200.mpg",
+    "sampleIndex": 16,
+    "sunElevationDeg": 7.73,
+    "quality": 0.4933,
+    "semanticScore": 0.034604,
+    "rainbowSimilarity": 0.318584,
+    "persistentFrames": 2,
+    "secondBestScore": 0.01099,
+    "eventScore": 0.038451,
+    "day": "20260706",
+    "frames": [
+      {
+        "file": "armx-003-01.jpg",
+        "observedAt": "2026-07-06T07:12:00Z"
+      },
+      {
+        "file": "armx-003-02.jpg",
+        "observedAt": "2026-07-06T07:17:00Z"
+      },
+      {
+        "file": "armx-003-03.jpg",
+        "observedAt": "2026-07-06T07:22:00Z"
+      },
+      {
+        "file": "armx-003-04.jpg",
+        "observedAt": "2026-07-06T07:27:00Z"
+      },
+      {
+        "file": "armx-003-05.jpg",
+        "observedAt": "2026-07-06T07:32:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-004",
+    "observedAt": "2026-07-03T06:40:00Z",
+    "movie": "enaasimovieC1.a1.20260703.060000.mpg",
+    "sampleIndex": 8,
+    "sunElevationDeg": 0.69,
+    "quality": 0.6796,
+    "semanticScore": 0.034076,
+    "rainbowSimilarity": 0.308777,
+    "persistentFrames": 3,
+    "secondBestScore": 0.012491,
+    "eventScore": 0.038448,
+    "day": "20260703",
+    "frames": [
+      {
+        "file": "armx-004-01.jpg",
+        "observedAt": "2026-07-03T06:30:00Z"
+      },
+      {
+        "file": "armx-004-02.jpg",
+        "observedAt": "2026-07-03T06:35:00Z"
+      },
+      {
+        "file": "armx-004-03.jpg",
+        "observedAt": "2026-07-03T06:40:00Z"
+      },
+      {
+        "file": "armx-004-04.jpg",
+        "observedAt": "2026-07-03T06:45:00Z"
+      },
+      {
+        "file": "armx-004-05.jpg",
+        "observedAt": "2026-07-03T06:50:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-005",
+    "observedAt": "2026-07-10T08:00:00Z",
+    "movie": "enaasimovieC1.a1.20260710.060500.mpg",
+    "sampleIndex": 23,
+    "sunElevationDeg": 14.25,
+    "quality": 0.621,
+    "semanticScore": 0.041328,
+    "rainbowSimilarity": 0.314832,
+    "persistentFrames": 1,
+    "secondBestScore": -0.014112,
+    "eventScore": 0.036389,
+    "day": "20260710",
+    "frames": [
+      {
+        "file": "armx-005-01.jpg",
+        "observedAt": "2026-07-10T07:50:00Z"
+      },
+      {
+        "file": "armx-005-02.jpg",
+        "observedAt": "2026-07-10T07:55:00Z"
+      },
+      {
+        "file": "armx-005-03.jpg",
+        "observedAt": "2026-07-10T08:00:00Z"
+      },
+      {
+        "file": "armx-005-04.jpg",
+        "observedAt": "2026-07-10T08:05:00Z"
+      },
+      {
+        "file": "armx-005-05.jpg",
+        "observedAt": "2026-07-10T08:10:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-006",
+    "observedAt": "2025-03-23T08:00:00Z",
+    "movie": "enaasimovieC1.a1.20250323.072000.mpg",
+    "sampleIndex": 8,
+    "sunElevationDeg": 0.79,
+    "quality": 0.5869,
+    "semanticScore": 0.0412,
+    "rainbowSimilarity": 0.320767,
+    "persistentFrames": 1,
+    "secondBestScore": -0.015302,
+    "eventScore": 0.035844,
+    "day": "20250323",
+    "frames": [
+      {
+        "file": "armx-006-01.jpg",
+        "observedAt": "2025-03-23T07:50:00Z"
+      },
+      {
+        "file": "armx-006-02.jpg",
+        "observedAt": "2025-03-23T07:55:00Z"
+      },
+      {
+        "file": "armx-006-03.jpg",
+        "observedAt": "2025-03-23T08:00:00Z"
+      },
+      {
+        "file": "armx-006-04.jpg",
+        "observedAt": "2025-03-23T08:05:00Z"
+      },
+      {
+        "file": "armx-006-05.jpg",
+        "observedAt": "2025-03-23T08:10:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-007",
+    "observedAt": "2024-10-01T08:08:00Z",
+    "movie": "enaasimovieC1.a1.20241001.071800.mpg",
+    "sampleIndex": 10,
+    "sunElevationDeg": 2.94,
+    "quality": 0.6623,
+    "semanticScore": 0.036945,
+    "rainbowSimilarity": 0.316874,
+    "persistentFrames": 1,
+    "secondBestScore": -0.005242,
+    "eventScore": 0.03511,
+    "day": "20241001",
+    "frames": [
+      {
+        "file": "armx-007-01.jpg",
+        "observedAt": "2024-10-01T07:58:00Z"
+      },
+      {
+        "file": "armx-007-02.jpg",
+        "observedAt": "2024-10-01T08:03:00Z"
+      },
+      {
+        "file": "armx-007-03.jpg",
+        "observedAt": "2024-10-01T08:08:00Z"
+      },
+      {
+        "file": "armx-007-04.jpg",
+        "observedAt": "2024-10-01T08:13:00Z"
+      },
+      {
+        "file": "armx-007-05.jpg",
+        "observedAt": "2024-10-01T08:18:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-008",
+    "observedAt": "2025-01-27T11:42:00Z",
+    "movie": "enaasimovieC1.a1.20250127.083200.mpg",
+    "sampleIndex": 38,
+    "sunElevationDeg": 23.44,
+    "quality": 0.7286,
+    "semanticScore": 0.026144,
+    "rainbowSimilarity": 0.310692,
+    "persistentFrames": 2,
+    "secondBestScore": 0.022542,
+    "eventScore": 0.034034,
+    "day": "20250127",
+    "frames": [
+      {
+        "file": "armx-008-01.jpg",
+        "observedAt": "2025-01-27T11:32:00Z"
+      },
+      {
+        "file": "armx-008-02.jpg",
+        "observedAt": "2025-01-27T11:37:00Z"
+      },
+      {
+        "file": "armx-008-03.jpg",
+        "observedAt": "2025-01-27T11:42:00Z"
+      },
+      {
+        "file": "armx-008-04.jpg",
+        "observedAt": "2025-01-27T11:47:00Z"
+      },
+      {
+        "file": "armx-008-05.jpg",
+        "observedAt": "2025-01-27T11:52:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-009",
+    "observedAt": "2024-11-12T11:12:00Z",
+    "movie": "enaasimovieC1.a1.20241112.080200.mpg",
+    "sampleIndex": 38,
+    "sunElevationDeg": 23.84,
+    "quality": 0.3695,
+    "semanticScore": 0.027982,
+    "rainbowSimilarity": 0.299122,
+    "persistentFrames": 3,
+    "secondBestScore": 0.015593,
+    "eventScore": 0.03344,
+    "day": "20241112",
+    "frames": [
+      {
+        "file": "armx-009-01.jpg",
+        "observedAt": "2024-11-12T11:02:00Z"
+      },
+      {
+        "file": "armx-009-02.jpg",
+        "observedAt": "2024-11-12T11:07:00Z"
+      },
+      {
+        "file": "armx-009-03.jpg",
+        "observedAt": "2024-11-12T11:12:00Z"
+      },
+      {
+        "file": "armx-009-04.jpg",
+        "observedAt": "2024-11-12T11:17:00Z"
+      },
+      {
+        "file": "armx-009-05.jpg",
+        "observedAt": "2024-11-12T11:22:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-010",
+    "observedAt": "2025-02-01T11:18:00Z",
+    "movie": "enaasimovieC1.a1.20250201.082800.mpg",
+    "sampleIndex": 34,
+    "sunElevationDeg": 21.47,
+    "quality": 0.7024,
+    "semanticScore": 0.028777,
+    "rainbowSimilarity": 0.303428,
+    "persistentFrames": 2,
+    "secondBestScore": 0.013041,
+    "eventScore": 0.033341,
+    "day": "20250201",
+    "frames": [
+      {
+        "file": "armx-010-01.jpg",
+        "observedAt": "2025-02-01T11:08:00Z"
+      },
+      {
+        "file": "armx-010-02.jpg",
+        "observedAt": "2025-02-01T11:13:00Z"
+      },
+      {
+        "file": "armx-010-03.jpg",
+        "observedAt": "2025-02-01T11:18:00Z"
+      },
+      {
+        "file": "armx-010-04.jpg",
+        "observedAt": "2025-02-01T11:23:00Z"
+      },
+      {
+        "file": "armx-010-05.jpg",
+        "observedAt": "2025-02-01T11:28:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-011",
+    "observedAt": "2024-10-10T08:12:00Z",
+    "movie": "enaasimovieC1.a1.20241010.072700.mpg",
+    "sampleIndex": 9,
+    "sunElevationDeg": 2.02,
+    "quality": 0.7139,
+    "semanticScore": 0.032856,
+    "rainbowSimilarity": 0.324256,
+    "persistentFrames": 1,
+    "secondBestScore": -0.001791,
+    "eventScore": 0.032229,
+    "day": "20241010",
+    "frames": [
+      {
+        "file": "armx-011-01.jpg",
+        "observedAt": "2024-10-10T08:02:00Z"
+      },
+      {
+        "file": "armx-011-02.jpg",
+        "observedAt": "2024-10-10T08:07:00Z"
+      },
+      {
+        "file": "armx-011-03.jpg",
+        "observedAt": "2024-10-10T08:12:00Z"
+      },
+      {
+        "file": "armx-011-04.jpg",
+        "observedAt": "2024-10-10T08:17:00Z"
+      },
+      {
+        "file": "armx-011-05.jpg",
+        "observedAt": "2024-10-10T08:22:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-012",
+    "observedAt": "2025-09-17T07:40:00Z",
+    "movie": "enaasimovieC1.a1.20250917.070500.mpg",
+    "sampleIndex": 7,
+    "sunElevationDeg": 0.07,
+    "quality": 0.3924,
+    "semanticScore": 0.028597,
+    "rainbowSimilarity": 0.300183,
+    "persistentFrames": 2,
+    "secondBestScore": 0.009915,
+    "eventScore": 0.032067,
+    "day": "20250917",
+    "frames": [
+      {
+        "file": "armx-012-01.jpg",
+        "observedAt": "2025-09-17T07:30:00Z"
+      },
+      {
+        "file": "armx-012-02.jpg",
+        "observedAt": "2025-09-17T07:35:00Z"
+      },
+      {
+        "file": "armx-012-03.jpg",
+        "observedAt": "2025-09-17T07:40:00Z"
+      },
+      {
+        "file": "armx-012-04.jpg",
+        "observedAt": "2025-09-17T07:45:00Z"
+      },
+      {
+        "file": "armx-012-05.jpg",
+        "observedAt": "2025-09-17T07:50:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-013",
+    "observedAt": "2024-06-16T06:45:00Z",
+    "movie": "enaasimovieC1.a1.20240616.055500.mpg",
+    "sampleIndex": 10,
+    "sunElevationDeg": 2.36,
+    "quality": 0.6117,
+    "semanticScore": 0.024499,
+    "rainbowSimilarity": 0.298645,
+    "persistentFrames": 2,
+    "secondBestScore": 0.021306,
+    "eventScore": 0.031956,
+    "day": "20240616",
+    "frames": [
+      {
+        "file": "armx-013-01.jpg",
+        "observedAt": "2024-06-16T06:35:00Z"
+      },
+      {
+        "file": "armx-013-02.jpg",
+        "observedAt": "2024-06-16T06:40:00Z"
+      },
+      {
+        "file": "armx-013-03.jpg",
+        "observedAt": "2024-06-16T06:45:00Z"
+      },
+      {
+        "file": "armx-013-04.jpg",
+        "observedAt": "2024-06-16T06:50:00Z"
+      },
+      {
+        "file": "armx-013-05.jpg",
+        "observedAt": "2024-06-16T06:55:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-014",
+    "observedAt": "2024-09-01T08:56:00Z",
+    "movie": "enaasimovieC1.a1.20240901.065100.mpg",
+    "sampleIndex": 25,
+    "sunElevationDeg": 17.46,
+    "quality": 0.7786,
+    "semanticScore": 0.030953,
+    "rainbowSimilarity": 0.314664,
+    "persistentFrames": 1,
+    "secondBestScore": -0.001086,
+    "eventScore": 0.030573,
+    "day": "20240901",
+    "frames": [
+      {
+        "file": "armx-014-01.jpg",
+        "observedAt": "2024-09-01T08:46:00Z"
+      },
+      {
+        "file": "armx-014-02.jpg",
+        "observedAt": "2024-09-01T08:51:00Z"
+      },
+      {
+        "file": "armx-014-03.jpg",
+        "observedAt": "2024-09-01T08:56:00Z"
+      },
+      {
+        "file": "armx-014-04.jpg",
+        "observedAt": "2024-09-01T09:01:00Z"
+      },
+      {
+        "file": "armx-014-05.jpg",
+        "observedAt": "2024-09-01T09:06:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-015",
+    "observedAt": "2024-10-12T08:14:00Z",
+    "movie": "enaasimovieC1.a1.20241012.072900.mpg",
+    "sampleIndex": 9,
+    "sunElevationDeg": 2.01,
+    "quality": 0.697,
+    "semanticScore": 0.028903,
+    "rainbowSimilarity": 0.312928,
+    "persistentFrames": 2,
+    "secondBestScore": 0.002567,
+    "eventScore": 0.029801,
+    "day": "20241012",
+    "frames": [
+      {
+        "file": "armx-015-01.jpg",
+        "observedAt": "2024-10-12T08:04:00Z"
+      },
+      {
+        "file": "armx-015-02.jpg",
+        "observedAt": "2024-10-12T08:09:00Z"
+      },
+      {
+        "file": "armx-015-03.jpg",
+        "observedAt": "2024-10-12T08:14:00Z"
+      },
+      {
+        "file": "armx-015-04.jpg",
+        "observedAt": "2024-10-12T08:19:00Z"
+      },
+      {
+        "file": "armx-015-05.jpg",
+        "observedAt": "2024-10-12T08:24:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-016",
+    "observedAt": "2025-04-07T09:22:00Z",
+    "movie": "enaasimovieC1.a1.20250407.065700.mpg",
+    "sampleIndex": 29,
+    "sunElevationDeg": 21.19,
+    "quality": 0.6784,
+    "semanticScore": 0.03162,
+    "rainbowSimilarity": 0.306106,
+    "persistentFrames": 1,
+    "secondBestScore": -0.007888,
+    "eventScore": 0.028859,
+    "day": "20250407",
+    "frames": [
+      {
+        "file": "armx-016-01.jpg",
+        "observedAt": "2025-04-07T09:12:00Z"
+      },
+      {
+        "file": "armx-016-02.jpg",
+        "observedAt": "2025-04-07T09:17:00Z"
+      },
+      {
+        "file": "armx-016-03.jpg",
+        "observedAt": "2025-04-07T09:22:00Z"
+      },
+      {
+        "file": "armx-016-04.jpg",
+        "observedAt": "2025-04-07T09:27:00Z"
+      },
+      {
+        "file": "armx-016-05.jpg",
+        "observedAt": "2025-04-07T09:32:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-017",
+    "observedAt": "2024-12-23T13:03:00Z",
+    "movie": "enaasimovieC1.a1.20241223.083800.mpg",
+    "sampleIndex": 53,
+    "sunElevationDeg": 26.45,
+    "quality": 0.3919,
+    "semanticScore": 0.023401,
+    "rainbowSimilarity": 0.315621,
+    "persistentFrames": 3,
+    "secondBestScore": 0.014985,
+    "eventScore": 0.028646,
+    "day": "20241223",
+    "frames": [
+      {
+        "file": "armx-017-01.jpg",
+        "observedAt": "2024-12-23T12:53:00Z"
+      },
+      {
+        "file": "armx-017-02.jpg",
+        "observedAt": "2024-12-23T12:58:00Z"
+      },
+      {
+        "file": "armx-017-03.jpg",
+        "observedAt": "2024-12-23T13:03:00Z"
+      },
+      {
+        "file": "armx-017-04.jpg",
+        "observedAt": "2024-12-23T13:08:00Z"
+      },
+      {
+        "file": "armx-017-05.jpg",
+        "observedAt": "2024-12-23T13:13:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-018",
+    "observedAt": "2026-07-11T08:15:00Z",
+    "movie": "enaasimovieC1.a1.20260711.060500.mpg",
+    "sampleIndex": 26,
+    "sunElevationDeg": 16.95,
+    "quality": 0.6647,
+    "semanticScore": 0.027135,
+    "rainbowSimilarity": 0.309292,
+    "persistentFrames": 2,
+    "secondBestScore": 0.001882,
+    "eventScore": 0.027794,
+    "day": "20260711",
+    "frames": [
+      {
+        "file": "armx-018-01.jpg",
+        "observedAt": "2026-07-11T08:05:00Z"
+      },
+      {
+        "file": "armx-018-02.jpg",
+        "observedAt": "2026-07-11T08:10:00Z"
+      },
+      {
+        "file": "armx-018-03.jpg",
+        "observedAt": "2026-07-11T08:15:00Z"
+      },
+      {
+        "file": "armx-018-04.jpg",
+        "observedAt": "2026-07-11T08:20:00Z"
+      },
+      {
+        "file": "armx-018-05.jpg",
+        "observedAt": "2026-07-11T08:25:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-019",
+    "observedAt": "2024-12-15T11:54:00Z",
+    "movie": "enaasimovieC1.a1.20241215.083400.mpg",
+    "sampleIndex": 40,
+    "sunElevationDeg": 22.19,
+    "quality": 0.5626,
+    "semanticScore": 0.024139,
+    "rainbowSimilarity": 0.314802,
+    "persistentFrames": 2,
+    "secondBestScore": 0.009682,
+    "eventScore": 0.027528,
+    "day": "20241215",
+    "frames": [
+      {
+        "file": "armx-019-01.jpg",
+        "observedAt": "2024-12-15T11:44:00Z"
+      },
+      {
+        "file": "armx-019-02.jpg",
+        "observedAt": "2024-12-15T11:49:00Z"
+      },
+      {
+        "file": "armx-019-03.jpg",
+        "observedAt": "2024-12-15T11:54:00Z"
+      },
+      {
+        "file": "armx-019-04.jpg",
+        "observedAt": "2024-12-15T11:59:00Z"
+      },
+      {
+        "file": "armx-019-05.jpg",
+        "observedAt": "2024-12-15T12:04:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-020",
+    "observedAt": "2024-12-11T12:26:00Z",
+    "movie": "enaasimovieC1.a1.20241211.083100.mpg",
+    "sampleIndex": 47,
+    "sunElevationDeg": 25.14,
+    "quality": 0.5481,
+    "semanticScore": 0.025791,
+    "rainbowSimilarity": 0.319502,
+    "persistentFrames": 2,
+    "secondBestScore": 0.003929,
+    "eventScore": 0.027166,
+    "day": "20241211",
+    "frames": [
+      {
+        "file": "armx-020-01.jpg",
+        "observedAt": "2024-12-11T12:16:00Z"
+      },
+      {
+        "file": "armx-020-02.jpg",
+        "observedAt": "2024-12-11T12:21:00Z"
+      },
+      {
+        "file": "armx-020-03.jpg",
+        "observedAt": "2024-12-11T12:26:00Z"
+      },
+      {
+        "file": "armx-020-04.jpg",
+        "observedAt": "2024-12-11T12:31:00Z"
+      },
+      {
+        "file": "armx-020-05.jpg",
+        "observedAt": "2024-12-11T12:36:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-021",
+    "observedAt": "2024-12-30T11:01:00Z",
+    "movie": "enaasimovieC1.a1.20241230.084100.mpg",
+    "sampleIndex": 28,
+    "sunElevationDeg": 15.65,
+    "quality": 0.6184,
+    "semanticScore": 0.024564,
+    "rainbowSimilarity": 0.295389,
+    "persistentFrames": 2,
+    "secondBestScore": 0.005489,
+    "eventScore": 0.026485,
+    "day": "20241230",
+    "frames": [
+      {
+        "file": "armx-021-01.jpg",
+        "observedAt": "2024-12-30T10:51:00Z"
+      },
+      {
+        "file": "armx-021-02.jpg",
+        "observedAt": "2024-12-30T10:56:00Z"
+      },
+      {
+        "file": "armx-021-03.jpg",
+        "observedAt": "2024-12-30T11:01:00Z"
+      },
+      {
+        "file": "armx-021-04.jpg",
+        "observedAt": "2024-12-30T11:06:00Z"
+      },
+      {
+        "file": "armx-021-05.jpg",
+        "observedAt": "2024-12-30T11:11:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-022",
+    "observedAt": "2024-11-10T11:40:00Z",
+    "movie": "enaasimovieC1.a1.20241110.080000.mpg",
+    "sampleIndex": 44,
+    "sunElevationDeg": 27.44,
+    "quality": 0.5983,
+    "semanticScore": 0.023888,
+    "rainbowSimilarity": 0.301829,
+    "persistentFrames": 3,
+    "secondBestScore": 0.005086,
+    "eventScore": 0.025668,
+    "day": "20241110",
+    "frames": [
+      {
+        "file": "armx-022-01.jpg",
+        "observedAt": "2024-11-10T11:30:00Z"
+      },
+      {
+        "file": "armx-022-02.jpg",
+        "observedAt": "2024-11-10T11:35:00Z"
+      },
+      {
+        "file": "armx-022-03.jpg",
+        "observedAt": "2024-11-10T11:40:00Z"
+      },
+      {
+        "file": "armx-022-04.jpg",
+        "observedAt": "2024-11-10T11:45:00Z"
+      },
+      {
+        "file": "armx-022-05.jpg",
+        "observedAt": "2024-11-10T11:50:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-023",
+    "observedAt": "2024-09-10T08:09:00Z",
+    "movie": "enaasimovieC1.a1.20240910.065900.mpg",
+    "sampleIndex": 14,
+    "sunElevationDeg": 6.85,
+    "quality": 0.442,
+    "semanticScore": 0.024326,
+    "rainbowSimilarity": 0.298101,
+    "persistentFrames": 2,
+    "secondBestScore": 0.002933,
+    "eventScore": 0.025353,
+    "day": "20240910",
+    "frames": [
+      {
+        "file": "armx-023-01.jpg",
+        "observedAt": "2024-09-10T07:59:00Z"
+      },
+      {
+        "file": "armx-023-02.jpg",
+        "observedAt": "2024-09-10T08:04:00Z"
+      },
+      {
+        "file": "armx-023-03.jpg",
+        "observedAt": "2024-09-10T08:09:00Z"
+      },
+      {
+        "file": "armx-023-04.jpg",
+        "observedAt": "2024-09-10T08:14:00Z"
+      },
+      {
+        "file": "armx-023-05.jpg",
+        "observedAt": "2024-09-10T08:19:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-024",
+    "observedAt": "2024-12-06T10:52:00Z",
+    "movie": "enaasimovieC1.a1.20241206.082700.mpg",
+    "sampleIndex": 29,
+    "sunElevationDeg": 16.48,
+    "quality": 0.4956,
+    "semanticScore": 0.020178,
+    "rainbowSimilarity": 0.31044,
+    "persistentFrames": 2,
+    "secondBestScore": 0.014438,
+    "eventScore": 0.025231,
+    "day": "20241206",
+    "frames": [
+      {
+        "file": "armx-024-01.jpg",
+        "observedAt": "2024-12-06T10:42:00Z"
+      },
+      {
+        "file": "armx-024-02.jpg",
+        "observedAt": "2024-12-06T10:47:00Z"
+      },
+      {
+        "file": "armx-024-03.jpg",
+        "observedAt": "2024-12-06T10:52:00Z"
+      },
+      {
+        "file": "armx-024-04.jpg",
+        "observedAt": "2024-12-06T10:57:00Z"
+      },
+      {
+        "file": "armx-024-05.jpg",
+        "observedAt": "2024-12-06T11:02:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-025",
+    "observedAt": "2024-11-27T10:53:00Z",
+    "movie": "enaasimovieC1.a1.20241127.081800.mpg",
+    "sampleIndex": 31,
+    "sunElevationDeg": 18.17,
+    "quality": 0.7146,
+    "semanticScore": 0.031148,
+    "rainbowSimilarity": 0.298537,
+    "persistentFrames": 1,
+    "secondBestScore": -0.017478,
+    "eventScore": 0.025031,
+    "day": "20241127",
+    "frames": [
+      {
+        "file": "armx-025-01.jpg",
+        "observedAt": "2024-11-27T10:43:00Z"
+      },
+      {
+        "file": "armx-025-02.jpg",
+        "observedAt": "2024-11-27T10:48:00Z"
+      },
+      {
+        "file": "armx-025-03.jpg",
+        "observedAt": "2024-11-27T10:53:00Z"
+      },
+      {
+        "file": "armx-025-04.jpg",
+        "observedAt": "2024-11-27T10:58:00Z"
+      },
+      {
+        "file": "armx-025-05.jpg",
+        "observedAt": "2024-11-27T11:03:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-026",
+    "observedAt": "2025-06-05T06:36:00Z",
+    "movie": "enaasimovieC1.a1.20250605.055600.mpg",
+    "sampleIndex": 8,
+    "sunElevationDeg": 0.66,
+    "quality": 0.4853,
+    "semanticScore": 0.027073,
+    "rainbowSimilarity": 0.305965,
+    "persistentFrames": 1,
+    "secondBestScore": -0.006183,
+    "eventScore": 0.024909,
+    "day": "20250605",
+    "frames": [
+      {
+        "file": "armx-026-01.jpg",
+        "observedAt": "2025-06-05T06:26:00Z"
+      },
+      {
+        "file": "armx-026-02.jpg",
+        "observedAt": "2025-06-05T06:31:00Z"
+      },
+      {
+        "file": "armx-026-03.jpg",
+        "observedAt": "2025-06-05T06:36:00Z"
+      },
+      {
+        "file": "armx-026-04.jpg",
+        "observedAt": "2025-06-05T06:41:00Z"
+      },
+      {
+        "file": "armx-026-05.jpg",
+        "observedAt": "2025-06-05T06:46:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-027",
+    "observedAt": "2024-08-05T07:26:00Z",
+    "movie": "enaasimovieC1.a1.20240805.062600.mpg",
+    "sampleIndex": 12,
+    "sunElevationDeg": 4.51,
+    "quality": 0.6723,
+    "semanticScore": 0.019984,
+    "rainbowSimilarity": 0.310254,
+    "persistentFrames": 2,
+    "secondBestScore": 0.013583,
+    "eventScore": 0.024738,
+    "day": "20240805",
+    "frames": [
+      {
+        "file": "armx-027-01.jpg",
+        "observedAt": "2024-08-05T07:16:00Z"
+      },
+      {
+        "file": "armx-027-02.jpg",
+        "observedAt": "2024-08-05T07:21:00Z"
+      },
+      {
+        "file": "armx-027-03.jpg",
+        "observedAt": "2024-08-05T07:26:00Z"
+      },
+      {
+        "file": "armx-027-04.jpg",
+        "observedAt": "2024-08-05T07:31:00Z"
+      },
+      {
+        "file": "armx-027-05.jpg",
+        "observedAt": "2024-08-05T07:36:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-028",
+    "observedAt": "2026-06-15T06:35:00Z",
+    "movie": "enaasimovieC1.a1.20260615.055500.mpg",
+    "sampleIndex": 8,
+    "sunElevationDeg": 0.69,
+    "quality": 0.5847,
+    "semanticScore": 0.023506,
+    "rainbowSimilarity": 0.309226,
+    "persistentFrames": 2,
+    "secondBestScore": 0.003042,
+    "eventScore": 0.024571,
+    "day": "20260615",
+    "frames": [
+      {
+        "file": "armx-028-01.jpg",
+        "observedAt": "2026-06-15T06:25:00Z"
+      },
+      {
+        "file": "armx-028-02.jpg",
+        "observedAt": "2026-06-15T06:30:00Z"
+      },
+      {
+        "file": "armx-028-03.jpg",
+        "observedAt": "2026-06-15T06:35:00Z"
+      },
+      {
+        "file": "armx-028-04.jpg",
+        "observedAt": "2026-06-15T06:40:00Z"
+      },
+      {
+        "file": "armx-028-05.jpg",
+        "observedAt": "2026-06-15T06:45:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-029",
+    "observedAt": "2024-06-23T07:37:00Z",
+    "movie": "enaasimovieC1.a1.20240623.055700.mpg",
+    "sampleIndex": 20,
+    "sunElevationDeg": 11.29,
+    "quality": 0.7188,
+    "semanticScore": 0.025956,
+    "rainbowSimilarity": 0.312274,
+    "persistentFrames": 1,
+    "secondBestScore": -0.004275,
+    "eventScore": 0.02446,
+    "day": "20240623",
+    "frames": [
+      {
+        "file": "armx-029-01.jpg",
+        "observedAt": "2024-06-23T07:27:00Z"
+      },
+      {
+        "file": "armx-029-02.jpg",
+        "observedAt": "2024-06-23T07:32:00Z"
+      },
+      {
+        "file": "armx-029-03.jpg",
+        "observedAt": "2024-06-23T07:37:00Z"
+      },
+      {
+        "file": "armx-029-04.jpg",
+        "observedAt": "2024-06-23T07:42:00Z"
+      },
+      {
+        "file": "armx-029-05.jpg",
+        "observedAt": "2024-06-23T07:47:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-030",
+    "observedAt": "2025-03-19T08:31:00Z",
+    "movie": "enaasimovieC1.a1.20250319.072600.mpg",
+    "sampleIndex": 13,
+    "sunElevationDeg": 5.58,
+    "quality": 0.7795,
+    "semanticScore": 0.024759,
+    "rainbowSimilarity": 0.2908,
+    "persistentFrames": 1,
+    "secondBestScore": -0.001323,
+    "eventScore": 0.024296,
+    "day": "20250319",
+    "frames": [
+      {
+        "file": "armx-030-01.jpg",
+        "observedAt": "2025-03-19T08:21:00Z"
+      },
+      {
+        "file": "armx-030-02.jpg",
+        "observedAt": "2025-03-19T08:26:00Z"
+      },
+      {
+        "file": "armx-030-03.jpg",
+        "observedAt": "2025-03-19T08:31:00Z"
+      },
+      {
+        "file": "armx-030-04.jpg",
+        "observedAt": "2025-03-19T08:36:00Z"
+      },
+      {
+        "file": "armx-030-05.jpg",
+        "observedAt": "2025-03-19T08:41:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-031",
+    "observedAt": "2025-01-21T12:11:00Z",
+    "movie": "enaasimovieC1.a1.20250121.083600.mpg",
+    "sampleIndex": 43,
+    "sunElevationDeg": 25.4,
+    "quality": 0.5083,
+    "semanticScore": 0.020115,
+    "rainbowSimilarity": 0.306445,
+    "persistentFrames": 2,
+    "secondBestScore": 0.010204,
+    "eventScore": 0.023686,
+    "day": "20250121",
+    "frames": [
+      {
+        "file": "armx-031-01.jpg",
+        "observedAt": "2025-01-21T12:01:00Z"
+      },
+      {
+        "file": "armx-031-02.jpg",
+        "observedAt": "2025-01-21T12:06:00Z"
+      },
+      {
+        "file": "armx-031-03.jpg",
+        "observedAt": "2025-01-21T12:11:00Z"
+      },
+      {
+        "file": "armx-031-04.jpg",
+        "observedAt": "2025-01-21T12:16:00Z"
+      },
+      {
+        "file": "armx-031-05.jpg",
+        "observedAt": "2025-01-21T12:21:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-032",
+    "observedAt": "2024-11-30T09:01:00Z",
+    "movie": "enaasimovieC1.a1.20241130.082100.mpg",
+    "sampleIndex": 8,
+    "sunElevationDeg": 0.76,
+    "quality": 0.647,
+    "semanticScore": 0.024285,
+    "rainbowSimilarity": 0.323644,
+    "persistentFrames": 1,
+    "secondBestScore": -0.002075,
+    "eventScore": 0.023559,
+    "day": "20241130",
+    "frames": [
+      {
+        "file": "armx-032-01.jpg",
+        "observedAt": "2024-11-30T08:51:00Z"
+      },
+      {
+        "file": "armx-032-02.jpg",
+        "observedAt": "2024-11-30T08:56:00Z"
+      },
+      {
+        "file": "armx-032-03.jpg",
+        "observedAt": "2024-11-30T09:01:00Z"
+      },
+      {
+        "file": "armx-032-04.jpg",
+        "observedAt": "2024-11-30T09:06:00Z"
+      },
+      {
+        "file": "armx-032-05.jpg",
+        "observedAt": "2024-11-30T09:11:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-033",
+    "observedAt": "2024-09-23T08:21:00Z",
+    "movie": "enaasimovieC1.a1.20240923.071100.mpg",
+    "sampleIndex": 14,
+    "sunElevationDeg": 6.9,
+    "quality": 0.6128,
+    "semanticScore": 0.024204,
+    "rainbowSimilarity": 0.295599,
+    "persistentFrames": 1,
+    "secondBestScore": -0.002693,
+    "eventScore": 0.023261,
+    "day": "20240923",
+    "frames": [
+      {
+        "file": "armx-033-01.jpg",
+        "observedAt": "2024-09-23T08:11:00Z"
+      },
+      {
+        "file": "armx-033-02.jpg",
+        "observedAt": "2024-09-23T08:16:00Z"
+      },
+      {
+        "file": "armx-033-03.jpg",
+        "observedAt": "2024-09-23T08:21:00Z"
+      },
+      {
+        "file": "armx-033-04.jpg",
+        "observedAt": "2024-09-23T08:26:00Z"
+      },
+      {
+        "file": "armx-033-05.jpg",
+        "observedAt": "2024-09-23T08:31:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-034",
+    "observedAt": "2024-12-24T13:04:00Z",
+    "movie": "enaasimovieC1.a1.20241224.083900.mpg",
+    "sampleIndex": 53,
+    "sunElevationDeg": 26.49,
+    "quality": 0.5426,
+    "semanticScore": 0.021034,
+    "rainbowSimilarity": 0.2941,
+    "persistentFrames": 3,
+    "secondBestScore": 0.005169,
+    "eventScore": 0.022843,
+    "day": "20241224",
+    "frames": [
+      {
+        "file": "armx-034-01.jpg",
+        "observedAt": "2024-12-24T12:54:00Z"
+      },
+      {
+        "file": "armx-034-02.jpg",
+        "observedAt": "2024-12-24T12:59:00Z"
+      },
+      {
+        "file": "armx-034-03.jpg",
+        "observedAt": "2024-12-24T13:04:00Z"
+      },
+      {
+        "file": "armx-034-04.jpg",
+        "observedAt": "2024-12-24T13:09:00Z"
+      },
+      {
+        "file": "armx-034-05.jpg",
+        "observedAt": "2024-12-24T13:14:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-035",
+    "observedAt": "2024-12-12T10:27:00Z",
+    "movie": "enaasimovieC1.a1.20241212.083200.mpg",
+    "sampleIndex": 23,
+    "sunElevationDeg": 12.32,
+    "quality": 0.5405,
+    "semanticScore": 0.017526,
+    "rainbowSimilarity": 0.309943,
+    "persistentFrames": 2,
+    "secondBestScore": 0.014983,
+    "eventScore": 0.02277,
+    "day": "20241212",
+    "frames": [
+      {
+        "file": "armx-035-01.jpg",
+        "observedAt": "2024-12-12T10:17:00Z"
+      },
+      {
+        "file": "armx-035-02.jpg",
+        "observedAt": "2024-12-12T10:22:00Z"
+      },
+      {
+        "file": "armx-035-03.jpg",
+        "observedAt": "2024-12-12T10:27:00Z"
+      },
+      {
+        "file": "armx-035-04.jpg",
+        "observedAt": "2024-12-12T10:32:00Z"
+      },
+      {
+        "file": "armx-035-05.jpg",
+        "observedAt": "2024-12-12T10:37:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-036",
+    "observedAt": "2025-01-03T12:01:00Z",
+    "movie": "enaasimovieC1.a1.20250103.084100.mpg",
+    "sampleIndex": 40,
+    "sunElevationDeg": 22.42,
+    "quality": 0.6118,
+    "semanticScore": 0.020226,
+    "rainbowSimilarity": 0.288463,
+    "persistentFrames": 2,
+    "secondBestScore": 0.006217,
+    "eventScore": 0.022402,
+    "day": "20250103",
+    "frames": [
+      {
+        "file": "armx-036-01.jpg",
+        "observedAt": "2025-01-03T11:51:00Z"
+      },
+      {
+        "file": "armx-036-02.jpg",
+        "observedAt": "2025-01-03T11:56:00Z"
+      },
+      {
+        "file": "armx-036-03.jpg",
+        "observedAt": "2025-01-03T12:01:00Z"
+      },
+      {
+        "file": "armx-036-04.jpg",
+        "observedAt": "2025-01-03T12:06:00Z"
+      },
+      {
+        "file": "armx-036-05.jpg",
+        "observedAt": "2025-01-03T12:11:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-037",
+    "observedAt": "2024-11-19T12:00:00Z",
+    "movie": "enaasimovieC1.a1.20241119.081000.mpg",
+    "sampleIndex": 46,
+    "sunElevationDeg": 27.05,
+    "quality": 0.5235,
+    "semanticScore": 0.027712,
+    "rainbowSimilarity": 0.317688,
+    "persistentFrames": 1,
+    "secondBestScore": -0.016012,
+    "eventScore": 0.022108,
+    "day": "20241119",
+    "frames": [
+      {
+        "file": "armx-037-01.jpg",
+        "observedAt": "2024-11-19T11:50:00Z"
+      },
+      {
+        "file": "armx-037-02.jpg",
+        "observedAt": "2024-11-19T11:55:00Z"
+      },
+      {
+        "file": "armx-037-03.jpg",
+        "observedAt": "2024-11-19T12:00:00Z"
+      },
+      {
+        "file": "armx-037-04.jpg",
+        "observedAt": "2024-11-19T12:05:00Z"
+      },
+      {
+        "file": "armx-037-05.jpg",
+        "observedAt": "2024-11-19T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-038",
+    "observedAt": "2024-09-21T09:14:00Z",
+    "movie": "enaasimovieC1.a1.20240921.070900.mpg",
+    "sampleIndex": 25,
+    "sunElevationDeg": 17.39,
+    "quality": 0.5944,
+    "semanticScore": 0.020199,
+    "rainbowSimilarity": 0.289106,
+    "persistentFrames": 2,
+    "secondBestScore": 0.005409,
+    "eventScore": 0.022092,
+    "day": "20240921",
+    "frames": [
+      {
+        "file": "armx-038-01.jpg",
+        "observedAt": "2024-09-21T09:04:00Z"
+      },
+      {
+        "file": "armx-038-02.jpg",
+        "observedAt": "2024-09-21T09:09:00Z"
+      },
+      {
+        "file": "armx-038-03.jpg",
+        "observedAt": "2024-09-21T09:14:00Z"
+      },
+      {
+        "file": "armx-038-04.jpg",
+        "observedAt": "2024-09-21T09:19:00Z"
+      },
+      {
+        "file": "armx-038-05.jpg",
+        "observedAt": "2024-09-21T09:24:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-039",
+    "observedAt": "2024-12-16T12:15:00Z",
+    "movie": "enaasimovieC1.a1.20241216.083500.mpg",
+    "sampleIndex": 44,
+    "sunElevationDeg": 23.88,
+    "quality": 0.4736,
+    "semanticScore": 0.02281,
+    "rainbowSimilarity": 0.304289,
+    "persistentFrames": 1,
+    "secondBestScore": -0.002073,
+    "eventScore": 0.022084,
+    "day": "20241216",
+    "frames": [
+      {
+        "file": "armx-039-01.jpg",
+        "observedAt": "2024-12-16T12:05:00Z"
+      },
+      {
+        "file": "armx-039-02.jpg",
+        "observedAt": "2024-12-16T12:10:00Z"
+      },
+      {
+        "file": "armx-039-03.jpg",
+        "observedAt": "2024-12-16T12:15:00Z"
+      },
+      {
+        "file": "armx-039-04.jpg",
+        "observedAt": "2024-12-16T12:20:00Z"
+      },
+      {
+        "file": "armx-039-05.jpg",
+        "observedAt": "2024-12-16T12:25:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-040",
+    "observedAt": "2024-11-11T09:31:00Z",
+    "movie": "enaasimovieC1.a1.20241111.080100.mpg",
+    "sampleIndex": 18,
+    "sunElevationDeg": 9.5,
+    "quality": 0.742,
+    "semanticScore": 0.025983,
+    "rainbowSimilarity": 0.303227,
+    "persistentFrames": 1,
+    "secondBestScore": -0.011699,
+    "eventScore": 0.021888,
+    "day": "20241111",
+    "frames": [
+      {
+        "file": "armx-040-01.jpg",
+        "observedAt": "2024-11-11T09:21:00Z"
+      },
+      {
+        "file": "armx-040-02.jpg",
+        "observedAt": "2024-11-11T09:26:00Z"
+      },
+      {
+        "file": "armx-040-03.jpg",
+        "observedAt": "2024-11-11T09:31:00Z"
+      },
+      {
+        "file": "armx-040-04.jpg",
+        "observedAt": "2024-11-11T09:36:00Z"
+      },
+      {
+        "file": "armx-040-05.jpg",
+        "observedAt": "2024-11-11T09:41:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-041",
+    "observedAt": "2026-06-02T08:32:00Z",
+    "movie": "enaasimovieC1.a1.20260602.055700.mpg",
+    "sampleIndex": 31,
+    "sunElevationDeg": 21.58,
+    "quality": 0.2918,
+    "semanticScore": 0.017997,
+    "rainbowSimilarity": 0.282522,
+    "persistentFrames": 2,
+    "secondBestScore": 0.009756,
+    "eventScore": 0.021412,
+    "day": "20260602",
+    "frames": [
+      {
+        "file": "armx-041-01.jpg",
+        "observedAt": "2026-06-02T08:22:00Z"
+      },
+      {
+        "file": "armx-041-02.jpg",
+        "observedAt": "2026-06-02T08:27:00Z"
+      },
+      {
+        "file": "armx-041-03.jpg",
+        "observedAt": "2026-06-02T08:32:00Z"
+      },
+      {
+        "file": "armx-041-04.jpg",
+        "observedAt": "2026-06-02T08:37:00Z"
+      },
+      {
+        "file": "armx-041-05.jpg",
+        "observedAt": "2026-06-02T08:42:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-042",
+    "observedAt": "2024-09-25T08:27:00Z",
+    "movie": "enaasimovieC1.a1.20240925.071200.mpg",
+    "sampleIndex": 15,
+    "sunElevationDeg": 7.7,
+    "quality": 0.5236,
+    "semanticScore": 0.020611,
+    "rainbowSimilarity": 0.305253,
+    "persistentFrames": 2,
+    "secondBestScore": 0.001862,
+    "eventScore": 0.021263,
+    "day": "20240925",
+    "frames": [
+      {
+        "file": "armx-042-01.jpg",
+        "observedAt": "2024-09-25T08:17:00Z"
+      },
+      {
+        "file": "armx-042-02.jpg",
+        "observedAt": "2024-09-25T08:22:00Z"
+      },
+      {
+        "file": "armx-042-03.jpg",
+        "observedAt": "2024-09-25T08:27:00Z"
+      },
+      {
+        "file": "armx-042-04.jpg",
+        "observedAt": "2024-09-25T08:32:00Z"
+      },
+      {
+        "file": "armx-042-05.jpg",
+        "observedAt": "2024-09-25T08:37:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-043",
+    "observedAt": "2024-09-24T08:16:00Z",
+    "movie": "enaasimovieC1.a1.20240924.071100.mpg",
+    "sampleIndex": 13,
+    "sunElevationDeg": 5.76,
+    "quality": 0.5197,
+    "semanticScore": 0.019814,
+    "rainbowSimilarity": 0.297271,
+    "persistentFrames": 3,
+    "secondBestScore": 0.00189,
+    "eventScore": 0.020475,
+    "day": "20240924",
+    "frames": [
+      {
+        "file": "armx-043-01.jpg",
+        "observedAt": "2024-09-24T08:06:00Z"
+      },
+      {
+        "file": "armx-043-02.jpg",
+        "observedAt": "2024-09-24T08:11:00Z"
+      },
+      {
+        "file": "armx-043-03.jpg",
+        "observedAt": "2024-09-24T08:16:00Z"
+      },
+      {
+        "file": "armx-043-04.jpg",
+        "observedAt": "2024-09-24T08:21:00Z"
+      },
+      {
+        "file": "armx-043-05.jpg",
+        "observedAt": "2024-09-24T08:26:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-044",
+    "observedAt": "2024-12-09T13:14:00Z",
+    "movie": "enaasimovieC1.a1.20241209.082900.mpg",
+    "sampleIndex": 57,
+    "sunElevationDeg": 27.63,
+    "quality": 0.6517,
+    "semanticScore": 0.017824,
+    "rainbowSimilarity": 0.294229,
+    "persistentFrames": 3,
+    "secondBestScore": 0.006345,
+    "eventScore": 0.020045,
+    "day": "20241209",
+    "frames": [
+      {
+        "file": "armx-044-01.jpg",
+        "observedAt": "2024-12-09T13:04:00Z"
+      },
+      {
+        "file": "armx-044-02.jpg",
+        "observedAt": "2024-12-09T13:09:00Z"
+      },
+      {
+        "file": "armx-044-03.jpg",
+        "observedAt": "2024-12-09T13:14:00Z"
+      },
+      {
+        "file": "armx-044-04.jpg",
+        "observedAt": "2024-12-09T13:19:00Z"
+      },
+      {
+        "file": "armx-044-05.jpg",
+        "observedAt": "2024-12-09T13:24:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-045",
+    "observedAt": "2025-03-26T08:55:00Z",
+    "movie": "enaasimovieC1.a1.20250326.071500.mpg",
+    "sampleIndex": 20,
+    "sunElevationDeg": 12.37,
+    "quality": 0.4653,
+    "semanticScore": 0.017003,
+    "rainbowSimilarity": 0.287913,
+    "persistentFrames": 2,
+    "secondBestScore": 0.008181,
+    "eventScore": 0.019866,
+    "day": "20250326",
+    "frames": [
+      {
+        "file": "armx-045-01.jpg",
+        "observedAt": "2025-03-26T08:45:00Z"
+      },
+      {
+        "file": "armx-045-02.jpg",
+        "observedAt": "2025-03-26T08:50:00Z"
+      },
+      {
+        "file": "armx-045-03.jpg",
+        "observedAt": "2025-03-26T08:55:00Z"
+      },
+      {
+        "file": "armx-045-04.jpg",
+        "observedAt": "2025-03-26T09:00:00Z"
+      },
+      {
+        "file": "armx-045-05.jpg",
+        "observedAt": "2025-03-26T09:05:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-046",
+    "observedAt": "2024-06-10T08:00:00Z",
+    "movie": "enaasimovieC1.a1.20240610.055500.mpg",
+    "sampleIndex": 25,
+    "sunElevationDeg": 15.78,
+    "quality": 0.7791,
+    "semanticScore": 0.023603,
+    "rainbowSimilarity": 0.297265,
+    "persistentFrames": 1,
+    "secondBestScore": -0.010866,
+    "eventScore": 0.0198,
+    "day": "20240610",
+    "frames": [
+      {
+        "file": "armx-046-01.jpg",
+        "observedAt": "2024-06-10T07:50:00Z"
+      },
+      {
+        "file": "armx-046-02.jpg",
+        "observedAt": "2024-06-10T07:55:00Z"
+      },
+      {
+        "file": "armx-046-03.jpg",
+        "observedAt": "2024-06-10T08:00:00Z"
+      },
+      {
+        "file": "armx-046-04.jpg",
+        "observedAt": "2024-06-10T08:05:00Z"
+      },
+      {
+        "file": "armx-046-05.jpg",
+        "observedAt": "2024-06-10T08:10:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-047",
+    "observedAt": "2024-12-21T11:27:00Z",
+    "movie": "enaasimovieC1.a1.20241221.083700.mpg",
+    "sampleIndex": 34,
+    "sunElevationDeg": 19.02,
+    "quality": 0.4253,
+    "semanticScore": 0.01676,
+    "rainbowSimilarity": 0.276468,
+    "persistentFrames": 3,
+    "secondBestScore": 0.008505,
+    "eventScore": 0.019737,
+    "day": "20241221",
+    "frames": [
+      {
+        "file": "armx-047-01.jpg",
+        "observedAt": "2024-12-21T11:17:00Z"
+      },
+      {
+        "file": "armx-047-02.jpg",
+        "observedAt": "2024-12-21T11:22:00Z"
+      },
+      {
+        "file": "armx-047-03.jpg",
+        "observedAt": "2024-12-21T11:27:00Z"
+      },
+      {
+        "file": "armx-047-04.jpg",
+        "observedAt": "2024-12-21T11:32:00Z"
+      },
+      {
+        "file": "armx-047-05.jpg",
+        "observedAt": "2024-12-21T11:37:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-048",
+    "observedAt": "2026-07-02T06:50:00Z",
+    "movie": "enaasimovieC1.a1.20260702.060000.mpg",
+    "sampleIndex": 10,
+    "sunElevationDeg": 2.48,
+    "quality": 0.8069,
+    "semanticScore": 0.019056,
+    "rainbowSimilarity": 0.282334,
+    "persistentFrames": 3,
+    "secondBestScore": 0.001589,
+    "eventScore": 0.019612,
+    "day": "20260702",
+    "frames": [
+      {
+        "file": "armx-048-01.jpg",
+        "observedAt": "2026-07-02T06:40:00Z"
+      },
+      {
+        "file": "armx-048-02.jpg",
+        "observedAt": "2026-07-02T06:45:00Z"
+      },
+      {
+        "file": "armx-048-03.jpg",
+        "observedAt": "2026-07-02T06:50:00Z"
+      },
+      {
+        "file": "armx-048-04.jpg",
+        "observedAt": "2026-07-02T06:55:00Z"
+      },
+      {
+        "file": "armx-048-05.jpg",
+        "observedAt": "2026-07-02T07:00:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-049",
+    "observedAt": "2025-07-14T07:02:00Z",
+    "movie": "enaasimovieC1.a1.20250714.060700.mpg",
+    "sampleIndex": 11,
+    "sunElevationDeg": 3.31,
+    "quality": 0.4892,
+    "semanticScore": 0.01536,
+    "rainbowSimilarity": 0.279045,
+    "persistentFrames": 2,
+    "secondBestScore": 0.011435,
+    "eventScore": 0.019362,
+    "day": "20250714",
+    "frames": [
+      {
+        "file": "armx-049-01.jpg",
+        "observedAt": "2025-07-14T06:52:00Z"
+      },
+      {
+        "file": "armx-049-02.jpg",
+        "observedAt": "2025-07-14T06:57:00Z"
+      },
+      {
+        "file": "armx-049-03.jpg",
+        "observedAt": "2025-07-14T07:02:00Z"
+      },
+      {
+        "file": "armx-049-04.jpg",
+        "observedAt": "2025-07-14T07:07:00Z"
+      },
+      {
+        "file": "armx-049-05.jpg",
+        "observedAt": "2025-07-14T07:12:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-050",
+    "observedAt": "2024-09-29T08:06:00Z",
+    "movie": "enaasimovieC1.a1.20240929.071600.mpg",
+    "sampleIndex": 10,
+    "sunElevationDeg": 2.92,
+    "quality": 0.5616,
+    "semanticScore": 0.018709,
+    "rainbowSimilarity": 0.294427,
+    "persistentFrames": 2,
+    "secondBestScore": 0.001816,
+    "eventScore": 0.019345,
+    "day": "20240929",
+    "frames": [
+      {
+        "file": "armx-050-01.jpg",
+        "observedAt": "2024-09-29T07:56:00Z"
+      },
+      {
+        "file": "armx-050-02.jpg",
+        "observedAt": "2024-09-29T08:01:00Z"
+      },
+      {
+        "file": "armx-050-03.jpg",
+        "observedAt": "2024-09-29T08:06:00Z"
+      },
+      {
+        "file": "armx-050-04.jpg",
+        "observedAt": "2024-09-29T08:11:00Z"
+      },
+      {
+        "file": "armx-050-05.jpg",
+        "observedAt": "2024-09-29T08:16:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-051",
+    "observedAt": "2024-08-23T07:42:00Z",
+    "movie": "enaasimovieC1.a1.20240823.064200.mpg",
+    "sampleIndex": 12,
+    "sunElevationDeg": 4.64,
+    "quality": 0.6622,
+    "semanticScore": 0.01675,
+    "rainbowSimilarity": 0.314605,
+    "persistentFrames": 2,
+    "secondBestScore": 0.007122,
+    "eventScore": 0.019243,
+    "day": "20240823",
+    "frames": [
+      {
+        "file": "armx-051-01.jpg",
+        "observedAt": "2024-08-23T07:32:00Z"
+      },
+      {
+        "file": "armx-051-02.jpg",
+        "observedAt": "2024-08-23T07:37:00Z"
+      },
+      {
+        "file": "armx-051-03.jpg",
+        "observedAt": "2024-08-23T07:42:00Z"
+      },
+      {
+        "file": "armx-051-04.jpg",
+        "observedAt": "2024-08-23T07:47:00Z"
+      },
+      {
+        "file": "armx-051-05.jpg",
+        "observedAt": "2024-08-23T07:52:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-052",
+    "observedAt": "2024-11-02T11:16:00Z",
+    "movie": "enaasimovieC1.a1.20241102.075100.mpg",
+    "sampleIndex": 41,
+    "sunElevationDeg": 26.93,
+    "quality": 0.3873,
+    "semanticScore": 0.016572,
+    "rainbowSimilarity": 0.292686,
+    "persistentFrames": 2,
+    "secondBestScore": 0.006998,
+    "eventScore": 0.019021,
+    "day": "20241102",
+    "frames": [
+      {
+        "file": "armx-052-01.jpg",
+        "observedAt": "2024-11-02T11:06:00Z"
+      },
+      {
+        "file": "armx-052-02.jpg",
+        "observedAt": "2024-11-02T11:11:00Z"
+      },
+      {
+        "file": "armx-052-03.jpg",
+        "observedAt": "2024-11-02T11:16:00Z"
+      },
+      {
+        "file": "armx-052-04.jpg",
+        "observedAt": "2024-11-02T11:21:00Z"
+      },
+      {
+        "file": "armx-052-05.jpg",
+        "observedAt": "2024-11-02T11:26:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-053",
+    "observedAt": "2025-01-08T12:46:00Z",
+    "movie": "enaasimovieC1.a1.20250108.084100.mpg",
+    "sampleIndex": 49,
+    "sunElevationDeg": 26.34,
+    "quality": 0.5975,
+    "semanticScore": 0.020451,
+    "rainbowSimilarity": 0.289933,
+    "persistentFrames": 1,
+    "secondBestScore": -0.004469,
+    "eventScore": 0.018887,
+    "day": "20250108",
+    "frames": [
+      {
+        "file": "armx-053-01.jpg",
+        "observedAt": "2025-01-08T12:36:00Z"
+      },
+      {
+        "file": "armx-053-02.jpg",
+        "observedAt": "2025-01-08T12:41:00Z"
+      },
+      {
+        "file": "armx-053-03.jpg",
+        "observedAt": "2025-01-08T12:46:00Z"
+      },
+      {
+        "file": "armx-053-04.jpg",
+        "observedAt": "2025-01-08T12:51:00Z"
+      },
+      {
+        "file": "armx-053-05.jpg",
+        "observedAt": "2025-01-08T12:56:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-054",
+    "observedAt": "2024-10-30T09:38:00Z",
+    "movie": "enaasimovieC1.a1.20241030.074800.mpg",
+    "sampleIndex": 22,
+    "sunElevationDeg": 13.35,
+    "quality": 0.6384,
+    "semanticScore": 0.024733,
+    "rainbowSimilarity": 0.313468,
+    "persistentFrames": 1,
+    "secondBestScore": -0.016997,
+    "eventScore": 0.018784,
+    "day": "20241030",
+    "frames": [
+      {
+        "file": "armx-054-01.jpg",
+        "observedAt": "2024-10-30T09:28:00Z"
+      },
+      {
+        "file": "armx-054-02.jpg",
+        "observedAt": "2024-10-30T09:33:00Z"
+      },
+      {
+        "file": "armx-054-03.jpg",
+        "observedAt": "2024-10-30T09:38:00Z"
+      },
+      {
+        "file": "armx-054-04.jpg",
+        "observedAt": "2024-10-30T09:43:00Z"
+      },
+      {
+        "file": "armx-054-05.jpg",
+        "observedAt": "2024-10-30T09:48:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-055",
+    "observedAt": "2026-06-17T07:40:00Z",
+    "movie": "enaasimovieC1.a1.20260617.055500.mpg",
+    "sampleIndex": 21,
+    "sunElevationDeg": 12.07,
+    "quality": 0.7785,
+    "semanticScore": 0.01841,
+    "rainbowSimilarity": 0.281394,
+    "persistentFrames": 2,
+    "secondBestScore": 0.000598,
+    "eventScore": 0.018619,
+    "day": "20260617",
+    "frames": [
+      {
+        "file": "armx-055-01.jpg",
+        "observedAt": "2026-06-17T07:30:00Z"
+      },
+      {
+        "file": "armx-055-02.jpg",
+        "observedAt": "2026-06-17T07:35:00Z"
+      },
+      {
+        "file": "armx-055-03.jpg",
+        "observedAt": "2026-06-17T07:40:00Z"
+      },
+      {
+        "file": "armx-055-04.jpg",
+        "observedAt": "2026-06-17T07:45:00Z"
+      },
+      {
+        "file": "armx-055-05.jpg",
+        "observedAt": "2026-06-17T07:50:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-056",
+    "observedAt": "2024-12-04T13:00:00Z",
+    "movie": "enaasimovieC1.a1.20241204.082500.mpg",
+    "sampleIndex": 55,
+    "sunElevationDeg": 27.81,
+    "quality": 0.5786,
+    "semanticScore": 0.015868,
+    "rainbowSimilarity": 0.294921,
+    "persistentFrames": 3,
+    "secondBestScore": 0.007395,
+    "eventScore": 0.018456,
+    "day": "20241204",
+    "frames": [
+      {
+        "file": "armx-056-01.jpg",
+        "observedAt": "2024-12-04T12:50:00Z"
+      },
+      {
+        "file": "armx-056-02.jpg",
+        "observedAt": "2024-12-04T12:55:00Z"
+      },
+      {
+        "file": "armx-056-03.jpg",
+        "observedAt": "2024-12-04T13:00:00Z"
+      },
+      {
+        "file": "armx-056-04.jpg",
+        "observedAt": "2024-12-04T13:05:00Z"
+      },
+      {
+        "file": "armx-056-05.jpg",
+        "observedAt": "2024-12-04T13:10:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-057",
+    "observedAt": "2024-12-03T12:54:00Z",
+    "movie": "enaasimovieC1.a1.20241203.082400.mpg",
+    "sampleIndex": 54,
+    "sunElevationDeg": 27.72,
+    "quality": 0.443,
+    "semanticScore": 0.015094,
+    "rainbowSimilarity": 0.273921,
+    "persistentFrames": 2,
+    "secondBestScore": 0.009547,
+    "eventScore": 0.018435,
+    "day": "20241203",
+    "frames": [
+      {
+        "file": "armx-057-01.jpg",
+        "observedAt": "2024-12-03T12:44:00Z"
+      },
+      {
+        "file": "armx-057-02.jpg",
+        "observedAt": "2024-12-03T12:49:00Z"
+      },
+      {
+        "file": "armx-057-03.jpg",
+        "observedAt": "2024-12-03T12:54:00Z"
+      },
+      {
+        "file": "armx-057-04.jpg",
+        "observedAt": "2024-12-03T12:59:00Z"
+      },
+      {
+        "file": "armx-057-05.jpg",
+        "observedAt": "2024-12-03T13:04:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-058",
+    "observedAt": "2024-10-28T08:40:00Z",
+    "movie": "enaasimovieC1.a1.20241028.074500.mpg",
+    "sampleIndex": 11,
+    "sunElevationDeg": 3.64,
+    "quality": 0.5376,
+    "semanticScore": 0.017854,
+    "rainbowSimilarity": 0.327207,
+    "persistentFrames": 2,
+    "secondBestScore": 0.000287,
+    "eventScore": 0.017954,
+    "day": "20241028",
+    "frames": [
+      {
+        "file": "armx-058-01.jpg",
+        "observedAt": "2024-10-28T08:30:00Z"
+      },
+      {
+        "file": "armx-058-02.jpg",
+        "observedAt": "2024-10-28T08:35:00Z"
+      },
+      {
+        "file": "armx-058-03.jpg",
+        "observedAt": "2024-10-28T08:40:00Z"
+      },
+      {
+        "file": "armx-058-04.jpg",
+        "observedAt": "2024-10-28T08:45:00Z"
+      },
+      {
+        "file": "armx-058-05.jpg",
+        "observedAt": "2024-10-28T08:50:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-059",
+    "observedAt": "2025-01-12T13:05:00Z",
+    "movie": "enaasimovieC1.a1.20250112.084000.mpg",
+    "sampleIndex": 53,
+    "sunElevationDeg": 27.9,
+    "quality": 0.6355,
+    "semanticScore": 0.019191,
+    "rainbowSimilarity": 0.288741,
+    "persistentFrames": 1,
+    "secondBestScore": -0.003829,
+    "eventScore": 0.017851,
+    "day": "20250112",
+    "frames": [
+      {
+        "file": "armx-059-01.jpg",
+        "observedAt": "2025-01-12T12:55:00Z"
+      },
+      {
+        "file": "armx-059-02.jpg",
+        "observedAt": "2025-01-12T13:00:00Z"
+      },
+      {
+        "file": "armx-059-03.jpg",
+        "observedAt": "2025-01-12T13:05:00Z"
+      },
+      {
+        "file": "armx-059-04.jpg",
+        "observedAt": "2025-01-12T13:10:00Z"
+      },
+      {
+        "file": "armx-059-05.jpg",
+        "observedAt": "2025-01-12T13:15:00Z"
+      }
+    ]
+  },
+  {
+    "candidateId": "armx-060",
+    "observedAt": "2025-03-21T08:33:00Z",
+    "movie": "enaasimovieC1.a1.20250321.072300.mpg",
+    "sampleIndex": 14,
+    "sunElevationDeg": 6.58,
+    "quality": 0.683,
+    "semanticScore": 0.017024,
+    "rainbowSimilarity": 0.277545,
+    "persistentFrames": 2,
+    "secondBestScore": 0.001642,
+    "eventScore": 0.017599,
+    "day": "20250321",
+    "frames": [
+      {
+        "file": "armx-060-01.jpg",
+        "observedAt": "2025-03-21T08:23:00Z"
+      },
+      {
+        "file": "armx-060-02.jpg",
+        "observedAt": "2025-03-21T08:28:00Z"
+      },
+      {
+        "file": "armx-060-03.jpg",
+        "observedAt": "2025-03-21T08:33:00Z"
+      },
+      {
+        "file": "armx-060-04.jpg",
+        "observedAt": "2025-03-21T08:38:00Z"
+      },
+      {
+        "file": "armx-060-05.jpg",
+        "observedAt": "2025-03-21T08:43:00Z"
+      }
+    ]
+  }
+]

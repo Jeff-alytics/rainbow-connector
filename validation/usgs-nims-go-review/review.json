@@ -1,0 +1,861 @@
+{
+  "generatedAt": "2026-07-28T14:23:48.403249+00:00",
+  "events": [
+    {
+      "camera": {
+        "id": "SC_Pee_Dee_River_at_Georgetown",
+        "name": "Pee Dee River at Georgetown",
+        "description": "Pee Dee River at Georgetown, SC",
+        "state": "SC",
+        "lat": 33.36933396,
+        "lon": -79.2636617,
+        "intervalMinutes": 15,
+        "observedAt": "2026-07-27T17-00-09Z",
+        "image": "images/SC_Pee_Dee_River_at_Georgetown.jpg",
+        "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/SC_Pee_Dee_River_at_Georgetown/SC_Pee_Dee_River_at_Georgetown___2026-07-27T17-00-09Z.jpg",
+        "width": 720,
+        "height": 405,
+        "skyScore": 71.9,
+        "upperSkyPct": 77.4,
+        "horizonSkyPct": 76.5,
+        "upperEdgePct": 6.5
+      },
+      "center": "2026-07-27T22:39:57.318185Z",
+      "matches": [
+        {
+          "camera": {
+            "id": "SC_Pee_Dee_River_at_Georgetown",
+            "name": "Pee Dee River at Georgetown",
+            "description": "Pee Dee River at Georgetown, SC",
+            "state": "SC",
+            "lat": 33.36933396,
+            "lon": -79.2636617,
+            "intervalMinutes": 15,
+            "observedAt": "2026-07-27T17-00-09Z",
+            "image": "images/SC_Pee_Dee_River_at_Georgetown.jpg",
+            "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/SC_Pee_Dee_River_at_Georgetown/SC_Pee_Dee_River_at_Georgetown___2026-07-27T17-00-09Z.jpg",
+            "width": 720,
+            "height": 405,
+            "skyScore": 71.9,
+            "upperSkyPct": 77.4,
+            "horizonSkyPct": 76.5,
+            "upperEdgePct": 6.5
+          },
+          "generatedAt": "2026-07-27T22:39:57.318185Z",
+          "expiresAt": "2026-07-27T22:46:57.318185Z",
+          "distanceKm": 30.2,
+          "candidate": {
+            "id": "33.295,-79.495:3",
+            "rank": 3,
+            "lat": 33.3079,
+            "lon": -79.5798,
+            "label": "33.31, -79.58",
+            "nearestZip": null,
+            "verdict": "go",
+            "confidence": "high",
+            "direction": {
+              "bearing": 100,
+              "label": "Look toward 100 degrees"
+            },
+            "persistence": {
+              "confirmed": false,
+              "scanCount": 1,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 20.33,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 445,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 10,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 33.295,
+                "lon": -79.495,
+                "distanceKm": 8,
+                "bearing": 100
+              },
+              "score": 85.9,
+              "goes": {
+                "decision": "go",
+                "positiveSources": [
+                  "goesDsrf",
+                  "goesAcmc"
+                ],
+                "negativeSources": [],
+                "sources": {
+                  "goesDsrf": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "moderate-context",
+                    "reason": "downward shortwave flux 250.4425506591797 W m-2 (not direct-normal irradiance)",
+                    "observedAt": "2026-07-27T22:20:20Z",
+                    "observedAgeMinutes": 20,
+                    "maxAgeMinutes": 30,
+                    "product": "ABI-L2-DSRF",
+                    "variable": "DSR",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 250.4425506591797,
+                    "units": "W m-2",
+                    "s3Key": "ABI-L2-DSRF/2026/208/22/OR_ABI-L2-DSRF-M6_G19_s20262082220209_e20262082229518_c20262082236306.nc"
+                  },
+                  "goesAcmc": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "clear-mask",
+                    "reason": "clear/probably clear",
+                    "observedAt": "2026-07-27T22:36:17Z",
+                    "observedAgeMinutes": 4,
+                    "maxAgeMinutes": 20,
+                    "product": "ABI-L2-ACMC",
+                    "variable": "BCM",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 0,
+                    "units": "1",
+                    "s3Key": "ABI-L2-ACMC/2026/208/22/OR_ABI-L2-ACMC-M6_G19_s20262082236177_e20262082238550_c20262082239309.nc"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "strongest": {
+        "camera": {
+          "id": "SC_Pee_Dee_River_at_Georgetown",
+          "name": "Pee Dee River at Georgetown",
+          "description": "Pee Dee River at Georgetown, SC",
+          "state": "SC",
+          "lat": 33.36933396,
+          "lon": -79.2636617,
+          "intervalMinutes": 15,
+          "observedAt": "2026-07-27T17-00-09Z",
+          "image": "images/SC_Pee_Dee_River_at_Georgetown.jpg",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/SC_Pee_Dee_River_at_Georgetown/SC_Pee_Dee_River_at_Georgetown___2026-07-27T17-00-09Z.jpg",
+          "width": 720,
+          "height": 405,
+          "skyScore": 71.9,
+          "upperSkyPct": 77.4,
+          "horizonSkyPct": 76.5,
+          "upperEdgePct": 6.5
+        },
+        "generatedAt": "2026-07-27T22:39:57.318185Z",
+        "expiresAt": "2026-07-27T22:46:57.318185Z",
+        "distanceKm": 30.2,
+        "candidate": {
+          "id": "33.295,-79.495:3",
+          "rank": 3,
+          "lat": 33.3079,
+          "lon": -79.5798,
+          "label": "33.31, -79.58",
+          "nearestZip": null,
+          "verdict": "go",
+          "confidence": "high",
+          "direction": {
+            "bearing": 100,
+            "label": "Look toward 100 degrees"
+          },
+          "persistence": {
+            "confirmed": false,
+            "scanCount": 1,
+            "firstSeenAt": null,
+            "lastSeenAt": null
+          },
+          "evidence": {
+            "sunElevationDeg": 20.33,
+            "rainbowArcDeg": null,
+            "directNormalIrradianceWm2": 445,
+            "directRadiationWm2": null,
+            "cloudCoverPct": 10,
+            "rainPointDirectNormalIrradianceWm2": null,
+            "rainPointDirectRadiationWm2": null,
+            "rainPointCloudCoverPct": null,
+            "rainIntensity": 1,
+            "observerRainIntensity": 0,
+            "rainPoint": {
+              "lat": 33.295,
+              "lon": -79.495,
+              "distanceKm": 8,
+              "bearing": 100
+            },
+            "score": 85.9,
+            "goes": {
+              "decision": "go",
+              "positiveSources": [
+                "goesDsrf",
+                "goesAcmc"
+              ],
+              "negativeSources": [],
+              "sources": {
+                "goesDsrf": {
+                  "available": true,
+                  "fresh": true,
+                  "positive": true,
+                  "negative": false,
+                  "strength": "moderate-context",
+                  "reason": "downward shortwave flux 250.4425506591797 W m-2 (not direct-normal irradiance)",
+                  "observedAt": "2026-07-27T22:20:20Z",
+                  "observedAgeMinutes": 20,
+                  "maxAgeMinutes": 30,
+                  "product": "ABI-L2-DSRF",
+                  "variable": "DSR",
+                  "satellite": "GOES-19",
+                  "satellitePosition": "east",
+                  "value": 250.4425506591797,
+                  "units": "W m-2",
+                  "s3Key": "ABI-L2-DSRF/2026/208/22/OR_ABI-L2-DSRF-M6_G19_s20262082220209_e20262082229518_c20262082236306.nc"
+                },
+                "goesAcmc": {
+                  "available": true,
+                  "fresh": true,
+                  "positive": true,
+                  "negative": false,
+                  "strength": "clear-mask",
+                  "reason": "clear/probably clear",
+                  "observedAt": "2026-07-27T22:36:17Z",
+                  "observedAgeMinutes": 4,
+                  "maxAgeMinutes": 20,
+                  "product": "ABI-L2-ACMC",
+                  "variable": "BCM",
+                  "satellite": "GOES-19",
+                  "satellitePosition": "east",
+                  "value": 0,
+                  "units": "1",
+                  "s3Key": "ABI-L2-ACMC/2026/208/22/OR_ABI-L2-ACMC-M6_G19_s20262082236177_e20262082238550_c20262082239309.nc"
+                }
+              }
+            }
+          }
+        }
+      },
+      "frames": [
+        {
+          "file": "candidate-01/01.jpg",
+          "observedAt": "2026-07-27T22-15-04Z",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/SC_Pee_Dee_River_at_Georgetown/SC_Pee_Dee_River_at_Georgetown___2026-07-27T22-15-04Z.jpg"
+        },
+        {
+          "file": "candidate-01/02.jpg",
+          "observedAt": "2026-07-27T22-30-09Z",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/SC_Pee_Dee_River_at_Georgetown/SC_Pee_Dee_River_at_Georgetown___2026-07-27T22-30-09Z.jpg"
+        },
+        {
+          "file": "candidate-01/03.jpg",
+          "observedAt": "2026-07-27T22-45-04Z",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/SC_Pee_Dee_River_at_Georgetown/SC_Pee_Dee_River_at_Georgetown___2026-07-27T22-45-04Z.jpg"
+        },
+        {
+          "file": "candidate-01/04.jpg",
+          "observedAt": "2026-07-27T23-00-12Z",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/SC_Pee_Dee_River_at_Georgetown/SC_Pee_Dee_River_at_Georgetown___2026-07-27T23-00-12Z.jpg"
+        },
+        {
+          "file": "candidate-01/05.jpg",
+          "observedAt": "2026-07-27T23-15-03Z",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/SC_Pee_Dee_River_at_Georgetown/SC_Pee_Dee_River_at_Georgetown___2026-07-27T23-15-03Z.jpg"
+        }
+      ]
+    },
+    {
+      "camera": {
+        "id": "WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND",
+        "name": "Green Lake Inlet at HWY A near Green Lake WETLAND",
+        "description": "Green Lake Inlet at HWY A near Green Lake, WI - WETLAND",
+        "state": "WI",
+        "lat": 43.82444444,
+        "lon": -88.9266667,
+        "intervalMinutes": 15,
+        "observedAt": "2026-07-27T18-00-03Z",
+        "image": "images/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND.jpg",
+        "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-27T18-00-03Z.jpg",
+        "width": 720,
+        "height": 407,
+        "skyScore": 76.7,
+        "upperSkyPct": 79.0,
+        "horizonSkyPct": 75.4,
+        "upperEdgePct": 4.8
+      },
+      "center": "2026-07-27T23:52:27.088211Z",
+      "matches": [
+        {
+          "camera": {
+            "id": "WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND",
+            "name": "Green Lake Inlet at HWY A near Green Lake WETLAND",
+            "description": "Green Lake Inlet at HWY A near Green Lake, WI - WETLAND",
+            "state": "WI",
+            "lat": 43.82444444,
+            "lon": -88.9266667,
+            "intervalMinutes": 15,
+            "observedAt": "2026-07-27T18-00-03Z",
+            "image": "images/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND.jpg",
+            "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-27T18-00-03Z.jpg",
+            "width": 720,
+            "height": 407,
+            "skyScore": 76.7,
+            "upperSkyPct": 79.0,
+            "horizonSkyPct": 75.4,
+            "upperEdgePct": 4.8
+          },
+          "generatedAt": "2026-07-27T23:44:57.112216Z",
+          "expiresAt": "2026-07-27T23:51:57.112216Z",
+          "distanceKm": 18.9,
+          "candidate": {
+            "id": "43.895,-88.795:1",
+            "rank": 1,
+            "lat": 43.9377,
+            "lon": -89.1019,
+            "label": "43.94, -89.10",
+            "nearestZip": null,
+            "verdict": "go",
+            "confidence": "high",
+            "direction": {
+              "bearing": 101,
+              "label": "Look toward 101 degrees"
+            },
+            "persistence": {
+              "confirmed": true,
+              "scanCount": 2,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 16.72,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 431,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 5,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 43.895,
+                "lon": -88.795,
+                "distanceKm": 25,
+                "bearing": 101
+              },
+              "score": 94.9,
+              "goes": {
+                "decision": "go",
+                "positiveSources": [
+                  "goesDsrf",
+                  "goesAcmc"
+                ],
+                "negativeSources": [],
+                "sources": {
+                  "goesDsrf": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "strong-context",
+                    "reason": "downward shortwave flux 324.01190185546875 W m-2 (not direct-normal irradiance)",
+                    "observedAt": "2026-07-27T23:20:20Z",
+                    "observedAgeMinutes": 25,
+                    "maxAgeMinutes": 30,
+                    "product": "ABI-L2-DSRF",
+                    "variable": "DSR",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 324.01190185546875,
+                    "units": "W m-2",
+                    "s3Key": "ABI-L2-DSRF/2026/208/23/OR_ABI-L2-DSRF-M6_G19_s20262082320209_e20262082329518_c20262082336163.nc"
+                  },
+                  "goesAcmc": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "clear-mask",
+                    "reason": "clear/probably clear",
+                    "observedAt": "2026-07-27T23:41:17Z",
+                    "observedAgeMinutes": 4,
+                    "maxAgeMinutes": 20,
+                    "product": "ABI-L2-ACMC",
+                    "variable": "BCM",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 0,
+                    "units": "1",
+                    "s3Key": "ABI-L2-ACMC/2026/208/23/OR_ABI-L2-ACMC-M6_G19_s20262082341177_e20262082343550_c20262082344313.nc"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "camera": {
+            "id": "WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND",
+            "name": "Green Lake Inlet at HWY A near Green Lake WETLAND",
+            "description": "Green Lake Inlet at HWY A near Green Lake, WI - WETLAND",
+            "state": "WI",
+            "lat": 43.82444444,
+            "lon": -88.9266667,
+            "intervalMinutes": 15,
+            "observedAt": "2026-07-27T18-00-03Z",
+            "image": "images/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND.jpg",
+            "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-27T18-00-03Z.jpg",
+            "width": 720,
+            "height": 407,
+            "skyScore": 76.7,
+            "upperSkyPct": 79.0,
+            "horizonSkyPct": 75.4,
+            "upperEdgePct": 4.8
+          },
+          "generatedAt": "2026-07-27T23:49:57.053221Z",
+          "expiresAt": "2026-07-27T23:56:57.053221Z",
+          "distanceKm": 10.8,
+          "candidate": {
+            "id": "43.895,-88.895:1",
+            "rank": 1,
+            "lat": 43.9094,
+            "lon": -88.993,
+            "label": "43.91, -88.99",
+            "nearestZip": null,
+            "verdict": "go",
+            "confidence": "high",
+            "direction": {
+              "bearing": 102,
+              "label": "Look toward 102 degrees"
+            },
+            "persistence": {
+              "confirmed": true,
+              "scanCount": 3,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 16.08,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 389,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 1,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 1,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 43.895,
+                "lon": -88.895,
+                "distanceKm": 8,
+                "bearing": 102
+              },
+              "score": 90.4,
+              "goes": {
+                "decision": "go",
+                "positiveSources": [
+                  "goesDsrf",
+                  "goesAcmc"
+                ],
+                "negativeSources": [],
+                "sources": {
+                  "goesDsrf": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "moderate-context",
+                    "reason": "downward shortwave flux 275.1869201660156 W m-2 (not direct-normal irradiance)",
+                    "observedAt": "2026-07-27T23:30:20Z",
+                    "observedAgeMinutes": 20,
+                    "maxAgeMinutes": 30,
+                    "product": "ABI-L2-DSRF",
+                    "variable": "DSR",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 275.1869201660156,
+                    "units": "W m-2",
+                    "s3Key": "ABI-L2-DSRF/2026/208/23/OR_ABI-L2-DSRF-M6_G19_s20262082330209_e20262082339518_c20262082346183.nc"
+                  },
+                  "goesAcmc": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "clear-mask",
+                    "reason": "clear/probably clear",
+                    "observedAt": "2026-07-27T23:46:17Z",
+                    "observedAgeMinutes": 4,
+                    "maxAgeMinutes": 20,
+                    "product": "ABI-L2-ACMC",
+                    "variable": "BCM",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 0,
+                    "units": "1",
+                    "s3Key": "ABI-L2-ACMC/2026/208/23/OR_ABI-L2-ACMC-M6_G19_s20262082346177_e20262082348550_c20262082349279.nc"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "camera": {
+            "id": "WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND",
+            "name": "Green Lake Inlet at HWY A near Green Lake WETLAND",
+            "description": "Green Lake Inlet at HWY A near Green Lake, WI - WETLAND",
+            "state": "WI",
+            "lat": 43.82444444,
+            "lon": -88.9266667,
+            "intervalMinutes": 15,
+            "observedAt": "2026-07-27T18-00-03Z",
+            "image": "images/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND.jpg",
+            "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-27T18-00-03Z.jpg",
+            "width": 720,
+            "height": 407,
+            "skyScore": 76.7,
+            "upperSkyPct": 79.0,
+            "horizonSkyPct": 75.4,
+            "upperEdgePct": 4.8
+          },
+          "generatedAt": "2026-07-27T23:54:57.100451Z",
+          "expiresAt": "2026-07-28T00:01:57.100451Z",
+          "distanceKm": 10.9,
+          "candidate": {
+            "id": "43.895,-88.895:2",
+            "rank": 2,
+            "lat": 43.9102,
+            "lon": -88.9928,
+            "label": "43.91, -88.99",
+            "nearestZip": null,
+            "verdict": "go",
+            "confidence": "high",
+            "direction": {
+              "bearing": 102,
+              "label": "Look toward 102 degrees"
+            },
+            "persistence": {
+              "confirmed": true,
+              "scanCount": 4,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 15.38,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 389,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 1,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 0.55,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 43.895,
+                "lon": -88.895,
+                "distanceKm": 8,
+                "bearing": 102
+              },
+              "score": 86.3,
+              "goes": {
+                "decision": "go",
+                "positiveSources": [
+                  "goesDsrf",
+                  "goesAcmc"
+                ],
+                "negativeSources": [],
+                "sources": {
+                  "goesDsrf": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "moderate-context",
+                    "reason": "downward shortwave flux 275.1869201660156 W m-2 (not direct-normal irradiance)",
+                    "observedAt": "2026-07-27T23:30:20Z",
+                    "observedAgeMinutes": 25,
+                    "maxAgeMinutes": 30,
+                    "product": "ABI-L2-DSRF",
+                    "variable": "DSR",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 275.1869201660156,
+                    "units": "W m-2",
+                    "s3Key": "ABI-L2-DSRF/2026/208/23/OR_ABI-L2-DSRF-M6_G19_s20262082330209_e20262082339518_c20262082346183.nc"
+                  },
+                  "goesAcmc": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "clear-mask",
+                    "reason": "clear/probably clear",
+                    "observedAt": "2026-07-27T23:51:17Z",
+                    "observedAgeMinutes": 4,
+                    "maxAgeMinutes": 20,
+                    "product": "ABI-L2-ACMC",
+                    "variable": "BCM",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 0,
+                    "units": "1",
+                    "s3Key": "ABI-L2-ACMC/2026/208/23/OR_ABI-L2-ACMC-M6_G19_s20262082351177_e20262082353550_c20262082354271.nc"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "camera": {
+            "id": "WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND",
+            "name": "Green Lake Inlet at HWY A near Green Lake WETLAND",
+            "description": "Green Lake Inlet at HWY A near Green Lake, WI - WETLAND",
+            "state": "WI",
+            "lat": 43.82444444,
+            "lon": -88.9266667,
+            "intervalMinutes": 15,
+            "observedAt": "2026-07-27T18-00-03Z",
+            "image": "images/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND.jpg",
+            "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-27T18-00-03Z.jpg",
+            "width": 720,
+            "height": 407,
+            "skyScore": 76.7,
+            "upperSkyPct": 79.0,
+            "horizonSkyPct": 75.4,
+            "upperEdgePct": 4.8
+          },
+          "generatedAt": "2026-07-27T23:59:57.086957Z",
+          "expiresAt": "2026-07-28T00:06:57.086957Z",
+          "distanceKm": 3.1,
+          "candidate": {
+            "id": "43.795,-88.795:4",
+            "rank": 4,
+            "lat": 43.8115,
+            "lon": -88.8922,
+            "label": "43.81, -88.89",
+            "nearestZip": null,
+            "verdict": "go",
+            "confidence": "high",
+            "direction": {
+              "bearing": 103,
+              "label": "Look toward 103 degrees"
+            },
+            "persistence": {
+              "confirmed": true,
+              "scanCount": 5,
+              "firstSeenAt": null,
+              "lastSeenAt": null
+            },
+            "evidence": {
+              "sunElevationDeg": 14.23,
+              "rainbowArcDeg": null,
+              "directNormalIrradianceWm2": 387,
+              "directRadiationWm2": null,
+              "cloudCoverPct": 5,
+              "rainPointDirectNormalIrradianceWm2": null,
+              "rainPointDirectRadiationWm2": null,
+              "rainPointCloudCoverPct": null,
+              "rainIntensity": 0.35,
+              "observerRainIntensity": 0,
+              "rainPoint": {
+                "lat": 43.795,
+                "lon": -88.795,
+                "distanceKm": 8,
+                "bearing": 103
+              },
+              "score": 85.2,
+              "goes": {
+                "decision": "go",
+                "positiveSources": [
+                  "goesDsrf",
+                  "goesAcmc"
+                ],
+                "negativeSources": [],
+                "sources": {
+                  "goesDsrf": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "moderate-context",
+                    "reason": "downward shortwave flux 259.1179504394531 W m-2 (not direct-normal irradiance)",
+                    "observedAt": "2026-07-27T23:40:20Z",
+                    "observedAgeMinutes": 20,
+                    "maxAgeMinutes": 30,
+                    "product": "ABI-L2-DSRF",
+                    "variable": "DSR",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 259.1179504394531,
+                    "units": "W m-2",
+                    "s3Key": "ABI-L2-DSRF/2026/208/23/OR_ABI-L2-DSRF-M6_G19_s20262082340209_e20262082349518_c20262082356159.nc"
+                  },
+                  "goesAcmc": {
+                    "available": true,
+                    "fresh": true,
+                    "positive": true,
+                    "negative": false,
+                    "strength": "clear-mask",
+                    "reason": "clear/probably clear",
+                    "observedAt": "2026-07-27T23:56:17Z",
+                    "observedAgeMinutes": 4,
+                    "maxAgeMinutes": 20,
+                    "product": "ABI-L2-ACMC",
+                    "variable": "BCM",
+                    "satellite": "GOES-19",
+                    "satellitePosition": "east",
+                    "value": 0,
+                    "units": "1",
+                    "s3Key": "ABI-L2-ACMC/2026/208/23/OR_ABI-L2-ACMC-M6_G19_s20262082356177_e20262082358550_c20262082359308.nc"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "strongest": {
+        "camera": {
+          "id": "WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND",
+          "name": "Green Lake Inlet at HWY A near Green Lake WETLAND",
+          "description": "Green Lake Inlet at HWY A near Green Lake, WI - WETLAND",
+          "state": "WI",
+          "lat": 43.82444444,
+          "lon": -88.9266667,
+          "intervalMinutes": 15,
+          "observedAt": "2026-07-27T18-00-03Z",
+          "image": "images/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND.jpg",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-27T18-00-03Z.jpg",
+          "width": 720,
+          "height": 407,
+          "skyScore": 76.7,
+          "upperSkyPct": 79.0,
+          "horizonSkyPct": 75.4,
+          "upperEdgePct": 4.8
+        },
+        "generatedAt": "2026-07-27T23:44:57.112216Z",
+        "expiresAt": "2026-07-27T23:51:57.112216Z",
+        "distanceKm": 18.9,
+        "candidate": {
+          "id": "43.895,-88.795:1",
+          "rank": 1,
+          "lat": 43.9377,
+          "lon": -89.1019,
+          "label": "43.94, -89.10",
+          "nearestZip": null,
+          "verdict": "go",
+          "confidence": "high",
+          "direction": {
+            "bearing": 101,
+            "label": "Look toward 101 degrees"
+          },
+          "persistence": {
+            "confirmed": true,
+            "scanCount": 2,
+            "firstSeenAt": null,
+            "lastSeenAt": null
+          },
+          "evidence": {
+            "sunElevationDeg": 16.72,
+            "rainbowArcDeg": null,
+            "directNormalIrradianceWm2": 431,
+            "directRadiationWm2": null,
+            "cloudCoverPct": 5,
+            "rainPointDirectNormalIrradianceWm2": null,
+            "rainPointDirectRadiationWm2": null,
+            "rainPointCloudCoverPct": null,
+            "rainIntensity": 1,
+            "observerRainIntensity": 0,
+            "rainPoint": {
+              "lat": 43.895,
+              "lon": -88.795,
+              "distanceKm": 25,
+              "bearing": 101
+            },
+            "score": 94.9,
+            "goes": {
+              "decision": "go",
+              "positiveSources": [
+                "goesDsrf",
+                "goesAcmc"
+              ],
+              "negativeSources": [],
+              "sources": {
+                "goesDsrf": {
+                  "available": true,
+                  "fresh": true,
+                  "positive": true,
+                  "negative": false,
+                  "strength": "strong-context",
+                  "reason": "downward shortwave flux 324.01190185546875 W m-2 (not direct-normal irradiance)",
+                  "observedAt": "2026-07-27T23:20:20Z",
+                  "observedAgeMinutes": 25,
+                  "maxAgeMinutes": 30,
+                  "product": "ABI-L2-DSRF",
+                  "variable": "DSR",
+                  "satellite": "GOES-19",
+                  "satellitePosition": "east",
+                  "value": 324.01190185546875,
+                  "units": "W m-2",
+                  "s3Key": "ABI-L2-DSRF/2026/208/23/OR_ABI-L2-DSRF-M6_G19_s20262082320209_e20262082329518_c20262082336163.nc"
+                },
+                "goesAcmc": {
+                  "available": true,
+                  "fresh": true,
+                  "positive": true,
+                  "negative": false,
+                  "strength": "clear-mask",
+                  "reason": "clear/probably clear",
+                  "observedAt": "2026-07-27T23:41:17Z",
+                  "observedAgeMinutes": 4,
+                  "maxAgeMinutes": 20,
+                  "product": "ABI-L2-ACMC",
+                  "variable": "BCM",
+                  "satellite": "GOES-19",
+                  "satellitePosition": "east",
+                  "value": 0,
+                  "units": "1",
+                  "s3Key": "ABI-L2-ACMC/2026/208/23/OR_ABI-L2-ACMC-M6_G19_s20262082341177_e20262082343550_c20262082344313.nc"
+                }
+              }
+            }
+          }
+        }
+      },
+      "frames": [
+        {
+          "file": "candidate-02/01.jpg",
+          "observedAt": "2026-07-27T23-15-03Z",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-27T23-15-03Z.jpg"
+        },
+        {
+          "file": "candidate-02/02.jpg",
+          "observedAt": "2026-07-27T23-30-03Z",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-27T23-30-03Z.jpg"
+        },
+        {
+          "file": "candidate-02/03.jpg",
+          "observedAt": "2026-07-27T23-45-02Z",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-27T23-45-02Z.jpg"
+        },
+        {
+          "file": "candidate-02/04.jpg",
+          "observedAt": "2026-07-28T00-00-08Z",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-28T00-00-08Z.jpg"
+        },
+        {
+          "file": "candidate-02/05.jpg",
+          "observedAt": "2026-07-28T00-15-03Z",
+          "sourceUrl": "https://usgs-nims-images.s3.amazonaws.com/720/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND/WI_Green_Lake_Inlet_at_HWY_A_near_Green_Lake_WETLAND___2026-07-28T00-15-03Z.jpg"
+        }
+      ]
+    }
+  ]
+}

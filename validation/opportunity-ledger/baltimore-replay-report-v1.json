@@ -1,0 +1,215 @@
+{
+  "cases": [
+    {
+      "caseId": "baltimore-dundalk-20260728",
+      "disposition": "evaluated",
+      "ledgerScans": 2,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-4ac93b25e0658ff1"
+          ],
+          "nearestRepresentativeKm": 3.42,
+          "nearestSwathKm": 0.0,
+          "observationId": "baltimore",
+          "observer": {
+            "lat": 39.2904,
+            "lon": -76.6122,
+            "uncertaintyKm": 12
+          }
+        },
+        {
+          "failureCodes": [],
+          "insideObserverSwath": true,
+          "label": "rainbow",
+          "matchedEventIds": [
+            "rain-event-4ac93b25e0658ff1"
+          ],
+          "nearestRepresentativeKm": 6.73,
+          "nearestSwathKm": 2.15,
+          "observationId": "dundalk",
+          "observer": {
+            "lat": 39.2507,
+            "lon": -76.5205,
+            "uncertaintyKm": 8
+          }
+        }
+      ],
+      "opportunityRetained": true,
+      "rainEventRetained": true
+    },
+    {
+      "caseId": "colorado-multicamera-20260730",
+      "disposition": "ledger_window_missing",
+      "ledgerScans": 0,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": false,
+          "label": "rainbow",
+          "matchedEventIds": [],
+          "nearestRepresentativeKm": null,
+          "nearestSwathKm": null,
+          "observationId": "silver-west",
+          "observer": {
+            "lat": 38.02381,
+            "lon": -105.37973,
+            "uncertaintyKm": 0.2
+          }
+        },
+        {
+          "failureCodes": [],
+          "insideObserverSwath": false,
+          "label": "rainbow",
+          "matchedEventIds": [],
+          "nearestRepresentativeKm": null,
+          "nearestSwathKm": null,
+          "observationId": "saguache-ne",
+          "observer": {
+            "lat": 38.09902,
+            "lon": -106.17035,
+            "uncertaintyKm": 0.2
+          }
+        },
+        {
+          "failureCodes": [],
+          "insideObserverSwath": false,
+          "label": "rainbow",
+          "matchedEventIds": [],
+          "nearestRepresentativeKm": null,
+          "nearestSwathKm": null,
+          "observationId": "fremont-county",
+          "observer": {
+            "lat": 38.4323,
+            "lon": -105.1031,
+            "uncertaintyKm": 0.2
+          }
+        }
+      ],
+      "opportunityRetained": false,
+      "rainEventRetained": false
+    },
+    {
+      "caseId": "utah-ogden-bear-river-20260730",
+      "disposition": "ledger_window_missing",
+      "ledgerScans": 0,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": false,
+          "label": "rainbow",
+          "matchedEventIds": [],
+          "nearestRepresentativeKm": null,
+          "nearestSwathKm": null,
+          "observationId": "ogden",
+          "observer": {
+            "lat": 41.193604,
+            "lon": -112.00825,
+            "uncertaintyKm": 0.2
+          }
+        },
+        {
+          "failureCodes": [],
+          "insideObserverSwath": false,
+          "label": "rainbow",
+          "matchedEventIds": [],
+          "nearestRepresentativeKm": null,
+          "nearestSwathKm": null,
+          "observationId": "bear-river",
+          "observer": {
+            "lat": 41.724174,
+            "lon": -112.18263,
+            "uncertaintyKm": 0.2
+          }
+        }
+      ],
+      "opportunityRetained": false,
+      "rainEventRetained": false
+    },
+    {
+      "caseId": "middletown-connecticut-20260729",
+      "disposition": "fixture_not_ready",
+      "ledgerScans": 0,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": false,
+          "label": "rainbow",
+          "matchedEventIds": [],
+          "nearestRepresentativeKm": null,
+          "nearestSwathKm": null,
+          "observationId": "middletown",
+          "observer": {
+            "lat": 41.5623,
+            "lon": -72.6506,
+            "uncertaintyKm": 10
+          }
+        }
+      ],
+      "opportunityRetained": false,
+      "rainEventRetained": false
+    },
+    {
+      "caseId": "meeker-camera-20260709",
+      "disposition": "ledger_window_missing",
+      "ledgerScans": 0,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": false,
+          "label": "rainbow",
+          "matchedEventIds": [],
+          "nearestRepresentativeKm": null,
+          "nearestSwathKm": null,
+          "observationId": "meeker",
+          "observer": {
+            "lat": 40.044106,
+            "lon": -107.88861,
+            "uncertaintyKm": 0.2
+          }
+        }
+      ],
+      "opportunityRetained": false,
+      "rainEventRetained": false
+    },
+    {
+      "caseId": "delano-low-sun-20260729",
+      "disposition": "ledger_window_missing",
+      "ledgerScans": 0,
+      "observations": [
+        {
+          "failureCodes": [],
+          "insideObserverSwath": false,
+          "label": "rainbow",
+          "matchedEventIds": [],
+          "nearestRepresentativeKm": null,
+          "nearestSwathKm": null,
+          "observationId": "delano",
+          "observer": {
+            "lat": 41.723,
+            "lon": -114.1839,
+            "uncertaintyKm": 0.2
+          }
+        }
+      ],
+      "opportunityRetained": false,
+      "rainEventRetained": false
+    }
+  ],
+  "contentSha256": "8b82995aacc2233f980092ad5add941fde8d132a8a8128b89eba6f5c33c25be7",
+  "fixtureContentSha256": "4c5356a57276336fe6447cf7c1e98d7b5ea0d5ea5f0d86624eaf6b202fd9d6ac",
+  "ledgerMethodVersions": [
+    "observer-swath-physical-envelope-2026-07-v1"
+  ],
+  "schemaVersion": "opportunity-ledger-replay.v1",
+  "summary": {
+    "cases": 6,
+    "evaluated": 1,
+    "fixturesAwaitingTime": 1,
+    "missingLedgerWindows": 4,
+    "observationsInsideSwath": 2
+  }
+}

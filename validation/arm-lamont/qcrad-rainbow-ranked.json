@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-25T17:38:11.711304Z",
+  "purpose": "Human-review prioritization using measured 1-minute QCRAD DNI; not calibrated probability.",
+  "qcradStream": "sgpqcradbrs1longC1.c1",
+  "candidates": [
+    {
+      "pairId": "lamont-155",
+      "centerTime": "2023-06-18T14:20:00Z",
+      "opportunityScore": 73.291,
+      "measuredDirectNormalIrradianceWm2": 826.24,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 42.5,
+      "antiSolarWetPoints": 6,
+      "antiSolarModeratePoints": 5
+    },
+    {
+      "pairId": "lamont-071",
+      "centerTime": "2024-05-22T13:40:00Z",
+      "opportunityScore": 68.174,
+      "measuredDirectNormalIrradianceWm2": 576.99,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 28.5,
+      "antiSolarWetPoints": 4,
+      "antiSolarModeratePoints": 3
+    },
+    {
+      "pairId": "lamont-104",
+      "centerTime": "2024-07-27T14:30:00Z",
+      "opportunityScore": 65.877,
+      "measuredDirectNormalIrradianceWm2": 700.04,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 30.5,
+      "antiSolarWetPoints": 2,
+      "antiSolarModeratePoints": 1
+    },
+    {
+      "pairId": "lamont-125",
+      "centerTime": "2024-06-21T14:05:00Z",
+      "opportunityScore": 63.66,
+      "measuredDirectNormalIrradianceWm2": 713.65,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 41.0,
+      "antiSolarWetPoints": 7,
+      "antiSolarModeratePoints": 3
+    },
+    {
+      "pairId": "lamont-129",
+      "centerTime": "2023-05-24T23:00:00Z",
+      "opportunityScore": 62.87,
+      "measuredDirectNormalIrradianceWm2": 486.18,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 29.5,
+      "antiSolarWetPoints": 5,
+      "antiSolarModeratePoints": 3
+    },
+    {
+      "pairId": "lamont-157",
+      "centerTime": "2024-06-09T14:00:00Z",
+      "opportunityScore": 61.419,
+      "measuredDirectNormalIrradianceWm2": 496.28,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 28.0,
+      "antiSolarWetPoints": 5,
+      "antiSolarModeratePoints": 1
+    },
+    {
+      "pairId": "lamont-021",
+      "centerTime": "2023-10-24T22:05:00Z",
+      "opportunityScore": 58.933,
+      "measuredDirectNormalIrradianceWm2": 537.74,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 29.0,
+      "antiSolarWetPoints": 2,
+      "antiSolarModeratePoints": 2
+    },
+    {
+      "pairId": "lamont-108",
+      "centerTime": "2025-08-04T22:40:00Z",
+      "opportunityScore": 58.711,
+      "measuredDirectNormalIrradianceWm2": 656.29,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 20.5,
+      "antiSolarWetPoints": 3,
+      "antiSolarModeratePoints": 1
+    },
+    {
+      "pairId": "lamont-106",
+      "centerTime": "2025-07-16T22:40:00Z",
+      "opportunityScore": 56.592,
+      "measuredDirectNormalIrradianceWm2": 637.63,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 23.0,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 1
+    },
+    {
+      "pairId": "lamont-153",
+      "centerTime": "2024-09-14T13:25:00Z",
+      "opportunityScore": 55.776,
+      "measuredDirectNormalIrradianceWm2": 411.64,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 28.0,
+      "antiSolarWetPoints": 8,
+      "antiSolarModeratePoints": 2
+    },
+    {
+      "pairId": "lamont-130",
+      "centerTime": "2025-08-17T22:20:00Z",
+      "opportunityScore": 52.027,
+      "measuredDirectNormalIrradianceWm2": 664.78,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 19.5,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-060",
+      "centerTime": "2023-08-09T21:55:00Z",
+      "opportunityScore": 50.062,
+      "measuredDirectNormalIrradianceWm2": 534.05,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 18.5,
+      "antiSolarWetPoints": 7,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-105",
+      "centerTime": "2025-07-13T23:30:00Z",
+      "opportunityScore": 49.697,
+      "measuredDirectNormalIrradianceWm2": 644.83,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 15.5,
+      "antiSolarWetPoints": 3,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-139",
+      "centerTime": "2023-05-24T23:50:00Z",
+      "opportunityScore": 47.25,
+      "measuredDirectNormalIrradianceWm2": 199.96,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 25.0,
+      "antiSolarWetPoints": 7,
+      "antiSolarModeratePoints": 4
+    },
+    {
+      "pairId": "lamont-113",
+      "centerTime": "2023-06-23T23:10:00Z",
+      "opportunityScore": 45.811,
+      "measuredDirectNormalIrradianceWm2": 787.16,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 5.0,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-070",
+      "centerTime": "2025-07-08T12:50:00Z",
+      "opportunityScore": 45.725,
+      "measuredDirectNormalIrradianceWm2": 334.0,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 22.5,
+      "antiSolarWetPoints": 5,
+      "antiSolarModeratePoints": 2
+    },
+    {
+      "pairId": "lamont-003",
+      "centerTime": "2023-06-01T12:55:00Z",
+      "opportunityScore": 43.925,
+      "measuredDirectNormalIrradianceWm2": 355.75,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 21.5,
+      "antiSolarWetPoints": 5,
+      "antiSolarModeratePoints": 1
+    },
+    {
+      "pairId": "lamont-100",
+      "centerTime": "2024-07-21T00:50:00Z",
+      "opportunityScore": 43.125,
+      "measuredDirectNormalIrradianceWm2": 194.34,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 29.5,
+      "antiSolarWetPoints": 4,
+      "antiSolarModeratePoints": 2
+    },
+    {
+      "pairId": "lamont-131",
+      "centerTime": "2024-05-15T22:20:00Z",
+      "opportunityScore": 39.678,
+      "measuredDirectNormalIrradianceWm2": 545.17,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 16.0,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-140",
+      "centerTime": "2023-09-12T15:05:00Z",
+      "opportunityScore": 38.69,
+      "measuredDirectNormalIrradianceWm2": 535.98,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 12.5,
+      "antiSolarWetPoints": 3,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-068",
+      "centerTime": "2025-07-18T00:00:00Z",
+      "opportunityScore": 38.25,
+      "measuredDirectNormalIrradianceWm2": 133.4,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 21.0,
+      "antiSolarWetPoints": 5,
+      "antiSolarModeratePoints": 2
+    },
+    {
+      "pairId": "lamont-015",
+      "centerTime": "2023-07-05T23:05:00Z",
+      "opportunityScore": 35.648,
+      "measuredDirectNormalIrradianceWm2": 334.72,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 16.0,
+      "antiSolarWetPoints": 6,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-151",
+      "centerTime": "2024-04-28T14:55:00Z",
+      "opportunityScore": 34.25,
+      "measuredDirectNormalIrradianceWm2": 119.34,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 35.0,
+      "antiSolarWetPoints": 4,
+      "antiSolarModeratePoints": 1
+    },
+    {
+      "pairId": "lamont-018",
+      "centerTime": "2025-07-12T22:40:00Z",
+      "opportunityScore": 33.69,
+      "measuredDirectNormalIrradianceWm2": 256.6,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 25.0,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 1
+    },
+    {
+      "pairId": "lamont-047",
+      "centerTime": "2025-07-31T22:55:00Z",
+      "opportunityScore": 33.584,
+      "measuredDirectNormalIrradianceWm2": 556.88,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 10.5,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-095",
+      "centerTime": "2024-03-24T21:25:00Z",
+      "opportunityScore": 31.738,
+      "measuredDirectNormalIrradianceWm2": 358.57,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 18.0,
+      "antiSolarWetPoints": 2,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-010",
+      "centerTime": "2025-07-31T23:30:00Z",
+      "opportunityScore": 25.336,
+      "measuredDirectNormalIrradianceWm2": 480.04,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 5.5,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-034",
+      "centerTime": "2024-04-24T22:25:00Z",
+      "opportunityScore": 23.215,
+      "measuredDirectNormalIrradianceWm2": 361.97,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 11.0,
+      "antiSolarWetPoints": 2,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-009",
+      "centerTime": "2025-06-27T23:10:00Z",
+      "opportunityScore": 22.199,
+      "measuredDirectNormalIrradianceWm2": 402.99,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 7.5,
+      "antiSolarWetPoints": 2,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-052",
+      "centerTime": "2025-06-15T00:15:00Z",
+      "opportunityScore": 21.851,
+      "measuredDirectNormalIrradianceWm2": 390.26,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 10.0,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-132",
+      "centerTime": "2024-05-24T00:25:00Z",
+      "opportunityScore": 15.0,
+      "measuredDirectNormalIrradianceWm2": 116.46,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 12.0,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-025",
+      "centerTime": "2024-06-04T22:50:00Z",
+      "opportunityScore": 15.0,
+      "measuredDirectNormalIrradianceWm2": 124.27,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 12.0,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-156",
+      "centerTime": "2025-06-13T12:55:00Z",
+      "opportunityScore": 14.0,
+      "measuredDirectNormalIrradianceWm2": 198.0,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 7.5,
+      "antiSolarWetPoints": 3,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-066",
+      "centerTime": "2025-04-27T23:00:00Z",
+      "opportunityScore": 13.875,
+      "measuredDirectNormalIrradianceWm2": 142.38,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 9.5,
+      "antiSolarWetPoints": 2,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-135",
+      "centerTime": "2023-07-22T00:35:00Z",
+      "opportunityScore": 13.062,
+      "measuredDirectNormalIrradianceWm2": 295.93,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 5.0,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 0
+    },
+    {
+      "pairId": "lamont-002",
+      "centerTime": "2023-07-14T22:35:00Z",
+      "opportunityScore": 10.625,
+      "measuredDirectNormalIrradianceWm2": 198.08,
+      "observerDbz": null,
+      "antiSolarPeakDbz": 8.5,
+      "antiSolarWetPoints": 1,
+      "antiSolarModeratePoints": 0
+    }
+  ]
+}

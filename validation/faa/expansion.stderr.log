@@ -1,0 +1,12 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|##########| 398/398 [00:00<00:00, 23213.55it/s]
+Traceback (most recent call last):
+  File "C:\Users\jeffm\rainbow-finder\scripts\faa-rainbow-pilot.py", line 260, in <module>
+    main()
+  File "C:\Users\jeffm\rainbow-finder\scripts\faa-rainbow-pilot.py", line 253, in main
+    print(build_review(high_confidence, OUT / "expansion-review", "02", "faax", "FAA held-out rainbow test"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jeffm\rainbow-finder\scripts\faa-rainbow-pilot.py", line 212, in build_review
+    <style>body{background:#101114;color:#eee;font:16px system-ui;margin:0}main{max-width:1500px;margin:auto;padding:24px}article{background:#1b1d22;padding:16px;margin-bottom:30px}.strip{display:flex;gap:10px;overflow-x:auto}figure{flex:0 0 520px;margin:0}img{width:520px;height:340px;object-fit:contain;background:#000}figcaption{color:#bbb;padding:5px}h2{font-size:17px}</style></head><body><main><h1>FAA WeatherCam targeted rainbow pilot</h1>
+                ^^^^^^^^^^
+NameError: name 'background' is not defined

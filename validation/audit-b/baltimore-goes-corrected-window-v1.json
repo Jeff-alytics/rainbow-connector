@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Corrected-time GOES evidence for the observer-reported Baltimore/Dundalk bow window.",
+  "fixtureContentSha256": "6a4eb03a4bf05267202fb5baed799b5d2ee739b03e7e72647345ee0908fe2053",
+  "mrmsReplayContentSha256": "36e3e884878cca313c9aafb73e4147a825fc651d0fcde3898817d131d2e84f39",
+  "observationWindow": {
+    "windowStart": "2026-07-28T23:25:00Z",
+    "windowEnd": "2026-07-28T23:45:00Z",
+    "reportedBowStart": "2026-07-28T23:30:00Z",
+    "reportedBowEnd": "2026-07-28T23:34:00Z",
+    "precision": "observer_reported_time"
+  },
+  "samples": [
+    {
+      "targetAt": "2026-07-28T23:30:00Z",
+      "points": [
+        {
+          "name": "Baltimore observer reference",
+          "lat": 39.2904,
+          "lon": -76.6122,
+          "goesDsrf": {
+            "available": true,
+            "product": "ABI-L2-DSRF",
+            "variable": "DSR",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:30:21Z",
+            "sampleOffsetMinutes": 0.35,
+            "value": 2.7010529041290283,
+            "units": "W m-2",
+            "s3Key": "ABI-L2-DSRF/2026/209/23/OR_ABI-L2-DSRF-M6_G19_s20262092330210_e20262092339519_c20262092346026.nc"
+          },
+          "goesAcmc": {
+            "available": true,
+            "product": "ABI-L2-ACMC",
+            "variable": "BCM",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:31:17Z",
+            "sampleOffsetMinutes": 1.28,
+            "value": 1,
+            "units": "1",
+            "s3Key": "ABI-L2-ACMC/2026/209/23/OR_ABI-L2-ACMC-M6_G19_s20262092331178_e20262092333551_c20262092334308.nc"
+          }
+        },
+        {
+          "name": "Dundalk observer reference",
+          "lat": 39.2507,
+          "lon": -76.5205,
+          "goesDsrf": {
+            "available": true,
+            "product": "ABI-L2-DSRF",
+            "variable": "DSR",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:30:21Z",
+            "sampleOffsetMinutes": 0.35,
+            "value": 2.815504312515259,
+            "units": "W m-2",
+            "s3Key": "ABI-L2-DSRF/2026/209/23/OR_ABI-L2-DSRF-M6_G19_s20262092330210_e20262092339519_c20262092346026.nc"
+          },
+          "goesAcmc": {
+            "available": true,
+            "product": "ABI-L2-ACMC",
+            "variable": "BCM",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:31:17Z",
+            "sampleOffsetMinutes": 1.28,
+            "value": 1,
+            "units": "1",
+            "s3Key": "ABI-L2-ACMC/2026/209/23/OR_ABI-L2-ACMC-M6_G19_s20262092331178_e20262092333551_c20262092334308.nc"
+          }
+        },
+        {
+          "name": "nearest production-stride seed to Baltimore",
+          "lat": 39.2632,
+          "lon": -76.672,
+          "goesDsrf": {
+            "available": true,
+            "product": "ABI-L2-DSRF",
+            "variable": "DSR",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:30:21Z",
+            "sampleOffsetMinutes": 0.35,
+            "value": 40.14955139160156,
+            "units": "W m-2",
+            "s3Key": "ABI-L2-DSRF/2026/209/23/OR_ABI-L2-DSRF-M6_G19_s20262092330210_e20262092339519_c20262092346026.nc"
+          },
+          "goesAcmc": {
+            "available": true,
+            "product": "ABI-L2-ACMC",
+            "variable": "BCM",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:31:17Z",
+            "sampleOffsetMinutes": 1.28,
+            "value": 1,
+            "units": "1",
+            "s3Key": "ABI-L2-ACMC/2026/209/23/OR_ABI-L2-ACMC-M6_G19_s20262092331178_e20262092333551_c20262092334308.nc"
+          }
+        },
+        {
+          "name": "nearest production-stride seed to Dundalk",
+          "lat": 39.2632,
+          "lon": -76.672,
+          "goesDsrf": {
+            "available": true,
+            "product": "ABI-L2-DSRF",
+            "variable": "DSR",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:30:21Z",
+            "sampleOffsetMinutes": 0.35,
+            "value": 40.14955139160156,
+            "units": "W m-2",
+            "s3Key": "ABI-L2-DSRF/2026/209/23/OR_ABI-L2-DSRF-M6_G19_s20262092330210_e20262092339519_c20262092346026.nc"
+          },
+          "goesAcmc": {
+            "available": true,
+            "product": "ABI-L2-ACMC",
+            "variable": "BCM",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:31:17Z",
+            "sampleOffsetMinutes": 1.28,
+            "value": 1,
+            "units": "1",
+            "s3Key": "ABI-L2-ACMC/2026/209/23/OR_ABI-L2-ACMC-M6_G19_s20262092331178_e20262092333551_c20262092334308.nc"
+          }
+        }
+      ]
+    },
+    {
+      "targetAt": "2026-07-28T23:40:00Z",
+      "points": [
+        {
+          "name": "Baltimore observer reference",
+          "lat": 39.2904,
+          "lon": -76.6122,
+          "goesDsrf": {
+            "available": true,
+            "product": "ABI-L2-DSRF",
+            "variable": "DSR",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:40:21Z",
+            "sampleOffsetMinutes": 0.35,
+            "value": 15.267816543579102,
+            "units": "W m-2",
+            "s3Key": "ABI-L2-DSRF/2026/209/23/OR_ABI-L2-DSRF-M6_G19_s20262092340210_e20262092349519_c20262092356310.nc"
+          },
+          "goesAcmc": {
+            "available": true,
+            "product": "ABI-L2-ACMC",
+            "variable": "BCM",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:41:17Z",
+            "sampleOffsetMinutes": 1.28,
+            "value": 1,
+            "units": "1",
+            "s3Key": "ABI-L2-ACMC/2026/209/23/OR_ABI-L2-ACMC-M6_G19_s20262092341178_e20262092343551_c20262092344277.nc"
+          }
+        },
+        {
+          "name": "Dundalk observer reference",
+          "lat": 39.2507,
+          "lon": -76.5205,
+          "goesDsrf": {
+            "available": true,
+            "product": "ABI-L2-DSRF",
+            "variable": "DSR",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:40:21Z",
+            "sampleOffsetMinutes": 0.35,
+            "value": 2.1745765209198,
+            "units": "W m-2",
+            "s3Key": "ABI-L2-DSRF/2026/209/23/OR_ABI-L2-DSRF-M6_G19_s20262092340210_e20262092349519_c20262092356310.nc"
+          },
+          "goesAcmc": {
+            "available": true,
+            "product": "ABI-L2-ACMC",
+            "variable": "BCM",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:41:17Z",
+            "sampleOffsetMinutes": 1.28,
+            "value": 1,
+            "units": "1",
+            "s3Key": "ABI-L2-ACMC/2026/209/23/OR_ABI-L2-ACMC-M6_G19_s20262092341178_e20262092343551_c20262092344277.nc"
+          }
+        },
+        {
+          "name": "nearest production-stride seed to Baltimore",
+          "lat": 39.2392,
+          "lon": -76.6598,
+          "goesDsrf": {
+            "available": true,
+            "product": "ABI-L2-DSRF",
+            "variable": "DSR",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:40:21Z",
+            "sampleOffsetMinutes": 0.35,
+            "value": 43.05661392211914,
+            "units": "W m-2",
+            "s3Key": "ABI-L2-DSRF/2026/209/23/OR_ABI-L2-DSRF-M6_G19_s20262092340210_e20262092349519_c20262092356310.nc"
+          },
+          "goesAcmc": {
+            "available": true,
+            "product": "ABI-L2-ACMC",
+            "variable": "BCM",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:41:17Z",
+            "sampleOffsetMinutes": 1.28,
+            "value": 1,
+            "units": "1",
+            "s3Key": "ABI-L2-ACMC/2026/209/23/OR_ABI-L2-ACMC-M6_G19_s20262092341178_e20262092343551_c20262092344277.nc"
+          }
+        },
+        {
+          "name": "nearest production-stride seed to Dundalk",
+          "lat": 39.2392,
+          "lon": -76.6598,
+          "goesDsrf": {
+            "available": true,
+            "product": "ABI-L2-DSRF",
+            "variable": "DSR",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:40:21Z",
+            "sampleOffsetMinutes": 0.35,
+            "value": 43.05661392211914,
+            "units": "W m-2",
+            "s3Key": "ABI-L2-DSRF/2026/209/23/OR_ABI-L2-DSRF-M6_G19_s20262092340210_e20262092349519_c20262092356310.nc"
+          },
+          "goesAcmc": {
+            "available": true,
+            "product": "ABI-L2-ACMC",
+            "variable": "BCM",
+            "satellite": "GOES-19",
+            "observedAt": "2026-07-28T23:41:17Z",
+            "sampleOffsetMinutes": 1.28,
+            "value": 1,
+            "units": "1",
+            "s3Key": "ABI-L2-ACMC/2026/209/23/OR_ABI-L2-ACMC-M6_G19_s20262092341178_e20262092343551_c20262092344277.nc"
+          }
+        }
+      ]
+    }
+  ],
+  "contentSha256": "bd42a854393aa5a80a5f450b55d26173777cba29f568f164112e802eec933b80"
+}

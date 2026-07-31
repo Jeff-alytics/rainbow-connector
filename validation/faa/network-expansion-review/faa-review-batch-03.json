@@ -1,0 +1,1359 @@
+[
+  {
+    "candidateId": "faan-01",
+    "siteId": 1054,
+    "station": "",
+    "siteName": "Logan Regional Hospital",
+    "state": "UT",
+    "latitude": 41.75605,
+    "longitude": -111.82117,
+    "cameraId": 13917,
+    "cameraDirection": "East",
+    "cameraBearing": 87,
+    "observedAt": "2026-07-18T01:51:00Z",
+    "weather": "",
+    "rainInches": 0.03,
+    "sunElevation": 10.82,
+    "antiSolarAzimuth": 108.74,
+    "cameraDifference": 21.74,
+    "metadataScore": 3.2009,
+    "finalScore": 0.09204355,
+    "reviewTier": "high",
+    "weatherStation": "LGU",
+    "weatherStationDistanceKm": 4.66,
+    "frames": [
+      {
+        "file": "faan-01-01.jpg",
+        "observedAt": "2026-07-18T01:35:55.763Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1054/18/13917-1784338538659.jpg",
+        "semanticScore": -0.019247
+      },
+      {
+        "file": "faan-01-02.jpg",
+        "observedAt": "2026-07-18T01:44:39.781Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1054/18/13917-1784339063016.jpg",
+        "semanticScore": 0.027762
+      },
+      {
+        "file": "faan-01-03.jpg",
+        "observedAt": "2026-07-18T01:53:22.160Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1054/18/13917-1784339579010.jpg",
+        "semanticScore": 0.041066
+      },
+      {
+        "file": "faan-01-04.jpg",
+        "observedAt": "2026-07-18T02:01:49.858Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1054/18/13917-1784340084789.jpg",
+        "semanticScore": 0.038963
+      },
+      {
+        "file": "faan-01-05.jpg",
+        "observedAt": "2026-07-18T02:10:12.182Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1054/18/13917-1784340594956.jpg",
+        "semanticScore": 0.038033
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-02",
+    "siteId": 757,
+    "station": "QQK",
+    "siteName": "Princeville",
+    "state": "HI",
+    "latitude": 22.221214,
+    "longitude": -159.49767,
+    "cameraId": 12772,
+    "cameraDirection": "SouthWest",
+    "cameraBearing": 225,
+    "observedAt": "2026-07-01T16:53:00Z",
+    "weather": "",
+    "rainInches": 0.01,
+    "sunElevation": 10.88,
+    "antiSolarAzimuth": 249.32,
+    "cameraDifference": 24.32,
+    "metadataScore": 2.9068,
+    "finalScore": 0.0732313,
+    "reviewTier": "high",
+    "weatherStation": "PHLI",
+    "weatherStationDistanceKm": 31.53,
+    "frames": [
+      {
+        "file": "faan-02-01.jpg",
+        "observedAt": "2026-07-01T16:32:07.624Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/757/1/12772-1782923470710.jpg",
+        "semanticScore": -0.02382
+      },
+      {
+        "file": "faan-02-02.jpg",
+        "observedAt": "2026-07-01T16:40:41.595Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/757/1/12772-1782924018833.jpg",
+        "semanticScore": 0.035923
+      },
+      {
+        "file": "faan-02-03.jpg",
+        "observedAt": "2026-07-01T16:49:34.786Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/757/1/12772-1782924528652.jpg",
+        "semanticScore": -0.017307
+      },
+      {
+        "file": "faan-02-04.jpg",
+        "observedAt": "2026-07-01T16:58:33.902Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/757/1/12772-1782925063908.jpg",
+        "semanticScore": 0.029378
+      },
+      {
+        "file": "faan-02-05.jpg",
+        "observedAt": "2026-07-01T17:07:41.849Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/757/1/12772-1782925610457.jpg",
+        "semanticScore": -0.028283
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-03",
+    "siteId": 760,
+    "station": "NGF",
+    "siteName": "Kaneohe Bay",
+    "state": "HI",
+    "latitude": 21.42245,
+    "longitude": -157.75706,
+    "cameraId": 12784,
+    "cameraDirection": "SouthWest",
+    "cameraBearing": 225,
+    "observedAt": "2026-07-12T16:57:00Z",
+    "weather": "",
+    "rainInches": 0.01,
+    "sunElevation": 12.24,
+    "antiSolarAzimuth": 250.98,
+    "cameraDifference": 25.98,
+    "metadataScore": 2.9445,
+    "finalScore": 0.043668500000000006,
+    "reviewTier": "near-cutoff",
+    "weatherStation": "PHNG",
+    "weatherStationDistanceKm": 3.22,
+    "frames": [
+      {
+        "file": "faan-03-01.jpg",
+        "observedAt": "2026-07-12T16:37:41.401Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/760/12/12784-1783874236367.jpg",
+        "semanticScore": -0.025558
+      },
+      {
+        "file": "faan-03-02.jpg",
+        "observedAt": "2026-07-12T16:46:06.719Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/760/12/12784-1783874746530.jpg",
+        "semanticScore": -0.029743
+      },
+      {
+        "file": "faan-03-03.jpg",
+        "observedAt": "2026-07-12T16:54:53.128Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/760/12/12784-1783875273725.jpg",
+        "semanticScore": -0.02184
+      },
+      {
+        "file": "faan-03-04.jpg",
+        "observedAt": "2026-07-12T17:03:37.865Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/760/12/12784-1783875797825.jpg",
+        "semanticScore": 0.023702
+      },
+      {
+        "file": "faan-03-05.jpg",
+        "observedAt": "2026-07-12T17:12:14.085Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/760/12/12784-1783876307254.jpg",
+        "semanticScore": -0.040326
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-04",
+    "siteId": 1080,
+    "station": "HYGA",
+    "siteName": "Twelve Mile Arm",
+    "state": "AK",
+    "latitude": 55.33518,
+    "longitude": -132.7897,
+    "cameraId": 14012,
+    "cameraDirection": "East",
+    "cameraBearing": 90,
+    "observedAt": "2026-07-08T02:56:00Z",
+    "weather": "-RA",
+    "rainInches": 0.08,
+    "sunElevation": 18.43,
+    "antiSolarAzimuth": 103.2,
+    "cameraDifference": 13.2,
+    "metadataScore": 3.3643,
+    "finalScore": 0.04336205,
+    "reviewTier": "near-cutoff",
+    "weatherStation": "PAHY",
+    "weatherStationDistanceKm": 14.56,
+    "frames": [
+      {
+        "file": "faan-04-01.jpg",
+        "observedAt": "2026-07-08T02:41:02.028Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1080/8/14012-1783478444751.jpg",
+        "semanticScore": -0.050747
+      },
+      {
+        "file": "faan-04-02.jpg",
+        "observedAt": "2026-07-08T02:49:31.509Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1080/8/14012-1783478955428.jpg",
+        "semanticScore": -0.056973
+      },
+      {
+        "file": "faan-04-03.jpg",
+        "observedAt": "2026-07-08T02:58:04.725Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1080/8/14012-1783479465631.jpg",
+        "semanticScore": -0.056126
+      },
+      {
+        "file": "faan-04-04.jpg",
+        "observedAt": "2026-07-08T03:06:35.451Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1080/8/14012-1783479975804.jpg",
+        "semanticScore": 0.028167
+      },
+      {
+        "file": "faan-04-05.jpg",
+        "observedAt": "2026-07-08T03:15:12.256Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1080/8/14012-1783480485915.jpg",
+        "semanticScore": -0.029927
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-05",
+    "siteId": 865,
+    "station": "D05",
+    "siteName": "Garrison",
+    "state": "ND",
+    "latitude": 47.65389,
+    "longitude": -101.43722,
+    "cameraId": 13166,
+    "cameraDirection": "SouthEast",
+    "cameraBearing": 120,
+    "observedAt": "2026-06-30T01:54:00Z",
+    "weather": "",
+    "rainInches": 0.12,
+    "sunElevation": 6.86,
+    "antiSolarAzimuth": 117.21,
+    "cameraDifference": 2.79,
+    "metadataScore": 3.4214,
+    "finalScore": 0.0366958,
+    "reviewTier": "near-cutoff",
+    "weatherStation": "N60",
+    "weatherStationDistanceKm": 0.91,
+    "frames": [
+      {
+        "file": "faan-05-01.jpg",
+        "observedAt": "2026-06-30T01:35:52.374Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/865/30/13166-1782783341706.jpg",
+        "semanticScore": -0.01794
+      },
+      {
+        "file": "faan-05-02.jpg",
+        "observedAt": "2026-06-30T01:45:52.452Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/865/30/13166-1782783911617.jpg",
+        "semanticScore": -0.021623
+      },
+      {
+        "file": "faan-05-03.jpg",
+        "observedAt": "2026-06-30T01:54:21.215Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/865/30/13166-1782784438097.jpg",
+        "semanticScore": -0.026874
+      },
+      {
+        "file": "faan-05-04.jpg",
+        "observedAt": "2026-06-30T02:05:10.221Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/865/30/13166-1782785048234.jpg",
+        "semanticScore": -0.000482
+      },
+      {
+        "file": "faan-05-05.jpg",
+        "observedAt": "2026-06-30T02:14:28.961Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/865/30/13166-1782785608848.jpg",
+        "semanticScore": -0.003032
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-06",
+    "siteId": 759,
+    "station": null,
+    "siteName": "Buxton",
+    "state": "OR",
+    "latitude": 45.74376,
+    "longitude": -123.13497,
+    "cameraId": 12780,
+    "cameraDirection": "West",
+    "cameraBearing": 255,
+    "observedAt": "2026-07-16T13:51:00Z",
+    "weather": "+TSRA BR",
+    "rainInches": 0.11,
+    "sunElevation": 10.5,
+    "antiSolarAzimuth": 250.06,
+    "cameraDifference": 4.94,
+    "metadataScore": 4.1731,
+    "finalScore": 0.007717250000000002,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "SPB",
+    "weatherStationDistanceKm": 21.53,
+    "frames": [
+      {
+        "file": "faan-06-01.jpg",
+        "observedAt": "2026-07-16T13:39:05.663Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/759/16/12780-1784209132261.jpg",
+        "semanticScore": -0.030395
+      },
+      {
+        "file": "faan-06-02.jpg",
+        "observedAt": "2026-07-16T13:49:08.963Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/759/16/12780-1784209742149.jpg",
+        "semanticScore": -0.030733
+      },
+      {
+        "file": "faan-06-03.jpg",
+        "observedAt": "2026-07-16T13:59:37.998Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/759/16/12780-1784210369048.jpg",
+        "semanticScore": -0.025706
+      },
+      {
+        "file": "faan-06-04.jpg",
+        "observedAt": "2026-07-16T14:09:21.781Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/759/16/12780-1784210948821.jpg",
+        "semanticScore": -0.041389
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-07",
+    "siteId": 1066,
+    "station": "NK40",
+    "siteName": "Nyack",
+    "state": "NY",
+    "latitude": 41.09584,
+    "longitude": -73.92606,
+    "cameraId": 13954,
+    "cameraDirection": "East",
+    "cameraBearing": 90,
+    "observedAt": "2026-07-21T22:56:00Z",
+    "weather": "TSRA",
+    "rainInches": 0.13,
+    "sunElevation": 14.42,
+    "antiSolarAzimuth": 104.69,
+    "cameraDifference": 14.69,
+    "metadataScore": 4.0909,
+    "finalScore": -0.024040249999999996,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "HPN",
+    "weatherStationDistanceKm": 18.6,
+    "frames": [
+      {
+        "file": "faan-07-01.jpg",
+        "observedAt": "2026-07-21T22:42:48.517Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1066/21/13954-1784673741021.jpg",
+        "semanticScore": -0.051144
+      },
+      {
+        "file": "faan-07-02.jpg",
+        "observedAt": "2026-07-21T22:51:21.341Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1066/21/13954-1784674251514.jpg",
+        "semanticScore": -0.051318
+      },
+      {
+        "file": "faan-07-03.jpg",
+        "observedAt": "2026-07-21T23:00:03.632Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1066/21/13954-1784674776779.jpg",
+        "semanticScore": -0.039841
+      },
+      {
+        "file": "faan-07-04.jpg",
+        "observedAt": "2026-07-21T23:08:26.398Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1066/21/13954-1784675287179.jpg",
+        "semanticScore": -0.042165
+      },
+      {
+        "file": "faan-07-05.jpg",
+        "observedAt": "2026-07-21T23:17:00.652Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1066/21/13954-1784675800279.jpg",
+        "semanticScore": -0.045212
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-08",
+    "siteId": 1026,
+    "station": null,
+    "siteName": "MacDonald Pass",
+    "state": "MT",
+    "latitude": 46.59514,
+    "longitude": -112.298584,
+    "cameraId": 13812,
+    "cameraDirection": "SouthEast",
+    "cameraBearing": 130,
+    "observedAt": "2026-07-18T01:53:00Z",
+    "weather": "VCTS",
+    "rainInches": 0.09,
+    "sunElevation": 12.32,
+    "antiSolarAzimuth": 107.81,
+    "cameraDifference": 22.19,
+    "metadataScore": 4.0011,
+    "finalScore": -0.05436030000000001,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "HLN",
+    "weatherStationDistanceKm": 25.62,
+    "frames": [
+      {
+        "file": "faan-08-01.jpg",
+        "observedAt": "2026-07-18T01:43:07.306Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1026/18/13812-1784338973190.jpg",
+        "semanticScore": -0.060734
+      },
+      {
+        "file": "faan-08-02.jpg",
+        "observedAt": "2026-07-18T01:51:49.246Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1026/18/13812-1784339492788.jpg",
+        "semanticScore": -0.065748
+      },
+      {
+        "file": "faan-08-03.jpg",
+        "observedAt": "2026-07-18T02:03:45.176Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1026/18/13812-1784340211291.jpg",
+        "semanticScore": -0.075116
+      },
+      {
+        "file": "faan-08-04.jpg",
+        "observedAt": "2026-07-18T02:12:12.933Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1026/18/13812-1784340715152.jpg",
+        "semanticScore": -0.075297
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-09",
+    "siteId": 1036,
+    "station": "PGM",
+    "siteName": "Port Graham",
+    "state": "AK",
+    "latitude": 59.35084,
+    "longitude": -151.82773,
+    "cameraId": 13850,
+    "cameraDirection": "East",
+    "cameraBearing": 110,
+    "observedAt": "2026-07-20T04:53:00Z",
+    "weather": "-RA BR",
+    "rainInches": 0.08,
+    "sunElevation": 12.94,
+    "antiSolarAzimuth": 108.98,
+    "cameraDifference": 1.02,
+    "metadataScore": 3.9843,
+    "finalScore": -0.0732516,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PASO",
+    "weatherStationDistanceKm": 12.36,
+    "frames": [
+      {
+        "file": "faan-09-01.jpg",
+        "observedAt": "2026-07-20T04:36:36.102Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1036/20/13850-1784522171018.jpg",
+        "semanticScore": -0.075726
+      },
+      {
+        "file": "faan-09-02.jpg",
+        "observedAt": "2026-07-20T04:45:09.397Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1036/20/13850-1784522681382.jpg",
+        "semanticScore": -0.086713
+      },
+      {
+        "file": "faan-09-03.jpg",
+        "observedAt": "2026-07-20T04:53:42.201Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1036/20/13850-1784523191735.jpg",
+        "semanticScore": -0.072445
+      },
+      {
+        "file": "faan-09-04.jpg",
+        "observedAt": "2026-07-20T05:02:26.658Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1036/20/13850-1784523717197.jpg",
+        "semanticScore": -0.080284
+      },
+      {
+        "file": "faan-09-05.jpg",
+        "observedAt": "2026-07-20T05:11:03.080Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1036/20/13850-1784524227531.jpg",
+        "semanticScore": -0.076345
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-10",
+    "siteId": 48,
+    "station": "BET",
+    "siteName": "Bethel",
+    "state": "AK",
+    "latitude": 60.77734,
+    "longitude": -161.8449,
+    "cameraId": 11727,
+    "cameraDirection": "SouthEast",
+    "cameraBearing": 115,
+    "observedAt": "2026-07-08T05:53:00Z",
+    "weather": "RA BR",
+    "rainInches": 0.4,
+    "sunElevation": 12.53,
+    "antiSolarAzimuth": 113.98,
+    "cameraDifference": 1.02,
+    "metadataScore": 3.9807,
+    "finalScore": -0.0344883,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PABE",
+    "weatherStationDistanceKm": 1.38,
+    "frames": [
+      {
+        "file": "faan-10-01.jpg",
+        "observedAt": "2026-07-08T05:36:35.728Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/48/8/11727-1783488978545.jpg",
+        "semanticScore": -0.057689
+      },
+      {
+        "file": "faan-10-02.jpg",
+        "observedAt": "2026-07-08T05:45:11.730Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/48/8/11727-1783489488647.jpg",
+        "semanticScore": -0.051106
+      },
+      {
+        "file": "faan-10-03.jpg",
+        "observedAt": "2026-07-08T05:53:42.875Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/48/8/11727-1783489999016.jpg",
+        "semanticScore": -0.050128
+      },
+      {
+        "file": "faan-10-04.jpg",
+        "observedAt": "2026-07-08T06:02:07.128Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/48/8/11727-1783490509773.jpg",
+        "semanticScore": -0.053577
+      },
+      {
+        "file": "faan-10-05.jpg",
+        "observedAt": "2026-07-08T06:10:42.712Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/48/8/11727-1783491030775.jpg",
+        "semanticScore": -0.047083
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-11",
+    "siteId": 938,
+    "station": null,
+    "siteName": "Leek Springs",
+    "state": "CA",
+    "latitude": 38.629,
+    "longitude": -120.277,
+    "cameraId": 13451,
+    "cameraDirection": "SouthEast",
+    "cameraBearing": 120,
+    "observedAt": "2026-07-14T01:53:00Z",
+    "weather": "VCTS -RA",
+    "rainInches": 0.15,
+    "sunElevation": 16.04,
+    "antiSolarAzimuth": 105.31,
+    "cameraDifference": 14.69,
+    "metadataScore": 3.9766,
+    "finalScore": -0.00040919999999999845,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "TVL",
+    "weatherStationDistanceKm": 38.26,
+    "frames": [
+      {
+        "file": "faan-11-01.jpg",
+        "observedAt": "2026-07-14T01:33:37.362Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/938/14/13451-1783992794314.jpg",
+        "semanticScore": -0.02873
+      },
+      {
+        "file": "faan-11-02.jpg",
+        "observedAt": "2026-07-14T01:42:10.201Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/938/14/13451-1783993315971.jpg",
+        "semanticScore": -0.026779
+      },
+      {
+        "file": "faan-11-03.jpg",
+        "observedAt": "2026-07-14T01:54:19.289Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/938/14/13451-1783994038191.jpg",
+        "semanticScore": -0.028712
+      },
+      {
+        "file": "faan-11-04.jpg",
+        "observedAt": "2026-07-14T02:02:50.828Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/938/14/13451-1783994554563.jpg",
+        "semanticScore": -0.031751
+      },
+      {
+        "file": "faan-11-05.jpg",
+        "observedAt": "2026-07-14T02:14:50.911Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/938/14/13451-1783995276376.jpg",
+        "semanticScore": -0.030681
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-12",
+    "siteId": 437,
+    "station": "MOU",
+    "siteName": "Mountain Village",
+    "state": "AK",
+    "latitude": 62.0948,
+    "longitude": -163.6862,
+    "cameraId": 11390,
+    "cameraDirection": "East",
+    "cameraBearing": 110,
+    "observedAt": "2026-07-08T05:56:00Z",
+    "weather": "RA",
+    "rainInches": 0.11,
+    "sunElevation": 13.53,
+    "antiSolarAzimuth": 112.79,
+    "cameraDifference": 2.79,
+    "metadataScore": 3.9524,
+    "finalScore": -0.0724892,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PAMO",
+    "weatherStationDistanceKm": 0.23,
+    "frames": [
+      {
+        "file": "faan-12-01.jpg",
+        "observedAt": "2026-07-08T05:37:18.286Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/437/8/11390-1783489023629.jpg",
+        "semanticScore": -0.074732
+      },
+      {
+        "file": "faan-12-02.jpg",
+        "observedAt": "2026-07-08T05:45:58.818Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/437/8/11390-1783489533731.jpg",
+        "semanticScore": -0.07952
+      },
+      {
+        "file": "faan-12-03.jpg",
+        "observedAt": "2026-07-08T05:54:26.382Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/437/8/11390-1783490043958.jpg",
+        "semanticScore": -0.08437
+      },
+      {
+        "file": "faan-12-04.jpg",
+        "observedAt": "2026-07-08T06:02:44.839Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/437/8/11390-1783490554068.jpg",
+        "semanticScore": -0.079066
+      },
+      {
+        "file": "faan-12-05.jpg",
+        "observedAt": "2026-07-08T06:11:09.675Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/437/8/11390-1783491049145.jpg",
+        "semanticScore": -0.074443
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-13",
+    "siteId": 549,
+    "station": "",
+    "siteName": "Bozeman Pass",
+    "state": "MT",
+    "latitude": 45.66706,
+    "longitude": -110.80416,
+    "cameraId": 12000,
+    "cameraDirection": "East",
+    "cameraBearing": 100,
+    "observedAt": "2026-07-15T01:53:00Z",
+    "weather": "VCTS +RA",
+    "rainInches": 0.05,
+    "sunElevation": 11.35,
+    "antiSolarAzimuth": 109.4,
+    "cameraDifference": 9.4,
+    "metadataScore": 3.9511,
+    "finalScore": 0.0051836500000000015,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "LVM",
+    "weatherStationDistanceKm": 27.76,
+    "frames": [
+      {
+        "file": "faan-13-01.jpg",
+        "observedAt": "2026-07-15T01:33:20.626Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/549/15/12000-1784079170302.jpg",
+        "semanticScore": -0.031212
+      },
+      {
+        "file": "faan-13-02.jpg",
+        "observedAt": "2026-07-15T01:41:57.848Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/549/15/12000-1784079695996.jpg",
+        "semanticScore": -0.023311
+      },
+      {
+        "file": "faan-13-03.jpg",
+        "observedAt": "2026-07-15T01:50:23.174Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/549/15/12000-1784080206367.jpg",
+        "semanticScore": -0.020905
+      },
+      {
+        "file": "faan-13-04.jpg",
+        "observedAt": "2026-07-15T01:58:56.739Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/549/15/12000-1784080716667.jpg",
+        "semanticScore": -0.029462
+      },
+      {
+        "file": "faan-13-05.jpg",
+        "observedAt": "2026-07-15T02:07:16.337Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/549/15/12000-1784081226927.jpg",
+        "semanticScore": -0.037395
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-14",
+    "siteId": 156,
+    "station": "CDV",
+    "siteName": "Cordova",
+    "state": "AK",
+    "latitude": 60.49372,
+    "longitude": -145.47044,
+    "cameraId": 10473,
+    "cameraDirection": "SouthWest",
+    "cameraBearing": 247,
+    "observedAt": "2026-07-07T14:53:00Z",
+    "weather": "-RA",
+    "rainInches": 0.07,
+    "sunElevation": 13.18,
+    "antiSolarAzimuth": 247.22,
+    "cameraDifference": 0.22,
+    "metadataScore": 3.9315,
+    "finalScore": -0.04182625,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PACV",
+    "weatherStationDistanceKm": 1.19,
+    "frames": [
+      {
+        "file": "faan-14-01.jpg",
+        "observedAt": "2026-07-07T14:37:58.343Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/156/7/10473-1783435067325.jpg",
+        "semanticScore": -0.053302
+      },
+      {
+        "file": "faan-14-02.jpg",
+        "observedAt": "2026-07-07T14:46:37.148Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/156/7/10473-1783435579930.jpg",
+        "semanticScore": -0.069182
+      },
+      {
+        "file": "faan-14-03.jpg",
+        "observedAt": "2026-07-07T14:55:08.011Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/156/7/10473-1783436087655.jpg",
+        "semanticScore": -0.068385
+      },
+      {
+        "file": "faan-14-04.jpg",
+        "observedAt": "2026-07-07T15:03:37.182Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/156/7/10473-1783436608310.jpg",
+        "semanticScore": -0.062663
+      },
+      {
+        "file": "faan-14-05.jpg",
+        "observedAt": "2026-07-07T15:12:09.675Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/156/7/10473-1783437118568.jpg",
+        "semanticScore": -0.055925
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-15",
+    "siteId": 58,
+    "station": "ATK",
+    "siteName": "Atqasuk",
+    "state": "AK",
+    "latitude": 70.469826,
+    "longitude": -157.4305,
+    "cameraId": 10936,
+    "cameraDirection": "SouthWest",
+    "cameraBearing": 245,
+    "observedAt": "2026-07-10T14:56:00Z",
+    "weather": "+RA",
+    "rainInches": 0.14,
+    "sunElevation": 13.1,
+    "antiSolarAzimuth": 239.59,
+    "cameraDifference": 5.41,
+    "metadataScore": 3.9166,
+    "finalScore": 0.005529050000000002,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PATQ",
+    "weatherStationDistanceKm": 0.34,
+    "frames": [
+      {
+        "file": "faan-15-01.jpg",
+        "observedAt": "2026-07-10T14:42:14.843Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/58/10/10936-1783694518684.jpg",
+        "semanticScore": -0.027937
+      },
+      {
+        "file": "faan-15-02.jpg",
+        "observedAt": "2026-07-10T14:50:41.230Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/58/10/10936-1783695031062.jpg",
+        "semanticScore": -0.040849
+      },
+      {
+        "file": "faan-15-03.jpg",
+        "observedAt": "2026-07-10T14:59:18.774Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/58/10/10936-1783695539033.jpg",
+        "semanticScore": -0.035664
+      },
+      {
+        "file": "faan-15-04.jpg",
+        "observedAt": "2026-07-10T15:07:47.707Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/58/10/10936-1783696056748.jpg",
+        "semanticScore": -0.019308
+      },
+      {
+        "file": "faan-15-05.jpg",
+        "observedAt": "2026-07-10T15:16:21.470Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/58/10/10936-1783696569860.jpg",
+        "semanticScore": -0.042302
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-16",
+    "siteId": 154,
+    "station": "BIG",
+    "siteName": "Delta Junction",
+    "state": "AK",
+    "latitude": 64.05655,
+    "longitude": -145.73236,
+    "cameraId": 10464,
+    "cameraDirection": "SouthEast",
+    "cameraBearing": 120,
+    "observedAt": "2026-07-09T04:53:00Z",
+    "weather": "-RA BR",
+    "rainInches": 0.12,
+    "sunElevation": 13.31,
+    "antiSolarAzimuth": 114.15,
+    "cameraDifference": 5.85,
+    "metadataScore": 3.9084,
+    "finalScore": -0.01105265,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PABI",
+    "weatherStationDistanceKm": 6.88,
+    "frames": [
+      {
+        "file": "faan-16-01.jpg",
+        "observedAt": "2026-07-09T04:37:43.274Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/154/9/10464-1783571849587.jpg",
+        "semanticScore": -0.04701
+      },
+      {
+        "file": "faan-16-02.jpg",
+        "observedAt": "2026-07-09T04:46:12.428Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/154/9/10464-1783572358694.jpg",
+        "semanticScore": -0.047427
+      },
+      {
+        "file": "faan-16-03.jpg",
+        "observedAt": "2026-07-09T04:54:50.463Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/154/9/10464-1783572877430.jpg",
+        "semanticScore": -0.034098
+      },
+      {
+        "file": "faan-16-04.jpg",
+        "observedAt": "2026-07-09T05:03:11.497Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/154/9/10464-1783573380030.jpg",
+        "semanticScore": -0.035979
+      },
+      {
+        "file": "faan-16-05.jpg",
+        "observedAt": "2026-07-09T05:11:44.931Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/154/9/10464-1783573894788.jpg",
+        "semanticScore": -0.046286
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-17",
+    "siteId": 24,
+    "station": "HCA",
+    "siteName": "Holy Cross",
+    "state": "AK",
+    "latitude": 62.19052,
+    "longitude": -159.77473,
+    "cameraId": 11387,
+    "cameraDirection": "West",
+    "cameraBearing": 250,
+    "observedAt": "2026-07-12T15:56:00Z",
+    "weather": "-RA BR",
+    "rainInches": 0.07,
+    "sunElevation": 13.83,
+    "antiSolarAzimuth": 248.96,
+    "cameraDifference": 1.04,
+    "metadataScore": 3.908,
+    "finalScore": -0.040331900000000004,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PAHC",
+    "weatherStationDistanceKm": 0.25,
+    "frames": [
+      {
+        "file": "faan-17-01.jpg",
+        "observedAt": "2026-07-12T15:41:37.048Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/24/12/11387-1783870878102.jpg",
+        "semanticScore": -0.068109
+      },
+      {
+        "file": "faan-17-02.jpg",
+        "observedAt": "2026-07-12T15:49:58.745Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/24/12/11387-1783871384968.jpg",
+        "semanticScore": -0.065807
+      },
+      {
+        "file": "faan-17-03.jpg",
+        "observedAt": "2026-07-12T15:58:06.853Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/24/12/11387-1783871880248.jpg",
+        "semanticScore": -0.053911
+      },
+      {
+        "file": "faan-17-04.jpg",
+        "observedAt": "2026-07-12T16:06:40.399Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/24/12/11387-1783872389109.jpg",
+        "semanticScore": -0.064413
+      },
+      {
+        "file": "faan-17-05.jpg",
+        "observedAt": "2026-07-12T16:15:30.205Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/24/12/11387-1783872912230.jpg",
+        "semanticScore": -0.058094
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-18",
+    "siteId": 818,
+    "station": "05K",
+    "siteName": "Wilder",
+    "state": "AK",
+    "latitude": 60.19689,
+    "longitude": -154.32437,
+    "cameraId": 12991,
+    "cameraDirection": "West",
+    "cameraBearing": 250,
+    "observedAt": "2026-07-15T15:55:00Z",
+    "weather": "-RA",
+    "rainInches": 0.09,
+    "sunElevation": 15.12,
+    "antiSolarAzimuth": 252.98,
+    "cameraDifference": 2.98,
+    "metadataScore": 3.8811,
+    "finalScore": -0.03732335,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PAKX",
+    "weatherStationDistanceKm": 0.14,
+    "frames": [
+      {
+        "file": "faan-18-01.jpg",
+        "observedAt": "2026-07-15T15:38:14.816Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/818/15/12991-1784129891311.jpg",
+        "semanticScore": -0.056831
+      },
+      {
+        "file": "faan-18-02.jpg",
+        "observedAt": "2026-07-15T15:46:57.082Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/818/15/12991-1784130402557.jpg",
+        "semanticScore": -0.063205
+      },
+      {
+        "file": "faan-18-03.jpg",
+        "observedAt": "2026-07-15T15:55:21.419Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/818/15/12991-1784130908074.jpg",
+        "semanticScore": -0.052438
+      },
+      {
+        "file": "faan-18-04.jpg",
+        "observedAt": "2026-07-15T16:04:20.543Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/818/15/12991-1784131443046.jpg",
+        "semanticScore": -0.060335
+      },
+      {
+        "file": "faan-18-05.jpg",
+        "observedAt": "2026-07-15T16:12:40.322Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/818/15/12991-1784131943632.jpg",
+        "semanticScore": -0.059869
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-19",
+    "siteId": 163,
+    "station": "9K2",
+    "siteName": "Kokhanok",
+    "state": "AK",
+    "latitude": 59.43951,
+    "longitude": -154.75648,
+    "cameraId": 10501,
+    "cameraDirection": "West",
+    "cameraBearing": 257,
+    "observedAt": "2026-07-14T15:53:00Z",
+    "weather": "",
+    "rainInches": 0.11,
+    "sunElevation": 14.59,
+    "antiSolarAzimuth": 251.95,
+    "cameraDifference": 5.05,
+    "metadataScore": 3.8808,
+    "finalScore": -0.02254885,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PAIL",
+    "weatherStationDistanceKm": 35.49,
+    "frames": [
+      {
+        "file": "faan-19-01.jpg",
+        "observedAt": "2026-07-14T15:38:16.734Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/163/14/10501-1784043473278.jpg",
+        "semanticScore": -0.071507
+      },
+      {
+        "file": "faan-19-02.jpg",
+        "observedAt": "2026-07-14T15:47:00.519Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/163/14/10501-1784043996456.jpg",
+        "semanticScore": -0.041811
+      },
+      {
+        "file": "faan-19-03.jpg",
+        "observedAt": "2026-07-14T15:55:38.364Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/163/14/10501-1784044516370.jpg",
+        "semanticScore": -0.042614
+      },
+      {
+        "file": "faan-19-04.jpg",
+        "observedAt": "2026-07-14T16:04:11.357Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/163/14/10501-1784045023617.jpg",
+        "semanticScore": -0.059955
+      },
+      {
+        "file": "faan-19-05.jpg",
+        "observedAt": "2026-07-14T16:12:43.812Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/163/14/10501-1784045533954.jpg",
+        "semanticScore": -0.041719
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-20",
+    "siteId": 873,
+    "station": null,
+    "siteName": "Hogsback",
+    "state": "WY",
+    "latitude": 42.329166,
+    "longitude": -110.320274,
+    "cameraId": 13198,
+    "cameraDirection": "SouthEast",
+    "cameraBearing": 130,
+    "observedAt": "2026-07-17T01:53:00Z",
+    "weather": "+TSRA",
+    "rainInches": 0.19,
+    "sunElevation": 9.7,
+    "antiSolarAzimuth": 110.03,
+    "cameraDifference": 19.97,
+    "metadataScore": 3.8712,
+    "finalScore": -0.02988815,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "BPI",
+    "weatherStationDistanceKm": 33.23,
+    "frames": [
+      {
+        "file": "faan-20-01.jpg",
+        "observedAt": "2026-07-17T01:39:33.551Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/873/17/13198-1784252360549.jpg",
+        "semanticScore": -0.055169
+      },
+      {
+        "file": "faan-20-02.jpg",
+        "observedAt": "2026-07-17T01:49:00.263Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/873/17/13198-1784252930527.jpg",
+        "semanticScore": -0.044975
+      },
+      {
+        "file": "faan-20-03.jpg",
+        "observedAt": "2026-07-17T01:59:11.822Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/873/17/13198-1784253540718.jpg",
+        "semanticScore": -0.05923
+      },
+      {
+        "file": "faan-20-04.jpg",
+        "observedAt": "2026-07-17T02:10:09.649Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/873/17/13198-1784254192241.jpg",
+        "semanticScore": -0.056917
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-21",
+    "siteId": 183,
+    "station": "AFM",
+    "siteName": "Ambler",
+    "state": "AK",
+    "latitude": 67.08655,
+    "longitude": -157.85725,
+    "cameraId": 10582,
+    "cameraDirection": "SouthEast",
+    "cameraBearing": 125,
+    "observedAt": "2026-07-08T05:56:00Z",
+    "weather": "-RA BR",
+    "rainInches": 0.08,
+    "sunElevation": 13.35,
+    "antiSolarAzimuth": 116.73,
+    "cameraDifference": 8.27,
+    "metadataScore": 3.8708,
+    "finalScore": 0.011986700000000003,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PAFM",
+    "weatherStationDistanceKm": 2.2,
+    "frames": [
+      {
+        "file": "faan-21-01.jpg",
+        "observedAt": "2026-07-08T05:39:10.611Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/183/8/10582-1783489128550.jpg",
+        "semanticScore": -0.031772
+      },
+      {
+        "file": "faan-21-02.jpg",
+        "observedAt": "2026-07-08T05:47:32.905Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/183/8/10582-1783489638673.jpg",
+        "semanticScore": -0.021622
+      },
+      {
+        "file": "faan-21-03.jpg",
+        "observedAt": "2026-07-08T05:55:50.573Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/183/8/10582-1783490133971.jpg",
+        "semanticScore": -0.014025
+      },
+      {
+        "file": "faan-21-04.jpg",
+        "observedAt": "2026-07-08T06:04:21.219Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/183/8/10582-1783490644032.jpg",
+        "semanticScore": -0.021054
+      },
+      {
+        "file": "faan-21-05.jpg",
+        "observedAt": "2026-07-08T06:12:46.209Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/183/8/10582-1783491154194.jpg",
+        "semanticScore": -0.019778
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-22",
+    "siteId": 954,
+    "station": null,
+    "siteName": "Highlands",
+    "state": "KY",
+    "latitude": 37.16452,
+    "longitude": -82.62363,
+    "cameraId": 13516,
+    "cameraDirection": "East",
+    "cameraBearing": 90,
+    "observedAt": "2026-07-06T23:55:00Z",
+    "weather": "-VCTSRA",
+    "rainInches": 0.1,
+    "sunElevation": 9.81,
+    "antiSolarAzimuth": 111.06,
+    "cameraDifference": 21.06,
+    "metadataScore": 3.8648,
+    "finalScore": -0.020798199999999996,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PBX",
+    "weatherStationDistanceKm": 44.11,
+    "frames": [
+      {
+        "file": "faan-22-01.jpg",
+        "observedAt": "2026-07-06T23:40:44.570Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/954/6/13516-1783381232444.jpg",
+        "semanticScore": -0.060812
+      },
+      {
+        "file": "faan-22-02.jpg",
+        "observedAt": "2026-07-06T23:49:05.159Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/954/6/13516-1783381727512.jpg",
+        "semanticScore": -0.037798
+      },
+      {
+        "file": "faan-22-03.jpg",
+        "observedAt": "2026-07-06T23:57:21.097Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/954/6/13516-1783382237728.jpg",
+        "semanticScore": -0.094703
+      },
+      {
+        "file": "faan-22-04.jpg",
+        "observedAt": "2026-07-07T00:05:42.266Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/954/7/13516-1783382732913.jpg",
+        "semanticScore": -0.083325
+      },
+      {
+        "file": "faan-22-05.jpg",
+        "observedAt": "2026-07-07T00:14:37.213Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/954/7/13516-1783383265492.jpg",
+        "semanticScore": -0.06834
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-23",
+    "siteId": 270,
+    "station": "5AK",
+    "siteName": "Tazlina-Tolsona",
+    "state": "AK",
+    "latitude": 62.10396,
+    "longitude": -146.17451,
+    "cameraId": 10951,
+    "cameraDirection": "West",
+    "cameraBearing": 248,
+    "observedAt": "2026-07-09T14:53:00Z",
+    "weather": "-RA BR",
+    "rainInches": 0.06,
+    "sunElevation": 13.26,
+    "antiSolarAzimuth": 247.03,
+    "cameraDifference": 0.97,
+    "metadataScore": 3.85,
+    "finalScore": -0.0740941,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PAGK",
+    "weatherStationDistanceKm": 37.81,
+    "frames": [
+      {
+        "file": "faan-23-01.jpg",
+        "observedAt": "2026-07-09T14:39:58.598Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/270/9/10951-1783607996523.jpg",
+        "semanticScore": -0.084824
+      },
+      {
+        "file": "faan-23-02.jpg",
+        "observedAt": "2026-07-09T14:48:28.760Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/270/9/10951-1783608503386.jpg",
+        "semanticScore": -0.081425
+      },
+      {
+        "file": "faan-23-03.jpg",
+        "observedAt": "2026-07-09T14:56:55.855Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/270/9/10951-1783609012109.jpg",
+        "semanticScore": -0.083171
+      },
+      {
+        "file": "faan-23-04.jpg",
+        "observedAt": "2026-07-09T15:05:20.735Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/270/9/10951-1783609513696.jpg",
+        "semanticScore": -0.081026
+      },
+      {
+        "file": "faan-23-05.jpg",
+        "observedAt": "2026-07-09T15:14:10.708Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/270/9/10951-1783610043564.jpg",
+        "semanticScore": -0.070357
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-24",
+    "siteId": 84,
+    "station": "AJC",
+    "siteName": "Chignik Bay",
+    "state": "AK",
+    "latitude": 56.309334,
+    "longitude": -158.37819,
+    "cameraId": 11579,
+    "cameraDirection": "SouthWest",
+    "cameraBearing": 246,
+    "observedAt": "2026-07-18T15:56:00Z",
+    "weather": "-RA",
+    "rainInches": 0.07,
+    "sunElevation": 11.51,
+    "antiSolarAzimuth": 249.24,
+    "cameraDifference": 3.24,
+    "metadataScore": 3.8494,
+    "finalScore": -0.04467715,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "PAJC",
+    "weatherStationDistanceKm": 0.39,
+    "frames": [
+      {
+        "file": "faan-24-01.jpg",
+        "observedAt": "2026-07-18T15:35:28.565Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/84/18/11579-1784388901215.jpg",
+        "semanticScore": -0.063091
+      },
+      {
+        "file": "faan-24-02.jpg",
+        "observedAt": "2026-07-18T15:43:59.461Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/84/18/11579-1784389421541.jpg",
+        "semanticScore": -0.052252
+      },
+      {
+        "file": "faan-24-03.jpg",
+        "observedAt": "2026-07-18T15:52:31.778Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/84/18/11579-1784389940133.jpg",
+        "semanticScore": -0.058549
+      },
+      {
+        "file": "faan-24-04.jpg",
+        "observedAt": "2026-07-18T16:01:03.760Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/84/18/11579-1784390442123.jpg",
+        "semanticScore": -0.058555
+      },
+      {
+        "file": "faan-24-05.jpg",
+        "observedAt": "2026-07-18T16:09:24.712Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/84/18/11579-1784390952431.jpg",
+        "semanticScore": -0.06019
+      }
+    ]
+  },
+  {
+    "candidateId": "faan-25",
+    "siteId": 1076,
+    "station": "KHON",
+    "siteName": "Huron Reg Airport",
+    "state": "SD",
+    "latitude": 44.385555,
+    "longitude": -98.223434,
+    "cameraId": 13996,
+    "cameraDirection": "SouthEast",
+    "cameraBearing": 135,
+    "observedAt": "2026-07-26T00:55:00Z",
+    "weather": "VCTS",
+    "rainInches": 0.58,
+    "sunElevation": 10.92,
+    "antiSolarAzimuth": 106.77,
+    "cameraDifference": 28.23,
+    "metadataScore": 3.8455,
+    "finalScore": 0.029197900000000002,
+    "reviewTier": "weather-strong/image-weaker",
+    "weatherStation": "HON",
+    "weatherStationDistanceKm": 0.41,
+    "frames": [
+      {
+        "file": "faan-25-01.jpg",
+        "observedAt": "2026-07-26T00:40:56.392Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1076/26/13996-1785026443630.jpg",
+        "semanticScore": -0.011216
+      },
+      {
+        "file": "faan-25-02.jpg",
+        "observedAt": "2026-07-26T00:49:13.119Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1076/26/13996-1785026938789.jpg",
+        "semanticScore": -0.030222
+      },
+      {
+        "file": "faan-25-03.jpg",
+        "observedAt": "2026-07-26T00:57:44.668Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1076/26/13996-1785027455425.jpg",
+        "semanticScore": -0.027163
+      },
+      {
+        "file": "faan-25-04.jpg",
+        "observedAt": "2026-07-26T01:06:11.296Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1076/26/13996-1785027958921.jpg",
+        "semanticScore": -0.010196
+      },
+      {
+        "file": "faan-25-05.jpg",
+        "observedAt": "2026-07-26T01:14:53.044Z",
+        "sourceUrl": "https://images.wcams-static.faa.gov/webimages/1076/26/13996-1785028475546.jpg",
+        "semanticScore": 0.001119
+      }
+    ]
+  }
+]

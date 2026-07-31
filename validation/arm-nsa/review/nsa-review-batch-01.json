@@ -1,0 +1,18 @@
+[
+  {
+    "candidateId": "nsa-01",
+    "image": "nsa-01-fullres-360.jpg",
+    "day": "20240908",
+    "observedAt": "2024-09-08T21:28:00Z",
+    "measuredDirectNormalIrradianceWm2": 106.31,
+    "measuredRainRateMmHr": 0.05,
+    "airTemperatureC": 5.05,
+    "relativeHumidityPct": 93.9,
+    "sunElevationDeg": 23.49,
+    "expectedRainbowTopElevationDeg": 18.51,
+    "eventStart": "2024-09-08T21:28:00Z",
+    "eventEnd": "2024-09-08T21:28:00Z",
+    "matchingMinutes": 1,
+    "targetingScore": 65.49
+  }
+]

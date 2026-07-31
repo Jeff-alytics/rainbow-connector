@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-25T20:46:23.334684Z",
+  "site": "ARM BNF M1, Bankhead National Forest, Alabama",
+  "cameraDays": 647,
+  "matchingMinutes": 24,
+  "events": [
+    {
+      "day": "20260621",
+      "observedAt": "2026-06-21T23:28:00Z",
+      "measuredDirectNormalIrradianceWm2": 443.64,
+      "measuredRainRateMmHr": 5.49,
+      "airTemperatureC": 24.31,
+      "relativeHumidityPct": 94.4,
+      "sunElevationDeg": 17.56,
+      "expectedRainbowTopElevationDeg": 24.44,
+      "eventStart": "2026-06-21T23:23:00Z",
+      "eventEnd": "2026-06-21T23:33:00Z",
+      "matchingMinutes": 11,
+      "targetingScore": 122.53
+    },
+    {
+      "day": "20250410",
+      "observedAt": "2025-04-10T22:52:00Z",
+      "measuredDirectNormalIrradianceWm2": 310.98,
+      "measuredRainRateMmHr": 3.98,
+      "airTemperatureC": 21.57,
+      "relativeHumidityPct": 52.99,
+      "sunElevationDeg": 16.74,
+      "expectedRainbowTopElevationDeg": 25.26,
+      "eventStart": "2025-04-10T22:50:00Z",
+      "eventEnd": "2025-04-10T22:53:00Z",
+      "matchingMinutes": 4,
+      "targetingScore": 110.01
+    },
+    {
+      "day": "20250919",
+      "observedAt": "2025-09-19T21:47:00Z",
+      "measuredDirectNormalIrradianceWm2": 349.46,
+      "measuredRainRateMmHr": 0.24,
+      "airTemperatureC": 20.85,
+      "relativeHumidityPct": 95.3,
+      "sunElevationDeg": 24.46,
+      "expectedRainbowTopElevationDeg": 17.54,
+      "eventStart": "2025-09-19T21:45:00Z",
+      "eventEnd": "2025-09-19T21:52:00Z",
+      "matchingMinutes": 8,
+      "targetingScore": 88.27
+    },
+    {
+      "day": "20250411",
+      "observedAt": "2025-04-11T22:36:00Z",
+      "measuredDirectNormalIrradianceWm2": 165.87,
+      "measuredRainRateMmHr": 0.61,
+      "airTemperatureC": 12.75,
+      "relativeHumidityPct": 78.59,
+      "sunElevationDeg": 20.18,
+      "expectedRainbowTopElevationDeg": 21.82,
+      "eventStart": "2025-04-11T22:36:00Z",
+      "eventEnd": "2025-04-11T22:36:00Z",
+      "matchingMinutes": 1,
+      "targetingScore": 76.76
+    }
+  ],
+  "errors": []
+}

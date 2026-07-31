@@ -1,0 +1,525 @@
+{
+  "schemaVersion": 1,
+  "methodVersion": "band2-temporal-window-offline-2026-07-v1",
+  "purpose": "Test the requested plus/minus-15-minute Band-2 maximum on the Baltimore confirmed bow.",
+  "observationWindow": {
+    "windowStart": "2026-07-28T23:25:00Z",
+    "windowEnd": "2026-07-28T23:45:00Z",
+    "reportedBowStart": "2026-07-28T23:30:00Z",
+    "reportedBowEnd": "2026-07-28T23:34:00Z",
+    "precision": "observer_reported_time"
+  },
+  "mrmsReplayContentSha256": "36e3e884878cca313c9aafb73e4147a825fc651d0fcde3898817d131d2e84f39",
+  "interpretationGuard": "Offline sensitivity test only; it does not alter sunlight-v2 or public classification.",
+  "samples": [
+    {
+      "targetAt": "2026-07-28T23:30:00Z",
+      "points": [
+        {
+          "name": "Baltimore observer reference",
+          "lat": 39.2904,
+          "lon": -76.6122,
+          "temporalFramesUsed": 6,
+          "targetFrameGapFraction": 0.0,
+          "temporalMaxGapFraction": 0.6938775510204082,
+          "peakObservedAt": "2026-07-28T23:41:17Z",
+          "frames": [
+            {
+              "observedAt": "2026-07-28T23:16:17Z",
+              "timeOffsetMinutes": -13.7,
+              "sunElevationDeg": 11.33,
+              "maxGapFraction": 0.24489795918367346,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.24489795918367346,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:21:17Z",
+              "timeOffsetMinutes": -8.7,
+              "sunElevationDeg": 10.4,
+              "maxGapFraction": 0.14285714285714285,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.14285714285714285,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:26:17Z",
+              "timeOffsetMinutes": -3.7,
+              "sunElevationDeg": 9.47,
+              "maxGapFraction": 0.3877551020408163,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.3877551020408163,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:31:17Z",
+              "timeOffsetMinutes": 1.3,
+              "sunElevationDeg": 8.55,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:36:17Z",
+              "timeOffsetMinutes": 6.3,
+              "sunElevationDeg": 7.63,
+              "maxGapFraction": 0.22448979591836735,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.22448979591836735
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:41:17Z",
+              "timeOffsetMinutes": 11.3,
+              "sunElevationDeg": 6.71,
+              "maxGapFraction": 0.6938775510204082,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.6938775510204082
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dundalk observer reference",
+          "lat": 39.2507,
+          "lon": -76.5205,
+          "temporalFramesUsed": 6,
+          "targetFrameGapFraction": 0.0,
+          "temporalMaxGapFraction": 0.7755102040816326,
+          "peakObservedAt": "2026-07-28T23:21:17Z",
+          "frames": [
+            {
+              "observedAt": "2026-07-28T23:16:17Z",
+              "timeOffsetMinutes": -13.7,
+              "sunElevationDeg": 11.25,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:21:17Z",
+              "timeOffsetMinutes": -8.7,
+              "sunElevationDeg": 10.32,
+              "maxGapFraction": 0.7755102040816326,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.7755102040816326,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:26:17Z",
+              "timeOffsetMinutes": -3.7,
+              "sunElevationDeg": 9.39,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:31:17Z",
+              "timeOffsetMinutes": 1.3,
+              "sunElevationDeg": 8.47,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:36:17Z",
+              "timeOffsetMinutes": 6.3,
+              "sunElevationDeg": 7.55,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:41:17Z",
+              "timeOffsetMinutes": 11.3,
+              "sunElevationDeg": 6.63,
+              "maxGapFraction": 0.061224489795918366,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.061224489795918366
+              }
+            }
+          ]
+        },
+        {
+          "name": "nearest production-stride seed",
+          "lat": 39.2632,
+          "lon": -76.672,
+          "temporalFramesUsed": 6,
+          "targetFrameGapFraction": 0.08163265306122448,
+          "temporalMaxGapFraction": 0.8367346938775511,
+          "peakObservedAt": "2026-07-28T23:41:17Z",
+          "frames": [
+            {
+              "observedAt": "2026-07-28T23:16:17Z",
+              "timeOffsetMinutes": -13.7,
+              "sunElevationDeg": 11.37,
+              "maxGapFraction": 0.5510204081632653,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.5510204081632653,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:21:17Z",
+              "timeOffsetMinutes": -8.7,
+              "sunElevationDeg": 10.44,
+              "maxGapFraction": 0.22448979591836735,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.22448979591836735,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:26:17Z",
+              "timeOffsetMinutes": -3.7,
+              "sunElevationDeg": 9.51,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:31:17Z",
+              "timeOffsetMinutes": 1.3,
+              "sunElevationDeg": 8.59,
+              "maxGapFraction": 0.08163265306122448,
+              "scenarioGapFractions": {
+                "observer": 0.08163265306122448,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:36:17Z",
+              "timeOffsetMinutes": 6.3,
+              "sunElevationDeg": 7.67,
+              "maxGapFraction": 0.04081632653061224,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.04081632653061224
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:41:17Z",
+              "timeOffsetMinutes": 11.3,
+              "sunElevationDeg": 6.75,
+              "maxGapFraction": 0.8367346938775511,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.8367346938775511
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "targetAt": "2026-07-28T23:40:00Z",
+      "points": [
+        {
+          "name": "Baltimore observer reference",
+          "lat": 39.2904,
+          "lon": -76.6122,
+          "temporalFramesUsed": 6,
+          "targetFrameGapFraction": 0.6938775510204082,
+          "temporalMaxGapFraction": 1.0,
+          "peakObservedAt": "2026-07-28T23:46:17Z",
+          "frames": [
+            {
+              "observedAt": "2026-07-28T23:26:17Z",
+              "timeOffsetMinutes": -13.7,
+              "sunElevationDeg": 9.47,
+              "maxGapFraction": 0.3877551020408163,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.3877551020408163,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:31:17Z",
+              "timeOffsetMinutes": -8.7,
+              "sunElevationDeg": 8.55,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:36:17Z",
+              "timeOffsetMinutes": -3.7,
+              "sunElevationDeg": 7.63,
+              "maxGapFraction": 0.22448979591836735,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.22448979591836735
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:41:17Z",
+              "timeOffsetMinutes": 1.3,
+              "sunElevationDeg": 6.71,
+              "maxGapFraction": 0.6938775510204082,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.6938775510204082
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:46:17Z",
+              "timeOffsetMinutes": 6.3,
+              "sunElevationDeg": 5.8,
+              "maxGapFraction": 1.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.5102040816326531,
+                "sunwardCloud6Km": 1.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:51:17Z",
+              "timeOffsetMinutes": 11.3,
+              "sunElevationDeg": 4.89,
+              "maxGapFraction": 1.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 1.0,
+                "sunwardCloud6Km": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dundalk observer reference",
+          "lat": 39.2507,
+          "lon": -76.5205,
+          "temporalFramesUsed": 6,
+          "targetFrameGapFraction": 0.061224489795918366,
+          "temporalMaxGapFraction": 1.0,
+          "peakObservedAt": "2026-07-28T23:46:17Z",
+          "frames": [
+            {
+              "observedAt": "2026-07-28T23:26:17Z",
+              "timeOffsetMinutes": -13.7,
+              "sunElevationDeg": 9.39,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:31:17Z",
+              "timeOffsetMinutes": -8.7,
+              "sunElevationDeg": 8.47,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:36:17Z",
+              "timeOffsetMinutes": -3.7,
+              "sunElevationDeg": 7.55,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:41:17Z",
+              "timeOffsetMinutes": 1.3,
+              "sunElevationDeg": 6.63,
+              "maxGapFraction": 0.061224489795918366,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.061224489795918366
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:46:17Z",
+              "timeOffsetMinutes": 6.3,
+              "sunElevationDeg": 5.72,
+              "maxGapFraction": 1.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 1.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:51:17Z",
+              "timeOffsetMinutes": 11.3,
+              "sunElevationDeg": 4.81,
+              "maxGapFraction": 1.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.6938775510204082,
+                "sunwardCloud6Km": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "name": "nearest production-stride seed",
+          "lat": 39.2392,
+          "lon": -76.6598,
+          "temporalFramesUsed": 6,
+          "targetFrameGapFraction": 0.8367346938775511,
+          "temporalMaxGapFraction": 1.0,
+          "peakObservedAt": "2026-07-28T23:51:17Z",
+          "frames": [
+            {
+              "observedAt": "2026-07-28T23:26:17Z",
+              "timeOffsetMinutes": -13.7,
+              "sunElevationDeg": 9.49,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:31:17Z",
+              "timeOffsetMinutes": -8.7,
+              "sunElevationDeg": 8.57,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:36:17Z",
+              "timeOffsetMinutes": -3.7,
+              "sunElevationDeg": 7.65,
+              "maxGapFraction": 0.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.0
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:41:17Z",
+              "timeOffsetMinutes": 1.3,
+              "sunElevationDeg": 6.73,
+              "maxGapFraction": 0.8367346938775511,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.0,
+                "sunwardCloud6Km": 0.8367346938775511
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:46:17Z",
+              "timeOffsetMinutes": 6.3,
+              "sunElevationDeg": 5.82,
+              "maxGapFraction": 0.8775510204081632,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 0.061224489795918366,
+                "sunwardCloud6Km": 0.8775510204081632
+              }
+            },
+            {
+              "observedAt": "2026-07-28T23:51:17Z",
+              "timeOffsetMinutes": 11.3,
+              "sunElevationDeg": 4.91,
+              "maxGapFraction": 1.0,
+              "scenarioGapFractions": {
+                "observer": 0.0,
+                "sunwardCloud2Km": 0.0,
+                "sunwardCloud4Km": 1.0,
+                "sunwardCloud6Km": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "contentSha256": "6ae9f77030e416013c901a1abb16014e0ce061b3e9f6b4e348702f97ec25edfb"
+}

@@ -1,0 +1,734 @@
+{
+  "schemaVersion": 1,
+  "fixtureId": "rainbow-positive-regression-v1",
+  "createdAt": "2026-07-29T15:00:00Z",
+  "purpose": "Frozen positive-event recall fixture. It is not a precision dataset and intentionally contains no negative controls.",
+  "rules": {
+    "astronomicalHorizonDeg": -0.833,
+    "physicalBowSunMaximumDeg": 42,
+    "currentWorkerSeedSunRangeDeg": [
+      0,
+      30
+    ],
+    "currentStrictGoSunRangeDeg": [
+      5,
+      22
+    ],
+    "currentPossibleSunRangeDeg": [
+      0,
+      30
+    ],
+    "currentDirectGoMinWm2": 200,
+    "currentDirectPossibleMinWm2": 120
+  },
+  "liveScanBaseline": {
+    "generatedAt": "2026-07-29T14:20:25.435629Z",
+    "goCandidates": 1,
+    "possibleCandidates": 38,
+    "errors": 0,
+    "dniErrors": 0,
+    "runtimeMs": 15625
+  },
+  "events": [
+    {
+      "id": "arm-lamont-039",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "arm-lamont-039",
+      "observer": {
+        "lat": 36.607322,
+        "lon": -97.487643,
+        "uncertaintyKm": 0.1,
+        "basis": "fixed ARM SGP camera"
+      },
+      "observation": {
+        "representativeAt": "2024-06-30T00:05:00Z",
+        "windowStart": "2024-06-30T00:05:00Z",
+        "windowEnd": "2024-06-30T00:05:00Z",
+        "precision": "human-reviewed-five-frame-sequence"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "surface-02-fullres",
+        "sourceFile": "validation/arm-lamont/human-labels.json",
+        "camera": "ARM Southern Great Plains C1, Lamont, Oklahoma"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 20.09,
+        "antiSolarAzimuthDeg": 104.5,
+        "directNormalIrradianceWm2": 217.6,
+        "cloudCoverPct": 66,
+        "precipitationMm": 1
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "arm-lamont-012",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "arm-lamont-012",
+      "observer": {
+        "lat": 36.607322,
+        "lon": -97.487643,
+        "uncertaintyKm": 0.1,
+        "basis": "fixed ARM SGP camera"
+      },
+      "observation": {
+        "representativeAt": "2025-07-26T00:20:00Z",
+        "windowStart": "2025-07-26T00:20:00Z",
+        "windowEnd": "2025-07-26T00:20:00Z",
+        "precision": "human-reviewed-five-frame-sequence"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "surface-03-fullres",
+        "sourceFile": "validation/arm-lamont/human-labels.json",
+        "camera": "ARM Southern Great Plains C1, Lamont, Oklahoma"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 18.68,
+        "antiSolarAzimuthDeg": 100.85,
+        "directNormalIrradianceWm2": 363.9,
+        "cloudCoverPct": 86,
+        "precipitationMm": 2.7
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "faa-faax-02",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "faa-faax-02",
+      "observer": {
+        "lat": 46.76488,
+        "lon": -100.89416,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-06-30T00:55:00Z",
+        "windowStart": "2026-06-30T00:43:14.497Z",
+        "windowEnd": "2026-06-30T01:11:50.125Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faax-02",
+        "sourceFile": "validation/faa/expansion-review/faa-review-batch-02.json",
+        "camera": "FAA WeatherCam Mandan Reg Airport Lawler Field, ND"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 15.44,
+        "antiSolarAzimuthDeg": 107.65,
+        "cameraBearingDeg": 90,
+        "cameraDifferenceDeg": 17.65,
+        "rainInches": null,
+        "weather": "VCTS RA",
+        "rankingScore": null
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "faa-faax-04",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "faa-faax-04",
+      "observer": {
+        "lat": 47.28697,
+        "lon": -68.313774,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-06-30T22:53:00Z",
+        "windowStart": "2026-06-30T22:31:08.177Z",
+        "windowEnd": "2026-06-30T23:07:28.278Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faax-04",
+        "sourceFile": "validation/faa/expansion-review/faa-review-batch-02.json",
+        "camera": "FAA WeatherCam Northern Aroostook Reg Airport, ME"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 14.24,
+        "antiSolarAzimuthDeg": 108.85,
+        "cameraBearingDeg": 90,
+        "cameraDifferenceDeg": 18.85,
+        "rainInches": null,
+        "weather": null,
+        "rankingScore": null
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "faa-faan-02",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "science_only",
+      "eventGroup": "faa-faan-02",
+      "observer": {
+        "lat": 22.221214,
+        "lon": -159.49767,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-07-01T16:53:00Z",
+        "windowStart": "2026-07-01T16:32:07.624Z",
+        "windowEnd": "2026-07-01T17:07:41.849Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faan-02",
+        "sourceFile": "validation/faa/network-expansion-review/faa-review-batch-03.json",
+        "camera": "FAA WeatherCam Princeville, HI"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 10.88,
+        "antiSolarAzimuthDeg": 249.32,
+        "cameraBearingDeg": 225,
+        "cameraDifferenceDeg": 24.32,
+        "rainInches": 0.01,
+        "weather": null,
+        "rankingScore": 0.0732313
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": false
+      }
+    },
+    {
+      "id": "faa-faa-01",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "faa-faa-01",
+      "observer": {
+        "lat": 39.267445,
+        "lon": -103.66629,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-07-08T00:55:00Z",
+        "windowStart": "2026-07-08T00:42:09.171Z",
+        "windowEnd": "2026-07-08T01:15:46.263Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faa-01",
+        "sourceFile": "validation/faa/faa-ranked-pilot.json",
+        "camera": "FAA WeatherCam Limon, CO"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 14.95,
+        "antiSolarAzimuthDeg": 107.11,
+        "cameraBearingDeg": 80,
+        "cameraDifferenceDeg": 27.11,
+        "rainInches": 0.01,
+        "weather": "-TSRA",
+        "rankingScore": 0.0832804
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "faa-faan-04",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "science_only",
+      "eventGroup": "faa-faan-04",
+      "observer": {
+        "lat": 55.33518,
+        "lon": -132.7897,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-07-08T02:56:00Z",
+        "windowStart": "2026-07-08T02:41:02.028Z",
+        "windowEnd": "2026-07-08T03:15:12.256Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faan-04",
+        "sourceFile": "validation/faa/network-expansion-review/faa-review-batch-03.json",
+        "camera": "FAA WeatherCam Twelve Mile Arm, AK"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 18.43,
+        "antiSolarAzimuthDeg": 103.2,
+        "cameraBearingDeg": 90,
+        "cameraDifferenceDeg": 13.2,
+        "rainInches": 0.08,
+        "weather": "-RA",
+        "rankingScore": 0.04336205
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": false
+      }
+    },
+    {
+      "id": "faa-faa-07",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "faa-faa-07",
+      "observer": {
+        "lat": 40.044106,
+        "lon": -107.88861,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-07-09T01:53:00Z",
+        "windowStart": "2026-07-09T01:34:25.024Z",
+        "windowEnd": "2026-07-09T02:08:18.413Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faa-07",
+        "sourceFile": "validation/faa/faa-ranked-pilot.json",
+        "camera": "FAA WeatherCam Meeker Airport, CO"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 7.74,
+        "antiSolarAzimuthDeg": 112.87,
+        "cameraBearingDeg": 70,
+        "cameraDifferenceDeg": 42.87,
+        "rainInches": 0.0001,
+        "weather": "VCTS -RA",
+        "rankingScore": 0.05625180000000001
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "faa-faan-01",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "faa-faan-01",
+      "observer": {
+        "lat": 41.75605,
+        "lon": -111.82117,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-07-18T01:51:00Z",
+        "windowStart": "2026-07-18T01:35:55.763Z",
+        "windowEnd": "2026-07-18T02:10:12.182Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faan-01",
+        "sourceFile": "validation/faa/network-expansion-review/faa-review-batch-03.json",
+        "camera": "FAA WeatherCam Logan Regional Hospital, UT"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 10.82,
+        "antiSolarAzimuthDeg": 108.74,
+        "cameraBearingDeg": 87,
+        "cameraDifferenceDeg": 21.74,
+        "rainInches": 0.03,
+        "weather": null,
+        "rankingScore": 0.09204355
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "faa-faax-03",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "faa-faax-03",
+      "observer": {
+        "lat": 45.64865,
+        "lon": -68.69392,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-07-22T22:53:00Z",
+        "windowStart": "2026-07-22T22:39:22.426Z",
+        "windowEnd": "2026-07-22T23:12:58.364Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faax-03",
+        "sourceFile": "validation/faa/expansion-review/faa-review-batch-02.json",
+        "camera": "FAA WeatherCam Millinocket Municipal Airport, ME"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 12.37,
+        "antiSolarAzimuthDeg": 106.36,
+        "cameraBearingDeg": 90,
+        "cameraDifferenceDeg": 16.36,
+        "rainInches": null,
+        "weather": "-TSRA FG",
+        "rankingScore": null
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "faa-faa-06",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "faa-faa-06",
+      "observer": {
+        "lat": 39.91145,
+        "lon": -105.11482,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-07-23T00:45:00Z",
+        "windowStart": "2026-07-23T00:31:47.205Z",
+        "windowEnd": "2026-07-23T01:05:27.305Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faa-06",
+        "sourceFile": "validation/faa/faa-ranked-pilot.json",
+        "camera": "FAA WeatherCam Rocky Mountain Metro Airport, CO"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 16.93,
+        "antiSolarAzimuthDeg": 102.47,
+        "cameraBearingDeg": 138,
+        "cameraDifferenceDeg": 35.53,
+        "rainInches": 0.0,
+        "weather": "-TSRA",
+        "rankingScore": 0.06187580000000001
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "faa-faa-03",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "faa-faa-03",
+      "observer": {
+        "lat": 37.95444,
+        "lon": -107.9019,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-07-24T00:55:00Z",
+        "windowStart": "2026-07-24T00:40:30.907Z",
+        "windowEnd": "2026-07-24T01:15:06.559Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faa-03",
+        "sourceFile": "validation/faa/faa-ranked-pilot.json",
+        "camera": "FAA WeatherCam Telluride, CO"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 16.61,
+        "antiSolarAzimuthDeg": 102.7,
+        "cameraBearingDeg": 139,
+        "cameraDifferenceDeg": 36.3,
+        "rainInches": 0.05,
+        "weather": null,
+        "rankingScore": 0.0714853
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "faa-faax-01",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "faa-faax-01",
+      "observer": {
+        "lat": 48.36845,
+        "lon": -107.91262,
+        "uncertaintyKm": 0.2,
+        "basis": "fixed FAA camera"
+      },
+      "observation": {
+        "representativeAt": "2026-07-26T01:55:00Z",
+        "windowStart": "2026-07-26T01:41:16.472Z",
+        "windowEnd": "2026-07-26T02:14:35.931Z",
+        "precision": "one_or_more_frames_in_window"
+      },
+      "provenance": {
+        "kind": "human_camera_review",
+        "sourceId": "faax-01",
+        "sourceFile": "validation/faa/expansion-review/faa-review-batch-02.json",
+        "camera": "FAA WeatherCam Malta Airport, MT"
+      },
+      "frozenEvidence": {
+        "sunElevationDeg": 8.68,
+        "antiSolarAzimuthDeg": 109.76,
+        "cameraBearingDeg": 90,
+        "cameraDifferenceDeg": 19.76,
+        "rainInches": null,
+        "weather": null,
+        "rankingScore": null
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "production-bozeman-pass-20260727",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "bozeman-pass-20260727",
+      "observer": {
+        "lat": 45.5061,
+        "lon": -110.9966,
+        "uncertaintyKm": 0.2,
+        "basis": "worker observer seed"
+      },
+      "observation": {
+        "representativeAt": "2026-07-27T01:04:57.286166Z",
+        "windowStart": "2026-07-27T00:45:50.191Z",
+        "windowEnd": "2026-07-27T01:19:05.056Z",
+        "confirmedFrameAt": "2026-07-27T01:10:54.716Z",
+        "precision": "confirmed_frame"
+      },
+      "provenance": {
+        "kind": "production_review",
+        "sourceId": "go-202607270104-cc49d0640d",
+        "camera": "FAA WeatherCam Bozeman Pass, camera 12000"
+      },
+      "frozenEvidence": {
+        "candidateClass": "GO",
+        "score": 89.5,
+        "sunElevationDeg": 18.95,
+        "directNormalIrradianceWm2": 646,
+        "cloudCoverPct": 100,
+        "rainDistanceKm": 8,
+        "goesDecision": "go",
+        "goesDsrf": {
+          "value": 282.00823974609375,
+          "positive": true,
+          "observedAt": "2026-07-27T00:50:21Z"
+        },
+        "goesAcmc": {
+          "value": 0,
+          "positive": true,
+          "observedAt": "2026-07-27T01:01:18Z"
+        }
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "social-baltimore-20260728",
+      "label": "rainbow",
+      "evidenceClass": "social_report",
+      "productionScope": "conus_recall",
+      "eventGroup": "baltimore-dundalk-20260728",
+      "observer": {
+        "lat": 39.2904,
+        "lon": -76.6122,
+        "uncertaintyKm": 12,
+        "basis": "named city, not image geolocation"
+      },
+      "observation": {
+        "representativeAt": "2026-07-28T23:32:00Z",
+        "windowStart": "2026-07-28T23:25:00Z",
+        "windowEnd": "2026-07-28T23:45:00Z",
+        "reportedBowStart": "2026-07-28T23:30:00Z",
+        "reportedBowEnd": "2026-07-28T23:34:00Z",
+        "postAt": "2026-07-28T23:17:32.121Z",
+        "precision": "observer_reported_time"
+      },
+      "provenance": {
+        "kind": "social_report",
+        "url": "https://x.com/FOXBaltimore/status/2082244090771448213"
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "social-dundalk-20260728",
+      "label": "rainbow",
+      "evidenceClass": "social_report",
+      "productionScope": "conus_recall",
+      "eventGroup": "baltimore-dundalk-20260728",
+      "observer": {
+        "lat": 39.2507,
+        "lon": -76.5205,
+        "uncertaintyKm": 8,
+        "basis": "named community, not image geolocation"
+      },
+      "observation": {
+        "representativeAt": "2026-07-28T23:32:00Z",
+        "windowStart": "2026-07-28T23:25:00Z",
+        "windowEnd": "2026-07-28T23:45:00Z",
+        "reportedBowStart": "2026-07-28T23:30:00Z",
+        "reportedBowEnd": "2026-07-28T23:34:00Z",
+        "postAt": "2026-07-28T23:37:42.845Z",
+        "precision": "observer_reported_time"
+      },
+      "provenance": {
+        "kind": "social_report",
+        "url": "https://x.com/boothy443/status/2082249168916029923"
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "social-person-county-20260728",
+      "label": "rainbow",
+      "evidenceClass": "social_report",
+      "productionScope": "conus_recall",
+      "eventGroup": "person-county-20260728",
+      "observer": {
+        "lat": 36.39,
+        "lon": -78.98,
+        "uncertaintyKm": 25,
+        "basis": "county reference point, not image geolocation"
+      },
+      "observation": {
+        "windowStart": "2026-07-28T23:15:00Z",
+        "windowEnd": "2026-07-29T00:59:53.825Z",
+        "postAt": "2026-07-29T00:59:53.825Z",
+        "precision": "bounded_from_post_and_user_report"
+      },
+      "provenance": {
+        "kind": "social_report",
+        "url": "https://x.com/dwaynereaves/status/2082269850945118529"
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "social-idaho-20260728",
+      "label": "rainbow",
+      "evidenceClass": "social_report",
+      "productionScope": "region_only",
+      "eventGroup": "idaho-20260728",
+      "observer": {
+        "region": "Idaho",
+        "basis": "user location only; no city established"
+      },
+      "observation": {
+        "windowStart": "2026-07-28T23:00:00Z",
+        "windowEnd": "2026-07-29T01:28:12.139Z",
+        "postAt": "2026-07-29T01:28:12.139Z",
+        "precision": "state_and_bounded_post_time"
+      },
+      "provenance": {
+        "kind": "corroborated_social_report",
+        "urls": [
+          "https://x.com/im_a_preacher/status/2082276974190579770",
+          "https://x.com/brianmgwyn/status/2082274982315651464"
+        ]
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    },
+    {
+      "id": "production-delano-20260729",
+      "label": "rainbow",
+      "evidenceClass": "camera_confirmed",
+      "productionScope": "conus_recall",
+      "eventGroup": "delano-20260729",
+      "observer": {
+        "lat": 41.723,
+        "lon": -114.1839,
+        "uncertaintyKm": 0.2,
+        "basis": "worker observer seed"
+      },
+      "observation": {
+        "representativeAt": "2026-07-29T02:39:56.896448Z",
+        "windowStart": "2026-07-29T02:20:24.778Z",
+        "windowEnd": "2026-07-29T03:01:27.311Z",
+        "confirmedFrameAt": "2026-07-29T02:20:24.778Z",
+        "precision": "confirmed_frame"
+      },
+      "provenance": {
+        "kind": "production_review",
+        "sourceId": "go-202607290239-40cabbcad8",
+        "camera": "FAA WeatherCam Delano, camera 12981"
+      },
+      "frozenEvidence": {
+        "candidateClass": "POSSIBLE",
+        "score": 51.2,
+        "sunElevationDeg": 3.16,
+        "directNormalIrradianceWm2": 202,
+        "cloudCoverPct": 0,
+        "rainDistanceKm": 8,
+        "goesDecision": "watch",
+        "goesDsrf": {
+          "positive": false,
+          "negative": true
+        },
+        "goesAcmc": {
+          "value": 0,
+          "positive": true
+        }
+      },
+      "expected": {
+        "rainbowPossible": true,
+        "recallProbe": true
+      }
+    }
+  ],
+  "contentSha256": "6a4eb03a4bf05267202fb5baed799b5d2ee739b03e7e72647345ee0908fe2053"
+}

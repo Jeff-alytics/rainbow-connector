@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "site_owner",
+  "reviewedAt": "2026-07-25",
+  "source": "globe-review-batch-60",
+  "summary": {
+    "rainbow": 1,
+    "noConfirmedRainbow": 59,
+    "qualityNote": "Many non-positive observation photo sets were not high quality."
+  },
+  "labels": [
+    {
+      "candidateId": "globe-01",
+      "label": "rainbow",
+      "positiveDirections": ["East", "South"],
+      "note": "Human-confirmed visible rainbow in the East and South photographs."
+    },
+    {
+      "candidateId": "globe-02",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-03",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-04",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-05",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-06",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-07",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-08",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-09",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-10",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-11",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-12",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-13",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-14",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-15",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-16",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-17",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-18",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-19",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-20",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-21",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-22",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-23",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-24",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-25",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-26",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-27",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-28",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-29",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-30",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-31",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-32",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-33",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-34",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-35",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-36",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-37",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-38",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-39",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-40",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-41",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-42",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-43",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-44",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-45",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-46",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-47",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-48",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-49",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-50",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-51",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-52",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-53",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-54",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-55",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-56",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-57",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-58",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-59",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    },
+    {
+      "candidateId": "globe-60",
+      "label": "no_confirmed_rainbow",
+      "note": "No rainbow reported; some source photographs had poor review quality."
+    }
+  ]
+}

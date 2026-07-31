@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "site_owner",
+  "reviewedAt": "2026-07-26",
+  "source": "faa-review-batch-02",
+  "status": "complete",
+  "summary": {
+    "reviewed": 4,
+    "rainbows": 4,
+    "precisionAtProvisionalCutoff": 1.0,
+    "provisionalCutoff": 0.055
+  },
+  "labels": [
+    {"candidateId": "faax-01", "label": "rainbow", "note": "Human-confirmed visible bow."},
+    {"candidateId": "faax-02", "label": "rainbow", "note": "Human-confirmed visible bow."},
+    {"candidateId": "faax-03", "label": "rainbow", "note": "Human-confirmed visible bow."},
+    {"candidateId": "faax-04", "label": "rainbow", "note": "Human-confirmed visible bow."}
+  ]
+}

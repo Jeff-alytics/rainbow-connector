@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "fixtureId": "rainbow-positive-regression-v1",
+  "fixtureContentSha256": "6a4eb03a4bf05267202fb5baed799b5d2ee739b03e7e72647345ee0908fe2053",
+  "historyFirstRunAt": "2026-06-13T22:09:52.253Z",
+  "historyLastRunAt": "2026-07-26T15:57:45.225Z",
+  "events": [
+    {
+      "eventId": "social-baltimore-20260728",
+      "windowStart": "2026-07-28T23:25:00Z",
+      "windowEnd": "2026-07-28T23:45:00Z",
+      "scansInWindow": 0,
+      "candidateWithin15Km": false,
+      "candidateWithin40Km": false,
+      "nearestCandidate": null,
+      "matchesWithin40Km": []
+    },
+    {
+      "eventId": "social-dundalk-20260728",
+      "windowStart": "2026-07-28T23:25:00Z",
+      "windowEnd": "2026-07-28T23:45:00Z",
+      "scansInWindow": 0,
+      "candidateWithin15Km": false,
+      "candidateWithin40Km": false,
+      "nearestCandidate": null,
+      "matchesWithin40Km": []
+    },
+    {
+      "eventId": "social-person-county-20260728",
+      "windowStart": "2026-07-28T23:15:00Z",
+      "windowEnd": "2026-07-29T00:59:53.825Z",
+      "scansInWindow": 0,
+      "candidateWithin15Km": false,
+      "candidateWithin40Km": false,
+      "nearestCandidate": null,
+      "matchesWithin40Km": []
+    }
+  ],
+  "contentSha256": "7b5bb4c5c7ddc8f27eb4d9ac7a63b133ffc9c9c199dfb93a31f43d21c252b16c"
+}

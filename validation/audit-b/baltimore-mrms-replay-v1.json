@@ -1,0 +1,2011 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Diagnostic regional replay; finer strides show seed sensitivity but do not reproduce the nationwide 400-candidate cap.",
+  "places": {
+    "Baltimore": {
+      "lat": 39.2904,
+      "lon": -76.6122
+    },
+    "Dundalk": {
+      "lat": 39.2507,
+      "lon": -76.5205
+    }
+  },
+  "observationWindow": {
+    "windowStart": "2026-07-28T23:25:00Z",
+    "windowEnd": "2026-07-28T23:45:00Z",
+    "reportedBowStart": "2026-07-28T23:30:00Z",
+    "reportedBowEnd": "2026-07-28T23:34:00Z",
+    "precision": "observer_reported_time"
+  },
+  "diagnosis": {
+    "classification": "corrected_window_radar_generation_confirmed_production_disposition_not_retained",
+    "generated": true,
+    "productionArtifactScansRetained": false,
+    "correctedWindowProductionStride": {
+      "2026-07-28T23:30:00Z": {
+        "Baltimore": {
+          "distanceKm": 6.0,
+          "observerLat": 39.2632,
+          "observerLon": -76.672,
+          "rainLat": 39.195,
+          "rainLon": -76.395,
+          "rainDistanceKm": 25,
+          "rainRateMmHr": 7.3,
+          "sunElevationDeg": 8.6,
+          "radarScore": 88.2
+        },
+        "Dundalk": {
+          "distanceKm": 13.1,
+          "observerLat": 39.2632,
+          "observerLon": -76.672,
+          "rainLat": 39.195,
+          "rainLon": -76.395,
+          "rainDistanceKm": 25,
+          "rainRateMmHr": 7.3,
+          "sunElevationDeg": 8.6,
+          "radarScore": 88.2
+        }
+      },
+      "2026-07-28T23:40:00Z": {
+        "Baltimore": {
+          "distanceKm": 7.0,
+          "observerLat": 39.2392,
+          "observerLon": -76.6598,
+          "rainLat": 39.195,
+          "rainLon": -76.495,
+          "rainDistanceKm": 15,
+          "rainRateMmHr": 6.2,
+          "sunElevationDeg": 6.83,
+          "radarScore": 79.8
+        },
+        "Dundalk": {
+          "distanceKm": 12.0,
+          "observerLat": 39.2392,
+          "observerLon": -76.6598,
+          "rainLat": 39.195,
+          "rainLon": -76.495,
+          "rainDistanceKm": 15,
+          "rainRateMmHr": 6.2,
+          "sunElevationDeg": 6.83,
+          "radarScore": 79.8
+        }
+      }
+    },
+    "caveat": "This regional replay proves that production-stride radar seeding found nearby observer geometry. It does not reproduce nationwide clustering, the 400-candidate cap, or the exact live Open-Meteo DNI for rejected seeds."
+  },
+  "summary": {
+    "stride10Baltimore": {
+      "distanceKm": 2.9,
+      "observerLat": 39.3077,
+      "observerLon": -76.5867,
+      "rainLat": 39.295,
+      "rainLon": -76.495,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 1.0,
+      "sunElevationDeg": 18.09,
+      "radarScore": 65.1
+    },
+    "stride10Dundalk": {
+      "distanceKm": 8.5,
+      "observerLat": 39.3077,
+      "observerLon": -76.5867,
+      "rainLat": 39.295,
+      "rainLon": -76.495,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 1.0,
+      "sunElevationDeg": 18.09,
+      "radarScore": 65.1
+    },
+    "stride5Baltimore": {
+      "distanceKm": 3.0,
+      "observerLat": 39.2685,
+      "observerLon": -76.633,
+      "rainLat": 39.245,
+      "rainLon": -76.545,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 5.3,
+      "sunElevationDeg": 6.88,
+      "radarScore": 80.1
+    },
+    "stride5Dundalk": {
+      "distanceKm": 9.9,
+      "observerLat": 39.2685,
+      "observerLon": -76.633,
+      "rainLat": 39.245,
+      "rainLon": -76.545,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 5.3,
+      "sunElevationDeg": 6.88,
+      "radarScore": 80.1
+    },
+    "stride2Baltimore": {
+      "distanceKm": 0.6,
+      "observerLat": 39.2877,
+      "observerLon": -76.6066,
+      "rainLat": 39.275,
+      "rainLon": -76.515,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 1.5,
+      "sunElevationDeg": 18.1,
+      "radarScore": 69.9
+    },
+    "stride2Dundalk": {
+      "distanceKm": 8.5,
+      "observerLat": 39.2877,
+      "observerLon": -76.6066,
+      "rainLat": 39.275,
+      "rainLon": -76.515,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 1.5,
+      "sunElevationDeg": 18.1,
+      "radarScore": 69.9
+    },
+    "stride1Baltimore": {
+      "distanceKm": 8.1,
+      "observerLat": 39.3067,
+      "observerLon": -76.7038,
+      "rainLat": 39.285,
+      "rainLon": -76.615,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 1.3,
+      "sunElevationDeg": 8.79,
+      "radarScore": 72.2
+    },
+    "stride1Dundalk": {
+      "distanceKm": 11.5,
+      "observerLat": 39.2085,
+      "observerLon": -76.6429,
+      "rainLat": 39.185,
+      "rainLon": -76.555,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 1.9,
+      "sunElevationDeg": 6.87,
+      "radarScore": 68.2
+    }
+  },
+  "correctedWindowSummary": {
+    "stride10Baltimore": {
+      "distanceKm": 6.0,
+      "observerLat": 39.2632,
+      "observerLon": -76.672,
+      "rainLat": 39.195,
+      "rainLon": -76.395,
+      "rainDistanceKm": 25,
+      "rainRateMmHr": 7.3,
+      "sunElevationDeg": 8.6,
+      "radarScore": 88.2
+    },
+    "stride10Dundalk": {
+      "distanceKm": 12.0,
+      "observerLat": 39.2392,
+      "observerLon": -76.6598,
+      "rainLat": 39.195,
+      "rainLon": -76.495,
+      "rainDistanceKm": 15,
+      "rainRateMmHr": 6.2,
+      "sunElevationDeg": 6.83,
+      "radarScore": 79.8
+    },
+    "stride5Baltimore": {
+      "distanceKm": 3.0,
+      "observerLat": 39.2685,
+      "observerLon": -76.633,
+      "rainLat": 39.245,
+      "rainLon": -76.545,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 5.3,
+      "sunElevationDeg": 6.88,
+      "radarScore": 80.1
+    },
+    "stride5Dundalk": {
+      "distanceKm": 9.9,
+      "observerLat": 39.2685,
+      "observerLon": -76.633,
+      "rainLat": 39.245,
+      "rainLon": -76.545,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 5.3,
+      "sunElevationDeg": 6.88,
+      "radarScore": 80.1
+    },
+    "stride2Baltimore": {
+      "distanceKm": 5.6,
+      "observerLat": 39.2585,
+      "observerLon": -76.663,
+      "rainLat": 39.235,
+      "rainLon": -76.575,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 1.9,
+      "sunElevationDeg": 6.9,
+      "radarScore": 68.3
+    },
+    "stride2Dundalk": {
+      "distanceKm": 12.3,
+      "observerLat": 39.2585,
+      "observerLon": -76.663,
+      "rainLat": 39.235,
+      "rainLon": -76.575,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 1.9,
+      "sunElevationDeg": 6.9,
+      "radarScore": 68.3
+    },
+    "stride1Baltimore": {
+      "distanceKm": 8.1,
+      "observerLat": 39.3067,
+      "observerLon": -76.7038,
+      "rainLat": 39.285,
+      "rainLon": -76.615,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 1.3,
+      "sunElevationDeg": 8.79,
+      "radarScore": 72.2
+    },
+    "stride1Dundalk": {
+      "distanceKm": 11.5,
+      "observerLat": 39.2085,
+      "observerLon": -76.6429,
+      "rainLat": 39.185,
+      "rainLon": -76.555,
+      "rainDistanceKm": 8,
+      "rainRateMmHr": 1.9,
+      "sunElevationDeg": 6.87,
+      "radarScore": 68.2
+    }
+  },
+  "scans": [
+    {
+      "observedAt": "2026-07-28T21:50:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-215000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 32,
+          "diagnostics": {
+            "sampledWetCells": 212,
+            "rainEdgeCells": 158,
+            "lowSunRainEdges": 158,
+            "dryObserverSeeds": 107,
+            "nonConusObserverSeeds": 70,
+            "clusteredObserverSeeds": 32
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 20.0,
+              "observerLat": 39.1139,
+              "observerLon": -76.6587,
+              "rainLat": 39.095,
+              "rainLon": -76.195,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 12.4,
+              "sunElevationDeg": 27.46,
+              "radarScore": 56.7
+            },
+            "Dundalk": {
+              "distanceKm": 19.3,
+              "observerLat": 39.1139,
+              "observerLon": -76.6587,
+              "rainLat": 39.095,
+              "rainLon": -76.195,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 12.4,
+              "sunElevationDeg": 27.46,
+              "radarScore": 56.7
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 43,
+          "diagnostics": {
+            "sampledWetCells": 799,
+            "rainEdgeCells": 497,
+            "lowSunRainEdges": 497,
+            "dryObserverSeeds": 342,
+            "nonConusObserverSeeds": 270,
+            "clusteredObserverSeeds": 43
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 20.0,
+              "observerLat": 39.1139,
+              "observerLon": -76.6587,
+              "rainLat": 39.095,
+              "rainLon": -76.195,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 12.4,
+              "sunElevationDeg": 27.46,
+              "radarScore": 56.7
+            },
+            "Dundalk": {
+              "distanceKm": 19.3,
+              "observerLat": 39.1139,
+              "observerLon": -76.6587,
+              "rainLat": 39.095,
+              "rainLon": -76.195,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 12.4,
+              "sunElevationDeg": 27.46,
+              "radarScore": 56.7
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 55,
+          "diagnostics": {
+            "sampledWetCells": 4855,
+            "rainEdgeCells": 2020,
+            "lowSunRainEdges": 2020,
+            "dryObserverSeeds": 1475,
+            "nonConusObserverSeeds": 1099,
+            "clusteredObserverSeeds": 55
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 20.0,
+              "observerLat": 39.1139,
+              "observerLon": -76.6587,
+              "rainLat": 39.095,
+              "rainLon": -76.195,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 12.4,
+              "sunElevationDeg": 27.46,
+              "radarScore": 56.7
+            },
+            "Dundalk": {
+              "distanceKm": 19.3,
+              "observerLat": 39.1139,
+              "observerLon": -76.6587,
+              "rainLat": 39.095,
+              "rainLon": -76.195,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 12.4,
+              "sunElevationDeg": 27.46,
+              "radarScore": 56.7
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 62,
+          "diagnostics": {
+            "sampledWetCells": 19456,
+            "rainEdgeCells": 5432,
+            "lowSunRainEdges": 5432,
+            "dryObserverSeeds": 4000,
+            "nonConusObserverSeeds": 3155,
+            "clusteredObserverSeeds": 62
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 15.4,
+              "observerLat": 39.1684,
+              "observerLon": -76.6979,
+              "rainLat": 39.165,
+              "rainLon": -76.605,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 4.9,
+              "sunElevationDeg": 27.78,
+              "radarScore": 56.5
+            },
+            "Dundalk": {
+              "distanceKm": 17.8,
+              "observerLat": 39.1684,
+              "observerLon": -76.6979,
+              "rainLat": 39.165,
+              "rainLon": -76.605,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 4.9,
+              "sunElevationDeg": 27.78,
+              "radarScore": 56.5
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T22:00:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-220000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 29,
+          "diagnostics": {
+            "sampledWetCells": 210,
+            "rainEdgeCells": 156,
+            "lowSunRainEdges": 156,
+            "dryObserverSeeds": 96,
+            "nonConusObserverSeeds": 88,
+            "clusteredObserverSeeds": 29
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 19.1,
+              "observerLat": 39.1238,
+              "observerLon": -76.5578,
+              "rainLat": 39.095,
+              "rainLon": -76.095,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 3.6,
+              "sunElevationDeg": 25.45,
+              "radarScore": 57.2
+            },
+            "Dundalk": {
+              "distanceKm": 14.4,
+              "observerLat": 39.1238,
+              "observerLon": -76.5578,
+              "rainLat": 39.095,
+              "rainLon": -76.095,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 3.6,
+              "sunElevationDeg": 25.45,
+              "radarScore": 57.2
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 46,
+          "diagnostics": {
+            "sampledWetCells": 848,
+            "rainEdgeCells": 514,
+            "lowSunRainEdges": 514,
+            "dryObserverSeeds": 345,
+            "nonConusObserverSeeds": 278,
+            "clusteredObserverSeeds": 46
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 24.5,
+              "observerLat": 39.0739,
+              "observerLon": -76.5575,
+              "rainLat": 39.045,
+              "rainLon": -76.095,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 4.7,
+              "sunElevationDeg": 25.44,
+              "radarScore": 59.0
+            },
+            "Dundalk": {
+              "distanceKm": 19.9,
+              "observerLat": 39.0739,
+              "observerLon": -76.5575,
+              "rainLat": 39.045,
+              "rainLon": -76.095,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 4.7,
+              "sunElevationDeg": 25.44,
+              "radarScore": 59.0
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 52,
+          "diagnostics": {
+            "sampledWetCells": 5184,
+            "rainEdgeCells": 2088,
+            "lowSunRainEdges": 2088,
+            "dryObserverSeeds": 1480,
+            "nonConusObserverSeeds": 1219,
+            "clusteredObserverSeeds": 52
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 24.9,
+              "observerLat": 39.0841,
+              "observerLon": -76.4975,
+              "rainLat": 39.055,
+              "rainLon": -76.035,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 4.0,
+              "sunElevationDeg": 25.4,
+              "radarScore": 59.1
+            },
+            "Dundalk": {
+              "distanceKm": 18.6,
+              "observerLat": 39.0841,
+              "observerLon": -76.4975,
+              "rainLat": 39.055,
+              "rainLon": -76.035,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 4.0,
+              "sunElevationDeg": 25.4,
+              "radarScore": 59.1
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 62,
+          "diagnostics": {
+            "sampledWetCells": 20829,
+            "rainEdgeCells": 5443,
+            "lowSunRainEdges": 5443,
+            "dryObserverSeeds": 3995,
+            "nonConusObserverSeeds": 3190,
+            "clusteredObserverSeeds": 62
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 24.9,
+              "observerLat": 39.0841,
+              "observerLon": -76.4975,
+              "rainLat": 39.055,
+              "rainLon": -76.035,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 4.0,
+              "sunElevationDeg": 25.4,
+              "radarScore": 59.1
+            },
+            "Dundalk": {
+              "distanceKm": 18.6,
+              "observerLat": 39.0841,
+              "observerLon": -76.4975,
+              "rainLat": 39.055,
+              "rainLon": -76.035,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 4.0,
+              "sunElevationDeg": 25.4,
+              "radarScore": 59.1
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T22:10:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-221000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 37,
+          "diagnostics": {
+            "sampledWetCells": 238,
+            "rainEdgeCells": 185,
+            "lowSunRainEdges": 185,
+            "dryObserverSeeds": 113,
+            "nonConusObserverSeeds": 126,
+            "clusteredObserverSeeds": 37
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 39.3,
+              "observerLat": 39.308,
+              "observerLon": -77.0688,
+              "rainLat": 39.295,
+              "rainLon": -76.895,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.5,
+              "sunElevationDeg": 24.15,
+              "radarScore": 53.7
+            },
+            "Dundalk": {
+              "distanceKm": 37.2,
+              "observerLat": 38.9187,
+              "observerLon": -76.5828,
+              "rainLat": 38.895,
+              "rainLon": -76.295,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 7.8,
+              "sunElevationDeg": 23.65,
+              "radarScore": 62.7
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 44,
+          "diagnostics": {
+            "sampledWetCells": 923,
+            "rainEdgeCells": 581,
+            "lowSunRainEdges": 581,
+            "dryObserverSeeds": 374,
+            "nonConusObserverSeeds": 445,
+            "clusteredObserverSeeds": 44
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 29.7,
+              "observerLat": 39.4519,
+              "observerLon": -76.8879,
+              "rainLat": 39.445,
+              "rainLon": -76.795,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 0.5,
+              "sunElevationDeg": 24.09,
+              "radarScore": 35.4
+            },
+            "Dundalk": {
+              "distanceKm": 37.2,
+              "observerLat": 38.9187,
+              "observerLon": -76.5828,
+              "rainLat": 38.895,
+              "rainLon": -76.295,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 7.8,
+              "sunElevationDeg": 23.65,
+              "radarScore": 62.7
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 63,
+          "diagnostics": {
+            "sampledWetCells": 5705,
+            "rainEdgeCells": 2289,
+            "lowSunRainEdges": 2289,
+            "dryObserverSeeds": 1571,
+            "nonConusObserverSeeds": 1791,
+            "clusteredObserverSeeds": 63
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 30.9,
+              "observerLat": 39.3881,
+              "observerLon": -76.949,
+              "rainLat": 39.375,
+              "rainLon": -76.775,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 6.5,
+              "sunElevationDeg": 24.06,
+              "radarScore": 61.6
+            },
+            "Dundalk": {
+              "distanceKm": 30.3,
+              "observerLat": 38.9787,
+              "observerLon": -76.543,
+              "rainLat": 38.955,
+              "rainLon": -76.255,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 4.2,
+              "sunElevationDeg": 23.62,
+              "radarScore": 62.7
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 63,
+          "diagnostics": {
+            "sampledWetCells": 22736,
+            "rainEdgeCells": 5860,
+            "lowSunRainEdges": 5860,
+            "dryObserverSeeds": 4080,
+            "nonConusObserverSeeds": 4563,
+            "clusteredObserverSeeds": 63
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 34.0,
+              "observerLat": 39.358,
+              "observerLon": -76.9989,
+              "rainLat": 39.345,
+              "rainLon": -76.825,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 3.0,
+              "sunElevationDeg": 24.1,
+              "radarScore": 56.7
+            },
+            "Dundalk": {
+              "distanceKm": 33.6,
+              "observerLat": 39.1626,
+              "observerLon": -76.1474,
+              "rainLat": 39.155,
+              "rainLon": -76.055,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 0.4,
+              "sunElevationDeg": 23.49,
+              "radarScore": 35.4
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T22:20:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-222000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 38,
+          "diagnostics": {
+            "sampledWetCells": 246,
+            "rainEdgeCells": 186,
+            "lowSunRainEdges": 186,
+            "dryObserverSeeds": 114,
+            "nonConusObserverSeeds": 151,
+            "clusteredObserverSeeds": 38
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 19.0,
+              "observerLat": 39.4118,
+              "observerLon": -76.7685,
+              "rainLat": 39.395,
+              "rainLon": -76.595,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.4,
+              "sunElevationDeg": 22.01,
+              "radarScore": 59.3
+            },
+            "Dundalk": {
+              "distanceKm": 27.8,
+              "observerLat": 39.4118,
+              "observerLon": -76.7685,
+              "rainLat": 39.395,
+              "rainLon": -76.595,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.4,
+              "sunElevationDeg": 22.01,
+              "radarScore": 59.3
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 48,
+          "diagnostics": {
+            "sampledWetCells": 966,
+            "rainEdgeCells": 594,
+            "lowSunRainEdges": 594,
+            "dryObserverSeeds": 383,
+            "nonConusObserverSeeds": 477,
+            "clusteredObserverSeeds": 48
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 16.6,
+              "observerLat": 39.3539,
+              "observerLon": -76.7875,
+              "rainLat": 39.345,
+              "rainLon": -76.695,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 3.8,
+              "sunElevationDeg": 22.08,
+              "radarScore": 66.5
+            },
+            "Dundalk": {
+              "distanceKm": 25.6,
+              "observerLat": 39.3539,
+              "observerLon": -76.7875,
+              "rainLat": 39.345,
+              "rainLon": -76.695,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 3.8,
+              "sunElevationDeg": 22.08,
+              "radarScore": 66.5
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 56,
+          "diagnostics": {
+            "sampledWetCells": 5871,
+            "rainEdgeCells": 2278,
+            "lowSunRainEdges": 2278,
+            "dryObserverSeeds": 1523,
+            "nonConusObserverSeeds": 1811,
+            "clusteredObserverSeeds": 56
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 27.0,
+              "observerLat": 39.3716,
+              "observerLon": -76.9084,
+              "rainLat": 39.355,
+              "rainLon": -76.735,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.9,
+              "sunElevationDeg": 22.11,
+              "radarScore": 61.9
+            },
+            "Dundalk": {
+              "distanceKm": 35.9,
+              "observerLat": 39.3716,
+              "observerLon": -76.9084,
+              "rainLat": 39.355,
+              "rainLon": -76.735,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.9,
+              "sunElevationDeg": 22.11,
+              "radarScore": 61.9
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 60,
+          "diagnostics": {
+            "sampledWetCells": 23449,
+            "rainEdgeCells": 5855,
+            "lowSunRainEdges": 5855,
+            "dryObserverSeeds": 4044,
+            "nonConusObserverSeeds": 4506,
+            "clusteredObserverSeeds": 60
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 22.2,
+              "observerLat": 39.3539,
+              "observerLon": -76.8575,
+              "rainLat": 39.345,
+              "rainLon": -76.765,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.8,
+              "sunElevationDeg": 22.13,
+              "radarScore": 54.6
+            },
+            "Dundalk": {
+              "distanceKm": 31.1,
+              "observerLat": 39.3539,
+              "observerLon": -76.8575,
+              "rainLat": 39.345,
+              "rainLon": -76.765,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.8,
+              "sunElevationDeg": 22.13,
+              "radarScore": 54.6
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T22:30:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-223000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 33,
+          "diagnostics": {
+            "sampledWetCells": 260,
+            "rainEdgeCells": 196,
+            "lowSunRainEdges": 196,
+            "dryObserverSeeds": 123,
+            "nonConusObserverSeeds": 144,
+            "clusteredObserverSeeds": 33
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 23.5,
+              "observerLat": 39.2153,
+              "observerLon": -76.8674,
+              "rainLat": 39.195,
+              "rainLon": -76.695,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 7.9,
+              "sunElevationDeg": 20.14,
+              "radarScore": 75.3
+            },
+            "Dundalk": {
+              "distanceKm": 28.9,
+              "observerLat": 39.5058,
+              "observerLon": -76.5873,
+              "rainLat": 39.495,
+              "rainLon": -76.495,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.4,
+              "sunElevationDeg": 20.03,
+              "radarScore": 67.4
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 46,
+          "diagnostics": {
+            "sampledWetCells": 984,
+            "rainEdgeCells": 589,
+            "lowSunRainEdges": 589,
+            "dryObserverSeeds": 374,
+            "nonConusObserverSeeds": 448,
+            "clusteredObserverSeeds": 46
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 22.4,
+              "observerLat": 39.4152,
+              "observerLon": -76.8179,
+              "rainLat": 39.395,
+              "rainLon": -76.645,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.2,
+              "sunElevationDeg": 20.13,
+              "radarScore": 65.6
+            },
+            "Dundalk": {
+              "distanceKm": 30.1,
+              "observerLat": 39.2153,
+              "observerLon": -76.8674,
+              "rainLat": 39.195,
+              "rainLon": -76.695,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 7.9,
+              "sunElevationDeg": 20.14,
+              "radarScore": 75.3
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 56,
+          "diagnostics": {
+            "sampledWetCells": 6197,
+            "rainEdgeCells": 2374,
+            "lowSunRainEdges": 2374,
+            "dryObserverSeeds": 1562,
+            "nonConusObserverSeeds": 1779,
+            "clusteredObserverSeeds": 56
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 20.4,
+              "observerLat": 39.2657,
+              "observerLon": -76.847,
+              "rainLat": 39.255,
+              "rainLon": -76.755,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.8,
+              "sunElevationDeg": 20.19,
+              "radarScore": 62.4
+            },
+            "Dundalk": {
+              "distanceKm": 28.1,
+              "observerLat": 39.2657,
+              "observerLon": -76.847,
+              "rainLat": 39.255,
+              "rainLon": -76.755,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.8,
+              "sunElevationDeg": 20.19,
+              "radarScore": 62.4
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 60,
+          "diagnostics": {
+            "sampledWetCells": 24602,
+            "rainEdgeCells": 6049,
+            "lowSunRainEdges": 6049,
+            "dryObserverSeeds": 4121,
+            "nonConusObserverSeeds": 4470,
+            "clusteredObserverSeeds": 60
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 19.1,
+              "observerLat": 39.4057,
+              "observerLon": -76.7772,
+              "rainLat": 39.395,
+              "rainLon": -76.685,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 20.16,
+              "radarScore": 59.2
+            },
+            "Dundalk": {
+              "distanceKm": 27.9,
+              "observerLat": 39.4057,
+              "observerLon": -76.7772,
+              "rainLat": 39.395,
+              "rainLon": -76.685,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 20.16,
+              "radarScore": 59.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T22:40:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-224000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 37,
+          "diagnostics": {
+            "sampledWetCells": 267,
+            "rainEdgeCells": 190,
+            "lowSunRainEdges": 190,
+            "dryObserverSeeds": 115,
+            "nonConusObserverSeeds": 156,
+            "clusteredObserverSeeds": 37
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 2.9,
+              "observerLat": 39.3077,
+              "observerLon": -76.5867,
+              "rainLat": 39.295,
+              "rainLon": -76.495,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.0,
+              "sunElevationDeg": 18.09,
+              "radarScore": 65.1
+            },
+            "Dundalk": {
+              "distanceKm": 8.5,
+              "observerLat": 39.3077,
+              "observerLon": -76.5867,
+              "rainLat": 39.295,
+              "rainLon": -76.495,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.0,
+              "sunElevationDeg": 18.09,
+              "radarScore": 65.1
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 46,
+          "diagnostics": {
+            "sampledWetCells": 1045,
+            "rainEdgeCells": 617,
+            "lowSunRainEdges": 617,
+            "dryObserverSeeds": 377,
+            "nonConusObserverSeeds": 527,
+            "clusteredObserverSeeds": 46
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 13.5,
+              "observerLat": 39.2688,
+              "observerLon": -76.7668,
+              "rainLat": 39.245,
+              "rainLon": -76.595,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.5,
+              "sunElevationDeg": 18.16,
+              "radarScore": 76.9
+            },
+            "Dundalk": {
+              "distanceKm": 21.3,
+              "observerLat": 39.2688,
+              "observerLon": -76.7668,
+              "rainLat": 39.245,
+              "rainLon": -76.595,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.5,
+              "sunElevationDeg": 18.16,
+              "radarScore": 76.9
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 58,
+          "diagnostics": {
+            "sampledWetCells": 6384,
+            "rainEdgeCells": 2451,
+            "lowSunRainEdges": 2451,
+            "dryObserverSeeds": 1550,
+            "nonConusObserverSeeds": 2026,
+            "clusteredObserverSeeds": 58
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 0.6,
+              "observerLat": 39.2877,
+              "observerLon": -76.6066,
+              "rainLat": 39.275,
+              "rainLon": -76.515,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 18.1,
+              "radarScore": 69.9
+            },
+            "Dundalk": {
+              "distanceKm": 8.5,
+              "observerLat": 39.2877,
+              "observerLon": -76.6066,
+              "rainLat": 39.275,
+              "rainLon": -76.515,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 18.1,
+              "radarScore": 69.9
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 58,
+          "diagnostics": {
+            "sampledWetCells": 25514,
+            "rainEdgeCells": 6262,
+            "lowSunRainEdges": 6262,
+            "dryObserverSeeds": 4077,
+            "nonConusObserverSeeds": 5248,
+            "clusteredObserverSeeds": 58
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 15.6,
+              "observerLat": 39.3487,
+              "observerLon": -76.777,
+              "rainLat": 39.325,
+              "rainLon": -76.605,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 1.1,
+              "sunElevationDeg": 18.18,
+              "radarScore": 65.7
+            },
+            "Dundalk": {
+              "distanceKm": 24.6,
+              "observerLat": 39.3487,
+              "observerLon": -76.777,
+              "rainLat": 39.325,
+              "rainLon": -76.605,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 1.1,
+              "sunElevationDeg": 18.18,
+              "radarScore": 65.7
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T22:50:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-225000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 35,
+          "diagnostics": {
+            "sampledWetCells": 282,
+            "rainEdgeCells": 205,
+            "lowSunRainEdges": 205,
+            "dryObserverSeeds": 118,
+            "nonConusObserverSeeds": 174,
+            "clusteredObserverSeeds": 35
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 11.0,
+              "observerLat": 39.2095,
+              "observerLon": -76.6861,
+              "rainLat": 39.195,
+              "rainLon": -76.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.6,
+              "sunElevationDeg": 16.25,
+              "radarScore": 78.9
+            },
+            "Dundalk": {
+              "distanceKm": 15.0,
+              "observerLat": 39.2095,
+              "observerLon": -76.6861,
+              "rainLat": 39.195,
+              "rainLon": -76.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.6,
+              "sunElevationDeg": 16.25,
+              "radarScore": 78.9
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 47,
+          "diagnostics": {
+            "sampledWetCells": 1075,
+            "rainEdgeCells": 614,
+            "lowSunRainEdges": 614,
+            "dryObserverSeeds": 358,
+            "nonConusObserverSeeds": 534,
+            "clusteredObserverSeeds": 47
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 13.4,
+              "observerLat": 39.2722,
+              "observerLon": -76.7659,
+              "rainLat": 39.245,
+              "rainLon": -76.595,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 1.8,
+              "sunElevationDeg": 16.26,
+              "radarScore": 80.5
+            },
+            "Dundalk": {
+              "distanceKm": 21.2,
+              "observerLat": 39.2722,
+              "observerLon": -76.7659,
+              "rainLat": 39.245,
+              "rainLon": -76.595,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 1.8,
+              "sunElevationDeg": 16.26,
+              "radarScore": 80.5
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 58,
+          "diagnostics": {
+            "sampledWetCells": 6564,
+            "rainEdgeCells": 2390,
+            "lowSunRainEdges": 2390,
+            "dryObserverSeeds": 1434,
+            "nonConusObserverSeeds": 2175,
+            "clusteredObserverSeeds": 58
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 17.9,
+              "observerLat": 39.3494,
+              "observerLon": -76.8063,
+              "rainLat": 39.335,
+              "rainLon": -76.715,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.3,
+              "sunElevationDeg": 16.37,
+              "radarScore": 75.8
+            },
+            "Dundalk": {
+              "distanceKm": 25.4,
+              "observerLat": 39.1023,
+              "observerLon": -76.7455,
+              "rainLat": 39.075,
+              "rainLon": -76.575,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 0.9,
+              "sunElevationDeg": 16.21,
+              "radarScore": 72.3
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 59,
+          "diagnostics": {
+            "sampledWetCells": 26040,
+            "rainEdgeCells": 6203,
+            "lowSunRainEdges": 6203,
+            "dryObserverSeeds": 3801,
+            "nonConusObserverSeeds": 5679,
+            "clusteredObserverSeeds": 59
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 20.4,
+              "observerLat": 39.3694,
+              "observerLon": -76.8263,
+              "rainLat": 39.355,
+              "rainLon": -76.735,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.2,
+              "sunElevationDeg": 16.39,
+              "radarScore": 74.8
+            },
+            "Dundalk": {
+              "distanceKm": 29.4,
+              "observerLat": 39.3694,
+              "observerLon": -76.8263,
+              "rainLat": 39.355,
+              "rainLon": -76.735,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.2,
+              "sunElevationDeg": 16.39,
+              "radarScore": 74.8
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T23:00:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-230000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 36,
+          "diagnostics": {
+            "sampledWetCells": 259,
+            "rainEdgeCells": 181,
+            "lowSunRainEdges": 181,
+            "dryObserverSeeds": 108,
+            "nonConusObserverSeeds": 146,
+            "clusteredObserverSeeds": 36
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 13.7,
+              "observerLat": 39.3256,
+              "observerLon": -76.7651,
+              "rainLat": 39.295,
+              "rainLon": -76.595,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 3.1,
+              "sunElevationDeg": 14.38,
+              "radarScore": 94.4
+            },
+            "Dundalk": {
+              "distanceKm": 22.6,
+              "observerLat": 39.3256,
+              "observerLon": -76.7651,
+              "rainLat": 39.295,
+              "rainLon": -76.595,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 3.1,
+              "sunElevationDeg": 14.38,
+              "radarScore": 94.4
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 50,
+          "diagnostics": {
+            "sampledWetCells": 1050,
+            "rainEdgeCells": 585,
+            "lowSunRainEdges": 585,
+            "dryObserverSeeds": 345,
+            "nonConusObserverSeeds": 514,
+            "clusteredObserverSeeds": 50
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 20.2,
+              "observerLat": 39.1777,
+              "observerLon": -76.7969,
+              "rainLat": 39.095,
+              "rainLon": -76.345,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 5.8,
+              "sunElevationDeg": 14.14,
+              "radarScore": 99.1
+            },
+            "Dundalk": {
+              "distanceKm": 25.1,
+              "observerLat": 39.1777,
+              "observerLon": -76.7969,
+              "rainLat": 39.095,
+              "rainLon": -76.345,
+              "rainDistanceKm": 40,
+              "rainRateMmHr": 5.8,
+              "sunElevationDeg": 14.14,
+              "radarScore": 99.1
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 57,
+          "diagnostics": {
+            "sampledWetCells": 6510,
+            "rainEdgeCells": 2445,
+            "lowSunRainEdges": 2445,
+            "dryObserverSeeds": 1460,
+            "nonConusObserverSeeds": 2153,
+            "clusteredObserverSeeds": 57
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 14.7,
+              "observerLat": 39.2313,
+              "observerLon": -76.7656,
+              "rainLat": 39.215,
+              "rainLon": -76.675,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.0,
+              "sunElevationDeg": 14.42,
+              "radarScore": 78.7
+            },
+            "Dundalk": {
+              "distanceKm": 20.5,
+              "observerLat": 39.0715,
+              "observerLon": -76.4653,
+              "rainLat": 39.055,
+              "rainLon": -76.375,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 0.6,
+              "sunElevationDeg": 14.16,
+              "radarScore": 74.3
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 65,
+          "diagnostics": {
+            "sampledWetCells": 25979,
+            "rainEdgeCells": 6517,
+            "lowSunRainEdges": 6517,
+            "dryObserverSeeds": 3954,
+            "nonConusObserverSeeds": 5828,
+            "clusteredObserverSeeds": 65
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 14.7,
+              "observerLat": 39.2313,
+              "observerLon": -76.7656,
+              "rainLat": 39.215,
+              "rainLon": -76.675,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.0,
+              "sunElevationDeg": 14.42,
+              "radarScore": 78.7
+            },
+            "Dundalk": {
+              "distanceKm": 21.2,
+              "observerLat": 39.2313,
+              "observerLon": -76.7656,
+              "rainLat": 39.215,
+              "rainLon": -76.675,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.0,
+              "sunElevationDeg": 14.42,
+              "radarScore": 78.7
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T23:10:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-231000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 38,
+          "diagnostics": {
+            "sampledWetCells": 299,
+            "rainEdgeCells": 208,
+            "lowSunRainEdges": 208,
+            "dryObserverSeeds": 122,
+            "nonConusObserverSeeds": 202,
+            "clusteredObserverSeeds": 38
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 13.7,
+              "observerLat": 39.3289,
+              "observerLon": -76.764,
+              "rainLat": 39.295,
+              "rainLon": -76.595,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 2.0,
+              "sunElevationDeg": 12.5,
+              "radarScore": 88.7
+            },
+            "Dundalk": {
+              "distanceKm": 18.3,
+              "observerLat": 39.1292,
+              "observerLon": -76.6635,
+              "rainLat": 39.095,
+              "rainLon": -76.495,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 7.3,
+              "sunElevationDeg": 12.37,
+              "radarScore": 99.7
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 50,
+          "diagnostics": {
+            "sampledWetCells": 1174,
+            "rainEdgeCells": 616,
+            "lowSunRainEdges": 616,
+            "dryObserverSeeds": 358,
+            "nonConusObserverSeeds": 553,
+            "clusteredObserverSeeds": 50
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 7.0,
+              "observerLat": 39.2631,
+              "observerLon": -76.6851,
+              "rainLat": 39.245,
+              "rainLon": -76.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.6,
+              "sunElevationDeg": 12.48,
+              "radarScore": 92.7
+            },
+            "Dundalk": {
+              "distanceKm": 14.2,
+              "observerLat": 39.2631,
+              "observerLon": -76.6851,
+              "rainLat": 39.245,
+              "rainLon": -76.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.6,
+              "sunElevationDeg": 12.48,
+              "radarScore": 92.7
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 60,
+          "diagnostics": {
+            "sampledWetCells": 7216,
+            "rainEdgeCells": 2451,
+            "lowSunRainEdges": 2451,
+            "dryObserverSeeds": 1496,
+            "nonConusObserverSeeds": 2124,
+            "clusteredObserverSeeds": 60
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 12.4,
+              "observerLat": 39.333,
+              "observerLon": -76.7452,
+              "rainLat": 39.315,
+              "rainLon": -76.655,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 0.8,
+              "sunElevationDeg": 12.55,
+              "radarScore": 77.6
+            },
+            "Dundalk": {
+              "distanceKm": 19.7,
+              "observerLat": 39.1132,
+              "observerLon": -76.6649,
+              "rainLat": 39.095,
+              "rainLon": -76.575,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.2,
+              "sunElevationDeg": 12.43,
+              "radarScore": 90.1
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 64,
+          "diagnostics": {
+            "sampledWetCells": 28791,
+            "rainEdgeCells": 6242,
+            "lowSunRainEdges": 6242,
+            "dryObserverSeeds": 3973,
+            "nonConusObserverSeeds": 5338,
+            "clusteredObserverSeeds": 64
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 16.0,
+              "observerLat": 39.383,
+              "observerLon": -76.7553,
+              "rainLat": 39.365,
+              "rainLon": -76.665,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 12.57,
+              "radarScore": 84.8
+            },
+            "Dundalk": {
+              "distanceKm": 21.2,
+              "observerLat": 39.1331,
+              "observerLon": -76.7149,
+              "rainLat": 39.115,
+              "rainLon": -76.625,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.5,
+              "sunElevationDeg": 12.47,
+              "radarScore": 84.7
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T23:20:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-232000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 40,
+          "diagnostics": {
+            "sampledWetCells": 315,
+            "rainEdgeCells": 210,
+            "lowSunRainEdges": 210,
+            "dryObserverSeeds": 121,
+            "nonConusObserverSeeds": 179,
+            "clusteredObserverSeeds": 40
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 7.7,
+              "observerLat": 39.2325,
+              "observerLon": -76.6625,
+              "rainLat": 39.195,
+              "rainLon": -76.495,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 3.5,
+              "sunElevationDeg": 10.53,
+              "radarScore": 93.6
+            },
+            "Dundalk": {
+              "distanceKm": 12.4,
+              "observerLat": 39.2325,
+              "observerLon": -76.6625,
+              "rainLat": 39.195,
+              "rainLon": -76.495,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 3.5,
+              "sunElevationDeg": 10.53,
+              "radarScore": 93.6
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 52,
+          "diagnostics": {
+            "sampledWetCells": 1199,
+            "rainEdgeCells": 611,
+            "lowSunRainEdges": 611,
+            "dryObserverSeeds": 354,
+            "nonConusObserverSeeds": 517,
+            "clusteredObserverSeeds": 52
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 6.8,
+              "observerLat": 39.3149,
+              "observerLon": -76.6845,
+              "rainLat": 39.295,
+              "rainLon": -76.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.0,
+              "sunElevationDeg": 10.63,
+              "radarScore": 85.1
+            },
+            "Dundalk": {
+              "distanceKm": 15.8,
+              "observerLat": 39.3149,
+              "observerLon": -76.6845,
+              "rainLat": 39.295,
+              "rainLon": -76.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.0,
+              "sunElevationDeg": 10.63,
+              "radarScore": 85.1
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 59,
+          "diagnostics": {
+            "sampledWetCells": 7422,
+            "rainEdgeCells": 2541,
+            "lowSunRainEdges": 2541,
+            "dryObserverSeeds": 1550,
+            "nonConusObserverSeeds": 2139,
+            "clusteredObserverSeeds": 59
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 12.4,
+              "observerLat": 39.3348,
+              "observerLon": -76.7446,
+              "rainLat": 39.315,
+              "rainLon": -76.655,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.0,
+              "sunElevationDeg": 10.68,
+              "radarScore": 76.4
+            },
+            "Dundalk": {
+              "distanceKm": 17.5,
+              "observerLat": 39.115,
+              "observerLon": -76.6242,
+              "rainLat": 39.095,
+              "rainLon": -76.535,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.0,
+              "sunElevationDeg": 10.53,
+              "radarScore": 84.8
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 66,
+          "diagnostics": {
+            "sampledWetCells": 29587,
+            "rainEdgeCells": 6548,
+            "lowSunRainEdges": 6548,
+            "dryObserverSeeds": 4066,
+            "nonConusObserverSeeds": 5633,
+            "clusteredObserverSeeds": 66
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 13.2,
+              "observerLat": 39.3348,
+              "observerLon": -76.7546,
+              "rainLat": 39.315,
+              "rainLon": -76.665,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.1,
+              "sunElevationDeg": 10.69,
+              "radarScore": 77.5
+            },
+            "Dundalk": {
+              "distanceKm": 22.2,
+              "observerLat": 39.3348,
+              "observerLon": -76.7546,
+              "rainLat": 39.315,
+              "rainLon": -76.665,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.1,
+              "sunElevationDeg": 10.69,
+              "radarScore": 77.5
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T23:30:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-233000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 36,
+          "diagnostics": {
+            "sampledWetCells": 318,
+            "rainEdgeCells": 212,
+            "lowSunRainEdges": 212,
+            "dryObserverSeeds": 118,
+            "nonConusObserverSeeds": 187,
+            "clusteredObserverSeeds": 36
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 6.0,
+              "observerLat": 39.2632,
+              "observerLon": -76.672,
+              "rainLat": 39.195,
+              "rainLon": -76.395,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 7.3,
+              "sunElevationDeg": 8.6,
+              "radarScore": 88.2
+            },
+            "Dundalk": {
+              "distanceKm": 13.1,
+              "observerLat": 39.2632,
+              "observerLon": -76.672,
+              "rainLat": 39.195,
+              "rainLon": -76.395,
+              "rainDistanceKm": 25,
+              "rainRateMmHr": 7.3,
+              "sunElevationDeg": 8.6,
+              "radarScore": 88.2
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 49,
+          "diagnostics": {
+            "sampledWetCells": 1246,
+            "rainEdgeCells": 635,
+            "lowSunRainEdges": 635,
+            "dryObserverSeeds": 367,
+            "nonConusObserverSeeds": 594,
+            "clusteredObserverSeeds": 49
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 6.8,
+              "observerLat": 39.3167,
+              "observerLon": -76.6838,
+              "rainLat": 39.295,
+              "rainLon": -76.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.4,
+              "sunElevationDeg": 8.78,
+              "radarScore": 73.1
+            },
+            "Dundalk": {
+              "distanceKm": 13.2,
+              "observerLat": 39.136,
+              "observerLon": -76.5609,
+              "rainLat": 39.095,
+              "rainLon": -76.395,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 3.7,
+              "sunElevationDeg": 8.57,
+              "radarScore": 86.8
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 52,
+          "diagnostics": {
+            "sampledWetCells": 7646,
+            "rainEdgeCells": 2590,
+            "lowSunRainEdges": 2590,
+            "dryObserverSeeds": 1533,
+            "nonConusObserverSeeds": 2578,
+            "clusteredObserverSeeds": 52
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 9.6,
+              "observerLat": 39.3567,
+              "observerLon": -76.6839,
+              "rainLat": 39.335,
+              "rainLon": -76.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.6,
+              "sunElevationDeg": 8.79,
+              "radarScore": 74.9
+            },
+            "Dundalk": {
+              "distanceKm": 18.3,
+              "observerLat": 39.3567,
+              "observerLon": -76.6839,
+              "rainLat": 39.335,
+              "rainLon": -76.595,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.6,
+              "sunElevationDeg": 8.79,
+              "radarScore": 74.9
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 60,
+          "diagnostics": {
+            "sampledWetCells": 30306,
+            "rainEdgeCells": 6566,
+            "lowSunRainEdges": 6566,
+            "dryObserverSeeds": 4032,
+            "nonConusObserverSeeds": 6509,
+            "clusteredObserverSeeds": 60
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 8.1,
+              "observerLat": 39.3067,
+              "observerLon": -76.7038,
+              "rainLat": 39.285,
+              "rainLon": -76.615,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.3,
+              "sunElevationDeg": 8.79,
+              "radarScore": 72.2
+            },
+            "Dundalk": {
+              "distanceKm": 13.4,
+              "observerLat": 39.1368,
+              "observerLon": -76.5735,
+              "rainLat": 39.115,
+              "rainLon": -76.485,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 2.1,
+              "sunElevationDeg": 8.64,
+              "radarScore": 78.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "observedAt": "2026-07-28T23:40:00Z",
+      "sourceKey": "CONUS/PrecipRate_00.00/20260728/MRMS_PrecipRate_00.00_20260728-234000.grib2.gz",
+      "strides": {
+        "10": {
+          "regionalSeedCount": 34,
+          "diagnostics": {
+            "sampledWetCells": 323,
+            "rainEdgeCells": 209,
+            "lowSunRainEdges": 209,
+            "dryObserverSeeds": 121,
+            "nonConusObserverSeeds": 207,
+            "clusteredObserverSeeds": 34
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 7.0,
+              "observerLat": 39.2392,
+              "observerLon": -76.6598,
+              "rainLat": 39.195,
+              "rainLon": -76.495,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 6.2,
+              "sunElevationDeg": 6.83,
+              "radarScore": 79.8
+            },
+            "Dundalk": {
+              "distanceKm": 12.0,
+              "observerLat": 39.2392,
+              "observerLon": -76.6598,
+              "rainLat": 39.195,
+              "rainLon": -76.495,
+              "rainDistanceKm": 15,
+              "rainRateMmHr": 6.2,
+              "sunElevationDeg": 6.83,
+              "radarScore": 79.8
+            }
+          }
+        },
+        "5": {
+          "regionalSeedCount": 50,
+          "diagnostics": {
+            "sampledWetCells": 1256,
+            "rainEdgeCells": 633,
+            "lowSunRainEdges": 633,
+            "dryObserverSeeds": 375,
+            "nonConusObserverSeeds": 543,
+            "clusteredObserverSeeds": 50
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 3.0,
+              "observerLat": 39.2685,
+              "observerLon": -76.633,
+              "rainLat": 39.245,
+              "rainLon": -76.545,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 5.3,
+              "sunElevationDeg": 6.88,
+              "radarScore": 80.1
+            },
+            "Dundalk": {
+              "distanceKm": 9.9,
+              "observerLat": 39.2685,
+              "observerLon": -76.633,
+              "rainLat": 39.245,
+              "rainLon": -76.545,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 5.3,
+              "sunElevationDeg": 6.88,
+              "radarScore": 80.1
+            }
+          }
+        },
+        "2": {
+          "regionalSeedCount": 59,
+          "diagnostics": {
+            "sampledWetCells": 7836,
+            "rainEdgeCells": 2632,
+            "lowSunRainEdges": 2632,
+            "dryObserverSeeds": 1612,
+            "nonConusObserverSeeds": 2556,
+            "clusteredObserverSeeds": 59
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 5.6,
+              "observerLat": 39.2585,
+              "observerLon": -76.663,
+              "rainLat": 39.235,
+              "rainLon": -76.575,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.9,
+              "sunElevationDeg": 6.9,
+              "radarScore": 68.3
+            },
+            "Dundalk": {
+              "distanceKm": 12.3,
+              "observerLat": 39.2585,
+              "observerLon": -76.663,
+              "rainLat": 39.235,
+              "rainLon": -76.575,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.9,
+              "sunElevationDeg": 6.9,
+              "radarScore": 68.3
+            }
+          }
+        },
+        "1": {
+          "regionalSeedCount": 62,
+          "diagnostics": {
+            "sampledWetCells": 31237,
+            "rainEdgeCells": 6734,
+            "lowSunRainEdges": 6734,
+            "dryObserverSeeds": 4225,
+            "nonConusObserverSeeds": 6778,
+            "clusteredObserverSeeds": 62
+          },
+          "nearest": {
+            "Baltimore": {
+              "distanceKm": 9.5,
+              "observerLat": 39.2085,
+              "observerLon": -76.6429,
+              "rainLat": 39.185,
+              "rainLon": -76.555,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.9,
+              "sunElevationDeg": 6.87,
+              "radarScore": 68.2
+            },
+            "Dundalk": {
+              "distanceKm": 11.5,
+              "observerLat": 39.2085,
+              "observerLon": -76.6429,
+              "rainLat": 39.185,
+              "rainLon": -76.555,
+              "rainDistanceKm": 8,
+              "rainRateMmHr": 1.9,
+              "sunElevationDeg": 6.87,
+              "radarScore": 68.2
+            }
+          }
+        }
+      }
+    }
+  ]
+}

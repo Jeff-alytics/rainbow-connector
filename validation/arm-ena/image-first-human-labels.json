@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "site_owner",
+  "reviewedAt": "2026-07-25",
+  "source": "image-first-review-batch-01",
+  "labels": [
+    {"candidateId":"visual-01","centerTime":"2025-10-10T08:12:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-02","centerTime":"2025-11-10T17:56:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-03","centerTime":"2026-03-18T19:42:00Z","label":"rainbow","notes":"Upgraded after closer review of the overlapping semantic-05 sequence revealed a small bow in one frame."},
+    {"candidateId":"visual-04","centerTime":"2026-02-05T19:02:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-05","centerTime":"2026-03-17T18:50:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-06","centerTime":"2026-02-01T18:42:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-07","centerTime":"2025-08-09T19:40:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-08","centerTime":"2025-06-30T21:08:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-09","centerTime":"2025-04-07T20:16:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-10","centerTime":"2026-05-11T20:08:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-11","centerTime":"2025-11-13T18:08:00Z","label":"rainbow"},
+    {"candidateId":"visual-12","centerTime":"2024-09-23T19:18:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-13","centerTime":"2026-05-07T20:16:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-14","centerTime":"2024-09-12T19:40:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-15","centerTime":"2025-07-15T20:46:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-16","centerTime":"2026-05-08T18:56:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-17","centerTime":"2025-10-10T18:30:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-18","centerTime":"2026-06-30T21:12:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-19","centerTime":"2024-11-06T18:34:00Z","label":"no_rainbow"},
+    {"candidateId":"visual-20","centerTime":"2024-12-17T18:26:00Z","label":"no_rainbow"}
+  ]
+}
