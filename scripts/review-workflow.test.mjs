@@ -277,11 +277,49 @@ test("active reviews stay blinded while completed result rows expose their store
   event.viewReviews[groups[0].key] = { label: "no_rainbow", reviewedAt: "2026-07-30T02:30:00Z" };
   assert.equal(allCameraViewsReviewed(event), false);
   assert.equal("researchAssessments" in reviewSafeEvent(event), false);
-  assert.equal(reviewResults([event])[0].sunlightAssessment?.sunlightState, "sunlit_supported");
   event.viewReviews[groups[1].key] = { label: "rainbow", reviewedAt: "2026-07-30T02:31:00Z" };
   assert.equal(allCameraViewsReviewed(event), true);
   assert.equal(reviewSafeEvent(event).researchAssessments.length, 1);
-  assert.equal(reviewResults([event]).every(item => item.sunlightAssessment?.sunlightState === "sunlit_supported"), true);
+});
+
+test("a completed result row hides its verdict only while a sibling view is still queued", () => {
+  // The results table renders on the same page as the queue, so a verdict shown
+  // here can anchor a grade the reviewer has not given yet.
+  const frame = (cameraId, timeOffsetMinutes) => ({
+    url: `${cameraId}-${timeOffsetMinutes}`, source: "FAA WeatherCam",
+    siteId: cameraId, cameraId, distanceKm: 12, timeOffsetMinutes,
+  });
+  const build = frames => ({
+    id: "two-airports", candidateType: "live_go", candidateClass: "GO", scanCount: 2,
+    lastSeenAt: "2026-07-31T12:00:00Z", review: { label: "pending" },
+    researchAssessments: [{ sunlightState: "sunlit_supported" }],
+    evidence: { source: "FAA WeatherCam", frames }, viewReviews: {},
+    representative: { evidence: {} },
+  });
+
+  // Reviewable: two post-event frames per airport, so the queue offers both.
+  const reviewable = build([frame(10, 5), frame(10, 9), frame(20, 5), frame(20, 9)]);
+  const groups = evidenceFrameReviewGroups(reviewable);
+  reviewable.viewReviews[groups[0].key] = { label: "no_rainbow", reviewedAt: "2026-07-31T12:05:00Z" };
+  assert.equal(reviewQueueItems([reviewable]).length, 1, "the second airport must still be queued");
+  assert.equal(reviewResults([reviewable])[0].sunlightAssessment, null,
+    "verdict must stay hidden while a sibling view awaits grading");
+
+  // Fully graded: nothing left to anchor.
+  reviewable.viewReviews[groups[1].key] = { label: "rainbow", reviewedAt: "2026-07-31T12:06:00Z" };
+  assert.equal(reviewQueueItems([reviewable]).length, 0);
+  assert.equal(reviewResults([reviewable]).every(row => row.sunlightAssessment?.sunlightState === "sunlit_supported"), true);
+
+  // Stranded: the FAA gate needs two post-event frames across the event, and
+  // this has one, so the queue never offers it. It can never become "fully
+  // graded", and withholding here would hide its evidence forever.
+  const stranded = build([frame(10, 5), frame(20, -5)]);
+  const strandedGroups = evidenceFrameReviewGroups(stranded);
+  stranded.viewReviews[strandedGroups[0].key] = { label: "no_rainbow", reviewedAt: "2026-07-31T12:05:00Z" };
+  assert.equal(reviewQueueItems([stranded]).length, 0, "unreviewable event must not be queued");
+  assert.equal(allCameraViewsReviewed(stranded), false);
+  assert.equal(reviewResults([stranded])[0].sunlightAssessment?.sunlightState, "sunlit_supported",
+    "stranded historical evidence must still be exposed");
 });
 
 test("review API serializes both list and grade responses through the anchoring guard", async () => {

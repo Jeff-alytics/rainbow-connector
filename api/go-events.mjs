@@ -198,6 +198,14 @@ export function reviewEvidenceStrength(distanceKm, bearingDifference, viewQualit
 }
 
 export function reviewResults(events) {
+  // An event still in the queue has a view awaiting an unbiased grade, and this
+  // table sits on the same page as that queue, so its verdict must stay hidden.
+  // Anything the queue no longer offers cannot anchor a future grade: that
+  // covers fully graded events and ones stranded because a remaining group is
+  // unreviewable, whose evidence would otherwise be hidden forever. Use the
+  // uncapped queue, or a research event sitting past the two-item cap would be
+  // mistaken for finished.
+  const awaitingGrade = new Set(reviewQueue(events).map(event => event.id));
   const rows = [...(events || [])].flatMap(event => {
     const groups = evidenceFrameReviewGroups(event);
     const viewRows = groups.flatMap(group => {
@@ -249,10 +257,9 @@ export function reviewResults(events) {
           bowArcOverlapDeg: Number.isFinite(camera.bowArcOverlapDeg) ? camera.bowArcOverlapDeg : null,
         },
         reviewStrength: reviewEvidenceStrength(camera.distanceKm, camera.bearingDifference, camera.viewQuality, camera.nearestFrameOffsetMinutes, camera.visibleBowFraction),
-        // This row exists only after its grade has been submitted. Keep the
-        // active queue blinded, but do not strand historical v2 evidence when
-        // another camera group was never reviewable or has since expired.
-        sunlightAssessment: (event.researchAssessments || []).at(-1) || null,
+        sunlightAssessment: awaitingGrade.has(event.id)
+          ? null
+          : (event.researchAssessments || []).at(-1) || null,
       };
     });
 }
