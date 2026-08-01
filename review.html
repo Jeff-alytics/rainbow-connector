@@ -226,7 +226,9 @@ async function loadResults(){
     const note = item.notes ? `<span class="result-note" title="${esc(item.notes)}">${esc(item.notes)}</span>` : "";
     return `<tr>
       <td><span class="grade ${gradeClass}">${esc(grade)}</span>${note}</td>
-      <td>${esc(sunlightNames[item.sceneSunlight] || "—")}</td><td>${esc(assessmentNames[item.sunlightAssessment?.sunlightState] || "Not assessed")}</td>
+      <td>${esc(sunlightNames[item.sceneSunlight] || "—")}</td><td>${esc(item.sunlightAssessment
+        ? (assessmentNames[item.sunlightAssessment.sunlightState] || item.sunlightAssessment.sunlightState)
+        : item.sunlightAssessmentWithheld ? "Withheld until graded" : "Not assessed")}</td>
       <td>${esc(item.candidateClass || "GO")}</td>
       <td>${item.candidateType === "historical_webcoos" ? "Archive screen" : item.candidateType === "research_possible" && item.researchSource === "opportunity_ledger" ? "Research POSSIBLE — ledger" : item.candidateType === "research_possible" ? "Research POSSIBLE — detector" : item.candidateType === "live_possible" ? "Live POSSIBLE" : "Live GO"}</td>
       <td>${number(item.score, 1)}</td><td><span class="strength ${esc(item.reviewStrength)}">${esc(item.reviewStrength)}</span></td><td>${number(item.scanCount)}</td>

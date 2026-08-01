@@ -260,6 +260,13 @@ export function reviewResults(events) {
         sunlightAssessment: awaitingGrade.has(event.id)
           ? null
           : (event.researchAssessments || []).at(-1) || null,
+        /* An assessment withheld by blinding is not the same as one that was
+           never made, and the review table showed both as "Not assessed" --
+           which reads as a broken pipeline when coverage is actually ~98%.
+           This flag reports only that an assessment exists, never its verdict,
+           so it cannot anchor the reviewer. */
+        sunlightAssessmentWithheld: awaitingGrade.has(event.id)
+          && (event.researchAssessments || []).length > 0,
       };
     });
 }

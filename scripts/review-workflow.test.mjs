@@ -322,6 +322,46 @@ test("a completed result row hides its verdict only while a sibling view is stil
     "stranded historical evidence must still be exposed");
 });
 
+test("a withheld verdict is reported as withheld, not as never assessed", () => {
+  // The results table rendered both cases as "Not assessed", which reads as a
+  // broken pipeline. The flag reports only that an assessment exists, never
+  // its verdict, so it cannot anchor a grade.
+  const frame = (cameraId, timeOffsetMinutes) => ({
+    url: `${cameraId}-${timeOffsetMinutes}`, source: "FAA WeatherCam",
+    siteId: cameraId, cameraId, distanceKm: 12, timeOffsetMinutes,
+  });
+  const build = assessments => {
+    const event = {
+      id: "withheld-case", candidateType: "live_go", candidateClass: "GO", scanCount: 2,
+      lastSeenAt: "2026-07-31T12:00:00Z", review: { label: "pending" },
+      researchAssessments: assessments,
+      evidence: { source: "FAA WeatherCam",
+        frames: [frame(10, 5), frame(10, 9), frame(20, 5), frame(20, 9)] },
+      viewReviews: {}, representative: { evidence: {} },
+    };
+    const groups = evidenceFrameReviewGroups(event);
+    event.viewReviews[groups[0].key] = { label: "no_rainbow", reviewedAt: "2026-07-31T12:05:00Z" };
+    return { event, groups };
+  };
+
+  const { event, groups } = build([{ sunlightState: "sunlit_supported" }]);
+  const row = reviewResults([event])[0];
+  assert.equal(row.sunlightAssessment, null, "verdict must still be hidden");
+  assert.equal(row.sunlightAssessmentWithheld, true,
+    "an assessment that exists but is blinded must say so");
+
+  // Nothing was ever assessed: the row must not claim one is being withheld.
+  const bare = build([]);
+  assert.equal(reviewResults([bare.event])[0].sunlightAssessmentWithheld, false,
+    "an event with no assessment must not claim one is withheld");
+
+  // Once every view is graded the verdict is exposed and nothing is withheld.
+  event.viewReviews[groups[1].key] = { label: "rainbow", reviewedAt: "2026-07-31T12:06:00Z" };
+  const graded = reviewResults([event])[0];
+  assert.equal(graded.sunlightAssessment?.sunlightState, "sunlit_supported");
+  assert.equal(graded.sunlightAssessmentWithheld, false);
+});
+
 test("review API serializes both list and grade responses through the anchoring guard", async () => {
   const source = await readFile(new URL("../api/go-events.mjs", import.meta.url), "utf8");
   assert.match(source, /events\.map\(reviewSafeEvent\)/);
