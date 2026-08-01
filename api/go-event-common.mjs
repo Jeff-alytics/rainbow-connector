@@ -8,7 +8,21 @@ export const CONFIRMED_GALLERY_INDEX = "rainbow:gallery:confirmed";
 export const CONFIRMED_GALLERY_PREFIX = "rainbow:gallery:item:";
 export const REVIEW_ASSESSMENT_IDEMPOTENCY_PREFIX = "rainbow:review:assessment:";
 const GO_SCAN_PREFIX = "rainbow:go:scan:";
-const HISTORICAL_REVIEW_PREFIX = "archive-webcoos-";
+/* Archived review events carry the network they came from in both the id prefix
+   and the candidate type. Recording an FAA case under the WebCOOS prefix would
+   mislabel the evidence and, because deleteHistoricalReviewEvent matches on the
+   prefix, leave it undeletable. */
+export const HISTORICAL_REVIEW_SOURCES = {
+  webcoos: { prefix: "archive-webcoos-", candidateType: "historical_webcoos" },
+  faa: { prefix: "archive-faa-", candidateType: "historical_faa" },
+};
+const DEFAULT_HISTORICAL_SOURCE = "webcoos";
+
+export function historicalSource(name) {
+  const source = HISTORICAL_REVIEW_SOURCES[String(name || DEFAULT_HISTORICAL_SOURCE)];
+  if (!source) throw new Error(`Unknown historical review source: ${name}`);
+  return source;
+}
 const EVENT_CAS_RETRIES = 8;
 const EVENT_CAS_LUA = `
 local current = redis.call('GET', KEYS[1])
@@ -142,10 +156,10 @@ function eventId(detection) {
   return `go-${String(detection.detectedAt).replace(/[-:.TZ]/g, "").slice(0, 12)}-${createHash("sha256").update(seed).digest("hex").slice(0, 10)}`;
 }
 
-function historicalEventId(sourceKey) {
+function historicalEventId(sourceKey, source = DEFAULT_HISTORICAL_SOURCE) {
   const clean = String(sourceKey || "").trim();
   if (!clean) throw new Error("Historical review source key is required.");
-  return HISTORICAL_REVIEW_PREFIX + createHash("sha256").update(clean).digest("hex").slice(0, 16);
+  return historicalSource(source).prefix + createHash("sha256").update(clean).digest("hex").slice(0, 16);
 }
 
 export function newGoEvent(detection) {
@@ -168,8 +182,9 @@ export async function saveHistoricalReviewEvent(candidate) {
     || !Number.isFinite(lon) || !Number.isFinite(bowBearing)) {
     throw new Error("Historical review candidate has invalid time or geometry.");
   }
+  const source = historicalSource(candidate?.source);
   const sourceKey = String(candidate?.sourceKey || `${candidate?.cameraId || "camera"}:${observedAt.toISOString()}`);
-  const id = historicalEventId(sourceKey);
+  const id = historicalEventId(sourceKey, candidate?.source);
   const existing = await redis(["GET", GO_EVENT_PREFIX + id]);
   if (existing) return { stored: false, reason: "duplicate", event: JSON.parse(existing) };
   const detectedAt = observedAt.toISOString();
@@ -201,7 +216,7 @@ export async function saveHistoricalReviewEvent(candidate) {
   const queuedAt = new Date().toISOString();
   const event = {
     id, firstSeenAt: detectedAt, lastSeenAt: detectedAt, queuedAt,
-    candidateType: "historical_webcoos", scanCount: 1, detectionCount: 1,
+    candidateType: source.candidateType, scanCount: 1, detectionCount: 1,
     peakScore: score, representative: detection,
     latestLocation: { lat, lon }, detections: [detection],
     review: { label: "pending", reviewedAt: null, notes: null, evidenceUrls: [] },
@@ -220,7 +235,8 @@ export async function saveHistoricalReviewEvent(candidate) {
 
 export async function deleteHistoricalReviewEvent(id) {
   const cleanId = String(id || "").trim();
-  if (!cleanId.startsWith(HISTORICAL_REVIEW_PREFIX)) return false;
+  const known = Object.values(HISTORICAL_REVIEW_SOURCES).some(s => cleanId.startsWith(s.prefix));
+  if (!known) return false;
   await redisPipeline([
     ["DEL", GO_EVENT_PREFIX + cleanId],
     ["ZREM", GO_EVENT_INDEX, cleanId],

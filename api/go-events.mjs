@@ -183,7 +183,7 @@ export function reviewQueueItems(events) {
 
 function eventClass(event) {
   if (event?.candidateClass === "POSSIBLE" || event?.candidateType === "live_possible") return "POSSIBLE";
-  if (event?.candidateType === "historical_webcoos") return "ARCHIVE";
+  if (String(event?.candidateType || "").startsWith("historical_")) return "ARCHIVE";
   return "GO";
 }
 

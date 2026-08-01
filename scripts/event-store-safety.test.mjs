@@ -4,7 +4,8 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import { redisPipeline } from "../api/alert-common.mjs";
-import { GO_EVENT_PREFIX, attachReviewAssessments, evidenceFrameReviewKey, labelGoEvent, labelGoEventView,
+import { GO_EVENT_PREFIX, attachReviewAssessments, deleteHistoricalReviewEvent, evidenceFrameReviewKey,
+  historicalSource, labelGoEvent, labelGoEventView,
   mutateGoEvent, newGoEvent, newResearchReviewEvent, saveHistoricalReviewEvent,
   syncConfirmedGallery } from "../api/go-event-common.mjs";
 
@@ -290,4 +291,40 @@ test("Python review callback payload matches the JavaScript research-event contr
   assert.equal(event.candidateType, "research_possible");
   assert.equal(event.researchSource, "opportunity_ledger");
   assert.equal(event.ledgerEventId, "rain-system-1");
+});
+
+/* An archived case must carry the network it came from. Recording an FAA case
+   under the WebCOOS prefix mislabels the evidence, and because the delete path
+   matches on the prefix it would also strand the record permanently. */
+const FAA_CASE = { source: "faa", cameraId: "12076", observedAt: "2026-08-01T00:33:00Z",
+  lat: 39.91145, lon: -105.11482, score: 80, bowBearing: 99.3,
+  sourceKey: "faa:12076:2026-08-01T00:33:00.000Z" };
+
+test("an FAA archived case is stored under its own prefix and candidate type", async () => {
+  const fake = recordingRedis();
+  const saved = await withRedis(fake, () => saveHistoricalReviewEvent(FAA_CASE));
+  assert.equal(saved.stored, true);
+  assert.equal(saved.event.id.startsWith("archive-faa-"), true,
+    `FAA case must not be stored under another network's prefix, got ${saved.event.id}`);
+  assert.equal(saved.event.candidateType, "historical_faa");
+});
+
+test("an archived FAA case can be deleted again", async () => {
+  const fake = recordingRedis();
+  const saved = await withRedis(fake, () => saveHistoricalReviewEvent(FAA_CASE));
+  const removed = await withRedis(fake, () => deleteHistoricalReviewEvent(saved.event.id));
+  assert.equal(removed, true, "an archived case the store accepted must also be removable");
+});
+
+test("WebCOOS remains the default source, unchanged", async () => {
+  const fake = recordingRedis();
+  const saved = await withRedis(fake, () => saveHistoricalReviewEvent({
+    cameraId: "cam-9", observedAt: "2026-07-29T22:10:00Z", lat: 39.29, lon: -76.61,
+    score: 70, bowBearing: 100, sourceKey: "cam-9:2026-07-29T22:10:00.000Z" }));
+  assert.equal(saved.event.id.startsWith("archive-webcoos-"), true);
+  assert.equal(saved.event.candidateType, "historical_webcoos");
+});
+
+test("an unrecognised archive source is refused rather than silently defaulted", () => {
+  assert.throws(() => historicalSource("nexrad"), /Unknown historical review source/);
 });
