@@ -168,6 +168,7 @@ export async function capturePendingAlertCaEvidence(limit = 2) {
   const pending = (await loadRecentGoEvents(now - 45 * 60 * 1000, 50))
     .filter(event => (event.review?.label || "pending") === "pending")
     .filter(event => !(event.evidence?.frames || []).length)
+    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
     .filter(event => !["waiting_usgs", "waiting_webcoos"].includes(event.evidence?.status))
     .filter(event => nearbyAlertCaCameras(event, cameras).length)
     .sort((a, b) => Number(b.peakScore || 0) - Number(a.peakScore || 0))

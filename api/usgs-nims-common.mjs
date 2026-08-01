@@ -148,6 +148,7 @@ export async function capturePendingNimsEvidence(limit = 3) {
   const pending = (await loadRecentGoEvents(now - 2 * 60 * 60 * 1000, 50))
     .filter(event => (event.review?.label || "pending") === "pending")
     .filter(event => !(event.evidence?.frames || []).length)
+    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
     .filter(event => matchNimsCamera(event, cameras))
     .filter(event => {
       const age = now - new Date(event.lastSeenAt || event.firstSeenAt).getTime();

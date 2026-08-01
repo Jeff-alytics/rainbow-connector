@@ -46,6 +46,12 @@ const DEFAULT_FAA_FOV_DEG = 45;
 const FAA_CAPTURE_MATURITY_MINUTES = 20;
 const POSSIBLE_FAA_MAX_DISTANCE_KM = 40;
 
+function isMatureCameraEvent(event) {
+  const scanCount = Number(event?.scanCount);
+  return event?.candidateType !== "research_possible"
+    || !Number.isFinite(scanCount) || scanCount >= 2;
+}
+
 function normalizeBearing(value) { return (Number(value) % 360 + 360) % 360; }
 
 function intervalSegments(center, width) {
@@ -299,6 +305,7 @@ export async function captureFaaEvidence(event) {
 }
 
 export function selectPendingFaaEvents(ranked, limit = 2) {
+  ranked = (ranked || []).filter(isMatureCameraEvent);
   const maximum = Math.max(0, Math.min(Number(limit) || 2, 4));
   const research = maximum >= 2 ? ranked.find(event => event.candidateType === "research_possible") : null;
   const pending = ranked.filter(event => event !== research && event.candidateType !== "research_possible")
@@ -315,7 +322,7 @@ export async function capturePendingFaaEvidence(limit = 2) {
   const now = Date.now();
   const ranked = (await loadRecentGoEvents(now - 2 * 60 * 60 * 1000, 50))
     .filter(event => (event.review?.label || "pending") === "pending")
-    .filter(event => event.candidateType !== "research_possible" || Number(event.scanCount || 0) >= 2)
+    .filter(isMatureCameraEvent)
     .filter(event => !(event.evidence?.status === "no_camera_match"
       && event.evidence?.matcherVersion === FAA_MATCHER_VERSION))
     .filter(event => (event.evidence?.frames || []).length < 3

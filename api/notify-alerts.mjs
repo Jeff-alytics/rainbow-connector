@@ -175,6 +175,9 @@ export default async function handler(req, res) {
   for (const result of collection) {
     if (result.status === "rejected") console.warn("[candidate-collection] save failed:", result.reason?.message || result.reason);
   }
+  if (collection[1].status === "fulfilled" && collection[1].value?.errors?.length) {
+    console.warn("[candidate-collection] partial save errors:", collection[1].value.errors);
+  }
 
   const candidates = alertableGoCandidates(artifact);
   const nowMs = Date.now();
