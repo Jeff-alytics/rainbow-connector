@@ -126,18 +126,19 @@ be backfilled:
   "locationUncertaintyKm": 4.2, "locationVersion": "us-zip-points-2026-v1" }
 ```
 
-`zip-centroids.json` holds *geographic* centroids. Population-weighted ZCTA
-points are a different dataset and must be ingested. Roughly 10,000 ZIPs are
-PO-box-only with no ZCTA: signup must detect those and prompt for a point rather
-than accept a ZIP it cannot resolve.
+`zip-centroids.json` holds *geographic* centroids. Population-weighted ZIP points are
+in `data/zip-location-points-v2.json`, derived from HUD residential ratios and
+Census 2020 tract centers. Each weighted ZIP carries a computed uncertainty radius
+with a 4.2 km floor; weighted dispersion above 25 km requires a user pin. Shared
+coordinates and ZIPs without positive residential ratio also require a pin. The current artifact marks 8,364 ZIPs as pin-required. Signup must detect those and prompt for a point rather than accept a ZIP it cannot resolve.
 
 ## Open decisions
 
 1. Does raw swath membership surface as public POSSIBLE immediately, or
    shadow-only first? Recommend shadow-only: POSSIBLE is what most users see most
    often, and a frequently-wrong POSSIBLE devalues GO.
-2. Exact uncertainty radius per `locationMethod`, and the disc sampling density
-   used to test containment.
+2. The disc sampling density used to test containment. The v2 data artifact now
+   supplies a per-ZIP uncertainty radius and pin-required flag.
 
 ## Sequence
 

@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 from collections import defaultdict
 from pathlib import Path
 from typing import Iterable
@@ -20,6 +21,8 @@ CENSUS_SOURCE = (
     "https://www2.census.gov/geo/docs/reference/cenpop2020/tract/"
     "CenPop2020_Mean_TR.txt"
 )
+MIN_UNCERTAINTY_KM = 4.2
+PIN_DISTANCE_THRESHOLD_KM = 25.0
 
 
 def load_zip_centroids(path: Path) -> dict[str, list]:
@@ -60,6 +63,18 @@ def load_hud_rows(path: Path) -> tuple[dict, list[dict]]:
 def coordinate_key(latitude: float, longitude: float) -> str:
     return f"{latitude:.6f},{longitude:.6f}"
 
+
+def distance_km(latitude_a: float, longitude_a: float, latitude_b: float, longitude_b: float):
+    """Return a great-circle distance using the haversine formula."""
+    earth_radius_km = 6371.0088
+    lat_a, lat_b = math.radians(latitude_a), math.radians(latitude_b)
+    delta_lat = lat_b - lat_a
+    delta_lon = math.radians(longitude_b - longitude_a)
+    haversine = (
+        math.sin(delta_lat / 2) ** 2
+        + math.cos(lat_a) * math.cos(lat_b) * math.sin(delta_lon / 2) ** 2
+    )
+    return 2 * earth_radius_km * math.asin(math.sqrt(haversine))
 
 def build_locations(
     zip_centroids: dict[str, list],
@@ -103,14 +118,27 @@ def build_locations(
             requires_pin = True
         else:
             method = "zip-population-weighted-v1"
-            radius = 4.2
-            requires_pin = False
+            weighted_rms_km = math.sqrt(
+                sum(
+                    weight * distance_km(
+                        geographic_latitude,
+                        geographic_longitude,
+                        latitude,
+                        longitude,
+                    ) ** 2
+                    for weight, latitude, longitude in rows
+                ) / total_weight
+            )
+            radius = max(MIN_UNCERTAINTY_KM, round(weighted_rms_km, 1))
+            requires_pin = weighted_rms_km > PIN_DISTANCE_THRESHOLD_KM
 
-        if total_weight > 0:
+        if zip_code in shared_zips or total_weight <= 0:
+            # Shared and PO-box ZIPs retain the geographic point. The pin
+            # requirement prevents this fallback coordinate from producing GO.
+            latitude, longitude = geographic_latitude, geographic_longitude
+        else:
             latitude = sum(weight * lat for weight, lat, _ in rows) / total_weight
             longitude = sum(weight * lon for weight, _, lon in rows) / total_weight
-        else:
-            latitude, longitude = geographic_latitude, geographic_longitude
 
         location = {
             "latitude": round(latitude, 6),
@@ -132,7 +160,7 @@ def build_artifact(zip_path: Path, hud_path: Path, census_paths: list[Path]) -> 
     tract_centers = load_tract_centers(census_paths)
     locations, counts = build_locations(zip_centroids, hud_rows, tract_centers)
     return {
-        "version": "us-zip-points-2026-v1",
+        "version": "us-zip-points-2026-v2",
         "sources": {
             "hud": {
                 "year": hud_data.get("year"),
