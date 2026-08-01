@@ -83,12 +83,12 @@ test("opportunity-ledger assessments stay private and retain their distinct sour
   assert.equal(event.candidateClass, "POSSIBLE");
 });
 
-test("geometry-first persistence tolerates moving observer seeds within a storm corridor", () => {
+test("ledger identities do not fall back to the research storm corridor", () => {
   const first = newResearchReviewEvent({ candidateId: "one", disposition: "selected_research_possible",
     radarObservedAt: "2026-07-30T02:22:00Z", observer: { lat: 41.1218, lon: -112.0838 },
     rain: {}, geometry: { sunElevationDeg: 3.3, antiSolarBearingDeg: 112, radarScore: 67 }, researchReview: {} });
-  const next = { radarObservedAt: "2026-07-30T02:26:00Z", observer: { lat: 41.2467, lon: -112.0609 } };
-  assert.equal(matchingAssessmentEvent([first], next, { radiusKm: 35, gapMinutes: 12 }), first);
+  const next = { radarObservedAt: "2026-07-30T02:26:00Z", observer: { lat: 41.2467, lon: -112.0609 }, researchReview: { ledgerEventId: "ledger-X" } };
+  assert.equal(matchingAssessmentEvent([first], next, { radiusKm: 35, gapMinutes: 12 }), null);
 });
 
 test("operational detections cannot match or merge into research events", () => {

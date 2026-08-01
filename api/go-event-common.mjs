@@ -563,6 +563,8 @@ export function matchingAssessmentEvent(events, assessment, options = {}) {
   const gapMs = (Number(options.gapMinutes) || 12) * 60 * 1000;
   const lat = Number(assessment?.observer?.lat), lon = Number(assessment?.observer?.lon);
   const observedMs = timeMs(assessment?.radarObservedAt);
+  const ledgerEventId = String(assessment?.researchReview?.ledgerEventId || "").trim();
+  if (ledgerEventId) return null;
   if (!Number.isFinite(lat) || !Number.isFinite(lon) || !observedMs) return null;
   let best = null;
   for (const event of events || []) {
@@ -697,7 +699,7 @@ export async function attachReviewAssessments(assessments, options = {}) {
         }
       }
       if (assessment?.researchReview?.source) current.researchSource = assessment.researchReview.source;
-      if (assessment?.researchReview?.ledgerEventId) current.ledgerEventId = assessment.researchReview.ledgerEventId;
+      if (assessment?.researchReview?.ledgerEventId && !current.ledgerEventId) current.ledgerEventId = assessment.researchReview.ledgerEventId;
       const compact = { ...assessment, receivedAt: new Date().toISOString(), matchedEventId: current.id };
       current.researchAssessments = [
         ...(current.researchAssessments || []).filter(item => item.idempotencyKey !== key), compact,

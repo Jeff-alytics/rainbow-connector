@@ -107,6 +107,28 @@ test("ledger assessment cannot attach to a nearby operational GO", async () => {
   assert.equal(storedResearch.ledgerEventId, "rain-system-1");
 });
 
+test("unmatched ledger identity does not reuse a nearby research event", async () => {
+  const at = "2026-07-30T02:20:00Z";
+  const existing = newResearchReviewEvent({ candidateId: "existing", disposition: "selected_research_possible",
+    radarObservedAt: at, observer: { lat: 41.15, lon: -112.15 }, rain: {}, geometry: {},
+    researchReview: { source: "opportunity_ledger", ledgerEventId: "ledger-Y" } });
+  const assessment = { candidateId: "ledger-X-candidate", disposition: "selected_research_possible",
+    radarObservedAt: at, observer: { lat: 41.01, lon: -112.01 }, rain: {}, geometry: {},
+    researchReview: { source: "opportunity_ledger", ledgerEventId: "ledger-X" },
+    idempotencyKey: "a".repeat(64) };
+  const fake = fakeRedis({ [GO_EVENT_PREFIX + existing.id]: JSON.stringify(existing) });
+  const result = await withRedis(fake, () => attachReviewAssessments([assessment]));
+  assert.equal(result.created, 1);
+  assert.equal(result.attached, 1);
+  const storedExisting = JSON.parse(fake.values.get(GO_EVENT_PREFIX + existing.id));
+  assert.equal(storedExisting.researchAssessments, undefined);
+  const storedEvents = [...fake.values.entries()]
+    .filter(([key]) => key.startsWith(GO_EVENT_PREFIX))
+    .map(([, value]) => JSON.parse(value));
+  const created = storedEvents.find(event => event.ledgerEventId === "ledger-X");
+  assert.ok(created);
+  assert.equal(created.researchAssessments.length, 1);
+});
 test("exact-point replay targets its named event only when time and location also match", async () => {
   const at = "2026-07-30T02:20:00Z";
   const target = newGoEvent({ detectedAt: at, lat: 41, lon: -112, score: 80, candidateClass: "GO", evidence: {} });
