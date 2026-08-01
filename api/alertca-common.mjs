@@ -162,17 +162,21 @@ export async function captureAlertCaEvidence(event, cameras) {
   return { stored: true, eventId: event.id, frames: storedFrames.length, source: ALERTCA_CREDIT };
 }
 
+export function selectPendingAlertCaEvents(events, limit = 2) {
+  return (events || [])
+    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
+    .slice(0, Math.max(0, Math.min(Number(limit) || 2, 4)));
+}
+
 export async function capturePendingAlertCaEvidence(limit = 2) {
   const now = Date.now();
   const cameras = await loadAlertCaCameras();
-  const pending = (await loadRecentGoEvents(now - 45 * 60 * 1000, 50))
+  const pending = selectPendingAlertCaEvents((await loadRecentGoEvents(now - 45 * 60 * 1000, 50))
     .filter(event => (event.review?.label || "pending") === "pending")
     .filter(event => !(event.evidence?.frames || []).length)
-    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
     .filter(event => !["waiting_usgs", "waiting_webcoos"].includes(event.evidence?.status))
     .filter(event => nearbyAlertCaCameras(event, cameras).length)
-    .sort((a, b) => Number(b.peakScore || 0) - Number(a.peakScore || 0))
-    .slice(0, Math.max(0, Math.min(Number(limit) || 2, 4)));
+    .sort((a, b) => Number(b.peakScore || 0) - Number(a.peakScore || 0)), limit);
   const results = [];
   for (const event of pending) {
     try { results.push(await captureAlertCaEvidence(event, cameras)); }

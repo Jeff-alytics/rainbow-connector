@@ -90,6 +90,12 @@ test("FAA capture reserves one of two slots for persistent research evidence", (
   assert.deepEqual(selectPendingFaaEvents([go, old, research], 2).map(event => event.id), ["go", "research"]);
 });
 
+test("one-scan research cannot consume an FAA capture slot", () => {
+  const go = { id: "go", candidateType: "live_go", peakScore: 70 };
+  const research = { id: "research", candidateType: "research_possible", scanCount: 1, peakScore: 99 };
+  assert.deepEqual(selectPendingFaaEvents([research, go], 1).map(event => event.id), ["go"]);
+});
+
 test("FAA frame selection requires multiple post-event views and keeps a balanced window", () => {
   const center = Date.parse("2026-07-30T01:00:00Z");
   const frame = (minutes, cameraId = 7) => ({
