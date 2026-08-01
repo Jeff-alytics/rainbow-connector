@@ -26,14 +26,14 @@ class ZipLocationIngestionTests(unittest.TestCase):
                 {"zip": "12345", "geoid": "36001000100", "res_ratio": 0.75},
                 {"zip": "12345", "geoid": "36001000200", "res_ratio": 0.25},
             ],
-            {"36001000100": (40.0, -73.0), "36001000200": (40.04, -72.96)},
+            {"36001000100": (40.0, -73.0), "36001000200": (40.08, -72.92)},
         )
         self.assertEqual(locations["12345"]["locationMethod"], "zip-population-weighted-v1")
         self.assertFalse(locations["12345"]["requiresPin"])
-        self.assertGreaterEqual(locations["12345"]["locationUncertaintyKm"], 4.2)
+        self.assertGreater(locations["12345"]["locationUncertaintyKm"], 4.2)
         self.assertLess(locations["12345"]["locationUncertaintyKm"], 25.0)
-        self.assertAlmostEqual(locations["12345"]["latitude"], 40.01, places=6)
-        self.assertAlmostEqual(locations["12345"]["longitude"], -72.99, places=6)
+        self.assertAlmostEqual(locations["12345"]["latitude"], 40.02, places=6)
+        self.assertAlmostEqual(locations["12345"]["longitude"], -72.98, places=6)
         self.assertEqual(counts, {"zip-population-weighted-v1": 1})
 
     def test_high_dispersion_weighted_zip_requires_pin(self):
