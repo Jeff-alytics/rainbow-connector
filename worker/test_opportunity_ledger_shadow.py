@@ -130,7 +130,9 @@ class OpportunityLedgerShadowTests(unittest.TestCase):
             self.assertEqual(duration["TreatMissingData"], "notBreaching")
             self.assertEqual(errors["TreatMissingData"], "notBreaching")
             self.assertEqual(duration["EvaluationPeriods"], 2)
-            self.assertEqual(errors["EvaluationPeriods"], 2)
+            self.assertEqual(duration["DatapointsToAlarm"], 2)
+            self.assertEqual(errors["EvaluationPeriods"], 1)
+            self.assertEqual(errors["DatapointsToAlarm"], 1)
             if len(names) > 2:
                 stale = resources[names[2]]["Properties"]
                 self.assertEqual(stale["MetricName"], "Invocations")

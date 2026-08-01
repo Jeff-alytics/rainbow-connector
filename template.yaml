@@ -325,8 +325,8 @@ Resources:
           Value: !Ref OpportunityLedgerWorker
       Statistic: Sum
       Period: 300
-      EvaluationPeriods: 2
-      DatapointsToAlarm: 2
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
       Threshold: 0
       ComparisonOperator: GreaterThanThreshold
       # An absent datapoint means no invocation, not a silent error.
@@ -367,8 +367,8 @@ Resources:
           Value: !Ref RainbowWorker
       Statistic: Sum
       Period: 300
-      EvaluationPeriods: 2
-      DatapointsToAlarm: 2
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
       Threshold: 0
       ComparisonOperator: GreaterThanThreshold
       TreatMissingData: notBreaching
@@ -424,8 +424,8 @@ Resources:
           Value: !Ref MapTierWorker
       Statistic: Sum
       Period: 300
-      EvaluationPeriods: 2
-      DatapointsToAlarm: 2
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
       Threshold: 0
       ComparisonOperator: GreaterThanThreshold
       TreatMissingData: notBreaching
@@ -462,8 +462,8 @@ Resources:
           Value: !Ref SunlightShadowWorker
       Statistic: Sum
       Period: 300
-      EvaluationPeriods: 2
-      DatapointsToAlarm: 2
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
       Threshold: 0
       ComparisonOperator: GreaterThanThreshold
       TreatMissingData: notBreaching
