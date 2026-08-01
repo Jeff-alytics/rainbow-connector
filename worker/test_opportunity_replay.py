@@ -84,6 +84,24 @@ class OpportunityReplayTests(unittest.TestCase):
                 self.assertLessEqual(observation["nearestSwathKm"], 3)
                 self.assertEqual(observation["failureCodes"], [])
 
+    def test_frozen_cases_are_replayed_through_build_report(self):
+        root = Path(__file__).resolve().parents[1] / "validation" / "opportunity-ledger"
+        fixture = json.loads((root / "case-fixture-v1.json").read_text(encoding="utf-8"))
+        ledgers = []
+        for directory in (
+            "baltimore-ledgers", "colorado-ledgers", "delano-ledgers",
+            "meeker-ledgers", "middletown-ledgers", "utah-ledgers",
+        ):
+            ledgers.extend(
+                json.loads(path.read_text(encoding="utf-8"))
+                for path in sorted((root / directory).glob("*.json"))
+            )
+
+        actual = build_report(fixture, ledgers)
+        expected = json.loads((root / "replay-report-v1.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(ledgers), 18)
+        self.assertEqual(actual, expected)
+
 
 if __name__ == "__main__":
     unittest.main()
