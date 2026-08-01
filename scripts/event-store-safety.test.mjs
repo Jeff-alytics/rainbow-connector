@@ -6,7 +6,7 @@ import test from "node:test";
 import { redisPipeline } from "../api/alert-common.mjs";
 import { GO_EVENT_PREFIX, attachReviewAssessments, deleteHistoricalReviewEvent, evidenceFrameReviewKey,
   historicalSource, labelGoEvent, labelGoEventView,
-  mutateGoEvent, newGoEvent, newResearchReviewEvent, saveHistoricalReviewEvent,
+  mutateGoEvent, newGoEvent, newResearchReviewEvent, saveGoEvents, saveHistoricalReviewEvent,
   syncConfirmedGallery } from "../api/go-event-common.mjs";
 
 function response(result) {
@@ -178,6 +178,35 @@ test("one malformed assessment cannot prevent a later record from attaching", as
   assert.equal(result.errors.length, 1);
   assert.equal(result.attached, 1);
   assert.equal(JSON.parse(fake.values.get(GO_EVENT_PREFIX + second.id)).researchAssessments[0].candidateId, "healthy");
+});
+
+test("one failed GO event cannot prevent a later candidate from being saved", async () => {
+  const at = "2026-07-30T02:20:00Z";
+  const first = newGoEvent({ detectedAt: at, lat: 35, lon: -100, score: 80, candidateClass: "GO", evidence: {} });
+  const second = newGoEvent({ detectedAt: at, lat: 45, lon: -90, score: 81, candidateClass: "GO", evidence: {} });
+  const candidate = (id, lat, lon) => ({ id, verdict: "go", lat, lon, evidence: { score: 90 } });
+  const fake = fakeRedis({ [GO_EVENT_PREFIX + first.id]: JSON.stringify(first),
+    [GO_EVENT_PREFIX + second.id]: JSON.stringify(second) });
+  fake.forceEvalError();
+  const result = await withRedis(fake, () => saveGoEvents({ generatedAt: at,
+    candidates: [candidate("first", 35, -100), candidate("second", 45, -90)] }, { scanScope: "isolation" }));
+  assert.equal(result.errors.length, 1);
+  assert.equal(result.eventsUpdated, 1);
+  assert.equal(JSON.parse(fake.values.get(GO_EVENT_PREFIX + second.id)).detectionCount, 2);
+});
+
+test("retrying a scan does not duplicate a detection", async () => {
+  const at = "2026-07-30T02:20:00Z";
+  const candidate = { id: "retry", verdict: "go", lat: 35, lon: -100, evidence: { score: 90 } };
+  const fake = fakeRedis();
+  await withRedis(fake, () => saveGoEvents({ generatedAt: at, candidates: [candidate] }, { scanScope: "first" }));
+  await withRedis(fake, () => saveGoEvents({ generatedAt: at, candidates: [candidate] }, { scanScope: "retry" }));
+  const stored = [...fake.values.entries()]
+    .filter(([key]) => key.startsWith(GO_EVENT_PREFIX))
+    .map(([, value]) => JSON.parse(value));
+  assert.equal(stored.length, 1);
+  assert.equal(stored[0].detectionCount, 1);
+  assert.equal(stored[0].detections.length, 1);
 });
 
 test("Redis pipeline surfaces a per-command Upstash failure", async () => {

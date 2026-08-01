@@ -271,6 +271,8 @@ export function mergeDetection(event, detection) {
   if ((event?.candidateType === "research_possible") !== researchDetection) {
     throw new Error("Operational and research detections cannot share an event");
   }
+  const duplicateDetection = (event.detections || []).some(item => item?.detectedAt === detection.detectedAt && item?.candidateId === detection.candidateId && item?.lat === detection.lat && item?.lon === detection.lon);
+  if (duplicateDetection) return event;
   const sameScan = event.lastSeenAt === detection.detectedAt;
   event.lastSeenAt = detection.detectedAt;
   if (!sameScan) event.scanCount = Number(event.scanCount || 0) + 1;
@@ -329,7 +331,9 @@ export async function saveGoEvents(artifact, options = {}) {
       .filter(event => event.candidateType !== "research_possible");
     const touched = new Set();
     let created = 0;
+    const errors = [];
     for (const candidate of candidates) {
+      try {
       const detection = compactGoDetection(candidate, generatedAt);
       let event = matchingEvent(recent, detection);
       if (event) {
@@ -353,7 +357,10 @@ export async function saveGoEvents(artifact, options = {}) {
         }
         recent.push(event);
       }
-      touched.add(event.id);
+        touched.add(event.id);
+      } catch (error) {
+        errors.push({ candidateId: candidate?.id || null, message: error instanceof Error ? error.message : String(error) });
+      }
     }
     const commands = [];
     for (const id of touched) {
@@ -362,7 +369,9 @@ export async function saveGoEvents(artifact, options = {}) {
     }
     commands.push(["ZREMRANGEBYSCORE", GO_EVENT_INDEX, "-inf", Date.now() - ttlSeconds * 1000]);
     await redisPipeline(commands);
-    return { stored: true, candidates: candidates.length, eventsUpdated: touched.size, newEvents: created, eventIds: [...touched] };
+    if (errors.length) await redis(["DEL", scanKey]).catch(() => {});
+    return { stored: true, candidates: candidates.length, eventsUpdated: touched.size, newEvents: created,
+      eventIds: [...touched], errors };
   } catch (error) {
     await redis(["DEL", scanKey]).catch(() => {});
     throw error;
