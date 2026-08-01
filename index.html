@@ -153,6 +153,9 @@
   .dateline b { font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 15px; color: var(--foreground); display: block; }
   .dateline span { font-size: 12px; color: var(--muted-fg); }
   .dateline .cadence { display: block; font-size: 10px; letter-spacing: .04em; color: var(--faint-fg); }
+  /* a frozen readout must not look like a working one */
+  .dateline.stale b { color: var(--mod); }
+  .dateline.stale .cadence { color: var(--mod); font-weight: 700; }
   .theme-toggle { width: 42px; height: 42px; border-radius: 999px; border: 1px solid var(--border-c); background: var(--card-bg);
     color: var(--foreground); cursor: pointer; display: grid; place-items: center; font-size: 18px; transition: transform .15s, background .2s; }
   .theme-toggle:hover { transform: translateY(-2px) rotate(-8deg); }
@@ -2263,6 +2266,15 @@ chipsEl.addEventListener("click", e => {
   if (chip){ activeZip = chip.dataset.zip; save(); renderChips(); refreshActive(); }
 });
 
+/* Age of a stalled readout, in units someone can read at a glance.  The bundled
+   fallback artifact can be days old, and "7700 min" tells nobody anything. */
+function staleAge(min){
+  if (min < 90) return `${Math.round(min)} min`;
+  if (min < 48 * 60) return `${Math.round(min / 60)} hr`;
+  const d = Math.round(min / 1440);
+  return `${d} day${d === 1 ? "" : "s"}`;
+}
+
 /* "last updated" stamp — set whenever we refresh live data (a station read or a grid repaint),
    so the dateline reflects how fresh the readout is rather than ticking wall-clock time. */
 function markUpdated(at){
@@ -2272,7 +2284,19 @@ function markUpdated(at){
   $("#clock-time").textContent = n.toLocaleTimeString([], opts) + (SIM_INSTANT ? " CT" : "");
   const dopts = SIM_INSTANT ? { weekday:"long", month:"long", day:"numeric", timeZone:"America/Chicago" } : { weekday:"long", month:"long", day:"numeric" };
   $("#clock-date").textContent = n.toLocaleDateString([], dopts);
-  $("#clock-cadence").textContent = `Updates every ${REFRESH_MIN} min`;
+
+  /* Flag a readout that has stopped tracking the feed.  One missed cycle is
+     tolerated, since the artifact is itself up to REFRESH_MIN old by design. */
+  const stampTime = artifactTime || (at instanceof Date ? at : null);
+  const ageMin = stampTime ? (Date.now() - stampTime.getTime()) / 60000 : null;
+  const stale = !SIM_INSTANT && (ageMin === null || ageMin > REFRESH_MIN * 2);
+  const dateline = document.querySelector(".dateline");
+  if (dateline) dateline.classList.toggle("stale", stale);
+  $("#clock-cadence").textContent = !stale
+    ? `Updates every ${REFRESH_MIN} min`
+    : ageMin === null
+      ? "Live data unavailable"
+      : `Stale · ${staleAge(ageMin)} old`;
 }
 
 /* backtest banner */
@@ -2300,23 +2324,48 @@ function applyTheme(t){
   });
 })();
 
+/* Live refresh.  The interval alone is not enough: a sleeping machine or a
+   backgrounded tab stops the timer, and nothing re-synced on wake, so the page
+   sat on a stamp from hours earlier while the feed ran normally.  Refresh on
+   visibility and focus as well, swallow a failed cycle rather than leaving the
+   UI frozen, and never let two runs overlap. */
+let refreshInFlight = false;
+let lastRefreshOk = 0;
+
+async function refreshLive(){
+  if (refreshInFlight) return;
+  refreshInFlight = true;
+  try {
+    await loadCandidateMap();
+    await refreshActive();
+    refreshAllChips();
+    lastRefreshOk = Date.now();
+  } catch (err) {
+    console.error("live refresh failed", err);
+    markUpdated();  // re-evaluate staleness even when the fetch fails
+  } finally {
+    refreshInFlight = false;
+  }
+}
+
 /* boot */
 async function boot(){
   load();
   renderChips();
-  await loadCandidateMap();
-  await refreshActive();
-  refreshAllChips();
+  await refreshLive();
   initializeEmailAlerts();
 }
 boot();
 
 if (!SIM_INSTANT){
-  setInterval(async () => {
-    await loadCandidateMap();
-    await refreshActive();
-    refreshAllChips();
-  }, REFRESH_MIN * 60 * 1000);
+  setInterval(refreshLive, REFRESH_MIN * 60 * 1000);
+  const resyncIfStale = () => {
+    if (document.visibilityState === "hidden") return;
+    if (Date.now() - lastRefreshOk >= REFRESH_MIN * 60 * 1000) refreshLive();
+    else markUpdated();
+  };
+  document.addEventListener("visibilitychange", resyncIfStale);
+  window.addEventListener("focus", resyncIfStale);
 }
 </script>
 </body>
