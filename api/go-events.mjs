@@ -1,5 +1,5 @@
 import { json, readJsonBody, verifySecret } from "./alert-common.mjs";
-import { REVIEW_LABELS, evidenceFrameReviewGroups, labelGoEvent, labelGoEventView, loadGoEvents } from "./go-event-common.mjs";
+import { REVIEW_LABELS, evidenceFrameReviewGroups, labelGoEvent, labelGoEventView, loadGoEvents, loadGoEventsBetween } from "./go-event-common.mjs";
 import { hasReviewSession } from "./review-auth-common.mjs";
 
 export const config = { maxDuration: 10 };
@@ -278,7 +278,11 @@ export default async function handler(req, res) {
     const label = String(req.query?.label || "").trim();
     const queue = String(req.query?.queue || "") === "1";
     const results = String(req.query?.results || "") === "1";
-    const loaded = await loadGoEvents(limit);
+    const since = Date.parse(String(req.query?.since || ""));
+    const until = Date.parse(String(req.query?.until || ""));
+    const loaded = Number.isFinite(since) && Number.isFinite(until)
+      ? await loadGoEventsBetween(since, until, limit)
+      : await loadGoEvents(limit);
     const events = queue
       ? reviewQueue(loaded)
       : loaded.filter(event => !label || event.review?.label === label

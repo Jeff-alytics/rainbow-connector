@@ -18,6 +18,7 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlencode
 
 import boto3
 import requests
@@ -61,6 +62,20 @@ def review_session(base_url: str, password: str) -> requests.Session:
 EVENT_PAGE_LIMIT = 1000
 
 
+def event_query_url(base_url: str, results: bool, start: datetime, end: datetime) -> str:
+    params = {
+        "limit": EVENT_PAGE_LIMIT, "since": iso(start), "until": iso(end),
+    }
+    if results:
+        params["results"] = "1"
+    return f"{base_url}/api/go-events?{urlencode(params)}"
+
+
+def validate_flags(apply: bool, redeliver: bool) -> None:
+    if redeliver and not apply:
+        raise SystemExit("--redeliver requires --apply; it sends callback requests")
+
+
 def salted_key(idempotency_key: str, resalt: str) -> str:
     """Return the natural key unless a salt is named. See the backfill script:
     re-salting forces a re-attach and appends rather than replaces, so it must
@@ -81,15 +96,16 @@ def guard_not_truncated(payload: dict, what: str) -> dict:
 
 
 def missing_events(session: requests.Session, base_url: str, start: datetime, end: datetime) -> list[dict]:
-    results = session.get(f"{base_url}/api/go-events?results=1&limit={EVENT_PAGE_LIMIT}", timeout=30)
+    results = session.get(event_query_url(base_url, True, start, end), timeout=30)
     results.raise_for_status()
     ids = {
         str(row.get("id") or "").split("::", 1)[0]
         for row in guard_not_truncated(results.json(), "The graded-results query").get("items") or []
         if row.get("reviewedAt") and start <= instant(row["reviewedAt"]) <= end
         and row.get("sunlightAssessment") is None
+        and not row.get("sunlightAssessmentWithheld")
     }
-    response = session.get(f"{base_url}/api/go-events?limit={EVENT_PAGE_LIMIT}", timeout=30)
+    response = session.get(event_query_url(base_url, False, start, end), timeout=30)
     response.raise_for_status()
     events = guard_not_truncated(response.json(), "The event query").get("items") or []
     return [event for event in events if str(event.get("id")) in ids]
@@ -153,9 +169,9 @@ def replay_record(event: dict, radar_observed_at: str) -> dict | None:
     rain_point = evidence.get("rainPoint") or {}
     rain_lat, rain_lon = rain_point.get("lat"), rain_point.get("lon")
     rain_distance = rain_point.get("distanceKm")
-    if not isinstance(rain_lat, (int, float)) or not isinstance(rain_lon, (int, float)):
-        rain_distance = 15.0
-        rain_lat, rain_lon = destination(float(lat), float(lon), float(anti), rain_distance)
+    if (not isinstance(rain_lat, (int, float)) or not isinstance(rain_lon, (int, float))
+            or not isinstance(rain_distance, (int, float))):
+        return None
     candidate = {
         "lat": float(lat), "lon": float(lon), "rainLat": float(rain_lat), "rainLon": float(rain_lon),
         "rainDistanceKm": rain_distance, "rainRateMmHr": evidence.get("rainIntensity"),
@@ -234,6 +250,7 @@ def main() -> int:
              "landing; changing the value re-applies everything.",
     )
     args = parser.parse_args()
+    validate_flags(args.apply, args.redeliver)
     password = str(os.environ.get("GO_REVIEW_PASSWORD") or "").strip()
     if not password:
         raise SystemExit("GO_REVIEW_PASSWORD is required")
@@ -260,7 +277,8 @@ def main() -> int:
         radar_observed_at = (envelope.get("radar") or {}).get("observedAt")
         record = replay_record(event, radar_observed_at)
         if not record:
-            skipped.append({"eventId": event.get("id"), "reason": "incomplete_event_geometry"})
+            reason = "missing_rain_point" if not isinstance((event.get("representative") or {}).get("evidence", {}).get("rainPoint"), dict) else "incomplete_event_geometry"
+            skipped.append({"eventId": event.get("id"), "reason": reason})
             continue
         group = groups.setdefault(source_key, {"source": envelope, "records": []})
         group["records"].append(record)

@@ -16,6 +16,7 @@ import os
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import urlencode
 
 import boto3
 import requests
@@ -47,6 +48,15 @@ def prefixes(start: datetime, end: datetime) -> list[str]:
 # silently covering only the newest 1000 events, while reporting success, is
 # worse than refusing to run.
 EVENT_PAGE_LIMIT = 1000
+
+
+def event_query_url(base_url: str, results: bool, start: datetime, end: datetime) -> str:
+    params = {
+        "limit": EVENT_PAGE_LIMIT, "since": start.isoformat(), "until": end.isoformat(),
+    }
+    if results:
+        params["results"] = "1"
+    return f"{base_url}/api/go-events?{urlencode(params)}"
 
 
 def salted_key(idempotency_key: str, resalt: str) -> str:
@@ -85,7 +95,7 @@ def review_candidate_ids(
     )
     response.raise_for_status()
     results_response = session.get(
-        f"{base_url}/api/go-events?results=1&limit={EVENT_PAGE_LIMIT}", timeout=30,
+        event_query_url(base_url, True, start, end), timeout=30,
     )
     results_response.raise_for_status()
     guard_not_truncated(results_response.json(), "The graded-results query")
@@ -94,12 +104,13 @@ def review_candidate_ids(
     for row in results_response.json().get("items") or []:
         reviewed_at = row.get("reviewedAt")
         if (not reviewed_at or not start <= instant(reviewed_at) <= end
-                or row.get("sunlightAssessment") is not None):
+                or row.get("sunlightAssessment") is not None
+                or row.get("sunlightAssessmentWithheld")):
             continue
         reviewed_rows += 1
         reviewed_event_ids.add(str(row.get("id") or "").split("::", 1)[0])
 
-    events_response = session.get(f"{base_url}/api/go-events?limit={EVENT_PAGE_LIMIT}", timeout=30)
+    events_response = session.get(event_query_url(base_url, False, start, end), timeout=30)
     events_response.raise_for_status()
     guard_not_truncated(events_response.json(), "The event query")
     ids = set()

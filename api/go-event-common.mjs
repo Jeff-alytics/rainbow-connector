@@ -303,6 +303,15 @@ async function loadEventsByIds(ids) {
   }).filter(Boolean);
 }
 
+export async function loadGoEventsBetween(sinceMs, untilMs, limit = 250) {
+  if (!configuredStore()) return [];
+  const count = Math.max(1, Math.min(Number(limit) || 250, 1000));
+  const start = Number(sinceMs), end = Number(untilMs);
+  if (!Number.isFinite(start) || !Number.isFinite(end) || end < start) return [];
+  const ids = await redis(["ZREVRANGEBYSCORE", GO_EVENT_INDEX, end, start, "LIMIT", 0, count]);
+  return loadEventsByIds((ids || []).map(id => GO_EVENT_PREFIX + id));
+}
+
 export async function loadGoEvents(limit = 250) {
   if (!configuredStore()) return [];
   const count = Math.max(1, Math.min(Number(limit) || 250, 1000));
