@@ -5,9 +5,15 @@ import { attachGoEventEvidence, loadRecentGoEvents } from "./go-event-common.mjs
 
 export const config = { maxDuration: 60 };
 
+export function selectPendingDotEvents(events, limit = 3) {
+  return (events || [])
+    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
+    .slice(0, Math.max(0, Math.min(Number(limit) || 3, 3)));
+}
+
 async function pendingJobs() {
   const now = Date.now();
-  const events = (await loadRecentGoEvents(now - 45 * 60 * 1000, 30))
+  const events = selectPendingDotEvents((await loadRecentGoEvents(now - 45 * 60 * 1000, 30))
     .filter(event => (event.review?.label || "pending") === "pending")
     .filter(event => !(event.evidence?.frames || []).length)
     .filter(event => event.evidence?.status !== "waiting_usgs")
@@ -16,8 +22,7 @@ async function pendingJobs() {
       const age = now - new Date(event.firstSeenAt || event.lastSeenAt).getTime();
       return age >= 30 * 60 * 1000;
     })
-    .sort((a, b) => Number(b.peakScore || 0) - Number(a.peakScore || 0))
-    .slice(0, 3);
+    .sort((a, b) => Number(b.peakScore || 0) - Number(a.peakScore || 0)), 3);
   return dotCameraJobs(events, { maxDistanceKm: 35, camerasPerEvent: 3 });
 }
 

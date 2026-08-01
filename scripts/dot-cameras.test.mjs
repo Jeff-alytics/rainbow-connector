@@ -4,9 +4,16 @@ import {
   matchNearbyDotCameras, parseCaltransDistrict, parseIowaFeatures,
   parseGa511Cameras, parseOhioCameras, parseWsdotCameras,
 } from "../api/dot-camera-common.mjs";
+import { selectPendingDotEvents } from "../api/dot-evidence.mjs";
 import {
   angleDifference, matchAlertCaCameras, nearbyAlertCaCameras, parseAlertCaFeatures, selectPendingAlertCaEvents,
 } from "../api/alertca-common.mjs";
+
+test("one-scan research cannot consume a DOT capture slot", () => {
+  const research = { id: "research", candidateType: "research_possible", scanCount: 1, peakScore: 99 };
+  const go = { id: "go", candidateType: "live_go", scanCount: 1, peakScore: 70 };
+  assert.deepEqual(selectPendingDotEvents([research, go], 1).map(event => event.id), ["go"]);
+});
 
 test("one-scan research cannot consume an AlertCalifornia capture slot", () => {
   const research = { id: "research", candidateType: "research_possible", scanCount: 1, peakScore: 99 };

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import {
-  matchWebcoosCamera, parseWebcoosAssets, rankWebcoosElements, wedgeDirection,
+  matchWebcoosCamera, parseWebcoosAssets, rankWebcoosElements, selectPendingWebcoosEvents, wedgeDirection,
 } from "../api/webcoos-common.mjs";
 import { reviewEvidenceStrength } from "../api/go-events.mjs";
 
@@ -27,6 +27,12 @@ function asset(overrides = {}) {
     ...overrides,
   };
 }
+
+test("one-scan research cannot consume a WebCOOS capture slot", () => {
+  const research = { id: "research", candidateType: "research_possible", scanCount: 1, peakScore: 99 };
+  const go = { id: "go", candidateType: "live_go", scanCount: 1, peakScore: 70 };
+  assert.deepEqual(selectPendingWebcoosEvents([research, go], 1).map(event => event.id), ["go"]);
+});
 
 test("WebCOOS catalog keeps current one-minute archives and published viewsheds", () => {
   const [camera] = parseWebcoosAssets({ results: [asset()] }, Date.parse("2026-07-28T19:00:00Z"));

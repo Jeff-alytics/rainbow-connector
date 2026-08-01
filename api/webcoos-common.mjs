@@ -210,17 +210,21 @@ export async function captureWebcoosEvidence(event, cameras) {
   return { stored: true, eventId: event.id, frames: storedFrames.length, source: CREDIT };
 }
 
+export function selectPendingWebcoosEvents(events, limit = 2) {
+  return (events || [])
+    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
+    .slice(0, Math.max(0, Math.min(Number(limit) || 2, 4)));
+}
 export async function capturePendingWebcoosEvidence(limit = 2) {
   const now = Date.now();
   const cameras = await loadWebcoosCameras();
-  const pending = (await loadRecentGoEvents(now - 45 * 60 * 1000, 50))
+  const pending = selectPendingWebcoosEvents((await loadRecentGoEvents(now - 45 * 60 * 1000, 50))
     .filter(event => (event.review?.label || "pending") === "pending")
     .filter(event => !(event.evidence?.frames || []).length)
-    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
     .filter(event => event.evidence?.status !== "waiting_usgs")
     .filter(event => matchWebcoosCamera(event, cameras))
     .sort((a, b) => Number(b.peakScore || 0) - Number(a.peakScore || 0))
-    .slice(0, Math.max(0, Math.min(Number(limit) || 2, 4)));
+    , limit);
   const results = [];
   for (const event of pending) {
     try { results.push(await captureWebcoosEvidence(event, cameras)); }

@@ -142,20 +142,24 @@ export async function captureNimsEvidence(event) {
   return { stored: true, eventId: event.id, frames: storedFrames.length, source: "USGS NIMS" };
 }
 
+export function selectPendingNimsEvents(events, limit = 3) {
+  return (events || [])
+    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
+    .slice(0, Math.max(0, Math.min(Number(limit) || 3, 5)));
+}
 export async function capturePendingNimsEvidence(limit = 3) {
   const now = Date.now();
   const cameras = await loadNimsWhitelist();
-  const pending = (await loadRecentGoEvents(now - 2 * 60 * 60 * 1000, 50))
+  const pending = selectPendingNimsEvents((await loadRecentGoEvents(now - 2 * 60 * 60 * 1000, 50))
     .filter(event => (event.review?.label || "pending") === "pending")
     .filter(event => !(event.evidence?.frames || []).length)
-    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
     .filter(event => matchNimsCamera(event, cameras))
     .filter(event => {
       const age = now - new Date(event.lastSeenAt || event.firstSeenAt).getTime();
       return age >= 0 && age <= 2 * 60 * 60 * 1000;
     })
     .sort((a, b) => Number(b.peakScore || 0) - Number(a.peakScore || 0))
-    .slice(0, Math.max(0, Math.min(Number(limit) || 3, 5)));
+    , limit);
   const results = [];
   for (const event of pending) {
     try { results.push(await captureNimsEvidence(event)); }

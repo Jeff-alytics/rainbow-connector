@@ -46,6 +46,7 @@ const DEFAULT_FAA_FOV_DEG = 45;
 const FAA_CAPTURE_MATURITY_MINUTES = 20;
 const POSSIBLE_FAA_MAX_DISTANCE_KM = 40;
 
+// Legacy events without scanCount are treated as mature; explicit one-scan research is blocked.
 function isMatureCameraEvent(event) {
   const scanCount = Number(event?.scanCount);
   return event?.candidateType !== "research_possible"

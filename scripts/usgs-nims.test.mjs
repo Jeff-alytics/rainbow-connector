@@ -1,6 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { matchNimsCamera, parseNimsTimestamp, rankNimsFrames } from "../api/usgs-nims-common.mjs";
+import { matchNimsCamera, parseNimsTimestamp, rankNimsFrames, selectPendingNimsEvents } from "../api/usgs-nims-common.mjs";
+
+test("one-scan research cannot consume a NIMS capture slot", () => {
+  const research = { id: "research", candidateType: "research_possible", scanCount: 1, peakScore: 99 };
+  const go = { id: "go", candidateType: "live_go", scanCount: 1, peakScore: 70 };
+  assert.deepEqual(selectPendingNimsEvents([research, go], 1).map(event => event.id), ["go"]);
+});
 
 test("NIMS timestamps are normalized for browser and event timing", () => {
   assert.equal(parseNimsTimestamp("2026-07-27T23-15-03Z"), "2026-07-27T23:15:03Z");
