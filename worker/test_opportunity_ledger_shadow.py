@@ -65,7 +65,9 @@ class OpportunityLedgerShadowTests(unittest.TestCase):
         self.assertEqual(ledger["ImageConfig"]["Command"], ["worker.opportunity_ledger_lambda.handler"])
         self.assertEqual(shadow_env["RAINBOW_REVIEW_ENRICH_URL"], {"Ref": "ReviewEnrichUrl"})
         self.assertEqual(shadow_env["RAINBOW_RESEARCH_REVIEW_ENABLED"], "false")
-        self.assertNotIn("RAINBOW_REVIEW_ENRICH_URL", ledger_env)
+        # Ledger callback re-enabled 2026-08-01 after the safety-repair series
+        # was verified and deployed (docs/ledger-production-safety-handoff.md).
+        self.assertEqual(ledger_env["RAINBOW_REVIEW_ENRICH_URL"], {"Ref": "ReviewEnrichUrl"})
         self.assertNotIn("RAINBOW_PUBLISH_URL", ledger_env)
         # RainbowWorker publishes the public map and triggers alert emails, and
         # its memory tail scales with rain extent: max observed 1945 MB against

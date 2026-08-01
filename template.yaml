@@ -251,6 +251,7 @@ Resources:
         Variables:
           RAINBOW_RESEARCH_BUCKET: !Ref RainbowResearchBucket
           RAINBOW_CACHE_DIR: /tmp/rainbow-ledger-review
+          RAINBOW_REVIEW_ENRICH_URL: !Ref ReviewEnrichUrl
           REVIEW_ENRICH_SECRET_PARAMETER: /rainbow-connector/review-enrich-secret
       Policies:
         - AWSLambdaBasicExecutionRole
