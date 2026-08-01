@@ -1,0 +1,231 @@
+{
+  "$comment": "Confirmed false negative: the observer-wet gate rejected a photographed rainbow. See docs/observer-wet-gate.md.",
+  "fixtureVersion": "rocky-mountain-metro-2026-07-31.v1",
+  "site": {
+    "faaSiteId": 569,
+    "name": "Rocky Mountain Metro Airport",
+    "state": "CO",
+    "lat": 39.91145,
+    "lon": -105.11482
+  },
+  "cameras": [
+    {
+      "id": 12075,
+      "bearing": 54,
+      "direction": "NorthEast",
+      "bowObservedAtZ": [
+        "2026-08-01T00:35:00Z",
+        "2026-08-01T00:43:00Z"
+      ]
+    },
+    {
+      "id": 12076,
+      "bearing": 138,
+      "direction": "SouthEast",
+      "bowObservedAtZ": [
+        "2026-08-01T00:33:00Z",
+        "2026-08-01T00:41:00Z"
+      ],
+      "referenceImage": "https://images.wcams-static.faa.gov/webimages/569/1/12076-1785544378325.jpg"
+    },
+    {
+      "id": 12077,
+      "bearing": 211,
+      "direction": "SouthWest"
+    },
+    {
+      "id": 12078,
+      "bearing": 276,
+      "direction": "West"
+    }
+  ],
+  "thresholds": {
+    "observerDryMaxMmHr": 0.05,
+    "rainMinMmHr": 0.05,
+    "rainMaxMmHr": 20.0,
+    "bowEnvelopeDeg": [
+      -0.833,
+      42
+    ],
+    "rainBandKm": [
+      5,
+      40
+    ]
+  },
+  "scans": [
+    {
+      "observedAt": "2026-08-01T00:34:00Z",
+      "mrmsKey": "CONUS/PrecipRate_00.00/20260801/MRMS_PrecipRate_00.00_20260801-003400.grib2.gz",
+      "sunElevationDeg": 17.84,
+      "sunAzimuthDeg": 279.3,
+      "antiSolarBearingDeg": 99.3,
+      "insideBowEnvelope": true,
+      "observerPrecipMmHr": 1.3,
+      "antiSolarRay": [
+        {
+          "distanceKm": 5,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 7.5,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 10,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 12.5,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 15,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 17.5,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 20,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 22.5,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 25,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 27.5,
+          "precipMmHr": 0.7
+        },
+        {
+          "distanceKm": 30,
+          "precipMmHr": 1.3
+        },
+        {
+          "distanceKm": 32.5,
+          "precipMmHr": 2.5
+        },
+        {
+          "distanceKm": 35,
+          "precipMmHr": 1.8
+        },
+        {
+          "distanceKm": 37.5,
+          "precipMmHr": 4.9
+        },
+        {
+          "distanceKm": 40,
+          "precipMmHr": 0.4
+        }
+      ],
+      "wetSamplesOnRay": 6
+    },
+    {
+      "observedAt": "2026-08-01T00:40:00Z",
+      "mrmsKey": "CONUS/PrecipRate_00.00/20260801/MRMS_PrecipRate_00.00_20260801-004000.grib2.gz",
+      "sunElevationDeg": 16.7,
+      "sunAzimuthDeg": 280.2,
+      "antiSolarBearingDeg": 100.2,
+      "insideBowEnvelope": true,
+      "observerPrecipMmHr": 2.8,
+      "antiSolarRay": [
+        {
+          "distanceKm": 5,
+          "precipMmHr": 10.8
+        },
+        {
+          "distanceKm": 7.5,
+          "precipMmHr": 0.4
+        },
+        {
+          "distanceKm": 10,
+          "precipMmHr": 0.2
+        },
+        {
+          "distanceKm": 12.5,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 15,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 17.5,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 20,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 22.5,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 25,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 27.5,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 30,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 32.5,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 35,
+          "precipMmHr": 0.0
+        },
+        {
+          "distanceKm": 37.5,
+          "precipMmHr": 2.8
+        },
+        {
+          "distanceKm": 40,
+          "precipMmHr": 0.9
+        }
+      ],
+      "wetSamplesOnRay": 5
+    }
+  ],
+  "expected": {
+    "detectorPublishedCandidateAtSite": false,
+    "rejectedBy": "OBSERVER_DRY_MAX_MM_HR",
+    "bowPhotographed": true,
+    "note": "Both scans satisfy sun envelope, anti-solar rain within 5-40 km and two-scan persistence. Only the observer-wet gate rejects them."
+  },
+  "publishedEventNearby": {
+    "generatedAt": "2026-08-01T00:25:00.279149Z",
+    "expiresAt": "2026-08-01T00:32:00.279149Z",
+    "observer": {
+      "lat": 39.7245,
+      "lon": -105.4852
+    },
+    "bearingDeg": 98,
+    "sunElevationDeg": 20.15,
+    "rainPoint": {
+      "lat": 39.695,
+      "lon": -105.195,
+      "distanceKm": 25,
+      "bearing": 98
+    },
+    "verdict": "go",
+    "confidence": "high",
+    "persistence": {
+      "scanCount": 1,
+      "confirmed": false
+    },
+    "distanceFromSiteKm": 37.9,
+    "note": "A different phenomenon. From the site this rain sits at bearing 195.9 deg, 98 deg off its own anti-solar point."
+  }
+}
