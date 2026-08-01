@@ -122,6 +122,7 @@ test("unmatched ledger identity does not reuse a nearby research event", async (
   assert.equal(result.attached, 1);
   const storedExisting = JSON.parse(fake.values.get(GO_EVENT_PREFIX + existing.id));
   assert.equal(storedExisting.researchAssessments, undefined);
+  assert.equal(storedExisting.ledgerEventId, "ledger-Y");
   const storedEvents = [...fake.values.entries()]
     .filter(([key]) => key.startsWith(GO_EVENT_PREFIX))
     .map(([, value]) => JSON.parse(value));

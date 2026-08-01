@@ -595,7 +595,29 @@ but `.gitignore:22` still swallows `validation/`, so new artifacts need `git add
 frozen cases are **pinned by hash, not re-run** — nothing feeds the 22 tracked ledger JSONs through
 `build_report`. CI: still absent.
 
-### 11.3 N1 — the remaining correctness blocker (HIGH)
+### 11.3 N1 — cross-storm binding (HIGH) — **FIXED in `5e92b25`, verified 2026-08-01**
+
+> **Verification (Claude, independent, against Codex's implementation):** all four review
+> counterexamples re-executed against `5e92b25` via a fake-Redis harness — **all pass**.
+> - **CE1** (production trigger — one batch, two new ledger ids, storms 19 km apart): pre-fix
+>   `{attached:2, created:1}` with one merged event; now **two events**, each with its own
+>   `ledgerEventId` and exactly one assessment.
+> - **CE2** (identity overwrite — assessment `rain-X` vs stored event `rain-Y` at 19 km): Y
+>   untouched, identity preserved, new event created for X.
+> - **CE3** (legitimate persistence — same id, next scan): still attaches, no duplicate,
+>   `scanCount` increments. No regression.
+> - **CE4** (exact-point replay of a ledger candidate): the new guard means the 0.25 km
+>   replay-target validation can never pass for ledger-identified assessments, but the replay
+>   **still lands on its named target via the identity match** (a stronger check than location) —
+>   no duplicate. Exact-point replay remains valid; re-check this path when the replay scripts
+>   are fixed.
+> - Suites after the fix: **116/116 JS, 109/109 Python** (repo root, `.venv`). A locally
+>   reported 106 was an environment artifact (missing `xarray` collects 3 fewer files).
+> - Residuals (non-blocking): the identity match still has no distance bound (~590 km case —
+>   tolerable now that B2 makes shared ids mean genuine lineage); the new storage test's
+>   explicit `ledgerEventId === "ledger-Y"` assertion was added post-verification.
+
+The original finding, for the record:
 
 `api/go-event-common.mjs:658-664` + `:700`. When a research assessment's `ledgerEventId` matches no
 stored event, the `||=` chain falls through to a **35 km radius match against other research
@@ -675,7 +697,8 @@ split-sibling tiebreak), GO/research isolation, CAS deployed and empirically exe
 fixture, fixtures committed, tree committed and pushed.
 
 **Not ticked:**
-- [ ] **N1 fixed** + corridor test rewritten + real acceptance test 2
+- [x] **N1 fixed** (`5e92b25`) + corridor test rewritten + real acceptance test 2 — verified
+      via CE1–CE4, see §11.3
 - [ ] Errors alarms at 1/1
 - [ ] Per-candidate error isolation + detections dedupe in `saveGoEvents`
 - [ ] Research filters in the four ungated camera lanes
