@@ -709,6 +709,24 @@ fixture, fixtures committed, tree committed and pushed.
 Items 1–4 are each small, well-localized changes. N1 is the only one that blocks correctness of
 the Review lane itself; the rest are robustness and observability.
 
+### 11.6 Callback re-enabled — 2026-08-01
+
+Every gate above was completed and independently verified (N1 `5e92b25`, isolation `dc2e652`,
+camera gates through `930c1dc`, replay safety `07879ae`, frozen reruns `b68a4de`, CI green on a
+real runner at `f8565c1`, Vercel production deployed from the branch tip). With explicit
+authorization, `RAINBOW_REVIEW_ENRICH_URL` was restored to the ledger worker via `template.yaml`
+(commit `1d84f88`) and deployed by CloudFormation with all stack parameters reused. Post-deploy:
+env present with the correct URL, timeout/memory/image unchanged, zero alarms firing, first
+cycles at 26–34 s / ≤691 MB, and the ingress path confirmed live via the shadow worker's
+delivery logs. The geometry-first research lane remains disabled
+(`RAINBOW_RESEARCH_REVIEW_ENABLED=false`), and the template invariant test now pins the
+re-enabled state.
+
+Residual observability item: the per-scan `[review-callback]` delivery-summary print exists only
+in `shadow_lambda.py` — port the same line to `opportunity_ledger_lambda.py` so a healthy ledger
+lane is visible in its own logs, and so the first real candidate delivery can be affirmatively
+confirmed rather than inferred.
+
 ---
 
 ## Appendix — verification method
