@@ -215,7 +215,7 @@ The July 29 cutoff remains the coarse boundary, but exclusions must use time-win
 - neighboring cameras in the same storm/event window as those cases;
 - July V2 shadow-lane disagreement cases examined during tuning.
 
-The new July 26–28 FAA queue has zero labels and is not contaminated, but it remains an ungraded raw pool until replay-output ordering exists.
+The new July 26–28 FAA queue has zero labels and is not contaminated, but it remains an ungraded raw pool until replay-output ordering exists. It is not presumed interesting and must not become the study archive of record merely because it was downloaded.
 
 ### Additional required tests
 
