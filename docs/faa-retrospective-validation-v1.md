@@ -2,12 +2,13 @@
 
 ## Feasibility result
 
-The FAA WeatherCam API is live, but the public image endpoint did not return a retrospective archive for the pilot window tested:
+The FAA WeatherCam API exposes a rolling public archive. The probe confirmed:
 
-- `2026-07-01T00:00:00Z`–`2026-07-02T00:00:00Z`: 0 images at 3 Alberta sites and 0 images at 3 Florida sites.
+- `2026-07-01T00:00:00Z`–`2026-07-02T00:00:00Z`: 0 images at 3 Alberta sites and 0 images at 3 Florida sites; this was outside the suspected 30-day retention period.
+- `2026-07-10T00:00:00Z`–`2026-07-11T00:00:00Z`: 584 usable images at 3 Florida sites.
 - `2026-08-01T00:00:00Z`–`2026-08-02T00:00:00Z`: 564 usable images at 3 Florida sites.
 
-The conclusion is limited to the public endpoint: it has current data, but no demonstrated pre-review retention. Do not treat an empty historical response as a negative weather label.
+The practical constraint is retention: FAA is suitable for a retrospective pilot only if collection and review happen inside the rolling window. Do not treat an empty response outside that window as a negative weather label.
 
 ## Probe
 
@@ -28,8 +29,8 @@ Each manifest pins the catalog SHA-256, requested window, probe schema, and the 
 
 ## Next implementation
 
-Use an archived source with actual historical retention (WebCOOS/ARM) for the retrospective V1/V2 study. Keep the study data outside the live review event store. Reuse the review UI's blinding conventions through a study-specific manifest and batch namespace, but do not call `saveHistoricalReviewEvent`.
+FAA can be the first retrospective source, but the study must be planned, frozen, and reviewed inside the rolling retention window. WebCOOS/ARM remain useful when a longer historical window is needed. Keep the study data outside the live review event store. Reuse the review UI's blinding conventions through a study-specific manifest and batch namespace, but do not call `saveHistoricalReviewEvent`.
 
-FAA remains useful for a prospective collection: retain image bytes and metadata at capture time, then review after the collection window is frozen. That prospective dataset must be kept separate from the retrospective holdout.
+FAA also remains useful for a prospective collection: retain image bytes and metadata at capture time, then review after the collection window is frozen. That prospective dataset must be kept separate from the retrospective holdout.
 
 The full study should still use the agreed controls: deterministic manifests, score-band stratification after observing the score distribution, event-level holdout excluding tuned frozen cases, season and local-time strata, a second reviewer or delayed rereview, and archived radar if persistence is evaluated.
