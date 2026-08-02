@@ -107,6 +107,7 @@ def nearest_metars(
     observed_at: str,
     available_by: str | None = None,
     maximum: int = 3,
+    method_version: str = METAR_METHOD_VERSION,
 ) -> dict:
     event_time = parse_utc(observed_at)
     cutoff = parse_utc(available_by) if available_by else None
@@ -133,7 +134,7 @@ def nearest_metars(
     nearby.sort(key=lambda item: (item["distanceKm"], abs(item["timeOffsetMinutes"] or 999)))
     selected = nearby[:maximum]
     return {
-        "available": bool(selected), "methodVersion": METAR_METHOD_VERSION,
+        "available": bool(selected), "methodVersion": method_version,
         "availableBy": available_by, "excludedAfterCutoff": excluded_after_cutoff,
         "stations": selected, "supportScore": max((item["sunShowerCompatibility"] for item in selected), default=None),
     }
@@ -410,6 +411,8 @@ def enrich_sunlight_v2(
     cache_dir: Path,
     session: requests.Session | None = None,
     assessment_processing_at: str | None = None,
+    metars: list[dict] | None = None,
+    metar_method_version: str = METAR_METHOD_VERSION,
 ) -> dict:
     if not records or not candidates:
         return {"ok": True, "skipped": True, "reason": "no candidate decision records", "methodVersion": METHOD_VERSION, "records": len(records), "enriched": 0, "errors": [], "v1V2DisagreementRateByDisposition": {}}
@@ -417,11 +420,15 @@ def enrich_sunlight_v2(
     assessment_processing_at = assessment_processing_at or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     latency_seconds = round((parse_utc(assessment_processing_at) - parse_utc(radar_observed_at)).total_seconds(), 3)
     record_by_id = {record.get("candidateId"): record for record in records}
-    try:
-        metars = fetch_metars(session)
+    if metars is None:
+        try:
+            metars = fetch_metars(session)
+            metar_error = None
+        except Exception as error:
+            metars, metar_error = [], str(error)[:300]
+    else:
+        metars = list(metars)
         metar_error = None
-    except Exception as error:
-        metars, metar_error = [], str(error)[:300]
     band2 = Band2Sampler(radar_observed_at, cache_dir / "band2", session=session, available_by=assessment_processing_at)
     errors = []
     enriched = 0
@@ -437,7 +444,7 @@ def enrich_sunlight_v2(
                 dsrf = dsrf_shadow(dsrf_raw, candidate["sunElevationDeg"])
                 acmc = acmc_neighborhood(acmc_raw)
                 band2_feature = band2.sample_candidate(candidate)
-                metar = nearest_metars(candidate, metars, radar_observed_at, available_by=assessment_processing_at) if metars else {"available": False, "error": metar_error, "methodVersion": METAR_METHOD_VERSION, "availableBy": assessment_processing_at, "stations": [], "supportScore": None}
+                metar = nearest_metars(candidate, metars, radar_observed_at, available_by=assessment_processing_at, method_version=metar_method_version) if metars else {"available": False, "error": metar_error, "methodVersion": metar_method_version, "availableBy": assessment_processing_at, "stations": [], "supportScore": None}
                 probability, components = combine_shadow(band2_feature, acmc, metar, dsrf)
                 state, state_reasons = sunlight_state(band2_feature, acmc, metar, dsrf)
                 category = {"sunlit_supported": "sunlit", "sunlight_plausible": "uncertain", "unresolved": "unknown", "overcast_supported": "dark"}[state]

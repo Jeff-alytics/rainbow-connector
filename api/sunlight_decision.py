@@ -150,15 +150,15 @@ def fetch_open_meteo(lat: float, lon: float) -> dict[str, Any]:
     }
 
 
-def collect_sources(lat: float, lon: float, satellite: str, hours_back: int, cache_dir: Path, open_meteo: bool) -> dict[str, Any]:
+def collect_sources(lat: float, lon: float, satellite: str, hours_back: int, cache_dir: Path, open_meteo: bool, observed_at: str | None = None, available_by: str | None = None) -> dict[str, Any]:
     sources: dict[str, Any] = {}
     try:
-        sources["goesDsrf"] = dsrf_source(sample(lat, lon, DEFAULT_PRODUCT, satellite, hours_back, cache_dir))
+        sources["goesDsrf"] = dsrf_source(sample(lat, lon, DEFAULT_PRODUCT, satellite, hours_back, cache_dir, observed_at=observed_at, available_by=available_by))
     except Exception as err:
         sources["goesDsrf"] = source_error("goesDsrf", err)
 
     try:
-        sources["goesAcmc"] = acmc_source(sample(lat, lon, FALLBACK_PRODUCT, satellite, hours_back, cache_dir))
+        sources["goesAcmc"] = acmc_source(sample(lat, lon, FALLBACK_PRODUCT, satellite, hours_back, cache_dir, observed_at=observed_at, available_by=available_by))
     except Exception as err:
         sources["goesAcmc"] = source_error("goesAcmc", err)
 

@@ -190,11 +190,17 @@ def object_creation_from_key(key: str) -> str | None:
     return timestamp_from_key(key, "c")
 
 
-def scan_age_minutes(observed_at: str | None) -> int | None:
+def scan_age_minutes(observed_at: str | None, reference_at: str | dt.datetime | None = None) -> int | None:
     if not observed_at:
         return None
     t = dt.datetime.fromisoformat(observed_at.replace("Z", "+00:00"))
-    return int(round((utc_now() - t).total_seconds() / 60))
+    if reference_at is None:
+        reference = utc_now()
+    elif isinstance(reference_at, str):
+        reference = parse_timestamp(reference_at)
+    else:
+        reference = reference_at.astimezone(dt.UTC) if reference_at.tzinfo else reference_at.replace(tzinfo=dt.UTC)
+    return int(round((reference - t).total_seconds() / 60))
 
 
 def variable_name(ds: xr.Dataset, product: str) -> str:
@@ -372,7 +378,7 @@ def sample(
           "createdAt": created_at,
           "causalAvailableBy": cutoff_text,
           "causalEligible": causal_eligible,
-          "observedAgeMinutes": scan_age_minutes(observed_at),
+          "observedAgeMinutes": scan_age_minutes(observed_at, available_by),
           "s3Key": key,
           "cachePath": str(path),
           "scanAngle": {"x": x, "y": y},
