@@ -174,3 +174,59 @@ Please review this scope first, especially:
 5. whether the existing V1 and V2 functions can be called offline without production dependencies.
 
 Do not deploy or re-enable any research lane as part of this work.
+
+## Claude review corrections — mandatory before Phase 3
+
+Claude reviewed the actual code paths and approved the scope with these corrections. Do not begin replay until the first three have tests.
+
+### Correct V1 path
+
+The production V1 baseline is the worker enrichment path, not `api/sunlight_decision.py` as a standalone unit:
+
+- `worker/enrichment.py` builds the live Open-Meteo model features.
+- `worker/decision_log.py` builds the satellite decision from GOES samples.
+- `worker/sunlight_v2.py` reads those V1 fields in `v1_sunlight_category`.
+
+The replay must reproduce the worker path so the V1/V2 disagreement matrix compares V2 with the V1 that actually ran in production.
+
+### Required replay shims
+
+1. **Historical METAR injection.** `enrich_sunlight_v2` currently fetches the live aviationweather cache. Inject archived IEM ASOS observations or a test session serving the same parsed schema. Record a distinct method version such as `iem-asos-archive-replay-v1`; never reuse `aviationweather-current-cache-v1`.
+2. **Explicit processing time.** Pass `assessment_processing_at` for every case. Pin it to `radar_observed_at + one fixed study latency`, identical for V1 and V2, and record the constant in the manifest. It must never default to `now()`.
+3. **Historical freshness.** Recompute `observedAgeMinutes` relative to the historical assessment time, not wall-clock now. Add a test that fails if replayed data appears 30 days stale and causes every V1 result to become unknown/blocked.
+4. **Historical GOES selection.** Use `sample(..., observed_at=, available_by=)` rather than now-relative `latest_key` selection. Record the selection difference in the manifest.
+
+### Open-Meteo approximation
+
+Past `current` values are unrecoverable. Run V1 in two variants:
+
+- satellite-only: exact archived satellite inputs;
+- full: archived Open-Meteo Historical Forecast substitute, explicitly marked `approximate: true` with its own method version.
+
+Report both variants separately and mark evaluation cells that depend on the approximate model source.
+
+### Event-level exclusions
+
+The July 29 cutoff remains the coarse boundary, but exclusions must use time-window and location/rain-event proximity, not only case IDs. Exclude:
+
+- all frames in the three reviewed FAA batches: `faa-human-labels.json`, `faa-expansion-human-labels.json`, and `faa-network-expansion-human-labels.json`;
+- the six frozen ledger cases: Baltimore, Colorado, Utah, Middletown, Meeker, and Delano;
+- confirmed-bow/social events including Baltimore, Dundalk, Person County, and Idaho;
+- neighboring cameras in the same storm/event window as those cases;
+- July V2 shadow-lane disagreement cases examined during tuning.
+
+The new July 26–28 FAA queue has zero labels and is not contaminated, but it remains an ungraded raw pool until replay-output ordering exists.
+
+### Additional required tests
+
+Add tests for:
+
+- no freshness/age value derived from real wall-clock time;
+- no live METAR or Open-Meteo-current method version in replay output;
+- explicit `assessment_processing_at` equal to `radar_observed_at + pinned latency` for every V1/V2 case;
+- production Redis, callback, and review-store code never imported or called;
+- event-level exclusion catches a neighboring camera in a frozen storm, not just the exact original case.
+
+### Retention deadline
+
+The FAA source frames from July 26–28 are expected to age out around August 25–27. Hash the 278 downloaded local frames into the manifest immediately; the local bytes become the study archive of record. Any pool expansion for those dates must happen before that window closes.
