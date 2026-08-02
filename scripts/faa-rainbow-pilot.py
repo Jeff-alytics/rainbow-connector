@@ -15,9 +15,7 @@ from pathlib import Path
 
 import numpy as np
 import requests
-import torch
 from PIL import Image
-from transformers import AutoProcessor, CLIPModel
 
 
 ROOT = Path(r"C:\Users\jeffm\rainbow-finder")
@@ -211,6 +209,8 @@ def normalize(value):
 
 
 def score_frames(frames: list[dict]) -> None:
+    import torch
+    from transformers import AutoProcessor, CLIPModel
     processor = AutoProcessor.from_pretrained(MODEL)
     model = CLIPModel.from_pretrained(MODEL).eval()
     text_inputs = processor(text=list(PROMPTS), return_tensors="pt", padding=True)
