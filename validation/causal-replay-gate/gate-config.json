@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "causal-replay-gate-config.v1",
+  "frozenAt": "2026-08-03",
+  "developmentWindow": {
+    "start": "2026-07-03T00:00:00Z",
+    "endExclusive": "2026-07-31T00:00:00Z"
+  },
+  "operatingPoint": {
+    "maximumNationwideAlertsPerUtcDay": 10,
+    "maximumAlertsPerLineageLifetime": 1,
+    "locationAlertRadiusKm": 15,
+    "locationCooldownHours": 12
+  },
+  "recallGate": {
+    "minimumLabeledBowsWithPositiveLead": 28,
+    "labeledBowCount": 35,
+    "frozenMissMinimumLeadMinutes": 10,
+    "requiredFrozenMissIds": [
+      "baltimore-dundalk-20260728",
+      "colorado-multicamera-20260730",
+      "utah-ogden-bear-river-20260730"
+    ]
+  },
+  "labelLineageMatch": {
+    "maximumObserverDistanceKm": 2,
+    "maximumRainTargetDistanceKm": 2,
+    "leadProxyOrder": [
+      "first_human_marked_rainbow_frame",
+      "machine_ranked_frame_confirmed_by_human_correction",
+      "event_best_scan_upper_bound"
+    ]
+  },
+  "thresholds": {
+    "persistenceFirst": [
+      2000, 2050, 2075, 2090, 2095, 2099,
+      3000, 3050, 3075, 3090, 3095, 3099,
+      4000, 4050, 4075, 4090, 4095, 4099,
+      5000, 5050, 5075, 5090, 5095, 5099
+    ],
+    "boundedBlend": [
+      50, 55, 60, 65, 70, 75, 80, 85, 90, 92.5, 95, 97.5
+    ],
+    "radarFirst": [
+      50, 55, 60, 65, 70, 75, 80, 85, 90, 92.5, 95, 97.5
+    ],
+    "budgetGate": [
+      50, 55, 60, 65, 70, 75, 80, 85, 90, 92.5, 95, 97.5
+    ]
+  },
+  "sanityGates": {
+    "requireSpatialSupportActive": true,
+    "sunlightHardVetoAllowed": false,
+    "missingSunlightIsNeutral": true,
+    "requirePredictionPackageIntegrity": true
+  },
+  "comparativeBaseline": {
+    "name": "historical-v1-go",
+    "volumeUnit": "unique matched opportunity lineages",
+    "maximumVolumeDifference": 1,
+    "alertTimeConvention": "event startAt (optimistic for V1 when per-scan GO onset is unavailable)",
+    "strictDominanceRequired": true
+  },
+  "notes": [
+    "July is development and model selection, not prospective validation.",
+    "Marked rainbow frames upper-bound true onset; reported lead is therefore optimistic relative to unknown onset.",
+    "Machine-assisted correction proxies and the single event-only proxy are disclosed separately."
+  ]
+}

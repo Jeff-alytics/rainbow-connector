@@ -1,0 +1,1161 @@
+{
+  "schemaVersion": "tamper-evident-prediction-log.v1",
+  "replaySchemaVersion": "causal-opportunity-replay.v2",
+  "lineageVersion": "camera-free-seed-lineage-nearest-v1",
+  "modelVersions": {
+    "persistenceFirst": "causal-persistence-band-then-radar-v2",
+    "boundedBlend": "causal-bounded-persistence-radar-v2",
+    "radarFirst": "causal-radar-then-persistence-v2",
+    "budgetGate": "causal-budget-gate-development-v2"
+  },
+  "reviewPolicyVersion": "predict-then-review-2026-08-v1",
+  "config": {
+    "maximumLineageGapMinutes": 30,
+    "maximumObserverMotionKm": 45.0,
+    "maximumRainTargetMotionKm": 60.0,
+    "persistenceSaturationScans": 5,
+    "budgetGateMinimumScans": 3,
+    "budgetGateMinimumPeakRadar": 95.0,
+    "budgetGateMinimumCurrentRadar": 70.0,
+    "minimumWetNeighbors": 1,
+    "primaryReviewMaximumRank": 5,
+    "lowerRankControlMinimumRank": 6,
+    "lowerRankControlMaximumRank": 50,
+    "lowerRankControlFraction": 0.1,
+    "blindFirstFraction": 0.12
+  },
+  "sources": [
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-03.jsonl",
+      "contentSha256": "32ff65738ff29cf45e2b7ababa7ee7afbab368e89d94498d3c9b2b0a0afbeadd"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-04.jsonl",
+      "contentSha256": "0b5dec4902c83a05c6ec7eff77e2aca49c47a1916300f5a1565312bab1a8b194"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-05.jsonl",
+      "contentSha256": "80add3aed4b99653e572987f33140c632746c0a943a45af5819639636d609963"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-06.jsonl",
+      "contentSha256": "c678cd920e28f81e19e4dedcfe7254776e24a893bda9a3787bdf486db71acd67"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-07.jsonl",
+      "contentSha256": "055ddc3c716651112e82b67b412b24d53cb735beda2a5868f6fe8eed352053ee"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-08.jsonl",
+      "contentSha256": "af9b7c5e71fb27ea28d8186ab0db4be5aad4e52655a552efb2d752c303105bb6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-09.jsonl",
+      "contentSha256": "b32ee293887cd78da6f5e8cf1a5a366046eb1db53b86eecbb22ae55df6a3a0cd"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-10.jsonl",
+      "contentSha256": "7f0ad0d4e709aac1c8b8bc2f31e27bdae8bb75d74f60863121c031f3343136e4"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-11.jsonl",
+      "contentSha256": "d92a63bc862028776fbcad8462a4a550973748ffd1870f53f28320436c3a7933"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-12.jsonl",
+      "contentSha256": "e017679f785cd5a1247f39ae51f63667539c82f57461c527819f4e5622a1cc4a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-13.jsonl",
+      "contentSha256": "43b716573f8783f1f50eede22f15ba1f6ebbf6ed498acdd109dae4f96949e990"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-14.jsonl",
+      "contentSha256": "886b5be9fad8f2c82895b9aae6782aaf1881122fe8f7b5a26c823b2e26f5bf28"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-15.jsonl",
+      "contentSha256": "f701e7035443c38dca01907e84c88626af5e4a9c8b7a3894ca6b74c2ad119979"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-16.jsonl",
+      "contentSha256": "dabbc3d36bff1dfd7ace386436ef0ff042788b24109de89e71c1be70fe8118af"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-17.jsonl",
+      "contentSha256": "70bdef66128da1486aba8e632fa11c98354d49d18f2f3cb77341114d09fae4b6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-18.jsonl",
+      "contentSha256": "beae7c35bebdf376b6a3bad00b3719fc43a1661c84206122f037d8dc67ba883d"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-19.jsonl",
+      "contentSha256": "4ef8fa8606880457959a1d40cd2ec7ce6d5ac50acea1f3ef51cbdc45a814ae42"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-20.jsonl",
+      "contentSha256": "659379762b1a702f666efe23f638a3225d5d548b50572f8ab0a2535890fe7aee"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-21.jsonl",
+      "contentSha256": "761de6799dc54b261aa116521609dbfaf6f7af97b4a2f8fb41cb9e4a639c80b7"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-22.jsonl",
+      "contentSha256": "71c1f910dec972be111bfcfa3dfbee53e6c8ff776077146af42c6f3b19883fe8"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-23.jsonl",
+      "contentSha256": "707c2992b24e41c776cc2c7f73634dcb0b5f6a851c9ac8759e36a30aa2301e92"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-24.jsonl",
+      "contentSha256": "937791832b6784bc489c2d006cb830a4a98fc34b289b41c2ca51e36f07dfb376"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-25.jsonl",
+      "contentSha256": "e5b504123d25a1310c7969fca82508a5b01d57de66eec01e044c6f218a3dba5c"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-26.jsonl",
+      "contentSha256": "62ae55d95c82714711203e2eec239d0fb218b7437d7c571841b278264cd36152"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-27.jsonl",
+      "contentSha256": "b2901106feb6c489fee85fd7eddb0e7d021da15679a3052efda442b316936067"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-28.jsonl",
+      "contentSha256": "fc19dbb03b62bed7f8a2b4ba09eda4719d1481bbbb49d0f957eab22c84596d40"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-29.jsonl",
+      "contentSha256": "f478e80a50fb61f21b686a94729ee8f6049a53dd79e0b9304dc009b143afbd65"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-2026-07-30.jsonl",
+      "contentSha256": "23e7bf7b63643703efd906937c032e1f0aa9db64ce60f0b9e5931617dd2bf14b"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-0\\pool-manifest.json",
+      "contentSha256": "58b68adad1aef5bdcb04e9ac1a84836a52a8ea043ff99b1ca434cfcb42b247fb"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-03.jsonl",
+      "contentSha256": "f5e3d7c1d1ebc98ea191d28f8327307e6f17a3d7ded3c0cc4c852a7a553f8349"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-04.jsonl",
+      "contentSha256": "d3eb74e8398783cb2e6c541869c1429819cdbcdfc1586353268567ef8c2f4e3b"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-05.jsonl",
+      "contentSha256": "900fa7954892d99a5aa7ae8533fe86ac8b0897fce388f3f0e50f86419cd1460c"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-06.jsonl",
+      "contentSha256": "83d17f155fb0ba652841f1c9313b8afb92b105a02e3a0d86e38a37d8600e1650"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-07.jsonl",
+      "contentSha256": "82f6c9eb5990ee77250076576243de67dfcc62897470f3f5604c96b7d5ff963f"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-08.jsonl",
+      "contentSha256": "911903f259bc141602c0a81e6abc3e1d05045426da8d12d21fda6e89076ba204"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-09.jsonl",
+      "contentSha256": "e675846f06adca347d4319067ceca7f1d81d0d352310fd0b5f2bcfc2dbfa79eb"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-10.jsonl",
+      "contentSha256": "3dd02e5d8150d87ef0515fd624f1d49483f3630a3b173054a9ef12fa5d966a8d"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-11.jsonl",
+      "contentSha256": "78db1828841a6a26da57850a831b0a4b5fa2d661885a79e88c3cd152e21722fb"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-12.jsonl",
+      "contentSha256": "76497398dd3c8e06cf4304e37254bd4d9a789e8a7bf1dfb2c4baf740d63d9002"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-13.jsonl",
+      "contentSha256": "9f3ddc3cbdc795793b2184a3aceb47a7447db9bad427866bdaf6fe45b99a250f"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-14.jsonl",
+      "contentSha256": "14da57bc154c898e3638267c8f043a396af8015749067d96bdbb1dee6c67b4ae"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-15.jsonl",
+      "contentSha256": "b45f59d33e1bc76072c80d951d94410d0a47b46af8a3027d7faf37f2c8bf15d5"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-16.jsonl",
+      "contentSha256": "023f673ad58ef78de4d93b5d5af0328b9433843729eb3733d17f5fceeaa5107a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-17.jsonl",
+      "contentSha256": "f7b84d781d6a8b93a9ff36bb9521b84c5f341dac2242d115faadaf1c3338b288"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-18.jsonl",
+      "contentSha256": "a73d6c9dc7011e7f8f9994b9f90ddf435106d4cc97b5b4a6b89a14e3b6fa2b2c"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-19.jsonl",
+      "contentSha256": "85bc008cccd0f7172a8dc17f5f2bba5f36c78a35d661753f99a49c28a9e9ba15"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-20.jsonl",
+      "contentSha256": "9e61c65e6996f936799861b525733bbc260b19f76a7cbb65320f670164d209f6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-21.jsonl",
+      "contentSha256": "3077405d5d881384499b8b7d78b672c384bbe47087ea94010f1b756b063fa470"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-22.jsonl",
+      "contentSha256": "e2b255b1b6b7b39870504930cb4548b3ea11caaaee564db86dcbe9844dad9076"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-23.jsonl",
+      "contentSha256": "89ca0c2c68c02783807a4131debea1b2adb4e2dbd00b9ad5ef96a2e94243cf78"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-24.jsonl",
+      "contentSha256": "ee080355a935b296fe031965f07a7d83279b590729d0f18274f5a24ae6398ac1"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-25.jsonl",
+      "contentSha256": "85c753f4297e086e97f78c1c262fd9366da481c4f14e3d813402a8f8d7a61229"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-26.jsonl",
+      "contentSha256": "e6e92e248f86effee3af3613ad36a4e2b7e777e1f6cc47408f8266efe37ec5a3"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-27.jsonl",
+      "contentSha256": "b45d4f42d738d4f1d51bc3618e351ea1845c41115c133531ab133803eb32b5a4"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-28.jsonl",
+      "contentSha256": "81de8814dd80e9e03b60af5b5f3d0ececdfd35135a00ddce8df212e4b387dce7"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-29.jsonl",
+      "contentSha256": "f6ed2524780bd34321cd69f72ea12dcc62e3e1477d7485376c1c8bdcec1bde66"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-2026-07-30.jsonl",
+      "contentSha256": "6318f41afdda605a36920887321adeaaeef510458e99cc74ed24a1227db3b169"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-1\\pool-manifest.json",
+      "contentSha256": "69e3c6505ced95e6d3d22c9882e5cb5a9e2aa468eadd84e3f26b32ebaafd6793"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-03.jsonl",
+      "contentSha256": "b77e6bf25881d03d26c12acf0ccb0e896cb2fcc9bbd3e9ffc71a5d5b9a6a65d1"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-04.jsonl",
+      "contentSha256": "3089e76486c1dba06b68628a4b27baf4d6ee7752038013df60e4dc3d0e46850a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-05.jsonl",
+      "contentSha256": "0305376d3f065e544ac7f927921c3ed30d234fadc7f26c12d98907af8303242e"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-06.jsonl",
+      "contentSha256": "532c51938334fafa800fafd2ac0ce402f255aee05bc2b3b0bc66b9d2d02c84f7"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-07.jsonl",
+      "contentSha256": "33fec363111cb4eabf4404322096e8a76c3584fb8562766660df56e6e4301193"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-08.jsonl",
+      "contentSha256": "c8b915c528b17814d2bc7e24f58e94c6d1dd03c2ba0642ade356254003343de4"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-09.jsonl",
+      "contentSha256": "1d59e5be7ea749a8396ed20cc18f1086659932d7d9f4d1ae836bddf8116fee1f"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-10.jsonl",
+      "contentSha256": "5bab29eccd82e86fe932111ca26375aaf5f3c28f363281cb9a40fd05c4b6553e"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-11.jsonl",
+      "contentSha256": "b0117647fa8725b60c63d87333a0fffd6f522c2c78cb37c9e6c8fd3d2341c37b"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-12.jsonl",
+      "contentSha256": "8e16e786f5bbd1b03c2493af04387babd5992195d11e46970cb76144c54cfae8"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-13.jsonl",
+      "contentSha256": "4e0cae98797109b5e018ce76299d5861bf8e50ff38a7e2f63f89e4303de58629"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-14.jsonl",
+      "contentSha256": "c1a6b090a05b38777cee6bd91eb45e1bb2d833bc5a6f35a8bda75c3a96143293"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-15.jsonl",
+      "contentSha256": "e0ba6e77fde46ba5fb9a0f9a164bb3df4d3e6b6b61b6e57bc715379d8b84259a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-16.jsonl",
+      "contentSha256": "6a6cec77c01653e1f3049ddb85800dae56de95d0877e4675cd5e672437021c1a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-17.jsonl",
+      "contentSha256": "4a6a02bd60fc7f42c7c98cc07964d60df949be156f011d252d482cec1394bc96"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-18.jsonl",
+      "contentSha256": "11d00d3cf5c1d53f8287cd7d340871d7ce1c79af67e8093069b375ae6cb06923"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-19.jsonl",
+      "contentSha256": "464e56e210c45688ad70bb31a85394be6524cfca854bb0be0f2c12cad3138184"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-20.jsonl",
+      "contentSha256": "d382f9f9ed7b373cfaa0abb1a606b793b6bab64fb6dafc12b6fcbf10d4827163"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-21.jsonl",
+      "contentSha256": "a75330b40f1170fa7bba49dd19094e734718a3507075d18c48fc0fd17dddc1ba"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-22.jsonl",
+      "contentSha256": "96065eaef41814dfd487d4c862e2e6cff471602f0d6e91b7a1d80ff42e75de4c"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-23.jsonl",
+      "contentSha256": "865149d044bbde0f730918a4f6a9e93196048802df6d1c1cc3c42416c52b7221"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-24.jsonl",
+      "contentSha256": "fb58514d65e97cc40326c25228614757e4bc6918e36c7528ff0f9396919c0228"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-25.jsonl",
+      "contentSha256": "2827f94d7147314f05a1b268377baef74e2b97dcc52c5cd961f581c5194ea90d"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-26.jsonl",
+      "contentSha256": "fa6adf2c3be600527ddc98135ef0df1d4c3e60a38b6d35fb469c6fc0de384074"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-27.jsonl",
+      "contentSha256": "f742113fa4b706fa2ee70de6a37cabb3b64578e03d6ba4bf1b4f90a310cf46a2"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-28.jsonl",
+      "contentSha256": "bd3a1caa3a6bc3742e9cfcac5174eedee2a14c9f667603764ee0852c0396dc0d"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-29.jsonl",
+      "contentSha256": "d9d5b9f1d46afaa009ca9d887db16e107f44f467576c7edbdecf050bb01e9f08"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-2026-07-30.jsonl",
+      "contentSha256": "3302ff3696c9d0b5f8017295181ebe2619745d7959635fad842e6233e0b5a3d6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-2\\pool-manifest.json",
+      "contentSha256": "13b429e148ab0dd66571bd6cf16d6d61498ea4a2848a9ac9366d724b634efa6f"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-03.jsonl",
+      "contentSha256": "3290d468061fcd5cfafda52de72596ca2c7a5b73142869397b701241a8085c15"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-04.jsonl",
+      "contentSha256": "fc7bf69cb5bd077405e64d236673e3de6d24be3bf7f951f5065457c295863054"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-05.jsonl",
+      "contentSha256": "cf038436927cc8741bac204672387f940d4d0c4bd3b316bb3e91dd9a5d22da94"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-06.jsonl",
+      "contentSha256": "45ebbeccfa4078d163bed20ec8af5c48c43e8c8d8b9b742b0f0ce4f5ac8cf20a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-07.jsonl",
+      "contentSha256": "acd978456959bd91974f86483e96f2d28b781da94b6765deb087f5b5ce907bb5"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-08.jsonl",
+      "contentSha256": "8fcb7b50f6d83ec634b347b07dbfe1074a919bb41e5d3ded23185905ed894525"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-09.jsonl",
+      "contentSha256": "d6366d02118d2405dc28029d18d056006b6f8d948da6be36484345d99ce304ef"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-10.jsonl",
+      "contentSha256": "50c8e3e765d10dcf3d49d4cb2566021daee4c269dfee168e2f4d319464dc0239"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-11.jsonl",
+      "contentSha256": "6736d3f832fad8f8bb17a693face67dc1d01848e54f5f53d57bd2339df01c488"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-12.jsonl",
+      "contentSha256": "83291d48366601d0ca7f1392de50fe0ca2ac812e36ddb3891cd6064811413271"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-13.jsonl",
+      "contentSha256": "0f84ca6568ac6530b1224fca2bb84fba0f7796367a861a72b5a79cc782e0c34c"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-14.jsonl",
+      "contentSha256": "26d27d4b8a47d788aee5810659af019447af43e7eea6c2a8e6a24435345eaa3c"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-15.jsonl",
+      "contentSha256": "468e2241b43364deac6048f640524bd856a47786066bf55a45c07571e2429b61"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-16.jsonl",
+      "contentSha256": "7c01d28f195ffe9be85362afa4aecdc195db52cccab18feec1fcb2b19577e063"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-17.jsonl",
+      "contentSha256": "ad62bc3fab00c57240b22f2130d6103154b96ac07a6d739eeb50a8c2d8930e93"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-18.jsonl",
+      "contentSha256": "67ddc77e894097937edf6ae9f7032971dc423a713ad767f427d203b7a3dcdaf8"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-19.jsonl",
+      "contentSha256": "334a56e140523e1eb3c727017cea5ef75c307f37e08ebfe5360e182364439591"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-20.jsonl",
+      "contentSha256": "c008c6e25e5210808c09d3a7bc60082a32df77a677ad8b455049cbefe33a794c"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-21.jsonl",
+      "contentSha256": "a1395ff8acdb7c984b74dc7dbd13124dae84c83565ae94a9289c037a8cb59722"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-22.jsonl",
+      "contentSha256": "89e662c58bfe108e5dbb7224663039b5988b5322e0aae530bb9441d8bcc8122a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-23.jsonl",
+      "contentSha256": "d62256ff967a3b4f6a1be7c7ec4e0bec59bbce83ecfdd6465bcbeda01508cad6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-24.jsonl",
+      "contentSha256": "cca0d59286f7ffacdb1ba5e77af847490c3ce005f9aea6d65429e1f5081215b2"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-25.jsonl",
+      "contentSha256": "3100850fe4088c273fa6d1207fa722989d838d728e042031a6414b66e2eb9d51"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-26.jsonl",
+      "contentSha256": "377db7e0ed732bcd9900c34e12119139c988d633a2adbb2d496dec414cc867d2"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-27.jsonl",
+      "contentSha256": "6b99dbafc8122577a5dfd31703fb2d8f8081901e6e04b8233cbcf556ff0587ac"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-28.jsonl",
+      "contentSha256": "d9cbe992f6bc4e0e9dfb28f70581565f30e9ed33acda25eeac6d6cfb9f555952"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-29.jsonl",
+      "contentSha256": "d656c36c7fd6c646735ede143ba0d09b9f5e7741361e7e631bae27d9d10c8214"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-2026-07-30.jsonl",
+      "contentSha256": "41cf5bf63b97ed4041ee4f296a1ad5849e25c32a26f4e95580e2f689eb78c1cb"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-3\\pool-manifest.json",
+      "contentSha256": "3761159dacdc5a07e5d25972f8ed5a8769e2034c371cb94b76d32a48d8952c57"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-03.jsonl",
+      "contentSha256": "e6cbd947d4e9cf6d7fa18a56c59c30d054fb748ac0e236592e2b99c49ce9bbe0"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-04.jsonl",
+      "contentSha256": "c7cab5b65e210a7fdeda408ad7dcb82439fbfe321ee20d7313d1f1e8b9314c29"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-05.jsonl",
+      "contentSha256": "ebc01772abfea9ebd437a90c0db303f3c91a3cd9125c0802aef21182f165234b"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-06.jsonl",
+      "contentSha256": "87cfbb9382095c561e8a723a114a109ec8572cfec3d9db6a1cee285ada9f801c"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-07.jsonl",
+      "contentSha256": "f9da8265724d5e237a0e8e50d6de9a01137643b01409cf2b938ba973eaed3861"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-08.jsonl",
+      "contentSha256": "f47d67eb21eb98ade77e2dda8ba09a66b292aca75eb771f6965c3fc372a4aa3c"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-09.jsonl",
+      "contentSha256": "09d57f5a7fc2dc569ebb7d2b80987b2867797167e50eb6e3248497263e666ddd"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-10.jsonl",
+      "contentSha256": "6c4bfd2bf5485432226d392e64852f1971858bdf1d3d0d116fc75c94b351e349"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-11.jsonl",
+      "contentSha256": "ad70078729c948a996ba69b85dbb2b944bdd04cd641e2c5f1f067cc03e022ce7"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-12.jsonl",
+      "contentSha256": "5dd010c65a65f009f6c257106b32d21f4cc1ee3ee0954533860d571c93be34e0"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-13.jsonl",
+      "contentSha256": "db4681cac320510aea4d98eeb0526fdb5336e1fb303dee1921c4dedbeaeb98da"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-14.jsonl",
+      "contentSha256": "b2e5a6ce009e1499e0f22388ef6eb2d0fea9d0eb95e222ee65c3bec62bbb88d8"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-15.jsonl",
+      "contentSha256": "cd288cdbb25441d2c4143f70627dd00def17fafb844fb68a47bd89c9a1bf85cc"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-16.jsonl",
+      "contentSha256": "7c0bf7cff3e59d77cfd92858328079555ea2c2eff16ff929e83f9e27a964d536"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-17.jsonl",
+      "contentSha256": "895ce57b94f83bcf9382d2e57520c6734b94597037f21702ed2005a349f99e17"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-18.jsonl",
+      "contentSha256": "df5b75e4561abc96914461411ed867e1abefe08970bda315a8ac5e909adf5eda"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-19.jsonl",
+      "contentSha256": "226a1e8f406c58512373016c522ebbc117f82f83fd373faab19001a065538ea3"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-20.jsonl",
+      "contentSha256": "57262d86bbefd19005d2c76b5fc2430dfda85759b911f2b2d8c82dc7463bed29"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-21.jsonl",
+      "contentSha256": "89b2885f6e5526050065daa41ec942f29d2833e839ba3c389ea74fd3f21a1bba"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-22.jsonl",
+      "contentSha256": "ecccfea9f36bb204d890ccc3038e78ff1544c2a51d106be15a77d1eb53bc6572"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-23.jsonl",
+      "contentSha256": "2ba4edb5c09baeb190ff110e26189fd1ca3cf59710da1f341baf788b69e86a16"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-24.jsonl",
+      "contentSha256": "4445ca8ae13f4dc6983edbcc5ca974bd2dc21febb0eeb622ca45310a555eb44a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-25.jsonl",
+      "contentSha256": "71041ef233377684e01c27cd7f2d31ef03d4555700c53d17799bf931b579a872"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-26.jsonl",
+      "contentSha256": "4a547dcb22a64eca0ddddddb78f9db1980d109af62162b691e2456924969730f"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-27.jsonl",
+      "contentSha256": "0cf68e0663a0d8839a849e3ccf403dbdd96d1d1f9cbeb19300abc9510f25eeba"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-28.jsonl",
+      "contentSha256": "fefa19295d01e2e81e0be6117e4ae2a357b2b0cb295331ec39003f79ff513f4d"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-29.jsonl",
+      "contentSha256": "07f73d2275625a60ab2a94810f28e17f6ada70795db7316ca5911c98fc10b979"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-2026-07-30.jsonl",
+      "contentSha256": "e82e42befe82e3b194fa6c5665e016ff66039b06fae4c1df1ff54794a336dc46"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-4\\pool-manifest.json",
+      "contentSha256": "bbb8bc88e21d60f9c9b21f3b13b807869d002a3af00c3e004c4b6ec55ceaf82a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-03.jsonl",
+      "contentSha256": "064bb3fd1d8efeace4735c2430f3bbd1267541651dc1c952e2cbb0060b298444"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-04.jsonl",
+      "contentSha256": "63ed36fe185afbbde45ba39908ab9ced85ef4f65f46a4d5a496bd6a558369438"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-05.jsonl",
+      "contentSha256": "c63174a29b4d8de85fbe9c9f48ae511d1a31cbcfab1c1763c495ce2fe301e431"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-06.jsonl",
+      "contentSha256": "6bb563ab39f718163fa5f65ffd8de18da74efe736e2868eef6fb77716e20eded"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-07.jsonl",
+      "contentSha256": "7eddeda176f8d92ddfadbd3c86cc7ca38e62cc3ae11b4425c00d88babdbbfd0d"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-08.jsonl",
+      "contentSha256": "9d5caa3c5d5219e95d866218b438072336cf9636624f6303fc39175f198155b2"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-09.jsonl",
+      "contentSha256": "7358c706c5f733410cd0b7f441bb2c90b5623f0d81ddfe4e8c47d377785ef090"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-10.jsonl",
+      "contentSha256": "5d9e5f964075e0ceb2bdf5d8343c162c86d2a62ff92222e781c321ae401f54ff"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-11.jsonl",
+      "contentSha256": "7f88f3037e7c3e22b053a0dd37ad47cec19db9fb15519e2600f6f557e96ca8f6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-12.jsonl",
+      "contentSha256": "5d1f646fbd451ec36516fca74e3f9cc24a9496c3f7ddef79fc7198bd1686be8d"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-13.jsonl",
+      "contentSha256": "d6f9180bd4fb2ac5dbfb1bc41274f91d292571a794a8e7857ec0eec09ed464cf"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-14.jsonl",
+      "contentSha256": "045c9e77163628df39dc500e16c63d39f397edf69eb6c30ce4d9e6715c6f8d80"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-15.jsonl",
+      "contentSha256": "9b69cb8ce7ab0cb8a2cea28bf081df8f9346ccfa7ef435212b3a3ea54deb002f"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-16.jsonl",
+      "contentSha256": "ba0a4b2737e79e06b16cfcc1e5de1c32da3223b2c65dc0b4a1a1500c1f71cf18"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-17.jsonl",
+      "contentSha256": "7dc3e280882d7cced5894052cf0481a13f88bc6eaca1be6675c4460e61723a60"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-18.jsonl",
+      "contentSha256": "093c29c58244b1dc9b538fa34eb79f4cefa39c7e107cda6afac1be7565b7e607"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-19.jsonl",
+      "contentSha256": "f336df0577ae40759391c39f8baf7efca37a0827a699f54db1adb808f834e70a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-20.jsonl",
+      "contentSha256": "f7b655775eb7516b10aed43b1494760cc0e7b1ee33fabcc2c4f06f8aec76135e"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-21.jsonl",
+      "contentSha256": "ccd42d82857f9feb634e542ec14a3a608528ee112756f86c589a19cd0f0b5754"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-22.jsonl",
+      "contentSha256": "38595e91666021de7944616f9bfbaf50230cf1b2577cbc8bcef831217b8709bf"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-23.jsonl",
+      "contentSha256": "0e5ce98fbfa0fe12fc3988bb2a4f9fa9d159a2e6cc9ef6f905664b755dee67c6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-24.jsonl",
+      "contentSha256": "b9cb3e0e847c6a9dd53f5c7636f6580ead18cb89bbf3695d64cab3f268ebc981"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-25.jsonl",
+      "contentSha256": "a0b1e01e3ebb4cd66f0dfe596b111c20ca1c80cc4240783c5fbf5619387b9eeb"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-26.jsonl",
+      "contentSha256": "305eb0ec1899e3dca23568ea8ed23a2913966b4c5ea00db69d8a6f0a8ae86397"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-27.jsonl",
+      "contentSha256": "57a931723e31d7b5b3325c0bb9a62a4d591fa27577c7b5016588ec31bcc068d9"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-28.jsonl",
+      "contentSha256": "9fd4b7c8f90b4e0fc30490ee68cce28c3aae7b4b117ac6d1d643ce230cf97fd6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-29.jsonl",
+      "contentSha256": "4ad288c84f0e25a4df6e40772b74006b86f3d1c94e110022c8969288ac2e597a"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-2026-07-30.jsonl",
+      "contentSha256": "8f7ac02ddb1547d38a86dc924f1326b46c31c99005abde9a69cf69ea7044d035"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-5\\pool-manifest.json",
+      "contentSha256": "50003a628c3f128b994f4b26476bc940bd6b89581971d8c3854297415765ec0d"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-03.jsonl",
+      "contentSha256": "445df8a717f1dab6f69859309f868794ee471a7a395f0c915b1cd039895cba17"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-04.jsonl",
+      "contentSha256": "ac1bb59997d2e0bbc0ec95bbecb83f18a927e6545ea3298173f92aa0f304c3d4"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-05.jsonl",
+      "contentSha256": "3c58beade7dd914e7fc1f65e2704bb222a3a97f5f28a4060019784a1abfdf875"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-06.jsonl",
+      "contentSha256": "a7616e78dc9fb0e2d9ce84544a9b0e98ceefc6f53af75ead707c21aacdcdfb30"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-07.jsonl",
+      "contentSha256": "449a84967b0c1b642f023255b73975e0cc01c3fc0265c157b1012a55ec0dd99c"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-08.jsonl",
+      "contentSha256": "bca9a5d15048b260ff916b537388bc97a55c765078e89389d65ff79405a198f2"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-09.jsonl",
+      "contentSha256": "3ea9ec7a89e77e5833a9f493594617a00fe751eeaa1d0a9f20db8dd7b9490c7b"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-10.jsonl",
+      "contentSha256": "52474be7b1a4633d5d883bef2c7ad8cbba9e5f0d87b5471561f881b8ba25a130"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-11.jsonl",
+      "contentSha256": "7ebee2ad35269cf8aadc4b68116714ecb78b40b45754d5f4677d583878369d58"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-12.jsonl",
+      "contentSha256": "78cb9eb258dc02b6f30ea4de22f98975f76c827e05924687e2e5c8e7a051dd32"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-13.jsonl",
+      "contentSha256": "acf69f8d0d83843fe6b13a502343a9942e2e0bf16cf93128d51f4d9162e12cce"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-14.jsonl",
+      "contentSha256": "664264da22465f9e35b75f25a0d707b93f60f4a64be4deae0acd93835c2786ca"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-15.jsonl",
+      "contentSha256": "05ad632844b143145ec1c1ab6357a47f04667d408b8942d7ede32b47e002c022"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-16.jsonl",
+      "contentSha256": "f4bff9ed977ed98ba094e546759ed6240eab925842a09d9251865d7f49bfcce4"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-17.jsonl",
+      "contentSha256": "a904fd9af8b2b039792ce7ad7be7fbe5521332d083b2f9c94bd9c34175a48eeb"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-18.jsonl",
+      "contentSha256": "68d035513589e692232d84fbb4f56c81b484d89b0e522a2cdd7065dead34cd39"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-19.jsonl",
+      "contentSha256": "fb0d4098a022bf2412775596fffa57ce37ee7cdf32f81312661147042861ebf5"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-20.jsonl",
+      "contentSha256": "e1f94615f04d562f541c866b291b5290bef2be66bf91ec196fbca53ca474b3ab"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-21.jsonl",
+      "contentSha256": "0fc223bc44466f200351b8340f6ca42e3ee0e41e9a047529e037b84054b76cc6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-22.jsonl",
+      "contentSha256": "2c5ed027338bb2db6df51add035a93ab9372d6ef93f24372b23e48e38cbbc74e"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-23.jsonl",
+      "contentSha256": "c3e2ca75304361509d3b016776612b1fb9d3c945e016b7710e666dfced0a91ff"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-24.jsonl",
+      "contentSha256": "4e5b8baf2a90fe56e8e766eabaed0ba84c19630584cf6ac3f3c83409862383f2"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-25.jsonl",
+      "contentSha256": "80708ff62a7fcb2257ec7005b67a4647e3cd5ee37cf9f1dbe7c63943ed2c7fc5"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-26.jsonl",
+      "contentSha256": "87f51bde0bdc0778405be39b9f866e0498ecadd33603c14ef2fe41a649644fef"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-27.jsonl",
+      "contentSha256": "e6a561b66055709b642c2cf75e9e78253a12477bad9b0e3e900b0909e499d015"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-28.jsonl",
+      "contentSha256": "38112e6bdd5dadad5e6354030991d046cdcf2fbb5fb681e755aba8a0e76400d0"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-29.jsonl",
+      "contentSha256": "0f23a66491b143be511e226b563baa7bde21833a15a47708a7a50343fa460218"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-2026-07-30.jsonl",
+      "contentSha256": "3afef5ce96d2501b1308d2092ed4ebc890cf5349aa2a5cfebbec19eaf1e142bb"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-6\\pool-manifest.json",
+      "contentSha256": "87f057061154eadbcb6d6bcb09577513f93049679d65b59d76f3e8d67a2bf2d6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-03.jsonl",
+      "contentSha256": "e84f8e94966bf4886c27df99ffa09db286d95a65bc570c5645b461ac1afac047"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-04.jsonl",
+      "contentSha256": "2296884a4791bec4703b942d9d804a71913e8b92f27bb5758556617e7ab4c739"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-05.jsonl",
+      "contentSha256": "ee6373f4b19020a898cf8d5d41e8ea5eb66812c7b7840e0684a84d9484d356b9"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-06.jsonl",
+      "contentSha256": "0c8b67dde5bbac8e2a74030cbc30102a6ce0635b959a409f04c5b04da3f67b9f"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-07.jsonl",
+      "contentSha256": "667cc7af96dc736bf0b35f6714fa13b85bb0d4127be3883a298084ba283826c8"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-08.jsonl",
+      "contentSha256": "caa1867e054f17a03bf4e3ea6d50fc2114a89bde670ef801fc1e0d3a28d6a867"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-09.jsonl",
+      "contentSha256": "7de7ddb3fff10bca7cfa8f213d28bec19079be358fde95a266840ac7d3698034"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-10.jsonl",
+      "contentSha256": "d419e806968d9e635a35b0a3f7cbd833124cab8f74b98e091097a5ea89981f5d"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-11.jsonl",
+      "contentSha256": "56e249d88b2ef5eab504f1d3f532a6a6eb2f083d0097a612d2e5179e0ff57708"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-12.jsonl",
+      "contentSha256": "b7dd3d9fa1e2b3bd707cb0c8b1898733bdbf97e1ea1965585f239a7488216790"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-13.jsonl",
+      "contentSha256": "74643526ee61fa9d4d1f938a6eeceb4da553441c30b5a04a98bf6a32fa6a04ce"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-14.jsonl",
+      "contentSha256": "c87c0bfa0317b7f5cb9049139530609cde877e4f549368d0408890f0fdda9142"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-15.jsonl",
+      "contentSha256": "d538884bf6a0e41c4e48f63bfc93b7b100d2ba39b8ab9ffbd71f9b6b8abe2c03"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-16.jsonl",
+      "contentSha256": "9b5c59c8987cad3574b755ef097f7b0951b79692ad8a0d17eb0126d5ee1c85e0"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-17.jsonl",
+      "contentSha256": "b0bc4429333c7d926ea413067dfcb9ae87245ee71d21182e47f4a652f82db421"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-18.jsonl",
+      "contentSha256": "2c9d748da28959062e9837eeef74ab31cfe7880b24709e83fe275a7efe4131c8"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-19.jsonl",
+      "contentSha256": "745ebe979b268a33d0960bc347043cd57355a46a1aae2235eeca1d32608b23ae"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-20.jsonl",
+      "contentSha256": "25dce3118d9f2890fd0b9e21a3863f3444fad2ee52ca56935ac432e9a70743f0"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-21.jsonl",
+      "contentSha256": "1fcf8b4fa55ab7f72c2a2dcfc74d21d5bdb39d50493879497340bdb046be317d"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-22.jsonl",
+      "contentSha256": "0e7bcdbb44f47c39ca4e74cbfaa3fdaafb6ea11c8bfe1e466a194f2217c196d5"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-23.jsonl",
+      "contentSha256": "697067a62f6e50b2408b2ca40a2f6c825e2e7de2123d37bb3062210da8db5f61"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-24.jsonl",
+      "contentSha256": "ae57cca373da26fd0ca7c8300d939b5e7a58d9e4d804da0a0d8bf09673adbd32"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-25.jsonl",
+      "contentSha256": "d287a59e97169fbd8f8e2758f416d2e1c1746fda9fb35ffbb863c30d6858d24f"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-26.jsonl",
+      "contentSha256": "45a1f5cbda11cf8ea5f337b63677ba9f6c37a5b23ff98bcbbae58545fbc2927f"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-27.jsonl",
+      "contentSha256": "34de731a29e8f795fae6e044e020f908c0c4126ec4a05978384d0be9ef5b03f4"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-28.jsonl",
+      "contentSha256": "ec021fab954572c3c8c42c507504fee3dccab730ddd6fbf6097b302d98b15db3"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-29.jsonl",
+      "contentSha256": "6c693c3feffc7dbb08e344dba9ff1c5e2da29cc58586d090ab0e18c1a073e910"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-2026-07-30.jsonl",
+      "contentSha256": "d239ad4e9c9b5a25480e79b2c76a28307e121662299cdd058f6034ba6ce86ed6"
+    },
+    {
+      "path": "validation\\historical-camera-free-pool\\shard-7\\pool-manifest.json",
+      "contentSha256": "092e7599758adef3af150c0e9a46ab0aed722167dc8eadc74d59fedc3f5890c7"
+    }
+  ],
+  "files": [
+    {
+      "path": "predictions-2026-07-03.jsonl",
+      "records": 95,
+      "contentSha256": "cdcffb7b9d028fc5f6ae8a967bb93a98c8b48a2c93f479c1db82c707e5f76874",
+      "finalRecordHash": "b30af6414308f29a9c137cfaa0dab52b5ada86237be112c4d3d6ab6ae5311769"
+    },
+    {
+      "path": "predictions-2026-07-04.jsonl",
+      "records": 94,
+      "contentSha256": "d00db0f74c7a799325abdc8046ac046f92a78e985557745fdded6215bbd47694",
+      "finalRecordHash": "6e1e81d7974223ecfa8b6d413e04b6938d173456152b07d6f09f0e40f63d184b"
+    },
+    {
+      "path": "predictions-2026-07-05.jsonl",
+      "records": 94,
+      "contentSha256": "f56c3d64033a9afa8cf3f33ef7b619934e25d19cb1dadabb3f5df4b2162a31ab",
+      "finalRecordHash": "05c168d43e254457979878db567e25a96e02c293a7f61994a9a0a403219d9e98"
+    },
+    {
+      "path": "predictions-2026-07-06.jsonl",
+      "records": 94,
+      "contentSha256": "b0b9e2d98df1ca28e0d5c83035068de36b038ae037d005eff6f839c34e44cb2c",
+      "finalRecordHash": "86f2230c95b000b5bf4678d2722ee1e773221f83389bc77cc73f9f56147bef85"
+    },
+    {
+      "path": "predictions-2026-07-07.jsonl",
+      "records": 94,
+      "contentSha256": "d7789ccf09e972308f2c886fee8525dba8cab5ede39dcfdb1399d523695b59e2",
+      "finalRecordHash": "362634ce6a8096373587085138072950785a45186b72b2e91f6d9ad7ce4c10bf"
+    },
+    {
+      "path": "predictions-2026-07-08.jsonl",
+      "records": 94,
+      "contentSha256": "7df7130191e1ac2c77dcf79a367231b135809db1a69b9ddb3be3b157ede45ec1",
+      "finalRecordHash": "c502140ec6050f6ec0b05c8415f88ac18fbee5f5395bffe1d5e72ae052cd6c3b"
+    },
+    {
+      "path": "predictions-2026-07-09.jsonl",
+      "records": 94,
+      "contentSha256": "55976d3f391c8cf331305df4f4b45b602e8b82ab5cd0fb3db9666b9e5206b252",
+      "finalRecordHash": "df103141b4562ed7b5187961d487de286fbbc6bd10b0025261fc641f166e5be6"
+    },
+    {
+      "path": "predictions-2026-07-10.jsonl",
+      "records": 94,
+      "contentSha256": "c3ce81e82f93727b2caf2af0b25886c964ef3ec2eaf5ec870bc6647ed0edf445",
+      "finalRecordHash": "9c27c97394f2cbe677ea90919c68d23ac3605db0a5ecb607d5282cee33265e24"
+    },
+    {
+      "path": "predictions-2026-07-11.jsonl",
+      "records": 94,
+      "contentSha256": "245036f7da771bc8d9e3a9eace2f995f871e9a7fd9bcfbd270415d8976fa3bc9",
+      "finalRecordHash": "01fcf01102e275911525fa8a2759b1fbaad8f7dde3c8f1f0dcd2606a40d5876b"
+    },
+    {
+      "path": "predictions-2026-07-12.jsonl",
+      "records": 94,
+      "contentSha256": "18324cc23ed436b9b0eed81f870708e2cdb9be2401d57ef188bf5f42a71ea377",
+      "finalRecordHash": "2f78468d824109fbd5f1213c488de714231c884172d36afd92e2973c0bf55161"
+    },
+    {
+      "path": "predictions-2026-07-13.jsonl",
+      "records": 94,
+      "contentSha256": "3c1679b4130e4e6cc38723d0633c4a517efb9ae9702a0e7e3bcc14ae47294ed8",
+      "finalRecordHash": "88443115fe0707b1b03d6c6ae0f2e61deeee71753f24f95b78d14c9b355f5a8f"
+    },
+    {
+      "path": "predictions-2026-07-14.jsonl",
+      "records": 94,
+      "contentSha256": "48f5b0fd3b149d2920660a340fb8a79ab821de9ebab3bbb99758b5eedc57dfd3",
+      "finalRecordHash": "2ce520f9ac7896e7d0af856368928648a324a3c4d166bb0882a81b0dacac5233"
+    },
+    {
+      "path": "predictions-2026-07-15.jsonl",
+      "records": 93,
+      "contentSha256": "598f9cd463b36f72e3d5c03a6d1413bacb7497b04abe90951f186ff58459daaf",
+      "finalRecordHash": "8fba87f04eb64d97632c19b40313d863a7c003f6485a72d0cc41fc33ca11fec6"
+    },
+    {
+      "path": "predictions-2026-07-16.jsonl",
+      "records": 92,
+      "contentSha256": "546bf1e04bdb67d289a7f56a57814e68de8d9871d1164aecf34f5f84561edd5b",
+      "finalRecordHash": "250043a1219e01372754efbb4f67192aa92f76ac9272f4873397e0c9b0e158e3"
+    },
+    {
+      "path": "predictions-2026-07-17.jsonl",
+      "records": 92,
+      "contentSha256": "4bb945c870ac33818ceb7ebe7f53961ca9dacedf1e6b19fc68c8178f93dd5469",
+      "finalRecordHash": "15ea21296fce6010900d9f51bc657b42528d5388f97cb82b451e2f248a5e55de"
+    },
+    {
+      "path": "predictions-2026-07-18.jsonl",
+      "records": 92,
+      "contentSha256": "635a2e0ca6ef3975e63b2dbbcbe92202709473f8b7682547c96483fc8ff83973",
+      "finalRecordHash": "3bddd5c7772b04d429e3fd6c95114e7013d835317f49fa763342ea706c3e2a5f"
+    },
+    {
+      "path": "predictions-2026-07-19.jsonl",
+      "records": 92,
+      "contentSha256": "54adf517af7229dfe29405e7605d63c18caa6b988c75127d30ac07df477161ed",
+      "finalRecordHash": "366582301de68daf96cee9c9a8804bffa8cd4d5a2197ffdd937a5fbb714c83ad"
+    },
+    {
+      "path": "predictions-2026-07-20.jsonl",
+      "records": 92,
+      "contentSha256": "f70a6704e2f0393abcf8f29047c5ee2ecf604d302ffcf75de748d065e331a8f1",
+      "finalRecordHash": "24ceddd40ac06ac63a46acd302d821e0f419dea31c862b13f7e6ad8ac0881492"
+    },
+    {
+      "path": "predictions-2026-07-21.jsonl",
+      "records": 92,
+      "contentSha256": "5e996d09cd61af0c795d67a5476fe6525331689e1690e965c08cb057504fd7f2",
+      "finalRecordHash": "7d751ad56c1ac0e26eaf207c2c8580065a8386414b19a5dd14967e09193e9562"
+    },
+    {
+      "path": "predictions-2026-07-22.jsonl",
+      "records": 93,
+      "contentSha256": "ef2ee4e1129417c43b4b3fbc9cbf037b7546a4ae7abc26a1b689767eba7ce6d2",
+      "finalRecordHash": "fb12454b5d504eb2fdf1a9b8e2a2ce546843364322cdabd757581e99862bf893"
+    },
+    {
+      "path": "predictions-2026-07-23.jsonl",
+      "records": 92,
+      "contentSha256": "aa6b91f36c69ed86a3b153b50eed3aed895ea98a68a8988712a8df26b3519eb7",
+      "finalRecordHash": "4791257a64d2d486a0f52d012dcb9fe3578e5cacb700305739b9e2e68c3f04c8"
+    },
+    {
+      "path": "predictions-2026-07-24.jsonl",
+      "records": 92,
+      "contentSha256": "6e226427e5671e1a5a08d0840f9e9b09eb4d8dbeb70c3ae3c11f9b99de04d96e",
+      "finalRecordHash": "8bd809993cc1d292cc7c5002ff1d5ae726b422c27e6e99d02afb8925367cf1e7"
+    },
+    {
+      "path": "predictions-2026-07-25.jsonl",
+      "records": 91,
+      "contentSha256": "ddbbac359af1a872069addcc0b169692cfba0ae07a345fd58098b4545ca124d3",
+      "finalRecordHash": "6ea99ebcbd1ea878a4a8dcf38328d85f5c7c41baa3bf900a9418cf211b6e4878"
+    },
+    {
+      "path": "predictions-2026-07-26.jsonl",
+      "records": 91,
+      "contentSha256": "552a41c206b70b9a4d58bd95c74d4bbab1e45ce4b62dcaf4e0479cc1272524f8",
+      "finalRecordHash": "429b015464578bac5d84c2f5078cd0f8a84b804aa08f3d0ce4b133a818b1b61e"
+    },
+    {
+      "path": "predictions-2026-07-27.jsonl",
+      "records": 91,
+      "contentSha256": "a60b07a3a81d0d2af3f7de27c8b3f3e22f3945dba83e9dbc588e12dc4c045a75",
+      "finalRecordHash": "a33af59ceae0bad3a0edbad9924ced80afda2fc1c2f012708df2a82b69217958"
+    },
+    {
+      "path": "predictions-2026-07-28.jsonl",
+      "records": 91,
+      "contentSha256": "5a1f6a46c52a8702232b7859c40c739bfe8b9500f61a3ab57f93a2860d011813",
+      "finalRecordHash": "5364d257b78370300f216ad4356497e9205290da4e7dd7b5975c1caa392f1a3e"
+    },
+    {
+      "path": "predictions-2026-07-29.jsonl",
+      "records": 92,
+      "contentSha256": "204dd63500c65ef5a249cabcfda61df700b80f610b7fd6a7a211b4dbdf0441e6",
+      "finalRecordHash": "e73cf0355d893a716040fe5f9d427166f4e934ad854f7941ca65c939c954132f"
+    },
+    {
+      "path": "predictions-2026-07-30.jsonl",
+      "records": 91,
+      "contentSha256": "03e3a9014a58772f1d44e7fe6804149ef3365d952465f6abb88be3f48c1f179c",
+      "finalRecordHash": "a0563f9d73a7f82ade09ace65438133a463a3440d4b2fb12fa6e88d780278b2a"
+    }
+  ],
+  "streamSummaries": [
+    {
+      "streamId": "nationwide",
+      "inputScope": "camera_independent_nationwide",
+      "scans": 2598,
+      "lineages": 78299,
+      "window": null,
+      "models": {
+        "persistenceFirst": {
+          "firstEligibleAt": "2026-07-03T00:00:00Z",
+          "firstEligibleLineageId": "opportunity-06dfcfdea660cd8dba72",
+          "leadMinutesToWindowStart": null
+        },
+        "boundedBlend": {
+          "firstEligibleAt": "2026-07-03T00:00:00Z",
+          "firstEligibleLineageId": "opportunity-06dfcfdea660cd8dba72",
+          "leadMinutesToWindowStart": null
+        },
+        "radarFirst": {
+          "firstEligibleAt": "2026-07-03T00:00:00Z",
+          "firstEligibleLineageId": "opportunity-06dfcfdea660cd8dba72",
+          "leadMinutesToWindowStart": null
+        },
+        "budgetGate": {
+          "firstEligibleAt": "2026-07-03T00:20:00Z",
+          "firstEligibleLineageId": "opportunity-f682a32e43dff1edc5a9",
+          "leadMinutesToWindowStart": null
+        }
+      }
+    }
+  ],
+  "streaming": true,
+  "gitCommitInstruction": "Commit this manifest hash before human review; labels live in a separate artifact.",
+  "manifestContentSha256": "889d11b9588672129740c8d40e8e1f67d07d924857f7038d028fa0edf85cf040"
+}

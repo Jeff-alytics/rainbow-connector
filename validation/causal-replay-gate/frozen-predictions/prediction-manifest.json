@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "tamper-evident-prediction-log.v1",
+  "replaySchemaVersion": "causal-opportunity-replay.v2",
+  "lineageVersion": "camera-free-seed-lineage-nearest-v1",
+  "modelVersions": {
+    "persistenceFirst": "causal-persistence-band-then-radar-v2",
+    "boundedBlend": "causal-bounded-persistence-radar-v2",
+    "radarFirst": "causal-radar-then-persistence-v2",
+    "budgetGate": "causal-budget-gate-development-v2"
+  },
+  "reviewPolicyVersion": "predict-then-review-2026-08-v1",
+  "config": {
+    "maximumLineageGapMinutes": 30,
+    "maximumObserverMotionKm": 45.0,
+    "maximumRainTargetMotionKm": 60.0,
+    "persistenceSaturationScans": 5,
+    "budgetGateMinimumScans": 3,
+    "budgetGateMinimumPeakRadar": 95.0,
+    "budgetGateMinimumCurrentRadar": 70.0,
+    "minimumWetNeighbors": 1,
+    "primaryReviewMaximumRank": 5,
+    "lowerRankControlMinimumRank": 6,
+    "lowerRankControlMaximumRank": 50,
+    "lowerRankControlFraction": 0.1,
+    "blindFirstFraction": 0.12
+  },
+  "sources": [
+    {
+      "path": "validation\\frozen-case-pool-check\\camera-free-seeds.json",
+      "contentSha256": "ab85086214cd7fcd41cc87f75501b786c72c11d93e891dd72b440144db7483ac"
+    }
+  ],
+  "files": [
+    {
+      "path": "predictions-2026-07-28.jsonl",
+      "records": 13,
+      "contentSha256": "8e23e02ba8b493b3574353bc86ea19f2854b7bb99a01b2530ce87005e6069bb0",
+      "finalRecordHash": "381b3043dcf433f0501b875f5c8c8113c3d7e92a50c287dd01a7675bc121c81c"
+    },
+    {
+      "path": "predictions-2026-07-29.jsonl",
+      "records": 3,
+      "contentSha256": "4e1e29ff840bbd6e51247e34b22d5c67d184feb7069a203e188b477be0e57f98",
+      "finalRecordHash": "1fde46fb96ea7ec94741323b135d1df9d917bf85f8929d0b1fe44c43ef66858a"
+    },
+    {
+      "path": "predictions-2026-07-30.jsonl",
+      "records": 28,
+      "contentSha256": "866d5ecdd38b6838fac4a104fc949376525c32eb27b187bbc327ca3485043a30",
+      "finalRecordHash": "906c765151b9299e4a3c7d8d370846320f19e7b55d71a9711fbb4feab12a5ea6"
+    }
+  ],
+  "streamSummaries": [
+    {
+      "streamId": "baltimore-dundalk-20260728",
+      "inputScope": "camera_independent_case_radius",
+      "scans": 15,
+      "lineages": 12,
+      "window": [
+        "2026-07-28T23:25:00Z",
+        "2026-07-28T23:45:00Z"
+      ],
+      "models": {
+        "persistenceFirst": {
+          "firstEligibleAt": "2026-07-28T21:50:00Z",
+          "firstEligibleLineageId": "opportunity-3ba6c575efff5050847c",
+          "leadMinutesToWindowStart": 95.0
+        },
+        "boundedBlend": {
+          "firstEligibleAt": "2026-07-28T21:50:00Z",
+          "firstEligibleLineageId": "opportunity-3ba6c575efff5050847c",
+          "leadMinutesToWindowStart": 95.0
+        },
+        "radarFirst": {
+          "firstEligibleAt": "2026-07-28T21:50:00Z",
+          "firstEligibleLineageId": "opportunity-3ba6c575efff5050847c",
+          "leadMinutesToWindowStart": 95.0
+        },
+        "budgetGate": {
+          "firstEligibleAt": "2026-07-28T23:00:00Z",
+          "firstEligibleLineageId": "opportunity-bd94ea1cae4eed0fbcc1",
+          "leadMinutesToWindowStart": 25.0
+        }
+      }
+    },
+    {
+      "streamId": "colorado-multicamera-20260730",
+      "inputScope": "camera_independent_case_radius",
+      "scans": 15,
+      "lineages": 29,
+      "window": [
+        "2026-07-30T01:20:00Z",
+        "2026-07-30T01:40:00Z"
+      ],
+      "models": {
+        "persistenceFirst": {
+          "firstEligibleAt": "2026-07-29T23:50:00Z",
+          "firstEligibleLineageId": "opportunity-d403fa546f4e4232f85c",
+          "leadMinutesToWindowStart": 90.0
+        },
+        "boundedBlend": {
+          "firstEligibleAt": "2026-07-29T23:50:00Z",
+          "firstEligibleLineageId": "opportunity-d403fa546f4e4232f85c",
+          "leadMinutesToWindowStart": 90.0
+        },
+        "radarFirst": {
+          "firstEligibleAt": "2026-07-29T23:50:00Z",
+          "firstEligibleLineageId": "opportunity-d403fa546f4e4232f85c",
+          "leadMinutesToWindowStart": 90.0
+        },
+        "budgetGate": {
+          "firstEligibleAt": "2026-07-30T00:50:00Z",
+          "firstEligibleLineageId": "opportunity-119e8c14fd5330f7b848",
+          "leadMinutesToWindowStart": 30.0
+        }
+      }
+    },
+    {
+      "streamId": "utah-ogden-bear-river-20260730",
+      "inputScope": "camera_independent_case_radius",
+      "scans": 14,
+      "lineages": 20,
+      "window": [
+        "2026-07-30T02:20:00Z",
+        "2026-07-30T02:32:00Z"
+      ],
+      "models": {
+        "persistenceFirst": {
+          "firstEligibleAt": "2026-07-30T00:50:00Z",
+          "firstEligibleLineageId": "opportunity-dac946ae02a6ded0b4b4",
+          "leadMinutesToWindowStart": 90.0
+        },
+        "boundedBlend": {
+          "firstEligibleAt": "2026-07-30T00:50:00Z",
+          "firstEligibleLineageId": "opportunity-dac946ae02a6ded0b4b4",
+          "leadMinutesToWindowStart": 90.0
+        },
+        "radarFirst": {
+          "firstEligibleAt": "2026-07-30T00:50:00Z",
+          "firstEligibleLineageId": "opportunity-dac946ae02a6ded0b4b4",
+          "leadMinutesToWindowStart": 90.0
+        },
+        "budgetGate": {
+          "firstEligibleAt": "2026-07-30T01:20:00Z",
+          "firstEligibleLineageId": "opportunity-c3ca155dbf42ced72685",
+          "leadMinutesToWindowStart": 60.0
+        }
+      }
+    }
+  ],
+  "gitCommitInstruction": "Commit this manifest hash before human review; labels live in a separate artifact.",
+  "manifestContentSha256": "06752f0e2ac1fbd1cc42f55efef16614e1268eba9a9c5dfa0a2cd5ddb0158ab6"
+}
