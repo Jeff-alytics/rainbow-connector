@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "storm-object-replay-gate-config.v1",
+  "status": "frozen_before_real_data_replay",
+  "frozenAt": "2026-08-03",
+  "inheritsCriteriaFrom": "validation/causal-replay-gate/gate-config.json",
+  "criteriaChanges": [],
+  "developmentWindow": {
+    "start": "2026-07-03T00:00:00Z",
+    "endExclusive": "2026-07-31T00:00:00Z"
+  },
+  "stormSegmentation": {
+    "methodVersion": "mrms-hysteresis-object-lineage-2026-08-v1",
+    "envelopeMinimumMmHr": 0.5,
+    "coreMinimumMmHr": 2.0,
+    "connectivity": 8,
+    "multiCoreEnvelopeRule": "nearest_core_cell_chebyshev_distance_then_lexical_core",
+    "minimumCoreCells": 1,
+    "maximumMotionCellsPerScan": 12,
+    "splitIdentityRule": "all_children_inherit_parent_family",
+    "mergeIdentityRule": "largest_native_overlap_parent_then_gap_then_size_then_event_id",
+    "mergeAncestryRule": "union_all_parent_ancestor_event_ids"
+  },
+  "candidateAttachment": {
+    "source": "camera_independent_fixed_CONUS_probe_seeds",
+    "rule": "seed_rain_target_native_cell_inside_storm_envelope",
+    "unattachedSeedsAreAlertIneligibleButRetainedAsDiagnostics": true,
+    "spatialSupportRequired": true,
+    "sunlightHardVetoAllowed": false,
+    "missingSunlightIsNeutral": true
+  },
+  "eligibility": {
+    "minimumObjectPersistenceScans": 3,
+    "persistenceSaturationScans": 5,
+    "minimumCausalPeakRadar": 95,
+    "minimumCurrentRadar": 70,
+    "scoreModel": "causal-bounded-persistence-radar-v2",
+    "scoreThresholds": [
+      50, 55, 60, 65, 70, 75, 80, 85, 90, 92.5, 95, 97.5
+    ]
+  },
+  "scheduler": {
+    "version": "nationwide-causal-token-bucket-2026-08-v1",
+    "alertIdentity": "storm_ancestry_family",
+    "maximumAlertsPerAncestryLifetime": 1,
+    "ancestryCooldownHours": 12,
+    "tokensPer24Hours": 10,
+    "bucketCapacity": 3,
+    "initialTokens": 3,
+    "hardMaximumAlertsPerUtcDay": 10,
+    "selectionAtEachScan": "highest_score_currently_eligible_unalerted_ancestry",
+    "tieBreakOrder": [
+      "score_desc",
+      "causal_peak_radar_desc",
+      "object_persistence_desc",
+      "event_id_asc"
+    ],
+    "noLookahead": true,
+    "noEndOfDayReranking": true
+  },
+  "labelAncestryMatch": {
+    "primaryRule": "target_rain_coordinate_within_3km_of_storm_envelope_at_nearest_scan_within_5min_and_target_observer_inside_ledger_swath_within_3km",
+    "familyRule": "alert_matches_any_split_or_merge_ancestor_of_target_object",
+    "exactSeedMaximumObserverDistanceKm": 2,
+    "exactSeedMaximumRainTargetDistanceKm": 2,
+    "exactSeedRole": "diagnostic_only",
+    "frozenMissFallbackRule": "case_seed_observer_within_15km_attached_to_target_storm_family"
+  },
+  "reportingRequirements": {
+    "componentSizeDistributions": [
+      "envelope_cell_count",
+      "core_cell_count",
+      "geographic_extent_km"
+    ],
+    "lineageDiagnostics": [
+      "continuations",
+      "splits",
+      "merges",
+      "motion_fallbacks",
+      "unattached_candidate_seeds"
+    ],
+    "reportUnscheduledEligibleObjects": true,
+    "reportTokenStarvationByUtcHour": true,
+    "reportNaturalVolumeBeforeScheduler": true
+  },
+  "notes": [
+    "The scheduler is a declared product policy, not a post-hoc cap.",
+    "All inherited Gate 3 alert-budget, lead-time, recall, comparative, and rollback criteria remain unchanged.",
+    "Any amendment requires a new config version before its replay output is generated."
+  ]
+}

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import heapq
 import json
 import math
 import numpy as np
@@ -17,6 +18,8 @@ from shapely.geometry import shape
 from detector_core import CONUS_BOUNDS, solar_position
 
 SCHEMA_VERSION = "opportunity-ledger.v1"
+STORM_OBJECT_SCHEMA_VERSION = "storm-object-ledger.v1"
+STORM_OBJECT_METHOD_VERSION = "mrms-hysteresis-object-lineage-2026-08-v1"
 METHOD_VERSION = "observer-swath-physical-envelope-2026-07-v3-viable-only"
 SWATH_RESOLUTION_DEG = 0.025
 SWATH_TOLERANCE_KM = 3.0
@@ -99,6 +102,108 @@ def rain_components(sidecar: dict) -> list[dict]:
     return sorted(components, key=lambda item: item["componentId"])
 
 
+def _cells_from_runs(runs: list[list[int]]) -> set[tuple[int, int]]:
+    return {
+        (int(row), column)
+        for row, first, last, *_ in runs
+        for column in range(int(first), int(last) + 1)
+    }
+
+
+def _connected_groups(cells: set[tuple[int, int]]) -> list[set[tuple[int, int]]]:
+    remaining = set(cells)
+    groups = []
+    while remaining:
+        start = remaining.pop()
+        group = {start}
+        stack = [start]
+        while stack:
+            row, column = stack.pop()
+            for dr in (-1, 0, 1):
+                for dc in (-1, 0, 1):
+                    if dr == 0 and dc == 0:
+                        continue
+                    neighbor = row + dr, column + dc
+                    if neighbor in remaining:
+                        remaining.remove(neighbor)
+                        group.add(neighbor)
+                        stack.append(neighbor)
+        groups.append(group)
+    return groups
+
+
+def _component_runs(cells: set[tuple[int, int]]) -> list[list[int]]:
+    return [[row, first, last, 1] for row, first, last in encode_swath(cells)]
+
+
+def storm_objects(sidecar: dict) -> list[dict]:
+    """Segment exact MRMS rates with core/envelope hysteresis.
+
+    Every >=2 mm/hr connected core owns envelope cells reachable through
+    >=0.5 mm/hr rain. Multi-core envelopes are divided by deterministic
+    eight-neighbor distance, so a light-rain bridge cannot weld identities.
+    """
+    segmentation = sidecar.get("stormSegmentation") or {}
+    envelope = _cells_from_runs(segmentation.get("envelopeRuns") or [])
+    core = _cells_from_runs(segmentation.get("coreRuns") or [])
+    if not envelope or not core:
+        return []
+    core_groups = _connected_groups(core)
+    core_groups.sort(key=lambda cells: min(cells))
+    owner_by_cell: dict[tuple[int, int], int] = {}
+    distance_by_cell: dict[tuple[int, int], int] = {}
+    queue = []
+    for owner, cells in enumerate(core_groups):
+        for row, column in cells:
+            owner_by_cell[(row, column)] = owner
+            distance_by_cell[(row, column)] = 0
+            heapq.heappush(queue, (0, owner, row, column))
+    while queue:
+        distance, owner, row, column = heapq.heappop(queue)
+        cell = row, column
+        if distance_by_cell.get(cell) != distance or owner_by_cell.get(cell) != owner:
+            continue
+        for dr in (-1, 0, 1):
+            for dc in (-1, 0, 1):
+                if dr == 0 and dc == 0:
+                    continue
+                neighbor = row + dr, column + dc
+                if neighbor not in envelope:
+                    continue
+                proposal = distance + 1
+                current = distance_by_cell.get(neighbor)
+                current_owner = owner_by_cell.get(neighbor)
+                if current is not None and (current < proposal or (current == proposal and current_owner <= owner)):
+                    continue
+                distance_by_cell[neighbor] = proposal
+                owner_by_cell[neighbor] = owner
+                heapq.heappush(queue, (proposal, owner, neighbor[0], neighbor[1]))
+    cells_by_owner: dict[int, set[tuple[int, int]]] = defaultdict(set)
+    for cell, owner in owner_by_cell.items():
+        cells_by_owner[owner].add(cell)
+    observed = str(sidecar["observedAt"])
+    objects = []
+    for owner, cells in sorted(cells_by_owner.items()):
+        runs = _component_runs(cells)
+        core_cells = core_groups[owner]
+        identity = _hash({"observedAt": observed, "coreRuns": _component_runs(core_cells)})[:16]
+        objects.append({
+            "componentId": "storm-object-" + observed.replace("-", "").replace(":", "").replace("Z", "Z-") + identity,
+            "eventId": "storm-family-" + identity,
+            "ancestorEventIds": ["storm-family-" + identity],
+            "observedAt": observed,
+            "runs": runs,
+            "bounds": {
+                "rowMin": min(row for row, _ in cells), "rowMax": max(row for row, _ in cells),
+                "columnMin": min(column for _, column in cells), "columnMax": max(column for _, column in cells),
+            },
+            "cellCount": len(cells),
+            "coreCellCount": len(core_cells),
+            "lineageScanCount": 1,
+        })
+    return objects
+
+
 def _component_gap(left: dict, right: dict, maximum: int = 12) -> int:
     """Return the exact Chebyshev cell gap within the motion window."""
     left_runs, right_runs = left.get("runs") or [], right.get("runs") or []
@@ -135,12 +240,18 @@ def _overlap_cell_count(left: dict, right: dict) -> int:
     return overlap
 
 
-def link_lineage(previous: dict | None, current: dict, maximum_motion_cells: int = 12) -> dict:
+def link_lineage(
+    previous: dict | None,
+    current: dict,
+    maximum_motion_cells: int = 12,
+    event_key: str = "rainEvents",
+    edge_key: str = "lineageEdges",
+) -> dict:
     """Attach stable event IDs and explicit continuation/split/merge edges."""
     if not previous:
         return current
-    old = previous.get("rainEvents") or []
-    new = current.get("rainEvents") or []
+    old = previous.get(event_key) or []
+    new = current.get(event_key) or []
     old_runs_by_row: dict[int, list[tuple[int, int, int]]] = defaultdict(list)
     old_motion_by_row: dict[int, set[int]] = defaultdict(set)
     for index, candidate in enumerate(old):
@@ -203,6 +314,11 @@ def link_lineage(previous: dict | None, current: dict, maximum_motion_cells: int
             item["lineageScanCount"] = int(primary.get("lineageScanCount") or 1) + 1
             item["primaryParentComponentId"] = primary["componentId"]
             item["parentComponentIds"] = sorted(match["componentId"] for match in matches)
+            item["ancestorEventIds"] = sorted({
+                ancestor
+                for match in matches
+                for ancestor in (match.get("ancestorEventIds") or [match["eventId"]])
+            })
     edges = []
     for item in new:
         matches = parents[item["componentId"]]
@@ -220,13 +336,38 @@ def link_lineage(previous: dict | None, current: dict, maximum_motion_cells: int
                 "isPrimary": match["componentId"] == item.get("primaryParentComponentId"),
                 **detail,
             })
-    current["lineageEdges"] = sorted(edges, key=lambda item: (item["fromComponentId"], item["toComponentId"]))
+    current[edge_key] = sorted(edges, key=lambda item: (item["fromComponentId"], item["toComponentId"]))
+    if event_key != "rainEvents":
+        return current
     opportunity_events = {item["componentId"]: item for item in new}
     for opportunity in current.get("opportunities") or []:
         event = opportunity_events[opportunity["rainComponentId"]]
         opportunity["eventId"] = event["eventId"]
         opportunity["persistenceScans"] = int(event.get("lineageScanCount") or 1)
     return current
+
+
+def build_storm_object_ledger(sidecar: dict, previous: dict | None = None) -> dict:
+    objects = storm_objects(sidecar)
+    ledger = {
+        "schemaVersion": STORM_OBJECT_SCHEMA_VERSION,
+        "methodVersion": STORM_OBJECT_METHOD_VERSION,
+        "scanTime": str(sidecar["observedAt"]),
+        "rainFootprintId": sidecar["rainFootprintId"],
+        "stormObjects": objects,
+        "stormLineageEdges": [],
+        "stats": {
+            "stormObjects": len(objects),
+            "envelopeCells": sum(item["cellCount"] for item in objects),
+            "coreCells": sum(item["coreCellCount"] for item in objects),
+        },
+    }
+    return link_lineage(
+        previous,
+        ledger,
+        event_key="stormObjects",
+        edge_key="stormLineageEdges",
+    )
 
 
 def _component_cells(component: dict) -> set[tuple[int, int]]:

@@ -6,13 +6,49 @@ import numpy as np
 
 from detector_core import offset, solar_position
 from opportunity_ledger import (
-    SCHEMA_VERSION, _representatives, build_opportunity_ledger, camera_evidence_scope,
-    link_lineage, rain_components, swath_contains,
+    SCHEMA_VERSION, _representatives, build_opportunity_ledger,
+    build_storm_object_ledger, camera_evidence_scope, link_lineage,
+    rain_components, storm_objects, swath_contains,
 )
 from rain_footprint import build_sidecar
 
 
 class OpportunityLedgerTests(unittest.TestCase):
+    def test_hysteresis_divides_light_rain_bridge_between_distinct_cores(self):
+        rates = np.zeros((3, 9))
+        rates[1, 1] = 3.0
+        rates[1, 2:7] = 0.6
+        rates[1, 7] = 3.0
+        sidecar = build_sidecar(
+            np.array([40.02, 40.01, 40.00]),
+            np.array([-100.08 + index * 0.01 for index in range(9)]),
+            rates,
+            datetime(2026, 8, 3, 0, 0, tzinfo=timezone.utc),
+            "synthetic-bridge",
+        )
+        objects = storm_objects(sidecar)
+        self.assertEqual(len(objects), 2)
+        self.assertEqual(sum(item["cellCount"] for item in objects), 7)
+        self.assertEqual(sorted(item["coreCellCount"] for item in objects), [1, 1])
+
+    def test_storm_split_and_merge_preserve_ancestry_family(self):
+        def sidecar(rates, minute):
+            return build_sidecar(
+                np.array([40.02, 40.01, 40.00]),
+                np.array([-100.04 + index * 0.01 for index in range(5)]),
+                np.asarray(rates, dtype=float),
+                datetime(2026, 8, 3, 0, minute, tzinfo=timezone.utc),
+                f"synthetic-{minute}",
+            )
+        first = build_storm_object_ledger(sidecar([[0] * 5, [0, 3, 3, 3, 0], [0] * 5], 0))
+        split = build_storm_object_ledger(sidecar([[0, 3, 0, 3, 0], [0, .6, .6, .6, 0], [0] * 5], 10), first)
+        self.assertEqual(len(split["stormObjects"]), 2)
+        self.assertEqual(len({item["eventId"] for item in split["stormObjects"]}), 1)
+        merged = build_storm_object_ledger(sidecar([[0] * 5, [0, 3, 3, 3, 0], [0] * 5], 20), split)
+        self.assertEqual(len(merged["stormObjects"]), 1)
+        self.assertEqual(merged["stormObjects"][0]["eventId"], first["stormObjects"][0]["eventId"])
+        self.assertTrue(any(edge["kind"] == "merge" for edge in merged["stormLineageEdges"]))
+
     def test_connected_components_ignore_rate_tier_boundaries(self):
         sidecar = {
             "observedAt": "2026-07-30T00:30:00Z",

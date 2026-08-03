@@ -1,0 +1,4192 @@
+{
+  "schemaVersion": "time-aligned-storm-targets.v2",
+  "status": "post_interim_diagnostic_not_frozen_gate",
+  "createdAfterInterimResultWasRead": true,
+  "usesPredictionScores": false,
+  "usesEligibility": false,
+  "usesSchedulerTokens": false,
+  "method": {
+    "observerCoordinate": "actual_faa_site_coordinate",
+    "radarScan": "nearest_decoded_MRMS_scan_within_5_minutes_of_targetAt",
+    "rainPrefilterKm": [
+      0,
+      45
+    ],
+    "physicalCompatibility": "production_0.025deg_observer_swath_contains_site",
+    "ambiguityRule": "retain_all_compatible_components; never select_by_alert_outcome",
+    "analysisArms": {
+      "lowerBound": "unique compatible storm only",
+      "middleEstimate": {
+        "selectionRule": [
+          "bow_arc_envelope_occupied_degrees_desc",
+          "exact_swath_containment_before_tolerance",
+          "bow_arc_core_occupied_degrees_desc",
+          "component_id_asc"
+        ],
+        "reportTargetTimeAndMinus10MinutesSeparately": true
+      },
+      "upperBound": "success_on_any_compatible_family"
+    }
+  },
+  "sources": [
+    {
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\scan-artifact-manifest.json",
+      "sha256": "ec407e1eb877547e221cd89f45b26187fa1248228f92597fdc701ef1f39cebfe"
+    },
+    {
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\causal-replay-gate\\bow-evaluation-targets.json",
+      "sha256": "1ce30710be0c9412cbbbe95cbec3cf3fc538c030af3366d2b10207d73508af8f"
+    },
+    {
+      "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\faa\\sites.json",
+      "sha256": "ab4a89635c12dc135e8494fecd6abd12913b2775d0bbf33f8737e48e1ad89ba5"
+    }
+  ],
+  "config": {
+    "path": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-config-v3.json",
+    "sha256": "baced752c7b74a0b2179d95f0f2a3ad8396883aa84c68cfe31a1b782a59314c3"
+  },
+  "targetCount": 35,
+  "assignmentCounts": {
+    "unique_physical_storm": 4,
+    "ambiguous_physical_storms": 27,
+    "no_physical_storm": 4,
+    "no_scan_within_5min": 0
+  },
+  "targets": [
+    {
+      "eventId": "site1013-20260727T120000Z",
+      "targetAt": "2026-07-27T11:56:00.516Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "1013",
+      "siteName": "Black Hills Airport",
+      "observer": {
+        "lat": 44.48333,
+        "lon": -103.78361
+      },
+      "assignment": "unique_physical_storm",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-27T12:00:00Z",
+          "scanGapMinutes": 3.991,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260727T120000Z.json.gz",
+          "sourceScanSha256": "cb69b609df8d9fdd2524168379ad6bc416b9e468d1b24c389de3e4917b3ea14c",
+          "totalStormComponents": 1636,
+          "prefilteredStormCount": 1,
+          "closestSwathNearMissKm": null,
+          "assignment": "unique_physical_storm",
+          "middleSelectedComponentId": "storm-object-20260727T120000Z-d13d2979d090785a",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260727T120000Z-d13d2979d090785a",
+              "envelopeDistanceKm": 13.003,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 93,
+              "coreCellCount": 41,
+              "bowArcEnvelopeOccupiedDeg": 16,
+              "bowArcCoreOccupiedDeg": 12,
+              "bowArcHalfExtentDeg": 41.908
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-27T11:50:00Z",
+          "scanGapMinutes": 3.991,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260727T115000Z.json.gz",
+          "sourceScanSha256": "150f721f9169b01e96b97a149021514efbbce811592d05e8ae3c85b084a60ef1",
+          "totalStormComponents": 1666,
+          "prefilteredStormCount": 0,
+          "closestSwathNearMissKm": null,
+          "assignment": "no_physical_storm",
+          "middleSelectedComponentId": null,
+          "compatibleStormComponents": []
+        }
+      ]
+    },
+    {
+      "eventId": "site1023-20260706T235000Z",
+      "targetAt": "2026-07-06T23:58:08.236Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "1023",
+      "siteName": "Jonesboro",
+      "observer": {
+        "lat": 35.833836,
+        "lon": -90.65187
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-07T00:00:00Z",
+          "scanGapMinutes": 1.863,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260707T000000Z.json.gz",
+          "sourceScanSha256": "d0470a389586169c0d97ca84bb4aa355b7890bf79cccefc0e24bc3617ffae628",
+          "totalStormComponents": 3780,
+          "prefilteredStormCount": 6,
+          "closestSwathNearMissKm": 4.5,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260707T000000Z-d4a7acd8df5a5371",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260707T000000Z-d4a7acd8df5a5371",
+              "envelopeDistanceKm": 10.589,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 56,
+              "coreCellCount": 32,
+              "bowArcEnvelopeOccupiedDeg": 17,
+              "bowArcCoreOccupiedDeg": 16,
+              "bowArcHalfExtentDeg": 39.878
+            },
+            {
+              "componentId": "storm-object-20260707T000000Z-9d5bf15fcc511123",
+              "envelopeDistanceKm": 36.437,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 61,
+              "coreCellCount": 40,
+              "bowArcEnvelopeOccupiedDeg": 11,
+              "bowArcCoreOccupiedDeg": 9,
+              "bowArcHalfExtentDeg": 39.878
+            },
+            {
+              "componentId": "storm-object-20260707T000000Z-83ce99957b4fd2ae",
+              "envelopeDistanceKm": 6.869,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 19,
+              "coreCellCount": 10,
+              "bowArcEnvelopeOccupiedDeg": 4,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 39.878
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-06T23:50:00Z",
+          "scanGapMinutes": 1.863,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260706T235000Z.json.gz",
+          "sourceScanSha256": "7b69535d6e96611fd1bb97b7b980635df126bb54747f6cd09b5a55d2348c4963",
+          "totalStormComponents": 3825,
+          "prefilteredStormCount": 5,
+          "closestSwathNearMissKm": 35.11,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260706T235000Z-dd8197fe73b1d09a",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260706T235000Z-dd8197fe73b1d09a",
+              "envelopeDistanceKm": 7.733,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 123,
+              "coreCellCount": 68,
+              "bowArcEnvelopeOccupiedDeg": 18,
+              "bowArcCoreOccupiedDeg": 15,
+              "bowArcHalfExtentDeg": 39.232
+            },
+            {
+              "componentId": "storm-object-20260706T235000Z-0ed8ed866cf39a9b",
+              "envelopeDistanceKm": 36.142,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 29,
+              "coreCellCount": 16,
+              "bowArcEnvelopeOccupiedDeg": 6,
+              "bowArcCoreOccupiedDeg": 4,
+              "bowArcHalfExtentDeg": 39.232
+            },
+            {
+              "componentId": "storm-object-20260706T235000Z-16d8ada92bd1ae9a",
+              "envelopeDistanceKm": 7.326,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 3,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 39.232
+            },
+            {
+              "componentId": "storm-object-20260706T235000Z-c0aea3f0b83b5fb0",
+              "envelopeDistanceKm": 41.127,
+              "observerSwathDistanceKm": 2.25,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 38,
+              "coreCellCount": 13,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 39.232
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site1025-20260707T002000Z",
+      "targetAt": "2026-07-07T01:02:46.382Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "1025",
+      "siteName": "Tesuque Peak",
+      "observer": {
+        "lat": 35.785236,
+        "lon": -105.78209
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-07T01:00:00Z",
+          "scanGapMinutes": 2.773,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260707T010000Z.json.gz",
+          "sourceScanSha256": "47ff1ea3714494b1936bb63efa3e96c41e9458b5e00745bdfc5dbe656dc7faf5",
+          "totalStormComponents": 3449,
+          "prefilteredStormCount": 7,
+          "closestSwathNearMissKm": 5.29,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260707T010000Z-f6b75a723a5e0663",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260707T010000Z-f6b75a723a5e0663",
+              "envelopeDistanceKm": 13.851,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 65,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 30,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 39.852
+            },
+            {
+              "componentId": "storm-object-20260707T010000Z-029be0a2c63656a3",
+              "envelopeDistanceKm": 12.951,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 89,
+              "coreCellCount": 12,
+              "bowArcEnvelopeOccupiedDeg": 13,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 39.852
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-07T00:50:00Z",
+          "scanGapMinutes": 2.773,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260707T005000Z.json.gz",
+          "sourceScanSha256": "e6c03724f1df9df6373ac0c0872204eb8c0c4b8b05a4b2d9d0b64fe12ad74321",
+          "totalStormComponents": 3396,
+          "prefilteredStormCount": 7,
+          "closestSwathNearMissKm": 3.57,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260707T005000Z-00f8a12784bd0155",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260707T005000Z-00f8a12784bd0155",
+              "envelopeDistanceKm": 11.453,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 63,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 38,
+              "bowArcCoreOccupiedDeg": 4,
+              "bowArcHalfExtentDeg": 39.201
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-d7d32724b1328635",
+              "envelopeDistanceKm": 10.559,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 120,
+              "coreCellCount": 31,
+              "bowArcEnvelopeOccupiedDeg": 15,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 39.201
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site1025-20260713T004000Z",
+      "targetAt": "2026-07-13T01:15:27.906Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "1025",
+      "siteName": "Tesuque Peak",
+      "observer": {
+        "lat": 35.785236,
+        "lon": -105.78209
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-13T01:20:00Z",
+          "scanGapMinutes": 4.535,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260713T012000Z.json.gz",
+          "sourceScanSha256": "eb70e37be14f9d740dde28c5545ffb363a1e293b68fe779f06b4d0214cc741bd",
+          "totalStormComponents": 3433,
+          "prefilteredStormCount": 3,
+          "closestSwathNearMissKm": null,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260713T012000Z-e2f8cd6f0141a4a2",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260713T012000Z-e2f8cd6f0141a4a2",
+              "envelopeDistanceKm": 5.141,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 135,
+              "coreCellCount": 54,
+              "bowArcEnvelopeOccupiedDeg": 46,
+              "bowArcCoreOccupiedDeg": 31,
+              "bowArcHalfExtentDeg": 40.91
+            },
+            {
+              "componentId": "storm-object-20260713T012000Z-476f1577ed82b3ce",
+              "envelopeDistanceKm": 21.018,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 66,
+              "coreCellCount": 30,
+              "bowArcEnvelopeOccupiedDeg": 20,
+              "bowArcCoreOccupiedDeg": 15,
+              "bowArcHalfExtentDeg": 40.91
+            },
+            {
+              "componentId": "storm-object-20260713T012000Z-4b9aa7a13f73e01c",
+              "envelopeDistanceKm": 16.449,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 107,
+              "coreCellCount": 28,
+              "bowArcEnvelopeOccupiedDeg": 6,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.91
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-13T01:10:00Z",
+          "scanGapMinutes": 4.535,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260713T011000Z.json.gz",
+          "sourceScanSha256": "e5c4bde8125a0f8efd8b6596d741d956e7b5f996e1f93715124cce585fca1c27",
+          "totalStormComponents": 3439,
+          "prefilteredStormCount": 5,
+          "closestSwathNearMissKm": 18.01,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260713T011000Z-08052add5b0ced29",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260713T011000Z-08052add5b0ced29",
+              "envelopeDistanceKm": 10.598,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 161,
+              "coreCellCount": 68,
+              "bowArcEnvelopeOccupiedDeg": 40,
+              "bowArcCoreOccupiedDeg": 26,
+              "bowArcHalfExtentDeg": 40.458
+            },
+            {
+              "componentId": "storm-object-20260713T011000Z-ccecf09a62e1655c",
+              "envelopeDistanceKm": 15.333,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 92,
+              "coreCellCount": 18,
+              "bowArcEnvelopeOccupiedDeg": 22,
+              "bowArcCoreOccupiedDeg": 12,
+              "bowArcHalfExtentDeg": 40.458
+            },
+            {
+              "componentId": "storm-object-20260713T011000Z-5a2a518c6da634ea",
+              "envelopeDistanceKm": 17.013,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 112,
+              "coreCellCount": 59,
+              "bowArcEnvelopeOccupiedDeg": 9,
+              "bowArcCoreOccupiedDeg": 6,
+              "bowArcHalfExtentDeg": 40.458
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site538-20260727T235000Z",
+      "targetAt": "2026-07-28T01:19:43.919Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "538",
+      "siteName": "Telluride",
+      "observer": {
+        "lat": 37.95444,
+        "lon": -107.9019
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-28T01:20:00Z",
+          "scanGapMinutes": 0.268,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260728T012000Z.json.gz",
+          "sourceScanSha256": "d32777f9f71435a9b0bca7681d8707fbe4bae305786b4436586c3743237d1845",
+          "totalStormComponents": 3032,
+          "prefilteredStormCount": 4,
+          "closestSwathNearMissKm": null,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260728T012000Z-efdef273dc0e2cea",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260728T012000Z-efdef273dc0e2cea",
+              "envelopeDistanceKm": 2.577,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 76,
+              "coreCellCount": 26,
+              "bowArcEnvelopeOccupiedDeg": 24,
+              "bowArcCoreOccupiedDeg": 12,
+              "bowArcHalfExtentDeg": 40.709
+            },
+            {
+              "componentId": "storm-object-20260728T012000Z-ea55d319a39225b3",
+              "envelopeDistanceKm": 6.712,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 52,
+              "coreCellCount": 10,
+              "bowArcEnvelopeOccupiedDeg": 14,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.709
+            },
+            {
+              "componentId": "storm-object-20260728T012000Z-106d6bf59956c462",
+              "envelopeDistanceKm": 11.095,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 3,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 3,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 40.709
+            },
+            {
+              "componentId": "storm-object-20260728T012000Z-0f494ea4afc345c3",
+              "envelopeDistanceKm": 16.55,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 147,
+              "coreCellCount": 84,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.709
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-28T01:10:00Z",
+          "scanGapMinutes": 0.268,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260728T011000Z.json.gz",
+          "sourceScanSha256": "98b840456a16fe0863000af02b0c87a4dd00f88f7f0859b3dddf9784e27b3c00",
+          "totalStormComponents": 3024,
+          "prefilteredStormCount": 6,
+          "closestSwathNearMissKm": 15.55,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260728T011000Z-af13e2b4271403a1",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260728T011000Z-af13e2b4271403a1",
+              "envelopeDistanceKm": 1.813,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 99,
+              "coreCellCount": 50,
+              "bowArcEnvelopeOccupiedDeg": 21,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 40.221
+            },
+            {
+              "componentId": "storm-object-20260728T011000Z-459b06da7f13be8a",
+              "envelopeDistanceKm": 4.98,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 17,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 12,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 40.221
+            },
+            {
+              "componentId": "storm-object-20260728T011000Z-8e872eeb540e3a65",
+              "envelopeDistanceKm": 16.599,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 183,
+              "coreCellCount": 64,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.221
+            },
+            {
+              "componentId": "storm-object-20260728T011000Z-5aca615024beee22",
+              "envelopeDistanceKm": 10.167,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 33,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.221
+            },
+            {
+              "componentId": "storm-object-20260728T011000Z-a020e70189a37fc3",
+              "envelopeDistanceKm": 5.54,
+              "observerSwathDistanceKm": 2.19,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 13,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.221
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site566-20260708T005000Z",
+      "targetAt": "2026-07-08T02:32:31.923Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "566",
+      "siteName": "West Yellowstone",
+      "observer": {
+        "lat": 44.68775,
+        "lon": -111.11419
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-08T02:30:00Z",
+          "scanGapMinutes": 2.532,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260708T023000Z.json.gz",
+          "sourceScanSha256": "246d8ef56a120067910814fa3fb78d4307f7525086d3288af9208d0dc05fb6c3",
+          "totalStormComponents": 2124,
+          "prefilteredStormCount": 6,
+          "closestSwathNearMissKm": 3.4,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260708T023000Z-3415ab0d0b3a22b1",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260708T023000Z-3415ab0d0b3a22b1",
+              "envelopeDistanceKm": 33.983,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 103,
+              "coreCellCount": 33,
+              "bowArcEnvelopeOccupiedDeg": 16,
+              "bowArcCoreOccupiedDeg": 9,
+              "bowArcHalfExtentDeg": 41.689
+            },
+            {
+              "componentId": "storm-object-20260708T023000Z-79d6fd3f5cfc8705",
+              "envelopeDistanceKm": 40.215,
+              "observerSwathDistanceKm": 1.97,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 5,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.689
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-08T02:20:00Z",
+          "scanGapMinutes": 2.532,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260708T022000Z.json.gz",
+          "sourceScanSha256": "62f78c6d9d7391149ad897bac87a30cbdf321782d9ce66108485f970b9a6ee32",
+          "totalStormComponents": 2262,
+          "prefilteredStormCount": 4,
+          "closestSwathNearMissKm": 5.55,
+          "assignment": "unique_physical_storm",
+          "middleSelectedComponentId": "storm-object-20260708T022000Z-fc70974bb6412740",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260708T022000Z-fc70974bb6412740",
+              "envelopeDistanceKm": 28.401,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 184,
+              "coreCellCount": 65,
+              "bowArcEnvelopeOccupiedDeg": 25,
+              "bowArcCoreOccupiedDeg": 13,
+              "bowArcHalfExtentDeg": 41.485
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site571-20260721T115000Z",
+      "targetAt": "2026-07-21T12:08:57.424Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "571",
+      "siteName": "Holyoke Municipal Airport",
+      "observer": {
+        "lat": 40.578213,
+        "lon": -102.281456
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-21T12:10:00Z",
+          "scanGapMinutes": 1.043,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260721T121000Z.json.gz",
+          "sourceScanSha256": "c82f3f7ead9853dfa907ec55ea7d7dbe9378a1d0364155bee9ea9b409e7dbcde",
+          "totalStormComponents": 2170,
+          "prefilteredStormCount": 6,
+          "closestSwathNearMissKm": 14.5,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260721T121000Z-ec263e5a6992aab6",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260721T121000Z-ec263e5a6992aab6",
+              "envelopeDistanceKm": 5.829,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 141,
+              "coreCellCount": 65,
+              "bowArcEnvelopeOccupiedDeg": 63,
+              "bowArcCoreOccupiedDeg": 44,
+              "bowArcHalfExtentDeg": 41.745
+            },
+            {
+              "componentId": "storm-object-20260721T121000Z-aeec796b0aaec449",
+              "envelopeDistanceKm": 26.201,
+              "observerSwathDistanceKm": 2.78,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 96,
+              "coreCellCount": 39,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.745
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-21T12:00:00Z",
+          "scanGapMinutes": 1.043,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260721T120000Z.json.gz",
+          "sourceScanSha256": "1d9a97def81682e24ada5e84c32f47a9cb2ed644eb88bc2da3b9e34fe61c43c3",
+          "totalStormComponents": 2147,
+          "prefilteredStormCount": 7,
+          "closestSwathNearMissKm": 22.3,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260721T120000Z-db0cf19332e4644f",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260721T120000Z-db0cf19332e4644f",
+              "envelopeDistanceKm": 6.246,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 152,
+              "coreCellCount": 58,
+              "bowArcEnvelopeOccupiedDeg": 41,
+              "bowArcCoreOccupiedDeg": 26,
+              "bowArcHalfExtentDeg": 41.889
+            },
+            {
+              "componentId": "storm-object-20260721T120000Z-c808353d51ed8e7b",
+              "envelopeDistanceKm": 14.233,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 24,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 15,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 41.889
+            },
+            {
+              "componentId": "storm-object-20260721T120000Z-04505427a431d3fc",
+              "envelopeDistanceKm": 29.551,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 135,
+              "coreCellCount": 45,
+              "bowArcEnvelopeOccupiedDeg": 3,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.889
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site573-20260720T000000Z",
+      "targetAt": "2026-07-20T00:50:27.259Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "573",
+      "siteName": "Rangely Airport",
+      "observer": {
+        "lat": 40.09309,
+        "lon": -108.75724
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-20T00:50:00Z",
+          "scanGapMinutes": 0.454,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260720T005000Z.json.gz",
+          "sourceScanSha256": "9897a9913ef730a5c231ca72bcd86622b08ddd46946a1723a2557a0fe3e66c9e",
+          "totalStormComponents": 2282,
+          "prefilteredStormCount": 6,
+          "closestSwathNearMissKm": 5.07,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260720T005000Z-1c52c7dbcb831e1d",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260720T005000Z-1c52c7dbcb831e1d",
+              "envelopeDistanceKm": 13.807,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 63,
+              "coreCellCount": 24,
+              "bowArcEnvelopeOccupiedDeg": 39,
+              "bowArcCoreOccupiedDeg": 17,
+              "bowArcHalfExtentDeg": 38.151
+            },
+            {
+              "componentId": "storm-object-20260720T005000Z-f082e83868e1f67f",
+              "envelopeDistanceKm": 14.654,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 67,
+              "coreCellCount": 10,
+              "bowArcEnvelopeOccupiedDeg": 18,
+              "bowArcCoreOccupiedDeg": 6,
+              "bowArcHalfExtentDeg": 38.151
+            },
+            {
+              "componentId": "storm-object-20260720T005000Z-9f209ae8aa53be92",
+              "envelopeDistanceKm": 25.373,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 43,
+              "coreCellCount": 23,
+              "bowArcEnvelopeOccupiedDeg": 8,
+              "bowArcCoreOccupiedDeg": 7,
+              "bowArcHalfExtentDeg": 38.151
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-20T00:40:00Z",
+          "scanGapMinutes": 0.454,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260720T004000Z.json.gz",
+          "sourceScanSha256": "131da041342e6876ca9c0ab2fd56edfbe85176985bea2f91f0258519f43c63c5",
+          "totalStormComponents": 2445,
+          "prefilteredStormCount": 6,
+          "closestSwathNearMissKm": 11.89,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260720T004000Z-411fd71c98d0d570",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260720T004000Z-411fd71c98d0d570",
+              "envelopeDistanceKm": 13.807,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 99,
+              "coreCellCount": 47,
+              "bowArcEnvelopeOccupiedDeg": 45,
+              "bowArcCoreOccupiedDeg": 28,
+              "bowArcHalfExtentDeg": 37.266
+            },
+            {
+              "componentId": "storm-object-20260720T004000Z-8223cb5a39140770",
+              "envelopeDistanceKm": 15.53,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 66,
+              "coreCellCount": 15,
+              "bowArcEnvelopeOccupiedDeg": 24,
+              "bowArcCoreOccupiedDeg": 8,
+              "bowArcHalfExtentDeg": 37.266
+            },
+            {
+              "componentId": "storm-object-20260720T004000Z-182c3b0703e13803",
+              "envelopeDistanceKm": 26.554,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 96,
+              "coreCellCount": 52,
+              "bowArcEnvelopeOccupiedDeg": 8,
+              "bowArcCoreOccupiedDeg": 6,
+              "bowArcHalfExtentDeg": 37.266
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site574-20260717T003000Z",
+      "targetAt": "2026-07-17T00:51:32.365Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "574",
+      "siteName": "Meeker Airport",
+      "observer": {
+        "lat": 40.044106,
+        "lon": -107.88861
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-17T00:50:00Z",
+          "scanGapMinutes": 1.539,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260717T005000Z.json.gz",
+          "sourceScanSha256": "052a17c099b57f966820787880f5a24277e98948f4351eacd61ed6cc4f86986f",
+          "totalStormComponents": 2941,
+          "prefilteredStormCount": 12,
+          "closestSwathNearMissKm": 11.89,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260717T005000Z-23a38c3b8c46112a",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260717T005000Z-23a38c3b8c46112a",
+              "envelopeDistanceKm": 9.707,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 142,
+              "coreCellCount": 84,
+              "bowArcEnvelopeOccupiedDeg": 41,
+              "bowArcCoreOccupiedDeg": 34,
+              "bowArcHalfExtentDeg": 38.327
+            },
+            {
+              "componentId": "storm-object-20260717T005000Z-b842eb55efd60a92",
+              "envelopeDistanceKm": 16.384,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 140,
+              "coreCellCount": 104,
+              "bowArcEnvelopeOccupiedDeg": 26,
+              "bowArcCoreOccupiedDeg": 18,
+              "bowArcHalfExtentDeg": 38.327
+            },
+            {
+              "componentId": "storm-object-20260717T005000Z-f8bdba5da9272078",
+              "envelopeDistanceKm": 31.222,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 21,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 38.327
+            },
+            {
+              "componentId": "storm-object-20260717T005000Z-1f9385c38b1c4147",
+              "envelopeDistanceKm": 21.003,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 148,
+              "coreCellCount": 83,
+              "bowArcEnvelopeOccupiedDeg": 9,
+              "bowArcCoreOccupiedDeg": 8,
+              "bowArcHalfExtentDeg": 38.327
+            },
+            {
+              "componentId": "storm-object-20260717T005000Z-986e732f007a9209",
+              "envelopeDistanceKm": 19.204,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 45,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 9,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 38.327
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-17T00:40:00Z",
+          "scanGapMinutes": 1.539,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260717T004000Z.json.gz",
+          "sourceScanSha256": "ae61c5f5d4b88b410d7aea1bc14d7a5ffe6761218343de1bb1ad9d0503b66899",
+          "totalStormComponents": 3025,
+          "prefilteredStormCount": 10,
+          "closestSwathNearMissKm": 11.9,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260717T004000Z-f8a9591cea0c1d97",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260717T004000Z-f8a9591cea0c1d97",
+              "envelopeDistanceKm": 12.246,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 110,
+              "coreCellCount": 67,
+              "bowArcEnvelopeOccupiedDeg": 40,
+              "bowArcCoreOccupiedDeg": 26,
+              "bowArcHalfExtentDeg": 37.47
+            },
+            {
+              "componentId": "storm-object-20260717T004000Z-ecbbfe5fdab4571a",
+              "envelopeDistanceKm": 27.518,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 118,
+              "coreCellCount": 39,
+              "bowArcEnvelopeOccupiedDeg": 14,
+              "bowArcCoreOccupiedDeg": 9,
+              "bowArcHalfExtentDeg": 37.47
+            },
+            {
+              "componentId": "storm-object-20260717T004000Z-f40be204188aaa56",
+              "envelopeDistanceKm": 23.456,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 40,
+              "coreCellCount": 18,
+              "bowArcEnvelopeOccupiedDeg": 13,
+              "bowArcCoreOccupiedDeg": 8,
+              "bowArcHalfExtentDeg": 37.47
+            },
+            {
+              "componentId": "storm-object-20260717T004000Z-5467f2b853e8e95c",
+              "envelopeDistanceKm": 26.169,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 30,
+              "coreCellCount": 11,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 6,
+              "bowArcHalfExtentDeg": 37.47
+            },
+            {
+              "componentId": "storm-object-20260717T004000Z-1afa19ad85a1d739",
+              "envelopeDistanceKm": 11.368,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 7,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 6,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 37.47
+            },
+            {
+              "componentId": "storm-object-20260717T004000Z-0672ba2bd1c614a1",
+              "envelopeDistanceKm": 33.504,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 8,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 5,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 37.47
+            },
+            {
+              "componentId": "storm-object-20260717T004000Z-756923ac47e48e10",
+              "envelopeDistanceKm": 32.307,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 4,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 3,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 37.47
+            },
+            {
+              "componentId": "storm-object-20260717T004000Z-3894d1f9f24bda63",
+              "envelopeDistanceKm": 23.344,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 60,
+              "coreCellCount": 21,
+              "bowArcEnvelopeOccupiedDeg": 2,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 37.47
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site576-20260724T234000Z",
+      "targetAt": "2026-07-24T23:36:08.614Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "576",
+      "siteName": "Steamboat Springs Airport",
+      "observer": {
+        "lat": 40.517094,
+        "lon": -106.86486
+      },
+      "assignment": "no_physical_storm",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-24T23:40:00Z",
+          "scanGapMinutes": 3.856,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260724T234000Z.json.gz",
+          "sourceScanSha256": "331406267c1ef22e13da8c7e470bf7133991fb2eb85c4edb569cf6e77d37c3c4",
+          "totalStormComponents": 2578,
+          "prefilteredStormCount": 3,
+          "closestSwathNearMissKm": 4.22,
+          "assignment": "no_physical_storm",
+          "middleSelectedComponentId": null,
+          "compatibleStormComponents": []
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-24T23:30:00Z",
+          "scanGapMinutes": 3.856,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260724T233000Z.json.gz",
+          "sourceScanSha256": "7f1788bbaaf3cc0f525c76c1b645a4e5be4ec50b0ece105ac3a84a77b70b68f4",
+          "totalStormComponents": 2617,
+          "prefilteredStormCount": 3,
+          "closestSwathNearMissKm": 18.47,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260724T233000Z-3d4d2dea361e5190",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260724T233000Z-3d4d2dea361e5190",
+              "envelopeDistanceKm": 14.667,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 49,
+              "coreCellCount": 12,
+              "bowArcEnvelopeOccupiedDeg": 15,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 28.416
+            },
+            {
+              "componentId": "storm-object-20260724T233000Z-8d16720275eb8e1c",
+              "envelopeDistanceKm": 40.781,
+              "observerSwathDistanceKm": 2.11,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 354,
+              "coreCellCount": 143,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 28.416
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site582-20260725T234000Z",
+      "targetAt": "2026-07-26T00:50:00Z",
+      "leadProxy": "event_best_scan_upper_bound",
+      "siteId": "582",
+      "siteName": "Harriet Alexander Field",
+      "observer": {
+        "lat": 38.53681,
+        "lon": -106.04725
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-26T00:50:00Z",
+          "scanGapMinutes": 0.0,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260726T005000Z.json.gz",
+          "sourceScanSha256": "504d5d1ad331ab1f23c1beaafda577db48c865e0d24d752800d9fca052626fbd",
+          "totalStormComponents": 2482,
+          "prefilteredStormCount": 5,
+          "closestSwathNearMissKm": 5.55,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260726T005000Z-ecd7bf120395dea7",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260726T005000Z-ecd7bf120395dea7",
+              "envelopeDistanceKm": 32.35,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 42,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 16,
+              "bowArcCoreOccupiedDeg": 4,
+              "bowArcHalfExtentDeg": 39.343
+            },
+            {
+              "componentId": "storm-object-20260726T005000Z-f2a359c1856044bc",
+              "envelopeDistanceKm": 29.931,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 18,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 39.343
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-26T00:40:00Z",
+          "scanGapMinutes": 0.0,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260726T004000Z.json.gz",
+          "sourceScanSha256": "b10956a90a66a94cfc46697b195110929bbceddf241c516c61df2648497b639a",
+          "totalStormComponents": 2421,
+          "prefilteredStormCount": 3,
+          "closestSwathNearMissKm": 37.32,
+          "assignment": "no_physical_storm",
+          "middleSelectedComponentId": null,
+          "compatibleStormComponents": []
+        }
+      ]
+    },
+    {
+      "eventId": "site584-20260724T002000Z",
+      "targetAt": "2026-07-24T00:40:43.115Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "584",
+      "siteName": "Pueblo Memorial",
+      "observer": {
+        "lat": 38.28388,
+        "lon": -104.49521
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-24T00:40:00Z",
+          "scanGapMinutes": 0.719,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260724T004000Z.json.gz",
+          "sourceScanSha256": "5a501357c902bae15d3c84d3019edc30df61430c6a16f93a489c71e01f8cbbba",
+          "totalStormComponents": 3035,
+          "prefilteredStormCount": 23,
+          "closestSwathNearMissKm": 17.21,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260724T004000Z-483bd7643d7b7c0b",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260724T004000Z-483bd7643d7b7c0b",
+              "envelopeDistanceKm": 21.976,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 13,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 39.016
+            },
+            {
+              "componentId": "storm-object-20260724T004000Z-6d78dd3e79f0b6a0",
+              "envelopeDistanceKm": 10.38,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 38,
+              "coreCellCount": 11,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 39.016
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-24T00:30:00Z",
+          "scanGapMinutes": 0.719,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260724T003000Z.json.gz",
+          "sourceScanSha256": "890d8acf1ea66ab57e3dec4d8a32f5047777d79228854fe3423adc8cb2b0e954",
+          "totalStormComponents": 2998,
+          "prefilteredStormCount": 22,
+          "closestSwathNearMissKm": 19.9,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260724T003000Z-5488fa511c88a7ef",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260724T003000Z-5488fa511c88a7ef",
+              "envelopeDistanceKm": 9.742,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 20,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 17,
+              "bowArcCoreOccupiedDeg": 4,
+              "bowArcHalfExtentDeg": 38.237
+            },
+            {
+              "componentId": "storm-object-20260724T003000Z-4a5cdd024cfff023",
+              "envelopeDistanceKm": 7.297,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 10,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 38.237
+            },
+            {
+              "componentId": "storm-object-20260724T003000Z-bbc48bb6f54ebf69",
+              "envelopeDistanceKm": 23.656,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 9,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 6,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 38.237
+            },
+            {
+              "componentId": "storm-object-20260724T003000Z-a05fe6dede6dbba0",
+              "envelopeDistanceKm": 21.678,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 6,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 5,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 38.237
+            },
+            {
+              "componentId": "storm-object-20260724T003000Z-172cc9150c61b454",
+              "envelopeDistanceKm": 9.388,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 4,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 4,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 38.237
+            },
+            {
+              "componentId": "storm-object-20260724T003000Z-8f338643ad007133",
+              "envelopeDistanceKm": 20.4,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 10,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 4,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 38.237
+            },
+            {
+              "componentId": "storm-object-20260724T003000Z-07cdfc5801cc0a2f",
+              "envelopeDistanceKm": 24.383,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 3,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 2,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 38.237
+            },
+            {
+              "componentId": "storm-object-20260724T003000Z-8a431ebee9d1ecb0",
+              "envelopeDistanceKm": 7.277,
+              "observerSwathDistanceKm": 2.18,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 60,
+              "coreCellCount": 34,
+              "bowArcEnvelopeOccupiedDeg": 1,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 38.237
+            },
+            {
+              "componentId": "storm-object-20260724T003000Z-bc6c9c5f07704de8",
+              "envelopeDistanceKm": 20.155,
+              "observerSwathDistanceKm": 2.18,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 5,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 38.237
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site599-20260716T092000Z",
+      "targetAt": "2026-07-16T09:44:10.377Z",
+      "leadProxy": "machine_ranked_frame_confirmed_by_human_correction",
+      "siteId": "599",
+      "siteName": "Newton Field Airport",
+      "observer": {
+        "lat": 45.632435,
+        "lon": -70.25037
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-16T09:40:00Z",
+          "scanGapMinutes": 4.173,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260716T094000Z.json.gz",
+          "sourceScanSha256": "7d4fb4434fd79957d2e7d5bba100c5413244787179cf131d3d7cda9fad36bc6d",
+          "totalStormComponents": 1812,
+          "prefilteredStormCount": 11,
+          "closestSwathNearMissKm": 8.33,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260716T094000Z-b73be08ecd217216",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260716T094000Z-b73be08ecd217216",
+              "envelopeDistanceKm": 13.111,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 111,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 39,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 41.819
+            },
+            {
+              "componentId": "storm-object-20260716T094000Z-3aff8d110451184c",
+              "envelopeDistanceKm": 30.327,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 185,
+              "coreCellCount": 6,
+              "bowArcEnvelopeOccupiedDeg": 33,
+              "bowArcCoreOccupiedDeg": 4,
+              "bowArcHalfExtentDeg": 41.819
+            },
+            {
+              "componentId": "storm-object-20260716T094000Z-abf2cd54c68356b8",
+              "envelopeDistanceKm": 21.407,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 78,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 24,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 41.819
+            },
+            {
+              "componentId": "storm-object-20260716T094000Z-ec50640de2eafd4d",
+              "envelopeDistanceKm": 18.273,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 22,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 13,
+              "bowArcCoreOccupiedDeg": 4,
+              "bowArcHalfExtentDeg": 41.819
+            },
+            {
+              "componentId": "storm-object-20260716T094000Z-3784a02cb9aa01a7",
+              "envelopeDistanceKm": 32.693,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 33,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 41.819
+            },
+            {
+              "componentId": "storm-object-20260716T094000Z-c6efaf8faf5d8746",
+              "envelopeDistanceKm": 38.392,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 29,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.819
+            },
+            {
+              "componentId": "storm-object-20260716T094000Z-95b9d596ce3c0529",
+              "envelopeDistanceKm": 41.077,
+              "observerSwathDistanceKm": 1.94,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 51,
+              "coreCellCount": 8,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.819
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-16T09:30:00Z",
+          "scanGapMinutes": 4.173,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260716T093000Z.json.gz",
+          "sourceScanSha256": "15dd8f2d663376bfb70849507bf0a236758dedefb2fd816a5e97d1be49c03c5b",
+          "totalStormComponents": 1857,
+          "prefilteredStormCount": 8,
+          "closestSwathNearMissKm": 3.88,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260716T093000Z-55d098a16640dfb9",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260716T093000Z-55d098a16640dfb9",
+              "envelopeDistanceKm": 25.974,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 260,
+              "coreCellCount": 145,
+              "bowArcEnvelopeOccupiedDeg": 29,
+              "bowArcCoreOccupiedDeg": 25,
+              "bowArcHalfExtentDeg": 41.926
+            },
+            {
+              "componentId": "storm-object-20260716T093000Z-898c196e4efc4278",
+              "envelopeDistanceKm": 21.359,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 57,
+              "coreCellCount": 22,
+              "bowArcEnvelopeOccupiedDeg": 13,
+              "bowArcCoreOccupiedDeg": 6,
+              "bowArcHalfExtentDeg": 41.926
+            },
+            {
+              "componentId": "storm-object-20260716T093000Z-99f04db3cbca3343",
+              "envelopeDistanceKm": 36.059,
+              "observerSwathDistanceKm": 2.78,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 38,
+              "coreCellCount": 5,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.926
+            },
+            {
+              "componentId": "storm-object-20260716T093000Z-d42fa3a2bc9ea118",
+              "envelopeDistanceKm": 42.918,
+              "observerSwathDistanceKm": 1.94,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 35,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.926
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site602-20260715T212000Z",
+      "targetAt": "2026-07-15T22:13:44.639Z",
+      "leadProxy": "machine_ranked_frame_confirmed_by_human_correction",
+      "siteId": "602",
+      "siteName": "Caribou Municipal Airport",
+      "observer": {
+        "lat": 46.87102,
+        "lon": -68.012695
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-15T22:10:00Z",
+          "scanGapMinutes": 3.744,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260715T221000Z.json.gz",
+          "sourceScanSha256": "975582a0d15003b295d5597c8c7e705a227ab5096d7c16d8f215ebc6bc951a0e",
+          "totalStormComponents": 3803,
+          "prefilteredStormCount": 8,
+          "closestSwathNearMissKm": 9.15,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260715T221000Z-ab9efeb905132d4c",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260715T221000Z-ab9efeb905132d4c",
+              "envelopeDistanceKm": 10.562,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 120,
+              "coreCellCount": 28,
+              "bowArcEnvelopeOccupiedDeg": 39,
+              "bowArcCoreOccupiedDeg": 15,
+              "bowArcHalfExtentDeg": 37.627
+            },
+            {
+              "componentId": "storm-object-20260715T221000Z-ef66310e5375f68d",
+              "envelopeDistanceKm": 0.442,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 322,
+              "coreCellCount": 165,
+              "bowArcEnvelopeOccupiedDeg": 31,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 37.627
+            },
+            {
+              "componentId": "storm-object-20260715T221000Z-31f945d460f81f1f",
+              "envelopeDistanceKm": 6.349,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 90,
+              "coreCellCount": 32,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 37.627
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-15T22:00:00Z",
+          "scanGapMinutes": 3.744,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260715T220000Z.json.gz",
+          "sourceScanSha256": "db3867adae4c75d2b2c73922b63c2d7502eecf141876406c719ce6ab0e3799c0",
+          "totalStormComponents": 3681,
+          "prefilteredStormCount": 13,
+          "closestSwathNearMissKm": 6.33,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260715T220000Z-1401539cbb90ba3e",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260715T220000Z-1401539cbb90ba3e",
+              "envelopeDistanceKm": 7.647,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 37,
+              "coreCellCount": 8,
+              "bowArcEnvelopeOccupiedDeg": 14,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 36.771
+            },
+            {
+              "componentId": "storm-object-20260715T220000Z-4ff45d949ea23e15",
+              "envelopeDistanceKm": 3.254,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 29,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 3,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 36.771
+            },
+            {
+              "componentId": "storm-object-20260715T220000Z-33c9524bb9bfcb7f",
+              "envelopeDistanceKm": 4.134,
+              "observerSwathDistanceKm": 1.9,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 69,
+              "coreCellCount": 11,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 36.771
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site691-20260722T214000Z",
+      "targetAt": "2026-07-22T22:44:18.817Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "691",
+      "siteName": "Dexter Regional Airport",
+      "observer": {
+        "lat": 45.001205,
+        "lon": -69.236145
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-22T22:40:00Z",
+          "scanGapMinutes": 4.314,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260722T224000Z.json.gz",
+          "sourceScanSha256": "d3f5671a0823cdc6ddc4cade5a07afa78b4b5cf72da2694d83ff32f4d8a580a5",
+          "totalStormComponents": 3840,
+          "prefilteredStormCount": 6,
+          "closestSwathNearMissKm": 9.61,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260722T224000Z-579be57e2e75c678",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260722T224000Z-579be57e2e75c678",
+              "envelopeDistanceKm": 8.365,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 212,
+              "coreCellCount": 99,
+              "bowArcEnvelopeOccupiedDeg": 35,
+              "bowArcCoreOccupiedDeg": 29,
+              "bowArcHalfExtentDeg": 39.761
+            },
+            {
+              "componentId": "storm-object-20260722T224000Z-e427658c4769578c",
+              "envelopeDistanceKm": 19.533,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 124,
+              "coreCellCount": 55,
+              "bowArcEnvelopeOccupiedDeg": 12,
+              "bowArcCoreOccupiedDeg": 10,
+              "bowArcHalfExtentDeg": 39.761
+            },
+            {
+              "componentId": "storm-object-20260722T224000Z-a0afc0c9c2705b24",
+              "envelopeDistanceKm": 29.068,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 1162,
+              "coreCellCount": 881,
+              "bowArcEnvelopeOccupiedDeg": 11,
+              "bowArcCoreOccupiedDeg": 9,
+              "bowArcHalfExtentDeg": 39.761
+            },
+            {
+              "componentId": "storm-object-20260722T224000Z-86a145404353daae",
+              "envelopeDistanceKm": 0.421,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 59,
+              "coreCellCount": 19,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 39.761
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-22T22:30:00Z",
+          "scanGapMinutes": 4.314,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260722T223000Z.json.gz",
+          "sourceScanSha256": "9cc64a37da5fd5a939f30236229100f84724a9891696ff4f53361ca6bd910ba9",
+          "totalStormComponents": 3959,
+          "prefilteredStormCount": 7,
+          "closestSwathNearMissKm": 4.81,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260722T223000Z-0ee4879556173d0c",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260722T223000Z-0ee4879556173d0c",
+              "envelopeDistanceKm": 0.421,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 150,
+              "coreCellCount": 67,
+              "bowArcEnvelopeOccupiedDeg": 24,
+              "bowArcCoreOccupiedDeg": 19,
+              "bowArcHalfExtentDeg": 39.175
+            },
+            {
+              "componentId": "storm-object-20260722T223000Z-92d0a3621b12a841",
+              "envelopeDistanceKm": 12.094,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 2246,
+              "coreCellCount": 1585,
+              "bowArcEnvelopeOccupiedDeg": 17,
+              "bowArcCoreOccupiedDeg": 13,
+              "bowArcHalfExtentDeg": 39.175
+            },
+            {
+              "componentId": "storm-object-20260722T223000Z-4ef678ed0a608e62",
+              "envelopeDistanceKm": 12.58,
+              "observerSwathDistanceKm": 1.96,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 8,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 39.175
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site716-20260707T115000Z",
+      "targetAt": "2026-07-07T12:18:04.994Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "716",
+      "siteName": "Choteau",
+      "observer": {
+        "lat": 47.82122,
+        "lon": -112.16874
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-07T12:20:00Z",
+          "scanGapMinutes": 1.917,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260707T122000Z.json.gz",
+          "sourceScanSha256": "607de817a25556f0f672f7b8051f80ec28597349abfdcdb43f4b1d9297d56adf",
+          "totalStormComponents": 1713,
+          "prefilteredStormCount": 18,
+          "closestSwathNearMissKm": 5.55,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260707T122000Z-7de57d67401415af",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260707T122000Z-7de57d67401415af",
+              "envelopeDistanceKm": 11.524,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 236,
+              "coreCellCount": 107,
+              "bowArcEnvelopeOccupiedDeg": 25,
+              "bowArcCoreOccupiedDeg": 13,
+              "bowArcHalfExtentDeg": 41.734
+            },
+            {
+              "componentId": "storm-object-20260707T122000Z-859888b17e8456cf",
+              "envelopeDistanceKm": 31.026,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 79,
+              "coreCellCount": 19,
+              "bowArcEnvelopeOccupiedDeg": 13,
+              "bowArcCoreOccupiedDeg": 7,
+              "bowArcHalfExtentDeg": 41.734
+            },
+            {
+              "componentId": "storm-object-20260707T122000Z-ceb8e4210a63f3e1",
+              "envelopeDistanceKm": 31.779,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 46,
+              "coreCellCount": 17,
+              "bowArcEnvelopeOccupiedDeg": 12,
+              "bowArcCoreOccupiedDeg": 8,
+              "bowArcHalfExtentDeg": 41.734
+            },
+            {
+              "componentId": "storm-object-20260707T122000Z-1f0728370ea326ca",
+              "envelopeDistanceKm": 21.718,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 22,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 11,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 41.734
+            },
+            {
+              "componentId": "storm-object-20260707T122000Z-7f2be58a44ec023d",
+              "envelopeDistanceKm": 7.95,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 23,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 41.734
+            },
+            {
+              "componentId": "storm-object-20260707T122000Z-ac0893ae56ee03aa",
+              "envelopeDistanceKm": 40.789,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 46,
+              "coreCellCount": 5,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.734
+            },
+            {
+              "componentId": "storm-object-20260707T122000Z-d6e800674b356380",
+              "envelopeDistanceKm": 21.455,
+              "observerSwathDistanceKm": 2.78,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 756,
+              "coreCellCount": 362,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.734
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-07T12:10:00Z",
+          "scanGapMinutes": 1.917,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260707T121000Z.json.gz",
+          "sourceScanSha256": "07ec36107cd38b2e263c0a5573d71236a75f9fe0cb0368e739a678bc559e9822",
+          "totalStormComponents": 1658,
+          "prefilteredStormCount": 17,
+          "closestSwathNearMissKm": 3.73,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260707T121000Z-a4d0d21425dec02a",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260707T121000Z-a4d0d21425dec02a",
+              "envelopeDistanceKm": 17.065,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 886,
+              "coreCellCount": 437,
+              "bowArcEnvelopeOccupiedDeg": 26,
+              "bowArcCoreOccupiedDeg": 13,
+              "bowArcHalfExtentDeg": 41.862
+            },
+            {
+              "componentId": "storm-object-20260707T121000Z-19c23b0c49e9f413",
+              "envelopeDistanceKm": 9.852,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 61,
+              "coreCellCount": 18,
+              "bowArcEnvelopeOccupiedDeg": 26,
+              "bowArcCoreOccupiedDeg": 12,
+              "bowArcHalfExtentDeg": 41.862
+            },
+            {
+              "componentId": "storm-object-20260707T121000Z-4ca24d6a081a0936",
+              "envelopeDistanceKm": 35.547,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 81,
+              "coreCellCount": 37,
+              "bowArcEnvelopeOccupiedDeg": 13,
+              "bowArcCoreOccupiedDeg": 10,
+              "bowArcHalfExtentDeg": 41.862
+            },
+            {
+              "componentId": "storm-object-20260707T121000Z-066a0086b2bb168c",
+              "envelopeDistanceKm": 23.185,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 34,
+              "coreCellCount": 9,
+              "bowArcEnvelopeOccupiedDeg": 11,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 41.862
+            },
+            {
+              "componentId": "storm-object-20260707T121000Z-04f95a2b8408779f",
+              "envelopeDistanceKm": 34.752,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 12,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 5,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 41.862
+            },
+            {
+              "componentId": "storm-object-20260707T121000Z-d0ca0d43929a87be",
+              "envelopeDistanceKm": 35.946,
+              "observerSwathDistanceKm": 2.78,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 3,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.862
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site74-20260721T235000Z",
+      "targetAt": "2026-07-21T23:48:06.174Z",
+      "leadProxy": "machine_ranked_frame_confirmed_by_human_correction",
+      "siteId": "74",
+      "siteName": "La Veta Pass",
+      "observer": {
+        "lat": 37.51187,
+        "lon": -105.171005
+      },
+      "assignment": "unique_physical_storm",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-21T23:50:00Z",
+          "scanGapMinutes": 1.897,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260721T235000Z.json.gz",
+          "sourceScanSha256": "a855feeac24f5ccf488069a4132a2e5f6a9d87d2c251510bc09c93544c88f34d",
+          "totalStormComponents": 4434,
+          "prefilteredStormCount": 5,
+          "closestSwathNearMissKm": 10.63,
+          "assignment": "unique_physical_storm",
+          "middleSelectedComponentId": "storm-object-20260721T235000Z-155d288d9f74ff0e",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260721T235000Z-155d288d9f74ff0e",
+              "envelopeDistanceKm": 0.763,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 19,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 3,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 33.243
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-21T23:40:00Z",
+          "scanGapMinutes": 1.897,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260721T234000Z.json.gz",
+          "sourceScanSha256": "ed210db89cc1c1839971dc6555ccaf5378ca328606231d4b9d5da6d43a7b784b",
+          "totalStormComponents": 4745,
+          "prefilteredStormCount": 3,
+          "closestSwathNearMissKm": 14.17,
+          "assignment": "unique_physical_storm",
+          "middleSelectedComponentId": "storm-object-20260721T234000Z-8761883809a18687",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260721T234000Z-8761883809a18687",
+              "envelopeDistanceKm": 2.344,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 49,
+              "coreCellCount": 20,
+              "bowArcEnvelopeOccupiedDeg": 14,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 31.568
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site745-20260721T132000Z",
+      "targetAt": "2026-07-21T13:21:46.469Z",
+      "leadProxy": "machine_ranked_frame_confirmed_by_human_correction",
+      "siteId": "745",
+      "siteName": "Halls Ridge",
+      "observer": {
+        "lat": 36.457558,
+        "lon": -121.825806
+      },
+      "assignment": "no_physical_storm",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-21T13:20:00Z",
+          "scanGapMinutes": 1.774,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260721T132000Z.json.gz",
+          "sourceScanSha256": "045cea68b6c2db0c1308132bf39dd13658a382582eb7eb733867fae7fcf33e98",
+          "totalStormComponents": 2309,
+          "prefilteredStormCount": 0,
+          "closestSwathNearMissKm": null,
+          "assignment": "no_physical_storm",
+          "middleSelectedComponentId": null,
+          "compatibleStormComponents": []
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-21T13:10:00Z",
+          "scanGapMinutes": 1.774,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260721T131000Z.json.gz",
+          "sourceScanSha256": "7e06a35f8dcc2ba9e5f478f97260bb49dfa9a18f9cfebe2f43c45af30de089f1",
+          "totalStormComponents": 2387,
+          "prefilteredStormCount": 0,
+          "closestSwathNearMissKm": null,
+          "assignment": "no_physical_storm",
+          "middleSelectedComponentId": null,
+          "compatibleStormComponents": []
+        }
+      ]
+    },
+    {
+      "eventId": "site771-20260708T010000Z",
+      "targetAt": "2026-07-08T02:26:20.513Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "771",
+      "siteName": "Midas Peak",
+      "observer": {
+        "lat": 41.27285,
+        "lon": -116.81861
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-08T02:30:00Z",
+          "scanGapMinutes": 3.658,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260708T023000Z.json.gz",
+          "sourceScanSha256": "246d8ef56a120067910814fa3fb78d4307f7525086d3288af9208d0dc05fb6c3",
+          "totalStormComponents": 2124,
+          "prefilteredStormCount": 5,
+          "closestSwathNearMissKm": 34.22,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260708T023000Z-25c5f9c55f1024ab",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260708T023000Z-25c5f9c55f1024ab",
+              "envelopeDistanceKm": 13.651,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 503,
+              "coreCellCount": 323,
+              "bowArcEnvelopeOccupiedDeg": 23,
+              "bowArcCoreOccupiedDeg": 18,
+              "bowArcHalfExtentDeg": 41.371
+            },
+            {
+              "componentId": "storm-object-20260708T023000Z-28cd53ac7621d6a2",
+              "envelopeDistanceKm": 27.178,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 35,
+              "coreCellCount": 11,
+              "bowArcEnvelopeOccupiedDeg": 15,
+              "bowArcCoreOccupiedDeg": 7,
+              "bowArcHalfExtentDeg": 41.371
+            },
+            {
+              "componentId": "storm-object-20260708T023000Z-47ad3e2a289d0521",
+              "envelopeDistanceKm": 7.395,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 22,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 12,
+              "bowArcCoreOccupiedDeg": 4,
+              "bowArcHalfExtentDeg": 41.371
+            },
+            {
+              "componentId": "storm-object-20260708T023000Z-68df4d8a096341cf",
+              "envelopeDistanceKm": 34.864,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 14,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 5,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 41.371
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-08T02:20:00Z",
+          "scanGapMinutes": 3.658,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260708T022000Z.json.gz",
+          "sourceScanSha256": "62f78c6d9d7391149ad897bac87a30cbdf321782d9ce66108485f970b9a6ee32",
+          "totalStormComponents": 2262,
+          "prefilteredStormCount": 8,
+          "closestSwathNearMissKm": 38.36,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260708T022000Z-a1fef533e6e82f62",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260708T022000Z-a1fef533e6e82f62",
+              "envelopeDistanceKm": 9.481,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 332,
+              "coreCellCount": 248,
+              "bowArcEnvelopeOccupiedDeg": 30,
+              "bowArcCoreOccupiedDeg": 24,
+              "bowArcHalfExtentDeg": 41.061
+            },
+            {
+              "componentId": "storm-object-20260708T022000Z-9c8269ad60f8d91d",
+              "envelopeDistanceKm": 21.355,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 62,
+              "coreCellCount": 26,
+              "bowArcEnvelopeOccupiedDeg": 22,
+              "bowArcCoreOccupiedDeg": 14,
+              "bowArcHalfExtentDeg": 41.061
+            },
+            {
+              "componentId": "storm-object-20260708T022000Z-5f83c16c204ddee9",
+              "envelopeDistanceKm": 4.479,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 17,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 14,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 41.061
+            },
+            {
+              "componentId": "storm-object-20260708T022000Z-2140fcb0215b6106",
+              "envelopeDistanceKm": 32.509,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 31,
+              "coreCellCount": 5,
+              "bowArcEnvelopeOccupiedDeg": 11,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 41.061
+            },
+            {
+              "componentId": "storm-object-20260708T022000Z-64244fd8d6a398b7",
+              "envelopeDistanceKm": 30.051,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 5,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 3,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 41.061
+            },
+            {
+              "componentId": "storm-object-20260708T022000Z-4b19baec3997f380",
+              "envelopeDistanceKm": 0.871,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 37,
+              "coreCellCount": 8,
+              "bowArcEnvelopeOccupiedDeg": 1,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.061
+            },
+            {
+              "componentId": "storm-object-20260708T022000Z-7c1db9dfcc2d866a",
+              "envelopeDistanceKm": 41.076,
+              "observerSwathDistanceKm": 2.09,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 42,
+              "coreCellCount": 16,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.061
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site772-20260707T004000Z",
+      "targetAt": "2026-07-07T00:54:38.123Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "772",
+      "siteName": "Mt Lewis",
+      "observer": {
+        "lat": 40.40335,
+        "lon": -116.861664
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-07T00:50:00Z",
+          "scanGapMinutes": 4.635,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260707T005000Z.json.gz",
+          "sourceScanSha256": "e6c03724f1df9df6373ac0c0872204eb8c0c4b8b05a4b2d9d0b64fe12ad74321",
+          "totalStormComponents": 3396,
+          "prefilteredStormCount": 13,
+          "closestSwathNearMissKm": 3.49,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260707T005000Z-c31ae8653a63d6d9",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260707T005000Z-c31ae8653a63d6d9",
+              "envelopeDistanceKm": 4.151,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 79,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 28,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 34.241
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-e4abd8362c8255e9",
+              "envelopeDistanceKm": 29.772,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 49,
+              "coreCellCount": 13,
+              "bowArcEnvelopeOccupiedDeg": 24,
+              "bowArcCoreOccupiedDeg": 10,
+              "bowArcHalfExtentDeg": 34.241
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-d18bdc91d89153c4",
+              "envelopeDistanceKm": 5.266,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 31,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 21,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 34.241
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-282dbd3004b158a8",
+              "envelopeDistanceKm": 18.28,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 23,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 19,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 34.241
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-3bce465c9079cbd2",
+              "envelopeDistanceKm": 19.632,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 41,
+              "coreCellCount": 8,
+              "bowArcEnvelopeOccupiedDeg": 18,
+              "bowArcCoreOccupiedDeg": 6,
+              "bowArcHalfExtentDeg": 34.241
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-5e14b57bdf1bcd41",
+              "envelopeDistanceKm": 22.723,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 34,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 14,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 34.241
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-67b16b7e919553a3",
+              "envelopeDistanceKm": 22.063,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 14,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 13,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 34.241
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-8f057a44111c20e4",
+              "envelopeDistanceKm": 24.595,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 23,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 12,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 34.241
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-7be3b61ee985748f",
+              "envelopeDistanceKm": 24.301,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 18,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 34.241
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-ec203b4094db67b5",
+              "envelopeDistanceKm": 26.258,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 37,
+              "coreCellCount": 18,
+              "bowArcEnvelopeOccupiedDeg": 3,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 34.241
+            },
+            {
+              "componentId": "storm-object-20260707T005000Z-fb3f9d6e7f415361",
+              "envelopeDistanceKm": 16.953,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 22,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 3,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 34.241
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-07T00:40:00Z",
+          "scanGapMinutes": 4.635,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260707T004000Z.json.gz",
+          "sourceScanSha256": "5929c13c28964cdb560acf5ff2fa24093e7fe31c38e381365f79149911d98957",
+          "totalStormComponents": 3368,
+          "prefilteredStormCount": 15,
+          "closestSwathNearMissKm": 17.79,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260707T004000Z-2869fc7e521bee3c",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260707T004000Z-2869fc7e521bee3c",
+              "envelopeDistanceKm": 2.598,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 62,
+              "coreCellCount": 12,
+              "bowArcEnvelopeOccupiedDeg": 36,
+              "bowArcCoreOccupiedDeg": 10,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-9c5aaccc23308cdb",
+              "envelopeDistanceKm": 13.798,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 61,
+              "coreCellCount": 21,
+              "bowArcEnvelopeOccupiedDeg": 19,
+              "bowArcCoreOccupiedDeg": 8,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-f67f21c0e922454a",
+              "envelopeDistanceKm": 11.659,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 43,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 19,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-c211f12cce3904eb",
+              "envelopeDistanceKm": 23.186,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 52,
+              "coreCellCount": 27,
+              "bowArcEnvelopeOccupiedDeg": 12,
+              "bowArcCoreOccupiedDeg": 7,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-ca8c78456ac3e38f",
+              "envelopeDistanceKm": 25.824,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 24,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 12,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-fe4df39a3bf60629",
+              "envelopeDistanceKm": 10.708,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 12,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-6cdcc96ef1b36e1e",
+              "envelopeDistanceKm": 22.575,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 12,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 9,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-71001403704bb0b2",
+              "envelopeDistanceKm": 21.051,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 11,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 9,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-ef83c19fa7ef6103",
+              "envelopeDistanceKm": 0.969,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 63,
+              "coreCellCount": 12,
+              "bowArcEnvelopeOccupiedDeg": 8,
+              "bowArcCoreOccupiedDeg": 4,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-2f011ca804fc5560",
+              "envelopeDistanceKm": 29.8,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 14,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 8,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-d7abff7d88bb2888",
+              "envelopeDistanceKm": 21.922,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 35,
+              "coreCellCount": 11,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-8aa0e645b738f7a8",
+              "envelopeDistanceKm": 37.365,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 29,
+              "coreCellCount": 7,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-b16e53575c966270",
+              "envelopeDistanceKm": 41.412,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 28,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 32.795
+            },
+            {
+              "componentId": "storm-object-20260707T004000Z-77189cc2a1b3afeb",
+              "envelopeDistanceKm": 20.16,
+              "observerSwathDistanceKm": 2.11,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 21,
+              "coreCellCount": 6,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 32.795
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site777-20260724T010000Z",
+      "targetAt": "2026-07-24T01:18:17.712Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "777",
+      "siteName": "Prospect Peak",
+      "observer": {
+        "lat": 39.44973,
+        "lon": -115.99871
+      },
+      "assignment": "no_physical_storm",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-24T01:20:00Z",
+          "scanGapMinutes": 1.705,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260724T012000Z.json.gz",
+          "sourceScanSha256": "0dbf6c8f5c52e302fb93911f78545bbc39c7973c589d79171685b0e1f393a44a",
+          "totalStormComponents": 2732,
+          "prefilteredStormCount": 13,
+          "closestSwathNearMissKm": 7.01,
+          "assignment": "no_physical_storm",
+          "middleSelectedComponentId": null,
+          "compatibleStormComponents": []
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-24T01:10:00Z",
+          "scanGapMinutes": 1.705,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260724T011000Z.json.gz",
+          "sourceScanSha256": "e0d4261fc23714e44504413585bfd394a2da9091800c92c7e862d632cc4eef88",
+          "totalStormComponents": 2853,
+          "prefilteredStormCount": 15,
+          "closestSwathNearMissKm": 3.51,
+          "assignment": "no_physical_storm",
+          "middleSelectedComponentId": null,
+          "compatibleStormComponents": []
+        }
+      ]
+    },
+    {
+      "eventId": "site777-20260728T004000Z",
+      "targetAt": "2026-07-28T00:57:38.444Z",
+      "leadProxy": "machine_ranked_frame_confirmed_by_human_correction",
+      "siteId": "777",
+      "siteName": "Prospect Peak",
+      "observer": {
+        "lat": 39.44973,
+        "lon": -115.99871
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-28T01:00:00Z",
+          "scanGapMinutes": 2.359,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260728T010000Z.json.gz",
+          "sourceScanSha256": "e0c44e8af235a6a0b61a7efafef0e1784cd4eaf10bb69f65af892dc14c3a2877",
+          "totalStormComponents": 3112,
+          "prefilteredStormCount": 4,
+          "closestSwathNearMissKm": 11.9,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260728T010000Z-112775c38bbcf89c",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260728T010000Z-112775c38bbcf89c",
+              "envelopeDistanceKm": 0.525,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 257,
+              "coreCellCount": 129,
+              "bowArcEnvelopeOccupiedDeg": 42,
+              "bowArcCoreOccupiedDeg": 31,
+              "bowArcHalfExtentDeg": 36.899
+            },
+            {
+              "componentId": "storm-object-20260728T010000Z-f5bad51dcd6cea32",
+              "envelopeDistanceKm": 31.791,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 510,
+              "coreCellCount": 360,
+              "bowArcEnvelopeOccupiedDeg": 14,
+              "bowArcCoreOccupiedDeg": 14,
+              "bowArcHalfExtentDeg": 36.899
+            },
+            {
+              "componentId": "storm-object-20260728T010000Z-d2968778b8865204",
+              "envelopeDistanceKm": 33.711,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 4,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 2,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 36.899
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-28T00:50:00Z",
+          "scanGapMinutes": 2.359,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260728T005000Z.json.gz",
+          "sourceScanSha256": "3a5794bb2c9111bf9b85c33c1ccc20bfc9d65218ec608395071a8affe6bd3c7f",
+          "totalStormComponents": 3280,
+          "prefilteredStormCount": 5,
+          "closestSwathNearMissKm": null,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260728T005000Z-e05642cba9a9b1a4",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260728T005000Z-e05642cba9a9b1a4",
+              "envelopeDistanceKm": 2.099,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 189,
+              "coreCellCount": 95,
+              "bowArcEnvelopeOccupiedDeg": 38,
+              "bowArcCoreOccupiedDeg": 30,
+              "bowArcHalfExtentDeg": 35.813
+            },
+            {
+              "componentId": "storm-object-20260728T005000Z-c8f0216b8810bfa5",
+              "envelopeDistanceKm": 26.881,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 140,
+              "coreCellCount": 92,
+              "bowArcEnvelopeOccupiedDeg": 20,
+              "bowArcCoreOccupiedDeg": 17,
+              "bowArcHalfExtentDeg": 35.813
+            },
+            {
+              "componentId": "storm-object-20260728T005000Z-687e19c822f67f9c",
+              "envelopeDistanceKm": 30.89,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 476,
+              "coreCellCount": 208,
+              "bowArcEnvelopeOccupiedDeg": 2,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 35.813
+            },
+            {
+              "componentId": "storm-object-20260728T005000Z-be91ced56041fd20",
+              "envelopeDistanceKm": 1.313,
+              "observerSwathDistanceKm": 2.14,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 5,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 35.813
+            },
+            {
+              "componentId": "storm-object-20260728T005000Z-db4075d5dfd12903",
+              "envelopeDistanceKm": 16.612,
+              "observerSwathDistanceKm": 2.14,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 79,
+              "coreCellCount": 30,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 35.813
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site788-20260707T004000Z",
+      "targetAt": "2026-07-07T02:44:25.633Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "788",
+      "siteName": "New York Peak",
+      "observer": {
+        "lat": 41.58597,
+        "lon": -118.7624
+      },
+      "assignment": "unique_physical_storm",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-07T02:40:00Z",
+          "scanGapMinutes": 4.427,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260707T024000Z.json.gz",
+          "sourceScanSha256": "13b4497cda454802360172164c82748627efec50bb54d770e37d342c9c27ac30",
+          "totalStormComponents": 2839,
+          "prefilteredStormCount": 3,
+          "closestSwathNearMissKm": 3.47,
+          "assignment": "unique_physical_storm",
+          "middleSelectedComponentId": "storm-object-20260707T024000Z-176674f15b5eaa50",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260707T024000Z-176674f15b5eaa50",
+              "envelopeDistanceKm": 1.218,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 76,
+              "coreCellCount": 34,
+              "bowArcEnvelopeOccupiedDeg": 14,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 41.406
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-07T02:30:00Z",
+          "scanGapMinutes": 4.427,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260707T023000Z.json.gz",
+          "sourceScanSha256": "bd7c10d9b3b130db4f11517d68ee82a876be178bfa836d30e0652353c54f5fa0",
+          "totalStormComponents": 2837,
+          "prefilteredStormCount": 5,
+          "closestSwathNearMissKm": 9.99,
+          "assignment": "no_physical_storm",
+          "middleSelectedComponentId": null,
+          "compatibleStormComponents": []
+        }
+      ]
+    },
+    {
+      "eventId": "site810-20260709T012000Z",
+      "targetAt": "2026-07-09T01:46:47.276Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "810",
+      "siteName": "Big Sandy Airport",
+      "observer": {
+        "lat": 48.1662,
+        "lon": -110.1095
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-09T01:50:00Z",
+          "scanGapMinutes": 3.212,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260709T015000Z.json.gz",
+          "sourceScanSha256": "18ce072d7ef9ce64460971731f0753c103a82d58bfd5aca08ea0c1e7db0ae6e4",
+          "totalStormComponents": 2896,
+          "prefilteredStormCount": 7,
+          "closestSwathNearMissKm": 12.45,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260709T015000Z-ed5a8065cd069df9",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260709T015000Z-ed5a8065cd069df9",
+              "envelopeDistanceKm": 0.133,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 310,
+              "coreCellCount": 206,
+              "bowArcEnvelopeOccupiedDeg": 60,
+              "bowArcCoreOccupiedDeg": 51,
+              "bowArcHalfExtentDeg": 40.391
+            },
+            {
+              "componentId": "storm-object-20260709T015000Z-e3aa096b339bf16e",
+              "envelopeDistanceKm": 16.921,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 51,
+              "coreCellCount": 6,
+              "bowArcEnvelopeOccupiedDeg": 19,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 40.391
+            },
+            {
+              "componentId": "storm-object-20260709T015000Z-4ca5c8c0f85d87bf",
+              "envelopeDistanceKm": 21.98,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 43,
+              "coreCellCount": 9,
+              "bowArcEnvelopeOccupiedDeg": 17,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 40.391
+            },
+            {
+              "componentId": "storm-object-20260709T015000Z-e3c1b4ae5b266b13",
+              "envelopeDistanceKm": 29.243,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 49,
+              "coreCellCount": 15,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 6,
+              "bowArcHalfExtentDeg": 40.391
+            },
+            {
+              "componentId": "storm-object-20260709T015000Z-21e5c2244a0f424f",
+              "envelopeDistanceKm": 36.107,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 69,
+              "coreCellCount": 24,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 40.391
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-09T01:40:00Z",
+          "scanGapMinutes": 3.212,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260709T014000Z.json.gz",
+          "sourceScanSha256": "147d213fd71c7f2b60d0316738d9227a5d175a4432bd61b8ee94e2fbb7211dcc",
+          "totalStormComponents": 2855,
+          "prefilteredStormCount": 8,
+          "closestSwathNearMissKm": 6.67,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260709T014000Z-c3b18e4e8c1b172a",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260709T014000Z-c3b18e4e8c1b172a",
+              "envelopeDistanceKm": 0.133,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 301,
+              "coreCellCount": 210,
+              "bowArcEnvelopeOccupiedDeg": 32,
+              "bowArcCoreOccupiedDeg": 11,
+              "bowArcHalfExtentDeg": 39.944
+            },
+            {
+              "componentId": "storm-object-20260709T014000Z-ec3447a1e60c28fb",
+              "envelopeDistanceKm": 16.618,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 94,
+              "coreCellCount": 34,
+              "bowArcEnvelopeOccupiedDeg": 12,
+              "bowArcCoreOccupiedDeg": 7,
+              "bowArcHalfExtentDeg": 39.944
+            },
+            {
+              "componentId": "storm-object-20260709T014000Z-39729348b8456cd0",
+              "envelopeDistanceKm": 25.478,
+              "observerSwathDistanceKm": 1.85,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 42,
+              "coreCellCount": 10,
+              "bowArcEnvelopeOccupiedDeg": 1,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 39.944
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site813-20260714T022000Z",
+      "targetAt": "2026-07-14T02:30:02.842Z",
+      "leadProxy": "machine_ranked_frame_confirmed_by_human_correction",
+      "siteId": "813",
+      "siteName": "Twin Bridges",
+      "observer": {
+        "lat": 45.532,
+        "lon": -112.3022
+      },
+      "assignment": "unique_physical_storm",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-14T02:30:00Z",
+          "scanGapMinutes": 0.047,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260714T023000Z.json.gz",
+          "sourceScanSha256": "2616724ba22a371f78a062bb98c01ae5397372358fd00d43b557379a9f38fb58",
+          "totalStormComponents": 3267,
+          "prefilteredStormCount": 1,
+          "closestSwathNearMissKm": null,
+          "assignment": "unique_physical_storm",
+          "middleSelectedComponentId": "storm-object-20260714T023000Z-632db11e4f6a8e54",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260714T023000Z-632db11e4f6a8e54",
+              "envelopeDistanceKm": 33.099,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 186,
+              "coreCellCount": 106,
+              "bowArcEnvelopeOccupiedDeg": 12,
+              "bowArcCoreOccupiedDeg": 9,
+              "bowArcHalfExtentDeg": 41.604
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-14T02:20:00Z",
+          "scanGapMinutes": 0.047,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260714T022000Z.json.gz",
+          "sourceScanSha256": "8fd961af0412d846081756bc58df8f9f11c5e254a40ebe118b5a6c353db90eb9",
+          "totalStormComponents": 3414,
+          "prefilteredStormCount": 1,
+          "closestSwathNearMissKm": null,
+          "assignment": "unique_physical_storm",
+          "middleSelectedComponentId": "storm-object-20260714T022000Z-5baf5f914d9d4d7a",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260714T022000Z-5baf5f914d9d4d7a",
+              "envelopeDistanceKm": 35.958,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 142,
+              "coreCellCount": 71,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.377
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site815-20260726T001000Z",
+      "targetAt": "2026-07-26T02:05:56.784Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "815",
+      "siteName": "Delano",
+      "observer": {
+        "lat": 41.6176,
+        "lon": -114.26392
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-26T02:10:00Z",
+          "scanGapMinutes": 4.054,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260726T021000Z.json.gz",
+          "sourceScanSha256": "6751e10b9adebac6e96b7f9ea3677ed4ecc863b5e3961ec375165595c79df319",
+          "totalStormComponents": 2244,
+          "prefilteredStormCount": 8,
+          "closestSwathNearMissKm": 3.46,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260726T021000Z-d0d431ae2d16892b",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260726T021000Z-d0d431ae2d16892b",
+              "envelopeDistanceKm": 28.814,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 10,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 8,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 41.334
+            },
+            {
+              "componentId": "storm-object-20260726T021000Z-58a99cafeac3585f",
+              "envelopeDistanceKm": 34.366,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 57,
+              "coreCellCount": 20,
+              "bowArcEnvelopeOccupiedDeg": 6,
+              "bowArcCoreOccupiedDeg": 4,
+              "bowArcHalfExtentDeg": 41.334
+            },
+            {
+              "componentId": "storm-object-20260726T021000Z-95c30c0390f3589f",
+              "envelopeDistanceKm": 25.137,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 10,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 5,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 41.334
+            },
+            {
+              "componentId": "storm-object-20260726T021000Z-4464bfac957e9136",
+              "envelopeDistanceKm": 11.322,
+              "observerSwathDistanceKm": 2.78,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 50,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.334
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-26T02:00:00Z",
+          "scanGapMinutes": 4.054,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260726T020000Z.json.gz",
+          "sourceScanSha256": "fc326fda34b2d38c947e1895c8812993c80c6bf134924350452ad109b08d5b81",
+          "totalStormComponents": 2518,
+          "prefilteredStormCount": 7,
+          "closestSwathNearMissKm": 4.99,
+          "assignment": "unique_physical_storm",
+          "middleSelectedComponentId": "storm-object-20260726T020000Z-767d0b0ccaa053cf",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260726T020000Z-767d0b0ccaa053cf",
+              "envelopeDistanceKm": 27.636,
+              "observerSwathDistanceKm": 2.07,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 19,
+              "coreCellCount": 5,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.008
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site817-20260726T002000Z",
+      "targetAt": "2026-07-26T00:49:55.310Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "817",
+      "siteName": "Lamoille",
+      "observer": {
+        "lat": 40.8116,
+        "lon": -115.6998
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-26T00:50:00Z",
+          "scanGapMinutes": 0.078,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260726T005000Z.json.gz",
+          "sourceScanSha256": "504d5d1ad331ab1f23c1beaafda577db48c865e0d24d752800d9fca052626fbd",
+          "totalStormComponents": 2482,
+          "prefilteredStormCount": 10,
+          "closestSwathNearMissKm": 6.3,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260726T005000Z-0ea7ebcda4132317",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260726T005000Z-0ea7ebcda4132317",
+              "envelopeDistanceKm": 15.701,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 51,
+              "coreCellCount": 22,
+              "bowArcEnvelopeOccupiedDeg": 27,
+              "bowArcCoreOccupiedDeg": 18,
+              "bowArcHalfExtentDeg": 35.707
+            },
+            {
+              "componentId": "storm-object-20260726T005000Z-f25f952219d992dd",
+              "envelopeDistanceKm": 16.567,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 46,
+              "coreCellCount": 28,
+              "bowArcEnvelopeOccupiedDeg": 23,
+              "bowArcCoreOccupiedDeg": 16,
+              "bowArcHalfExtentDeg": 35.707
+            },
+            {
+              "componentId": "storm-object-20260726T005000Z-99d1dd592c4bd8aa",
+              "envelopeDistanceKm": 23.826,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 41,
+              "coreCellCount": 11,
+              "bowArcEnvelopeOccupiedDeg": 15,
+              "bowArcCoreOccupiedDeg": 6,
+              "bowArcHalfExtentDeg": 35.707
+            },
+            {
+              "componentId": "storm-object-20260726T005000Z-8a8b6c97ae0336e0",
+              "envelopeDistanceKm": 0.377,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 184,
+              "coreCellCount": 109,
+              "bowArcEnvelopeOccupiedDeg": 13,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 35.707
+            },
+            {
+              "componentId": "storm-object-20260726T005000Z-8c3efbb14e1dff89",
+              "envelopeDistanceKm": 37.06,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 51,
+              "coreCellCount": 37,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 6,
+              "bowArcHalfExtentDeg": 35.707
+            },
+            {
+              "componentId": "storm-object-20260726T005000Z-97b1fb0a9a4e0216",
+              "envelopeDistanceKm": 25.544,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 23,
+              "coreCellCount": 10,
+              "bowArcEnvelopeOccupiedDeg": 8,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 35.707
+            },
+            {
+              "componentId": "storm-object-20260726T005000Z-21f6135ee1de506b",
+              "envelopeDistanceKm": 33.07,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 10,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 6,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 35.707
+            },
+            {
+              "componentId": "storm-object-20260726T005000Z-5b15a71f9f5186ca",
+              "envelopeDistanceKm": 42.835,
+              "observerSwathDistanceKm": 2.78,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 118,
+              "coreCellCount": 75,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 35.707
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-26T00:40:00Z",
+          "scanGapMinutes": 0.078,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260726T004000Z.json.gz",
+          "sourceScanSha256": "b10956a90a66a94cfc46697b195110929bbceddf241c516c61df2648497b639a",
+          "totalStormComponents": 2421,
+          "prefilteredStormCount": 8,
+          "closestSwathNearMissKm": 5.03,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260726T004000Z-ed3533e7a70ab536",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260726T004000Z-ed3533e7a70ab536",
+              "envelopeDistanceKm": 30.393,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 49,
+              "coreCellCount": 34,
+              "bowArcEnvelopeOccupiedDeg": 15,
+              "bowArcCoreOccupiedDeg": 14,
+              "bowArcHalfExtentDeg": 34.473
+            },
+            {
+              "componentId": "storm-object-20260726T004000Z-dfc78b0d9680a497",
+              "envelopeDistanceKm": 11.913,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 18,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 11,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 34.473
+            },
+            {
+              "componentId": "storm-object-20260726T004000Z-0ce0be00b4d57469",
+              "envelopeDistanceKm": 13.504,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 28,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 5,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 34.473
+            },
+            {
+              "componentId": "storm-object-20260726T004000Z-42f2b136490d38fa",
+              "envelopeDistanceKm": 37.249,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 11,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 4,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 34.473
+            },
+            {
+              "componentId": "storm-object-20260726T004000Z-7acfce79f2f22e21",
+              "envelopeDistanceKm": 40.507,
+              "observerSwathDistanceKm": 2.1,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 160,
+              "coreCellCount": 115,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 34.473
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site82-20260715T235000Z",
+      "targetAt": "2026-07-16T01:21:09.090Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "82",
+      "siteName": "Saguache Municipal Airport",
+      "observer": {
+        "lat": 38.09902,
+        "lon": -106.17035
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-16T01:20:00Z",
+          "scanGapMinutes": 1.151,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260716T012000Z.json.gz",
+          "sourceScanSha256": "3dfc4431c53d4af7193bcf91fac718e8ca96979a141bf3ffd63ef5e88fd0236b",
+          "totalStormComponents": 2363,
+          "prefilteredStormCount": 16,
+          "closestSwathNearMissKm": 4.37,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260716T012000Z-44dd4aa05ffb3b15",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260716T012000Z-44dd4aa05ffb3b15",
+              "envelopeDistanceKm": 0.446,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 2042,
+              "coreCellCount": 1066,
+              "bowArcEnvelopeOccupiedDeg": 80,
+              "bowArcCoreOccupiedDeg": 73,
+              "bowArcHalfExtentDeg": 40.716
+            },
+            {
+              "componentId": "storm-object-20260716T012000Z-7004920ad07ef90f",
+              "envelopeDistanceKm": 31.652,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 87,
+              "coreCellCount": 19,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.716
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-16T01:10:00Z",
+          "scanGapMinutes": 1.151,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260716T011000Z.json.gz",
+          "sourceScanSha256": "913a7f785a7bc8a5171238a18c6c8bd7fbb3f2b16353230d6d5ee8e3eb187ec1",
+          "totalStormComponents": 2578,
+          "prefilteredStormCount": 23,
+          "closestSwathNearMissKm": 3.53,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260716T011000Z-9a7d7b6bcb530265",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260716T011000Z-9a7d7b6bcb530265",
+              "envelopeDistanceKm": 0.446,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 1721,
+              "coreCellCount": 946,
+              "bowArcEnvelopeOccupiedDeg": 80,
+              "bowArcCoreOccupiedDeg": 73,
+              "bowArcHalfExtentDeg": 40.239
+            },
+            {
+              "componentId": "storm-object-20260716T011000Z-636d8e66648b3c6b",
+              "envelopeDistanceKm": 31.436,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 72,
+              "coreCellCount": 11,
+              "bowArcEnvelopeOccupiedDeg": 14,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 40.239
+            },
+            {
+              "componentId": "storm-object-20260716T011000Z-b570b52fa74f88db",
+              "envelopeDistanceKm": 34.454,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 69,
+              "coreCellCount": 21,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.239
+            },
+            {
+              "componentId": "storm-object-20260716T011000Z-e559f5438d63b2e9",
+              "envelopeDistanceKm": 29.222,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 76,
+              "coreCellCount": 8,
+              "bowArcEnvelopeOccupiedDeg": 6,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 40.239
+            },
+            {
+              "componentId": "storm-object-20260716T011000Z-b51b9a6911808d76",
+              "envelopeDistanceKm": 40.496,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 60,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.239
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site827-20260724T010000Z",
+      "targetAt": "2026-07-24T01:59:42.591Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "827",
+      "siteName": "Callaghan Peak",
+      "observer": {
+        "lat": 39.7081,
+        "lon": -116.951645
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-24T02:00:00Z",
+          "scanGapMinutes": 0.29,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260724T020000Z.json.gz",
+          "sourceScanSha256": "7752989e96f4daa8814d65b91ff5de9706bccb134da5740ef0da385b6ef53c4f",
+          "totalStormComponents": 2645,
+          "prefilteredStormCount": 10,
+          "closestSwathNearMissKm": 3.5,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260724T020000Z-cc25655dcf3e8e4c",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260724T020000Z-cc25655dcf3e8e4c",
+              "envelopeDistanceKm": 7.711,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 226,
+              "coreCellCount": 90,
+              "bowArcEnvelopeOccupiedDeg": 31,
+              "bowArcCoreOccupiedDeg": 12,
+              "bowArcHalfExtentDeg": 40.644
+            },
+            {
+              "componentId": "storm-object-20260724T020000Z-5972f352feb43904",
+              "envelopeDistanceKm": 5.717,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 81,
+              "coreCellCount": 13,
+              "bowArcEnvelopeOccupiedDeg": 13,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 40.644
+            },
+            {
+              "componentId": "storm-object-20260724T020000Z-15f3b3fe1b2b5216",
+              "envelopeDistanceKm": 13.786,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 49,
+              "coreCellCount": 6,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 40.644
+            },
+            {
+              "componentId": "storm-object-20260724T020000Z-97e08c407431c94e",
+              "envelopeDistanceKm": 23.239,
+              "observerSwathDistanceKm": 2.78,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 25,
+              "coreCellCount": 9,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.644
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-24T01:50:00Z",
+          "scanGapMinutes": 0.29,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260724T015000Z.json.gz",
+          "sourceScanSha256": "9955d20a6e4d6c770a865f0f1ed3b6a46df3ee6646273c0f1fd8d74d9842d3b9",
+          "totalStormComponents": 2554,
+          "prefilteredStormCount": 8,
+          "closestSwathNearMissKm": 5.09,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260724T015000Z-f09457bdfed7863b",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260724T015000Z-f09457bdfed7863b",
+              "envelopeDistanceKm": 0.344,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 258,
+              "coreCellCount": 167,
+              "bowArcEnvelopeOccupiedDeg": 55,
+              "bowArcCoreOccupiedDeg": 46,
+              "bowArcHalfExtentDeg": 40.159
+            },
+            {
+              "componentId": "storm-object-20260724T015000Z-93da570b8c35877e",
+              "envelopeDistanceKm": 10.191,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 27,
+              "coreCellCount": 10,
+              "bowArcEnvelopeOccupiedDeg": 16,
+              "bowArcCoreOccupiedDeg": 10,
+              "bowArcHalfExtentDeg": 40.159
+            },
+            {
+              "componentId": "storm-object-20260724T015000Z-81d208314b20449b",
+              "envelopeDistanceKm": 40.515,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 165,
+              "coreCellCount": 45,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.159
+            },
+            {
+              "componentId": "storm-object-20260724T015000Z-725a1e9ad53c1f26",
+              "envelopeDistanceKm": 25.268,
+              "observerSwathDistanceKm": 2.78,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 13,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 40.159
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site878-20260728T012000Z",
+      "targetAt": "2026-07-28T02:42:39.997Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "878",
+      "siteName": "Dolly Varden",
+      "observer": {
+        "lat": 40.32312,
+        "lon": -114.56298
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-28T02:40:00Z",
+          "scanGapMinutes": 2.667,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260728T024000Z.json.gz",
+          "sourceScanSha256": "a885658c96ba8d4aef2caed18bb74b32f603533f0a087159ad462e8cf6908ec9",
+          "totalStormComponents": 2571,
+          "prefilteredStormCount": 11,
+          "closestSwathNearMissKm": 10.94,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260728T024000Z-928d1cb1f5eab647",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260728T024000Z-928d1cb1f5eab647",
+              "envelopeDistanceKm": 5.902,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 164,
+              "coreCellCount": 61,
+              "bowArcEnvelopeOccupiedDeg": 40,
+              "bowArcCoreOccupiedDeg": 24,
+              "bowArcHalfExtentDeg": 41.944
+            },
+            {
+              "componentId": "storm-object-20260728T024000Z-32fb739f1369c917",
+              "envelopeDistanceKm": 9.14,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 126,
+              "coreCellCount": 23,
+              "bowArcEnvelopeOccupiedDeg": 35,
+              "bowArcCoreOccupiedDeg": 9,
+              "bowArcHalfExtentDeg": 41.944
+            },
+            {
+              "componentId": "storm-object-20260728T024000Z-8433d2f5cc4620b5",
+              "envelopeDistanceKm": 29.048,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 18,
+              "coreCellCount": 7,
+              "bowArcEnvelopeOccupiedDeg": 8,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 41.944
+            },
+            {
+              "componentId": "storm-object-20260728T024000Z-64784a34d46d7609",
+              "envelopeDistanceKm": 22.072,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 41,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 8,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.944
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-28T02:30:00Z",
+          "scanGapMinutes": 2.667,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260728T023000Z.json.gz",
+          "sourceScanSha256": "13286517680576d96a7f1b3e7ac143a454286e0e3431e723aba47de6687261d3",
+          "totalStormComponents": 2703,
+          "prefilteredStormCount": 9,
+          "closestSwathNearMissKm": 6.35,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260728T023000Z-e2a1194b89e73d1e",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260728T023000Z-e2a1194b89e73d1e",
+              "envelopeDistanceKm": 6.9,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 142,
+              "coreCellCount": 20,
+              "bowArcEnvelopeOccupiedDeg": 67,
+              "bowArcCoreOccupiedDeg": 16,
+              "bowArcHalfExtentDeg": 41.831
+            },
+            {
+              "componentId": "storm-object-20260728T023000Z-a2ca2d690e9c412a",
+              "envelopeDistanceKm": 17.263,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 119,
+              "coreCellCount": 34,
+              "bowArcEnvelopeOccupiedDeg": 25,
+              "bowArcCoreOccupiedDeg": 18,
+              "bowArcHalfExtentDeg": 41.831
+            },
+            {
+              "componentId": "storm-object-20260728T023000Z-cfe250d18794e29a",
+              "envelopeDistanceKm": 5.314,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 33,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 24,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 41.831
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site919-20260719T003000Z",
+      "targetAt": "2026-07-19T00:33:33.597Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "919",
+      "siteName": "Mt Wilson Lincoln",
+      "observer": {
+        "lat": 38.2381,
+        "lon": -114.3816
+      },
+      "assignment": "no_physical_storm",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-19T00:30:00Z",
+          "scanGapMinutes": 3.56,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260719T003000Z.json.gz",
+          "sourceScanSha256": "af2a0b9e152f3a3397943ed964883b1c9ad696054b22401b1e1e9eac2855a358",
+          "totalStormComponents": 5369,
+          "prefilteredStormCount": 2,
+          "closestSwathNearMissKm": 11.93,
+          "assignment": "no_physical_storm",
+          "middleSelectedComponentId": null,
+          "compatibleStormComponents": []
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-19T00:20:00Z",
+          "scanGapMinutes": 3.56,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260719T002000Z.json.gz",
+          "sourceScanSha256": "d3cc044238317101aa9103d706f97eb3433efcb7bcd6b4a31dd2d687df4ca9cf",
+          "totalStormComponents": 5455,
+          "prefilteredStormCount": 2,
+          "closestSwathNearMissKm": 12.05,
+          "assignment": "no_physical_storm",
+          "middleSelectedComponentId": null,
+          "compatibleStormComponents": []
+        }
+      ]
+    },
+    {
+      "eventId": "site95-20260713T002000Z",
+      "targetAt": "2026-07-13T00:30:14.481Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "95",
+      "siteName": "Wilkerson Pass",
+      "observer": {
+        "lat": 39.050293,
+        "lon": -105.51399
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-13T00:30:00Z",
+          "scanGapMinutes": 0.241,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260713T003000Z.json.gz",
+          "sourceScanSha256": "9f868af504bacda8c801e0e75f3c1f737d18ab4c93d560a4bf9aa035c01c8b71",
+          "totalStormComponents": 3595,
+          "prefilteredStormCount": 2,
+          "closestSwathNearMissKm": null,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260713T003000Z-e0e01a64498f57cc",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260713T003000Z-e0e01a64498f57cc",
+              "envelopeDistanceKm": 18.19,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 86,
+              "coreCellCount": 54,
+              "bowArcEnvelopeOccupiedDeg": 17,
+              "bowArcCoreOccupiedDeg": 12,
+              "bowArcHalfExtentDeg": 37.396
+            },
+            {
+              "componentId": "storm-object-20260713T003000Z-b1b7cbb97d797ec7",
+              "envelopeDistanceKm": 6.379,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 89,
+              "coreCellCount": 43,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 37.396
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-13T00:20:00Z",
+          "scanGapMinutes": 0.241,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260713T002000Z.json.gz",
+          "sourceScanSha256": "0a2722ab5cb1f1520b1ba8c607263edeec422ebbab3ba22d206d375955db241a",
+          "totalStormComponents": 3398,
+          "prefilteredStormCount": 2,
+          "closestSwathNearMissKm": null,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260713T002000Z-86f72907831bab46",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260713T002000Z-86f72907831bab46",
+              "envelopeDistanceKm": 19.379,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 77,
+              "coreCellCount": 60,
+              "bowArcEnvelopeOccupiedDeg": 9,
+              "bowArcCoreOccupiedDeg": 7,
+              "bowArcHalfExtentDeg": 36.388
+            },
+            {
+              "componentId": "storm-object-20260713T002000Z-da4446cfb991f8f8",
+              "envelopeDistanceKm": 10.471,
+              "observerSwathDistanceKm": 2.16,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 80,
+              "coreCellCount": 71,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 36.388
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site95-20260722T234000Z",
+      "targetAt": "2026-07-23T00:47:34.597Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "95",
+      "siteName": "Wilkerson Pass",
+      "observer": {
+        "lat": 39.050293,
+        "lon": -105.51399
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-23T00:50:00Z",
+          "scanGapMinutes": 2.423,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260723T005000Z.json.gz",
+          "sourceScanSha256": "8370d066a5a620a1c6d41f5341014116c1cb8bbf2631d2897292c724bb2b13bc",
+          "totalStormComponents": 3413,
+          "prefilteredStormCount": 9,
+          "closestSwathNearMissKm": 22.13,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260723T005000Z-972cdb6f29183649",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260723T005000Z-972cdb6f29183649",
+              "envelopeDistanceKm": 13.13,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 330,
+              "coreCellCount": 65,
+              "bowArcEnvelopeOccupiedDeg": 72,
+              "bowArcCoreOccupiedDeg": 38,
+              "bowArcHalfExtentDeg": 39.325
+            },
+            {
+              "componentId": "storm-object-20260723T005000Z-9a325f7ed4ffb20a",
+              "envelopeDistanceKm": 0.588,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 181,
+              "coreCellCount": 105,
+              "bowArcEnvelopeOccupiedDeg": 57,
+              "bowArcCoreOccupiedDeg": 37,
+              "bowArcHalfExtentDeg": 39.325
+            },
+            {
+              "componentId": "storm-object-20260723T005000Z-65dd0353c4331f91",
+              "envelopeDistanceKm": 29.284,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 90,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 21,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 39.325
+            },
+            {
+              "componentId": "storm-object-20260723T005000Z-7ac7de56ef0c1adc",
+              "envelopeDistanceKm": 30.958,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 32,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 15,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 39.325
+            },
+            {
+              "componentId": "storm-object-20260723T005000Z-e274b9d107dd4305",
+              "envelopeDistanceKm": 38.352,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 100,
+              "coreCellCount": 24,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 39.325
+            },
+            {
+              "componentId": "storm-object-20260723T005000Z-ae090bfca02f1e08",
+              "envelopeDistanceKm": 39.868,
+              "observerSwathDistanceKm": 2.16,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 96,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 1,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 39.325
+            },
+            {
+              "componentId": "storm-object-20260723T005000Z-52fd2b2daed15db3",
+              "envelopeDistanceKm": 40.43,
+              "observerSwathDistanceKm": 2.16,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 3466,
+              "coreCellCount": 2018,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 39.325
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-23T00:40:00Z",
+          "scanGapMinutes": 2.423,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260723T004000Z.json.gz",
+          "sourceScanSha256": "4b6aa75ba7116a844933eedb869e1034b2eb896105ba467d53a149381fabb0bb",
+          "totalStormComponents": 3449,
+          "prefilteredStormCount": 17,
+          "closestSwathNearMissKm": 6.47,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260723T004000Z-04c2c38d73e67a41",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260723T004000Z-04c2c38d73e67a41",
+              "envelopeDistanceKm": 0.522,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 208,
+              "coreCellCount": 91,
+              "bowArcEnvelopeOccupiedDeg": 49,
+              "bowArcCoreOccupiedDeg": 8,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-6774d532b419e6f2",
+              "envelopeDistanceKm": 13.796,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 92,
+              "coreCellCount": 24,
+              "bowArcEnvelopeOccupiedDeg": 42,
+              "bowArcCoreOccupiedDeg": 20,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-238c2570f56e64dd",
+              "envelopeDistanceKm": 25.832,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 256,
+              "coreCellCount": 81,
+              "bowArcEnvelopeOccupiedDeg": 35,
+              "bowArcCoreOccupiedDeg": 18,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-71c36af025f03592",
+              "envelopeDistanceKm": 20.625,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 162,
+              "coreCellCount": 33,
+              "bowArcEnvelopeOccupiedDeg": 27,
+              "bowArcCoreOccupiedDeg": 20,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-a7997564a883f892",
+              "envelopeDistanceKm": 12.608,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 30,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 17,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-910d639715d00b43",
+              "envelopeDistanceKm": 22.663,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 21,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 11,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-c765acb930ff5e8e",
+              "envelopeDistanceKm": 11.131,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 12,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 8,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-2dcf068941d5578a",
+              "envelopeDistanceKm": 36.477,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 20,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-117f06be572435e7",
+              "envelopeDistanceKm": 39.165,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 106,
+              "coreCellCount": 28,
+              "bowArcEnvelopeOccupiedDeg": 6,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-3bf7e53871b3aaf4",
+              "envelopeDistanceKm": 22.672,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 9,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 5,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-cdf7c9407444c7b0",
+              "envelopeDistanceKm": 20.782,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 7,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 5,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-7aa65258a3402eb5",
+              "envelopeDistanceKm": 29.274,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 12,
+              "coreCellCount": 1,
+              "bowArcEnvelopeOccupiedDeg": 4,
+              "bowArcCoreOccupiedDeg": 1,
+              "bowArcHalfExtentDeg": 38.605
+            },
+            {
+              "componentId": "storm-object-20260723T004000Z-e0e3a1fff9d8cf2a",
+              "envelopeDistanceKm": 40.913,
+              "observerSwathDistanceKm": 2.16,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 30,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 38.605
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site984-20260723T115000Z",
+      "targetAt": "2026-07-23T12:10:19.124Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "984",
+      "siteName": "Colstrip Airport",
+      "observer": {
+        "lat": 45.85222,
+        "lon": -106.70528
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-23T12:10:00Z",
+          "scanGapMinutes": 0.319,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260723T121000Z.json.gz",
+          "sourceScanSha256": "cae9c8586dabef89ee653028d3ae82a780b3acd2c3c7c8da85500e5f693d564d",
+          "totalStormComponents": 2867,
+          "prefilteredStormCount": 8,
+          "closestSwathNearMissKm": 5.8,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260723T121000Z-bed3edea8e53ae48",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260723T121000Z-bed3edea8e53ae48",
+              "envelopeDistanceKm": 17.233,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 165,
+              "coreCellCount": 78,
+              "bowArcEnvelopeOccupiedDeg": 13,
+              "bowArcCoreOccupiedDeg": 12,
+              "bowArcHalfExtentDeg": 41.843
+            },
+            {
+              "componentId": "storm-object-20260723T121000Z-563d2e40155f2f2c",
+              "envelopeDistanceKm": 9.363,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 79,
+              "coreCellCount": 15,
+              "bowArcEnvelopeOccupiedDeg": 11,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 41.843
+            },
+            {
+              "componentId": "storm-object-20260723T121000Z-6a81dcd34926fcc1",
+              "envelopeDistanceKm": 7.499,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 48,
+              "coreCellCount": 28,
+              "bowArcEnvelopeOccupiedDeg": 9,
+              "bowArcCoreOccupiedDeg": 8,
+              "bowArcHalfExtentDeg": 41.843
+            },
+            {
+              "componentId": "storm-object-20260723T121000Z-a8ef4649f37893c4",
+              "envelopeDistanceKm": 30.36,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 16,
+              "coreCellCount": 8,
+              "bowArcEnvelopeOccupiedDeg": 7,
+              "bowArcCoreOccupiedDeg": 3,
+              "bowArcHalfExtentDeg": 41.843
+            },
+            {
+              "componentId": "storm-object-20260723T121000Z-c2bf2cd1f4ab7f73",
+              "envelopeDistanceKm": 31.179,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 108,
+              "coreCellCount": 64,
+              "bowArcEnvelopeOccupiedDeg": 1,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.843
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-23T12:00:00Z",
+          "scanGapMinutes": 0.319,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260723T120000Z.json.gz",
+          "sourceScanSha256": "eb3228d5a7b0c6012a40233fcb478457cb9c3c3f21108ac2d05be1cf1c3db471",
+          "totalStormComponents": 2813,
+          "prefilteredStormCount": 5,
+          "closestSwathNearMissKm": 4.76,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260723T120000Z-0f54411724c4bc36",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260723T120000Z-0f54411724c4bc36",
+              "envelopeDistanceKm": 8.394,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 15,
+              "coreCellCount": 4,
+              "bowArcEnvelopeOccupiedDeg": 11,
+              "bowArcCoreOccupiedDeg": 4,
+              "bowArcHalfExtentDeg": 41.941
+            },
+            {
+              "componentId": "storm-object-20260723T120000Z-cf861dbfee3561a4",
+              "envelopeDistanceKm": 12.13,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 330,
+              "coreCellCount": 199,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 7,
+              "bowArcHalfExtentDeg": 41.941
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "eventId": "site990-20260717T233000Z",
+      "targetAt": "2026-07-18T00:43:02.286Z",
+      "leadProxy": "first_human_marked_rainbow_frame",
+      "siteId": "990",
+      "siteName": "Crestview",
+      "observer": {
+        "lat": 30.776028,
+        "lon": -86.52517
+      },
+      "assignment": "ambiguous_physical_storms",
+      "timeArms": [
+        {
+          "offsetMinutes": 0,
+          "scanTime": "2026-07-18T00:40:00Z",
+          "scanGapMinutes": 3.038,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260718T004000Z.json.gz",
+          "sourceScanSha256": "a49ba678bff210ddf4b00d4ff5343e835854eb5535bd40e9fb55eb428d00125f",
+          "totalStormComponents": 3546,
+          "prefilteredStormCount": 5,
+          "closestSwathNearMissKm": 26.73,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260718T004000Z-9634f79115718faa",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260718T004000Z-9634f79115718faa",
+              "envelopeDistanceKm": 26.737,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 617,
+              "coreCellCount": 391,
+              "bowArcEnvelopeOccupiedDeg": 36,
+              "bowArcCoreOccupiedDeg": 24,
+              "bowArcHalfExtentDeg": 41.988
+            },
+            {
+              "componentId": "storm-object-20260718T004000Z-46315cc7365c4056",
+              "envelopeDistanceKm": 22.423,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 98,
+              "coreCellCount": 35,
+              "bowArcEnvelopeOccupiedDeg": 24,
+              "bowArcCoreOccupiedDeg": 10,
+              "bowArcHalfExtentDeg": 41.988
+            },
+            {
+              "componentId": "storm-object-20260718T004000Z-e7872a8a933e42d0",
+              "envelopeDistanceKm": 28.396,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 50,
+              "coreCellCount": 2,
+              "bowArcEnvelopeOccupiedDeg": 11,
+              "bowArcCoreOccupiedDeg": 2,
+              "bowArcHalfExtentDeg": 41.988
+            }
+          ]
+        },
+        {
+          "offsetMinutes": -10,
+          "scanTime": "2026-07-18T00:30:00Z",
+          "scanGapMinutes": 3.038,
+          "sourceScanPath": "C:\\Users\\jeffm\\rainbow-finder\\validation\\storm-object-replay-gate\\time-aligned-target-scans\\scan-20260718T003000Z.json.gz",
+          "sourceScanSha256": "24c7bad29dbdf36f597591af87b8ee56cfc0c31eef248b9b6ef16cf6204b1c6b",
+          "totalStormComponents": 3415,
+          "prefilteredStormCount": 8,
+          "closestSwathNearMissKm": 28.66,
+          "assignment": "ambiguous_physical_storms",
+          "middleSelectedComponentId": "storm-object-20260718T003000Z-da1446e2838cb8af",
+          "compatibleStormComponents": [
+            {
+              "componentId": "storm-object-20260718T003000Z-da1446e2838cb8af",
+              "envelopeDistanceKm": 22.608,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 668,
+              "coreCellCount": 437,
+              "bowArcEnvelopeOccupiedDeg": 34,
+              "bowArcCoreOccupiedDeg": 31,
+              "bowArcHalfExtentDeg": 41.907
+            },
+            {
+              "componentId": "storm-object-20260718T003000Z-94b27ed78efafc6e",
+              "envelopeDistanceKm": 20.998,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 60,
+              "coreCellCount": 18,
+              "bowArcEnvelopeOccupiedDeg": 28,
+              "bowArcCoreOccupiedDeg": 13,
+              "bowArcHalfExtentDeg": 41.907
+            },
+            {
+              "componentId": "storm-object-20260718T003000Z-f929d9a5149af462",
+              "envelopeDistanceKm": 28.838,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 24,
+              "coreCellCount": 6,
+              "bowArcEnvelopeOccupiedDeg": 10,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 41.907
+            },
+            {
+              "componentId": "storm-object-20260718T003000Z-84ad0ca3eb9b03f5",
+              "envelopeDistanceKm": 32.176,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 14,
+              "coreCellCount": 6,
+              "bowArcEnvelopeOccupiedDeg": 8,
+              "bowArcCoreOccupiedDeg": 5,
+              "bowArcHalfExtentDeg": 41.907
+            },
+            {
+              "componentId": "storm-object-20260718T003000Z-342a0e51fd991103",
+              "envelopeDistanceKm": 30.27,
+              "observerSwathDistanceKm": 0.0,
+              "exactSwathContainment": true,
+              "envelopeCellCount": 25,
+              "coreCellCount": 3,
+              "bowArcEnvelopeOccupiedDeg": 2,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.907
+            },
+            {
+              "componentId": "storm-object-20260718T003000Z-cbb91bfe3359d92f",
+              "envelopeDistanceKm": 26.255,
+              "observerSwathDistanceKm": 2.78,
+              "exactSwathContainment": false,
+              "envelopeCellCount": 85,
+              "coreCellCount": 5,
+              "bowArcEnvelopeOccupiedDeg": 0,
+              "bowArcCoreOccupiedDeg": 0,
+              "bowArcHalfExtentDeg": 41.907
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "contentSha256": "0cb21ff85a7932b571524e65eea82322549dbcb980b8785a5e7b37b6decc426b"
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "time-aligned-storm-target-config.v3",
+  "status": "frozen_before_corrected_artifact_recompute",
+  "frozenAt": "2026-08-03",
+  "evidenceRole": "post_interim_diagnostic_only",
+  "observerCoordinate": "actual_faa_site_coordinate",
+  "scanOffsetsMinutes": [0, -10],
+  "nearestScanMaximumGapMinutes": 5,
+  "envelopeDistancePrefilterKm": [0, 45],
+  "upperBoundProof": "production rain projection max 40km plus swath containment tolerance 3km; 45km cannot exclude a valid assignment",
+  "physicalCompatibility": "production_0.025deg_observer_swath_contains_site",
+  "analysisArms": {
+    "lowerBound": "unique compatible storm only",
+    "middleEstimate": {
+      "selectionRule": [
+        "bow_arc_envelope_occupied_degrees_desc",
+        "exact_swath_containment_before_tolerance",
+        "bow_arc_core_occupied_degrees_desc",
+        "component_id_asc"
+      ],
+      "reportTargetTimeAndMinus10MinutesSeparately": true
+    },
+    "upperBound": "success_on_any_compatible_family"
+  },
+  "ambiguityRule": "retain every compatible component and every selection metric",
+  "forbiddenInputs": [
+    "prediction scores",
+    "eligibility",
+    "scheduler tokens",
+    "alert outcomes"
+  ],
+  "originalFrozenGateStatus": "failed_and_unchanged"
+}

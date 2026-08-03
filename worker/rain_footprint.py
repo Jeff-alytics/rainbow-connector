@@ -9,6 +9,9 @@ import numpy as np
 
 SCHEMA_VERSION = "mrms-rain-footprint.v2"
 RATE_TIERS_MM_HR = (0.05, 1.0, 5.0)
+STORM_ENVELOPE_THRESHOLD_MM_HR = 0.5
+STORM_CORE_THRESHOLD_MM_HR = 2.0
+STORM_SEGMENTATION_VERSION = "mrms-hysteresis-0.5-envelope-2.0-core-v1"
 DISPLAY_RAIN_THRESHOLD_MM_HR = 0.2
 MIN_DISTANCE_KM = 5.0
 MAX_DISTANCE_KM = 40.0
@@ -98,8 +101,59 @@ def build_sidecar(latitudes: np.ndarray, longitudes: np.ndarray, rates: np.ndarr
         },
         "rateTiersMmHr": list(RATE_TIERS_MM_HR),
         "runs": encode_runs(tiers),
+        "stormSegmentation": {
+            "version": STORM_SEGMENTATION_VERSION,
+            "envelopeMinimumMmHr": STORM_ENVELOPE_THRESHOLD_MM_HR,
+            "coreMinimumMmHr": STORM_CORE_THRESHOLD_MM_HR,
+            "envelopeRuns": encode_runs(
+                (np.isfinite(rates) & (rates >= STORM_ENVELOPE_THRESHOLD_MM_HR)).astype(np.uint8)
+            ),
+            "coreRuns": encode_runs(
+                (np.isfinite(rates) & (rates >= STORM_CORE_THRESHOLD_MM_HR)).astype(np.uint8)
+            ),
+        },
         "displayRainThresholdMmHr": DISPLAY_RAIN_THRESHOLD_MM_HR,
         "displayWetRuns": display_wet_runs(rates),
+    }
+
+
+def build_storm_segmentation_sidecar(
+    latitudes: np.ndarray,
+    longitudes: np.ndarray,
+    rates: np.ndarray,
+    observed_at: datetime,
+    source_key: str,
+) -> dict:
+    """Build only the exact hysteresis inputs needed by storm-object replay."""
+    latitudes = np.asarray(latitudes, dtype=float)
+    longitudes = np.asarray(longitudes, dtype=float)
+    rates = np.asarray(rates, dtype=float)
+    if rates.shape != (latitudes.size, longitudes.size):
+        raise ValueError("MRMS rate grid must match its coordinates")
+    return {
+        "schemaVersion": SCHEMA_VERSION,
+        "rainFootprintId": rain_footprint_id(observed_at),
+        "observedAt": iso_utc(observed_at),
+        "sourceKey": source_key,
+        "grid": {
+            "latitudeCount": int(latitudes.size),
+            "longitudeCount": int(longitudes.size),
+            "latitudeStart": float(latitudes[0]),
+            "latitudeStepDeg": regular_step(latitudes, "latitude"),
+            "longitudeStart": float(longitudes[0]),
+            "longitudeStepDeg": regular_step(longitudes, "longitude"),
+        },
+        "stormSegmentation": {
+            "version": STORM_SEGMENTATION_VERSION,
+            "envelopeMinimumMmHr": STORM_ENVELOPE_THRESHOLD_MM_HR,
+            "coreMinimumMmHr": STORM_CORE_THRESHOLD_MM_HR,
+            "envelopeRuns": encode_runs(
+                (np.isfinite(rates) & (rates >= STORM_ENVELOPE_THRESHOLD_MM_HR)).astype(np.uint8)
+            ),
+            "coreRuns": encode_runs(
+                (np.isfinite(rates) & (rates >= STORM_CORE_THRESHOLD_MM_HR)).astype(np.uint8)
+            ),
+        },
     }
 
 
