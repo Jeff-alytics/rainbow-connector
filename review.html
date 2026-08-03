@@ -47,7 +47,6 @@
       <div id="research-context" class="bow-guidance hidden"></div>
       <div id="frames" class="strip"></div>
       <textarea id="notes" placeholder="Optional note"></textarea>
-      <div class="sunlight-grade"><strong>Does the camera scene show direct sunlight?</strong><button type="button" data-sunlight="sunlit">Yes</button><button type="button" data-sunlight="not_sunlit">No</button><button type="button" data-sunlight="uncertain">Can't tell</button></div>
       <div class="grades">
         <button data-label="rainbow" class="yes">Rainbow</button>
         <button data-label="no_rainbow" class="no">No rainbow in this view</button>
@@ -242,6 +241,8 @@ async function loadResults(){
   }).join("") : '<tr><td colspan="19">No candidates have been graded yet.</td></tr>';
 }
 
+// Sunlight is a model output, not a human judgement: asking the reviewer for it under
+// the informed-review protocol invites rationalising the score already on screen.
 document.querySelectorAll("[data-sunlight]").forEach(button => button.addEventListener("click", () => {
   sceneSunlight = button.dataset.sunlight;
   document.querySelectorAll("[data-sunlight]").forEach(item => item.classList.toggle("selected", item === button));
@@ -277,10 +278,6 @@ document.querySelectorAll("[data-label]").forEach(button => button.addEventListe
   const selectedFrames = [...document.querySelectorAll('input[name="confirmed-frame"]:checked')];
   if (button.dataset.label === "rainbow" && !selectedFrames.length) {
     $("#grade-status").textContent = "Choose every image that actually shows a rainbow first.";
-    return;
-  }
-  if (!sceneSunlight) {
-    $("#grade-status").textContent = "First say whether the scene visibly shows direct sunlight.";
     return;
   }
   document.querySelectorAll("[data-label]").forEach(item => item.disabled = true);
