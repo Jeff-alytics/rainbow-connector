@@ -7,7 +7,7 @@ import {
   reviewTokenFromRequest,
   validReviewToken,
 } from "../api/review-auth-common.mjs";
-import { matchChartCameras, matchFaaCamera, matchFaaCameras, selectFaaFrames, selectPendingFaaEvents, visibleBowArc } from "../api/go-evidence-common.mjs";
+import { matchFaaCamera, matchFaaCameras, selectFaaFrames, selectPendingFaaEvents, visibleBowArc } from "../api/go-evidence-common.mjs";
 import { evidenceFrameReviewGroups, reviewableCandidates } from "../api/go-event-common.mjs";
 import { allCameraViewsReviewed, apparentSolarElevationDeg, reviewEvidenceStrength, reviewQueue, reviewQueueItems, reviewResults, reviewSafeEvent } from "../api/go-events.mjs";
 
@@ -108,19 +108,6 @@ test("FAA frame selection requires multiple post-event views and keeps a balance
       .map(item => Math.round((new Date(item.imageDatetime).getTime() - center) / 60_000)),
     [-15, -5, 5, 15, 25],
   );
-});
-
-test("Maryland CHART matching returns the nearest reviewable cameras", () => {
-  const event = { representative: { lat: 39.20, lon: -76.70 } };
-  const catalog = [
-    { id: "third", name: "Third", lat: 39.30, lon: -76.70 },
-    { id: "nearest", name: "Nearest", lat: 39.21, lon: -76.70 },
-    { id: "second", name: "Second", lat: 39.25, lon: -76.70 },
-    { id: "too-far", name: "Too far", lat: 40.20, lon: -76.70 },
-  ];
-  const matches = matchChartCameras(event, catalog, 35, 2);
-  assert.deepEqual(matches.map(match => match.camera.id), ["nearest", "second"]);
-  assert.ok(matches.every(match => match.distanceKm <= 35));
 });
 
 test("review queue contains only ungraded GO evidence, strongest first", () => {

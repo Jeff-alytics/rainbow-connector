@@ -79,6 +79,12 @@ export function compactHistoryRecord(artifact, meta = {}) {
       rainViewerTileRequests: artifact.diagnostics.rainViewerTileRequests ?? null,
       goCandidates: artifact.diagnostics.goCandidates ?? null,
       possibleCandidates: artifact.diagnostics.possibleCandidates ?? null,
+      spatialSupportMethodVersion: artifact.diagnostics.spatialSupportMethodVersion || null,
+      spatialSupportMode: artifact.diagnostics.spatialSupportMode || null,
+      spatialSupportAssessedRainEdges: artifact.diagnostics.spatialSupportAssessedRainEdges ?? null,
+      spatialSupportFlaggedRainEdges: artifact.diagnostics.spatialSupportFlaggedRainEdges ?? null,
+      spatialSupportRejectedRainEdges: artifact.diagnostics.spatialSupportRejectedRainEdges ?? null,
+      clusteredFlaggedObserverSeeds: artifact.diagnostics.clusteredFlaggedObserverSeeds ?? null,
       options: artifact.diagnostics.options || null,
     } : null,
   };

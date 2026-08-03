@@ -8,33 +8,16 @@ import { attachGoEventEvidence, loadRecentGoEvents } from "./go-event-common.mjs
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const FAA_API = "https://weathercams.faa.gov/api";
-const CHART_FEED = "https://chartexp1.sha.maryland.gov/CHARTExportClientService/getCameraMapDataJSON.do";
-const CHART_THUMBNAILS = "https://chart.maryland.gov/wwwroot/thumbnails";
 const FAA_HEADERS = {
   Referer: "https://weathercams.faa.gov/",
   Origin: "https://weathercams.faa.gov",
   "User-Agent": "Mozilla/5.0 rainbow-connector-review",
 };
 let siteCache = null;
-let chartCache = null;
-let chartCacheAt = 0;
 
 async function sites() {
   if (!siteCache) siteCache = JSON.parse(await readFile(path.join(ROOT, "faa-sites-compact.json"), "utf8"));
   return siteCache;
-}
-
-async function chartSites() {
-  if (chartCache && Date.now() - chartCacheAt < 60 * 60 * 1000) return chartCache;
-  const response = await fetch(CHART_FEED, { headers: { "User-Agent": FAA_HEADERS["User-Agent"] } });
-  if (!response.ok) throw new Error(`Maryland CHART camera list failed (${response.status})`);
-  const payload = await response.json();
-  chartCache = (payload.data || []).filter(camera =>
-    Number.isFinite(camera.lat) && Number.isFinite(camera.lon)
-    && camera.commMode === "ONLINE"
-    && !["COMM_FAILURE", "HARDWARE_FAILURE"].includes(camera.opStatus));
-  chartCacheAt = Date.now();
-  return chartCache;
 }
 
 function angleDifference(a, b) {
@@ -130,16 +113,6 @@ export function matchFaaCamera(event, catalog, maxDistanceKm = 35, maxBearingDif
   return best;
 }
 
-export function matchChartCameras(event, catalog, maxDistanceKm = 35, limit = 5) {
-  const rep = event?.representative || {};
-  if (!Number.isFinite(rep.lat) || !Number.isFinite(rep.lon)) return [];
-  return (catalog || [])
-    .map(camera => ({ camera, distanceKm: distKm(rep.lat, rep.lon, camera.lat, camera.lon) }))
-    .filter(match => match.distanceKm <= maxDistanceKm)
-    .sort((a, b) => a.distanceKm - b.distanceKm)
-    .slice(0, Math.max(1, Math.min(Number(limit) || 5, 5)));
-}
-
 function iso(value) {
   return new Date(value).toISOString();
 }
@@ -201,52 +174,6 @@ async function storeFrame(event, match, frame) {
   };
 }
 
-async function storeChartFrame(event, match) {
-  const observedAt = new Date().toISOString();
-  const imageUrl = `${CHART_THUMBNAILS}/${match.camera.id}.jpg?t=${Date.now()}`;
-  const response = await fetch(imageUrl, { headers: { "User-Agent": FAA_HEADERS["User-Agent"] }, cache: "no-store" });
-  if (!response.ok) throw new Error(`Maryland CHART image failed (${response.status})`);
-  const bytes = await response.arrayBuffer();
-  if (bytes.byteLength < 8000) throw new Error("Maryland CHART image was too small to review.");
-  const stamp = observedAt.replace(/[^0-9]/g, "").slice(0, 17);
-  const stored = await put(`go-evidence/${event.id}/chart-${match.camera.id}-${stamp}.jpg`, bytes, {
-    access: "public",
-    addRandomSuffix: false,
-    allowOverwrite: true,
-    contentType: "image/jpeg",
-  });
-  return {
-    url: stored.url,
-    observedAt,
-    source: "Maryland CHART",
-    cameraName: match.camera.description || match.camera.name || match.camera.id,
-    distanceKm: Number(match.distanceKm.toFixed(1)),
-  };
-}
-
-async function captureChartEvidence(event) {
-  const matches = matchChartCameras(event, await chartSites());
-  if (!matches.length) return { stored: false, reason: "no_chart_match", eventId: event.id };
-  const storedFrames = [];
-  for (const match of matches) {
-    try { storedFrames.push(await storeChartFrame(event, match)); } catch {}
-  }
-  if (!storedFrames.length) return { stored: false, reason: "no_usable_chart_frames", eventId: event.id };
-  await attachGoEventEvidence(event.id, {
-    status: "ready",
-    source: "Maryland CHART",
-    camera: {
-      name: "Maryland CHART nearby views",
-      state: "MD",
-      direction: "Multiple views; bearing not published",
-      distanceKm: storedFrames[0].distanceKm,
-      bearingDifference: null,
-    },
-    frames: storedFrames,
-  });
-  return { stored: true, eventId: event.id, frames: storedFrames.length, source: "Maryland CHART" };
-}
-
 export async function captureFaaEvidence(event) {
   const centerMs = new Date(event?.representative?.detectedAt || event?.firstSeenAt || 0).getTime();
   if (!Number.isFinite(centerMs) || Date.now() - centerMs < FAA_CAPTURE_MATURITY_MINUTES * 60 * 1000) {
@@ -265,9 +192,7 @@ export async function captureFaaEvidence(event) {
   const legacy = arcMatches.length ? null : matchFaaCamera(event, catalog);
   const matches = arcMatches.length ? arcMatches : legacy ? [legacy] : [];
   if (!matches.length) {
-    const chart = await captureChartEvidence(event);
-    if (chart.stored) return chart;
-    await attachGoEventEvidence(event.id, { status: "no_camera_match", source: "FAA WeatherCam + Maryland CHART",
+    await attachGoEventEvidence(event.id, { status: "no_camera_match", source: "FAA WeatherCam",
       matcherVersion: FAA_MATCHER_VERSION });
     return { stored: false, reason: "no_camera_match", eventId: event.id };
   }

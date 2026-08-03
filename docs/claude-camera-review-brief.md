@@ -2,6 +2,12 @@
 
 **Current as of July 29, 2026**
 
+> Historical brief: all DOT/511 integrations described below were retired on
+> August 3, 2026 because their road-focused views, limited sky coverage, and
+> unreliable orientation made them poor rainbow-review evidence. The current
+> collector no longer queries Maryland CHART, DelDOT, Caltrans, Iowa DOT,
+> Ohio OHGO, WSDOT, or 511GA.
+
 ## What the project is trying to do
 
 The Rainbow Connector identifies locations where sunlight, rain, solar geometry,

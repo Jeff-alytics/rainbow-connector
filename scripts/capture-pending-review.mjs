@@ -1,4 +1,6 @@
 import { capturePendingAlertCaEvidence } from "../api/alertca-common.mjs";
+import { capturePendingAlertWestEvidence } from "../api/alertwest-common.mjs";
+import { capturePendingNysmEvidence } from "../api/nysm-common.mjs";
 import { capturePendingFaaEvidence } from "../api/go-evidence-common.mjs";
 import { capturePendingNimsEvidence } from "../api/usgs-nims-common.mjs";
 import { capturePendingWebcoosEvidence } from "../api/webcoos-common.mjs";
@@ -13,6 +15,8 @@ for (let round = 1; round <= rounds; round++) {
     nims: await capturePendingNimsEvidence(3),
     webcoos: await capturePendingWebcoosEvidence(2),
     alertCalifornia: await capturePendingAlertCaEvidence(2),
+    alertWest: await capturePendingAlertWestEvidence(2),
+    nysm: await capturePendingNysmEvidence(2),
   });
 }
 

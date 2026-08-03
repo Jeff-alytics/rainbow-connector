@@ -3,7 +3,9 @@ from datetime import datetime, timezone
 
 import numpy as np
 
-from detector_core import is_conus_land, observer_seeds_from_rain_grid, solar_position
+from detector_core import (
+    is_conus_land, observer_seeds_from_rain_grid, rain_spatial_support, solar_position,
+)
 from mrms_source import candidate_keys, key_for_time, object_from_key, source_metadata
 
 
@@ -34,6 +36,37 @@ class MrmsSourceTests(unittest.TestCase):
 
 
 class RadarFirstTests(unittest.TestCase):
+    def test_spatial_support_flags_only_isolated_wet_cells(self):
+        rates = np.zeros((7, 7))
+        rates[3, 3] = 1.0
+        isolated = rain_spatial_support(rates, 3, 3)
+        self.assertTrue(isolated["isolatedPixel"])
+        self.assertEqual(isolated["adjacentWetCells"], 0)
+
+        rates[3, 4] = 0.2
+        supported = rain_spatial_support(rates, 3, 3)
+        self.assertFalse(supported["isolatedPixel"])
+        self.assertEqual(supported["adjacentWetCells"], 1)
+
+    def test_spatial_support_is_shadowed_before_enforcement(self):
+        lats = np.linspace(34, 36, 201)
+        lons = np.linspace(-87, -85, 201)
+        rates = np.zeros((201, 201))
+        rates[100, 100] = 1.0
+        observed = datetime(2026, 7, 26, 12, 0, tzinfo=timezone.utc)
+        diagnostics = {}
+        shadowed = observer_seeds_from_rain_grid(
+            lats, lons, rates, observed, stride=10, diagnostics=diagnostics,
+        )
+        enforced = observer_seeds_from_rain_grid(
+            lats, lons, rates, observed, stride=10, enforce_spatial_support=True,
+        )
+        self.assertTrue(shadowed)
+        self.assertTrue(all(seed["spatialSupport"]["isolatedPixel"] for seed in shadowed))
+        self.assertEqual(diagnostics["spatialSupportMode"], "shadow")
+        self.assertGreater(diagnostics["spatialSupportFlaggedRainEdges"], 0)
+        self.assertEqual(enforced, [])
+
     def test_conus_land_mask_excludes_foreign_and_water_observers(self):
         self.assertTrue(is_conus_land(41.88, -87.63))  # Chicago
         self.assertTrue(is_conus_land(29.95, -90.07))  # New Orleans
