@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "historical-review-queue.v1",
+  "generatedAt": "2026-08-02T21:30:44.683474Z",
+  "ruleVersion": "noaa-detector-2026-07-v1",
+  "modelMethodVersion": "open-meteo-historical-forecast-replay-v1",
+  "fixedLatencySeconds": 480,
+  "eventGapMinutes": 30,
+  "constants": {
+    "DIRECT_GO_MIN": 200,
+    "DIRECT_WATCH_MIN": 120,
+    "OPTIMAL_SUN_MIN": 5,
+    "OPTIMAL_SUN_MAX": 22,
+    "WATCH_SUN_MIN": 0,
+    "WATCH_SUN_MAX": 30,
+    "NEAR_MISS_DNI_MIN": 80.0
+  },
+  "poolSeedScans": 49300,
+  "events": 4646,
+  "excluded": 133,
+  "dispositionCounts": {
+    "rejected": 3062,
+    "near_miss": 146,
+    "possible": 1255,
+    "go": 50
+  },
+  "queueLength": 1451,
+  "note": "queue ordering depends on the approximate Open-Meteo historical model lane; satellite lane is exact archived GOES"
+}

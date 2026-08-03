@@ -1,0 +1,25 @@
+{
+ "schemaVersion": "historical-study-notes.v1",
+ "notes": [
+  {
+   "at": "2026-08-02",
+   "note": "GO context review: reviewer examined +/-40 min context frames for both round-1 GO events (site91 Walton Peak, site784 Pearl) via go-context.html; confirmed no bow in any context frame. Reviewer assessment: neither scene reads as a rainbow-producing setup. Blind round-1 grades unchanged."
+  },
+  {
+   "at": "2026-08-02",
+   "note": "UNBLINDING RECORD: GO roster (28 events incl. site names) was shown to the reviewer before round 3. Any post-round-2 grade on a named GO event is unblinded. Livingston site987-20260711T001000Z NW-camera context frames pulled for out-of-band inspection at reviewer request."
+  },
+  {
+   "at": "2026-08-02",
+   "note": "Reviewer calibration on Choteau (site716-20260707T115000Z): bow is a faint sliver and sky is mostly overcast, BUT foreground is visibly sunlit (direct beam from behind the camera) and the bow itself proves a direct beam. So V2 overcast_supported \u2014 an affirmative-dark verdict about SUNLIGHT state, not sky state \u2014 is a true affirmative false negative here; the blind spot is grazing under-deck light below the 2 km minimum sampled cloud height. Optional follow-up: prominence tagging (faint/partial vs clear/full) over the 35 confirmed bows to test whether V2 verdict errors track prominence."
+  },
+  {
+   "at": "2026-08-02",
+   "note": "SUNLIGHT ADJUDICATION: reviewer examined all 21 go_no_rainbow events V2 called sunlit_supported \u2014 21/21 visibly sunlit. V2 positive-call precision validated on this set."
+  },
+  {
+   "at": "2026-08-02",
+   "note": "FALSE_RAIN_EVIDENCE refined by MRMS grid inspection: Aberdeen site1075-20260707T001000Z = SINGLE isolated 1-km pixel at 12.9 mm/hr, zero wet neighbors in 60x60 km \u2014 non-meteorological speckle, confirmed. Plant City site1088-20260709T225000Z = RETRACTED from this class: coherent 116-cell shower, 64 mm/hr core, real sun-shower archetype (no visible bow). Root cause: observer_seeds_from_rain_grid gates on cell VALUE, never spatial support \u2014 an isolated pixel passes rain-range and is trivially an edge. Proposed fix for Codex: minimum echo-area gate at seed time (N wet cells in neighborhood), optional MRMS RQI layer. Speckle prefers clear air, which also aces the GO sunlight gates \u2014 speckle is a GO generator."
+  }
+ ]
+}

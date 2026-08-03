@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "historical-candidate-pool.v1",
+  "window": {
+    "start": "2026-07-29T00:00:00Z",
+    "endExclusive": "2026-07-31T00:00:00Z"
+  },
+  "frameCadenceMinutes": 10,
+  "cameraDistanceKm": 40.0,
+  "seedGenerator": "worker.detector_core.observer_seeds_from_rain_grid(stride=10, maximum=400)",
+  "cameraMatcher": "worker.research_review.camera_matches",
+  "mrmsSource": "s3://noaa-mrms-pds CONUS PrecipRate_00.00 (archived)",
+  "siteCatalog": "C:\\Users\\jeffm\\rainbow-finder\\validation\\faa\\sites.json",
+  "siteCatalogSha256": "ab4a89635c12dc135e8494fecd6abd12913b2775d0bbf33f8737e48e1ad89ba5",
+  "note": "raw pool; exclusions and V1/V2 sunlight replay are applied downstream"
+}

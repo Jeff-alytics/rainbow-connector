@@ -1,0 +1,32 @@
+{
+ "schemaVersion": "historical-review-corrections.v1",
+ "correctedAt": "2026-08-02",
+ "method": "machine-disagreement re-review (CLIP-ranked sheet); reviewer confirmed rainbow in each",
+ "note": "machine-assisted, not blind; corrects round-1..3 false negatives",
+ "events": [
+  {
+   "eventId": "site599-20260716T092000Z",
+   "label": "rainbow"
+  },
+  {
+   "eventId": "site777-20260728T004000Z",
+   "label": "rainbow"
+  },
+  {
+   "eventId": "site602-20260715T212000Z",
+   "label": "rainbow"
+  },
+  {
+   "eventId": "site74-20260721T235000Z",
+   "label": "rainbow"
+  },
+  {
+   "eventId": "site813-20260714T022000Z",
+   "label": "rainbow"
+  },
+  {
+   "eventId": "site745-20260721T132000Z",
+   "label": "rainbow"
+  }
+ ]
+}

@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "historical-review-labels.v2",
+  "exportedAt": "2026-08-02T20:27:25.450Z",
+  "convention": "only events present in eventLabels were reviewed; absent events remain unreviewed",
+  "eventLabels": [
+    {
+      "eventId": "site573-20260720T000000Z",
+      "label": "rainbow",
+      "at": "2026-08-02T20:18:24.722Z"
+    },
+    {
+      "eventId": "site990-20260717T233000Z",
+      "label": "rainbow",
+      "at": "2026-08-02T20:20:46.382Z"
+    },
+    {
+      "eventId": "site691-20260722T214000Z",
+      "label": "rainbow",
+      "at": "2026-08-02T20:21:41.826Z"
+    },
+    {
+      "eventId": "site815-20260726T001000Z",
+      "label": "rainbow",
+      "at": "2026-08-02T20:22:06.320Z"
+    },
+    {
+      "eventId": "site672-20260715T005000Z",
+      "label": "unusable",
+      "at": "2026-08-02T20:23:53.853Z"
+    },
+    {
+      "eventId": "site582-20260725T234000Z",
+      "label": "rainbow",
+      "at": "2026-08-02T20:27:09.400Z"
+    },
+    {
+      "eventId": "site566-20260708T005000Z",
+      "label": "rainbow",
+      "at": "2026-08-02T20:27:20.143Z"
+    }
+  ],
+  "labels": [
+    {
+      "file": "images/site984-20260723T115000Z/13652-1784809106355.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:22:36.965Z"
+    },
+    {
+      "file": "images/site716-20260707T115000Z/12477-1783427179480.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:23:13.567Z"
+    },
+    {
+      "file": "images/site984-20260723T115000Z/13652-1784808611539.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:31:23.911Z"
+    },
+    {
+      "file": "images/site716-20260707T115000Z/12477-1783426669242.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:31:50.388Z"
+    },
+    {
+      "file": "images/site788-20260707T004000Z/12886-1783392249389.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:49:17.026Z"
+    },
+    {
+      "file": "images/site574-20260717T003000Z/12096-1784250020427.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:51:30.070Z"
+    },
+    {
+      "file": "images/site574-20260717T003000Z/12096-1784249478328.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:51:44.893Z"
+    },
+    {
+      "file": "images/site82-20260715T235000Z/11925-1784164854071.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:53:24.628Z"
+    },
+    {
+      "file": "images/site817-20260726T002000Z/12985-1785026990918.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:53:40.496Z"
+    },
+    {
+      "file": "images/site817-20260726T002000Z/12985-1785027675991.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:53:42.990Z"
+    },
+    {
+      "file": "images/site817-20260726T002000Z/12985-1785028382548.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:53:44.661Z"
+    },
+    {
+      "file": "images/site817-20260726T002000Z/12985-1785028899579.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T19:53:45.829Z"
+    },
+    {
+      "file": "images/site573-20260720T000000Z/12092-1784508616528.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T20:18:24.722Z"
+    },
+    {
+      "file": "images/site990-20260717T233000Z/13670-1784335361839.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T20:20:46.382Z"
+    },
+    {
+      "file": "images/site691-20260722T214000Z/12429-1784760232629.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T20:21:41.826Z"
+    },
+    {
+      "file": "images/site815-20260726T001000Z/12981-1785031546860.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T20:22:06.320Z"
+    },
+    {
+      "file": "images/site672-20260715T005000Z/12683-1784076838614.jpg",
+      "label": "unusable",
+      "at": "2026-08-02T20:23:50.721Z"
+    },
+    {
+      "file": "images/site566-20260708T005000Z/12063-1783477945579.jpg",
+      "label": "rainbow",
+      "at": "2026-08-02T20:27:20.143Z"
+    }
+  ]
+}

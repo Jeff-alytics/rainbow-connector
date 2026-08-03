@@ -19,10 +19,48 @@ validation/webcoos/cache/
 .env*.local
 __pycache__/
 *.pyc
-validation/
+validation/*
 
 # Turn-by-turn exchange between the Claude and Codex sessions on this machine.
 # Both run against this working tree, so a file is a lossless channel where
 # copy-pasting terminal output truncates. Conversational only -- anything worth
 # keeping gets promoted to docs/ and committed. See docs/agent-handoff.md.
 handoff/
+
+# Historical study durable record (2026-08): small canonical artifacts stay tracked
+!validation/historical-review-queue/
+validation/historical-review-queue/*
+!validation/historical-review-queue/study-report-2026-08-02.md
+!validation/historical-review-queue/study-notes.json
+!validation/historical-review-queue/reviewed-rounds.json
+!validation/historical-review-queue/human-labels-*.json
+!validation/historical-review-queue/queue-manifest.json
+!validation/frozen-case-pool-check/
+validation/frozen-case-pool-check/*
+!validation/frozen-case-pool-check/camera-free-seeds.json
+!validation/frozen-case-pool-check/pool-manifest.json
+!validation/causal-replay-gate/
+validation/causal-replay-gate/*
+!validation/causal-replay-gate/gate-config.json
+!validation/causal-replay-gate/bow-evaluation-targets.json
+!validation/causal-replay-gate/gate-report.json
+!validation/causal-replay-gate/july-predictions/
+validation/causal-replay-gate/july-predictions/*
+!validation/causal-replay-gate/july-predictions/prediction-manifest.json
+!validation/causal-replay-gate/frozen-predictions/
+validation/causal-replay-gate/frozen-predictions/*
+!validation/causal-replay-gate/frozen-predictions/prediction-manifest.json
+!validation/storm-object-replay-gate/
+validation/storm-object-replay-gate/*
+!validation/storm-object-replay-gate/gate-config.json
+!validation/storm-object-replay-gate/gate-config-v2.json
+!validation/storm-object-replay-gate/scan-artifact-manifest.json
+!validation/storm-object-replay-gate/gate-report.json
+!validation/storm-object-replay-gate/time-aligned-targets-v2.json
+!validation/storm-object-replay-gate/time-aligned-target-config-v3.json
+!validation/storm-object-replay-gate/time-aligned-target-scans/
+validation/storm-object-replay-gate/time-aligned-target-scans/*
+!validation/storm-object-replay-gate/time-aligned-target-scans/*.json.gz
+!validation/storm-object-replay-gate/july-predictions/
+validation/storm-object-replay-gate/july-predictions/*
+!validation/storm-object-replay-gate/july-predictions/prediction-manifest.json
