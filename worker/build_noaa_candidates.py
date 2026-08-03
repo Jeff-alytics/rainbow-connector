@@ -5,12 +5,20 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 
 from detector_core import observer_seeds_from_rain_grid
 from mrms_source import MAX_AGE_MINUTES, discover_latest, download_and_expand, open_precip_grid, source_metadata
 from rain_footprint import rain_footprint_id
+
+
+def env_flag(name: str, default: bool = False) -> bool:
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
 def arguments() -> argparse.Namespace:
@@ -60,6 +68,7 @@ def build(args: argparse.Namespace, research_artifacts: dict | None = None) -> d
         stride=args.stride,
         maximum=args.maximum,
         diagnostics=radar_diagnostics,
+        enforce_spatial_support=env_flag("RAINBOW_ENFORCE_SPATIAL_SUPPORT"),
     )
     footprint_id = rain_footprint_id(obj.observed_at)
     if research_artifacts is not None:

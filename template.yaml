@@ -14,9 +14,6 @@ Parameters:
   NotificationUrl:
     Type: String
     Default: https://therainbowconnector.com/api/notify-alerts
-  DotEvidenceUrl:
-    Type: String
-    Default: https://therainbowconnector.com/api/dot-evidence
   AlertNotifySecret:
     Type: String
     Default: ""
@@ -87,10 +84,11 @@ Resources:
           RAINBOW_PUBLISH_URL: !Ref PublishUrl
           SATELLITE_PUBLISH_SECRET: !Ref PublishSecret
           RAINBOW_NOTIFY_URL: !Ref NotificationUrl
-          RAINBOW_DOT_EVIDENCE_URL: !Ref DotEvidenceUrl
           ALERT_NOTIFY_SECRET: !Ref AlertNotifySecret
           RAINBOW_MAX_CANDIDATES: "250"
           RAINBOW_MRMS_STRIDE: "10"
+          # Shadow-only until retained flags clear the positive-control gate.
+          RAINBOW_ENFORCE_SPATIAL_SUPPORT: "false"
           RAINBOW_CACHE_DIR: /tmp/rainbow-worker
           RAINBOW_RESEARCH_BUCKET: !Ref RainbowResearchBucket
           RAINBOW_SHADOW_FUNCTION: !Ref SunlightShadowWorker

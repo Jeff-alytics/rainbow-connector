@@ -185,6 +185,7 @@ def materialize(
             "rainIntensity": min(1, candidate["rainRateMmHr"] / 2),
             "observerRainRateMmHr": candidate["observerRainRateMmHr"],
             "observerRainIntensity": min(1, candidate["observerRainRateMmHr"] / 2),
+            "spatialSupport": candidate.get("spatialSupport"),
             "rainPoint": {
                 "lat": candidate["rainLat"],
                 "lon": candidate["rainLon"],

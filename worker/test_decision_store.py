@@ -60,13 +60,12 @@ class DecisionStoreTests(unittest.TestCase):
         self.assertFalse(result["ok"])
         self.assertIn("write failed", result["error"])
 
-    @patch.object(lambda_function, "capture_dot_evidence", return_value={"ok": True})
     @patch.object(lambda_function, "safe_build_and_persist_rain_footprint", return_value={"ok": False, "error": "sidecar failed"})
     @patch.object(lambda_function, "safe_persist_decision_log", return_value={"ok": False, "error": "write failed"})
     @patch.object(lambda_function, "notify_subscribers", return_value={"ok": True, "sent": 1})
     @patch.object(lambda_function, "publish_artifact", return_value={"ok": True})
     @patch.object(lambda_function, "build_final_artifact", return_value=ARTIFACT)
-    def test_log_failure_cannot_block_publication_or_email(self, build, publish, notify, research, footprint, camera):
+    def test_log_failure_cannot_block_publication_or_email(self, build, publish, notify, research, footprint):
         result = lambda_function.handler({}, None)
         self.assertTrue(result["ok"])
         publish.assert_called_once()

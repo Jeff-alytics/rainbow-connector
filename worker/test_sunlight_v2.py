@@ -90,7 +90,7 @@ class SunlightV2Tests(unittest.TestCase):
         self.assertEqual(metrics["rejected"]["missing"], 1)
 
     def test_method_is_versioned_and_non_operational_by_contract(self):
-        self.assertEqual(METHOD_VERSION, "sunlight-v2-shadow-2026-07-v3")
+        self.assertEqual(METHOD_VERSION, "sunlight-v2-shadow-2026-08-v4")
 
     def test_four_state_requires_corroboration_and_reserves_dark_for_supported_overcast(self):
         supported, _ = sunlight_state(
@@ -105,9 +105,14 @@ class SunlightV2Tests(unittest.TestCase):
             {"temporalFramesUsed": 1, "corroboratingFrames": 0, "causalGapFraction": 0.0, "maximumFrameGapFraction": 0.0},
             {"supportScore": 0.0}, {"available": False, "supportScore": None}, {"clearnessRatio": None},
         )
+        missing_metar, _ = sunlight_state(
+            {"temporalFramesUsed": 3, "corroboratingFrames": 0, "causalGapFraction": 0.0, "maximumFrameGapFraction": 0.0},
+            {"supportScore": 0.0}, {"available": False, "supportScore": None}, {"clearnessRatio": None},
+        )
         self.assertEqual(supported, "sunlit_supported")
         self.assertEqual(overcast, "overcast_supported")
         self.assertEqual(unresolved, "unresolved")
+        self.assertEqual(missing_metar, "unresolved")
 
 
 if __name__ == "__main__":

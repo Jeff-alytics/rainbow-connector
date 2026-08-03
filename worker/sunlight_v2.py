@@ -374,7 +374,12 @@ def sunlight_state(band2: dict, acmc: dict, metar: dict, dsrf: dict) -> tuple[st
         reasons.append("quality_valid_dsrf_clearness")
     if reasons:
         return "sunlight_plausible", reasons
-    metar_overcast = not metar.get("available") or (metar_score is not None and float(metar_score) <= 0.3)
+    # Missing METAR is unresolved, not affirmative evidence of overcast.
+    metar_overcast = (
+        metar.get("available") is True
+        and metar_score is not None
+        and float(metar_score) <= 0.3
+    )
     if (
         frames >= 2 and maximum_gap is not None and float(maximum_gap) <= 0.1
         and acmc_score is not None and float(acmc_score) <= 0.1 and metar_overcast

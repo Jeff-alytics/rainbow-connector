@@ -55,16 +55,16 @@ class ShadowDispatchTests(unittest.TestCase):
 
     def test_completed_current_method_is_immutable(self):
         self.assertTrue(already_enriched({"shadowV2": {
-            "methodVersion": "sunlight-v2-shadow-2026-07-v3", "status": "complete",
+            "methodVersion": "sunlight-v2-shadow-2026-08-v4", "status": "complete",
         }}))
         self.assertTrue(already_enriched({"shadowV2": {
-            "methodVersion": "sunlight-v2-shadow-2026-07-v3", "status": "complete_with_errors",
+            "methodVersion": "sunlight-v2-shadow-2026-08-v4", "status": "complete_with_errors",
         }}))
         self.assertFalse(already_enriched({"shadowV2": {
             "methodVersion": "sunlight-v2-shadow-2026-07-v1", "status": "complete",
         }}))
         self.assertFalse(already_enriched({"shadowV2": {
-            "methodVersion": "sunlight-v2-shadow-2026-07-v3", "status": "pending",
+            "methodVersion": "sunlight-v2-shadow-2026-08-v4", "status": "pending",
         }}))
 
 

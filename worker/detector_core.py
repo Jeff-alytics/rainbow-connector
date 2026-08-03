@@ -16,6 +16,7 @@ RAIN_MAX_MM_HR = 20.0
 OBSERVER_DRY_MAX_MM_HR = 0.05
 OBSERVER_DISTANCES_KM = (8, 15, 25, 40)
 CONUS_BOUNDS = (-125.0, 24.0, -66.0, 50.0)
+SPATIAL_SUPPORT_METHOD_VERSION = "mrms-adjacent-wet-cell-v1"
 
 
 @lru_cache(maxsize=1)
@@ -121,6 +122,28 @@ def is_edge(rates: np.ndarray, row: int, column: int, radius: int) -> bool:
     return bool(np.any(~np.isfinite(neighborhood)) or np.any(neighborhood < RAIN_MIN_MM_HR))
 
 
+def rain_spatial_support(rates: np.ndarray, row: int, column: int) -> dict:
+    """Describe whether a wet MRMS cell has any immediate spatial support.
+
+    The initial shadow gate is intentionally narrow: only a wet center cell with
+    zero wet cells in its eight-neighbor ring is flagged as an isolated speckle.
+    """
+    r0, r1 = max(0, row - 1), min(rates.shape[0], row + 2)
+    c0, c1 = max(0, column - 1), min(rates.shape[1], column + 2)
+    neighborhood = rates[r0:r1, c0:c1]
+    wet = np.isfinite(neighborhood) & (neighborhood >= RAIN_MIN_MM_HR)
+    adjacent_wet_cells = int(wet.sum()) - int(
+        np.isfinite(rates[row, column]) and rates[row, column] >= RAIN_MIN_MM_HR
+    )
+    isolated = adjacent_wet_cells == 0
+    return {
+        "methodVersion": SPATIAL_SUPPORT_METHOD_VERSION,
+        "adjacentWetCells": adjacent_wet_cells,
+        "isolatedPixel": isolated,
+        "passes": not isolated,
+    }
+
+
 def cluster(seeds: list[dict], radius_km: float = 20, maximum: int = 400) -> list[dict]:
     selected: list[dict] = []
     for seed in sorted(seeds, key=lambda item: item["radarScore"], reverse=True):
@@ -146,6 +169,7 @@ def observer_seeds_from_rain_grid(
     stride: int = 10,
     maximum: int = 400,
     diagnostics: dict | None = None,
+    enforce_spatial_support: bool = False,
 ) -> list[dict]:
     """Find rain edges first, then place potential observers toward the Sun."""
     latitudes = np.asarray(latitudes, dtype=float)
@@ -158,6 +182,9 @@ def observer_seeds_from_rain_grid(
     counts = {
         "sampledWetCells": 0,
         "rainEdgeCells": 0,
+        "spatialSupportAssessedRainEdges": 0,
+        "spatialSupportFlaggedRainEdges": 0,
+        "spatialSupportRejectedRainEdges": 0,
         "lowSunRainEdges": 0,
         "dryObserverSeeds": 0,
         "nonConusObserverSeeds": 0,
@@ -172,6 +199,13 @@ def observer_seeds_from_rain_grid(
             if not is_edge(rates, row, column, edge_radius):
                 continue
             counts["rainEdgeCells"] += 1
+            spatial_support = rain_spatial_support(rates, row, column)
+            counts["spatialSupportAssessedRainEdges"] += 1
+            if spatial_support["isolatedPixel"]:
+                counts["spatialSupportFlaggedRainEdges"] += 1
+                if enforce_spatial_support:
+                    counts["spatialSupportRejectedRainEdges"] += 1
+                    continue
             rain_lat = float(latitudes[row])
             rain_lon = float(longitudes[column])
             elevation, sun_bearing = solar_position(observed_at, rain_lat, rain_lon)
@@ -202,9 +236,18 @@ def observer_seeds_from_rain_grid(
                     "sunBearingDeg": round(sun_bearing, 1),
                     "antiSolarBearingDeg": round((sun_bearing + 180) % 360, 1),
                     "radarScore": round(100 * (0.45 * sun_score + 0.35 * rain_score + 0.2 * edge_score), 1),
+                    "spatialSupport": spatial_support,
                 })
                 break
     selected = cluster(candidates, maximum=maximum)
     if diagnostics is not None:
-        diagnostics.update({**counts, "clusteredObserverSeeds": len(selected)})
+        diagnostics.update({
+            **counts,
+            "spatialSupportMethodVersion": SPATIAL_SUPPORT_METHOD_VERSION,
+            "spatialSupportMode": "enforce" if enforce_spatial_support else "shadow",
+            "clusteredObserverSeeds": len(selected),
+            "clusteredFlaggedObserverSeeds": sum(
+                seed.get("spatialSupport", {}).get("isolatedPixel") is True for seed in selected
+            ),
+        })
     return selected

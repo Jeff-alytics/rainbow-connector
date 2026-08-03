@@ -1,5 +1,4 @@
 requests
-imageio-ffmpeg
 numpy
 xarray
 netCDF4

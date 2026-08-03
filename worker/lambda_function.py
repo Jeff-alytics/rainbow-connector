@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from pipeline import build_final_artifact, capture_dot_evidence, notify_subscribers, publish_artifact
+from pipeline import build_final_artifact, notify_subscribers, publish_artifact
 from decision_store import safe_persist_decision_log
 from rain_footprint_store import safe_build_and_persist_rain_footprint
 from shadow_dispatch import safe_invoke_sunlight_v2
@@ -35,12 +35,6 @@ def handler(event, context):
         artifact.setdefault("sourceHealth", {}).setdefault("radar", {})["rainFootprintContentSha256"] = rain_footprint["contentSha256"]
     decision_log = safe_persist_decision_log(artifact, decision_records)
     sunlight_v2 = safe_invoke_sunlight_v2(decision_log, len(decision_records))
-    try:
-        dot_evidence = capture_dot_evidence()
-    except Exception as error:
-        # Camera collection is supporting review evidence. It must never prevent
-        # a healthy forecast artifact or subscriber alert from completing.
-        dot_evidence = {"ok": False, "error": str(error)[:300]}
     return {
         "ok": True,
         "generatedAt": artifact["generatedAt"],
@@ -54,5 +48,4 @@ def handler(event, context):
         "mapTiers": map_tiers,
         "opportunityLedger": opportunity_ledger,
         "sunlightV2": sunlight_v2,
-        "dotEvidence": dot_evidence,
     }

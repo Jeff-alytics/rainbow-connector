@@ -7,7 +7,7 @@ import math
 from typing import Any
 
 RULE_VERSION = "noaa-detector-2026-07-v1"
-SUNLIGHT_V2_METHOD_VERSION = "sunlight-v2-shadow-2026-07-v3"
+SUNLIGHT_V2_METHOD_VERSION = "sunlight-v2-shadow-2026-08-v4"
 
 
 def finite(value: Any) -> float | None:
@@ -90,6 +90,7 @@ def build_record(candidate: dict, radar_observed_at: str | None, disposition: st
                 "lat": candidate.get("rainLat"), "lon": candidate.get("rainLon"),
                 "distanceKm": finite(candidate.get("rainDistanceKm")), "rateMmHr": finite(candidate.get("rainRateMmHr")),
                 "observerRateMmHr": finite(candidate.get("observerRainRateMmHr")),
+                "spatialSupport": candidate.get("spatialSupport"),
                 "antiSolarRainArcSpanDeg": candidate.get("antiSolarRainArcSpanDeg"),
                 "antiSolarRainOccupiedDeg": candidate.get("antiSolarRainOccupiedDeg"),
                 "antiSolarRainSegmentCount": candidate.get("antiSolarRainSegmentCount"),

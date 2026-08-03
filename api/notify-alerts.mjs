@@ -4,6 +4,8 @@ import { capturePendingFaaEvidence } from "./go-evidence-common.mjs";
 import { capturePendingNimsEvidence } from "./usgs-nims-common.mjs";
 import { capturePendingWebcoosEvidence } from "./webcoos-common.mjs";
 import { capturePendingAlertCaEvidence } from "./alertca-common.mjs";
+import { capturePendingAlertWestEvidence } from "./alertwest-common.mjs";
+import { capturePendingNysmEvidence } from "./nysm-common.mjs";
 import { strictGoCandidates } from "./artifact-policy.mjs";
 import {
   loadFreshBlobSatelliteArtifact,
@@ -29,6 +31,7 @@ export const config = {
 };
 
 export const ALERT_RADIUS_KM = 15;
+export const ALERT_MIN_LINKED_SCANS = 2;
 const DEFAULT_COOLDOWN_HOURS = Number(process.env.ALERT_COOLDOWN_HOURS || 12);
 const MAX_SENDS_PER_RUN = Number(process.env.ALERT_MAX_SENDS_PER_RUN || 25);
 
@@ -51,7 +54,9 @@ async function loadFinalizedArtifact() {
 }
 
 export function alertableGoCandidates(artifact) {
-  return strictGoCandidates(artifact);
+  return strictGoCandidates(artifact).filter(candidate =>
+    Number(candidate?.persistence?.scanCount) >= ALERT_MIN_LINKED_SCANS
+  );
 }
 
 const COMPASS_POINTS = [
@@ -227,7 +232,13 @@ export default async function handler(req, res) {
   const alertCaEvidence = await capturePendingAlertCaEvidence(2).catch(error => [
     { stored: false, reason: error?.message || "alertca_capture_failed" },
   ]);
-  const evidenceCapture = [...faaEvidence, ...nimsEvidence, ...webcoosEvidence, ...alertCaEvidence];
+  const alertWestEvidence = await capturePendingAlertWestEvidence(2).catch(error => [
+    { stored: false, reason: error?.message || "alertwest_capture_failed" },
+  ]);
+  const nysmEvidence = await capturePendingNysmEvidence(2).catch(error => [
+    { stored: false, reason: error?.message || "nysm_capture_failed" },
+  ]);
+  const evidenceCapture = [...faaEvidence, ...nimsEvidence, ...webcoosEvidence, ...alertCaEvidence, ...alertWestEvidence, ...nysmEvidence];
 
   json(res, 200, {
     ok: true,

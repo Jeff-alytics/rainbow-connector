@@ -2,21 +2,23 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
-import { ALERT_RADIUS_KM, alertableGoCandidates, lookInstructions, nearestCandidate } from "../api/notify-alerts.mjs";
+import { ALERT_MIN_LINKED_SCANS, ALERT_RADIUS_KM, alertableGoCandidates, lookInstructions, nearestCandidate } from "../api/notify-alerts.mjs";
 import { TURNSTILE_ACTION, verifyTurnstile } from "../api/turnstile.mjs";
 
-test("email alerts accept both new and persistence-confirmed strict GO candidates", () => {
+test("email alerts require two accumulated linked scans", () => {
   const artifact = {
     candidates: [
-      { id: "confirmed", verdict: "go", lat: 35, lon: -86, persistence: { confirmed: true } },
-      { id: "watch", verdict: "watch", lat: 37, lon: -88, persistence: { confirmed: true } },
+      { id: "confirmed", verdict: "go", lat: 35, lon: -86, persistence: { confirmed: true, scanCount: 2 } },
+      { id: "watch", verdict: "watch", lat: 37, lon: -88, persistence: { confirmed: true, scanCount: 3 } },
     ],
     possibleCandidates: [
-      { id: "pending", verdict: "go", lat: 36, lon: -87, persistence: { confirmed: false } },
+      { id: "pending", verdict: "go", lat: 36, lon: -87, persistence: { confirmed: false, scanCount: 1 } },
+      { id: "exceptional-first-scan", verdict: "go", lat: 36.5, lon: -87.5, persistence: { confirmed: false, scanCount: 1 } },
       { id: "possible", verdict: "watch", lat: 38, lon: -89 },
     ],
   };
-  assert.deepEqual(alertableGoCandidates(artifact).map(item => item.id), ["confirmed", "pending"]);
+  assert.equal(ALERT_MIN_LINKED_SCANS, 2);
+  assert.deepEqual(alertableGoCandidates(artifact).map(item => item.id), ["confirmed"]);
 });
 
 test("email GO radius is fixed at the same 15 km used by ZIP cards", () => {
