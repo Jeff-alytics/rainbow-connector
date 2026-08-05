@@ -1,5 +1,6 @@
 import { json, readJsonBody, verifySecret } from "./alert-common.mjs";
-import { REVIEW_LABELS, evidenceFrameReviewGroups, labelGoEvent, labelGoEventView, loadGoEvents, loadGoEventsBetween } from "./go-event-common.mjs";
+import { REVIEW_LABELS, evidenceFrameReviewGroups, labelGoEvent, labelGoEventView, loadGoEvents,
+  loadGoEventsBetween, loadGoEventsBySource, loadReviewedGoEvents } from "./go-event-common.mjs";
 import { hasReviewSession } from "./review-auth-common.mjs";
 
 import { activeCameraExclusionMap, appendCameraExclusion, loadCameraExclusionRegistry } from './review-camera-exclusions.mjs';
@@ -81,7 +82,6 @@ export function reviewQueue(events, options = {}) {
       }
       return (event.review?.label || "pending") === "pending";
     })
-    .filter(event => event.candidateType !== "research_possible" || event.researchSource === "v4_shadow" || Number(event.scanCount || 0) >= 2)
     .filter(event => (event.evidence?.frames || []).length > 0)
     .filter(event => {
       const groups = evidenceFrameReviewGroups(event);
@@ -90,8 +90,6 @@ export function reviewQueue(events, options = {}) {
           && allowedReviewGroup(event, group, excludedCameraKeys))
         : trustedReviewSource(event.evidence?.source);
     })
-    .filter(event => event.evidence?.source !== "FAA WeatherCam"
-      || (event.evidence.frames || []).filter(frame => Number(frame.timeOffsetMinutes) > 0).length >= 2)
     .sort((a, b) => {
       const aClass = eventClass(a) === "GO" ? 1 : 0;
       const bClass = eventClass(b) === "GO" ? 1 : 0;
@@ -247,7 +245,9 @@ export function v4ShadowDaily(events) {
         hasMatchedCamera: prediction.hasMatchedCamera === true,
         hasCameraEvidence: hasEvidenceFrames,
         cameraMatches: prediction.cameraMatches || [],
+        evidenceCamera: event.evidence?.camera || null,
         reviewLabel: event.review?.label || "pending",
+        cameraReviewLabels: Object.values(event.viewReviews || {}).map(review => review?.label).filter(Boolean),
         modelDetailsWithheld: awaitingCameraGrade,
       });
     }
@@ -364,18 +364,22 @@ export function reviewResults(events, options = {}) {
 export default async function handler(req, res) {
   if (req.method === "GET") {
     if (!authorized(req)) { json(res, 401, { ok: false, error: "Unauthorized." }); return; }
-    const limit = Math.max(1, Math.min(Number(req.query?.limit) || 100, 1000));
+    const requestedLimit = Number(req.query?.limit) || 100;
     const label = String(req.query?.label || "").trim();
     const queue = String(req.query?.queue || "") === "1";
     const results = String(req.query?.results || "") === "1";
     const v4Daily = String(req.query?.v4Daily || "") === "1";
+    const limit = Math.max(1, Math.min(requestedLimit, v4Daily ? 5000 : 1000));
     const source = String(req.query?.source || "").trim();
     const since = Date.parse(String(req.query?.since || ""));
     const until = Date.parse(String(req.query?.until || ""));
     const exclusionRegistry = queue || results ? await loadCameraExclusionRegistry() : null;
     const activeExclusions = exclusionRegistry ? activeCameraExclusionMap(exclusionRegistry) : new Map();
     const reviewOptions = { excludedCameraKeys: new Set(activeExclusions.keys()) };
-    const loaded = Number.isFinite(since) && Number.isFinite(until)
+    const loaded = v4Daily
+      ? await loadGoEventsBySource("v4_shadow", limit)
+      : results ? await loadReviewedGoEvents(limit)
+      : Number.isFinite(since) && Number.isFinite(until)
       ? await loadGoEventsBetween(since, until, limit)
       : await loadGoEvents(limit);
     if (v4Daily) {

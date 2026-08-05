@@ -26,15 +26,7 @@ function angleDifference(a, b) {
 
 const FAA_MATCHER_VERSION = "faa-bow-arc-balanced-window-2026-07-v2";
 const DEFAULT_FAA_FOV_DEG = 45;
-const FAA_CAPTURE_MATURITY_MINUTES = 20;
 const POSSIBLE_FAA_MAX_DISTANCE_KM = 40;
-
-// Legacy events without scanCount are treated as mature; explicit one-scan research is blocked.
-function isMatureCameraEvent(event) {
-  const scanCount = Number(event?.scanCount);
-  return event?.candidateType !== "research_possible"
-    || !Number.isFinite(scanCount) || scanCount >= 2;
-}
 
 function normalizeBearing(value) { return (Number(value) % 360 + 360) % 360; }
 
@@ -140,8 +132,12 @@ export function selectFaaFrames(payload, cameraId, centerMs) {
     .filter(image => new Date(image.imageDatetime).getTime() > centerMs)
     .sort((a, b) => new Date(a.imageDatetime) - new Date(b.imageDatetime))
     .slice(0, 3);
-  if (after.length < 2) return [];
   return [...before, ...after].sort((a, b) => new Date(a.imageDatetime) - new Date(b.imageDatetime));
+}
+
+function hasCompleteFaaWindow(event) {
+  const frames = event?.evidence?.source === "FAA WeatherCam" ? event.evidence.frames || [] : [];
+  return frames.length >= 4 && frames.filter(frame => Number(frame.timeOffsetMinutes) > 0).length >= 2;
 }
 
 async function storeFrame(event, match, frame) {
@@ -176,10 +172,8 @@ async function storeFrame(event, match, frame) {
 
 export async function captureFaaEvidence(event) {
   const centerMs = new Date(event?.representative?.detectedAt || event?.firstSeenAt || 0).getTime();
-  if (!Number.isFinite(centerMs) || Date.now() - centerMs < FAA_CAPTURE_MATURITY_MINUTES * 60 * 1000) {
-    return { stored: false, reason: "awaiting_post_event_window", eventId: event?.id };
-  }
-  if (event?.evidence?.matcherVersion === FAA_MATCHER_VERSION && (event?.evidence?.frames || []).length >= 3) {
+  if (!Number.isFinite(centerMs)) return { stored: false, reason: "invalid_event_time", eventId: event?.id };
+  if (event?.evidence?.matcherVersion === FAA_MATCHER_VERSION && hasCompleteFaaWindow(event)) {
     return { stored: false, reason: "already_captured", eventId: event.id };
   }
   const catalog = await sites();
@@ -201,14 +195,13 @@ export async function captureFaaEvidence(event) {
     const stored = (await Promise.all(frames.map(frame => storeFrame(event, match, frame).catch(() => null)))).filter(Boolean);
     return { match, stored };
   }));
-  const usableCaptured = captured.filter(item =>
-    item.stored.filter(frame => Number(frame.timeOffsetMinutes) > 0).length >= 2);
+  const usableCaptured = captured.filter(item => item.stored.length > 0);
   const storedFrames = usableCaptured.flatMap(item => item.stored);
   const usedMatches = usableCaptured.map(item => item.match);
-  if (storedFrames.length < 4) return { stored: false, reason: "awaiting_post_event_frames", eventId: event.id, frames: storedFrames.length };
+  if (!storedFrames.length) return { stored: false, reason: "awaiting_event_frames", eventId: event.id, frames: 0 };
   const primary = usedMatches[0] || matches[0];
   await attachGoEventEvidence(event.id, {
-    status: "ready",
+    status: storedFrames.filter(frame => Number(frame.timeOffsetMinutes) > 0).length >= 2 ? "ready" : "collecting",
     source: "FAA WeatherCam",
     matcherVersion: FAA_MATCHER_VERSION,
     camera: {
@@ -231,7 +224,7 @@ export async function captureFaaEvidence(event) {
 }
 
 export function selectPendingFaaEvents(ranked, limit = 2) {
-  ranked = (ranked || []).filter(isMatureCameraEvent);
+  ranked = ranked || [];
   const maximum = Math.max(0, Math.min(Number(limit) || 2, 4));
   const research = maximum >= 2 ? ranked.find(event => event.candidateType === "research_possible") : null;
   const pending = ranked.filter(event => event !== research && event.candidateType !== "research_possible")
@@ -248,18 +241,13 @@ export async function capturePendingFaaEvidence(limit = 2) {
   const now = Date.now();
   const ranked = (await loadRecentGoEvents(now - 2 * 60 * 60 * 1000, 50))
     .filter(event => (event.review?.label || "pending") === "pending")
-    .filter(isMatureCameraEvent)
     .filter(event => !(event.evidence?.status === "no_camera_match"
       && event.evidence?.matcherVersion === FAA_MATCHER_VERSION))
-    .filter(event => (event.evidence?.frames || []).length < 3
-      || (event.evidence?.source === "FAA WeatherCam" && event.evidence?.matcherVersion !== FAA_MATCHER_VERSION))
+    .filter(event => !hasCompleteFaaWindow(event)
+      || event.evidence?.matcherVersion !== FAA_MATCHER_VERSION)
     .filter(event => {
       const age = now - new Date(event.lastSeenAt || event.firstSeenAt).getTime();
       return age >= 0 && age <= 2 * 60 * 60 * 1000;
-    })
-    .filter(event => {
-      const centerMs = new Date(event.representative?.detectedAt || event.firstSeenAt || 0).getTime();
-      return Number.isFinite(centerMs) && now - centerMs >= FAA_CAPTURE_MATURITY_MINUTES * 60 * 1000;
     })
     .sort((a, b) => Number(b.peakScore || 0) - Number(a.peakScore || 0));
   const pending = selectPendingFaaEvents(ranked, limit);

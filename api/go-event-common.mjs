@@ -4,6 +4,8 @@ import { strictGoCandidates } from "./artifact-policy.mjs";
 
 export const GO_EVENT_INDEX = "rainbow:go:events";
 export const GO_EVENT_PREFIX = "rainbow:go:event:";
+export const GO_EVENT_REVIEWED_INDEX = "rainbow:go:events:reviewed";
+export const GO_EVENT_SOURCE_INDEX_PREFIX = "rainbow:go:events:source:";
 export const CONFIRMED_GALLERY_INDEX = "rainbow:gallery:confirmed";
 export const CONFIRMED_GALLERY_PREFIX = "rainbow:gallery:item:";
 export const REVIEW_ASSESSMENT_IDEMPOTENCY_PREFIX = "rainbow:review:assessment:";
@@ -435,6 +437,7 @@ export async function labelGoEvent(id, review, attempt = 0) {
     return labelGoEvent(cleanId, review, attempt + 1);
   }
   await syncConfirmedGallery(event);
+  await redis(["ZADD", GO_EVENT_REVIEWED_INDEX, timeMs(event.review.reviewedAt), cleanId]);
   return event;
 }
 
@@ -505,6 +508,7 @@ export async function labelGoEventView(id, cameraKey, review, attempt = 0) {
     return labelGoEventView(cleanId, cleanCameraKey, review, attempt + 1);
   }
   await syncConfirmedGallery(event);
+  await redis(["ZADD", GO_EVENT_REVIEWED_INDEX, timeMs(event.viewReviews[cleanCameraKey].reviewedAt), cleanId]);
   return event;
 }
 
@@ -650,6 +654,23 @@ export function researchDetectionFromAssessment(assessment) {
       antiSolarRainSpanByTier: rain.antiSolarRainSpanByTier || null,
     },
   };
+}
+
+async function loadGoEventsFromIndex(index, limit) {
+  if (!configuredStore()) return [];
+  const count = Math.max(1, Math.min(Number(limit) || 250, 5000));
+  const ids = await redis(["ZREVRANGE", index, 0, count - 1]);
+  return loadEventsByIds((ids || []).map(id => GO_EVENT_PREFIX + id));
+}
+
+export async function loadGoEventsBySource(source, limit = 1000) {
+  const cleanSource = String(source || "").trim();
+  if (!cleanSource) return [];
+  return loadGoEventsFromIndex(GO_EVENT_SOURCE_INDEX_PREFIX + cleanSource, limit);
+}
+
+export async function loadReviewedGoEvents(limit = 1000) {
+  return loadGoEventsFromIndex(GO_EVENT_REVIEWED_INDEX, limit);
 }
 
 function compactV4ShadowPrediction(assessment) {
@@ -805,7 +826,10 @@ export async function attachReviewAssessments(assessments, options = {}) {
     if (index >= 0) events[index] = event; else events.push(event);
     const claimed = await redis(["SET", REVIEW_ASSESSMENT_IDEMPOTENCY_PREFIX + key, "1", "NX", "EX", ttlSeconds]);
     if (!claimed) duplicates++; else attached++;
-    await redis(["ZADD", GO_EVENT_INDEX, timeMs(event.lastSeenAt), event.id]);
+    await redisPipeline([
+      ["ZADD", GO_EVENT_INDEX, timeMs(event.lastSeenAt), event.id],
+      ["ZADD", GO_EVENT_SOURCE_INDEX_PREFIX + event.researchSource, timeMs(event.lastSeenAt), event.id],
+    ]);
     eventIds.add(event.id);
     } catch (error) {
       unmatched++;

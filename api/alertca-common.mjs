@@ -164,7 +164,6 @@ export async function captureAlertCaEvidence(event, cameras) {
 
 export function selectPendingAlertCaEvents(events, limit = 2) {
   return (events || [])
-    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
     .slice(0, Math.max(0, Math.min(Number(limit) || 2, 4)));
 }
 

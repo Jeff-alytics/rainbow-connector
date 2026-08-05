@@ -212,7 +212,6 @@ export async function captureWebcoosEvidence(event, cameras) {
 
 export function selectPendingWebcoosEvents(events, limit = 2) {
   return (events || [])
-    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
     .slice(0, Math.max(0, Math.min(Number(limit) || 2, 4)));
 }
 export async function capturePendingWebcoosEvidence(limit = 2) {

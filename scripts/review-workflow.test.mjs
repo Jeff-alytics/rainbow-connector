@@ -90,19 +90,20 @@ test("FAA capture reserves one of two slots for persistent research evidence", (
   assert.deepEqual(selectPendingFaaEvents([go, old, research], 2).map(event => event.id), ["go", "research"]);
 });
 
-test("one-scan research cannot consume an FAA capture slot", () => {
+test("one-scan research can be acquired in the reserved FAA capture slot", () => {
   const go = { id: "go", candidateType: "live_go", peakScore: 70 };
   const research = { id: "research", candidateType: "research_possible", scanCount: 1, peakScore: 99 };
-  assert.deepEqual(selectPendingFaaEvents([research, go], 2).map(event => event.id), ["go"]);
+  assert.deepEqual(selectPendingFaaEvents([research, go], 2).map(event => event.id), ["go", "research"]);
 });
 
-test("FAA frame selection requires multiple post-event views and keeps a balanced window", () => {
+test("FAA frame selection stores immediately available views and later keeps a balanced window", () => {
   const center = Date.parse("2026-07-30T01:00:00Z");
   const frame = (minutes, cameraId = 7) => ({
     cameraId, imageUri: `https://example.test/${minutes}.jpg`,
     imageDatetime: new Date(center + minutes * 60_000).toISOString(),
   });
-  assert.deepEqual(selectFaaFrames([frame(-15), frame(-5), frame(5)], 7, center), []);
+  assert.deepEqual(selectFaaFrames([frame(-15), frame(-5), frame(5)], 7, center)
+    .map(item => Math.round((new Date(item.imageDatetime).getTime() - center) / 60_000)), [-15, -5, 5]);
   assert.deepEqual(
     selectFaaFrames([frame(-25), frame(-15), frame(-5), frame(5), frame(15), frame(25), frame(2, 8)], 7, center)
       .map(item => Math.round((new Date(item.imageDatetime).getTime() - center) / 60_000)),
@@ -126,14 +127,14 @@ test("review queue contains only ungraded GO evidence, strongest first", () => {
   );
 });
 
-test("FAA reviews stay hidden until at least two post-event frames exist", () => {
+test("FAA reviews expose immediately available images while later frames can augment them", () => {
   const event = offsets => ({
     id: "faa-window", review: { label: "pending" },
     evidence: { source: "FAA WeatherCam", frames: offsets.map((timeOffsetMinutes, index) => ({
       url: String(index), cameraName: "Test Airport · West", timeOffsetMinutes,
     })) },
   });
-  assert.deepEqual(reviewQueue([event([-15, -6, 4])]), []);
+  assert.equal(reviewQueue([event([-15, -6, 4])]).length, 1);
   assert.equal(reviewQueue([event([-15, -6, 4, 14])]).length, 1);
 });
 
@@ -256,11 +257,11 @@ test("review queue places GO camera evidence before strong POSSIBLE evidence", (
   ]).map(item => item.id), ["go", "possible"]);
 });
 
-test("one-scan research POSSIBLE waits for persistence before review", () => {
+test("one-scan research with a usable image enters review immediately", () => {
   const research = scanCount => ({ id: `research-${scanCount}`, candidateType: "research_possible",
     candidateClass: "POSSIBLE", scanCount, peakScore: 80, review: { label: "pending" },
     evidence: { source: "USGS NIMS", frames: [{}], camera: { distanceKm: 10, bearingDifference: 5 } } });
-  assert.deepEqual(reviewQueue([research(1)]), []);
+  assert.deepEqual(reviewQueue([research(1)]).map(item => item.id), ["research-1"]);
   assert.deepEqual(reviewQueue([research(2)]).map(item => item.id), ["research-2"]);
 });
 
@@ -371,16 +372,16 @@ test("a completed result row hides its verdict only while a sibling view is stil
   assert.equal(reviewQueueItems([reviewable]).length, 0);
   assert.equal(reviewResults([reviewable]).every(row => row.sunlightAssessment?.sunlightState === "sunlit_supported"), true);
 
-  // Stranded: the FAA gate needs two post-event frames across the event, and
-  // this has one, so the queue never offers it. It can never become "fully
-  // graded", and withholding here would hide its evidence forever.
+  // Sparse: each available image remains reviewable immediately. A single
+  // frame can support a positive observation, but existing evidence-weight
+  // rules keep it from becoming a calibration negative by itself.
   const stranded = build([frame(10, 5), frame(20, -5)]);
   const strandedGroups = evidenceFrameReviewGroups(stranded);
   stranded.viewReviews[strandedGroups[0].key] = { label: "no_rainbow", reviewedAt: "2026-07-31T12:05:00Z" };
-  assert.equal(reviewQueueItems([stranded]).length, 0, "unreviewable event must not be queued");
+  assert.equal(reviewQueueItems([stranded]).length, 1, "the remaining sparse camera view must be queued");
   assert.equal(allCameraViewsReviewed(stranded), false);
-  assert.equal(reviewResults([stranded])[0].sunlightAssessment?.sunlightState, "sunlit_supported",
-    "stranded historical evidence must still be exposed");
+  assert.equal(reviewResults([stranded])[0].sunlightAssessment, null,
+    "the verdict must stay blinded while the sparse sibling view awaits grading");
 });
 
 test("a withheld verdict is reported as withheld, not as never assessed", () => {

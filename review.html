@@ -263,7 +263,10 @@ async function loadV4Daily(){
     body.innerHTML = rows.length ? rows.map(item => {
     const location = Number.isFinite(item.lat) && Number.isFinite(item.lon)
       ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.lat},${item.lon}`)}" target="_blank" rel="noopener">${item.lat.toFixed(4)}, ${item.lon.toFixed(4)}</a>` : "—";
-    const camera = item.hasCameraEvidence ? "Evidence frames found" : item.hasMatchedCamera ? "Catalog camera matched" : "No camera found yet";
+    const matchedNames = (item.cameraMatches || []).map(match => [match.name, match.direction].filter(Boolean).join(" · ")).filter(Boolean);
+    const evidenceName = [item.evidenceCamera?.name, item.evidenceCamera?.direction].filter(Boolean).join(" · ");
+    const cameraName = evidenceName || matchedNames.join("; ") || (item.hasCameraEvidence ? "Camera evidence" : "No camera found yet");
+    const camera = cameraName;
     const digest = String(item.predictionSha256 || "");
     return `<tr><td>${esc(item.day)}</td><td>${esc(new Date(item.detectedAt).toLocaleTimeString([], {hour:"numeric",minute:"2-digit",timeZone:"UTC"}))} UTC</td><td>${esc(item.classification || (item.lane === "primary" ? "V4.1 PRIMARY" : item.lane || "—"))}</td>
       <td>${item.modelDetailsWithheld ? "Withheld until graded" : `${number(item.rankWithinScan)} / ${number(item.poolSize)}`}<span class="result-note">${number(item.scanSelections)} scan selection${item.scanSelections === 1 ? "" : "s"}</span></td><td>${item.modelDetailsWithheld ? "Withheld" : number(item.score, 1)}</td><td>${location}</td>

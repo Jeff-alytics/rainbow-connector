@@ -144,7 +144,6 @@ export async function captureNimsEvidence(event) {
 
 export function selectPendingNimsEvents(events, limit = 3) {
   return (events || [])
-    .filter(event => event?.candidateType !== "research_possible" || Number(event?.scanCount || 0) >= 2)
     .slice(0, Math.max(0, Math.min(Number(limit) || 3, 5)));
 }
 export async function capturePendingNimsEvidence(limit = 3) {

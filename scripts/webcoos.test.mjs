@@ -28,10 +28,10 @@ function asset(overrides = {}) {
   };
 }
 
-test("one-scan research cannot consume a WebCOOS capture slot", () => {
+test("one-scan research can be captured by WebCOOS immediately", () => {
   const research = { id: "research", candidateType: "research_possible", scanCount: 1, peakScore: 99 };
   const go = { id: "go", candidateType: "live_go", scanCount: 1, peakScore: 70 };
-  assert.deepEqual(selectPendingWebcoosEvents([research, go], 1).map(event => event.id), ["go"]);
+  assert.deepEqual(selectPendingWebcoosEvents([research, go], 1).map(event => event.id), ["research"]);
 });
 
 test("WebCOOS catalog keeps current one-minute archives and published viewsheds", () => {
