@@ -264,11 +264,11 @@ test("one-scan research POSSIBLE waits for persistence before review", () => {
   assert.deepEqual(reviewQueue([research(2)]).map(item => item.id), ["research-2"]);
 });
 
-test("research POSSIBLEs occupy at most two post-expansion review slots", () => {
+test("camera-qualified research possibilities are not subject to an artificial review cap", () => {
   const research = index => ({ id: `research-${index}`, candidateType: "research_possible",
     candidateClass: "POSSIBLE", scanCount: 2, peakScore: 90-index, review: { label: "pending" },
     evidence: { source: "USGS NIMS", frames: [{}], camera: { distanceKm: 10, bearingDifference: 5 } } });
-  assert.equal(reviewQueueItems([1,2,3,4].map(research)).length, 2);
+  assert.equal(reviewQueueItems([1,2,3,4].map(research)).length, 4);
 });
 
 test("V4 daily feed keeps V4.1 primary and V4.2 viable camera-free predictions", () => {
@@ -294,7 +294,7 @@ test("V4 daily feed keeps V4.1 primary and V4.2 viable camera-free predictions",
   assert.equal(days[1].items[0].score, 91);
 });
 
-test("multiple camera views cannot expand research candidates beyond two review items", () => {
+test("every qualified camera view remains accessible for research candidates", () => {
   const research = index => ({ id: `research-multi-${index}`, candidateType: "research_possible",
     candidateClass: "POSSIBLE", scanCount: 2, peakScore: 90-index, review: { label: "pending" },
     evidence: { source: "FAA WeatherCam", camera: { distanceKm: 10, bearingDifference: 5 }, frames: [
@@ -302,14 +302,13 @@ test("multiple camera views cannot expand research candidates beyond two review 
       { url: `b-${index}`, siteId: index + 10, cameraId: 2, cameraName: `Airport ${index} B`, distanceKm: 12, timeOffsetMinutes: 10 },
     ] } });
   const items = reviewQueueItems([research(1), research(2)]);
-  assert.equal(items.length, 2);
+  assert.equal(items.length, 4);
   assert.equal(new Set(items.map(item => item.eventId)).size, 2);
-  assert.deepEqual(items.map(item => item.eventId), ["research-multi-1", "research-multi-2"]);
+  assert.deepEqual(items.map(item => item.eventId),
+    ["research-multi-1", "research-multi-1", "research-multi-2", "research-multi-2"]);
 });
 
-test("a lone research event still fills both review slots with separate camera views", () => {
-  // Per-event fairness must not forfeit the second slot when there is no second
-  // event to give it to. A camera-gated candidate is worth two views.
+test("a lone research event exposes every qualified camera view", () => {
   const frames = ["10", "20", "30"].flatMap(cameraId => [
     { url: `a${cameraId}`, source: "FAA WeatherCam", siteId: 1, cameraId, timeOffsetMinutes: 4, distanceKm: 12 },
     { url: `b${cameraId}`, source: "FAA WeatherCam", siteId: 1, cameraId, timeOffsetMinutes: 9, distanceKm: 12 },
@@ -318,9 +317,9 @@ test("a lone research event still fills both review slots with separate camera v
     scanCount: 2, lastSeenAt: "2026-07-30T20:00:00Z", review: { label: "pending" },
     evidence: { source: "FAA WeatherCam", frames }, viewReviews: {}, representative: { evidence: {} } };
   const items = reviewQueueItems([event]);
-  assert.equal(items.length, 2);
-  assert.deepEqual(items.map(item => item.eventId), ["research-solo", "research-solo"]);
-  assert.equal(new Set(items.map(item => item.cameraKey)).size, 2);
+  assert.equal(items.length, 3);
+  assert.deepEqual(items.map(item => item.eventId), ["research-solo", "research-solo", "research-solo"]);
+  assert.equal(new Set(items.map(item => item.cameraKey)).size, 3);
 });
 
 test("active reviews stay blinded while completed result rows expose their stored sunlight assessment", () => {
@@ -592,6 +591,8 @@ test("review page includes the model-versus-human results table", async () => {
   assert.match(page, /Frame timing/);
   assert.match(page, /GO \/ Possible/);
   assert.match(page, /Live POSSIBLE/);
+  assert.match(page, /data-queue-filter="v5_shadow"/);
+  assert.match(page, /V5 camera-matched candidate/);
 });
 
 test("review assessment accepts reviewed-image enrichment but not scan-wide V5 logs", async () => {

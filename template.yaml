@@ -76,7 +76,7 @@ Resources:
       # this below 3008 without a fortnight of peak-window memory data; the
       # invocation costs ~7.7 s so the extra GB is about a dollar a month.
       MemorySize: 3008
-      Timeout: 180
+      Timeout: 300
       EphemeralStorage:
         Size: 1024
       Environment:

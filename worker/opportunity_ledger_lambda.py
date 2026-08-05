@@ -16,7 +16,7 @@ from opportunity_ledger_store import load_previous, persist
 from review_callback import safe_push_review_assessments
 from sunlight_v2 import enrich_sunlight_v2
 from v4_shadow_review import finalize_v42_records, mark_v42_dispatched, select_v4_shadow_records
-from v5_shadow_priority import score_v5_shadow_records
+from v5_shadow_priority import score_v5_shadow_records, select_v5_camera_records
 
 
 def _sunlight_candidate(record: dict) -> dict:
@@ -66,6 +66,16 @@ def handler(event, context):
     v5_selection = score_v5_shadow_records(
         sidecar, records, previous, ledger["scanTime"], v4_state["stormLedger"],
     )
+    v5_image_records = select_v5_camera_records(v5_selection, catalog)
+    if v5_image_records:
+        enrich_sunlight_v2(v5_image_records, [_sunlight_candidate(record) for record in v5_image_records],
+                           ledger["scanTime"],
+                           Path(os.environ.get("RAINBOW_CACHE_DIR", "/tmp/rainbow-ledger-review")),
+                           assessment_processing_at=ledger["generatedAt"])
+    v5_image_records = [
+        record for record in v5_image_records
+        if ((record.get("features") or {}).get("sunlightV2") or {}).get("sunlightState") != "overcast_supported"
+    ]
     v5_state = v5_selection.pop("state")
     v5_selection.pop("records", None)
     ledger["v5ShadowState"] = v5_state
@@ -85,9 +95,11 @@ def handler(event, context):
         review = record["features"]["researchReview"]
         backlog[(review["familyEventId"], ledger["generatedAt"][:10])] = record
     dispatch_records = list(backlog.values())
+    dispatch_records.extend(v5_image_records)
     v4_state["projectionBacklog"] = dispatch_records
     review_selection["classificationCounts"] = finalized["classificationCounts"]
     review_selection["dispatchSelected"] = len(dispatch_records)
+    review_selection["v5CameraImageCandidates"] = len(v5_image_records)
     ledger["v4ShadowState"] = v4_state
     ledger["v4ShadowPrediction"] = {**review_selection, "records": records}
     stored = persist(ledger, os.environ.get("RAINBOW_RESEARCH_BUCKET", bucket), s3)

@@ -13,6 +13,7 @@ import math
 from datetime import datetime, timedelta, timezone
 
 from v4_shadow_review import attach_seeds
+from research_review import camera_matches
 
 RULE_VERSION = "v5-dual-cohort-2026-08-v1"
 MODEL_VERSION = "causal-spatial-phase-priority-v2"
@@ -492,3 +493,46 @@ def compact_v5_feed(selection: dict) -> dict:
         "retainedSelections": selection["retained"], "retainedGeometries": unique_geometries,
         "retainedFamilies": len(items),
     }
+
+
+def select_v5_camera_records(selection: dict, camera_catalog: list[dict]) -> list[dict]:
+    """Select every V5-only geometry with a usable catalog camera for image review.
+
+    This is an evidence gate, not a rank cap. Public decisions stay unchanged,
+    and the frozen V5 prediction remains emission-off.
+    """
+    selected = []
+    for record in selection.get("records") or []:
+        review = (record.get("features") or {}).get("researchReview") or {}
+        prediction = review.get("v5Prediction") or {}
+        if "overlap" in (prediction.get("cohortMembership") or []):
+            continue
+        matches = camera_matches(record, camera_catalog or [])
+        if not matches:
+            continue
+        review.update({
+            "source": "v5_shadow",
+            "ruleVersion": prediction.get("ruleVersion"),
+            "modelVersion": prediction.get("modelVersion"),
+            "lane": prediction.get("solarLane"),
+            "rankWithinScan": prediction.get("rankWithinScan"),
+            "poolSize": prediction.get("poolSize"),
+            "score": prediction.get("score"),
+            "ledgerEventId": prediction.get("familyEventId"),
+            "cameraMatches": matches,
+            "hasMatchedCamera": True,
+            "cameraReviewEnabled": True,
+            "selectionReason": "V5-only geometry matched a usable public camera; no rank or count cap",
+            "currentDetectorDisposition": "private_v5_camera_gated_image_candidate",
+            "thresholdSnapshot": {
+                "cameraMaximumDistanceKm": 40,
+                "cameraMinimumBowOverlapDeg": 3,
+                "minimumReviewPersistenceScans": 2,
+                "candidateCap": None,
+            },
+        })
+        record["disposition"] = "selected_research_possible"
+        record["decisionStage"] = "v5_camera_gated_image_selection"
+        record["decisionReasons"] = ["v5_only", "usable_camera_geometry", "uncapped_image_review"]
+        selected.append(record)
+    return selected

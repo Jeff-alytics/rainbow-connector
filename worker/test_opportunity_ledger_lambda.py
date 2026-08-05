@@ -95,6 +95,41 @@ class OpportunityLedgerLambdaTests(unittest.TestCase):
         self.assertTrue(result["ok"])
         self.assertEqual(result["reviewSelection"]["selected"], 0)
 
+    def test_affirmative_overcast_blocks_v5_camera_candidate_dispatch(self):
+        sidecar = {"observedAt": "2026-07-30T23:30:00Z"}
+        raw = json.dumps(sidecar).encode("utf-8")
+        fake_s3 = FakeS3(gzip.compress(raw))
+        ledger = {"scanTime": sidecar["observedAt"], "rainFootprintId": "fp-1",
+                  "stats": {"rainEvents": 1, "opportunities": 1, "observerSwathCells": 10}}
+        record = {"candidateId": "v5-camera", "features": {
+            "observer": {"lat": 40, "lon": -90}, "rain": {}, "geometry": {},
+            "researchReview": {"source": "v5_shadow"}}}
+        v5 = empty_v5_selection()
+        v5["records"] = [record]
+        captured = {}
+        def enrich(records, *_args, **_kwargs):
+            for item in records:
+                item["features"]["sunlightV2"] = {"sunlightState": "overcast_supported"}
+        def callback(envelope):
+            captured["records"] = envelope["records"]
+            return {"ok": True, "assessments": 0}
+        with patch.dict(sys.modules, {"boto3": SimpleNamespace(client=lambda _name: fake_s3)}), \
+             patch.dict(os.environ, {"RAINBOW_RESEARCH_BUCKET": "research",
+                                     "RAINBOW_REVIEW_ENRICH_URL": "https://example.test/review"}, clear=True), \
+             patch.object(target, "load_previous", return_value=(None, None)), \
+             patch.object(target, "build_opportunity_ledger", return_value=ledger), \
+             patch.object(target, "persist", return_value={"key": "stored"}), \
+             patch.object(target, "load_faa_catalog", return_value=[]), \
+             patch.object(target, "select_v4_shadow_records", return_value=empty_v4_selection()), \
+             patch.object(target, "score_v5_shadow_records", return_value=v5), \
+             patch.object(target, "select_v5_camera_records", return_value=[record]), \
+             patch.object(target, "enrich_sunlight_v2", side_effect=enrich), \
+             patch.object(target, "safe_push_review_assessments", side_effect=callback):
+            result = target.handler({"bucket": "source", "key": "footprint",
+                                     "contentSha256": hashlib.sha256(raw).hexdigest()}, None)
+        self.assertEqual(result["reviewSelection"]["v5CameraImageCandidates"], 0)
+        self.assertEqual(captured["records"], [])
+
     def test_source_hash_mismatch_fails_before_build(self):
         raw = json.dumps({"observedAt": "2026-07-30T23:30:00Z"}).encode("utf-8")
         fake_s3 = FakeS3(gzip.compress(raw))

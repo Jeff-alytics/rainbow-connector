@@ -41,7 +41,7 @@
 
   <section id="workspace" class="hidden">
     <div class="top"><div><strong id="queue-count">Loading…</strong><div class="small">GO evidence first, followed by the strongest POSSIBLE evidence</div></div><button id="logout" class="secondary">Sign out</button></div>
-    <div class="queue-filters" aria-label="Review queue filter"><button type="button" data-queue-filter="all" class="active">All review</button><button type="button" data-queue-filter="operational">Operational</button><button type="button" data-queue-filter="v4_shadow">V4 Shadow</button></div>
+    <div class="queue-filters" aria-label="Review queue filter"><button type="button" data-queue-filter="all" class="active">All review</button><button type="button" data-queue-filter="operational">Operational</button><button type="button" data-queue-filter="v4_shadow">V4 Shadow</button><button type="button" data-queue-filter="v5_shadow">V5 camera matches</button></div>
     <div class="review-refresh"><span id="refresh-status" class="small" role="status" aria-live="polite"></span><button id="refresh" class="secondary" type="button">Refresh</button></div>
     <article id="review-card" class="card hidden">
       <div class="top"><h2 id="event-id">Candidate</h2><span id="progress" class="small"></span></div>
@@ -140,6 +140,7 @@ function render(){
   const candidateLabel = current.candidateType === "historical_webcoos"
     ? "WebCOOS archive"
     : current.candidateType === "research_possible" && current.researchSource === "v4_shadow" ? "V4.2 shadow candidate"
+    : current.candidateType === "research_possible" && current.researchSource === "v5_shadow" ? "V5 camera-matched candidate"
     : current.candidateType === "research_possible" && current.researchSource === "opportunity_ledger" ? "Research POSSIBLE — ledger"
     : current.candidateType === "research_possible" ? "Research POSSIBLE — detector"
     : current.candidateClass === "POSSIBLE" ? "Live POSSIBLE" : "Live GO";
@@ -241,7 +242,7 @@ async function loadResults(){
         : item.sunlightAssessmentWithheld ? "Withheld until graded" : "Not assessed")}</td>
       <td>${item.v5Shadow ? `${number(item.v4Shadow?.rankWithinScan)} → ${number(item.v5Shadow.rankWithinScan)}<span class="result-note">V4 ${number(item.v4Shadow?.score,1)} · V5 ${number(item.v5Shadow.score,1)}</span>` : "—"}</td>
       <td>${esc(item.candidateClass || "GO")}</td>
-      <td>${item.candidateType === "historical_webcoos" ? "Archive screen" : item.candidateType === "research_possible" && item.researchSource === "v4_shadow" ? "V4.2 shadow candidate" : item.candidateType === "research_possible" && item.researchSource === "opportunity_ledger" ? "Research POSSIBLE — ledger" : item.candidateType === "research_possible" ? "Research POSSIBLE — detector" : item.candidateType === "live_possible" ? "Live POSSIBLE" : "Live GO"}</td>
+      <td>${item.candidateType === "historical_webcoos" ? "Archive screen" : item.candidateType === "research_possible" && item.researchSource === "v4_shadow" ? "V4.2 shadow candidate" : item.candidateType === "research_possible" && item.researchSource === "v5_shadow" ? "V5 camera-matched candidate" : item.candidateType === "research_possible" && item.researchSource === "opportunity_ledger" ? "Research POSSIBLE — ledger" : item.candidateType === "research_possible" ? "Research POSSIBLE — detector" : item.candidateType === "live_possible" ? "Live POSSIBLE" : "Live GO"}</td>
       <td>${number(item.score, 1)}</td><td><span class="strength ${esc(item.reviewStrength)}">${esc(item.reviewStrength)}</span></td><td>${number(item.scanCount)}</td>
       <td>${number(item.sunElevationDeg, 1)}°</td><td>${number(item.rainbowArcDeg, 1)}°</td>
       <td>${number(item.directNormalIrradianceWm2)} W/m²</td>
@@ -254,10 +255,12 @@ async function loadResults(){
 }
 
 async function loadV4Daily(){
-  const data = await api("/api/go-events?v4Daily=1&limit=1000");
-  const rows = (data.items || []).flatMap(day => day.items.map(item => ({...item, day:day.date})));
-  $("#v4-daily-count").textContent = `${rows.length} frozen prediction${rows.length === 1 ? "" : "s"}`;
-  $("#v4-daily-body").innerHTML = rows.length ? rows.map(item => {
+  const body = $("#v4-daily-body");
+  try {
+    const data = await api("/api/go-events?v4Daily=1&limit=1000");
+    const rows = (data.items || []).flatMap(day => day.items.map(item => ({...item, day:day.date})));
+    $("#v4-daily-count").textContent = `${rows.length} frozen prediction${rows.length === 1 ? "" : "s"}`;
+    body.innerHTML = rows.length ? rows.map(item => {
     const location = Number.isFinite(item.lat) && Number.isFinite(item.lon)
       ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.lat},${item.lon}`)}" target="_blank" rel="noopener">${item.lat.toFixed(4)}, ${item.lon.toFixed(4)}</a>` : "—";
     const camera = item.hasCameraEvidence ? "Evidence frames found" : item.hasMatchedCamera ? "Catalog camera matched" : "No camera found yet";
@@ -266,7 +269,15 @@ async function loadV4Daily(){
       <td>${item.modelDetailsWithheld ? "Withheld until graded" : `${number(item.rankWithinScan)} / ${number(item.poolSize)}`}<span class="result-note">${number(item.scanSelections)} scan selection${item.scanSelections === 1 ? "" : "s"}</span></td><td>${item.modelDetailsWithheld ? "Withheld" : number(item.score, 1)}</td><td>${location}</td>
       <td>${number(item.bowBearingDeg, 0)}°</td><td>${esc(camera)}</td><td>${esc(gradeNames[item.reviewLabel] || item.reviewLabel || "pending")}</td>
       <td title="${esc(digest)}">${esc(item.predictionId || "—")}<span class="result-note">${esc(item.modelVersion || "")}${digest ? ` · ${digest.slice(0,12)}` : ""}</span></td></tr>`;
-  }).join("") : '<tr><td colspan="10">No V4.2 candidates have been recorded yet.</td></tr>';
+    }).join("") : '<tr><td colspan="10">No V4.2 candidates have been recorded yet.</td></tr>';
+  } catch (error) {
+    $("#v4-daily-count").textContent = "Load failed";
+    body.innerHTML = `<tr><td colspan="10">Could not load V4.2 candidates: ${esc(error.message)} <button type="button" id="retry-v4-daily">Retry</button></td></tr>`;
+    $("#retry-v4-daily").addEventListener("click", () => {
+      body.innerHTML = '<tr><td colspan="10">Loading V4.2 candidates…</td></tr>';
+      loadV4Daily();
+    });
+  }
 }
 
 async function loadSubscribers(){

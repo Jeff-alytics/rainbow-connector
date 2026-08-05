@@ -1,7 +1,7 @@
 import unittest
 
 from v5_shadow_priority import (GEOMETRY_IDENTITY_CONTRACT, RULE_VERSION, compact_v5_feed,
-                                score_v5_shadow_records)
+                                score_v5_shadow_records, select_v5_camera_records)
 
 
 SCAN = "2026-08-05T12:00:00Z"
@@ -130,6 +130,26 @@ class V5ShadowPriorityTests(unittest.TestCase):
         old["candidateSeeds"] = [seed("operational")]
         with self.assertRaisesRegex(ValueError, "expanded seed contract"):
             score_v5_shadow_records(old, [], None, SCAN, storm())
+
+    def test_v5_only_camera_gate_has_no_rank_or_count_cap(self):
+        result = score([seed(f"camera-{index}", radar=90-index/10, lat=0.1 + index/1000)
+                        for index in range(12)])
+        catalog = [{"id": 1, "name": "Test Camera", "lat": 0.1, "lon": 0.1,
+                    "cameras": [{"id": 2, "bearing": 90, "mapWedgeAngle": 90,
+                                 "direction": "east"}]}]
+        selected = select_v5_camera_records(result, catalog)
+        self.assertEqual(len(selected), 12)
+        self.assertTrue(all(item["disposition"] == "selected_research_possible" for item in selected))
+        self.assertTrue(all(item["features"]["researchReview"]["source"] == "v5_shadow"
+                            for item in selected))
+        self.assertTrue(all(item["features"]["researchReview"]["thresholdSnapshot"]["candidateCap"] is None
+                            for item in selected))
+
+    def test_v4_overlap_is_not_duplicated_into_v5_image_acquisition(self):
+        result = score([seed("overlap")], v4=[v4_record()])
+        catalog = [{"id": 1, "name": "Test Camera", "lat": 0.1, "lon": 0.1,
+                    "cameras": [{"id": 2, "bearing": 90, "mapWedgeAngle": 90}]}]
+        self.assertEqual(select_v5_camera_records(result, catalog), [])
 
 
 if __name__ == "__main__":

@@ -145,6 +145,38 @@ test("exact-point replay targets its named event only when time and location als
   assert.equal(JSON.parse(fake.values.get(GO_EVENT_PREFIX + neighbor.id)).researchAssessments, undefined);
 });
 
+test("a camera-gated V5-only assessment creates an image-review event with frozen V5 metadata", async () => {
+  const at = "2026-08-05T22:10:00Z";
+  const assessment = {
+    candidateId: "v5-camera-candidate", disposition: "selected_research_possible",
+    radarObservedAt: at, observer: { lat: 40, lon: -90 }, rain: { lat: 40.1, lon: -90 },
+    geometry: { radarScore: 90, sunElevationDeg: 12, antiSolarBearingDeg: 90 },
+    researchReview: {
+      source: "v5_shadow", ledgerEventId: "v5-family-a", familyEventId: "v5-family-a",
+      score: 78, cameraReviewEnabled: true,
+      v5Prediction: {
+        predictionId: "v5-shadow-frozen", predictionSha256: "f".repeat(64),
+        familyEventId: "v5-family-a", componentId: "component-a", scanTime: at,
+        ruleVersion: "v5-rule", modelVersion: "v5-model", score: 78,
+        rankWithinScan: 7, poolSize: 108, solarLane: "observed_core",
+        cohortMembership: ["expanded"], acquisitionEnabled: false,
+      },
+    },
+    idempotencyKey: "e".repeat(64),
+  };
+  const fake = fakeRedis();
+  const result = await withRedis(fake, () => attachReviewAssessments([assessment]));
+  assert.equal(result.created, 1);
+  const event = [...fake.values.entries()]
+    .filter(([key]) => key.startsWith(GO_EVENT_PREFIX))
+    .map(([, value]) => JSON.parse(value))
+    .find(item => item.researchSource === "v5_shadow");
+  assert.ok(event);
+  assert.equal(event.peakScore, 78);
+  assert.equal(event.v5ShadowPredictions.at(-1).predictionId, "v5-shadow-frozen");
+  assert.equal(event.v4ShadowPredictions, undefined);
+});
+
 test("human event and view labels retry CAS without losing concurrent fields", async () => {
   const detection = { detectedAt: "2026-07-30T02:20:00Z", lat: 41, lon: -112,
     score: 80, candidateClass: "GO", evidence: {} };

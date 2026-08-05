@@ -295,10 +295,19 @@ export function mergeDetection(event, detection) {
   return event;
 }
 
+export const EVENT_MGET_BATCH_SIZE = 40;
+
 async function loadEventsByIds(ids) {
   if (!Array.isArray(ids) || !ids.length) return [];
-  const rows = await redis(["MGET", ...ids]);
-  return (Array.isArray(rows) ? rows : []).map(row => {
+  const rows = [];
+  // Event records can contain many evidence frames. A single 1,000-key MGET
+  // can exceed Upstash's 10 MB response limit, so keep each Redis response
+  // independently bounded instead of placing the batches in one pipeline.
+  for (let offset = 0; offset < ids.length; offset += EVENT_MGET_BATCH_SIZE) {
+    const batch = await redis(["MGET", ...ids.slice(offset, offset + EVENT_MGET_BATCH_SIZE)]);
+    if (Array.isArray(batch)) rows.push(...batch);
+  }
+  return rows.map(row => {
     try { return row ? JSON.parse(row) : null; } catch { return null; }
   }).filter(Boolean);
 }
@@ -613,13 +622,15 @@ export function researchDetectionFromAssessment(assessment) {
   const researchReview = assessment?.researchReview || {};
   const ledger = researchReview.source === "opportunity_ledger";
   const v4 = researchReview.source === "v4_shadow";
+  const v5 = researchReview.source === "v5_shadow";
   return {
     detectedAt: new Date(detectedMs).toISOString(), candidateId: assessment.candidateId || null,
     candidateClass: "POSSIBLE", rank: finite(researchReview.rankWithinScan), lat, lon,
     label: v4 ? (researchReview.lane === "go" ? "V4.2 shadow GO" : "V4.2 shadow POSSIBLE")
+      : v5 ? "V5 camera-gated image candidate"
       : ledger ? "Opportunity-ledger research candidate" : "Geometry-first research candidate", nearestZip: null,
     direction: Number.isFinite(antiSolar) ? { bearing: antiSolar, label: `Predicted bow direction ${Math.round(antiSolar)} degrees` } : null,
-    score: v4 ? finite(researchReview.score) : finite(score), persistence: { confirmed: false, scanCount: 1, firstSeenAt: at, lastSeenAt: at },
+    score: v4 || v5 ? finite(researchReview.score) : finite(score), persistence: { confirmed: false, scanCount: 1, firstSeenAt: at, lastSeenAt: at },
     evidence: {
       sunElevationDeg: finite(elevation),
       apparentSunElevationDeg: finite(apparentElevation),
@@ -630,7 +641,8 @@ export function researchDetectionFromAssessment(assessment) {
       rainPointCloudCoverPct: null, rainIntensity: finite(rainRate), observerRainIntensity: finite(observerRain),
       rainPoint: Number.isFinite(Number(rain.lat)) && Number.isFinite(Number(rain.lon))
         ? { lat: Number(rain.lat), lon: Number(rain.lon), distanceKm: finite(rainDistance), bearing: null } : null,
-      goes: null, selectionReason: v4 ? "v4-shadow-review-only" : ledger ? "opportunity-ledger-camera-gated-review-only" : "geometry-first-review-only",
+      goes: null, selectionReason: v4 ? "v4-shadow-review-only" : v5 ? "v5-camera-gated-image-review-only"
+        : ledger ? "opportunity-ledger-camera-gated-review-only" : "geometry-first-review-only",
       researchRuleVersion: assessment?.researchReview?.ruleVersion || null,
       researchSource: assessment?.researchReview?.source || "detector_rejection_log",
       currentDetectorDisposition: assessment?.researchReview?.currentDetectorDisposition || assessment?.disposition || null,
@@ -668,7 +680,7 @@ function compactV4ShadowPrediction(assessment) {
 function compactV5ShadowPrediction(assessment) {
   const review = assessment?.researchReview || {};
   const prediction = review.v5Prediction || {};
-  if (review.source !== "v4_shadow" || !prediction.predictionId) return null;
+  if (!["v4_shadow", "v5_shadow"].includes(review.source) || !prediction.predictionId) return null;
   return {
     predictionId: prediction.predictionId, predictionSha256: prediction.predictionSha256,
     detectedAt: assessment.radarObservedAt || prediction.scanTime || null,

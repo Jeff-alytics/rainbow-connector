@@ -221,23 +221,7 @@ export function reviewQueueItems(events, options = {}) {
   });
   const operational = items.filter(item => item.candidateType !== "research_possible");
   const researchItems = items.filter(item => item.candidateType === "research_possible");
-  const research = [];
-  const representedEvents = new Set();
-  // First pass gives every distinct event one slot, so a multi-camera event
-  // cannot starve a second candidate. Second pass spends any slot the first
-  // pass left unused on a further view of an event already represented, so a
-  // lone candidate still gets both slots.
-  for (const item of researchItems) {
-    if (research.length >= 2) break;
-    if (representedEvents.has(item.eventId)) continue;
-    representedEvents.add(item.eventId);
-    research.push(item);
-  }
-  for (const item of researchItems) {
-    if (research.length >= 2) break;
-    if (!research.includes(item)) research.push(item);
-  }
-  return [...operational, ...research];
+  return [...operational, ...researchItems];
 }
 
 export function v4ShadowDaily(events) {
