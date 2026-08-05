@@ -60,11 +60,6 @@
       <div id="reveal" class="reveal hidden"></div>
     </article>
     <section id="empty" class="card hidden"><h2>Nothing awaiting review</h2><p>New events will appear after the Connector records a GO, strong POSSIBLE, or persistent research candidate and finds usable camera imagery.</p></section>
-    <section class="card" id="v5-daily">
-      <div class="top"><div><h2>V5 candidates by day</h2><p class="results-copy">Every retained V5 family is shown; there is no top-two or per-day candidate cap. Open a family's location to inspect every retained geometry, not just its best-scoring one. V5 acquisition is currently off.</p></div><span id="v5-daily-count" class="small"></span></div>
-      <div class="queue-filters" aria-label="V5 elevation lane filter"><button type="button" data-v5-filter="all" class="active">All V5</button><button type="button" data-v5-filter="observed_core">0°–25°</button><button type="button" data-v5-filter="observed_extended">25°–32°</button><button type="button" data-v5-filter="physical_audit">Outer audit</button><button type="button" data-v5-filter="expanded">Expanded only</button></div>
-      <div class="table-wrap"><table style="min-width:1420px"><thead><tr><th>UTC day</th><th>Time</th><th>Elevation lane</th><th>Cohort</th><th>Rank / pool</th><th>V5-A</th><th>No-decay</th><th>Location</th><th>Sun</th><th>Predicted bow</th><th>Why V4.2 excluded it</th><th>Exploration</th><th>Family coverage</th></tr></thead><tbody id="v5-daily-body"><tr><td colspan="13">Loading V5 candidates…</td></tr></tbody></table></div>
-    </section>
     <section class="card" id="v4-daily">
       <div class="top"><div><h2>V4.2 candidates by day</h2><p class="results-copy">Private sunlight-decided research predictions only — these are not public Connector alerts. Use the coordinates and predicted bow direction to look for public cameras.</p></div><span id="v4-daily-count" class="small"></span></div>
       <div class="table-wrap"><table style="min-width:1150px"><thead><tr><th>UTC day</th><th>Time</th><th>Decision</th><th>Rank / pool</th><th>V4 score</th><th>Location</th><th>Predicted bow</th><th>System camera</th><th>Review</th><th>Frozen prediction</th></tr></thead><tbody id="v4-daily-body"><tr><td colspan="10">Loading V4.2 candidates…</td></tr></tbody></table></div>
@@ -93,7 +88,6 @@
 <script>
 const $ = selector => document.querySelector(selector);
 let queue = [], current = null, completed = 0, refreshInFlight = false, queueFilter = "all";
-let v5Rows = [], v5Filter = "all";
 let withheld = { disallowedSourceViews:0, excludedCameraViews:0, activeCameraExclusions:0 };
 const REVIEW_REFRESH_MS = 10 * 60 * 1000;
 
@@ -204,7 +198,7 @@ async function loadQueue({ preserveCurrent = false, loadAuxiliary = true } = {})
     render();
   }
   showWorkspace();
-  if (loadAuxiliary) await Promise.allSettled([loadResults(), loadV5Daily(), loadV4Daily(), loadSubscribers()]);
+  if (loadAuxiliary) await Promise.allSettled([loadResults(), loadV4Daily(), loadSubscribers()]);
 }
 
 async function refreshReviewPage({ announce = true } = {}){
@@ -257,35 +251,6 @@ async function loadResults(){
       <td>${item.detectedAt ? esc(new Date(item.detectedAt).toLocaleString()) : "—"}</td>
     </tr>`;
   }).join("") : '<tr><td colspan="19">No candidates have been graded yet.</td></tr>';
-}
-
-function renderV5Daily(){
-  const rows = v5Rows.filter(item => v5Filter === "all"
-    || (v5Filter === "expanded" ? !(item.cohortMembership || []).includes("overlap") : item.solarLane === v5Filter));
-  $("#v5-daily-count").textContent = `${rows.length} family candidate${rows.length === 1 ? "" : "s"}`;
-  $("#v5-daily-body").innerHTML = rows.length ? rows.map(item => {
-    const geometries = (item.geometries || []).length ? item.geometries : [item];
-    const geometryLinks = geometries.map((geometry, index) => {
-      if (!Number.isFinite(geometry.lat) || !Number.isFinite(geometry.lon)) return "";
-      const link = `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${geometry.lat},${geometry.lon}`)}" target="_blank" rel="noopener">${geometry.lat.toFixed(4)}, ${geometry.lon.toFixed(4)}</a>`;
-      return `<div>${index + 1}. ${link} · score ${number(geometry.score,1)} · sun ${number(geometry.sunElevationDeg,1)}° · bow ${number(geometry.bowBearingDeg,0)}°</div>`;
-    }).filter(Boolean).join("");
-    const location = `<details><summary>${geometries.length} retained location${geometries.length === 1 ? "" : "s"}</summary>${geometryLinks || "—"}</details>`;
-    const cohort = (item.cohortMembership || []).includes("overlap") ? "V4.2 overlap" : "V5 expanded-only";
-    const reasons = (item.v4ExclusionReasons || []).map(value => String(value).replace(/^v4_/, "").replaceAll("_", " ")).join(", ") || "V4.2 eligible";
-    const exploration = item.exploration?.selected ? "Selected (emission off)" : "Not selected";
-    return `<tr><td>${esc(item.day)}</td><td>${esc(new Date(item.detectedAt).toLocaleTimeString([], {hour:"numeric",minute:"2-digit",timeZone:"UTC"}))} UTC</td>
-      <td>${esc(String(item.solarLane || "unresolved").replaceAll("_", " "))}</td><td>${esc(cohort)}</td>
-      <td>${number(item.rankWithinScan)} / ${number(item.poolSize)}</td><td>${number(item.score,1)}</td><td>${number(item.noDecayAblationScore,1)} (#${number(item.noDecayRankWithinScan)})</td>
-      <td>${location}</td><td>${number(item.sunElevationDeg,1)}°</td><td>${number(item.bowBearingDeg,0)}°</td>
-      <td>${esc(reasons)}</td><td>${esc(exploration)}</td><td>${number(item.scanSelections)} scans · ${geometries.length} unique / ${number(item.geometrySelections)} selections</td></tr>`;
-  }).join("") : '<tr><td colspan="13">No V5 candidates match this filter yet.</td></tr>';
-}
-
-async function loadV5Daily(){
-  const data = await api("/api/v5-candidates?days=7");
-  v5Rows = (data.items || []).flatMap(day => day.items.map(item => ({...item, day:day.date})));
-  renderV5Daily();
 }
 
 async function loadV4Daily(){
@@ -390,12 +355,6 @@ document.querySelectorAll("[data-queue-filter]").forEach(button => button.addEve
   current = null;
   queue = [];
   await loadQueue({ loadAuxiliary: false });
-}));
-
-document.querySelectorAll("[data-v5-filter]").forEach(button => button.addEventListener("click", () => {
-  v5Filter = button.dataset.v5Filter;
-  document.querySelectorAll("[data-v5-filter]").forEach(item => item.classList.toggle("active", item === button));
-  renderV5Daily();
 }));
 
 (async () => {

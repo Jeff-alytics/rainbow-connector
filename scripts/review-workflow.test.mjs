@@ -576,6 +576,8 @@ test("review strength incorporates both distance and direction error", () => {
 test("review page includes the model-versus-human results table", async () => {
   const page = await readFile(new URL("../review.html", import.meta.url), "utf8");
   assert.match(page, /Human grades compared with the evidence/);
+  assert.match(page, /V4\.2 → V5/);
+  assert.doesNotMatch(page, /V5 candidates by day|\/api\/v5-candidates/);
   assert.match(page, /not a percent probability/);
   assert.match(page, /\/api\/go-events\?results=1/);
   assert.match(page, /Keep this image if it shows a rainbow/);
@@ -590,6 +592,13 @@ test("review page includes the model-versus-human results table", async () => {
   assert.match(page, /Frame timing/);
   assert.match(page, /GO \/ Possible/);
   assert.match(page, /Live POSSIBLE/);
+});
+
+test("review assessment accepts reviewed-image enrichment but not scan-wide V5 logs", async () => {
+  const source = await readFile(new URL("../api/review-assessment.mjs", import.meta.url), "utf8");
+  assert.match(source, /schemaVersion !== "review-assessment\.v1"/);
+  assert.doesNotMatch(source, /v5-candidate-scan|storeV5CandidateScan/);
+  assert.match(source, /MAX_ASSESSMENT_BODY_BYTES = 128 \* 1024/);
 });
 
 test("historical WebCOOS candidates stay visibly separate from live GO reviews", async () => {

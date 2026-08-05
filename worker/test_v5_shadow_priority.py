@@ -1,6 +1,7 @@
 import unittest
 
-from v5_shadow_priority import RULE_VERSION, compact_v5_feed, score_v5_shadow_records
+from v5_shadow_priority import (GEOMETRY_IDENTITY_CONTRACT, RULE_VERSION, compact_v5_feed,
+                                score_v5_shadow_records)
 
 
 SCAN = "2026-08-05T12:00:00Z"
@@ -18,7 +19,8 @@ def seed(candidate, radar=90, adjacent=4, span=45, elevation=10, observer_rain=0
 
 def sidecar(seeds):
     return {"observedAt": SCAN, "grid": {"latitudeStart": 0, "latitudeStepDeg": 1,
-        "longitudeStart": 0, "longitudeStepDeg": 1}, "v5ExpandedSeeds": seeds,
+        "longitudeStart": 0, "longitudeStepDeg": 1},
+        "v5ExpandedSeedContract": "v5-expanded-camera-independent-seeds.v1", "v5ExpandedSeeds": seeds,
         "upstreamSeedAudit": {"expanded": {"candidateCap": None, "samplingStride": 10}}}
 
 
@@ -97,9 +99,11 @@ class V5ShadowPriorityTests(unittest.TestCase):
         self.assertEqual(feed["schemaVersion"], "v5-candidate-scan.v1")
         self.assertEqual(len(feed["items"]), 1)
         self.assertEqual(feed["items"][0]["geometrySelections"], 2)
+        self.assertEqual(feed["items"][0]["uniqueGeometryCount"], 2)
         self.assertEqual(len(feed["items"][0]["geometries"]), 2)
         self.assertEqual(len({item["geometryId"] for item in feed["items"][0]["geometries"]}), 2)
         self.assertEqual(feed["retainedGeometries"], 2)
+        self.assertEqual(feed["geometryIdentityContract"], GEOMETRY_IDENTITY_CONTRACT)
         self.assertFalse(feed["acquisitionEnabled"])
         self.assertTrue(all(item["acquisitionEnabled"] is False for item in feed["items"]))
 
@@ -109,6 +113,23 @@ class V5ShadowPriorityTests(unittest.TestCase):
         self.assertEqual(result["upstreamAudit"]["unattachedExpandedSeeds"], 1)
         self.assertEqual(result["upstreamAudit"]["retainedUnattachedSeeds"], 1)
         self.assertTrue(result["predictions"][0]["familyEventId"].startswith("v5-unattached-family-"))
+
+    def test_geometry_identity_ignores_time_varying_bearing_but_output_is_deterministic(self):
+        result = score([seed("a"), seed("b")])
+        result["records"][1]["features"]["geometry"]["antiSolarBearingDeg"] = 110
+        feed = compact_v5_feed(result)
+        self.assertEqual(feed["items"][0]["geometrySelections"], 2)
+        self.assertEqual(feed["items"][0]["uniqueGeometryCount"], 1)
+        self.assertEqual(feed["retainedGeometries"], 1)
+        self.assertEqual(feed["items"][0]["geometries"][0]["rankWithinScan"], 1)
+
+    def test_pre_v5_sidecar_cannot_silently_fall_back_to_operational_seeds(self):
+        old = sidecar([])
+        old.pop("v5ExpandedSeedContract")
+        old.pop("v5ExpandedSeeds")
+        old["candidateSeeds"] = [seed("operational")]
+        with self.assertRaisesRegex(ValueError, "expanded seed contract"):
+            score_v5_shadow_records(old, [], None, SCAN, storm())
 
 
 if __name__ == "__main__":

@@ -16,8 +16,7 @@ from opportunity_ledger_store import load_previous, persist
 from review_callback import safe_push_review_assessments
 from sunlight_v2 import enrich_sunlight_v2
 from v4_shadow_review import finalize_v42_records, mark_v42_dispatched, select_v4_shadow_records
-from v5_shadow_priority import compact_v5_feed, score_v5_shadow_records
-from v5_review_feed import safe_push_v5_review_feed
+from v5_shadow_priority import score_v5_shadow_records
 
 
 def _sunlight_candidate(record: dict) -> dict:
@@ -68,7 +67,6 @@ def handler(event, context):
         sidecar, records, previous, ledger["scanTime"], v4_state["stormLedger"],
     )
     v5_state = v5_selection.pop("state")
-    v5_feed = compact_v5_feed(v5_selection)
     v5_selection.pop("records", None)
     ledger["v5ShadowState"] = v5_state
     ledger["v5ShadowPrediction"] = v5_selection
@@ -93,7 +91,6 @@ def handler(event, context):
     ledger["v4ShadowState"] = v4_state
     ledger["v4ShadowPrediction"] = {**review_selection, "records": records}
     stored = persist(ledger, os.environ.get("RAINBOW_RESEARCH_BUCKET", bucket), s3)
-    v5_review_feed = safe_push_v5_review_feed(v5_feed)
     # The callback URL is only a projection kill switch; it never disables the
     # authoritative evaluation and retention path above.
     if not str(os.environ.get("RAINBOW_REVIEW_ENRICH_URL") or "").strip():
@@ -119,5 +116,4 @@ def handler(event, context):
         "rainEvents": ledger["stats"]["rainEvents"], "opportunities": ledger["stats"]["opportunities"],
         "observerSwathCells": ledger["stats"]["observerSwathCells"], "storage": stored,
         "reviewSelection": review_selection, "reviewCallback": review_callback,
-        "v5ReviewFeed": v5_review_feed,
     }

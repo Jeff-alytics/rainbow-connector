@@ -17,6 +17,8 @@ from v4_shadow_review import attach_seeds
 RULE_VERSION = "v5-dual-cohort-2026-08-v1"
 MODEL_VERSION = "causal-spatial-phase-priority-v2"
 SCHEMA_VERSION = "v5-shadow-prediction.v2"
+EXPANDED_SEED_CONTRACT = "v5-expanded-camera-independent-seeds.v1"
+GEOMETRY_IDENTITY_CONTRACT = "observer-rain-rounded-4dp.v1"
 TRAILING_WINDOW_MINUTES = 30
 EXPLORATION_FRACTION = 0.15
 V4_MINIMUM_PERSISTENCE_SCANS = 3
@@ -47,8 +49,17 @@ def _hash(value) -> str:
 
 
 def _seed_key(seed: dict) -> tuple:
+    """Spatial identity only: observer/rain coordinates rounded to four decimals.
+
+    Solar elevation and bow bearing are time-varying evidence on a location and
+    deliberately do not create a second geometry identity.
+    """
     return tuple(round(float(seed.get(name)), 4) if _finite(seed.get(name)) is not None else None
                  for name in ("lat", "lon", "rainLat", "rainLon"))
+
+
+def _geometry_id(seed: dict) -> str:
+    return _hash({"contract": GEOMETRY_IDENTITY_CONTRACT, "coordinates": _seed_key(seed)})[:20]
 
 
 def _valid_expanded_seed(seed: dict) -> tuple[bool, list[str]]:
@@ -237,7 +248,10 @@ def score_v5_shadow_records(
     observed = _parse(scan_time)
     cutoff = observed - timedelta(minutes=TRAILING_WINDOW_MINUTES)
     objects = {item["componentId"]: item for item in storm_ledger.get("stormObjects") or []}
-    expanded_sidecar = {**sidecar, "candidateSeeds": sidecar.get("v5ExpandedSeeds") or sidecar.get("candidateSeeds") or []}
+    if sidecar.get("v5ExpandedSeedContract") != EXPANDED_SEED_CONTRACT or not isinstance(
+            sidecar.get("v5ExpandedSeeds"), list):
+        raise ValueError("V5 expanded seed contract is absent; refusing capped/gated V4 seed fallback")
+    expanded_sidecar = {**sidecar, "candidateSeeds": sidecar["v5ExpandedSeeds"]}
     seeds_by_component, unattached = attach_seeds(expanded_sidecar, list(objects.values()))
     v4_by_family = {}
     for record in v4_records:
@@ -424,11 +438,10 @@ def compact_v5_feed(selection: dict) -> dict:
             "acquisitionEnabled": False, "geometrySelections": 1,
         }
         geometry_row = {
-            "geometryId": _hash(_seed_key({
+            "geometryId": _geometry_id({
                 "lat": observer.get("lat"), "lon": observer.get("lon"),
                 "rainLat": rain.get("lat"), "rainLon": rain.get("lon"),
-                "antiSolarBearingDeg": geometry.get("antiSolarBearingDeg"),
-            }))[:20],
+            }),
             "candidateId": prediction["candidateId"], "predictionId": prediction["predictionId"],
             "detectedAt": prediction["scanTime"], "lat": observer.get("lat"), "lon": observer.get("lon"),
             "rainLat": rain.get("lat"), "rainLon": rain.get("lon"),
@@ -437,26 +450,45 @@ def compact_v5_feed(selection: dict) -> dict:
             "score": prediction["score"], "rankWithinScan": prediction["rankWithinScan"],
             "solarLane": prediction["solarLane"],
         }
-        row["geometries"] = [geometry_row]
-        existing = by_family.get(prediction["familyEventId"])
-        if existing:
-            geometries = existing["geometrySelections"] + 1
-            if prediction["rankWithinScan"] < existing["rankWithinScan"]:
-                row["geometrySelections"] = geometries
-                row["geometries"] = existing["geometries"] + row["geometries"]
-                by_family[prediction["familyEventId"]] = row
-            else:
-                existing["geometrySelections"] = geometries
-                existing["geometries"].append(geometry_row)
-        else:
-            by_family[prediction["familyEventId"]] = row
-    items = sorted(by_family.values(), key=lambda item: (item["rankWithinScan"], item["familyEventId"]))
+        family_id = prediction["familyEventId"]
+        state = by_family.setdefault(family_id, {
+            "representative": row, "geometries": {}, "geometrySelections": 0, "solarLaneCounts": {},
+        })
+        state["geometrySelections"] += 1
+        lane = prediction["solarLane"]
+        state["solarLaneCounts"][lane] = state["solarLaneCounts"].get(lane, 0) + 1
+        prior_geometry = state["geometries"].get(geometry_row["geometryId"])
+        if prior_geometry is None or (geometry_row["rankWithinScan"], geometry_row["predictionId"]) < (
+                prior_geometry["rankWithinScan"], prior_geometry["predictionId"]):
+            state["geometries"][geometry_row["geometryId"]] = geometry_row
+        if (row["rankWithinScan"], row["predictionId"]) < (
+                state["representative"]["rankWithinScan"], state["representative"]["predictionId"]):
+            state["representative"] = row
+    items = []
+    for family_id, state in by_family.items():
+        row = state["representative"]
+        geometries = sorted(state["geometries"].values(),
+                            key=lambda item: (item["rankWithinScan"], item["geometryId"]))
+        row.update({
+            "geometries": geometries,
+            "geometrySelections": state["geometrySelections"],
+            "uniqueGeometryCount": len(geometries),
+            "solarLaneCounts": dict(sorted(state["solarLaneCounts"].items())),
+            "solarLaneMembership": sorted(state["solarLaneCounts"],
+                key=lambda lane: ({"observed_core": 0, "observed_extended": 1,
+                    "physical_audit": 2, "unresolved": 3}.get(lane, 4), lane)),
+        })
+        items.append(row)
+    items.sort(key=lambda item: (item["rankWithinScan"], item["familyEventId"]))
+    unique_geometries = sum(item["uniqueGeometryCount"] for item in items)
     return {
         "schemaVersion": "v5-candidate-scan.v1", "scanTime": selection["scanTime"],
+        "geometryIdentityContract": GEOMETRY_IDENTITY_CONTRACT,
         "ruleVersion": selection["ruleVersion"], "modelVersion": selection["modelVersion"],
         "predictionManifestSha256": selection["predictionManifestSha256"],
         "retained": selection["retained"], "overlap": selection["overlap"],
         "expandedOnly": selection["expandedOnly"], "acquisitionEnabled": False,
         "upstreamAudit": selection.get("upstreamAudit") or {}, "items": items,
-        "retainedGeometries": selection["retained"], "retainedFamilies": len(items),
+        "retainedSelections": selection["retained"], "retainedGeometries": unique_geometries,
+        "retainedFamilies": len(items),
     }
