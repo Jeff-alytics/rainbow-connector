@@ -76,7 +76,7 @@ Resources:
       # this below 3008 without a fortnight of peak-window memory data; the
       # invocation costs ~7.7 s so the extra GB is about a dollar a month.
       MemorySize: 3008
-      Timeout: 300
+      Timeout: 420
       EphemeralStorage:
         Size: 1024
       Environment:
@@ -339,7 +339,7 @@ Resources:
   RainbowWorkerDurationAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
-      AlarmDescription: Rainbow worker exceeded the scan duration budget.
+      AlarmDescription: Rainbow worker exceeded the 285-second scan warning budget.
       Namespace: AWS/Lambda
       MetricName: Duration
       Dimensions:
@@ -349,7 +349,7 @@ Resources:
       Period: 300
       EvaluationPeriods: 2
       DatapointsToAlarm: 2
-      Threshold: 180000
+      Threshold: 285000
       ComparisonOperator: GreaterThanThreshold
       TreatMissingData: notBreaching
       AlarmActions:
