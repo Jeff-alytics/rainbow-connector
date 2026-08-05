@@ -9,7 +9,7 @@ import {
 } from "../api/review-auth-common.mjs";
 import { matchFaaCamera, matchFaaCameras, selectFaaFrames, selectPendingFaaEvents, visibleBowArc } from "../api/go-evidence-common.mjs";
 import { evidenceFrameReviewGroups, reviewableCandidates } from "../api/go-event-common.mjs";
-import { allCameraViewsReviewed, apparentSolarElevationDeg, reviewEvidenceStrength, reviewQueue, reviewQueueItems, reviewResults, reviewSafeEvent } from "../api/go-events.mjs";
+import { allCameraViewsReviewed, apparentSolarElevationDeg, reviewEvidenceStrength, reviewQueue, reviewQueueItems, reviewResults, reviewSafeEvent, reviewWithholdingSummary, trustedReviewSource, v4ShadowDaily } from "../api/go-events.mjs";
 
 test("near-horizon review geometry uses apparent solar elevation", () => {
   assert.ok(apparentSolarElevationDeg(0) > 0.45);
@@ -113,7 +113,7 @@ test("FAA frame selection requires multiple post-event views and keeps a balance
 test("review queue contains only ungraded GO evidence, strongest first", () => {
   const event = (id, peakScore, label = "pending", frames = [{}]) => ({
     id, peakScore, lastSeenAt: "2026-07-26T23:00:00Z",
-    review: { label }, evidence: { frames },
+    review: { label }, evidence: { source: "USGS NIMS", frames },
   });
   assert.deepEqual(
     reviewQueue([
@@ -155,6 +155,52 @@ test("all reviews omit FAA cameras beyond 40 km while retaining nearby views", (
   assert.equal(items[0].camera.name, "Airport near");
 });
 
+test("review source allowlist accepts only the declared sky-camera networks", () => {
+  for (const source of [
+    "FAA WeatherCam",
+    "WebCOOS / contributing camera partner",
+    "USGS NIMS",
+    "ALERTCalifornia | UC San Diego",
+    "ALERTWest's Situational Awareness Platform",
+    "New York State Mesonet | University at Albany",
+  ]) assert.equal(trustedReviewSource(source), true, source);
+  for (const source of ["MDOT", "Iowa DOT", "WSDOT", "DelDOT", "camera", ""]) {
+    assert.equal(trustedReviewSource(source), false, source);
+  }
+});
+
+test("mixed-source events retain trusted views and explain DOT withholding", () => {
+  const event = {
+    id: "mixed-sources", candidateClass: "GO", review: { label: "pending" },
+    evidence: { frames: [
+      { url: "faa", source: "FAA WeatherCam", siteId: 1, cameraId: 10, distanceKm: 12 },
+      { url: "dot", source: "MDOT", siteId: 2, cameraId: 20, distanceKm: 8 },
+    ] }, representative: { evidence: {} }, viewReviews: {},
+  };
+  const items = reviewQueueItems([event]);
+  assert.deepEqual(items.map(item => item.frames[0].source), ["FAA WeatherCam"]);
+  assert.deepEqual(reviewWithholdingSummary([event]), {
+    disallowedSourceViews: 1, excludedCameraViews: 0,
+  });
+});
+
+test("active bad-view exclusions suppress only the selected camera", () => {
+  const event = {
+    id: "excluded-view", candidateClass: "GO", review: { label: "pending" },
+    evidence: { frames: [
+      { url: "a", source: "FAA WeatherCam", siteId: 1, cameraId: 10, distanceKm: 12 },
+      { url: "b", source: "FAA WeatherCam", siteId: 2, cameraId: 20, distanceKm: 12 },
+    ] }, representative: { evidence: {} }, viewReviews: {},
+  };
+  const groups = evidenceFrameReviewGroups(event);
+  const excludedCameraKeys = new Set([groups[0].key]);
+  const items = reviewQueueItems([event], { excludedCameraKeys });
+  assert.deepEqual(items.map(item => item.cameraKey), [groups[1].key]);
+  assert.deepEqual(reviewWithholdingSummary([event], excludedCameraKeys), {
+    disallowedSourceViews: 0, excludedCameraViews: 1,
+  });
+});
+
 test("a GO with only a camera beyond 40 km never reaches Review", () => {
   const event = {
     id: "far-go", candidateClass: "GO", review: { label: "pending" },
@@ -170,7 +216,7 @@ test("review queue provides a refracted bow-top search height", () => {
   const event = {
     id: "low-sun-bow", review: { label: "pending" },
     representative: { evidence: { sunElevationDeg: 3.16 } },
-    evidence: { frames: [{ url: "frame" }] },
+    evidence: { source: "USGS NIMS", frames: [{ url: "frame" }] },
   };
   const [item] = reviewQueueItems([event]);
   assert.equal(item.sunElevationDeg, 3.16);
@@ -190,7 +236,7 @@ test("review page explains low-sun red bows and expected bow height", async () =
 test("review queue prioritizes camera evidence quality before model score", () => {
   const event = (id, peakScore, distanceKm, bearingDifference) => ({
     id, peakScore, review: { label: "pending" },
-    evidence: { frames: [{}], camera: { distanceKm, bearingDifference } },
+    evidence: { source: "USGS NIMS", frames: [{}], camera: { distanceKm, bearingDifference } },
   });
   assert.deepEqual(reviewQueue([
     event("limited-high-score", 99, 34, 45),
@@ -202,7 +248,7 @@ test("review queue prioritizes camera evidence quality before model score", () =
 test("review queue places GO camera evidence before strong POSSIBLE evidence", () => {
   const event = (id, candidateClass, peakScore) => ({
     id, candidateClass, peakScore, review: { label: "pending" },
-    evidence: { frames: [{}], camera: { distanceKm: 15, bearingDifference: 5 } },
+    evidence: { source: "USGS NIMS", frames: [{}], camera: { distanceKm: 15, bearingDifference: 5 } },
   });
   assert.deepEqual(reviewQueue([
     event("possible", "POSSIBLE", 99),
@@ -213,7 +259,7 @@ test("review queue places GO camera evidence before strong POSSIBLE evidence", (
 test("one-scan research POSSIBLE waits for persistence before review", () => {
   const research = scanCount => ({ id: `research-${scanCount}`, candidateType: "research_possible",
     candidateClass: "POSSIBLE", scanCount, peakScore: 80, review: { label: "pending" },
-    evidence: { frames: [{}], camera: { distanceKm: 10, bearingDifference: 5 } } });
+    evidence: { source: "USGS NIMS", frames: [{}], camera: { distanceKm: 10, bearingDifference: 5 } } });
   assert.deepEqual(reviewQueue([research(1)]), []);
   assert.deepEqual(reviewQueue([research(2)]).map(item => item.id), ["research-2"]);
 });
@@ -221,8 +267,31 @@ test("one-scan research POSSIBLE waits for persistence before review", () => {
 test("research POSSIBLEs occupy at most two post-expansion review slots", () => {
   const research = index => ({ id: `research-${index}`, candidateType: "research_possible",
     candidateClass: "POSSIBLE", scanCount: 2, peakScore: 90-index, review: { label: "pending" },
-    evidence: { frames: [{}], camera: { distanceKm: 10, bearingDifference: 5 } } });
+    evidence: { source: "USGS NIMS", frames: [{}], camera: { distanceKm: 10, bearingDifference: 5 } } });
   assert.equal(reviewQueueItems([1,2,3,4].map(research)).length, 2);
+});
+
+test("V4 daily feed keeps V4.1 primary and V4.2 viable camera-free predictions", () => {
+  const days = v4ShadowDaily([{
+    id: "v4-event", researchSource: "v4_shadow", candidateType: "research_possible",
+    review: { label: "pending" }, evidence: { frames: [] },
+    v4ShadowPredictions: [
+      { predictionId: "p1", predictionSha256: "a".repeat(64), detectedAt: "2026-08-05T23:55:00Z",
+        lat: 40, lon: -90, bowBearingDeg: 88, score: 91, rankWithinScan: 1, poolSize: 8,
+        lane: "primary", modelVersion: "causal-bounded-persistence-radar-v2", hasMatchedCamera: false },
+      { predictionId: "control", detectedAt: "2026-08-05T23:55:00Z", lane: "lower_rank_control" },
+      { predictionId: "p2", predictionSha256: "b".repeat(64), detectedAt: "2026-08-06T00:05:00Z",
+        lat: 41, lon: -91, bowBearingDeg: 89, score: 90, rankWithinScan: 4, poolSize: 8,
+        lane: "possible", classification: "POSSIBLE_PLAUSIBLE", sunlightState: "sunlight_plausible",
+        modelVersion: "causal-bounded-persistence-radar-v2", hasMatchedCamera: false },
+    ],
+  }]);
+  assert.equal(days.length, 2);
+  assert.equal(days[0].date, "2026-08-06");
+  assert.equal(days[0].items.length, 1);
+  assert.equal(days[0].items[0].hasMatchedCamera, false);
+  assert.equal(days[0].items[0].classification, "POSSIBLE_PLAUSIBLE");
+  assert.equal(days[1].items[0].score, 91);
 });
 
 test("multiple camera views cannot expand research candidates beyond two review items", () => {
@@ -357,7 +426,7 @@ test("a withheld verdict is reported as withheld, not as never assessed", () => 
 
 test("review API serializes both list and grade responses through the anchoring guard", async () => {
   const source = await readFile(new URL("../api/go-events.mjs", import.meta.url), "utf8");
-  assert.match(source, /events\.map\(reviewSafeEvent\)/);
+  assert.match(source, /events\.map\(event => reviewSafeEvent\(event, reviewOptions\)\)/);
   assert.match(source, /event:\s*reviewSafeEvent\(event\)/);
 });
 
@@ -425,8 +494,8 @@ test("review candidates include GO plus only the strongest POSSIBLEs", () => {
 
 test("review page quietly refreshes without replacing the active candidate", async () => {
   const page = await readFile(new URL("../review.html", import.meta.url), "utf8");
-  assert.match(page, /REVIEW_REFRESH_MS = 2 \* 60 \* 1000/);
-  assert.match(page, /loadQueue\(\{ preserveCurrent: true \}\)/);
+  assert.match(page, /REVIEW_REFRESH_MS = 10 \* 60 \* 1000/);
+  assert.match(page, /preserveCurrent: true, loadAuxiliary: false/);
   assert.match(page, /incoming\.some\(item => item\.id === current\.id\)/);
   assert.match(page, /queue = \[current, \.\.\.incoming\.filter/);
   assert.match(page, /That review expired or was completed elsewhere/);
@@ -513,6 +582,9 @@ test("review page includes the model-versus-human results table", async () => {
   assert.match(page, /type="checkbox"/);
   assert.match(page, /confirmedFrameUrls/);
   assert.match(page, /cameraKey:current\.cameraKey/);
+  assert.doesNotMatch(page, /sceneSunlight|Scene sunlit\?|data-sunlight|Has Sunlight/i);
+  assert.match(page, /Bad view — hide camera 30 days/);
+  assert.match(page, /cameraExclusion\.reviewableAfter/);
   assert.match(page, /frame\.viewQuality/);
   assert.match(page, /frame\.timeOffsetMinutes/);
   assert.match(page, /Frame timing/);

@@ -2,7 +2,53 @@ import { json, readJsonBody, verifySecret } from "./alert-common.mjs";
 import { REVIEW_LABELS, evidenceFrameReviewGroups, labelGoEvent, labelGoEventView, loadGoEvents, loadGoEventsBetween } from "./go-event-common.mjs";
 import { hasReviewSession } from "./review-auth-common.mjs";
 
+import { activeCameraExclusionMap, appendCameraExclusion, loadCameraExclusionRegistry } from './review-camera-exclusions.mjs';
+
 export const config = { maxDuration: 10 };
+
+export const TRUSTED_REVIEW_SOURCE_PREFIXES = Object.freeze([
+  'faa weathercam',
+  'webcoos',
+  'usgs nims',
+  'alertcalifornia',
+  'alertwest',
+  'new york state mesonet',
+]);
+
+export function trustedReviewSource(value) {
+  const source = String(value || '').trim().toLowerCase();
+  return TRUSTED_REVIEW_SOURCE_PREFIXES.some(prefix => source.startsWith(prefix));
+}
+
+function groupSource(event, group) {
+  return group?.frames?.find(frame => frame?.source)?.source || event?.evidence?.source || null;
+}
+
+function pendingReviewGroup(event, group) {
+  return (event?.viewReviews?.[group.key]?.label || 'pending') === 'pending';
+}
+
+function allowedReviewGroup(event, group, excludedCameraKeys) {
+  return trustedReviewSource(groupSource(event, group)) && !excludedCameraKeys.has(group.key);
+}
+
+export function reviewWithholdingSummary(events, excludedCameraKeys = new Set()) {
+  const summary = { disallowedSourceViews: 0, excludedCameraViews: 0 };
+  for (const event of events || []) {
+    const groups = evidenceFrameReviewGroups(event);
+    if (!groups.length && (event.evidence?.frames || []).length
+      && (event.review?.label || 'pending') === 'pending'
+      && !trustedReviewSource(event.evidence?.source)) {
+      summary.disallowedSourceViews++;
+    }
+    for (const group of groups) {
+      if (!pendingReviewGroup(event, group)) continue;
+      if (!trustedReviewSource(groupSource(event, group))) summary.disallowedSourceViews++;
+      else if (excludedCameraKeys.has(group.key)) summary.excludedCameraViews++;
+    }
+  }
+  return summary;
+}
 
 export function apparentSolarElevationDeg(geometricElevationDeg) {
   const elevation = Number(geometricElevationDeg);
@@ -24,7 +70,8 @@ function authorized(req, body = {}) {
   return hasReviewSession(req) || verifySecret(req, body);
 }
 
-export function reviewQueue(events) {
+export function reviewQueue(events, options = {}) {
+  const excludedCameraKeys = options.excludedCameraKeys || new Set();
   const strengthRank = { strong: 3, usable: 2, limited: 1, unknown: 0 };
   const ordered = [...(events || [])]
     .filter(event => {
@@ -34,8 +81,15 @@ export function reviewQueue(events) {
       }
       return (event.review?.label || "pending") === "pending";
     })
-    .filter(event => event.candidateType !== "research_possible" || Number(event.scanCount || 0) >= 2)
+    .filter(event => event.candidateType !== "research_possible" || event.researchSource === "v4_shadow" || Number(event.scanCount || 0) >= 2)
     .filter(event => (event.evidence?.frames || []).length > 0)
+    .filter(event => {
+      const groups = evidenceFrameReviewGroups(event);
+      return groups.length
+        ? groups.some(group => pendingReviewGroup(event, group)
+          && allowedReviewGroup(event, group, excludedCameraKeys))
+        : trustedReviewSource(event.evidence?.source);
+    })
     .filter(event => event.evidence?.source !== "FAA WeatherCam"
       || (event.evidence.frames || []).filter(frame => Number(frame.timeOffsetMinutes) > 0).length >= 2)
     .sort((a, b) => {
@@ -52,17 +106,20 @@ export function reviewQueue(events) {
   return ordered;
 }
 
-export function allCameraViewsReviewed(event) {
-  const groups = evidenceFrameReviewGroups(event);
-  if (!groups.length) return Boolean(event?.review?.label && event.review.label !== "pending");
+export function allCameraViewsReviewed(event, options = {}) {
+  const excludedCameraKeys = options.excludedCameraKeys || new Set();
+  const allGroups = evidenceFrameReviewGroups(event);
+  const groups = allGroups.filter(group => allowedReviewGroup(event, group, excludedCameraKeys));
+  if (!groups.length) return allGroups.length > 0
+    || Boolean(event?.review?.label && event.review.label !== "pending");
   return groups.every(group => {
     const label = event?.viewReviews?.[group.key]?.label;
     return Boolean(label && label !== "pending");
   });
 }
 
-export function reviewSafeEvent(event) {
-  if (allCameraViewsReviewed(event)) return event;
+export function reviewSafeEvent(event, options = {}) {
+  if (allCameraViewsReviewed(event, options)) return event;
   const { researchAssessments: _hidden, ...safe } = event || {};
   return safe;
 }
@@ -89,7 +146,7 @@ function cameraForGroup(event, group) {
   };
 }
 
-function queueItem(event, group = null) {
+function queueItem(event, group = null, options = {}) {
   const frames = group?.frames || event.evidence?.frames || [];
   const geometricSunElevationDeg = Number(event?.representative?.evidence?.sunElevationDeg);
   const apparentSunElevationDeg = apparentSolarElevationDeg(geometricSunElevationDeg);
@@ -117,7 +174,7 @@ function queueItem(event, group = null) {
     // Detailed selection evidence can anchor the human grade just as strongly
     // as the sunlight verdict. Reveal it only after every sibling camera view
     // has been graded.
-    researchContext: event.candidateType === "research_possible" && allCameraViewsReviewed(event) ? {
+    researchContext: event.candidateType === "research_possible" && allCameraViewsReviewed(event, options) ? {
       selectionReason: latestAssessment?.researchReview?.selectionReason || event.representative?.evidence?.selectionReason || null,
       currentDetectorDisposition: latestAssessment?.researchReview?.currentDetectorDisposition
         || event.representative?.evidence?.currentDetectorDisposition || null,
@@ -145,20 +202,22 @@ function queueItem(event, group = null) {
   };
 }
 
-export function reviewQueueItems(events) {
-  const items = reviewQueue(events).flatMap(event => {
+export function reviewQueueItems(events, options = {}) {
+  const excludedCameraKeys = options.excludedCameraKeys || new Set();
+  const items = reviewQueue(events, options).flatMap(event => {
     const allGroups = evidenceFrameReviewGroups(event);
     if (!allGroups.length) {
-      const item = queueItem(event);
+      const item = queueItem(event, null, options);
       return Number.isFinite(item.camera?.distanceKm) && item.camera.distanceKm > 40 ? [] : [item];
     }
     const groups = allGroups.filter(group => {
       const distance = Number(group.frames?.[0]?.distanceKm);
-      return !Number.isFinite(distance) || distance <= 40;
+      return allowedReviewGroup(event, group, excludedCameraKeys)
+        && (!Number.isFinite(distance) || distance <= 40);
     });
     return groups
       .filter(group => (event.viewReviews?.[group.key]?.label || "pending") === "pending")
-      .map(group => queueItem(event, group));
+      .map(group => queueItem(event, group, options));
   });
   const operational = items.filter(item => item.candidateType !== "research_possible");
   const researchItems = items.filter(item => item.candidateType === "research_possible");
@@ -181,6 +240,49 @@ export function reviewQueueItems(events) {
   return [...operational, ...research];
 }
 
+export function v4ShadowDaily(events) {
+  const rows = [];
+  for (const event of events || []) {
+    if (event.researchSource !== "v4_shadow") continue;
+    const hasEvidenceFrames = (event.evidence?.frames || []).length > 0;
+    const awaitingCameraGrade = hasEvidenceFrames && !allCameraViewsReviewed(event);
+    for (const prediction of event.v4ShadowPredictions || []) {
+      if (!["primary", "go", "possible"].includes(prediction.lane) || !prediction.detectedAt) continue;
+      rows.push({
+        eventId: event.id, predictionId: prediction.predictionId,
+        predictionSha256: prediction.predictionSha256 || null,
+        mechanicalFreezeContentSha256: prediction.mechanicalFreezeContentSha256 || null,
+        detectedAt: prediction.detectedAt, lat: prediction.lat, lon: prediction.lon,
+        bowBearingDeg: prediction.bowBearingDeg,
+        score: awaitingCameraGrade ? null : prediction.score,
+        rankWithinScan: awaitingCameraGrade ? null : prediction.rankWithinScan,
+        poolSize: awaitingCameraGrade ? null : prediction.poolSize,
+        lane: prediction.lane, classification: prediction.classification || null,
+        sunlightState: prediction.sunlightState || null, modelVersion: prediction.modelVersion,
+        ruleVersion: prediction.ruleVersion, familyEventId: prediction.familyEventId,
+        hasMatchedCamera: prediction.hasMatchedCamera === true,
+        hasCameraEvidence: hasEvidenceFrames,
+        cameraMatches: prediction.cameraMatches || [],
+        reviewLabel: event.review?.label || "pending",
+        modelDetailsWithheld: awaitingCameraGrade,
+      });
+    }
+  }
+  rows.sort((a, b) => new Date(b.detectedAt) - new Date(a.detectedAt)
+    || Number(a.rankWithinScan || 999) - Number(b.rankWithinScan || 999));
+  const grouped = new Map();
+  for (const row of rows) {
+    const day = String(row.detectedAt).slice(0, 10);
+    if (!grouped.has(day)) grouped.set(day, new Map());
+    const families = grouped.get(day);
+    const key = row.familyEventId || row.predictionId;
+    const existing = families.get(key);
+    if (existing) existing.scanSelections++;
+    else families.set(key, { ...row, scanSelections: 1 });
+  }
+  return [...grouped].map(([date, families]) => ({ date, items: [...families.values()] }));
+}
+
 function eventClass(event) {
   if (event?.candidateClass === "POSSIBLE" || event?.candidateType === "live_possible") return "POSSIBLE";
   if (String(event?.candidateType || "").startsWith("historical_")) return "ARCHIVE";
@@ -197,7 +299,7 @@ export function reviewEvidenceStrength(distanceKm, bearingDifference, viewQualit
   return "limited";
 }
 
-export function reviewResults(events) {
+export function reviewResults(events, options = {}) {
   // An event still in the queue has a view awaiting an unbiased grade, and this
   // table sits on the same page as that queue, so its verdict must stay hidden.
   // Anything the queue no longer offers cannot anchor a future grade: that
@@ -205,7 +307,7 @@ export function reviewResults(events) {
   // unreviewable, whose evidence would otherwise be hidden forever. Use the
   // uncapped queue, or a research event sitting past the two-item cap would be
   // mistaken for finished.
-  const awaitingGrade = new Set(reviewQueue(events).map(event => event.id));
+  const awaitingGrade = new Set(reviewQueue(events, options).map(event => event.id));
   const rows = [...(events || [])].flatMap(event => {
     const groups = evidenceFrameReviewGroups(event);
     const viewRows = groups.flatMap(group => {
@@ -221,6 +323,9 @@ export function reviewResults(events) {
       const rep = event.representative || {};
       const evidence = rep.evidence || {};
       const camera = group ? cameraForGroup(event, group) : event.evidence?.camera || {};
+      const modelsWithheld = awaitingGrade.has(event.id);
+      const v4Shadow = modelsWithheld ? null : (event.v4ShadowPredictions || []).at(-1) || null;
+      const v5Shadow = modelsWithheld ? null : (event.v5ShadowPredictions || []).at(-1) || null;
       return {
         id: group ? `${event.id}::${group.key}` : event.id,
         candidateType: event.candidateType || "live_go",
@@ -257,6 +362,7 @@ export function reviewResults(events) {
           bowArcOverlapDeg: Number.isFinite(camera.bowArcOverlapDeg) ? camera.bowArcOverlapDeg : null,
         },
         reviewStrength: reviewEvidenceStrength(camera.distanceKm, camera.bearingDifference, camera.viewQuality, camera.nearestFrameOffsetMinutes, camera.visibleBowFraction),
+        v4Shadow, v5Shadow,
         sunlightAssessment: awaitingGrade.has(event.id)
           ? null
           : (event.researchAssessments || []).at(-1) || null,
@@ -278,21 +384,40 @@ export default async function handler(req, res) {
     const label = String(req.query?.label || "").trim();
     const queue = String(req.query?.queue || "") === "1";
     const results = String(req.query?.results || "") === "1";
+    const v4Daily = String(req.query?.v4Daily || "") === "1";
+    const source = String(req.query?.source || "").trim();
     const since = Date.parse(String(req.query?.since || ""));
     const until = Date.parse(String(req.query?.until || ""));
+    const exclusionRegistry = queue || results ? await loadCameraExclusionRegistry() : null;
+    const activeExclusions = exclusionRegistry ? activeCameraExclusionMap(exclusionRegistry) : new Map();
+    const reviewOptions = { excludedCameraKeys: new Set(activeExclusions.keys()) };
     const loaded = Number.isFinite(since) && Number.isFinite(until)
       ? await loadGoEventsBetween(since, until, limit)
       : await loadGoEvents(limit);
+    if (v4Daily) {
+      const days = v4ShadowDaily(loaded);
+      json(res, 200, { ok: true, days: days.length, events: days.reduce((sum, day) => sum + day.items.length, 0), items: days });
+      return;
+    }
+    const scoped = source === "operational"
+      ? loaded.filter(event => event.candidateType !== "research_possible")
+      : source ? loaded.filter(event => event.researchSource === source) : loaded;
     const events = queue
-      ? reviewQueue(loaded)
-      : loaded.filter(event => !label || event.review?.label === label
+      ? reviewQueue(scoped, reviewOptions)
+      : scoped.filter(event => !label || event.review?.label === label
         || Object.values(event.viewReviews || {}).some(review => review?.label === label))
         .filter(event => !results || (event.review?.label && event.review.label !== "pending")
           || Object.values(event.viewReviews || {}).some(review => review?.label && review.label !== "pending"));
     const counts = {};
     for (const event of events) counts[event.review?.label || "pending"] = (counts[event.review?.label || "pending"] || 0) + 1;
-    const items = queue ? reviewQueueItems(loaded) : results ? reviewResults(events) : events.map(reviewSafeEvent);
-    json(res, 200, { ok: true, events: items.length, counts, items });
+    const items = queue ? reviewQueueItems(scoped, reviewOptions)
+      : results ? reviewResults(events, reviewOptions)
+        : events.map(event => reviewSafeEvent(event, reviewOptions));
+    const withheld = queue || results
+      ? { ...reviewWithholdingSummary(scoped, reviewOptions.excludedCameraKeys),
+          activeCameraExclusions: activeExclusions.size }
+      : null;
+    json(res, 200, { ok: true, events: items.length, counts, withheld, items });
     return;
   }
   if (req.method === "POST") {
@@ -311,7 +436,19 @@ export default async function handler(req, res) {
       throw error;
     }
     if (!event) { json(res, 404, { ok: false, error: "Event not found." }); return; }
-    json(res, 200, { ok: true, event: reviewSafeEvent(event) });
+    let cameraExclusion = null;
+    if (body.cameraKey && body.label === 'no_camera') {
+      const group = evidenceFrameReviewGroups(event).find(item => item.key === body.cameraKey);
+      const first = group?.frames?.[0] || {};
+      const stored = await appendCameraExclusion({
+        cameraKey: body.cameraKey,
+        source: first.source || event.evidence?.source || null,
+        cameraName: first.cameraName || event.evidence?.camera?.name || null,
+        eventId: event.id,
+      });
+      cameraExclusion = stored.entry;
+    }
+    json(res, 200, { ok: true, event: reviewSafeEvent(event), cameraExclusion });
     return;
   }
   res.setHeader("Allow", "GET, POST");

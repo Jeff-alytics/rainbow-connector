@@ -144,10 +144,10 @@ def rain_spatial_support(rates: np.ndarray, row: int, column: int) -> dict:
     }
 
 
-def cluster(seeds: list[dict], radius_km: float = 20, maximum: int = 400) -> list[dict]:
+def cluster(seeds: list[dict], radius_km: float = 20, maximum: int | None = 400) -> list[dict]:
     selected: list[dict] = []
     for seed in sorted(seeds, key=lambda item: item["radarScore"], reverse=True):
-        if any(
+        if radius_km > 0 and any(
             math.hypot(
                 (seed["lat"] - old["lat"]) * 111,
                 (seed["lon"] - old["lon"]) * 111 * math.cos(seed["lat"] * RAD),
@@ -156,7 +156,7 @@ def cluster(seeds: list[dict], radius_km: float = 20, maximum: int = 400) -> lis
         ):
             continue
         selected.append(seed)
-        if len(selected) >= maximum:
+        if maximum is not None and len(selected) >= maximum:
             break
     return selected
 
@@ -167,9 +167,13 @@ def observer_seeds_from_rain_grid(
     rates: np.ndarray,
     observed_at: datetime,
     stride: int = 10,
-    maximum: int = 400,
+    maximum: int | None = 400,
     diagnostics: dict | None = None,
     enforce_spatial_support: bool = False,
+    sun_elevation_range: tuple[float, float] = (0.0, 30.0),
+    require_dry_observer: bool = True,
+    retain_all_observer_distances: bool = False,
+    cluster_radius_km: float = 20.0,
 ) -> list[dict]:
     """Find rain edges first, then place potential observers toward the Sun."""
     latitudes = np.asarray(latitudes, dtype=float)
@@ -209,7 +213,7 @@ def observer_seeds_from_rain_grid(
             rain_lat = float(latitudes[row])
             rain_lon = float(longitudes[column])
             elevation, sun_bearing = solar_position(observed_at, rain_lat, rain_lon)
-            if not 0 <= elevation <= 30:
+            if not sun_elevation_range[0] <= elevation <= sun_elevation_range[1]:
                 continue
             counts["lowSunRainEdges"] += 1
             for distance in OBSERVER_DISTANCES_KM:
@@ -218,7 +222,7 @@ def observer_seeds_from_rain_grid(
                     counts["nonConusObserverSeeds"] += 1
                     continue
                 observer_rain = sample_grid(latitudes, longitudes, rates, observer_lat, observer_lon)
-                if observer_rain >= OBSERVER_DRY_MAX_MM_HR:
+                if require_dry_observer and observer_rain >= OBSERVER_DRY_MAX_MM_HR:
                     continue
                 sun_score = math.exp(-((elevation - 13) / 8) ** 2)
                 rain_score = min(1, math.log1p(rain_rate) / math.log(5))
@@ -238,14 +242,23 @@ def observer_seeds_from_rain_grid(
                     "radarScore": round(100 * (0.45 * sun_score + 0.35 * rain_score + 0.2 * edge_score), 1),
                     "spatialSupport": spatial_support,
                 })
-                break
-    selected = cluster(candidates, maximum=maximum)
+                if not retain_all_observer_distances:
+                    break
+    selected = cluster(candidates, radius_km=cluster_radius_km, maximum=maximum)
     if diagnostics is not None:
         diagnostics.update({
             **counts,
             "spatialSupportMethodVersion": SPATIAL_SUPPORT_METHOD_VERSION,
             "spatialSupportMode": "enforce" if enforce_spatial_support else "shadow",
             "clusteredObserverSeeds": len(selected),
+            "preClusterObserverSeeds": len(candidates),
+            "candidateCap": maximum,
+            "candidateCapHit": maximum is not None and len(selected) >= maximum,
+            "samplingStride": stride,
+            "clusterRadiusKm": cluster_radius_km,
+            "sunElevationRangeDeg": list(sun_elevation_range),
+            "requireDryObserver": require_dry_observer,
+            "retainAllObserverDistances": retain_all_observer_distances,
             "clusteredFlaggedObserverSeeds": sum(
                 seed.get("spatialSupport", {}).get("isolatedPixel") is True for seed in selected
             ),

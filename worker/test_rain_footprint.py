@@ -10,7 +10,7 @@ from rain_footprint import (
     SCHEMA_VERSION, build_sidecar, candidate_rain_span, encode_runs,
     attach_record_rain_spans, occupancy_metrics, rate_tiers,
 )
-from rain_footprint_store import object_key, persist_rain_footprint, safe_build_and_persist_rain_footprint, safe_persist_rain_footprint
+from rain_footprint_store import candidate_seeds_from_records, object_key, persist_rain_footprint, safe_build_and_persist_rain_footprint, safe_persist_rain_footprint
 from decision_log import candidate_id
 
 
@@ -117,6 +117,17 @@ class RainFootprintTests(unittest.TestCase):
     def test_deferred_build_failure_is_contained(self):
         result = safe_build_and_persist_rain_footprint({"latitudes": None})
         self.assertFalse(result["ok"])
+
+    def test_camera_independent_seed_contract_keeps_v4_inputs(self):
+        record = {"candidateId": "c1", "features": {
+            "observer": {"lat": 40, "lon": -90},
+            "rain": {"lat": 40, "lon": -89.8, "observerRateMmHr": 0, "spatialSupport": {"adjacentWetCells": 2}},
+            "geometry": {"sunElevationDeg": 8, "antiSolarBearingDeg": 90, "radarScore": 97},
+        }}
+        [seed] = candidate_seeds_from_records([record])
+        self.assertEqual(seed["candidateId"], "c1")
+        self.assertEqual(seed["radarScore"], 97)
+        self.assertEqual(seed["spatialSupport"]["adjacentWetCells"], 2)
 
     def test_template_grants_only_rolling_sidecar_writes_and_retains_lifecycle(self):
         template = Path(__file__).resolve().parents[1].joinpath("template.yaml").read_text(encoding="utf-8")

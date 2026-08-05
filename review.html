@@ -14,6 +14,7 @@
     input,textarea{background:#111722;color:var(--text);padding:12px}input{min-width:250px}textarea{width:100%;min-height:70px;resize:vertical}
     button{background:#263249;color:var(--text);padding:11px 16px;cursor:pointer;font-weight:650}button:hover{filter:brightness(1.13)}button:disabled{opacity:.5;cursor:wait}
     .top{display:flex;align-items:center;justify-content:space-between;gap:16px}.review-refresh{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:10px}.small{font-size:13px;color:var(--muted)}
+    .queue-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.queue-filters button.active{background:#34558b;outline:2px solid var(--blue)}
     .strip{display:flex;gap:12px;overflow-x:auto;padding:4px 0 14px}.frame{flex:0 0 min(720px,86vw);margin:0}.frame img{display:block;width:100%;height:min(470px,56vw);object-fit:contain;background:#05070b;border-radius:12px}.frame figcaption{color:var(--muted);font-size:12px;margin-top:6px}.frame-picker{display:flex;align-items:center;gap:8px;margin-top:8px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;color:var(--text);cursor:pointer}.frame-picker:has(input:checked){border-color:var(--green);background:#173625}.frame-picker input{min-width:0;margin:0;accent-color:var(--green)}
     .bow-guidance{margin:12px 0;padding:10px 12px;border:1px solid #66542d;border-radius:10px;background:#2a2418;color:#f7d98c;line-height:1.45}.bow-guidance strong{color:#fff1c5}.bow-height-layout{display:grid;grid-template-columns:minmax(210px,1fr) 310px;align-items:center;gap:14px}.bow-height-chart{display:block;width:100%;max-width:310px;height:auto}.bow-height-note{display:block;margin-top:7px;color:#d9c99c;font-size:12px}
     .grades{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:10px;margin-top:15px}.sunlight-grade{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}.sunlight-grade button{padding:8px 11px;font-size:13px}.sunlight-grade button.selected{outline:2px solid var(--blue);background:#344d7a}.yes{background:#17683d}.no{background:#7f2635}.possible{background:#765415}.secondary{background:#374055}
@@ -40,6 +41,7 @@
 
   <section id="workspace" class="hidden">
     <div class="top"><div><strong id="queue-count">Loading…</strong><div class="small">GO evidence first, followed by the strongest POSSIBLE evidence</div></div><button id="logout" class="secondary">Sign out</button></div>
+    <div class="queue-filters" aria-label="Review queue filter"><button type="button" data-queue-filter="all" class="active">All review</button><button type="button" data-queue-filter="operational">Operational</button><button type="button" data-queue-filter="v4_shadow">V4 Shadow</button></div>
     <div class="review-refresh"><span id="refresh-status" class="small" role="status" aria-live="polite"></span><button id="refresh" class="secondary" type="button">Refresh</button></div>
     <article id="review-card" class="card hidden">
       <div class="top"><h2 id="event-id">Candidate</h2><span id="progress" class="small"></span></div>
@@ -52,18 +54,27 @@
         <button data-label="no_rainbow" class="no">No rainbow in this view</button>
         <button data-label="possible" class="possible">Possible</button>
         <button data-label="obscured" class="secondary">Obscured</button>
-        <button data-label="no_camera" class="secondary">Bad view</button>
+        <button data-label="no_camera" class="secondary">Bad view — hide camera 30 days</button>
       </div>
       <div id="grade-status" class="status"></div>
       <div id="reveal" class="reveal hidden"></div>
     </article>
     <section id="empty" class="card hidden"><h2>Nothing awaiting review</h2><p>New events will appear after the Connector records a GO, strong POSSIBLE, or persistent research candidate and finds usable camera imagery.</p></section>
+    <section class="card" id="v5-daily">
+      <div class="top"><div><h2>V5 candidates by day</h2><p class="results-copy">Every retained V5 family is shown; there is no top-two or per-day candidate cap. Open a family's location to inspect every retained geometry, not just its best-scoring one. V5 acquisition is currently off.</p></div><span id="v5-daily-count" class="small"></span></div>
+      <div class="queue-filters" aria-label="V5 elevation lane filter"><button type="button" data-v5-filter="all" class="active">All V5</button><button type="button" data-v5-filter="observed_core">0°–25°</button><button type="button" data-v5-filter="observed_extended">25°–32°</button><button type="button" data-v5-filter="physical_audit">Outer audit</button><button type="button" data-v5-filter="expanded">Expanded only</button></div>
+      <div class="table-wrap"><table style="min-width:1420px"><thead><tr><th>UTC day</th><th>Time</th><th>Elevation lane</th><th>Cohort</th><th>Rank / pool</th><th>V5-A</th><th>No-decay</th><th>Location</th><th>Sun</th><th>Predicted bow</th><th>Why V4.2 excluded it</th><th>Exploration</th><th>Family coverage</th></tr></thead><tbody id="v5-daily-body"><tr><td colspan="13">Loading V5 candidates…</td></tr></tbody></table></div>
+    </section>
+    <section class="card" id="v4-daily">
+      <div class="top"><div><h2>V4.2 candidates by day</h2><p class="results-copy">Private sunlight-decided research predictions only — these are not public Connector alerts. Use the coordinates and predicted bow direction to look for public cameras.</p></div><span id="v4-daily-count" class="small"></span></div>
+      <div class="table-wrap"><table style="min-width:1150px"><thead><tr><th>UTC day</th><th>Time</th><th>Decision</th><th>Rank / pool</th><th>V4 score</th><th>Location</th><th>Predicted bow</th><th>System camera</th><th>Review</th><th>Frozen prediction</th></tr></thead><tbody id="v4-daily-body"><tr><td colspan="10">Loading V4.2 candidates…</td></tr></tbody></table></div>
+    </section>
     <section class="card">
       <div class="top"><div><h2>Review results</h2><p class="results-copy">Human grades compared with the evidence that produced each candidate.</p></div><span id="results-count" class="small"></span></div>
       <p class="small">Model score is a 0–100 ranking score, not a percent probability. Review strength accounts for camera distance, direction error, view quality, and frame timing; negative grades are conclusive only with strong evidence.</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Grade</th><th>Scene sunlit?</th><th>v2 sunlight</th><th>GO / Possible</th><th>Type</th><th>Model score</th><th>Review strength</th><th>Scans</th><th>Sun</th><th>Bow top</th><th>Direct sun</th><th>Rain at bow</th><th>Rain here</th><th>Source / camera</th><th>View</th><th>Distance</th><th>Direction error</th><th>Frame timing</th><th>Detected</th></tr></thead>
+          <thead><tr><th>Grade</th><th>v2 sunlight</th><th>V4.2 → V5</th><th>GO / Possible</th><th>Type</th><th>Model score</th><th>Review strength</th><th>Scans</th><th>Sun</th><th>Bow top</th><th>Direct sun</th><th>Rain at bow</th><th>Rain here</th><th>Source / camera</th><th>View</th><th>Distance</th><th>Direction error</th><th>Frame timing</th><th>Detected</th></tr></thead>
           <tbody id="results-body"><tr><td colspan="19">Loading results…</td></tr></tbody>
         </table>
       </div>
@@ -81,8 +92,10 @@
 
 <script>
 const $ = selector => document.querySelector(selector);
-let queue = [], current = null, completed = 0, refreshInFlight = false, sceneSunlight = null;
-const REVIEW_REFRESH_MS = 2 * 60 * 1000;
+let queue = [], current = null, completed = 0, refreshInFlight = false, queueFilter = "all";
+let v5Rows = [], v5Filter = "all";
+let withheld = { disallowedSourceViews:0, excludedCameraViews:0, activeCameraExclusions:0 };
+const REVIEW_REFRESH_MS = 10 * 60 * 1000;
 
 async function api(url, options = {}){
   const response = await fetch(url, { credentials:"same-origin", cache:"no-store", ...options });
@@ -124,12 +137,15 @@ function bowHeightChart(degrees){
 
 function render(){
   current = queue[0] || null;
-  $("#queue-count").textContent = `${queue.length} candidate${queue.length === 1 ? "" : "s"} awaiting review`;
+  const hiddenViews = Number(withheld.disallowedSourceViews || 0) + Number(withheld.excludedCameraViews || 0);
+  $("#queue-count").textContent = `${queue.length} candidate${queue.length === 1 ? "" : "s"} awaiting review`
+    + (hiddenViews ? ` · ${hiddenViews} unsuitable view${hiddenViews === 1 ? "" : "s"} withheld` : "");
   $("#review-card").classList.toggle("hidden", !current);
   $("#empty").classList.toggle("hidden", !!current);
   if (!current) return;
   const candidateLabel = current.candidateType === "historical_webcoos"
     ? "WebCOOS archive"
+    : current.candidateType === "research_possible" && current.researchSource === "v4_shadow" ? "V4.2 shadow candidate"
     : current.candidateType === "research_possible" && current.researchSource === "opportunity_ledger" ? "Research POSSIBLE — ledger"
     : current.candidateType === "research_possible" ? "Research POSSIBLE — detector"
     : current.candidateClass === "POSSIBLE" ? "Live POSSIBLE" : "Live GO";
@@ -137,8 +153,6 @@ function render(){
   $("#event-id").textContent = `${candidateLabel} candidate ${(current.eventId || current.id).slice(-10)}${viewLabel}`;
   $("#progress").textContent = completed ? `${completed} graded this session` : "";
   $("#notes").value = "";
-  sceneSunlight = null;
-  document.querySelectorAll("[data-sunlight]").forEach(button => button.classList.remove("selected"));
   $("#grade-status").textContent = "";
   $("#reveal").classList.add("hidden");
   const bowGuidance = $("#bow-guidance");
@@ -174,19 +188,23 @@ function render(){
     <label class="frame-picker"><input type="checkbox" name="confirmed-frame" value="${index}"> Keep this image if it shows a rainbow</label></figure>`).join("");
 }
 
-async function loadQueue({ preserveCurrent = false } = {}){
-  const data = await api("/api/go-events?queue=1&limit=250");
+async function loadQueue({ preserveCurrent = false, loadAuxiliary = true } = {}){
+  const source = queueFilter === "all" ? "" : `&source=${encodeURIComponent(queueFilter)}`;
+  const data = await api(`/api/go-events?queue=1&limit=250${source}`);
   const incoming = data.items || [];
+  withheld = data.withheld || withheld;
   const currentStillPending = preserveCurrent && current && incoming.some(item => item.id === current.id);
   if (currentStillPending) {
     queue = [current, ...incoming.filter(item => item.id !== current.id)];
-    $("#queue-count").textContent = `${queue.length} candidate${queue.length === 1 ? "" : "s"} awaiting review`;
+    const hiddenViews = Number(withheld.disallowedSourceViews || 0) + Number(withheld.excludedCameraViews || 0);
+    $("#queue-count").textContent = `${queue.length} candidate${queue.length === 1 ? "" : "s"} awaiting review`
+      + (hiddenViews ? ` · ${hiddenViews} unsuitable view${hiddenViews === 1 ? "" : "s"} withheld` : "");
   } else {
     queue = incoming;
     render();
   }
   showWorkspace();
-  await Promise.allSettled([loadResults(), loadSubscribers()]);
+  if (loadAuxiliary) await Promise.allSettled([loadResults(), loadV5Daily(), loadV4Daily(), loadSubscribers()]);
 }
 
 async function refreshReviewPage({ announce = true } = {}){
@@ -197,7 +215,7 @@ async function refreshReviewPage({ announce = true } = {}){
   button.textContent = "Refreshing...";
   if (announce) $("#refresh-status").textContent = "Checking for new candidates...";
   try {
-    await loadQueue({ preserveCurrent: true });
+    await loadQueue({ preserveCurrent: true, loadAuxiliary: false });
     const refreshedAt = new Date().toLocaleTimeString([], { hour:"numeric", minute:"2-digit" });
     $("#refresh-status").textContent = `Updated ${refreshedAt}`;
   } catch (error) {
@@ -210,7 +228,6 @@ async function refreshReviewPage({ announce = true } = {}){
 }
 
 const gradeNames = { rainbow:"Rainbow", no_rainbow:"No rainbow in this view", possible:"Possible", obscured:"Obscured", no_camera:"Bad view", invalid_location:"Invalid location" };
-const sunlightNames = { sunlit:"Yes", not_sunlit:"No", uncertain:"Can't tell" };
 const assessmentNames = { sunlit_supported:"Sunlight supported", sunlight_plausible:"Sunlight plausible", unresolved:"Unresolved", overcast_supported:"Overcast supported" };
 const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[char]);
 const number = (value, digits = 0) => Number.isFinite(value) ? Number(value).toFixed(digits) : "—";
@@ -225,11 +242,12 @@ async function loadResults(){
     const note = item.notes ? `<span class="result-note" title="${esc(item.notes)}">${esc(item.notes)}</span>` : "";
     return `<tr>
       <td><span class="grade ${gradeClass}">${esc(grade)}</span>${note}</td>
-      <td>${esc(sunlightNames[item.sceneSunlight] || "—")}</td><td>${esc(item.sunlightAssessment
+      <td>${esc(item.sunlightAssessment
         ? (assessmentNames[item.sunlightAssessment.sunlightState] || item.sunlightAssessment.sunlightState)
         : item.sunlightAssessmentWithheld ? "Withheld until graded" : "Not assessed")}</td>
+      <td>${item.v5Shadow ? `${number(item.v4Shadow?.rankWithinScan)} → ${number(item.v5Shadow.rankWithinScan)}<span class="result-note">V4 ${number(item.v4Shadow?.score,1)} · V5 ${number(item.v5Shadow.score,1)}</span>` : "—"}</td>
       <td>${esc(item.candidateClass || "GO")}</td>
-      <td>${item.candidateType === "historical_webcoos" ? "Archive screen" : item.candidateType === "research_possible" && item.researchSource === "opportunity_ledger" ? "Research POSSIBLE — ledger" : item.candidateType === "research_possible" ? "Research POSSIBLE — detector" : item.candidateType === "live_possible" ? "Live POSSIBLE" : "Live GO"}</td>
+      <td>${item.candidateType === "historical_webcoos" ? "Archive screen" : item.candidateType === "research_possible" && item.researchSource === "v4_shadow" ? "V4.2 shadow candidate" : item.candidateType === "research_possible" && item.researchSource === "opportunity_ledger" ? "Research POSSIBLE — ledger" : item.candidateType === "research_possible" ? "Research POSSIBLE — detector" : item.candidateType === "live_possible" ? "Live POSSIBLE" : "Live GO"}</td>
       <td>${number(item.score, 1)}</td><td><span class="strength ${esc(item.reviewStrength)}">${esc(item.reviewStrength)}</span></td><td>${number(item.scanCount)}</td>
       <td>${number(item.sunElevationDeg, 1)}°</td><td>${number(item.rainbowArcDeg, 1)}°</td>
       <td>${number(item.directNormalIrradianceWm2)} W/m²</td>
@@ -241,12 +259,50 @@ async function loadResults(){
   }).join("") : '<tr><td colspan="19">No candidates have been graded yet.</td></tr>';
 }
 
-// Sunlight is a model output, not a human judgement: asking the reviewer for it under
-// the informed-review protocol invites rationalising the score already on screen.
-document.querySelectorAll("[data-sunlight]").forEach(button => button.addEventListener("click", () => {
-  sceneSunlight = button.dataset.sunlight;
-  document.querySelectorAll("[data-sunlight]").forEach(item => item.classList.toggle("selected", item === button));
-}));
+function renderV5Daily(){
+  const rows = v5Rows.filter(item => v5Filter === "all"
+    || (v5Filter === "expanded" ? !(item.cohortMembership || []).includes("overlap") : item.solarLane === v5Filter));
+  $("#v5-daily-count").textContent = `${rows.length} family candidate${rows.length === 1 ? "" : "s"}`;
+  $("#v5-daily-body").innerHTML = rows.length ? rows.map(item => {
+    const geometries = (item.geometries || []).length ? item.geometries : [item];
+    const geometryLinks = geometries.map((geometry, index) => {
+      if (!Number.isFinite(geometry.lat) || !Number.isFinite(geometry.lon)) return "";
+      const link = `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${geometry.lat},${geometry.lon}`)}" target="_blank" rel="noopener">${geometry.lat.toFixed(4)}, ${geometry.lon.toFixed(4)}</a>`;
+      return `<div>${index + 1}. ${link} · score ${number(geometry.score,1)} · sun ${number(geometry.sunElevationDeg,1)}° · bow ${number(geometry.bowBearingDeg,0)}°</div>`;
+    }).filter(Boolean).join("");
+    const location = `<details><summary>${geometries.length} retained location${geometries.length === 1 ? "" : "s"}</summary>${geometryLinks || "—"}</details>`;
+    const cohort = (item.cohortMembership || []).includes("overlap") ? "V4.2 overlap" : "V5 expanded-only";
+    const reasons = (item.v4ExclusionReasons || []).map(value => String(value).replace(/^v4_/, "").replaceAll("_", " ")).join(", ") || "V4.2 eligible";
+    const exploration = item.exploration?.selected ? "Selected (emission off)" : "Not selected";
+    return `<tr><td>${esc(item.day)}</td><td>${esc(new Date(item.detectedAt).toLocaleTimeString([], {hour:"numeric",minute:"2-digit",timeZone:"UTC"}))} UTC</td>
+      <td>${esc(String(item.solarLane || "unresolved").replaceAll("_", " "))}</td><td>${esc(cohort)}</td>
+      <td>${number(item.rankWithinScan)} / ${number(item.poolSize)}</td><td>${number(item.score,1)}</td><td>${number(item.noDecayAblationScore,1)} (#${number(item.noDecayRankWithinScan)})</td>
+      <td>${location}</td><td>${number(item.sunElevationDeg,1)}°</td><td>${number(item.bowBearingDeg,0)}°</td>
+      <td>${esc(reasons)}</td><td>${esc(exploration)}</td><td>${number(item.scanSelections)} scans · ${geometries.length} unique / ${number(item.geometrySelections)} selections</td></tr>`;
+  }).join("") : '<tr><td colspan="13">No V5 candidates match this filter yet.</td></tr>';
+}
+
+async function loadV5Daily(){
+  const data = await api("/api/v5-candidates?days=7");
+  v5Rows = (data.items || []).flatMap(day => day.items.map(item => ({...item, day:day.date})));
+  renderV5Daily();
+}
+
+async function loadV4Daily(){
+  const data = await api("/api/go-events?v4Daily=1&limit=1000");
+  const rows = (data.items || []).flatMap(day => day.items.map(item => ({...item, day:day.date})));
+  $("#v4-daily-count").textContent = `${rows.length} frozen prediction${rows.length === 1 ? "" : "s"}`;
+  $("#v4-daily-body").innerHTML = rows.length ? rows.map(item => {
+    const location = Number.isFinite(item.lat) && Number.isFinite(item.lon)
+      ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.lat},${item.lon}`)}" target="_blank" rel="noopener">${item.lat.toFixed(4)}, ${item.lon.toFixed(4)}</a>` : "—";
+    const camera = item.hasCameraEvidence ? "Evidence frames found" : item.hasMatchedCamera ? "Catalog camera matched" : "No camera found yet";
+    const digest = String(item.predictionSha256 || "");
+    return `<tr><td>${esc(item.day)}</td><td>${esc(new Date(item.detectedAt).toLocaleTimeString([], {hour:"numeric",minute:"2-digit",timeZone:"UTC"}))} UTC</td><td>${esc(item.classification || (item.lane === "primary" ? "V4.1 PRIMARY" : item.lane || "—"))}</td>
+      <td>${item.modelDetailsWithheld ? "Withheld until graded" : `${number(item.rankWithinScan)} / ${number(item.poolSize)}`}<span class="result-note">${number(item.scanSelections)} scan selection${item.scanSelections === 1 ? "" : "s"}</span></td><td>${item.modelDetailsWithheld ? "Withheld" : number(item.score, 1)}</td><td>${location}</td>
+      <td>${number(item.bowBearingDeg, 0)}°</td><td>${esc(camera)}</td><td>${esc(gradeNames[item.reviewLabel] || item.reviewLabel || "pending")}</td>
+      <td title="${esc(digest)}">${esc(item.predictionId || "—")}<span class="result-note">${esc(item.modelVersion || "")}${digest ? ` · ${digest.slice(0,12)}` : ""}</span></td></tr>`;
+  }).join("") : '<tr><td colspan="10">No V4.2 candidates have been recorded yet.</td></tr>';
+}
 
 async function loadSubscribers(){
   const data = await api("/api/review-subscribers");
@@ -280,21 +336,31 @@ document.querySelectorAll("[data-label]").forEach(button => button.addEventListe
     $("#grade-status").textContent = "Choose every image that actually shows a rainbow first.";
     return;
   }
+  if (button.dataset.label === "no_camera" && !current.cameraKey) {
+    $("#grade-status").textContent = "This legacy view has no stable camera identity and cannot be excluded safely.";
+    return;
+  }
+  if (button.dataset.label === "no_camera"
+    && !window.confirm("Hide this camera from Review for 30 days? Use this only for a persistently obstructed, badly aimed, or skyless view.")) return;
   document.querySelectorAll("[data-label]").forEach(item => item.disabled = true);
   $("#grade-status").textContent = "Saving…";
   try {
     const data = await api("/api/go-events", { method:"POST", headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({id:current.eventId || current.id,cameraKey:current.cameraKey || null,label:button.dataset.label,notes:$("#notes").value,sceneSunlight,
+      body:JSON.stringify({id:current.eventId || current.id,cameraKey:current.cameraKey || null,label:button.dataset.label,notes:$("#notes").value,
         sunlightAssessmentExpandedBeforeGrade:false,
         confirmedFrameUrls:selectedFrames.map(input => current.frames[Number(input.value)]?.url).filter(Boolean)}) });
     const event = data.event, rep = event.representative || {};
     const assessment = (event.researchAssessments || []).at(-1);
     const assessmentText = assessment ? `<br><strong>Research sunlight-v2:</strong> ${esc(assessmentNames[assessment.sunlightState] || assessment.sunlightState || "unresolved")}. ${esc((assessment.sunlightStateReasons || []).join(", ").replaceAll("_", " "))}<details><summary>Assessment details</summary>Band-2 frames used: ${assessment.sources?.band2?.framesUsed ?? "—"}; corroborating frames: ${assessment.sources?.band2?.corroboratingFrames ?? "—"}; METAR support: ${number(assessment.sources?.metar?.supportScore, 2)}; anti-solar rain span: ${number(assessment.rain?.antiSolarRainArcSpanDeg, 0)}°; processing latency: ${number(assessment.enrichmentLatencySeconds, 0)} seconds.</details>` : "<br><strong>Research sunlight-v2:</strong> not available for this candidate yet.";
-    $("#reveal").innerHTML = `Saved <strong>${button.textContent}</strong>. Connector score ${event.peakScore ?? "—"}; ${rep.persistence?.scanCount ?? event.scanCount ?? "—"} confirming scans; camera distance ${current.camera?.distanceKm ?? "—"} km; predicted direction difference ${current.camera?.bearingDifference ?? "—"}°.${assessmentText}`;
+    const exclusionText = data.cameraExclusion
+      ? `<br><strong>Camera withheld until:</strong> ${esc(new Date(data.cameraExclusion.reviewableAfter).toLocaleString())}.`
+      : "";
+    $("#reveal").innerHTML = `Saved <strong>${button.textContent}</strong>. Connector score ${event.peakScore ?? "—"}; ${rep.persistence?.scanCount ?? event.scanCount ?? "—"} confirming scans; camera distance ${current.camera?.distanceKm ?? "—"} km; predicted direction difference ${current.camera?.bearingDifference ?? "—"}°.${assessmentText}${exclusionText}`;
     $("#reveal").classList.remove("hidden");
     $("#grade-status").textContent = "";
     completed++;
-    queue.shift();
+    if (data.cameraExclusion) queue = queue.filter(item => item.cameraKey !== current.cameraKey);
+    else queue.shift();
     loadResults().catch(() => {});
     setTimeout(render, 1300);
   } catch (error) {
@@ -317,6 +383,20 @@ $("#logout").addEventListener("click", async () => {
 });
 
 $("#refresh").addEventListener("click", () => refreshReviewPage());
+
+document.querySelectorAll("[data-queue-filter]").forEach(button => button.addEventListener("click", async () => {
+  queueFilter = button.dataset.queueFilter;
+  document.querySelectorAll("[data-queue-filter]").forEach(item => item.classList.toggle("active", item === button));
+  current = null;
+  queue = [];
+  await loadQueue({ loadAuxiliary: false });
+}));
+
+document.querySelectorAll("[data-v5-filter]").forEach(button => button.addEventListener("click", () => {
+  v5Filter = button.dataset.v5Filter;
+  document.querySelectorAll("[data-v5-filter]").forEach(item => item.classList.toggle("active", item === button));
+  renderV5Daily();
+}));
 
 (async () => {
   try {

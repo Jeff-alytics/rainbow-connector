@@ -1,5 +1,6 @@
 import unittest
 from datetime import datetime, timezone
+from unittest.mock import patch
 
 import numpy as np
 
@@ -36,6 +37,27 @@ class MrmsSourceTests(unittest.TestCase):
 
 
 class RadarFirstTests(unittest.TestCase):
+    def test_v5_seed_mode_keeps_high_sun_wet_observers_without_cap_or_clustering(self):
+        lats = np.linspace(34, 36, 201)
+        lons = np.linspace(-87, -85, 201)
+        rates = np.zeros((201, 201))
+        rates[100, 100] = 1.0
+        diagnostics = {}
+        with patch("detector_core.solar_position", return_value=(35.0, 90.0)), \
+             patch("detector_core.is_conus_land", return_value=True), \
+             patch("detector_core.sample_grid", return_value=1.0):
+            seeds = observer_seeds_from_rain_grid(
+                lats, lons, rates, datetime(2026, 7, 26, 12, tzinfo=timezone.utc),
+                stride=10, maximum=None, diagnostics=diagnostics,
+                sun_elevation_range=(-2, 42), require_dry_observer=False,
+                retain_all_observer_distances=True, cluster_radius_km=0,
+            )
+        self.assertEqual(len(seeds), 4)
+        self.assertTrue(all(seed["observerRainRateMmHr"] == 1 for seed in seeds))
+        self.assertIsNone(diagnostics["candidateCap"])
+        self.assertFalse(diagnostics["candidateCapHit"])
+        self.assertEqual(diagnostics["clusterRadiusKm"], 0)
+
     def test_spatial_support_flags_only_isolated_wet_cells(self):
         rates = np.zeros((7, 7))
         rates[3, 3] = 1.0

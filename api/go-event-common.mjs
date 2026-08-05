@@ -610,13 +610,16 @@ export function researchDetectionFromAssessment(assessment) {
   const apparentElevation = Number(geometry.apparentSunElevationDeg);
   const score = Number(geometry.radarScore), rainRate = Number(rain.rateMmHr);
   const observerRain = Number(rain.observerRateMmHr), rainDistance = Number(rain.distanceKm);
-  const ledger = assessment?.researchReview?.source === "opportunity_ledger";
+  const researchReview = assessment?.researchReview || {};
+  const ledger = researchReview.source === "opportunity_ledger";
+  const v4 = researchReview.source === "v4_shadow";
   return {
     detectedAt: new Date(detectedMs).toISOString(), candidateId: assessment.candidateId || null,
-    candidateClass: "POSSIBLE", rank: finite(assessment?.researchReview?.rankWithinScan), lat, lon,
-    label: ledger ? "Opportunity-ledger research candidate" : "Geometry-first research candidate", nearestZip: null,
+    candidateClass: "POSSIBLE", rank: finite(researchReview.rankWithinScan), lat, lon,
+    label: v4 ? (researchReview.lane === "go" ? "V4.2 shadow GO" : "V4.2 shadow POSSIBLE")
+      : ledger ? "Opportunity-ledger research candidate" : "Geometry-first research candidate", nearestZip: null,
     direction: Number.isFinite(antiSolar) ? { bearing: antiSolar, label: `Predicted bow direction ${Math.round(antiSolar)} degrees` } : null,
-    score: finite(score), persistence: { confirmed: false, scanCount: 1, firstSeenAt: at, lastSeenAt: at },
+    score: v4 ? finite(researchReview.score) : finite(score), persistence: { confirmed: false, scanCount: 1, firstSeenAt: at, lastSeenAt: at },
     evidence: {
       sunElevationDeg: finite(elevation),
       apparentSunElevationDeg: finite(apparentElevation),
@@ -627,13 +630,59 @@ export function researchDetectionFromAssessment(assessment) {
       rainPointCloudCoverPct: null, rainIntensity: finite(rainRate), observerRainIntensity: finite(observerRain),
       rainPoint: Number.isFinite(Number(rain.lat)) && Number.isFinite(Number(rain.lon))
         ? { lat: Number(rain.lat), lon: Number(rain.lon), distanceKm: finite(rainDistance), bearing: null } : null,
-      goes: null, selectionReason: ledger ? "opportunity-ledger-camera-gated-review-only" : "geometry-first-review-only",
+      goes: null, selectionReason: v4 ? "v4-shadow-review-only" : ledger ? "opportunity-ledger-camera-gated-review-only" : "geometry-first-review-only",
       researchRuleVersion: assessment?.researchReview?.ruleVersion || null,
       researchSource: assessment?.researchReview?.source || "detector_rejection_log",
       currentDetectorDisposition: assessment?.researchReview?.currentDetectorDisposition || assessment?.disposition || null,
       antiSolarRainArcSpanDeg: finite(rain.antiSolarRainArcSpanDeg),
       antiSolarRainSpanByTier: rain.antiSolarRainSpanByTier || null,
     },
+  };
+}
+
+function compactV4ShadowPrediction(assessment) {
+  const review = assessment?.researchReview || {};
+  const prediction = review.v4Prediction || {};
+  if (review.source !== "v4_shadow" || !prediction.predictionId) return null;
+  return {
+    predictionId: prediction.predictionId, predictionSha256: prediction.predictionSha256,
+    mechanicalPredictionSha256: prediction.mechanicalPredictionSha256 || null,
+    mechanicalFreezeContentSha256: prediction.mechanicalFreezeContentSha256,
+    detectedAt: assessment.radarObservedAt || prediction.scanTime || null,
+    lat: finite(assessment?.observer?.lat), lon: finite(assessment?.observer?.lon),
+    bowBearingDeg: finite(assessment?.geometry?.antiSolarBearingDeg),
+    score: finite(review.score ?? prediction.score), rankWithinScan: finite(review.rankWithinScan ?? prediction.rankWithinScan),
+    poolSize: finite(review.poolSize ?? prediction.poolSize), lane: review.lane || prediction.lane || null,
+    classification: review.classification || prediction.classification || null,
+    sunlightState: prediction.sunlightState || null,
+    assessmentProcessingAt: prediction.assessmentProcessingAt || null,
+    modelVersion: review.modelVersion || prediction.modelVersion || null,
+    ruleVersion: review.ruleVersion || prediction.ruleVersion || null,
+    familyEventId: review.familyEventId || prediction.familyEventId || null,
+    componentId: review.componentId || prediction.componentId || null,
+    hasMatchedCamera: review.hasMatchedCamera === true || (review.cameraMatches || []).length > 0,
+    cameraMatches: (review.cameraMatches || []).slice(0, 3),
+  };
+}
+
+function compactV5ShadowPrediction(assessment) {
+  const review = assessment?.researchReview || {};
+  const prediction = review.v5Prediction || {};
+  if (review.source !== "v4_shadow" || !prediction.predictionId) return null;
+  return {
+    predictionId: prediction.predictionId, predictionSha256: prediction.predictionSha256,
+    detectedAt: assessment.radarObservedAt || prediction.scanTime || null,
+    familyEventId: prediction.familyEventId || review.familyEventId || null,
+    componentId: prediction.componentId || review.componentId || null,
+    ruleVersion: prediction.ruleVersion || null, modelVersion: prediction.modelVersion || null,
+    score: finite(prediction.score), scoreSensitivityLow: finite(prediction.scoreSensitivityLow),
+    scoreSensitivityHigh: finite(prediction.scoreSensitivityHigh), rankWithinScan: finite(prediction.rankWithinScan),
+    poolSize: finite(prediction.poolSize), noDecayAblationScore: finite(prediction.noDecayAblationScore),
+    noDecayRankWithinScan: finite(prediction.noDecayRankWithinScan),
+    sourceV4PredictionSha256: prediction.sourceV4PredictionSha256 || null,
+    sourceV4Classification: prediction.sourceV4Classification || null,
+    sourceSunlightState: prediction.sourceSunlightState || null,
+    features: prediction.features || null, exploration: prediction.exploration || null,
   };
 }
 
@@ -646,6 +695,10 @@ export function newResearchReviewEvent(assessment) {
   event.researchRuleVersion = assessment?.researchReview?.ruleVersion || null;
   event.researchSource = assessment?.researchReview?.source || "detector_rejection_log";
   event.ledgerEventId = assessment?.researchReview?.ledgerEventId || null;
+  const v4Prediction = compactV4ShadowPrediction(assessment);
+  if (v4Prediction) event.v4ShadowPredictions = [v4Prediction];
+  const v5Prediction = compactV5ShadowPrediction(assessment);
+  if (v5Prediction) event.v5ShadowPredictions = [v5Prediction];
   return event;
 }
 
@@ -665,8 +718,9 @@ export async function attachReviewAssessments(assessments, options = {}) {
     const candidateId = String(assessment?.candidateId || "").trim();
     if (!/^[a-f0-9]{64}$/.test(key) || !candidateId) { unmatched++; continue; }
     const research = assessment?.disposition === "selected_research_possible";
+    const researchSource = String(assessment?.researchReview?.source || "detector_rejection_log");
     const pool = events.filter(event => research
-      ? event.candidateType === "research_possible"
+      ? event.candidateType === "research_possible" && String(event.researchSource || "detector_rejection_log") === researchSource
       : event.candidateType !== "research_possible");
     const ledgerEventId = String(assessment?.researchReview?.ledgerEventId || "").trim();
     const replayTargetId = assessment?.decisionStage === "exact_point_causal_replay"
@@ -722,6 +776,16 @@ export async function attachReviewAssessments(assessments, options = {}) {
       current.researchAssessments = [
         ...(current.researchAssessments || []).filter(item => item.idempotencyKey !== key), compact,
       ].slice(-24);
+      const v4Prediction = compactV4ShadowPrediction(assessment);
+      if (v4Prediction) current.v4ShadowPredictions = [
+        ...(current.v4ShadowPredictions || []).filter(item => item.predictionId !== v4Prediction.predictionId),
+        v4Prediction,
+      ].slice(-288);
+      const v5Prediction = compactV5ShadowPrediction(assessment);
+      if (v5Prediction) current.v5ShadowPredictions = [
+        ...(current.v5ShadowPredictions || []).filter(item => item.predictionId !== v5Prediction.predictionId),
+        v5Prediction,
+      ].slice(-288);
       return current;
     });
     if (!event) { unmatched++; continue; }

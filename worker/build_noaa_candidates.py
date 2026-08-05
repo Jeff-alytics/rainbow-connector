@@ -78,6 +78,8 @@ def build(args: argparse.Namespace, research_artifacts: dict | None = None) -> d
             "latitudes": latitude_values, "longitudes": longitude_values, "rates": rate_values,
             "observedAt": obj.observed_at, "sourceKey": obj.key, "candidates": artifact["shortlist"],
             "radarObservedAt": radar_health["observedAt"],
+            "operationalSeedDiagnostics": dict(radar_diagnostics),
+            "operationalSeedParameters": {"stride": args.stride, "maximum": args.maximum},
         }
     artifact["sourceHealth"]["radar"]["rainFootprintId"] = footprint_id
     artifact["diagnostics"] = {

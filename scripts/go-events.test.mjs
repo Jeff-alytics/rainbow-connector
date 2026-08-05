@@ -83,6 +83,31 @@ test("opportunity-ledger assessments stay private and retain their distinct sour
   assert.equal(event.candidateClass, "POSSIBLE");
 });
 
+test("V4.2 assessments retain frozen sunlight-decided prediction metadata", () => {
+  const assessment = {
+    candidateId: "v4-example", disposition: "selected_research_possible",
+    radarObservedAt: "2026-08-05T20:10:00Z", observer: { lat: 40.1, lon: -90.2 },
+    rain: { lat: 40.1, lon: -90.0, distanceKm: 17, rateMmHr: 2, observerRateMmHr: 0 },
+    geometry: { sunElevationDeg: 12, antiSolarBearingDeg: 91, radarScore: 98 },
+    researchReview: { source: "v4_shadow", ruleVersion: "v4-shadow-review-2026-08-v2",
+      modelVersion: "causal-bounded-persistence-radar-v2", lane: "go",
+      classification: "GO_SUNLIT_SUPPORTED", rankWithinScan: 1,
+      poolSize: 7, score: 92.5, hasMatchedCamera: false, ledgerEventId: "rain-family-1",
+      v4Prediction: { predictionId: "v4-p1", predictionSha256: "a".repeat(64),
+        mechanicalFreezeContentSha256: "b".repeat(64), scanTime: "2026-08-05T20:10:00Z",
+        lane: "go", classification: "GO_SUNLIT_SUPPORTED", sunlightState: "sunlit_supported",
+        rankWithinScan: 1, poolSize: 7 } },
+  };
+  const detection = researchDetectionFromAssessment(assessment);
+  assert.equal(detection.label, "V4.2 shadow GO");
+  assert.equal(detection.score, 92.5);
+  const event = newResearchReviewEvent(assessment);
+  assert.equal(event.researchSource, "v4_shadow");
+  assert.equal(event.v4ShadowPredictions[0].predictionId, "v4-p1");
+  assert.equal(event.v4ShadowPredictions[0].classification, "GO_SUNLIT_SUPPORTED");
+  assert.equal(event.v4ShadowPredictions[0].hasMatchedCamera, false);
+});
+
 test("ledger identities do not fall back to the research storm corridor", () => {
   const first = newResearchReviewEvent({ candidateId: "one", disposition: "selected_research_possible",
     radarObservedAt: "2026-07-30T02:22:00Z", observer: { lat: 41.1218, lon: -112.0838 },

@@ -440,7 +440,9 @@ def enrich_sunlight_v2(
     disagreements: dict[str, list[bool]] = {}
     try:
         for candidate in candidates:
-            record = record_by_id.get(candidate_id(candidate, radar_observed_at))
+            # Research selectors may use lineage-stable IDs instead of the
+            # detector's coordinate-derived candidate ID.
+            record = record_by_id.get(candidate.get("candidateId") or candidate_id(candidate, radar_observed_at))
             if not record:
                 continue
             try:
