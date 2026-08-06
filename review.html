@@ -61,6 +61,19 @@
     </article>
     <section id="empty" class="card hidden"><h2>Nothing awaiting review</h2><p>New events will appear after the Connector records a GO, strong POSSIBLE, or persistent research candidate and finds usable camera imagery.</p></section>
     <section class="card">
+      <div class="top"><div><h2>Known rainbow checks</h2><p class="results-copy">Record a public rainbow observation separately from blind camera review, then compare it with nearby recorded Operational, V4.2, and V5 candidates.</p></div><span id="manual-count" class="small"></span></div>
+      <form id="manual-rainbow-form">
+        <label>Public source URL<input id="manual-source-url" type="url" required placeholder="https://x.com/…"></label>
+        <label>Observed local time<input id="manual-observed-at" type="datetime-local" required></label>
+        <label>Place<input id="manual-location" placeholder="Winston-Salem ballpark"></label>
+        <div class="top"><label>Latitude<input id="manual-lat" type="number" min="-90" max="90" step="any" required></label><label>Longitude<input id="manual-lon" type="number" min="-180" max="180" step="any" required></label><label>Match radius (km)<input id="manual-radius" type="number" min="1" max="100" value="25" required></label></div>
+        <div class="top"><label>Location certainty<select id="manual-certainty"><option value="approximate">Approximate</option><option value="exact">Exact</option></select></label><label>Evidence<select id="manual-evidence"><option value="rainbow">Rainbow</option><option value="possible">Possible rainbow</option></select></label></div>
+        <label>Notes<textarea id="manual-notes" placeholder="Optional context"></textarea></label>
+        <button type="submit">Add known rainbow</button><span id="manual-status" class="status" role="status"></span>
+      </form>
+      <div class="table-wrap"><table><thead><tr><th>Observed</th><th>Place</th><th>Evidence</th><th>Operational</th><th>V4.2</th><th>V5</th><th>Replay</th><th>Source</th></tr></thead><tbody id="manual-body"><tr><td colspan="8">Loading known rainbows…</td></tr></tbody></table></div>
+    </section>
+    <section class="card">
       <div class="top"><div><h2>Review results</h2><p class="results-copy">Human grades compared with the evidence that produced each candidate.</p></div><span id="results-count" class="small"></span></div>
       <p class="small">Model score is a 0–100 ranking score, not a percent probability. Review strength accounts for camera distance, direction error, view quality, and frame timing; negative grades are conclusive only with strong evidence.</p>
       <div class="table-wrap">
@@ -195,7 +208,7 @@ async function loadQueue({ preserveCurrent = false, loadAuxiliary = true } = {})
     render();
   }
   showWorkspace();
-  if (loadAuxiliary) await Promise.allSettled([loadResults(), loadSubscribers()]);
+  if (loadAuxiliary) await Promise.allSettled([loadResults(), loadManualRainbows(), loadSubscribers()]);
 }
 
 async function refreshReviewPage({ announce = true } = {}){
@@ -250,6 +263,21 @@ async function loadResults(){
   }).join("") : '<tr><td colspan="19">No candidates have been graded yet.</td></tr>';
 }
 
+function manualMatch(match){
+  if (!match) return "No recorded candidate";
+  return `${match.matched ? "Match" : "Nearest"} · ${number(match.distanceKm, 1)} km · ${number(match.timeGapMinutes, 1)} min`;
+}
+
+async function loadManualRainbows(){
+  const data = await api("/api/manual-rainbows?limit=250");
+  const items = data.items || [];
+  $("#manual-count").textContent = `${items.length} known positive${items.length === 1 ? "" : "s"}`;
+  $("#manual-body").innerHTML = items.length ? items.map(item => `<tr>
+    <td>${esc(new Date(item.observedAt).toLocaleString())}</td><td>${esc(item.locationLabel || `${item.lat}, ${item.lon}`)}<span class="result-note">${esc(item.locationCertainty)} · ${number(item.matchRadiusKm)} km radius</span></td>
+    <td>${esc(gradeNames[item.evidenceLabel] || item.evidenceLabel)}</td><td>${esc(manualMatch(item.matches?.operational))}</td><td>${esc(manualMatch(item.matches?.v4))}</td><td>${esc(manualMatch(item.matches?.v5))}</td>
+    <td>${item.matches?.exactReplayStatus === "complete" ? "Complete" : "Exact replay pending"}</td><td><a href="${esc(item.sourceUrl)}" target="_blank" rel="noopener">Open source</a></td></tr>`).join("") : '<tr><td colspan="8">No manual rainbow observations recorded yet.</td></tr>';
+}
+
 async function loadSubscribers(){
   const data = await api("/api/review-subscribers");
   const items = data.items || [];
@@ -273,6 +301,25 @@ $("#login-form").addEventListener("submit", async event => {
   } catch (error) {
     $("#login-status").textContent = error.message;
   } finally { button.disabled = false; }
+});
+
+$("#manual-rainbow-form").addEventListener("submit", async event => {
+  event.preventDefault();
+  const button = event.submitter;
+  button.disabled = true;
+  $("#manual-status").textContent = "Saving and matching…";
+  try {
+    await api("/api/manual-rainbows", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({
+      sourceUrl:$("#manual-source-url").value, observedAt:new Date($("#manual-observed-at").value).toISOString(),
+      locationLabel:$("#manual-location").value, lat:Number($("#manual-lat").value), lon:Number($("#manual-lon").value),
+      matchRadiusKm:Number($("#manual-radius").value), locationCertainty:$("#manual-certainty").value,
+      evidenceLabel:$("#manual-evidence").value, notes:$("#manual-notes").value,
+    }) });
+    $("#manual-rainbow-form").reset(); $("#manual-radius").value = "25";
+    $("#manual-status").textContent = "Saved.";
+    await loadManualRainbows();
+  } catch (error) { $("#manual-status").textContent = error.message; }
+  finally { button.disabled = false; }
 });
 
 document.querySelectorAll("[data-label]").forEach(button => button.addEventListener("click", async () => {
