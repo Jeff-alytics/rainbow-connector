@@ -60,10 +60,6 @@
       <div id="reveal" class="reveal hidden"></div>
     </article>
     <section id="empty" class="card hidden"><h2>Nothing awaiting review</h2><p>New events will appear after the Connector records a GO, strong POSSIBLE, or persistent research candidate and finds usable camera imagery.</p></section>
-    <section class="card" id="v4-daily">
-      <div class="top"><div><h2>V4.2 candidates by day</h2><p class="results-copy">Private sunlight-decided research predictions only — these are not public Connector alerts. Use the coordinates and predicted bow direction to look for public cameras.</p></div><span id="v4-daily-count" class="small"></span></div>
-      <div class="table-wrap"><table style="min-width:1150px"><thead><tr><th>UTC day</th><th>Time</th><th>Decision</th><th>Rank / pool</th><th>V4 score</th><th>Location</th><th>Predicted bow</th><th>System camera</th><th>Review</th><th>Frozen prediction</th></tr></thead><tbody id="v4-daily-body"><tr><td colspan="10">Loading V4.2 candidates…</td></tr></tbody></table></div>
-    </section>
     <section class="card">
       <div class="top"><div><h2>Review results</h2><p class="results-copy">Human grades compared with the evidence that produced each candidate.</p></div><span id="results-count" class="small"></span></div>
       <p class="small">Model score is a 0–100 ranking score, not a percent probability. Review strength accounts for camera distance, direction error, view quality, and frame timing; negative grades are conclusive only with strong evidence.</p>
@@ -199,7 +195,7 @@ async function loadQueue({ preserveCurrent = false, loadAuxiliary = true } = {})
     render();
   }
   showWorkspace();
-  if (loadAuxiliary) await Promise.allSettled([loadResults(), loadV4Daily(), loadSubscribers()]);
+  if (loadAuxiliary) await Promise.allSettled([loadResults(), loadSubscribers()]);
 }
 
 async function refreshReviewPage({ announce = true } = {}){
@@ -252,35 +248,6 @@ async function loadResults(){
       <td>${item.detectedAt ? esc(new Date(item.detectedAt).toLocaleString()) : "—"}</td>
     </tr>`;
   }).join("") : '<tr><td colspan="19">No candidates have been graded yet.</td></tr>';
-}
-
-async function loadV4Daily(){
-  const body = $("#v4-daily-body");
-  try {
-    const data = await api("/api/go-events?v4Daily=1&limit=1000");
-    const rows = (data.items || []).flatMap(day => day.items.map(item => ({...item, day:day.date})));
-    $("#v4-daily-count").textContent = `${rows.length} frozen prediction${rows.length === 1 ? "" : "s"}`;
-    body.innerHTML = rows.length ? rows.map(item => {
-    const location = Number.isFinite(item.lat) && Number.isFinite(item.lon)
-      ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.lat},${item.lon}`)}" target="_blank" rel="noopener">${item.lat.toFixed(4)}, ${item.lon.toFixed(4)}</a>` : "—";
-    const matchedNames = (item.cameraMatches || []).map(match => [match.name, match.direction].filter(Boolean).join(" · ")).filter(Boolean);
-    const evidenceName = [item.evidenceCamera?.name, item.evidenceCamera?.direction].filter(Boolean).join(" · ");
-    const cameraName = evidenceName || matchedNames.join("; ") || (item.hasCameraEvidence ? "Camera evidence" : "No camera found yet");
-    const camera = cameraName;
-    const digest = String(item.predictionSha256 || "");
-    return `<tr><td>${esc(item.day)}</td><td>${esc(new Date(item.detectedAt).toLocaleTimeString([], {hour:"numeric",minute:"2-digit",timeZone:"UTC"}))} UTC</td><td>${esc(item.classification || (item.lane === "primary" ? "V4.1 PRIMARY" : item.lane || "—"))}</td>
-      <td>${item.modelDetailsWithheld ? "Withheld until graded" : `${number(item.rankWithinScan)} / ${number(item.poolSize)}`}<span class="result-note">${number(item.scanSelections)} scan selection${item.scanSelections === 1 ? "" : "s"}</span></td><td>${item.modelDetailsWithheld ? "Withheld" : number(item.score, 1)}</td><td>${location}</td>
-      <td>${number(item.bowBearingDeg, 0)}°</td><td>${esc(camera)}</td><td>${esc(gradeNames[item.reviewLabel] || item.reviewLabel || "pending")}</td>
-      <td title="${esc(digest)}">${esc(item.predictionId || "—")}<span class="result-note">${esc(item.modelVersion || "")}${digest ? ` · ${digest.slice(0,12)}` : ""}</span></td></tr>`;
-    }).join("") : '<tr><td colspan="10">No V4.2 candidates have been recorded yet.</td></tr>';
-  } catch (error) {
-    $("#v4-daily-count").textContent = "Load failed";
-    body.innerHTML = `<tr><td colspan="10">Could not load V4.2 candidates: ${esc(error.message)} <button type="button" id="retry-v4-daily">Retry</button></td></tr>`;
-    $("#retry-v4-daily").addEventListener("click", () => {
-      body.innerHTML = '<tr><td colspan="10">Loading V4.2 candidates…</td></tr>';
-      loadV4Daily();
-    });
-  }
 }
 
 async function loadSubscribers(){
