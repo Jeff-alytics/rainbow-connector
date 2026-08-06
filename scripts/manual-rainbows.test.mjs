@@ -21,7 +21,10 @@ test("manual rainbow matching keeps operational, V4, and V5 lanes distinct", () 
   const result = matchManualRainbow(manual, [event("op", null, 36.05, -80),
     event("v4", "v4_shadow", 36.1, -80), event("v5", "v5_shadow", 40, -80)]);
   assert.equal(result.operational.matched, true);
+  assert.equal(result.operational.modelDecision, "GO");
   assert.equal(result.v4.matched, true);
+  assert.equal(result.v4.modelDecision, "POSSIBLE");
   assert.equal(result.v5.matched, false);
+  assert.equal(result.v5.modelDecision, "POSSIBLE");
   assert.equal(result.exactReplayStatus, "pending");
 });

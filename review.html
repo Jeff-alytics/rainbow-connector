@@ -265,7 +265,8 @@ async function loadResults(){
 
 function manualMatch(match){
   if (!match) return "No recorded candidate";
-  return `${match.matched ? "Match" : "Nearest"} · ${number(match.distanceKm, 1)} km · ${number(match.timeGapMinutes, 1)} min`;
+  const decision = match.modelDecision || match.candidateClass || "Candidate";
+  return `${match.matched ? `${decision} match` : `No match · nearest ${decision}`} · ${number(match.distanceKm, 1)} km · ${number(match.timeGapMinutes, 1)} min`;
 }
 
 async function loadManualRainbows(){

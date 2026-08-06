@@ -52,6 +52,20 @@ function lane(event) {
   return null;
 }
 
+function modelDecision(event, modelLane) {
+  if (modelLane === "operational") {
+    if (event?.candidateClass === "GO" || event?.candidateType === "live_go") return "GO";
+    return "POSSIBLE";
+  }
+  if (modelLane === "v4") {
+    const prediction = (event?.v4ShadowPredictions || []).at(-1) || {};
+    if (prediction.lane === "go" || prediction.lane === "primary"
+      || String(prediction.classification || "").startsWith("GO")) return "GO";
+    return "POSSIBLE";
+  }
+  return "POSSIBLE";
+}
+
 export function matchManualRainbow(manual, events) {
   const observedMs = new Date(manual.observedAt).getTime();
   const best = { operational: null, v4: null, v5: null };
@@ -65,6 +79,7 @@ export function matchManualRainbow(manual, events) {
       eventId: event.id, distanceKm: Number(distanceKm.toFixed(1)),
       timeGapMinutes: Number(timeGapMinutes.toFixed(1)),
       candidateClass: event.candidateClass || null,
+      modelDecision: modelDecision(event, modelLane),
       score: Number.isFinite(event.peakScore) ? event.peakScore : null,
       matched: distanceKm <= manual.matchRadiusKm,
     };
